@@ -12,12 +12,13 @@ import RxCocoa
 import Boomerang
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
-    @IBOutlet weak var collectionView: UICollectionView!
-  
+    @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
+    
     var viewModel: SearchCarsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view_circularMenu.type = .searchCars
     }
     
     func bind(to viewModel: ViewModelType?) {
