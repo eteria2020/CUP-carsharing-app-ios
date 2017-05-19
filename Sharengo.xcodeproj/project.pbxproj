@@ -91,14 +91,30 @@
 		4D377AB41ECEDA27005DF900 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D4EED691ECF947200700CC0 /* NavigationBar */,
+				4D4EED6A1ECF947E00700CC0 /* CircularMenu */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		4D4EED691ECF947200700CC0 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
 				4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */,
 				4D6ACAD01ECF33F700D58948 /* NavigationBarViewModel.swift */,
 				4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */,
+			);
+			name = NavigationBar;
+			sourceTree = "<group>";
+		};
+		4D4EED6A1ECF947E00700CC0 /* CircularMenu */ = {
+			isa = PBXGroup;
+			children = (
 				4D377AB51ECEDAB0005DF900 /* CircularMenuView.swift */,
 				4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */,
 				4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */,
 			);
-			name = Views;
+			name = CircularMenu;
 			sourceTree = "<group>";
 		};
 		4DCD1A491ECDBF7400FC8BF5 = {

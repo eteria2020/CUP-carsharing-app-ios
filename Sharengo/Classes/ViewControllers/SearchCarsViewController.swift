@@ -20,6 +20,24 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     var viewModel: SearchCarsViewModel?
     
+    // MARK: - ViewModel methods
+    
+    func bind(to viewModel: ViewModelType?) {
+        guard let viewModel = viewModel as? SearchCarsViewModel else {
+            return
+        }
+        self.viewModel = viewModel
+        viewModel.selection.elements.subscribe(onNext:{ selection in
+            switch selection {
+            case .viewModel(let viewModel):
+                Router.from(self,viewModel: viewModel).execute()
+            }
+        }).addDisposableTo(self.disposeBag)
+        viewModel.reload()
+    }
+   
+    // MARK: - View methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // NavigationBar
@@ -47,19 +65,5 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             default:break
             }
         }).addDisposableTo(self.disposeBag)
-    }
-    
-    func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? SearchCarsViewModel else {
-            return
-        }
-        self.viewModel = viewModel
-        viewModel.selection.elements.subscribe(onNext:{ selection in
-            switch selection {
-            case .viewModel(let viewModel):
-                Router.from(self,viewModel: viewModel).execute()
-            }
-        }).addDisposableTo(self.disposeBag)
-        viewModel.reload()
     }
 }
