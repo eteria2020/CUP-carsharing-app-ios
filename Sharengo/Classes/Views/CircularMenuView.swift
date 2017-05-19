@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import Boomerang
+import Action
 
 enum CircularMenuType {
-    case none
+    case empty
     case searchCars
     
     func getBackgroundBorderColor() -> UIColor {
@@ -42,9 +46,9 @@ enum CircularMenuType {
     func getItems() -> [CircularMenuItem] {
         switch self {
         case .searchCars:
-            return [CircularMenuItem(icon: "ic_referesh"),
-                    CircularMenuItem(icon: "ic_center"),
-                    CircularMenuItem(icon: "ic_compass"),
+            return [CircularMenuItem(icon: "ic_referesh", input: .refresh),
+                    CircularMenuItem(icon: "ic_center", input: .center),
+                    CircularMenuItem(icon: "ic_compass", input: .compass),
             ]
         default:
             return []
@@ -54,6 +58,20 @@ enum CircularMenuType {
 
 struct CircularMenuItem {
     let icon: String
+    let input: CircularMenuInput
+}
+
+public enum CircularMenuInput: SelectionInput {
+    case refresh
+    case center
+    case compass
+}
+
+public enum CircularMenuOutput: SelectionInput {
+    case empty
+    case refresh
+    case center
+    case compass
 }
 
 @IBDesignable class CircularMenuView: UIView {
@@ -62,7 +80,7 @@ struct CircularMenuItem {
     
     fileprivate var view: UIView!
     fileprivate var array_buttons: [UIButton] = []
-    var type: CircularMenuType = .none {
+    var type: CircularMenuType = .empty {
         didSet {
             self.layoutIfNeeded()
             self.view_background.backgroundColor = self.type.getBackgroundViewColor()
@@ -72,6 +90,9 @@ struct CircularMenuItem {
             self.view_background.layer.masksToBounds = true
             self.generateButtons()
         }
+    }
+    public var selection: Action<CircularMenuInput, CircularMenuOutput> = Action { _ in
+        return .just(.empty)
     }
     
     // MARK: - View methods
@@ -94,6 +115,16 @@ struct CircularMenuItem {
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
+        self.selection = Action { input in
+            switch input {
+            case .refresh:
+                return .just(.refresh)
+            case .center:
+                return .just(.center)
+            case .compass:
+                return .just(.compass)
+            }
+        }
     }
     
     fileprivate func loadViewFromNib() -> UIView
@@ -122,6 +153,7 @@ struct CircularMenuItem {
                 let buttonY: CGFloat = circleCenter.y+sin(curAngle)*circleRadius
                 button.center = CGPoint(x: buttonX, y: buttonY)
                 button.setBackgroundImage(UIImage(named: menuItem.icon), for: .normal)
+                button.rx.bind(to: selection, input: menuItem.input)
                 view_main.addSubview(button)
                 array_buttons.append(button)
                 curAngle += incAngle

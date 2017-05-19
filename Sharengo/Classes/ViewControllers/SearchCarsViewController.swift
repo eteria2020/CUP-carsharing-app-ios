@@ -10,6 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
+import RxCocoa
+import Boomerang
+import Action
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
@@ -19,6 +22,21 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     override func viewDidLoad() {
         super.viewDidLoad()
         view_circularMenu.type = .searchCars
+        view_circularMenu.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            case .refresh:
+                print("Refresh button tapped")
+                break
+            case .center:
+                print("Center button tapped")
+                break
+            case .compass:
+                print("Compass button tapped")
+                break
+            default:break
+            }
+        }).addDisposableTo(self.disposeBag)
     }
     
     func bind(to viewModel: ViewModelType?) {
