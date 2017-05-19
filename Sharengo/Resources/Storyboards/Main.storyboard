@@ -24,8 +24,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3B-a6-ECE" customClass="CircularMenuView" customModule="Sharengo" customModuleProvider="target">
-                                <rect key="frame" x="208.5" y="500.5" width="333.5" height="333.5"/>
-                                <color key="backgroundColor" red="1" green="0.80036537547528519" blue="0.4657943203422053" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="25" y="317" width="300.5" height="300.5"/>
+                                <color key="backgroundColor" red="1" green="0.80036537547528519" blue="0.4657943203422053" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="j3B-a6-ECE" secondAttribute="height" multiplier="1:1" id="6G7-zn-lrW"/>
                                 </constraints>
@@ -33,9 +33,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="j3B-a6-ECE" firstAttribute="height" secondItem="0Jc-nj-FbD" secondAttribute="height" multiplier="0.5" id="0if-s1-Qec"/>
-                            <constraint firstItem="j3B-a6-ECE" firstAttribute="centerY" secondItem="0Jc-nj-FbD" secondAttribute="bottom" id="VEU-iu-srp"/>
-                            <constraint firstItem="j3B-a6-ECE" firstAttribute="centerX" secondItem="0Jc-nj-FbD" secondAttribute="trailing" id="e8g-va-7yP"/>
+                            <constraint firstItem="j3B-a6-ECE" firstAttribute="height" secondItem="0Jc-nj-FbD" secondAttribute="height" multiplier="0.45" id="0if-s1-Qec"/>
+                            <constraint firstItem="j3B-a6-ECE" firstAttribute="centerY" secondItem="0Jc-nj-FbD" secondAttribute="bottom" constant="5" id="VEU-iu-srp"/>
+                            <constraint firstItem="j3B-a6-ECE" firstAttribute="centerX" secondItem="0Jc-nj-FbD" secondAttribute="trailing" constant="-10" id="e8g-va-7yP"/>
                         </constraints>
                     </view>
                     <connections>

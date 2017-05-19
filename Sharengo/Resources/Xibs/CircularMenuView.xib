@@ -10,27 +10,37 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircularMenuView" customModule="Sharengo" customModuleProvider="target">
             <connections>
+                <outlet property="view_background" destination="3tw-8E-A5X" id="CW6-Md-392"/>
                 <outlet property="view_main" destination="S0a-bX-9Ds" id="R1Q-ey-hKX"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tw-8E-A5X">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                    <color key="backgroundColor" red="0.50380228136882133" green="0.76235741444866922" blue="0.61408329372623571" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0a-bX-9Ds">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                    <color key="backgroundColor" red="0.23385515684410646" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.57606048003802279" green="0.5608216492395437" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.57606048003802279" green="0.5608216492395437" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="3tw-8E-A5X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1lP-0D-UWc"/>
                 <constraint firstAttribute="bottom" secondItem="S0a-bX-9Ds" secondAttribute="bottom" id="7ib-0Y-pYD"/>
+                <constraint firstAttribute="trailing" secondItem="3tw-8E-A5X" secondAttribute="trailing" id="NyQ-ET-HBA"/>
+                <constraint firstItem="3tw-8E-A5X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WOb-Jj-sQJ"/>
                 <constraint firstItem="S0a-bX-9Ds" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bAG-2w-8K8"/>
                 <constraint firstAttribute="trailing" secondItem="S0a-bX-9Ds" secondAttribute="trailing" id="czg-zG-Fwk"/>
                 <constraint firstItem="S0a-bX-9Ds" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="luh-v9-Pxk"/>
+                <constraint firstAttribute="bottom" secondItem="3tw-8E-A5X" secondAttribute="bottom" id="ojv-zr-5gE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
 </document>

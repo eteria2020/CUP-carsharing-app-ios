@@ -12,45 +12,65 @@ enum CircularMenuType {
     case none
     case searchCars
     
-    func getMainBorderColor() -> UIColor {
+    func getBackgroundBorderColor() -> UIColor {
         switch self {
         case .searchCars:
-            return Color.circularMenuBorder.value
+            return Color.circularMenuBackgroundBorder.value
         default:
             return UIColor()
         }
     }
     
-    func getMainBorderSize() -> CGFloat {
+    func getBackgroundBorderSize() -> CGFloat {
         switch self {
         case .searchCars:
-            return 50
+            return UIScreen.main.bounds.height*0.08
         default:
             return 0
         }
     }
     
-    func getMainViewColor() -> UIColor {
+    func getBackgroundViewColor() -> UIColor {
         switch self {
         case .searchCars:
-            return Color.circularMenuMain.value
+            return Color.circularMenuBackground.value
         default:
             return UIColor()
         }
     }
+    
+    func getItems() -> [CircularMenuItem] {
+        switch self {
+        case .searchCars:
+            return [CircularMenuItem(icon: "ic_referesh"),
+                    CircularMenuItem(icon: "ic_center"),
+                    CircularMenuItem(icon: "ic_compass"),
+            ]
+        default:
+            return []
+        }
+    }
+}
+
+struct CircularMenuItem {
+    let icon: String
 }
 
 @IBDesignable class CircularMenuView: UIView {
     @IBOutlet weak var view_main: UIView!
+    @IBOutlet weak var view_background: UIView!
     
     fileprivate var view: UIView!
+    fileprivate var array_buttons: [UIButton] = []
     var type: CircularMenuType = .none {
         didSet {
-            view_main.backgroundColor = type.getMainViewColor()
-            view_main.layer.borderColor = type.getMainBorderColor().cgColor
-            view_main.layer.borderWidth = type.getMainBorderSize()
-            view_main.layer.cornerRadius = view_main.frame.size.width/2
-            view_main.layer.masksToBounds = true
+            self.layoutIfNeeded()
+            self.view_background.backgroundColor = self.type.getBackgroundViewColor()
+            self.view_background.layer.borderColor = self.type.getBackgroundBorderColor().cgColor
+            self.view_background.layer.borderWidth = self.type.getBackgroundBorderSize()
+            self.view_background.layer.cornerRadius = self.view_background.frame.size.width/2
+            self.view_background.layer.masksToBounds = true
+            self.generateButtons()
         }
     }
     
@@ -81,5 +101,31 @@ enum CircularMenuType {
         let nib = ViewXib.circularMenu.getNib()
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
+    }
+    
+    // MARK: - Buttons methods
+    
+    fileprivate func generateButtons() {
+        let numberOfButtons: Int = 11
+        var curAngle: CGFloat = 3.42719
+        let incAngle: CGFloat = (360.0/CGFloat(numberOfButtons))*CGFloat.pi/180
+        let circleCenter: CGPoint = self.view_main.center
+        let circleRadius: CGFloat = (self.view_main.bounds.size.width/2)-(self.type.getBackgroundBorderSize()/2)
+        for i in 0..<numberOfButtons {
+            if self.type.getItems().count > i {
+                let menuItem = self.type.getItems()[i]
+                let button = UIButton(type: .custom)
+                button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height*0.065, height: UIScreen.main.bounds.height*0.065)
+                button.layer.cornerRadius = button.frame.size.width/2
+                button.layer.masksToBounds = true
+                let buttonX: CGFloat = circleCenter.x+cos(curAngle)*circleRadius
+                let buttonY: CGFloat = circleCenter.y+sin(curAngle)*circleRadius
+                button.center = CGPoint(x: buttonX, y: buttonY)
+                button.setBackgroundImage(UIImage(named: menuItem.icon), for: .normal)
+                view_main.addSubview(button)
+                array_buttons.append(button)
+                curAngle += incAngle
+            }
+        }
     }
 }

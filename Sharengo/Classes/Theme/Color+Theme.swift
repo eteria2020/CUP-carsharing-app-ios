@@ -36,15 +36,15 @@ enum ColorBrand {
 enum Color
 {
     // CircularMenu
-    case circularMenuBorder
-    case circularMenuMain
+    case circularMenuBackgroundBorder
+    case circularMenuBackground
 
     var value: UIColor {
         get {
             switch self {
-            case .circularMenuBorder:
+            case .circularMenuBackgroundBorder:
                 return ColorBrand.yellow.value
-            case .circularMenuMain:
+            case .circularMenuBackground:
                 return ColorBrand.clear.value
             }
         }
