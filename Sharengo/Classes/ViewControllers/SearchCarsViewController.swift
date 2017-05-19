@@ -21,8 +21,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view_circularMenu.type = .searchCars
-        view_circularMenu.selection.elements.subscribe(onNext:{[weak self] output in
+        view_circularMenu.bind(to: CircularMenuViewModel(type: .searchCars))
+        view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
             case .refresh:

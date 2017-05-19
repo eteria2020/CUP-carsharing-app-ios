@@ -11,6 +11,7 @@
 		4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */; };
 		4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377AB91ECEE01A005DF900 /* View+Theme.swift */; };
 		4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377ABB1ECEE442005DF900 /* Color+Theme.swift */; };
+		4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */; };
 		4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
 		4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A811ECDC16400FC8BF5 /* Operators.swift */; };
 		4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A821ECDC16400FC8BF5 /* SeparatorLayout.swift */; };
@@ -37,6 +38,7 @@
 		4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CircularMenuView.xib; path = Resources/Xibs/CircularMenuView.xib; sourceTree = "<group>"; };
 		4D377AB91ECEE01A005DF900 /* View+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "View+Theme.swift"; path = "Classes/Theme/View+Theme.swift"; sourceTree = "<group>"; };
 		4D377ABB1ECEE442005DF900 /* Color+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Color+Theme.swift"; path = "Classes/Theme/Color+Theme.swift"; sourceTree = "<group>"; };
+		4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularMenuViewModel.swift; path = Classes/ViewModels/CircularMenuViewModel.swift; sourceTree = "<group>"; };
 		4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DCD1A811ECDC16400FC8BF5 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Classes/Utilities/Operators.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				4D377AB51ECEDAB0005DF900 /* CircularMenuView.swift */,
+				4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */,
 				4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */,
 			);
 			name = Views;
@@ -408,6 +411,7 @@
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
+				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
