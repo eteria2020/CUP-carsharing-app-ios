@@ -35,6 +35,9 @@ enum ColorBrand {
 
 enum Color
 {
+    // NavigationBar
+    case navigationBarBackground
+    
     // CircularMenu
     case circularMenuBackgroundBorder
     case circularMenuBackground
@@ -42,8 +45,10 @@ enum Color
     var value: UIColor {
         get {
             switch self {
-            case .circularMenuBackgroundBorder:
+            case .navigationBarBackground:
                 return ColorBrand.yellow.value
+            case .circularMenuBackgroundBorder:
+                return ColorBrand.yellow.value.withAlphaComponent(0.5)
             case .circularMenuBackground:
                 return ColorBrand.clear.value
             }

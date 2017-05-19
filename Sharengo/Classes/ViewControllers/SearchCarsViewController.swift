@@ -16,11 +16,21 @@ import Action
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
+    @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView! // TODO: ???
     
     var viewModel: SearchCarsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // NavigationBar
+        view_navigationBar.bind(to: NavigationBarViewModel(leftItem: NavigationBarItemType.home.getItem(), rightItem: NavigationBarItemType.menu.getItem()))
+        view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            default: break
+            }
+        }).addDisposableTo(self.disposeBag)
+        // CircularMenu
         view_circularMenu.bind(to: CircularMenuViewModel(type: .searchCars))
         view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }

@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 import Boomerang
 import Action
 
@@ -34,10 +33,10 @@ import Action
     // MARK: - View methods
     
     fileprivate func setupInterface() {
-        self.layoutIfNeeded()
         guard let viewModel = viewModel else {
             return
         }
+        self.layoutIfNeeded()
         self.view_background.backgroundColor = viewModel.type.getBackgroundViewColor()
         self.view_background.layer.borderColor = viewModel.type.getBackgroundBorderColor().cgColor
         self.view_background.layer.borderWidth = viewModel.type.getBackgroundBorderSize()

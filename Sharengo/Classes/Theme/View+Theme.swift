@@ -9,6 +9,7 @@
 import UIKit
 
 enum ViewXib: String {
+    case navigationBar = "NavigationBarView"
     case circularMenu = "CircularMenuView"
     
     func getNib() -> UINib {
