@@ -23,6 +23,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pcm-CS-Q7s">
+                                <rect key="frame" x="22" y="153" width="240" height="128"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ofI-yf-dPQ" id="GeR-e2-Ecm"/>
+                                </connections>
+                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3B-a6-ECE" customClass="CircularMenuView" customModule="Sharengo" customModuleProvider="target">
                                 <rect key="frame" x="215" y="522" width="300.5" height="300.5"/>
                                 <color key="backgroundColor" red="1" green="0.80036537547528519" blue="0.4657943203422053" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -43,12 +49,17 @@
                             <constraint firstAttribute="trailing" secondItem="Z6f-rl-N6T" secondAttribute="trailing" id="0dq-zk-xgk"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="height" secondItem="0Jc-nj-FbD" secondAttribute="height" multiplier="0.45" id="0if-s1-Qec"/>
                             <constraint firstItem="Z6f-rl-N6T" firstAttribute="leading" secondItem="0Jc-nj-FbD" secondAttribute="leading" id="8CK-ka-BQ8"/>
+                            <constraint firstItem="pcm-CS-Q7s" firstAttribute="top" secondItem="0Jc-nj-FbD" secondAttribute="top" id="HFG-Dv-EE9"/>
+                            <constraint firstAttribute="trailing" secondItem="pcm-CS-Q7s" secondAttribute="trailing" id="Tq9-UD-U8B"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="centerY" secondItem="0Jc-nj-FbD" secondAttribute="bottom" constant="5" id="VEU-iu-srp"/>
                             <constraint firstItem="Z6f-rl-N6T" firstAttribute="top" secondItem="0Jc-nj-FbD" secondAttribute="top" id="Zz0-qC-kYA"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="centerX" secondItem="0Jc-nj-FbD" secondAttribute="trailing" constant="-10" id="e8g-va-7yP"/>
+                            <constraint firstItem="pcm-CS-Q7s" firstAttribute="leading" secondItem="0Jc-nj-FbD" secondAttribute="leading" id="qV6-7w-HpO"/>
+                            <constraint firstAttribute="bottom" secondItem="pcm-CS-Q7s" secondAttribute="bottom" id="qZi-kl-X2O"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="pcm-CS-Q7s" id="umH-9W-e7y"/>
                         <outlet property="view_circularMenu" destination="j3B-a6-ECE" id="udz-5i-RDu"/>
                         <outlet property="view_navigationBar" destination="Z6f-rl-N6T" id="1fP-Oa-D2D"/>
                     </connections>
@@ -155,6 +166,8 @@
                         <outlet property="icn_search" destination="vHl-q1-p7i" id="Yb0-iG-lLf"/>
                         <outlet property="txt_search" destination="bch-3w-32c" id="CiB-JF-LTe"/>
                         <outlet property="view_background" destination="TYQ-Ph-1do" id="J5c-7y-tO3"/>
+                        <outlet property="view_microphone" destination="MIl-nG-BPL" id="SrA-CM-Lh2"/>
+                        <outlet property="view_search" destination="h1q-WS-v9r" id="s2m-E3-QoW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sih-JN-PvT" userLabel="First Responder" sceneMemberID="firstResponder"/>

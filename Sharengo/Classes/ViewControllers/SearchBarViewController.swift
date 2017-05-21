@@ -15,8 +15,11 @@ import Action
 class SearchBarViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_background: UIView!
     @IBOutlet fileprivate weak var icn_search: UIImageView!
-    @IBOutlet fileprivate weak var btn_microphone: UIButton!
-    @IBOutlet fileprivate weak var txt_search: UITextField!
+    // TODO: ???
+    @IBOutlet weak var view_microphone: UIView!
+    @IBOutlet weak var btn_microphone: UIButton!
+    @IBOutlet weak var view_search: UIView!
+    @IBOutlet weak var txt_search: UITextField!
     
     var viewModel: SearchBarViewModel?
     
@@ -46,5 +49,17 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
         self.btn_microphone.layer.cornerRadius = self.btn_microphone.frame.size.width/2
         self.btn_microphone.layer.masksToBounds = true
         self.txt_search.attributedPlaceholder = NSAttributedString(string:"lbl_searchBarTextField".localized(), attributes:[NSForegroundColorAttributeName: Color.searchBarTextFieldPlaceholder.value, NSFontAttributeName: Font.searchBarTextFieldPlaceholder.value])
+    }
+    
+    // MARK: - TextField methods
+    
+    func startSearching() {
+        print("Start Searching")
+    }
+    
+    // MARK: - Microphone methods
+    
+    func startDictated() {
+        print("Start Dictated")
     }
 }

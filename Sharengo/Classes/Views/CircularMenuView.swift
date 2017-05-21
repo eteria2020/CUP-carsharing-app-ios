@@ -16,8 +16,8 @@ import Action
     @IBOutlet weak var view_background: UIView!
     
     fileprivate var view: UIView!
-    fileprivate var array_buttons: [UIButton] = []
     
+    var array_buttons: [UIButton] = []
     var viewModel: CircularMenuViewModel?
     
     // MARK: - ViewModel methods
@@ -101,4 +101,5 @@ import Action
             }
         }
     }
+    
 }

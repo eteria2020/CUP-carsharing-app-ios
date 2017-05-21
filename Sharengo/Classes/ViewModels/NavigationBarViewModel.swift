@@ -51,7 +51,12 @@ final class NavigationBarViewModel : ViewModelTypeSelectable {
         self.rightItem = rightItem
         self.selection = Action { input in
             switch input {
-            default: break
+            case .home:
+                print("Go to home")
+                break
+            case .menu:
+                print("Open menu")
+                break
             }
             return .just(.empty)
         }

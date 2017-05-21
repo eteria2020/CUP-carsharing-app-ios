@@ -42,8 +42,9 @@ import Action
         self.btn_left.rx.bind(to: viewModel.selection, input: viewModel.letfItem.input)
         self.btn_right.setBackgroundImage(UIImage(named: viewModel.rightItem.icon), for: .normal)
         self.btn_right.rx.bind(to: viewModel.selection, input: viewModel.rightItem.input)
-        self.btn_left.isUserInteractionEnabled = false
-        self.btn_right.isUserInteractionEnabled = false
+        // TODO: ???
+        self.btn_left.setBackgroundImage(UIImage(named: viewModel.letfItem.icon), for: .highlighted)
+        self.btn_right.setBackgroundImage(UIImage(named: viewModel.rightItem.icon), for: .highlighted)
     }
     
     override init(frame: CGRect)

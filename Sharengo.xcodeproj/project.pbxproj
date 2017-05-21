@@ -262,8 +262,8 @@
 			children = (
 				4D1AE8261ED1E40E00C8A1D3 /* Poppins-Light.ttf */,
 				4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */,
-				4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */,
 				4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */,
+				4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */,
 				4D1AE8251ED1E40E00C8A1D3 /* Poppins-Bold.ttf */,
 			);
 			name = Fonts;
