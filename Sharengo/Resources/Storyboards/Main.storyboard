@@ -57,5 +57,113 @@
             </objects>
             <point key="canvasLocation" x="70" y="90"/>
         </scene>
+        <!--Search Bar View Controller-->
+        <scene sceneID="khR-kk-1SF">
+            <objects>
+                <viewController storyboardIdentifier="searchBar" id="Sew-Pc-h1t" customClass="SearchBarViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t9U-Er-1NA"/>
+                        <viewControllerLayoutGuide type="bottom" id="qbe-0C-cpa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AmN-S9-0Oo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYQ-Ph-1do">
+                                <rect key="frame" x="15" y="70" width="345" height="35"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xeB-Z5-lxH">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="vHl-q1-p7i">
+                                                <rect key="frame" x="8" y="8" width="19" height="19"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="vHl-q1-p7i" secondAttribute="bottom" constant="8" id="5RA-Qe-fxR"/>
+                                            <constraint firstItem="vHl-q1-p7i" firstAttribute="top" secondItem="xeB-Z5-lxH" secondAttribute="top" constant="8" id="EpG-iC-kdx"/>
+                                            <constraint firstAttribute="width" secondItem="xeB-Z5-lxH" secondAttribute="height" multiplier="1:1" id="GMh-fr-vpV"/>
+                                            <constraint firstAttribute="trailing" secondItem="vHl-q1-p7i" secondAttribute="trailing" constant="8" id="tCF-8h-Y4g"/>
+                                            <constraint firstItem="vHl-q1-p7i" firstAttribute="leading" secondItem="xeB-Z5-lxH" secondAttribute="leading" constant="8" id="yBh-2D-xtv"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIl-nG-BPL">
+                                        <rect key="frame" x="310" y="0.0" width="35" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5x-SX-bhx">
+                                                <rect key="frame" x="5" y="5" width="25" height="25"/>
+                                                <state key="normal" image="ic_microphone"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="C5x-SX-bhx" secondAttribute="trailing" constant="5" id="PvR-Yb-8Xv"/>
+                                            <constraint firstAttribute="bottom" secondItem="C5x-SX-bhx" secondAttribute="bottom" constant="5" id="cQM-pl-nm7"/>
+                                            <constraint firstItem="C5x-SX-bhx" firstAttribute="leading" secondItem="MIl-nG-BPL" secondAttribute="leading" constant="5" id="eQ1-vV-ye1"/>
+                                            <constraint firstItem="C5x-SX-bhx" firstAttribute="top" secondItem="MIl-nG-BPL" secondAttribute="top" constant="5" id="uK5-hi-VhH"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1q-WS-v9r">
+                                        <rect key="frame" x="35" y="0.0" width="275" height="35"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bch-3w-32c">
+                                                <rect key="frame" x="5" y="0.0" width="265" height="35"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="searchBarTextField"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="bch-3w-32c" firstAttribute="top" secondItem="h1q-WS-v9r" secondAttribute="top" id="JEb-b4-mUh"/>
+                                            <constraint firstItem="bch-3w-32c" firstAttribute="leading" secondItem="h1q-WS-v9r" secondAttribute="leading" constant="5" id="QNN-s4-y1E"/>
+                                            <constraint firstAttribute="trailing" secondItem="bch-3w-32c" secondAttribute="trailing" constant="5" id="s3E-Gm-JDX"/>
+                                            <constraint firstAttribute="bottom" secondItem="bch-3w-32c" secondAttribute="bottom" id="txe-8h-Ezy"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.47720116444866922" green="0.51520912547528519" blue="0.49238058460076045" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="MIl-nG-BPL" firstAttribute="leading" secondItem="h1q-WS-v9r" secondAttribute="trailing" id="3Kx-yb-ot8"/>
+                                    <constraint firstItem="MIl-nG-BPL" firstAttribute="top" secondItem="TYQ-Ph-1do" secondAttribute="top" id="6ZN-D0-8bc"/>
+                                    <constraint firstAttribute="height" constant="35" id="8Tg-IF-zir"/>
+                                    <constraint firstAttribute="bottom" secondItem="MIl-nG-BPL" secondAttribute="bottom" id="AEf-xH-rED"/>
+                                    <constraint firstAttribute="trailing" secondItem="MIl-nG-BPL" secondAttribute="trailing" id="DgC-mO-ryh"/>
+                                    <constraint firstItem="MIl-nG-BPL" firstAttribute="width" secondItem="MIl-nG-BPL" secondAttribute="height" multiplier="1:1" id="F8e-Fc-1UI"/>
+                                    <constraint firstAttribute="bottom" secondItem="xeB-Z5-lxH" secondAttribute="bottom" id="Fbd-gf-koc"/>
+                                    <constraint firstAttribute="bottom" secondItem="h1q-WS-v9r" secondAttribute="bottom" id="O7k-FG-Hhf"/>
+                                    <constraint firstItem="xeB-Z5-lxH" firstAttribute="leading" secondItem="TYQ-Ph-1do" secondAttribute="leading" id="dbp-Qb-0oV"/>
+                                    <constraint firstItem="h1q-WS-v9r" firstAttribute="leading" secondItem="xeB-Z5-lxH" secondAttribute="trailing" id="gPR-Bc-2G0"/>
+                                    <constraint firstItem="h1q-WS-v9r" firstAttribute="top" secondItem="TYQ-Ph-1do" secondAttribute="top" id="xRI-Je-Nna"/>
+                                    <constraint firstItem="xeB-Z5-lxH" firstAttribute="top" secondItem="TYQ-Ph-1do" secondAttribute="top" id="zl2-wu-GKe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.80000000000000004" alpha="0.0" colorSpace="deviceWhite"/>
+                        <constraints>
+                            <constraint firstItem="TYQ-Ph-1do" firstAttribute="top" secondItem="t9U-Er-1NA" secondAttribute="bottom" constant="50" id="VeC-dQ-JCq"/>
+                            <constraint firstItem="TYQ-Ph-1do" firstAttribute="leading" secondItem="AmN-S9-0Oo" secondAttribute="leading" constant="15" id="hLq-um-8QF"/>
+                            <constraint firstAttribute="trailing" secondItem="TYQ-Ph-1do" secondAttribute="trailing" constant="15" id="kbH-mz-sAy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btn_microphone" destination="C5x-SX-bhx" id="boF-lB-Ez4"/>
+                        <outlet property="icn_search" destination="vHl-q1-p7i" id="Yb0-iG-lLf"/>
+                        <outlet property="txt_search" destination="bch-3w-32c" id="CiB-JF-LTe"/>
+                        <outlet property="view_background" destination="TYQ-Ph-1do" id="J5c-7y-tO3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sih-JN-PvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="816.79999999999995" y="89.505247376311857"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="ic_microphone" width="15" height="15"/>
+        <image name="ic_search" width="17" height="17"/>
+    </resources>
 </document>

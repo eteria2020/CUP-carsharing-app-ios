@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
-import RxCocoa
-import Boomerang
 import Action
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
@@ -41,7 +39,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     override func viewDidLoad() {
         super.viewDidLoad()
         // NavigationBar
-        view_navigationBar.bind(to: NavigationBarViewModel(leftItem: NavigationBarItemType.home.getItem(), rightItem: NavigationBarItemType.menu.getItem()))
+        view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
@@ -49,7 +47,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         // CircularMenu
-        view_circularMenu.bind(to: CircularMenuViewModel(type: .searchCars))
+        view_circularMenu.bind(to: ViewModelFactory.circularMenu(type: .searchCars))
         view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
@@ -65,5 +63,11 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             default:break
             }
         }).addDisposableTo(self.disposeBag)
+        // SearchBar
+        let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
+        self.view.addSubview(searchBarViewController.view)
+        self.addChildViewController(searchBarViewController)
+        searchBarViewController.didMove(toParentViewController: self)
+        searchBarViewController.view.isUserInteractionEnabled = false
     }
 }

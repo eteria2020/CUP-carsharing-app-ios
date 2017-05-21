@@ -7,6 +7,14 @@ import Boomerang
 typealias Selection = Action<SelectionInput,SelectionOutput>
 
 struct ViewModelFactory {
+    static func navigationBar(leftItemType: NavigationBarItemType, rightItemType: NavigationBarItemType) -> ViewModelType {
+        return NavigationBarViewModel(leftItem: leftItemType.getItem(), rightItem: rightItemType.getItem())
+    }
+    
+    static func circularMenu(type: CircularMenuType) -> ViewModelType {
+        return CircularMenuViewModel(type: type)
+    }
+    
     static func searchCars() -> ViewModelType {
         return SearchCarsViewModel()
     }

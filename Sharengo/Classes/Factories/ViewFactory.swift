@@ -9,6 +9,7 @@ enum Storyboard : String {
 }
 
 enum SceneIdentifier : String, ListIdentifier {
+    case searchBar = "searchBar"
     case searchCars = "searchCars"
     var name: String {
         return self.rawValue

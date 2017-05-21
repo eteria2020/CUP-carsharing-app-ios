@@ -1,0 +1,10 @@
+//
+//  Localizable.swift
+//
+//
+//  Created by Dedecube on 21/05/17.
+//  Copyright © 2017 Dedecube. All rights reserved.
+//
+
+// SearchBar
+"lbl_searchBarTextField" = "Cerca indirizzo o targa";

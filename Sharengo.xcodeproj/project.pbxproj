@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1AE8161ED1B9F600C8A1D3 /* SearchBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8151ED1B9F600C8A1D3 /* SearchBarViewController.swift */; };
+		4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */; };
+		4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */; };
+		4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */; };
+		4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8231ED1E37700C8A1D3 /* Font+Theme.swift */; };
+		4D1AE82A1ED1E40E00C8A1D3 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8251ED1E40E00C8A1D3 /* Poppins-Bold.ttf */; };
+		4D1AE82B1ED1E40E00C8A1D3 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8261ED1E40E00C8A1D3 /* Poppins-Light.ttf */; };
+		4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */; };
+		4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */; };
+		4D1AE82E1ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */; };
 		4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377AB51ECEDAB0005DF900 /* CircularMenuView.swift */; };
 		4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */; };
 		4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377AB91ECEE01A005DF900 /* View+Theme.swift */; };
@@ -37,6 +47,16 @@
 
 /* Begin PBXFileReference section */
 		21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
+		4D1AE8151ED1B9F600C8A1D3 /* SearchBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarViewController.swift; path = Classes/ViewControllers/SearchBarViewController.swift; sourceTree = "<group>"; };
+		4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarViewModel.swift; path = Classes/ViewModels/SearchBarViewModel.swift; sourceTree = "<group>"; };
+		4D1AE81F1ED1E1A800C8A1D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Text+Theme.swift"; path = "Classes/Theme/Text+Theme.swift"; sourceTree = "<group>"; };
+		4D1AE8231ED1E37700C8A1D3 /* Font+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Font+Theme.swift"; path = "Classes/Theme/Font+Theme.swift"; sourceTree = "<group>"; };
+		4D1AE8251ED1E40E00C8A1D3 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		4D1AE8261ED1E40E00C8A1D3 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D377AB51ECEDAB0005DF900 /* CircularMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularMenuView.swift; path = Classes/Views/CircularMenuView.swift; sourceTree = "<group>"; };
 		4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CircularMenuView.xib; path = Resources/Xibs/CircularMenuView.xib; sourceTree = "<group>"; };
 		4D377AB91ECEE01A005DF900 /* View+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "View+Theme.swift"; path = "Classes/Theme/View+Theme.swift"; sourceTree = "<group>"; };
@@ -86,6 +106,15 @@
 				D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D1AE8191ED1BA2500C8A1D3 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				4D1AE8151ED1B9F600C8A1D3 /* SearchBarViewController.swift */,
+				4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */,
+			);
+			name = SearchBar;
 			sourceTree = "<group>";
 		};
 		4D377AB41ECEDA27005DF900 /* Views */ = {
@@ -186,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
+				4D1AE8191ED1BA2500C8A1D3 /* SearchBar */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 			);
 			name = ViewControllers;
@@ -230,6 +260,11 @@
 		4DCD1A9A1ECDC22900FC8BF5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4D1AE8261ED1E40E00C8A1D3 /* Poppins-Light.ttf */,
+				4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */,
+				4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */,
+				4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */,
+				4D1AE8251ED1E40E00C8A1D3 /* Poppins-Bold.ttf */,
 			);
 			name = Fonts;
 			path = Resources/Fonts;
@@ -246,6 +281,7 @@
 		4DCD1A9C1ECDC22900FC8BF5 /* Languages */ = {
 			isa = PBXGroup;
 			children = (
+				4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */,
 			);
 			name = Languages;
 			path = Resources/Languages;
@@ -275,6 +311,8 @@
 			children = (
 				4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */,
 				4D377ABB1ECEE442005DF900 /* Color+Theme.swift */,
+				4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */,
+				4D1AE8231ED1E37700C8A1D3 /* Font+Theme.swift */,
 				4D377AB91ECEE01A005DF900 /* View+Theme.swift */,
 			);
 			name = Theme;
@@ -361,10 +399,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
+				4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */,
+				4D1AE82E1ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf in Resources */,
+				4D1AE82A1ED1E40E00C8A1D3 /* Poppins-Bold.ttf in Resources */,
+				4D1AE82B1ED1E40E00C8A1D3 /* Poppins-Light.ttf in Resources */,
 				4DCD1AA31ECDC22900FC8BF5 /* Assets.xcassets in Resources */,
 				4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */,
+				4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */,
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
+				4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,20 +477,35 @@
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
+				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
 				4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
+				4D1AE8161ED1B9F600C8A1D3 /* SearchBarViewController.swift in Sources */,
+				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
+				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D1AE81F1ED1E1A800C8A1D3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4DCD1A7C1ECDBF7400FC8BF5 /* Debug */ = {

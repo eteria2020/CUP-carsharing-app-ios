@@ -63,7 +63,7 @@ struct Router : RouterType {
     }
 
     public static func root() -> UIViewController {
-        let destination:SearchCarsViewController  = (Storyboard.main.scene(.searchCars))
+        let destination: SearchCarsViewController  = (Storyboard.main.scene(.searchCars))
         destination.bind(to: ViewModelFactory.searchCars(), afterLoad: true)
         return destination
     }

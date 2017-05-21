@@ -33,15 +33,20 @@ enum ColorBrand {
     }
 }
 
-enum Color
-{
+enum Color {
     // NavigationBar
     case navigationBarBackground
     
     // CircularMenu
     case circularMenuBackgroundBorder
     case circularMenuBackground
-
+    
+    // SearchBar
+    case searchBarBackground
+    case searchBarBackgroundMicrophone
+    case searchBarTextField
+    case searchBarTextFieldPlaceholder
+    
     var value: UIColor {
         get {
             switch self {
@@ -51,6 +56,14 @@ enum Color
                 return ColorBrand.yellow.value.withAlphaComponent(0.5)
             case .circularMenuBackground:
                 return ColorBrand.clear.value
+            case .searchBarBackground:
+                return ColorBrand.black.value
+            case .searchBarBackgroundMicrophone:
+                return ColorBrand.white.value
+            case .searchBarTextField:
+                return ColorBrand.white.value
+            case .searchBarTextFieldPlaceholder:
+                return ColorBrand.white.value.withAlphaComponent(0.6)
             }
         }
     }
