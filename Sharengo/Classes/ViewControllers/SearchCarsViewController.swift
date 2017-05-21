@@ -84,6 +84,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         let overlay = MKTileOverlay(urlTemplate: template)
         overlay.canReplaceMapContent = true
         mapView.add(overlay, level: .aboveLabels)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(44.968917), CLLocationDegrees(7.616103))
+        self.mapView.addAnnotation(annotation)
     }
     
     // MARK: - Gesture methods
@@ -135,6 +138,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate func centerMap() {
         print("Center Map")
+        let center = CLLocationCoordinate2D(latitude: CLLocationDegrees(44.968917), longitude: CLLocationDegrees(7.616103))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        self.mapView.setRegion(region, animated: true)
     }
     
     fileprivate func turnMap() {
