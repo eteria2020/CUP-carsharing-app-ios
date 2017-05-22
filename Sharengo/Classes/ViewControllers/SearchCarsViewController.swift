@@ -179,6 +179,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     internal func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
     {
+        ApiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
+        
 //        searchRequest = ServicesController.shared.search(fromRegion: region, children: childrenSelected, startDate: startDateSelected, endDate: endDateSelected, categories: categoriesSelected, isForBirthDay: false, { [weak self] (services, error) in
 //
 //            self?.bottomSearchViewController.setLoadingViewVisible(false)

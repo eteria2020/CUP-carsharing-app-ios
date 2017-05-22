@@ -1,5 +1,4 @@
-# Uncomment the next line to define a global platform for your project
- platform :ios, '9.0'
+platform :ios, '9.0'
 
 def shared_pods
     use_frameworks!
@@ -17,13 +16,15 @@ def shared_pods
     pod 'DateToolsSwift'
     pod 'Action', :git => "https://github.com/RxSwiftCommunity/Action.git"
     pod 'MZFormSheetPresentationController'
-    pod 'Moya'
+    pod 'Moya/RxSwift'
     pod 'AlamofireImage'
     pod 'Hero'
+    pod 'Gloss'
+    pod 'Moya-Gloss/RxSwift'
+    pod 'KeychainSwift'
 end
 
 target 'Sharengo’ do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   shared_pods
 end

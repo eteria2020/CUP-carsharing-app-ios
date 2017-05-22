@@ -29,6 +29,8 @@
 		4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */; };
 		4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */; };
 		4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACAD01ECF33F700D58948 /* NavigationBarViewModel.swift */; };
+		4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A01ED3106200906DA0 /* APIController.swift */; };
+		4DCC70A31ED31D3400906DA0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A21ED31D3400906DA0 /* Error.swift */; };
 		4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
 		4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A811ECDC16400FC8BF5 /* Operators.swift */; };
 		4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A821ECDC16400FC8BF5 /* SeparatorLayout.swift */; };
@@ -73,6 +75,8 @@
 		4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationBarView.xib; path = Resources/Xibs/NavigationBarView.xib; sourceTree = "<group>"; };
 		4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBarView.swift; path = Classes/Views/NavigationBarView.swift; sourceTree = "<group>"; };
 		4D6ACAD01ECF33F700D58948 /* NavigationBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBarViewModel.swift; path = Classes/ViewModels/NavigationBarViewModel.swift; sourceTree = "<group>"; };
+		4DCC70A01ED3106200906DA0 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
+		4DCC70A21ED31D3400906DA0 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Classes/Model/Error.swift; sourceTree = "<group>"; };
 		4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DCD1A811ECDC16400FC8BF5 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Classes/Utilities/Operators.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 		4D36D7BC1ED2EF86005FAEB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DCC70A01ED3106200906DA0 /* APIController.swift */,
 				4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */,
 			);
 			name = Controllers;
@@ -207,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
+				4DCC70A21ED31D3400906DA0 /* Error.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
@@ -510,6 +517,7 @@
 				4D1AE8161ED1B9F600C8A1D3 /* SearchBarViewController.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
+				4DCC70A31ED31D3400906DA0 /* Error.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
