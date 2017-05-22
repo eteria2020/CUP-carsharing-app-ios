@@ -22,6 +22,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate var checkedUserPosition:Bool = false
     fileprivate let kMinSearchRadius:Double = 1 //	1 meter
     fileprivate let kMaxSearchRadius:Double = 250 //	250km
+    fileprivate var resultsTask: DispatchWorkItem?
     
     var viewModel: SearchCarsViewModel?
     
@@ -79,7 +80,11 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         tapGesture.delegate = self
         tapGesture.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapGesture)
+        // Map
         self.setupMap()
+        NotificationCenter.observe(notificationWithName: LocationControllerNotification.didAuthorized) { [weak self] _ in
+            self?.centerMap()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -150,54 +155,32 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         print("Update Data")
     }
     
-    //  MARK: Results
-    
-    fileprivate func stopRequest()
-    {
-//        resultsTask?.cancel()
+    fileprivate func stopRequest() {
+        resultsTask?.cancel()
 //        searchRequest?.cancel()
 //        searchRequest = nil
-//        bottomSearchViewController.setLoadingViewVisible(false)
+        // TODO: ???
     }
     
-    fileprivate func getResults()
-    {
-//        stopRequest()
-//        
-//        resultsTask = DispatchWorkItem { [weak self] in
-//            
-//            if let mapView = self?.mapView
-//            {
-//                if let radius = self?.getRadius()
-//                {
-//                    let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-//                    let region = CLCircularRegion(center: location.coordinate, radius: radius, identifier: "region")
-//                    
-//                    debugLog("Search in coordinates: \(region.center) with radius: \(region) KM")
-//                    
-//                    self?.checkCategoriesSelected()
-//                    
-//                    self?.bottomSearchViewController.setLoadingViewVisible(true)
-//                    
-//                    self?.reloadResults(inRegion: region)
-//                }
-//                else
-//                {
-//                    self?.updateServices([])
-//                    self?.bottomSearchViewController.noResultsDescriptionLabel?.text = "search.noresults.decrease.description".localized()
-//                }
-//            }
-//        }
-//        
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: resultsTask!)
+    fileprivate func getResults() {
+        stopRequest()
+        resultsTask = DispatchWorkItem { [weak self] in
+            if let radius = self?.getRadius() {
+                if let mapView = self?.mapView {
+                    self?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
+                    // TODO: ???
+                    return
+                }
+            }
+            self?.updatePoi(with: [Car]())
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: resultsTask!)
     }
     
-    internal func reloadResults(inRegion region:CLCircularRegion)
+    internal func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
     {
 //        searchRequest = ServicesController.shared.search(fromRegion: region, children: childrenSelected, startDate: startDateSelected, endDate: endDateSelected, categories: categoriesSelected, isForBirthDay: false, { [weak self] (services, error) in
-//            
-//            //			debugLog("Services: \(services)")
-//            
+//
 //            self?.bottomSearchViewController.setLoadingViewVisible(false)
 //            
 //            if let error = error
@@ -218,41 +201,36 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
 //        })
     }
     
-    /*
-    internal func updateServices(_ services: [Service])
+    internal func updatePoi(with withCars: [Car])
     {
-        self.services = services
-        
-        let locationController = LocationController.shared
-        if locationController.isAuthorized == true, let userLocation = locationController.currentLocation
-        {
-            if sortingValue == .alphanumeric
-            {
-                sortingValue = .distance
-            }
-            
-            for service in services
-            {
-                service.distance = CLLocation(latitude: service.latitude, longitude: service.longitude).distance(from: userLocation)
-            }
-        }
-        else
-        {
-            if sortingValue != .rating
-            {
-                sortingValue = .alphanumeric
-            }
-            
-            for service in services
-            {
-                service.distance = 0
-            }
-        }
-        
-        updateMapWithServices(services)
-        updateTableWithServices(services)
+        // TODO: ???
+//        self.services = services
+//        
+//        let locationController = LocationController.shared
+//        if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
+//            if sortingValue == .alphanumeric
+//            {
+//                sortingValue = .distance
+//            }
+//            
+//            for service in services
+//            {
+//                service.distance = CLLocation(latitude: service.latitude, longitude: service.longitude).distance(from: userLocation)
+//            }
+//        }
+//        
+//        var annotations:[ServiceAnnotation] = []
+//        for service in services
+//        {
+//            let coordinates = CLLocationCoordinate2DMake(service.latitude, service.longitude)
+//            let annotation = ServiceAnnotation()
+//            annotation.coordinate = coordinates
+//            annotation.title = service.name
+//            annotation.service = service
+//            
+//            annotations.append(annotation)
+//        }
     }
-    */
     
     // MARK: - Map methods
     
@@ -281,29 +259,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }
     }
     
-    /*
-    fileprivate func updateMapWithServices(_ services: [Service])
-    {
-        if let mapView = mapView {
-            mapView.removeOverlays(mapView.overlays)
-            let overlay = MKCircle(center: mapView.centerCoordinate, radius: mapView.radiusBaseOnViewWidth)
-            mapView.add(overlay)
-        }
-        
-        var annotations:[ServiceAnnotation] = []
-        for service in services
-        {
-            let coordinates = CLLocationCoordinate2DMake(service.latitude, service.longitude)
-            let annotation = ServiceAnnotation()
-            annotation.coordinate = coordinates
-            annotation.title = service.name
-            annotation.service = service
-            
-            annotations.append(annotation)
-        }
-    }
-    */
-    
     fileprivate func getRadius() -> CLLocationDistance?
     {
         if let mapView = mapView {
@@ -329,7 +284,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate func centerMap(on position: CLLocation)
     {
-        let span = MKCoordinateSpanMake(0.2, 0.2)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
         let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
         let region = MKCoordinateRegionMake(location, span)
         
@@ -414,15 +369,6 @@ extension SearchCarsViewController: MKMapViewDelegate {
             let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
             mapView.setRegion(region, animated: true)
         }
-    }
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
-    {
-        let renderer = MKCircleRenderer(overlay: overlay)
-        
-        renderer.fillColor = UIColor.red.withAlphaComponent(0.5)
-        
-        return renderer
     }
     */
 }
