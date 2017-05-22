@@ -47,16 +47,16 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     override func viewDidLoad() {
         super.viewDidLoad()
         // NavigationBar
-        view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
-        view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+        self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
+        self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
             default: break
             }
         }).addDisposableTo(self.disposeBag)
         // CircularMenu
-        view_circularMenu.bind(to: ViewModelFactory.circularMenu(type: .searchCars))
-        view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+        self.view_circularMenu.bind(to: ViewModelFactory.circularMenu(type: .searchCars))
+        self.view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
             case .refresh:
@@ -69,13 +69,13 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         // TODO: ???
-        view_circularMenu.isUserInteractionEnabled = false
+        self.view_circularMenu.isUserInteractionEnabled = false
         // SearchBar
         self.view.addSubview(searchBarViewController.view)
         self.addChildViewController(searchBarViewController)
-        searchBarViewController.didMove(toParentViewController: self)
+        self.searchBarViewController.didMove(toParentViewController: self)
         // TODO: ???
-        searchBarViewController.view.isUserInteractionEnabled = false
+        self.searchBarViewController.view.isUserInteractionEnabled = false
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapButtons(_:)))
         tapGesture.delegate = self
         tapGesture.numberOfTapsRequired = 1
@@ -90,8 +90,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        if !checkedUserPosition {
-            checkUserPosition()
+        if !self.checkedUserPosition {
+            self.checkUserPosition()
         }
     }
     
@@ -106,8 +106,24 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate func setUserPositionButtonVisible(_ visible: Bool)
     {
-        // TODO: ???
-        // locationInfoView.set(userPositionButtonVisible: visible)
+        let arrayOfButtons = self.view_circularMenu.array_buttons
+        if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
+            for i in 0..<arrayOfButtons.count {
+                if arrayOfItems.count > i {
+                    let menuItem = arrayOfItems[i]
+                    let button = arrayOfButtons[i]
+                    if menuItem.input == .center {
+                        if visible {
+                            button.isUserInteractionEnabled = true
+                            button.isEnabled = true
+                        } else {
+                            button.isUserInteractionEnabled = false
+                            button.isEnabled = false
+                        }
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Gesture methods
@@ -115,19 +131,19 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // TODO: ???
     func tapButtons(_ sender: UITapGestureRecognizer) {
         if (sender.state == UIGestureRecognizerState.ended) {
-            var point = sender.location(in: searchBarViewController.view_microphone)
-            if searchBarViewController.btn_microphone.frame.contains(point) {
-                searchBarViewController.startDictated()
+            var point = sender.location(in: self.searchBarViewController.view_microphone)
+            if self.searchBarViewController.btn_microphone.frame.contains(point) {
+                self.searchBarViewController.startDictated()
                 return
             }
             point = sender.location(in: searchBarViewController.view_search)
-            if searchBarViewController.txt_search.frame.contains(point) {
-                searchBarViewController.startSearching()
+            if self.searchBarViewController.txt_search.frame.contains(point) {
+                self.searchBarViewController.startSearching()
                 return
             }
-            point = sender.location(in: view_circularMenu)
-            let arrayOfButtons = view_circularMenu.array_buttons
-            if let arrayOfItems = view_circularMenu.viewModel?.type.getItems() {
+            point = sender.location(in: self.view_circularMenu)
+            let arrayOfButtons = self.view_circularMenu.array_buttons
+            if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
                 for i in 0..<arrayOfButtons.count {
                     if arrayOfItems.count > i {
                         let menuItem = arrayOfItems[i]
@@ -152,19 +168,19 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - Data methods
     
     fileprivate func updateData() {
-        print("Update Data")
+        self.getResults()
     }
     
     fileprivate func stopRequest() {
-        resultsTask?.cancel()
+        self.resultsTask?.cancel()
 //        searchRequest?.cancel()
 //        searchRequest = nil
         // TODO: ???
     }
     
     fileprivate func getResults() {
-        stopRequest()
-        resultsTask = DispatchWorkItem { [weak self] in
+        self.stopRequest()
+        self.resultsTask = DispatchWorkItem { [weak self] in
             if let radius = self?.getRadius() {
                 if let mapView = self?.mapView {
                     self?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
@@ -263,7 +279,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate func getRadius() -> CLLocationDistance?
     {
-        if let mapView = mapView {
+        if let mapView = self.mapView {
             let distanceMeters = mapView.radiusBaseOnViewWidth
             let distanceKM = (distanceMeters * 2) / 1000
             guard distanceKM < kMaxSearchRadius else {
@@ -284,25 +300,28 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }
     }
     
-    fileprivate func centerMap(on position: CLLocation)
-    {
+    fileprivate func centerMap(on position: CLLocation) {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
         let region = MKCoordinateRegionMake(location, span)
-        
         self.mapView?.setRegion(region, animated: true)
     }
     
     fileprivate func turnMap() {
-        print("Turn Map")
+        let newCamera: MKMapCamera = MKMapCamera()
+        newCamera.pitch = self.mapView.camera.pitch
+        newCamera.centerCoordinate = self.mapView.camera.centerCoordinate
+        newCamera.altitude = self.mapView.camera.altitude
+        newCamera.heading = 0
+        self.mapView.setCamera(newCamera, animated: true)
     }
 }
 
 // TODO: ???
 extension SearchCarsViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        let point = touch.location(in: view_navigationBar)
-        if view_navigationBar.frame.contains(point) {
+        let point = touch.location(in: self.view_navigationBar)
+        if self.view_navigationBar.frame.contains(point) {
             return false
         }
         return true
@@ -319,11 +338,11 @@ extension SearchCarsViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        stopRequest()
+        self.stopRequest()
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        getResults()
+        self.getResults()
     }
     
     /*

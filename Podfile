@@ -24,7 +24,7 @@ def shared_pods
     pod 'KeychainSwift'
 end
 
-target 'Sharengo’ do
+target 'Sharengo' do
   use_frameworks!
   shared_pods
 end

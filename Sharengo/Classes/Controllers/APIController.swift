@@ -29,7 +29,7 @@ final class ApiController {
     private static let keychain = KeychainSwift()
     
     static func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
-        self.provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius)).subscribe { event in
+        _ = self.provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius)).subscribe { event in
             switch event {
             case .next(let response):
                 let json = String(data: response.data, encoding: .utf8)
