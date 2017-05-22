@@ -19,6 +19,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var mapView: MKMapView!
     
     fileprivate let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
+    fileprivate var checkedUserPosition:Bool = false
+    fileprivate let kMinSearchRadius:Double = 1 //	1 meter
+    fileprivate let kMaxSearchRadius:Double = 250 //	250km
     
     var viewModel: SearchCarsViewModel?
     
@@ -79,14 +82,27 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.setupMap()
     }
     
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        if !checkedUserPosition {
+            checkUserPosition()
+        }
+    }
+    
     func setupMap() {
+        self.mapView.showsUserLocation = false
+        self.setUserPositionButtonVisible(false)
         let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
         let overlay = MKTileOverlay(urlTemplate: template)
         overlay.canReplaceMapContent = true
-        mapView.add(overlay, level: .aboveLabels)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(44.968917), CLLocationDegrees(7.616103))
-        self.mapView.addAnnotation(annotation)
+        self.mapView.add(overlay, level: .aboveLabels)
+    }
+    
+    fileprivate func setUserPositionButtonVisible(_ visible: Bool)
+    {
+        // TODO: ???
+        // locationInfoView.set(userPositionButtonVisible: visible)
     }
     
     // MARK: - Gesture methods
@@ -133,14 +149,191 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate func updateData() {
         print("Update Data")
     }
-
+    
+    //  MARK: Results
+    
+    fileprivate func stopRequest()
+    {
+//        resultsTask?.cancel()
+//        searchRequest?.cancel()
+//        searchRequest = nil
+//        bottomSearchViewController.setLoadingViewVisible(false)
+    }
+    
+    fileprivate func getResults()
+    {
+//        stopRequest()
+//        
+//        resultsTask = DispatchWorkItem { [weak self] in
+//            
+//            if let mapView = self?.mapView
+//            {
+//                if let radius = self?.getRadius()
+//                {
+//                    let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+//                    let region = CLCircularRegion(center: location.coordinate, radius: radius, identifier: "region")
+//                    
+//                    debugLog("Search in coordinates: \(region.center) with radius: \(region) KM")
+//                    
+//                    self?.checkCategoriesSelected()
+//                    
+//                    self?.bottomSearchViewController.setLoadingViewVisible(true)
+//                    
+//                    self?.reloadResults(inRegion: region)
+//                }
+//                else
+//                {
+//                    self?.updateServices([])
+//                    self?.bottomSearchViewController.noResultsDescriptionLabel?.text = "search.noresults.decrease.description".localized()
+//                }
+//            }
+//        }
+//        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: resultsTask!)
+    }
+    
+    internal func reloadResults(inRegion region:CLCircularRegion)
+    {
+//        searchRequest = ServicesController.shared.search(fromRegion: region, children: childrenSelected, startDate: startDateSelected, endDate: endDateSelected, categories: categoriesSelected, isForBirthDay: false, { [weak self] (services, error) in
+//            
+//            //			debugLog("Services: \(services)")
+//            
+//            self?.bottomSearchViewController.setLoadingViewVisible(false)
+//            
+//            if let error = error
+//            {
+//                debugLog("Search Error: \(error)")
+//                
+//                switch error  as AppServiceError {
+//                case .searchError:
+//                    Toast.present(withTitle: "default.warning".localized(), message: "search.error.message".localized(), image: nil)
+//                default: break;
+//                }
+//            }
+//            else
+//            {
+//                self?.bottomSearchViewController.noResultsDescriptionLabel?.text = "search.noresults.increase.description".localized()
+//                self?.updateServices(services)
+//            }
+//        })
+    }
+    
+    /*
+    internal func updateServices(_ services: [Service])
+    {
+        self.services = services
+        
+        let locationController = LocationController.shared
+        if locationController.isAuthorized == true, let userLocation = locationController.currentLocation
+        {
+            if sortingValue == .alphanumeric
+            {
+                sortingValue = .distance
+            }
+            
+            for service in services
+            {
+                service.distance = CLLocation(latitude: service.latitude, longitude: service.longitude).distance(from: userLocation)
+            }
+        }
+        else
+        {
+            if sortingValue != .rating
+            {
+                sortingValue = .alphanumeric
+            }
+            
+            for service in services
+            {
+                service.distance = 0
+            }
+        }
+        
+        updateMapWithServices(services)
+        updateTableWithServices(services)
+    }
+    */
+    
     // MARK: - Map methods
     
+    fileprivate func checkUserPosition()
+    {
+        let locationController = LocationController.shared
+        if locationController.isAuthorized, let userLocation = locationController.currentLocation {
+            self.mapView?.showsUserLocation = true
+            self.setUserPositionButtonVisible(true)
+            self.centerMap(on: userLocation)
+            self.checkedUserPosition = true
+        } else {
+            let firstCheckUserPosition = "FirstCheckUserPosition"
+            if !UserDefaults.standard.bool(forKey: firstCheckUserPosition) {
+                // TODO: ???
+                locationController.requestLocationAuthorization(handler: { (status) in
+                    UserDefaults.standard.set(true, forKey: firstCheckUserPosition)
+                    self.checkedUserPosition = true
+                    if locationController.isAuthorized, let userLocation = locationController.currentLocation {
+                        self.mapView?.showsUserLocation = true
+                        self.setUserPositionButtonVisible(true)
+                        self.centerMap(on: userLocation)
+                    }
+                })
+            }
+        }
+    }
+    
+    /*
+    fileprivate func updateMapWithServices(_ services: [Service])
+    {
+        if let mapView = mapView {
+            mapView.removeOverlays(mapView.overlays)
+            let overlay = MKCircle(center: mapView.centerCoordinate, radius: mapView.radiusBaseOnViewWidth)
+            mapView.add(overlay)
+        }
+        
+        var annotations:[ServiceAnnotation] = []
+        for service in services
+        {
+            let coordinates = CLLocationCoordinate2DMake(service.latitude, service.longitude)
+            let annotation = ServiceAnnotation()
+            annotation.coordinate = coordinates
+            annotation.title = service.name
+            annotation.service = service
+            
+            annotations.append(annotation)
+        }
+    }
+    */
+    
+    fileprivate func getRadius() -> CLLocationDistance?
+    {
+        if let mapView = mapView {
+            let distanceMeters = mapView.radiusBaseOnViewWidth
+            let distanceKM = (distanceMeters * 2) / 1000
+            guard distanceKM < kMaxSearchRadius else {
+                return nil
+            }
+            guard distanceMeters > kMinSearchRadius else {
+                return kMinSearchRadius
+            }
+            return distanceMeters
+        }
+        return nil
+    }
+    
     fileprivate func centerMap() {
-        print("Center Map")
-        let center = CLLocationCoordinate2D(latitude: CLLocationDegrees(44.968917), longitude: CLLocationDegrees(7.616103))
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
-        self.mapView.setRegion(region, animated: true)
+        let locationController = LocationController.shared
+        if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
+            centerMap(on: userLocation)
+        }
+    }
+    
+    fileprivate func centerMap(on position: CLLocation)
+    {
+        let span = MKCoordinateSpanMake(0.2, 0.2)
+        let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
+        let region = MKCoordinateRegionMake(location, span)
+        
+        self.mapView?.setRegion(region, animated: true)
     }
     
     fileprivate func turnMap() {
@@ -167,4 +360,69 @@ extension SearchCarsViewController: MKMapViewDelegate {
         }
         return MKTileOverlayRenderer(tileOverlay: tileOverlay)
     }
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        stopRequest()
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        getResults()
+    }
+    
+    /*
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        guard !(annotation is MKUserLocation) else { return nil }
+        
+        let annotationIdentifier = "AnnotationIdentifier"
+        var annotationView: MKAnnotationView?
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+        {
+            annotationView = dequeuedAnnotationView
+            annotationView?.annotation = annotation
+        }
+        else
+        {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+            
+        if let annotationView = annotationView
+        {
+            annotationView.canShowCallout = true
+            if let serviceAnnotation = annotationView.annotation as? ServiceAnnotation
+            {
+                if let service = serviceAnnotation.service
+                {
+                    annotationView.image = service.pinImage
+                }
+            }
+        }
+            
+        return annotationView
+    }
+    */
+    
+    /*
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    {
+        guard !(view.annotation is MKUserLocation) else { return }
+        
+        if let cluster = view.annotation as? FBAnnotationCluster
+        {
+            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.2, mapView.region.span.longitudeDelta * 0.2)
+            let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
+    {
+        let renderer = MKCircleRenderer(overlay: overlay)
+        
+        renderer.fillColor = UIColor.red.withAlphaComponent(0.5)
+        
+        return renderer
+    }
+    */
 }
