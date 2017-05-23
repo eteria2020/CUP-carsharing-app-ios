@@ -11,6 +11,53 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="ZDZ-ZO-Mmz">
+            <objects>
+                <viewController storyboardIdentifier="home" id="Gig-vw-MTC" customClass="HomeViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fhl-su-kLi"/>
+                        <viewControllerLayoutGuide type="bottom" id="STo-jJ-oEN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="29D-Sx-MLm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hag-IA-zQe">
+                                <rect key="frame" x="149.5" y="295.5" width="75" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCp-lr-Etq">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                        <state key="normal" image="ic_cat_home"/>
+                                        <state key="highlighted" image="ic_cat_home"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="DCp-lr-Etq" secondAttribute="bottom" id="4oy-OS-DAY"/>
+                                    <constraint firstItem="DCp-lr-Etq" firstAttribute="leading" secondItem="hag-IA-zQe" secondAttribute="leading" id="91A-rY-aWL"/>
+                                    <constraint firstAttribute="trailing" secondItem="DCp-lr-Etq" secondAttribute="trailing" id="Dee-Y0-kim"/>
+                                    <constraint firstAttribute="width" secondItem="hag-IA-zQe" secondAttribute="height" multiplier="1:1" id="Epe-yb-YZG"/>
+                                    <constraint firstItem="DCp-lr-Etq" firstAttribute="top" secondItem="hag-IA-zQe" secondAttribute="top" id="xLo-9b-pbv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hag-IA-zQe" firstAttribute="width" secondItem="29D-Sx-MLm" secondAttribute="width" multiplier="0.2" id="5DV-tX-56U"/>
+                            <constraint firstItem="hag-IA-zQe" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" id="iYB-6s-gf2"/>
+                            <constraint firstItem="hag-IA-zQe" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" id="k89-Lq-wJa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btn_searchCar" destination="DCp-lr-Etq" id="TFo-ca-G7f"/>
+                        <outlet property="view_searchCar" destination="hag-IA-zQe" id="9PE-CA-4Tm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rzO-Da-DKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="70" y="-606"/>
+        </scene>
         <!--Search Cars View Controller-->
         <scene sceneID="Tzm-Tm-dDi">
             <objects>
@@ -24,13 +71,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pcm-CS-Q7s">
-                                <rect key="frame" x="22" y="153" width="240" height="128"/>
+                                <rect key="frame" x="0.0" y="153" width="375" height="128"/>
                                 <connections>
                                     <outlet property="delegate" destination="ofI-yf-dPQ" id="GeR-e2-Ecm"/>
                                 </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3B-a6-ECE" customClass="CircularMenuView" customModule="Sharengo" customModuleProvider="target">
-                                <rect key="frame" x="215" y="522" width="300.5" height="300.5"/>
+                                <rect key="frame" x="215" y="522" width="301" height="301"/>
                                 <color key="backgroundColor" red="1" green="0.80036537547528519" blue="0.4657943203422053" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="j3B-a6-ECE" secondAttribute="height" multiplier="1:1" id="6G7-zn-lrW"/>
@@ -176,6 +223,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_cat_home" width="46" height="28"/>
         <image name="ic_microphone" width="15" height="15"/>
         <image name="ic_search" width="17" height="17"/>
     </resources>

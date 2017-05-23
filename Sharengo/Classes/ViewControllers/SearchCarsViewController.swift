@@ -15,14 +15,17 @@ import MapKit
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
-    @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView! // TODO: ???
+    // TODO: ???
+    @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var mapView: MKMapView!
     
     fileprivate let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
     fileprivate var checkedUserPosition:Bool = false
-    fileprivate let kMinSearchRadius:Double = 1 //	1 meter
-    fileprivate let kMaxSearchRadius:Double = 250 //	250km
+    fileprivate let kMinSearchRadius:Double = 1 // 1 meter
+    fileprivate let kMaxSearchRadius:Double = 250 // 250km
     fileprivate var resultsTask: DispatchWorkItem?
+    fileprivate var cars: [Car] = []
+    fileprivate var annotationsForCars:[String:MKAnnotation] = [:]
     
     var viewModel: SearchCarsViewModel?
     
@@ -46,6 +49,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.layoutIfNeeded()
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -87,8 +91,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool)
-    {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !self.checkedUserPosition {
             self.checkUserPosition()
@@ -104,8 +107,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.mapView.add(overlay, level: .aboveLabels)
     }
     
-    fileprivate func setUserPositionButtonVisible(_ visible: Bool)
-    {
+    fileprivate func setUserPositionButtonVisible(_ visible: Bool) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
         if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
             for i in 0..<arrayOfButtons.count {
@@ -173,9 +175,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate func stopRequest() {
         self.resultsTask?.cancel()
-//        searchRequest?.cancel()
-//        searchRequest = nil
-        // TODO: ???
+        // TODO: request has to be cancelled
+        // TODO: hide loading
     }
     
     fileprivate func getResults() {
@@ -183,71 +184,59 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.resultsTask = DispatchWorkItem { [weak self] in
             if let radius = self?.getRadius() {
                 if let mapView = self?.mapView {
+                    // TODO: show loading
                     self?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
-                    // TODO: ???
                     return
                 }
             }
-            self?.updatePoi(with: [Car]())
+            self?.updateCars(with: [Car]())
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: resultsTask!)
     }
     
-    internal func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
-    {
-        ApiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
-        
-//        searchRequest = ServicesController.shared.search(fromRegion: region, children: childrenSelected, startDate: startDateSelected, endDate: endDateSelected, categories: categoriesSelected, isForBirthDay: false, { [weak self] (services, error) in
-//
-//            self?.bottomSearchViewController.setLoadingViewVisible(false)
-//            
-//            if let error = error
-//            {
-//                debugLog("Search Error: \(error)")
-//                
-//                switch error  as AppServiceError {
-//                case .searchError:
-//                    Toast.present(withTitle: "default.warning".localized(), message: "search.error.message".localized(), image: nil)
-//                default: break;
-//                }
-//            }
-//            else
-//            {
-//                self?.bottomSearchViewController.noResultsDescriptionLabel?.text = "search.noresults.increase.description".localized()
-//                self?.updateServices(services)
-//            }
-//        })
+    internal func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
+        let dispatchTime = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            let cars = [
+                Car(plate: "ABC", latitude: "44.968917", longitude: "7.616103")
+            ]
+            self.updateCars(with: cars)
+        }
+        // TODO: we need to ask server for informations about cars
+        // ApiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
     }
     
-    internal func updatePoi(with withCars: [Car])
-    {
-        // TODO: ???
-//        self.services = services
-//        
-//        let locationController = LocationController.shared
-//        if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-//            if sortingValue == .alphanumeric
-//            {
-//                sortingValue = .distance
-//            }
-//            
-//            for service in services
-//            {
-//                service.distance = CLLocation(latitude: service.latitude, longitude: service.longitude).distance(from: userLocation)
-//            }
-//        }
-//        
-//        var annotations:[ServiceAnnotation] = []
-//        for service in services
-//        {
-//            let coordinates = CLLocationCoordinate2DMake(service.latitude, service.longitude)
-//            let annotation = ServiceAnnotation()
-//            annotation.coordinate = coordinates
-//            annotation.title = service.name
-//            annotation.service = service
-//            
-//            annotations.append(annotation)
-//        }
+    internal func updateCars(with cars: [Car]) {
+        // TODO: hide loading
+        self.cars = cars
+        var annotationsForCarsKeys = Array(annotationsForCars.keys)
+        for car in cars {
+            // Distance
+            let locationController = LocationController.shared
+                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
+                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                    }
+            }
+            // Annotation
+            if let key = car.plate {
+                if annotationsForCarsKeys.contains(key) {
+                    annotationsForCarsKeys.remove(key)
+                } else if let coordinate = car.location?.coordinate {
+                    let annotation = CarAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.car = car
+                    mapView?.addAnnotation(annotation)
+                    annotationsForCars[key] = annotation
+                }
+            }
+        }
+        for key in annotationsForCarsKeys {
+            if let annotation = annotationsForCars[key] {
+                mapView?.removeAnnotation(annotation)
+                annotationsForCars.removeValue(forKey: key)
+            }
+        }
     }
     
     // MARK: - Map methods
@@ -263,7 +252,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         } else {
             let firstCheckUserPosition = "FirstCheckUserPosition"
             if !UserDefaults.standard.bool(forKey: firstCheckUserPosition) {
-                // TODO: ???
                 locationController.requestLocationAuthorization(handler: { (status) in
                     UserDefaults.standard.set(true, forKey: firstCheckUserPosition)
                     self.checkedUserPosition = true
@@ -281,6 +269,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     {
         if let mapView = self.mapView {
             let distanceMeters = mapView.radiusBaseOnViewWidth
+            // TODO: ???
+            /*
             let distanceKM = (distanceMeters * 2) / 1000
             guard distanceKM < kMaxSearchRadius else {
                 return nil
@@ -288,6 +278,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             guard distanceMeters > kMinSearchRadius else {
                 return kMinSearchRadius
             }
+            */
             return distanceMeters
         }
         return nil
@@ -345,51 +336,36 @@ extension SearchCarsViewController: MKMapViewDelegate {
         self.getResults()
     }
     
-    /*
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
-    {
-        guard !(annotation is MKUserLocation) else { return nil }
-        
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationIdentifier = "AnnotationIdentifier"
         var annotationView: MKAnnotationView?
-        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
-        {
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
             annotationView = dequeuedAnnotationView
             annotationView?.annotation = annotation
-        }
-        else
-        {
+        } else {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
-            
-        if let annotationView = annotationView
-        {
-            annotationView.canShowCallout = true
-            if let serviceAnnotation = annotationView.annotation as? ServiceAnnotation
-            {
-                if let service = serviceAnnotation.service
-                {
-                    annotationView.image = service.pinImage
+        if let annotationView = annotationView {
+            if let carAnnotation = annotationView.annotation as? CarAnnotation {
+                if let car = carAnnotation.car {
+                    // TODO: check distance to show nearest car
+                    print(car.plate ?? "")
+                    annotationView.image = UIImage(named: "ic_auto")
                 }
+            } else if annotationView.annotation is MKUserLocation {
+                annotationView.image = UIImage(named: "ic_user")
             }
         }
-            
         return annotationView
     }
-    */
     
-    /*
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
-    {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard !(view.annotation is MKUserLocation) else { return }
-        
-        if let cluster = view.annotation as? FBAnnotationCluster
-        {
-            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.2, mapView.region.span.longitudeDelta * 0.2)
-            let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
-            mapView.setRegion(region, animated: true)
+        if let carAnnotation = view.annotation as? CarAnnotation {
+            if let car = carAnnotation.car {
+                // TODO: show callout for this car
+                print(car.plate ?? "")
+            }
         }
     }
-    */
 }

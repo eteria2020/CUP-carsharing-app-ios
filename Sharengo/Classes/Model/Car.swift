@@ -9,6 +9,7 @@
 import Boomerang
 import RxSwift
 import Gloss
+import CoreLocation
 
 class Car: ModelType, Decodable {
     /*
@@ -72,8 +73,28 @@ class Car: ModelType, Decodable {
     */
     
     var plate:String?
+    var location: CLLocation?
+    
+    var distance: CLLocationDistance?
 
+    static var empty:Car {
+        return Car()
+    }
+    
+    init(plate:String? = nil, latitude:String? = nil, longitude:String? = nil) {
+        self.plate = plate
+        if let latitude = latitude, let longitude = longitude {
+            if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
+                location = CLLocation(latitude: lat, longitude: lon)
+            }
+        }
+    }
+    
     required init?(json: JSON) {
         plate = "plate" <~~ json
+        // TODO: ???
+        if let lat: CLLocationDegrees = "latitude" <~~ json, let lon: CLLocationDegrees = "longitude" <~~ json {
+            location = CLLocation(latitude: lat, longitude: lon)
+        }
     }
 }

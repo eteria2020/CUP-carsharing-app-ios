@@ -19,13 +19,13 @@ enum ColorBrand {
         get {
             switch self {
             case .yellow:
-                return UIColor.yellow
+                return UIColor(red: 255/255.0, green: 233/255.0, blue: 0/255.0, alpha: 1.0)
             case .green:
-                return UIColor.green
+                return UIColor(red: 68/255.0, green: 173/255.0, blue: 79/255.0, alpha: 1.0)
             case .black:
-                return UIColor.black
+                return UIColor(red: 27/255.0, green: 35/255.0, blue: 41/255.0, alpha: 1.0)
             case .white:
-                return UIColor.white
+                return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
             case .clear:
                 return UIColor.clear
             }
@@ -40,6 +40,9 @@ enum Color {
     // CircularMenu
     case circularMenuBackgroundBorder
     case circularMenuBackground
+    
+    // Home
+    case homeSearchCarBackground
     
     // SearchBar
     case searchBarBackground
@@ -56,6 +59,8 @@ enum Color {
                 return ColorBrand.yellow.value.withAlphaComponent(0.5)
             case .circularMenuBackground:
                 return ColorBrand.clear.value
+            case .homeSearchCarBackground:
+                return ColorBrand.green.value
             case .searchBarBackground:
                 return ColorBrand.black.value
             case .searchBarBackgroundMicrophone:

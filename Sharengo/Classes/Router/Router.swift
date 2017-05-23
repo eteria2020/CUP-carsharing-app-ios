@@ -6,7 +6,10 @@ import AVKit
 
 internal extension UIViewController {
     func withNavigation() -> NavigationController {
-        return NavigationController(rootViewController: self)
+        let navigationController = NavigationController(rootViewController: self)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.interactivePopGestureRecognizer?.delegate = nil
+        return navigationController
     }
 }
 
@@ -27,12 +30,9 @@ struct Router : RouterType {
     }
     
     public static func start(_ delegate:AppDelegate) {
-        
         delegate.window = UIWindow(frame: UIScreen.main.bounds)
         delegate.window?.rootViewController = self.root()
-        
         delegate.window?.makeKeyAndVisible()
-        
     }
     
     public static func confirm<Source:UIViewController>(title:String,message:String,confirmationTitle:String, from source:Source, action:@escaping ((Void)->())) -> RouterAction {
@@ -57,15 +57,19 @@ struct Router : RouterType {
     
     public static func from<Source> (_ source:Source, viewModel:ViewModelType) -> RouterAction where Source: UIViewController {
         switch viewModel {
+        case is SearchCarsViewModel:
+            let destination:SearchCarsViewController = (Storyboard.main.scene(.searchCars))
+            destination.bind(to: ViewModelFactory.searchCars(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }
     }
 
     public static func root() -> UIViewController {
-        let destination: SearchCarsViewController  = (Storyboard.main.scene(.searchCars))
-        destination.bind(to: ViewModelFactory.searchCars(), afterLoad: true)
-        return destination
+        let destination: HomeViewController  = (Storyboard.main.scene(.home))
+        destination.bind(to: ViewModelFactory.home(), afterLoad: true)
+        return destination.withNavigation()
     }
     
     public static func rootController() -> UIViewController? {

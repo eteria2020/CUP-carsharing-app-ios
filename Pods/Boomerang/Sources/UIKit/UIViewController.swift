@@ -54,7 +54,7 @@ public extension ViewControllerActionBindable where Self: UIViewController {
 
 public extension ViewModelBindableType where Self : UIViewController {
     
-    public func bind(to viewModel: ViewModelType? , afterLoad:Bool) {
+    public func bind(to viewModel: ViewModelType?, afterLoad:Bool) {
         if (afterLoad) {
             (self as UIViewController).rx.sentMessage(#selector(viewDidLoad)).take(1).subscribe(onCompleted: {[weak self] _ in
                 self?.bind(to:viewModel)

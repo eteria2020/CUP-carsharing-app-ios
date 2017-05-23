@@ -48,6 +48,10 @@
 		4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */; };
 		4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */; };
+		4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */; };
+		4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98341ED471B800880EA1 /* HomeViewController.swift */; };
+		4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98361ED471F500880EA1 /* HomeViewModel.swift */; };
+		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +100,10 @@
 		4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+Theme.swift"; path = "Classes/Theme/Image+Theme.swift"; sourceTree = "<group>"; };
 		4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewController.swift; path = Classes/ViewControllers/SearchCarsViewController.swift; sourceTree = "<group>"; };
 		4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewModel.swift; path = Classes/ViewModels/SearchCarsViewModel.swift; sourceTree = "<group>"; };
+		4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
+		4DFD98341ED471B800880EA1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Classes/ViewControllers/HomeViewController.swift; sourceTree = "<group>"; };
+		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
+		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,6 +212,7 @@
 				4DCD1A831ECDC16400FC8BF5 /* Utilities.swift */,
 				4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */,
 				4D36D7C41ED2F604005FAEB8 /* MKMapKit+Extensions.swift */,
+				4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -213,6 +222,7 @@
 			children = (
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
 				4DCC70A21ED31D3400906DA0 /* Error.swift */,
+				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -240,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
+				4DFD98381ED471FC00880EA1 /* Home */,
 				4D1AE8191ED1BA2500C8A1D3 /* SearchBar */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 			);
@@ -352,6 +363,24 @@
 				4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */,
 			);
 			name = SearchCars;
+			sourceTree = "<group>";
+		};
+		4DFD982F1ED45CCE00880EA1 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */,
+			);
+			name = Annotations;
+			path = Classes/Model/Annotations;
+			sourceTree = "<group>";
+		};
+		4DFD98381ED471FC00880EA1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4DFD98341ED471B800880EA1 /* HomeViewController.swift */,
+				4DFD98361ED471F500880EA1 /* HomeViewModel.swift */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 		906843C62B31F2F1D555438B /* Pods */ = {
@@ -498,6 +527,8 @@
 			files = (
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
+				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
+				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
@@ -511,6 +542,7 @@
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
+				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
 				4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
@@ -518,6 +550,7 @@
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
 				4DCC70A31ED31D3400906DA0 /* Error.swift in Sources */,
+				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
