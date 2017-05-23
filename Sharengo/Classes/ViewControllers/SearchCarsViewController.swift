@@ -24,7 +24,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate let kMinSearchRadius:Double = 1 // 1 meter
     fileprivate let kMaxSearchRadius:Double = 250 // 250km
     fileprivate var resultsTask: DispatchWorkItem?
-    fileprivate var cars: [Car] = []
     fileprivate var annotationsForCars:[String:MKAnnotation] = [:]
     
     var viewModel: SearchCarsViewModel?
@@ -42,7 +41,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 Router.from(self,viewModel: viewModel).execute()
             }
         }).addDisposableTo(self.disposeBag)
-        viewModel.reload()
     }
    
     // MARK: - View methods
@@ -208,7 +206,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     internal func updateCars(with cars: [Car]) {
         // TODO: hide loading
-        self.cars = cars
+        self.viewModel?.cars = cars
         var annotationsForCarsKeys = Array(annotationsForCars.keys)
         for car in cars {
             // Distance
@@ -269,16 +267,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     {
         if let mapView = self.mapView {
             let distanceMeters = mapView.radiusBaseOnViewWidth
-            // TODO: ???
-            /*
-            let distanceKM = (distanceMeters * 2) / 1000
-            guard distanceKM < kMaxSearchRadius else {
-                return nil
-            }
-            guard distanceMeters > kMinSearchRadius else {
-                return kMinSearchRadius
-            }
-            */
             return distanceMeters
         }
         return nil
@@ -319,7 +307,6 @@ extension SearchCarsViewController: UIGestureRecognizerDelegate {
     }
 }
 
-// TODO: ???
 extension SearchCarsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let tileOverlay = overlay as? MKTileOverlay else {
@@ -348,9 +335,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
         if let annotationView = annotationView {
             if let carAnnotation = annotationView.annotation as? CarAnnotation {
                 if let car = carAnnotation.car {
-                    // TODO: check distance to show nearest car
-                    print(car.plate ?? "")
-                    annotationView.image = UIImage(named: "ic_auto")
+                    annotationView.image = car.getAnnotationViewImage()
                 }
             } else if annotationView.annotation is MKUserLocation {
                 annotationView.image = UIImage(named: "ic_user")

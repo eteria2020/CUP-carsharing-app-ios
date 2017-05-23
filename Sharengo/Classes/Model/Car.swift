@@ -97,4 +97,11 @@ class Car: ModelType, Decodable {
             location = CLLocation(latitude: lat, longitude: lon)
         }
     }
+    
+    // MARK: - Map methods
+    
+    func getAnnotationViewImage() -> UIImage? {
+        // TODO: check distance to show nearest car
+        return UIImage(named: "ic_auto")
+    }
 }

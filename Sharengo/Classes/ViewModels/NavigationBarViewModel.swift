@@ -39,7 +39,7 @@ public enum NavigationBarOutput: SelectionInput {
     case empty
 }
 
-final class NavigationBarViewModel : ViewModelTypeSelectable {
+final class NavigationBarViewModel: ViewModelTypeSelectable {
     let letfItem: NavigationBarItem
     let rightItem: NavigationBarItem
     public var selection: Action<NavigationBarInput, NavigationBarOutput> = Action { _ in

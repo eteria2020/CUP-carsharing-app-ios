@@ -11,25 +11,14 @@ import RxSwift
 import Boomerang
 import Action
 
-enum HomeSelectionInput : SelectionInput {
+enum HomeSelectionInput: SelectionInput {
     case searchCars
 }
-enum HomeSelectionOutput : SelectionOutput {
+enum HomeSelectionOutput: SelectionOutput {
     case viewModel(ViewModelType)
 }
 
-final class HomeViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder()
-    
-    /*
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
-        guard let item = model as? Car else {
-            return nil
-        }
-        return ViewModelFactory.__proper_factory_method_here()
-    }
-    */
-    
+final class HomeViewModel: ViewModelTypeSelectable {
     lazy var selection:Action<HomeSelectionInput,SearchBarSelectionOutput> = Action { input in
         switch input {
         case .searchCars:

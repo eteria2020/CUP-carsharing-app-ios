@@ -29,7 +29,6 @@ class HomeViewController : UIViewController, ViewModelBindable {
                 Router.from(self,viewModel: viewModel).execute()
             }
         }).addDisposableTo(self.disposeBag)
-        viewModel.reload()
         self.view.layoutIfNeeded()
         self.view_searchCar.backgroundColor = Color.homeSearchCarBackground.value
         self.view_searchCar.layer.cornerRadius = self.view_searchCar.frame.size.width/2

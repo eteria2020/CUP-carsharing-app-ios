@@ -64,7 +64,7 @@ public enum CircularMenuOutput: SelectionInput {
     case compass
 }
 
-final class CircularMenuViewModel : ViewModelTypeSelectable {    
+final class CircularMenuViewModel: ViewModelTypeSelectable {    
     let type: CircularMenuType
     public var selection: Action<CircularMenuInput, CircularMenuOutput> = Action { _ in
         return .just(.empty)
