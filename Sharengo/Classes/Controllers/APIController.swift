@@ -14,19 +14,16 @@ import MapKit
 import Alamofire
 
 final class ApiController {
-    static var manager: SessionManager?
+    fileprivate var manager: SessionManager?
    
-    // TODO: ???
-    static func initManager() {
+    init() {
         let cert = PKCS12.init(mainBundleResource: "client", resourceType: "p12", password: "oi8dmf0");
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "api.sharengo.it": .disableEvaluation
         ]
-        
         self.manager = Alamofire.SessionManager(
             serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
         )
-        
         self.manager!.delegate.sessionDidReceiveChallenge = { session, challenge in
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodClientCertificate {
                 return (URLSession.AuthChallengeDisposition.useCredential, cert.urlCredential());
@@ -38,22 +35,22 @@ final class ApiController {
         }
     }
     
-    static func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
-        self.initManager()
-        
-        let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true)])
-        _ = provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius)).subscribe { event in
-            switch event {
-            case .next(let response):
-                let json = String(data: response.data, encoding: .utf8)
-                print(json ?? "")
-            case .error(let error):
-                let errorM = error as! MoyaError
-                print(errorM.response ?? "")
-                print(errorM.failureReason ?? "")
-                print(errorM.helpAnchor ?? "")
-            default:
-                break
+    func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<[Car]> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true)])
+            return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius))
+                // TODO: check status and response
+                .mapArray(type: Car.self, forKeyPath: "data")
+                .subscribe { event in
+                switch event {
+                case .next(let cars):
+                    observable.onNext(cars)
+                    observable.onCompleted()
+                case .error(let error):
+                    observable.onError(error)
+                default:
+                    break
+                }
             }
         }
     }
@@ -81,7 +78,7 @@ extension API: TargetType {
         switch self {
         case .searchCars(_, _, _):
             return [:]
-        // TODO: ???
+        // TODO: with parameters it doesn't work
         /*
         case .searchCars(let latitude, let longitude, let radius):
             return ["lat": latitude, "lon": longitude, "radius": radius]

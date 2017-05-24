@@ -420,6 +420,7 @@
 				4DCD1A501ECDBF7400FC8BF5 /* Resources */,
 				59A6C6551D62A8A064679543 /* [CP] Embed Pods Frameworks */,
 				83386CE137B399051CBBB402 /* [CP] Copy Pods Resources */,
+				4DA178621ED5E2E700EBD32B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -489,6 +490,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4DA178621ED5E2E700EBD32B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 57623239bae67668df7bbce99e5c2686c876e070 a196b51c179c0f247995aaf4fe93bcbd7e48597dcb7130f9c9388f25a8ac9a8c";
+		};
 		59A6C6551D62A8A064679543 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -704,7 +718,7 @@
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = it.synesthesia.sharengo;
+				PRODUCT_BUNDLE_IDENTIFIER = it.sharengo.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "44987f68-59d8-4ebe-ac64-9cfe7d65139d";
 				PROVISIONING_PROFILE_SPECIFIER = "Dedecube Development";
@@ -722,7 +736,7 @@
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = it.synesthesia.sharengo;
+				PRODUCT_BUNDLE_IDENTIFIER = it.sharengo.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

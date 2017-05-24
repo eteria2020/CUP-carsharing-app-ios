@@ -21,10 +21,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
     fileprivate var checkedUserPosition:Bool = false
-    fileprivate let kMinSearchRadius:Double = 1 // 1 meter
-    fileprivate let kMaxSearchRadius:Double = 250 // 250km
     fileprivate var resultsTask: DispatchWorkItem?
-    fileprivate var annotationsForCars:[String:MKAnnotation] = [:]
     
     var viewModel: SearchCarsViewModel?
     
@@ -41,6 +38,14 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 Router.from(self,viewModel: viewModel).execute()
             }
         }).addDisposableTo(self.disposeBag)
+        viewModel.array_annotationsToAdd.asObservable()
+            .subscribe(onNext: {[weak self] (array) in
+                self?.mapView.addAnnotations(array)
+        }).addDisposableTo(disposeBag)
+        viewModel.array_annotationsToRemove.asObservable()
+            .subscribe(onNext: {[weak self] (array) in
+                self?.mapView.removeAnnotations(array)
+        }).addDisposableTo(disposeBag)
     }
    
     // MARK: - View methods
@@ -85,7 +90,12 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         // Map
         self.setupMap()
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.didAuthorized) { [weak self] _ in
-            self?.centerMap()
+            let locationController = LocationController.shared
+            if locationController.isAuthorized, let userLocation = locationController.currentLocation {
+                self?.mapView?.showsUserLocation = true
+                self?.setUserPositionButtonVisible(true)
+                self?.centerMap(on: userLocation)
+            }
         }
     }
     
@@ -172,9 +182,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func stopRequest() {
+        // TODO: ???
         self.resultsTask?.cancel()
-        // TODO: request has to be cancelled
         // TODO: hide loading
+        self.viewModel?.stopRequest()
     }
     
     fileprivate func getResults() {
@@ -183,60 +194,13 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             if let radius = self?.getRadius() {
                 if let mapView = self?.mapView {
                     // TODO: show loading
-                    self?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
+                    self?.viewModel?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
                     return
                 }
             }
-            self?.updateCars(with: [Car]())
+            self?.viewModel?.resetCars()
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: resultsTask!)
-    }
-    
-    internal func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
-        /*
-        let dispatchTime = DispatchTime.now() + 2
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            let cars = [
-                Car(plate: "ABC", latitude: "44.968917", longitude: "7.616103")
-            ]
-            self.updateCars(with: cars)
-        }
-        */
-        // TODO: we need to ask server for informations about cars
-        ApiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
-    }
-    
-    internal func updateCars(with cars: [Car]) {
-        // TODO: hide loading
-        self.viewModel?.cars = cars
-        var annotationsForCarsKeys = Array(annotationsForCars.keys)
-        for car in cars {
-            // Distance
-            let locationController = LocationController.shared
-                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                    }
-            }
-            // Annotation
-            if let key = car.plate {
-                if annotationsForCarsKeys.contains(key) {
-                    annotationsForCarsKeys.remove(key)
-                } else if let coordinate = car.location?.coordinate {
-                    let annotation = CarAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.car = car
-                    mapView?.addAnnotation(annotation)
-                    annotationsForCars[key] = annotation
-                }
-            }
-        }
-        for key in annotationsForCarsKeys {
-            if let annotation = annotationsForCars[key] {
-                mapView?.removeAnnotation(annotation)
-                annotationsForCars.removeValue(forKey: key)
-            }
-        }
     }
     
     // MARK: - Map methods
@@ -255,11 +219,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 locationController.requestLocationAuthorization(handler: { (status) in
                     UserDefaults.standard.set(true, forKey: firstCheckUserPosition)
                     self.checkedUserPosition = true
-                    if locationController.isAuthorized, let userLocation = locationController.currentLocation {
-                        self.mapView?.showsUserLocation = true
-                        self.setUserPositionButtonVisible(true)
-                        self.centerMap(on: userLocation)
-                    }
                 })
             }
         }
@@ -278,6 +237,13 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         let locationController = LocationController.shared
         if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
             centerMap(on: userLocation)
+        }
+        else {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+            } else {
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+            }
         }
     }
     
@@ -298,7 +264,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
 }
 
-// TODO: ???
 extension SearchCarsViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let point = touch.location(in: self.view_navigationBar)

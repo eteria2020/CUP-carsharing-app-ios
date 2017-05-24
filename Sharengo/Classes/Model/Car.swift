@@ -11,6 +11,11 @@ import RxSwift
 import Gloss
 import CoreLocation
 
+enum CarStatus: String {
+    case empty
+    case operative = "operative"
+}
+
 class Car: ModelType, Decodable {
     /*
      JSON response example:
@@ -72,36 +77,37 @@ class Car: ModelType, Decodable {
     }
     */
     
-    var plate:String?
+    var status: CarStatus = .empty
+    var plate: String?
     var location: CLLocation?
-    
     var distance: CLLocationDistance?
+    var nearest: Bool = false
 
     static var empty:Car {
         return Car()
     }
     
-    init(plate:String? = nil, latitude:String? = nil, longitude:String? = nil) {
-        self.plate = plate
-        if let latitude = latitude, let longitude = longitude {
+    init() {
+    }
+
+    required init?(json: JSON) {
+        self.plate = "plate" <~~ json
+        if let latitude: String = "latitude" <~~ json, let longitude: String = "longitude" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
-                location = CLLocation(latitude: lat, longitude: lon)
+                self.location = CLLocation(latitude: lat, longitude: lon)
             }
         }
-    }
-    
-    required init?(json: JSON) {
-        plate = "plate" <~~ json
-        // TODO: ???
-        if let lat: CLLocationDegrees = "latitude" <~~ json, let lon: CLLocationDegrees = "longitude" <~~ json {
-            location = CLLocation(latitude: lat, longitude: lon)
+        if let status: String = "status" <~~ json {
+            self.status = CarStatus(rawValue: status) ?? .empty
         }
     }
     
     // MARK: - Map methods
     
     func getAnnotationViewImage() -> UIImage? {
-        // TODO: check distance to show nearest car
+        if nearest {
+            return UIImage(named: "ic_auto_vicina")
+        }
         return UIImage(named: "ic_auto")
     }
 }
