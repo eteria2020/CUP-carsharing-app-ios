@@ -17,6 +17,8 @@
 		4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */; };
 		4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */; };
 		4D1AE82E1ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */; };
+		4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 4D2628F11ED57CCD001C4E38 /* client.p12 */; };
+		4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2628F31ED57D7B001C4E38 /* PKCS12.swift */; };
 		4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */; };
 		4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D36D7BF1ED2F279005FAEB8 /* InfoPlist.strings */; };
 		4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */; };
@@ -67,6 +69,8 @@
 		4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		4D2628F11ED57CCD001C4E38 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
+		4D2628F31ED57D7B001C4E38 /* PKCS12.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PKCS12.swift; path = Classes/Utilities/PKCS12.swift; sourceTree = "<group>"; };
 		4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		4D36D7C01ED2F279005FAEB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NotificationCenter+Extensions.swift"; path = "Classes/Utilities/NotificationCenter+Extensions.swift"; sourceTree = "<group>"; };
@@ -135,6 +139,15 @@
 				4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */,
 			);
 			name = SearchBar;
+			sourceTree = "<group>";
+		};
+		4D2628F01ED57CCD001C4E38 /* Certificates */ = {
+			isa = PBXGroup;
+			children = (
+				4D2628F11ED57CCD001C4E38 /* client.p12 */,
+			);
+			name = Certificates;
+			path = Resources/Certificates;
 			sourceTree = "<group>";
 		};
 		4D36D7BC1ED2EF86005FAEB8 /* Controllers */ = {
@@ -213,6 +226,7 @@
 				4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */,
 				4D36D7C41ED2F604005FAEB8 /* MKMapKit+Extensions.swift */,
 				4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */,
+				4D2628F31ED57D7B001C4E38 /* PKCS12.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -275,6 +289,7 @@
 		4DCD1A961ECDC20500FC8BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4D2628F01ED57CCD001C4E38 /* Certificates */,
 				4DCD1A981ECDC22900FC8BF5 /* Assets */,
 				4DCD1A9A1ECDC22900FC8BF5 /* Fonts */,
 				4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */,
@@ -465,6 +480,7 @@
 				4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */,
 				4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */,
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
+				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
 				4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -528,6 +544,7 @@
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
+				4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,

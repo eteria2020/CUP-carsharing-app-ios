@@ -10,32 +10,48 @@ import Moya
 import Gloss
 import Moya_Gloss
 import RxSwift
-import KeychainSwift
 import MapKit
 import Alamofire
 
-class CustomServerTrustPoliceManager : ServerTrustPolicyManager {
-    override func serverTrustPolicy(forHost host: String) -> ServerTrustPolicy? {
-        return .disableEvaluation
-    }
-    public init() {
-        super.init(policies: [:])
-    }
-}
-
 final class ApiController {
-
-    private static let provider = RxMoyaProvider<API>(manager: Manager(configuration: URLSessionConfiguration.default, serverTrustPolicyManager: CustomServerTrustPoliceManager()), plugins: [NetworkLoggerPlugin(verbose: true)])
-    private static let keychain = KeychainSwift()
+    static var manager: SessionManager?
+   
+    // TODO: ???
+    static func initManager() {
+        let cert = PKCS12.init(mainBundleResource: "client", resourceType: "p12", password: "oi8dmf0");
+        let serverTrustPolicies: [String: ServerTrustPolicy] = [
+            "api.sharengo.it": .disableEvaluation
+        ]
+        
+        self.manager = Alamofire.SessionManager(
+            serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
+        )
+        
+        self.manager!.delegate.sessionDidReceiveChallenge = { session, challenge in
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodClientCertificate {
+                return (URLSession.AuthChallengeDisposition.useCredential, cert.urlCredential());
+            }
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                return (URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!));
+            }
+            return (URLSession.AuthChallengeDisposition.performDefaultHandling, Optional.none);
+        }
+    }
     
     static func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
-        _ = self.provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius)).subscribe { event in
+        self.initManager()
+        
+        let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true)])
+        _ = provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius)).subscribe { event in
             switch event {
             case .next(let response):
                 let json = String(data: response.data, encoding: .utf8)
                 print(json ?? "")
             case .error(let error):
-                print(error.localizedDescription)
+                let errorM = error as! MoyaError
+                print(errorM.response ?? "")
+                print(errorM.failureReason ?? "")
+                print(errorM.helpAnchor ?? "")
             default:
                 break
             }
@@ -63,8 +79,13 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
+        case .searchCars(_, _, _):
+            return [:]
+        // TODO: ???
+        /*
         case .searchCars(let latitude, let longitude, let radius):
             return ["lat": latitude, "lon": longitude, "radius": radius]
+        */
         }
     }
     

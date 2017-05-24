@@ -193,6 +193,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     internal func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
+        /*
         let dispatchTime = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             let cars = [
@@ -200,8 +201,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             ]
             self.updateCars(with: cars)
         }
+        */
         // TODO: we need to ask server for informations about cars
-        // ApiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
+        ApiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
     }
     
     internal func updateCars(with cars: [Car]) {
