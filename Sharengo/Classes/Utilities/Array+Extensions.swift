@@ -1,12 +1,9 @@
 //
-//  LocationController.swift
+//  Array+Extensions.swift
 //
 //  Created by Dedecube on 22/05/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
-
-import MapKit
-
 
 extension Array where Element: Equatable
 {

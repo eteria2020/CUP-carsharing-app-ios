@@ -42,12 +42,14 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {
                     self?.mapView.addAnnotations(array)
+                    self?.setUpdateButtonAnimated(false)
                 }
             }).addDisposableTo(disposeBag)
         viewModel.array_annotationsToRemove.asObservable()
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {
                     self?.mapView.removeAnnotations(array)
+                    self?.setUpdateButtonAnimated(false)
                 }
             }).addDisposableTo(disposeBag)
     }
@@ -136,6 +138,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.mapView.add(overlay, level: .aboveLabels)
     }
     
+    // MARK: - CircularMenu methods
+    
     fileprivate func setUserPositionButtonVisible(_ visible: Bool) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
         if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
@@ -151,6 +155,45 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                             button.isUserInteractionEnabled = false
                             button.isEnabled = false
                         }
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func setUpdateButtonAnimated(_ animated: Bool) {
+        let arrayOfButtons = self.view_circularMenu.array_buttons
+        if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
+            for i in 0..<arrayOfButtons.count {
+                if arrayOfItems.count > i {
+                    let menuItem = arrayOfItems[i]
+                    let button = arrayOfButtons[i]
+                    if menuItem.input == .refresh {
+                        if animated {
+                            button.startZRotation()
+                        } else {
+                            button.stopZRotation()
+                        }
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func setTurnButtonDegrees(_ degrees: CGFloat) {
+        let arrayOfButtons = self.view_circularMenu.array_buttons
+        if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
+            for i in 0..<arrayOfButtons.count {
+                if arrayOfItems.count > i {
+                    let menuItem = arrayOfItems[i]
+                    let button = arrayOfButtons[i]
+                    if menuItem.input == .compass {
+                        UIView.animate(withDuration: 0.2, animations: { 
+                            button.transform = CGAffineTransform(rotationAngle: degrees.degreesToRadians)
+                        })
+                        return
                     }
                 }
             }
@@ -205,7 +248,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate func stopRequest() {
         // TODO: ???
         self.resultsTask?.cancel()
-        // TODO: hide loading
+        self.setUpdateButtonAnimated(false)
         self.viewModel?.stopRequest()
     }
     
@@ -213,7 +256,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.stopRequest()
         if let radius = self.getRadius() {
             if let mapView = self.mapView {
-                // TODO: show loading
+                self.setUpdateButtonAnimated(true)
                 self.viewModel?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
                 return
             }
@@ -291,6 +334,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
 }
 
+// MARK: - Gesture delegate
+
 extension SearchCarsViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let point = touch.location(in: self.view_navigationBar)
@@ -301,6 +346,8 @@ extension SearchCarsViewController: UIGestureRecognizerDelegate {
     }
 }
 
+// MARK: - Map delegate
+
 extension SearchCarsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let tileOverlay = overlay as? MKTileOverlay else {
@@ -310,10 +357,12 @@ extension SearchCarsViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
         self.stopRequest()
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
         self.getResults()
     }
     
