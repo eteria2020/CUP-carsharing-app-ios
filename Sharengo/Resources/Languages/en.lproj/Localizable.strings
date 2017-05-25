@@ -6,8 +6,10 @@
 //
 
 // General
-"btn_ok" = "OK";
+"btn_ok" = "OKAY";
 "btn_cancel" = "ANNULLA";
+"lbl_connectionError" = "Non sei connesso ad internet, per favore riprova";
+"lbl_generalError" = "Si è verificato un errore, per favore riprova";
 
 // SearchBar
 "lbl_searchBarTextField" = "Cerca indirizzo o targa";

@@ -38,6 +38,7 @@ PODS:
   - MZFormSheetPresentationController (2.4.2):
     - MZAppearance
   - pop (1.0.9)
+  - ReachabilitySwift (3)
   - Result (3.2.2)
   - RxCocoa (3.4.1):
     - RxSwift (~> 3.4)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - Moya/RxSwift
   - MZFormSheetPresentationController
   - pop
+  - ReachabilitySwift
   - RxSwift
   - SnapKit (~> 3.0.2)
   - SpinKit
@@ -102,12 +104,13 @@ SPEC CHECKSUMS:
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: c1dc3bce639d2393b3cc416fcb6e050eb5bca062
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 4edd39003fdccf281d418ee1b006571f70123250
   RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
 
-PODFILE CHECKSUM: 4c6e9c3e82d63cd389e57bfce6dbf01a7ad2e0a8
+PODFILE CHECKSUM: 523fd48b14ec9c29f0ba1bb6df383c4b83cca2b6
 
 COCOAPODS: 1.2.1

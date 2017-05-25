@@ -596,12 +596,14 @@ import UIKit
     // MARK: - Show & hide
     
     open func show() {
-        if ZAlertView.duration < 0.1
-        {
-            ZAlertView.duration = 0.3
+        if !UserDefaults.standard.bool(forKey: "alertShowed") {
+            UserDefaults.standard.set(true, forKey: "alertShowed")
+            if ZAlertView.duration < 0.1
+            {
+                ZAlertView.duration = 0.3
+            }
+            showWithDuration(Double(ZAlertView.duration))
         }
-        
-        showWithDuration(Double(ZAlertView.duration))
     }
     
     open func dismissAlertView() {
@@ -743,6 +745,7 @@ import UIKit
                 self.alertWindow = nil
                 self.previousWindow.makeKeyAndVisible()
                 self.previousWindow = nil
+                UserDefaults.standard.set(false, forKey: "alertShowed")
             }
         }
         

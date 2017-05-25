@@ -11,6 +11,8 @@ import RxSwift
 import Boomerang
 import Action
 import MapKit
+import Moya
+import ReachabilitySwift
 
 enum SearchCarSelectionInput: SelectionInput {
     case item(IndexPath)
@@ -26,10 +28,10 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var oldNearestCar: Car?
     fileprivate var nearestCar: Car?
+    fileprivate var cars: [Car] = []
     
     var array_annotationsToAdd: Variable<[CarAnnotation]> = Variable([])
     var array_annotationsToRemove: Variable<[CarAnnotation]> = Variable([])
-    var cars: [Car] = []
     
     lazy var selection:Action<SearchCarSelectionInput,SearchCarSelectionOutput> = Action { input in
         return .empty()
@@ -65,22 +67,26 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
                     return car.status == .operative
                 })
                 self.manageAnnotations()
-            case .error(let error):
-                print(error)
-                /*
-                let dialog = ZAlertView(title: "Success",
-                                        message: "Thank you for purchasing our products. Have a nice day.",
-                                        closeButtonText: "Okay",
-                                        closeButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
+            case .error(_):
+                let dispatchTime = DispatchTime.now() + 0.5
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    if Reachability()?.isReachable == false {
+                        let dialog = ZAlertView(title: nil, message: "lbl_connectionError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                    else {
+                        let dialog = ZAlertView(title: nil, message: "lbl_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
                 }
-                )
-                dialog.allowTouchOutsideToDismiss = false
-                let attrStr = NSMutableAttributedString(string: "Are you sure you want to quit?")
-                attrStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(10, 12))
-                dialog.messageAttributedString = attrStr
-                dialog.show()
-                */
+                self.cars = []
+                self.manageAnnotations()
             default:
                 break
             }

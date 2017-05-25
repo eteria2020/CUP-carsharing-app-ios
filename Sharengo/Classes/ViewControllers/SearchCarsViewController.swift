@@ -312,8 +312,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             cancelButtonHandler: { alertView in
                 alertView.dismissAlertView()
             })
-            dialog.show()
             dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
         }
     }
     

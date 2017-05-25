@@ -22,6 +22,7 @@ def shared_pods
     pod 'Gloss'
     pod 'Moya-Gloss/RxSwift'
     pod 'KeychainSwift'
+    pod 'ReachabilitySwift'
 end
 
 target 'Sharengo' do

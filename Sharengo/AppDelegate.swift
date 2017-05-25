@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // TODO: ???
         // Fabric.with([Crashlytics.self])
+        UserDefaults.standard.set(false, forKey: "alertShowed")
         self.setupAlertView()
         TextStyle.setup()
         Router.start(self)
