@@ -128,13 +128,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYQ-Ph-1do">
-                                <rect key="frame" x="15" y="70" width="345" height="38"/>
+                                <rect key="frame" x="15" y="70" width="345" height="36"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xeB-Z5-lxH">
-                                        <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="vHl-q1-p7i">
-                                                <rect key="frame" x="8" y="8" width="22" height="22"/>
+                                                <rect key="frame" x="8" y="8" width="20" height="20"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -147,10 +147,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIl-nG-BPL">
-                                        <rect key="frame" x="307" y="0.0" width="38" height="38"/>
+                                        <rect key="frame" x="309" y="0.0" width="36" height="36"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5x-SX-bhx">
-                                                <rect key="frame" x="5" y="5" width="28" height="28"/>
+                                                <rect key="frame" x="5" y="5" width="26" height="26"/>
                                                 <state key="normal" image="ic_microphone"/>
                                             </button>
                                         </subviews>
@@ -163,10 +163,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1q-WS-v9r">
-                                        <rect key="frame" x="38" y="0.0" width="269" height="38"/>
+                                        <rect key="frame" x="36" y="0.0" width="273" height="36"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bch-3w-32c">
-                                                <rect key="frame" x="5" y="0.0" width="259" height="38"/>
+                                                <rect key="frame" x="5" y="0.0" width="263" height="36"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -188,7 +188,7 @@
                                 <constraints>
                                     <constraint firstItem="MIl-nG-BPL" firstAttribute="leading" secondItem="h1q-WS-v9r" secondAttribute="trailing" id="3Kx-yb-ot8"/>
                                     <constraint firstItem="MIl-nG-BPL" firstAttribute="top" secondItem="TYQ-Ph-1do" secondAttribute="top" id="6ZN-D0-8bc"/>
-                                    <constraint firstAttribute="height" constant="38" id="8Tg-IF-zir"/>
+                                    <constraint firstAttribute="height" constant="36" id="8Tg-IF-zir"/>
                                     <constraint firstAttribute="bottom" secondItem="MIl-nG-BPL" secondAttribute="bottom" id="AEf-xH-rED"/>
                                     <constraint firstAttribute="trailing" secondItem="MIl-nG-BPL" secondAttribute="trailing" id="DgC-mO-ryh"/>
                                     <constraint firstItem="MIl-nG-BPL" firstAttribute="width" secondItem="MIl-nG-BPL" secondAttribute="height" multiplier="1:1" id="F8e-Fc-1UI"/>

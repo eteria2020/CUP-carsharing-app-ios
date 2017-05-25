@@ -40,12 +40,16 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         viewModel.array_annotationsToAdd.asObservable()
             .subscribe(onNext: {[weak self] (array) in
-                self?.mapView.addAnnotations(array)
-        }).addDisposableTo(disposeBag)
+                DispatchQueue.main.async {
+                    self?.mapView.addAnnotations(array)
+                }
+            }).addDisposableTo(disposeBag)
         viewModel.array_annotationsToRemove.asObservable()
             .subscribe(onNext: {[weak self] (array) in
-                self?.mapView.removeAnnotations(array)
-        }).addDisposableTo(disposeBag)
+                DispatchQueue.main.async {
+                    self?.mapView.removeAnnotations(array)
+                }
+            }).addDisposableTo(disposeBag)
     }
    
     // MARK: - View methods
@@ -97,6 +101,23 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 self?.centerMap(on: userLocation)
             }
         }
+        NotificationCenter.default.addObserver(forName:
+        NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
+            [unowned self] notification in
+            let locationController = LocationController.shared
+            if locationController.isAuthorized && locationController.currentLocation != nil {
+                self.mapView?.showsUserLocation = true
+                self.setUserPositionButtonVisible(true)
+            } else {
+                self.mapView?.showsUserLocation = false
+                self.setUserPositionButtonVisible(false)
+            }
+            self.getResults()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -190,19 +211,16 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate func getResults() {
         self.stopRequest()
-        self.resultsTask = DispatchWorkItem { [weak self] in
-            if let radius = self?.getRadius() {
-                if let mapView = self?.mapView {
-                    // TODO: show loading
-                    self?.viewModel?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
-                    return
-                }
+        if let radius = self.getRadius() {
+            if let mapView = self.mapView {
+                // TODO: show loading
+                self.viewModel?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
+                return
             }
-            self?.viewModel?.resetCars()
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: resultsTask!)
+        self.viewModel?.resetCars()
     }
-    
+
     // MARK: - Map methods
     
     fileprivate func checkUserPosition()
@@ -239,11 +257,20 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             centerMap(on: userLocation)
         }
         else {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
-            } else {
-                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
-            }
+            let dialog = ZAlertView(title: nil, message: "alert_centerMapMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+            okButtonHandler: { alertView in
+                alertView.dismissAlertView()
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+                } else {
+                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                }
+            },
+            cancelButtonHandler: { alertView in
+                alertView.dismissAlertView()
+            })
+            dialog.show()
+            dialog.allowTouchOutsideToDismiss = false
         }
     }
     

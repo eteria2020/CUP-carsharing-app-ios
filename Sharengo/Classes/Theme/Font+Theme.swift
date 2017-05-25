@@ -32,6 +32,10 @@ enum FontWeight {
 }
 
 enum Font {
+    // Akert
+    case alertMessage
+    case alertButtons
+    
     // SearchBar
     case searchBarTextField
     case searchBarTextFieldPlaceholder
@@ -39,6 +43,10 @@ enum Font {
     var value: UIFont {
         get {
             switch self {
+            case .alertMessage:
+                return FontWeight.regular.font(withSize: 14)
+            case .alertButtons:
+                return FontWeight.regular.font(withSize: 14)
             case .searchBarTextField:
                 return FontWeight.regular.font(withSize: 14)
             case .searchBarTextFieldPlaceholder:

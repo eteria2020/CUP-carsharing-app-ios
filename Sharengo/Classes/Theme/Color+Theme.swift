@@ -34,6 +34,12 @@ enum ColorBrand {
 }
 
 enum Color {
+    // Alert
+    case alertBackground
+    case alerButtonsBackground
+    case alertMessage
+    case alertButtons
+    
     // NavigationBar
     case navigationBarBackground
     
@@ -53,6 +59,14 @@ enum Color {
     var value: UIColor {
         get {
             switch self {
+            case .alertBackground:
+                return ColorBrand.black.value
+            case .alerButtonsBackground:
+                return ColorBrand.yellow.value
+            case .alertMessage:
+                return ColorBrand.white.value
+            case .alertButtons:
+                return ColorBrand.black.value
             case .navigationBarBackground:
                 return ColorBrand.yellow.value
             case .circularMenuBackgroundBorder:

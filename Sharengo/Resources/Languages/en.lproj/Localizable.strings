@@ -5,5 +5,12 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
+// General
+"btn_ok" = "OK";
+"btn_cancel" = "ANNULLA";
+
 // SearchBar
 "lbl_searchBarTextField" = "Cerca indirizzo o targa";
+
+// SearchCar
+"alert_centerMapMessage" = "L'app ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";

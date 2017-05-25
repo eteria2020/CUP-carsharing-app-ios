@@ -24,6 +24,7 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
     fileprivate var dic_carAnnotations:[String:CarAnnotation] = [:]
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var resultsDispose: DisposeBag?
+    fileprivate var oldNearestCar: Car?
     fileprivate var nearestCar: Car?
     
     var array_annotationsToAdd: Variable<[CarAnnotation]> = Variable([])
@@ -55,15 +56,31 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
     }
     
     func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
-        self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius).subscribe { event in
+            self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
             switch event {
             case .next(let cars):
                 self.cars = cars.filter({ (car) -> Bool in
                     return car.status == .operative
                 })
-                self.manageAnnotations() 
+                self.manageAnnotations()
             case .error(let error):
                 print(error)
+                /*
+                let dialog = ZAlertView(title: "Success",
+                                        message: "Thank you for purchasing our products. Have a nice day.",
+                                        closeButtonText: "Okay",
+                                        closeButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                }
+                )
+                dialog.allowTouchOutsideToDismiss = false
+                let attrStr = NSMutableAttributedString(string: "Are you sure you want to quit?")
+                attrStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(10, 12))
+                dialog.messageAttributedString = attrStr
+                dialog.show()
+                */
             default:
                 break
             }
@@ -71,6 +88,7 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
     }
     
     fileprivate func manageAnnotations() {
+        self.nearestCar = nil
         var annotationsToAdd: [CarAnnotation] = []
         var annotationsToRemove: [CarAnnotation] = []
         var dic_carAnnotationsKeys = Array(dic_carAnnotations.keys)
@@ -92,27 +110,39 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
                     }
                 }
             }
-            // Annotations
+        }
+        self.nearestCar?.nearest = true
+        // Annotations
+        for car in self.cars {
             if let key = car.plate {
-                if dic_carAnnotationsKeys.contains(key) {
+                if car.plate == oldNearestCar?.plate || car.plate == nearestCar?.plate {
+                    if let coordinate = car.location?.coordinate {
+                        let annotation = CarAnnotation()
+                        annotation.coordinate = coordinate
+                        annotation.car = car
+                        annotationsToAdd.append(annotation)
+                        self.dic_carAnnotations[key] = annotation
+                    }
+                }
+                else if dic_carAnnotationsKeys.contains(key) {
                     dic_carAnnotationsKeys.remove(key)
                 } else if let coordinate = car.location?.coordinate {
                     let annotation = CarAnnotation()
                     annotation.coordinate = coordinate
                     annotation.car = car
                     annotationsToAdd.append(annotation)
-                    dic_carAnnotations[key] = annotation
+                    self.dic_carAnnotations[key] = annotation
                 }
             }
         }
-        self.nearestCar?.nearest = true
         for key in dic_carAnnotationsKeys {
             if let annotation = dic_carAnnotations[key] {
                 annotationsToRemove.append(annotation)
-                dic_carAnnotations.removeValue(forKey: key)
+                self.dic_carAnnotations.removeValue(forKey: key)
             }
         }
         self.array_annotationsToAdd.value = annotationsToAdd
         self.array_annotationsToRemove.value = annotationsToRemove
+        self.oldNearestCar = self.nearestCar
     }
 }

@@ -37,9 +37,10 @@ final class ApiController {
     
     func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<[Car]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true)])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [])//NetworkLoggerPlugin(verbose: true)])
             return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius))
                 // TODO: check status and response
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapArray(type: Car.self, forKeyPath: "data")
                 .subscribe { event in
                 switch event {
