@@ -26,7 +26,7 @@ enum FontWeight {
         case .semibold:
             return UIFont(name: "Poppins-SemiBold", size: size)!
         case .bold:
-            return UIFont(name: "Poppins-Bold", size: size)!
+            return UIFont(name: "Poppins", size: size)!
         }
     }
 }
@@ -43,10 +43,12 @@ enum Font {
     var value: UIFont {
         get {
             switch self {
+            // Akert
             case .alertMessage:
                 return FontWeight.regular.font(withSize: 14)
             case .alertButtons:
-                return FontWeight.regular.font(withSize: 14)
+                return FontWeight.bold.font(withSize: 14)
+            // SearchBar
             case .searchBarTextField:
                 return FontWeight.regular.font(withSize: 14)
             case .searchBarTextFieldPlaceholder:

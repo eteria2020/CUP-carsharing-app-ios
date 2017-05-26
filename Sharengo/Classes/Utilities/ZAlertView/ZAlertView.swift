@@ -351,7 +351,7 @@ import UIKit
             hasContent      = true
             self.height     += ZAlertView.padding
             lbMessage.text  = message
-            let size        = lbMessage.sizeThatFits(CGSize(width: width - ZAlertView.padding * 2, height: 600))
+            let size        = lbMessage.sizeThatFits(CGSize(width: width - ZAlertView.padding * 2 - 40, height: 600))
             let childHeight = size.height
             lbMessage.frame = CGRect(x: ZAlertView.padding + 20, y: height + 10, width: width - ZAlertView.padding * 2 - 20, height: childHeight)
             height          += childHeight

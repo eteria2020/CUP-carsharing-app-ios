@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupAlertView()
         TextStyle.setup()
         Router.start(self)
+        self.printFonts()
         return true
     }
 
@@ -47,6 +48,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ZAlertView.initialSpringVelocity = 0.9
         ZAlertView.duration = 2
         ZAlertView.buttonSectionExtraGap = 20
+    }
+    
+    // MARK: - Utility methods
+    
+    func printFonts()
+    {
+        let fontFamilyNames = UIFont.familyNames
+        for familyName in fontFamilyNames
+        {
+            print("------------------------------")
+            print("Font Family Name = [\(familyName)]")
+            let names = UIFont.fontNames(forFamilyName: familyName)
+            print("Font Names = [\(names)]")
+        }
     }
 }
 

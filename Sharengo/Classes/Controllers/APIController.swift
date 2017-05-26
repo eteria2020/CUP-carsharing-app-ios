@@ -21,7 +21,12 @@ final class ApiController {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "api.sharengo.it": .disableEvaluation
         ]
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
+        configuration.timeoutIntervalForResource = 20
+        configuration.timeoutIntervalForRequest = 20        
         self.manager = Alamofire.SessionManager(
+            configuration: configuration,
             serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
         )
         self.manager!.delegate.sessionDidReceiveChallenge = { session, challenge in
@@ -37,7 +42,14 @@ final class ApiController {
     
     func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<[Car]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [])//NetworkLoggerPlugin(verbose: true)])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
             return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius))
                 // TODO: check status and response
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))

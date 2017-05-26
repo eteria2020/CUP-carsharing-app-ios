@@ -127,10 +127,13 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
                         annotation.coordinate = coordinate
                         annotation.car = car
                         annotationsToAdd.append(annotation)
+                        if let annotation = dic_carAnnotations[key] {
+                            annotationsToRemove.append(annotation)
+                            dic_carAnnotationsKeys.remove(key)
+                        }
                         self.dic_carAnnotations[key] = annotation
                     }
-                }
-                else if dic_carAnnotationsKeys.contains(key) {
+                } else if dic_carAnnotationsKeys.contains(key) {
                     dic_carAnnotationsKeys.remove(key)
                 } else if let coordinate = car.location?.coordinate {
                     let annotation = CarAnnotation()

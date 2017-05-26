@@ -6,7 +6,7 @@
 //
 
 // General
-"btn_ok" = "OKAY";
+"btn_ok" = "OK";
 "btn_cancel" = "ANNULLA";
 "lbl_connectionError" = "Non sei connesso ad internet, per favore riprova";
 "lbl_generalError" = "Si è verificato un errore, per favore riprova";
@@ -15,4 +15,4 @@
 "lbl_searchBarTextField" = "Cerca indirizzo o targa";
 
 // SearchCar
-"alert_centerMapMessage" = "L'app ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
