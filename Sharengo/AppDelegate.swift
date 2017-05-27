@@ -7,13 +7,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // TODO: ???
-        // Fabric.with([Crashlytics.self])
-        UserDefaults.standard.set(false, forKey: "alertShowed")
+        self.setupInit()
         self.setupAlertView()
+        #if ISDEBUG
+        #elseif ISRELEASE
+            Fabric.with([Crashlytics.self])
+        #endif
+        // self.printFonts()
         TextStyle.setup()
         Router.start(self)
-        self.printFonts()
         return true
     }
 
@@ -33,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Utilities methods
+    
+    fileprivate func setupInit() {
+        UserDefaults.standard.set(false, forKey: "alertShowed")
+    }
     
     fileprivate func setupAlertView() {
         ZAlertView.positiveColor = Color.alerButtonsBackground.value

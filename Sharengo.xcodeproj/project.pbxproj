@@ -744,6 +744,7 @@
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sharengo.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "44987f68-59d8-4ebe-ac64-9cfe7d65139d";
@@ -762,6 +763,7 @@
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISRELEASE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sharengo.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
