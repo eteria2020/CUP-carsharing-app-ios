@@ -18,11 +18,13 @@ public enum CarPopupInput: SelectionInput {
 
 public enum CarPopupOutput: SelectionInput {
     case empty
-    case open
-    case book
+    case open(Car)
+    case book(Car)
 }
 
 final class CarPopupViewModel: ViewModelTypeSelectable {
+    fileprivate var car: Car?
+
     var type: Variable<String> = Variable("")
     
     public var selection: Action<CarPopupInput, CarPopupOutput> = Action { _ in
@@ -33,19 +35,15 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .open:
-                return .just(.open)
+                return .just(.open(self.car ?? Car.empty))
             case .book:
-                return .just(.book)
+                return .just(.book(self.car ?? Car.empty))
             }
-            return .just(.empty)
         }
     }
     
     func updateWithCar(car: Car) {
-        if car.nearest {
-            self.type.value = "lbl_carPopupType".localized()
-        } else {
-            self.type.value = ""
-        }
+        self.car = car
+        self.type.value = car.getTypeDescription()
     }
 }

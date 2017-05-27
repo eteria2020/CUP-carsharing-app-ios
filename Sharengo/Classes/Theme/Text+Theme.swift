@@ -59,7 +59,7 @@ enum TextStyle: String, TextStyleType {
                 let boldStyle = StringStyle(.font(Font.carPopupEmphasized.value), .color(Color.carPopupLabel.value), .alignment(.center))
                 return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
             case .carPopupAddress, .carPopupDistance, .carPopupWalkingDistance:
-                return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.left))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

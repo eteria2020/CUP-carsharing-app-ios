@@ -16,7 +16,7 @@ enum CarStatus: String {
     case operative = "operative"
 }
 
-class Car: ModelType, Decodable {
+public class Car: ModelType, Decodable {
     /*
      JSON response example:
     {
@@ -79,6 +79,7 @@ class Car: ModelType, Decodable {
     
     var status: CarStatus = .empty
     var plate: String?
+    var capacity: Int?
     var location: CLLocation?
     var distance: CLLocationDistance?
     var nearest: Bool = false
@@ -90,8 +91,9 @@ class Car: ModelType, Decodable {
     init() {
     }
 
-    required init?(json: JSON) {
+    required public init?(json: JSON) {
         self.plate = "plate" <~~ json
+        self.capacity = "km" <~~ json
         if let latitude: String = "latitude" <~~ json, let longitude: String = "longitude" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
                 self.location = CLLocation(latitude: lat, longitude: lon)
@@ -110,5 +112,15 @@ class Car: ModelType, Decodable {
             return UIImage(named: "ic_auto_vicina")
         }
         return UIImage(named: "ic_auto")
+    }
+    
+    // MARK: - Type methods
+    
+    func getTypeDescription() -> String {
+        if self.nearest {
+           return "lbl_carPopupType".localized()
+        } else {
+            return ""
+        }
     }
 }

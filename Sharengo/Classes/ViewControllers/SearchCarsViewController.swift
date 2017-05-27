@@ -25,6 +25,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
     fileprivate var checkedUserPosition:Bool = false
     fileprivate var resultsTask: DispatchWorkItem?
+    fileprivate var closeCarPopupHeight: CGFloat = 0.0
     
     var viewModel: SearchCarsViewModel?
     
@@ -95,16 +96,28 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.view_carPopup.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
-            case .open:
-                print("Open doors")
-                break
-            case .book:
-                print("Book car")
+            case .open(let car):
+                if let distance = car.distance {
+                    if Int(distance.rounded()) <= 50 {
+                        print("Open doors \(car)")
+                    } else {
+                        let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                } else {
+                   self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
+                }
+            case .book(let car):
+                print("Book car \(car)")
                 break
             default: break
             }
         }).addDisposableTo(self.disposeBag)
         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
+        self.closeCarPopupHeight = self.view_carPopup.frame.size.height
         // SearchBar
         self.view.addSubview(searchBarViewController.view)
         self.addChildViewController(searchBarViewController)
@@ -318,24 +331,27 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate func centerMap() {
         let locationController = LocationController.shared
         if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-            centerMap(on: userLocation)
+            self.centerMap(on: userLocation)
+        } else {
+            self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
         }
-        else {
-            let dialog = ZAlertView(title: nil, message: "alert_centerMapMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-            okButtonHandler: { alertView in
-                alertView.dismissAlertView()
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
-                } else {
-                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
-                }
-            },
-            cancelButtonHandler: { alertView in
-                alertView.dismissAlertView()
-            })
-            dialog.allowTouchOutsideToDismiss = false
-            dialog.show()
-        }
+    }
+    
+    fileprivate func showLocalizationAlert(message: String) {
+        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                okButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                    if #available(iOS 10.0, *) {
+                                        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+                                    } else {
+                                        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                                    }
+        },
+                                cancelButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+        })
+        dialog.allowTouchOutsideToDismiss = false
+        dialog.show()
     }
     
     fileprivate func centerMap(on position: CLLocation) {
@@ -413,9 +429,14 @@ extension SearchCarsViewController: MKMapViewDelegate {
         guard !(view.annotation is MKUserLocation) else { return }
         if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
-                self.view_carPopup.updateWithCar(car: car)
                 // TODO: execute animation
                 self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                if car.getTypeDescription().isEmpty {
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+                } else {
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 50
+                }
+                self.view_carPopup.updateWithCar(car: car)
             }
         }
     }

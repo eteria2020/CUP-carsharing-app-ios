@@ -18,5 +18,12 @@
 "alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 
 // CarPopup
+"btn_open" = "APRI PORTIERE";
+"btn_book" = "PRENOTA AUTO";
 "lbl_carPopupType" = "Auto più vicina";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
+"lbl_carPopupCapacity" = "autonomia: <bold>%d km</bold>";
+"lbl_carPopupDistance" = "%d mt di distanza";
+"lbl_carPopupWalkingDistance" = "%d minuti a piedi";
+"alert_carPopupLocalizationMessage" = "Sharen'go ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren’go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";

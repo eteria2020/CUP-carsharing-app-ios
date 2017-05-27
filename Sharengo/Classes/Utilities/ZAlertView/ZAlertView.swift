@@ -388,6 +388,9 @@ import UIKit
             btnClose.clipsToBounds      = true
             btnClose.addTarget(self, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControlEvents.touchUpInside)
             self.height                 += ZAlertView.buttonHeight
+            // TODO: ???
+            btnClose.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: btnClose.frame.size), for: .highlighted)
+            btnClose.setTitleColor(ZAlertView.buttonTitleColor, for: .highlighted)
             
         case .confirmation:
             if hasContent {
