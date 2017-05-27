@@ -1,5 +1,5 @@
 //
-//  CircularMenuViewModel.swift
+//  NavigationBarViewModel.swift
 //  Sharengo
 //
 //  Created by Dedecube on 19/05/17.

@@ -42,7 +42,7 @@ final class ApiController {
     
     func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<[Car]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -89,13 +89,13 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
+        /*
         case .searchCars(_, _, _):
             return [:]
-        // TODO: with parameters it doesn't work
-        /*
-        case .searchCars(let latitude, let longitude, let radius):
-            return ["lat": latitude, "lon": longitude, "radius": radius]
         */
+        // TODO: with parameters it doesn't work
+        case .searchCars(let latitude, let longitude, let radius):
+            return ["lat": latitude, "lon": longitude, "radius": Int(radius)]
         }
     }
     

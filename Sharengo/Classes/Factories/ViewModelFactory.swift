@@ -22,4 +22,8 @@ struct ViewModelFactory {
     static func searchCars() -> ViewModelType {
         return SearchCarsViewModel()
     }
+    
+    static func carPopup() -> ViewModelType {
+        return CarPopupViewModel()
+    }
 }

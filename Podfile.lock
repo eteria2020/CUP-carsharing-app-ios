@@ -45,6 +45,7 @@ PODS:
   - RxSwift (3.4.1)
   - SnapKit (3.0.2)
   - SpinKit (1.2.0)
+  - StoryboardConstraint (0.1.0)
 
 DEPENDENCIES:
   - Action (from `https://github.com/RxSwiftCommunity/Action.git`)
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit (~> 3.0.2)
   - SpinKit
+  - StoryboardConstraint
 
 EXTERNAL SOURCES:
   Action:
@@ -110,7 +112,8 @@ SPEC CHECKSUMS:
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
+  StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
 
-PODFILE CHECKSUM: 523fd48b14ec9c29f0ba1bb6df383c4b83cca2b6
+PODFILE CHECKSUM: cf6bbe2cee34320b93f473111a57c35c052c58a4
 
 COCOAPODS: 1.2.1

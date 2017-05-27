@@ -1,8 +1,8 @@
 //
-//  NavigationBarView.swift
+//  CarPopupView.swift
 //  Sharengo
 //
-//  Created by Dedecube on 19/05/17.
+//  Created by Dedecube on 27/05/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
@@ -12,18 +12,19 @@ import RxCocoa
 import Boomerang
 import Action
 
-class NavigationBarView: UIView {
-    @IBOutlet weak var btn_left: UIButton!
-    @IBOutlet weak var btn_right: UIButton!
+class CarPopupView: UIView {
+    @IBOutlet weak var btn_open: UIButton!
+    @IBOutlet weak var btn_book: UIButton!
+    @IBOutlet weak var view_type: UIView!
     
     fileprivate var view: UIView!
     
-    var viewModel: NavigationBarViewModel?
+    var viewModel: CarPopupViewModel?
     
     // MARK: - ViewModel methods
     
     func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? NavigationBarViewModel else {
+        guard let viewModel = viewModel as? CarPopupViewModel else {
             return
         }
         self.viewModel = viewModel
@@ -36,15 +37,18 @@ class NavigationBarView: UIView {
         guard let viewModel = viewModel else {
             return
         }
+        viewModel.showType.asObservable()
+            .subscribe(onNext: {[weak self] (showType) in
+                DispatchQueue.main.async {
+                    if showType {
+                        self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 50
+                    } else {
+                        self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 0
+                    }
+                }
+        }).addDisposableTo(disposeBag)
         self.layoutIfNeeded()
-        self.view.backgroundColor = Color.navigationBarBackground.value
-        self.btn_left.setBackgroundImage(UIImage(named: viewModel.letfItem.icon), for: .normal)
-        self.btn_left.rx.bind(to: viewModel.selection, input: viewModel.letfItem.input)
-        self.btn_right.setBackgroundImage(UIImage(named: viewModel.rightItem.icon), for: .normal)
-        self.btn_right.rx.bind(to: viewModel.selection, input: viewModel.rightItem.input)
-        // TODO: ???
-        self.btn_left.setBackgroundImage(UIImage(named: viewModel.letfItem.icon), for: .highlighted)
-        self.btn_right.setBackgroundImage(UIImage(named: viewModel.rightItem.icon), for: .highlighted)
+        self.view.backgroundColor = Color.carPopupBackground.value
     }
     
     override init(frame: CGRect) {
@@ -65,7 +69,7 @@ class NavigationBarView: UIView {
     }
     
     fileprivate func loadViewFromNib() -> UIView {
-        let nib = ViewXib.navigationBar.getNib()
+        let nib = ViewXib.carPopup.getNib()
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }

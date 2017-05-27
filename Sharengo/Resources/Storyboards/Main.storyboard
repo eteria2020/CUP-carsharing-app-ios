@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pcm-CS-Q7s">
-                                <rect key="frame" x="0.0" y="153" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
                                 <connections>
                                     <outlet property="delegate" destination="ofI-yf-dPQ" id="GeR-e2-Ecm"/>
                                 </connections>
@@ -90,30 +90,50 @@
                                     <constraint firstAttribute="height" constant="56" id="ozz-ED-gwa"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HvB-0X-3Aj" customClass="CarPopupView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIb-al-qds">
+                                <rect key="frame" x="330" y="444.5" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hIb-al-qds" secondAttribute="height" multiplier="1:1" id="Ma0-Ep-1ak"/>
+                                    <constraint firstAttribute="width" constant="45" id="bI1-C3-RRH"/>
+                                </constraints>
+                                <state key="normal" title="X"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Z6f-rl-N6T" secondAttribute="trailing" id="0dq-zk-xgk"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="height" secondItem="0Jc-nj-FbD" secondAttribute="height" multiplier="0.45" id="0if-s1-Qec"/>
+                            <constraint firstAttribute="trailing" secondItem="HvB-0X-3Aj" secondAttribute="trailing" id="2YH-Cs-oZF"/>
                             <constraint firstItem="Z6f-rl-N6T" firstAttribute="leading" secondItem="0Jc-nj-FbD" secondAttribute="leading" id="8CK-ka-BQ8"/>
-                            <constraint firstItem="pcm-CS-Q7s" firstAttribute="top" secondItem="0Jc-nj-FbD" secondAttribute="top" id="HFG-Dv-EE9"/>
+                            <constraint firstItem="HvB-0X-3Aj" firstAttribute="leading" secondItem="0Jc-nj-FbD" secondAttribute="leading" id="LFT-4G-xBX"/>
                             <constraint firstAttribute="trailing" secondItem="pcm-CS-Q7s" secondAttribute="trailing" id="Tq9-UD-U8B"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="centerY" secondItem="0Jc-nj-FbD" secondAttribute="bottom" constant="5" id="VEU-iu-srp"/>
                             <constraint firstItem="Z6f-rl-N6T" firstAttribute="top" secondItem="0Jc-nj-FbD" secondAttribute="top" id="Zz0-qC-kYA"/>
+                            <constraint firstItem="HvB-0X-3Aj" firstAttribute="height" secondItem="0Jc-nj-FbD" secondAttribute="height" multiplier="0.3" id="cuD-Or-7bN"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="centerX" secondItem="0Jc-nj-FbD" secondAttribute="trailing" constant="-10" id="e8g-va-7yP"/>
+                            <constraint firstItem="hIb-al-qds" firstAttribute="centerY" secondItem="HvB-0X-3Aj" secondAttribute="top" id="hd3-OM-eP4"/>
+                            <constraint firstItem="pcm-CS-Q7s" firstAttribute="top" secondItem="Z6f-rl-N6T" secondAttribute="bottom" id="orX-8V-fw8"/>
                             <constraint firstItem="pcm-CS-Q7s" firstAttribute="leading" secondItem="0Jc-nj-FbD" secondAttribute="leading" id="qV6-7w-HpO"/>
                             <constraint firstAttribute="bottom" secondItem="pcm-CS-Q7s" secondAttribute="bottom" id="qZi-kl-X2O"/>
+                            <constraint firstAttribute="bottom" secondItem="HvB-0X-3Aj" secondAttribute="bottom" identifier="carPopupBottom" id="tam-H4-4G1"/>
+                            <constraint firstAttribute="trailing" secondItem="hIb-al-qds" secondAttribute="trailing" id="zJM-J6-0Db"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btn_closeCarPopup" destination="hIb-al-qds" id="3J4-WM-VRB"/>
                         <outlet property="mapView" destination="pcm-CS-Q7s" id="umH-9W-e7y"/>
+                        <outlet property="view_carPopup" destination="HvB-0X-3Aj" id="C1E-Ex-gdA"/>
                         <outlet property="view_circularMenu" destination="j3B-a6-ECE" id="udz-5i-RDu"/>
                         <outlet property="view_navigationBar" destination="Z6f-rl-N6T" id="1fP-Oa-D2D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j7J-zP-zbS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="90"/>
+            <point key="canvasLocation" x="69.599999999999994" y="89.505247376311857"/>
         </scene>
         <!--Search Bar View Controller-->
         <scene sceneID="khR-kk-1SF">

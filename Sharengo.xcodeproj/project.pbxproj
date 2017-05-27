@@ -32,6 +32,9 @@
 		4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */; };
 		4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */; };
 		4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACAD01ECF33F700D58948 /* NavigationBarViewModel.swift */; };
+		4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B3481ED964CD002C2375 /* CarPopupView.swift */; };
+		4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */; };
+		4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D72B34D1ED96736002C2375 /* CarPopupView.xib */; };
 		4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
 		4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178651ED63C4D00EBD32B /* UIImage.swift */; };
 		4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178661ED63C4D00EBD32B /* ZAlertView.swift */; };
@@ -88,6 +91,9 @@
 		4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationBarView.xib; path = Resources/Xibs/NavigationBarView.xib; sourceTree = "<group>"; };
 		4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBarView.swift; path = Classes/Views/NavigationBarView.swift; sourceTree = "<group>"; };
 		4D6ACAD01ECF33F700D58948 /* NavigationBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBarViewModel.swift; path = Classes/ViewModels/NavigationBarViewModel.swift; sourceTree = "<group>"; };
+		4D72B3481ED964CD002C2375 /* CarPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupView.swift; path = Classes/Views/CarPopupView.swift; sourceTree = "<group>"; };
+		4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupViewModel.swift; path = Classes/ViewModels/CarPopupViewModel.swift; sourceTree = "<group>"; };
+		4D72B34D1ED96736002C2375 /* CarPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarPopupView.xib; path = Resources/Xibs/CarPopupView.xib; sourceTree = "<group>"; };
 		4DA178641ED63C4D00EBD32B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4DA178651ED63C4D00EBD32B /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		4DA178661ED63C4D00EBD32B /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
@@ -173,6 +179,7 @@
 			children = (
 				4D4EED691ECF947200700CC0 /* NavigationBar */,
 				4D4EED6A1ECF947E00700CC0 /* CircularMenu */,
+				4D72B34C1ED965F7002C2375 /* CarPopup */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -195,6 +202,16 @@
 				4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */,
 			);
 			name = CircularMenu;
+			sourceTree = "<group>";
+		};
+		4D72B34C1ED965F7002C2375 /* CarPopup */ = {
+			isa = PBXGroup;
+			children = (
+				4D72B3481ED964CD002C2375 /* CarPopupView.swift */,
+				4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */,
+				4D72B34D1ED96736002C2375 /* CarPopupView.xib */,
+			);
+			name = CarPopup;
 			sourceTree = "<group>";
 		};
 		4DA178631ED63C4D00EBD32B /* ZAlertView */ = {
@@ -494,6 +511,7 @@
 			files = (
 				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
 				4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */,
+				4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */,
 				4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */,
 				4D1AE82E1ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf in Resources */,
 				4D1AE82A1ED1E40E00C8A1D3 /* Poppins-Bold.ttf in Resources */,
@@ -582,6 +600,7 @@
 				4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
+				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
@@ -599,6 +618,7 @@
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
 				4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */,
+				4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
 				4D1AE8161ED1B9F600C8A1D3 /* SearchBarViewController.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,

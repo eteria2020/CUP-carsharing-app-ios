@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarPopupView" customModule="Sharengo" customModuleProvider="target">
+            <connections>
+                <outlet property="view_type" destination="UaP-FU-WQQ" id="QhV-qP-G8r"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UaP-FU-WQQ">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lw5-IW-GWI">
+                            <rect key="frame" x="5" y="5" width="390" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.35091145833333331" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Lw5-IW-GWI" firstAttribute="leading" secondItem="UaP-FU-WQQ" secondAttribute="leading" constant="5" id="5Gm-ZL-P6j"/>
+                        <constraint firstItem="Lw5-IW-GWI" firstAttribute="top" secondItem="UaP-FU-WQQ" secondAttribute="top" constant="5" id="AXI-KI-ZaZ"/>
+                        <constraint firstAttribute="bottom" secondItem="Lw5-IW-GWI" secondAttribute="bottom" constant="5" id="c0P-OC-lJT"/>
+                        <constraint firstAttribute="height" constant="50" identifier="typeHeight" id="eUH-kS-Dof"/>
+                        <constraint firstAttribute="trailing" secondItem="Lw5-IW-GWI" secondAttribute="trailing" constant="5" id="rn6-4H-yt1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.57606048003802279" green="0.5608216492395437" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="UaP-FU-WQQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9oO-83-nfe"/>
+                <constraint firstAttribute="trailing" secondItem="UaP-FU-WQQ" secondAttribute="trailing" id="KML-D5-v6H"/>
+                <constraint firstItem="UaP-FU-WQQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NYH-PG-yAA"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="350" y="125"/>
+        </view>
+    </objects>
+</document>

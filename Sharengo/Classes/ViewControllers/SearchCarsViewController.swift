@@ -12,12 +12,15 @@ import RxCocoa
 import Boomerang
 import Action
 import MapKit
+import StoryboardConstraint
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
+    @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
     // TODO: ???
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var mapView: MKMapView!
+    @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
     
     fileprivate let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
     fileprivate var checkedUserPosition:Bool = false
@@ -52,6 +55,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                     self?.setUpdateButtonAnimated(false)
                 }
             }).addDisposableTo(disposeBag)
+        btn_closeCarPopup.rx.tap.asObservable()
+            .subscribe(onNext:{
+                self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
+            }).addDisposableTo(disposeBag)
     }
    
     // MARK: - View methods
@@ -83,6 +90,15 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         // TODO: ???
         self.view_circularMenu.isUserInteractionEnabled = false
+        // CarPopup
+        self.view_carPopup.bind(to: ViewModelFactory.carPopup())
+        self.view_carPopup.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            default: break
+            }
+        }).addDisposableTo(self.disposeBag)
+        self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
         // SearchBar
         self.view.addSubview(searchBarViewController.view)
         self.addChildViewController(searchBarViewController)
@@ -288,7 +304,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate func getRadius() -> CLLocationDistance?
     {
         if let mapView = self.mapView {
-            let distanceMeters = mapView.radiusBaseOnViewWidth
+            let distanceMeters = mapView.radiusBaseOnViewHeight
             return distanceMeters
         }
         return nil
@@ -391,8 +407,9 @@ extension SearchCarsViewController: MKMapViewDelegate {
         guard !(view.annotation is MKUserLocation) else { return }
         if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
-                // TODO: show callout for this car
-                print(car.plate ?? "")
+                self.view_carPopup.viewModel?.updateWithCar(car: car)
+                // TODO: execute animation
+                self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
             }
         }
     }

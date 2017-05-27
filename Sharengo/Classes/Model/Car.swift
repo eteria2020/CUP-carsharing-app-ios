@@ -106,6 +106,7 @@ class Car: ModelType, Decodable {
     
     func getAnnotationViewImage() -> UIImage? {
         if nearest {
+            // TODO: execute animation
             return UIImage(named: "ic_auto_vicina")
         }
         return UIImage(named: "ic_auto")

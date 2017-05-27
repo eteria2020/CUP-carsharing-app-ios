@@ -11,7 +11,7 @@ import RxSwift
 import Boomerang
 import Action
 
-@IBDesignable class CircularMenuView: UIView {
+class CircularMenuView: UIView {
     @IBOutlet weak var view_main: UIView!
     @IBOutlet weak var view_background: UIView!
     
@@ -45,28 +45,24 @@ import Action
         self.generateButtons()
     }
     
-    override init(frame: CGRect)
-    {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
     }
     
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         xibSetup()
     }
     
-    fileprivate func xibSetup()
-    {
+    fileprivate func xibSetup() {
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
     }
     
-    fileprivate func loadViewFromNib() -> UIView
-    {
+    fileprivate func loadViewFromNib() -> UIView {
         let nib = ViewXib.circularMenu.getNib()
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view

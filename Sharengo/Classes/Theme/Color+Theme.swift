@@ -13,6 +13,7 @@ enum ColorBrand {
     case green
     case black
     case white
+    case gray
     case clear
 
     var value: UIColor {
@@ -26,6 +27,8 @@ enum ColorBrand {
                 return UIColor(red: 27/255.0, green: 35/255.0, blue: 41/255.0, alpha: 1.0)
             case .white:
                 return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+            case .gray:
+                return UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1.0)
             case .clear:
                 return UIColor.clear
             }
@@ -55,6 +58,9 @@ enum Color {
     case searchBarBackgroundMicrophone
     case searchBarTextField
     case searchBarTextFieldPlaceholder
+    
+    // CarPopup
+    case carPopupBackground
     
     var value: UIColor {
         get {
@@ -88,6 +94,9 @@ enum Color {
                 return ColorBrand.white.value
             case .searchBarTextFieldPlaceholder:
                 return ColorBrand.white.value.withAlphaComponent(0.6)
+            // CarPopup
+            case .carPopupBackground:
+                return ColorBrand.gray.value
             }
         }
     }

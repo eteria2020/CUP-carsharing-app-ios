@@ -23,6 +23,7 @@ def shared_pods
     pod 'Moya-Gloss/RxSwift'
     pod 'KeychainSwift'
     pod 'ReachabilitySwift'
+    pod 'StoryboardConstraint'
 end
 
 target 'Sharengo' do
