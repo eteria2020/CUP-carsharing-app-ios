@@ -21,12 +21,26 @@ public extension NamedStyles {
 }
 
 enum TextStyle: String, TextStyleType {
-    // SearchBar:
+    // SearchBar
     case searchBarTextField = "searchBarTextField"
+   
+    // CarPopup
+    case carPopupPlate = "carPopupPlate"
+    case carPopupCapacity = "carPopupCapacity"
+    case carPopupAddress = "carPopupAddress"
+    case carPopupDistance = "carPopupDistance"
+    case carPopupWalkingDistance = "carPopupWalkingDistance"
     
     static var all:[TextStyle] {
         return [
+            // SearchBar
             .searchBarTextField,
+            // CarPopup
+            .carPopupPlate,
+            .carPopupCapacity,
+            .carPopupAddress,
+            .carPopupDistance,
+            .carPopupWalkingDistance
         ]
     }
     
@@ -37,8 +51,15 @@ enum TextStyle: String, TextStyleType {
     var style:StringStyle {
         return { () -> StringStyle in
             switch self {
+            // SearchBar
             case .searchBarTextField:
                 return StringStyle(.font(Font.searchBarTextField.value), .color(Color.searchBarTextField.value), .alignment(.center))
+            // CarPopup
+            case .carPopupPlate, .carPopupCapacity:
+                let boldStyle = StringStyle(.font(Font.carPopupEmphasized.value), .color(Color.carPopupLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+            case .carPopupAddress, .carPopupDistance, .carPopupWalkingDistance:
+                return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

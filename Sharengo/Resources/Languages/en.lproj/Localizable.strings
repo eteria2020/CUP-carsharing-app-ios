@@ -16,3 +16,7 @@
 
 // SearchCar
 "alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+
+// CarPopup
+"lbl_carPopupType" = "Auto più vicina";
+"lbl_carPopupPlate" = "<bold>%@</bold>";

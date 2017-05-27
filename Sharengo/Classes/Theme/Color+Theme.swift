@@ -41,7 +41,7 @@ enum Color {
     case alertBackground
     case alerButtonsBackground
     case alertMessage
-    case alertButtons
+    case alertButton
     
     // NavigationBar
     case navigationBarBackground
@@ -61,6 +61,7 @@ enum Color {
     
     // CarPopup
     case carPopupBackground
+    case carPopupLabel
     
     var value: UIColor {
         get {
@@ -72,7 +73,7 @@ enum Color {
                 return ColorBrand.yellow.value
             case .alertMessage:
                 return ColorBrand.white.value
-            case .alertButtons:
+            case .alertButton:
                 return ColorBrand.black.value
             // NavigationBar
             case .navigationBarBackground:
@@ -97,6 +98,8 @@ enum Color {
             // CarPopup
             case .carPopupBackground:
                 return ColorBrand.gray.value
+            case .carPopupLabel:
+                return ColorBrand.black.value
             }
         }
     }

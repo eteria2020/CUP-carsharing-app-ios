@@ -85,7 +85,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 self?.centerMap()
             case .compass:
                 self?.turnMap()
-            default:break
+            default: break
             }
         }).addDisposableTo(self.disposeBag)
         // TODO: ???
@@ -95,6 +95,12 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.view_carPopup.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
+            case .open:
+                print("Open doors")
+                break
+            case .book:
+                print("Book car")
+                break
             default: break
             }
         }).addDisposableTo(self.disposeBag)
@@ -282,8 +288,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
 
     // MARK: - Map methods
     
-    fileprivate func checkUserPosition()
-    {
+    fileprivate func checkUserPosition() {
         let locationController = LocationController.shared
         if locationController.isAuthorized, let userLocation = locationController.currentLocation {
             self.mapView?.showsUserLocation = true
@@ -373,6 +378,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
         self.stopRequest()
     }
@@ -407,7 +413,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
         guard !(view.annotation is MKUserLocation) else { return }
         if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
-                self.view_carPopup.viewModel?.updateWithCar(car: car)
+                self.view_carPopup.updateWithCar(car: car)
                 // TODO: execute animation
                 self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
             }

@@ -40,10 +40,14 @@ enum Font {
     case searchBarTextField
     case searchBarTextFieldPlaceholder
     
+    // CarPopup
+    case carPopup
+    case carPopupEmphasized
+    
     var value: UIFont {
         get {
             switch self {
-            // Akert
+            // Alert
             case .alertMessage:
                 return FontWeight.regular.font(withSize: 14)
             case .alertButtons:
@@ -53,6 +57,11 @@ enum Font {
                 return FontWeight.regular.font(withSize: 14)
             case .searchBarTextFieldPlaceholder:
                 return FontWeight.regular.font(withSize: 14)
+            // CarPopup
+            case .carPopup:
+                return FontWeight.regular.font(withSize: 12)
+            case .carPopupEmphasized:
+                return FontWeight.bold.font(withSize: 12)
             }
         }
     }

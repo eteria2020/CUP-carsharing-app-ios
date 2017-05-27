@@ -16,6 +16,12 @@ class CarPopupView: UIView {
     @IBOutlet weak var btn_open: UIButton!
     @IBOutlet weak var btn_book: UIButton!
     @IBOutlet weak var view_type: UIView!
+    @IBOutlet weak var lbl_type: UILabel!
+    @IBOutlet weak var lbl_plate: UILabel!
+    @IBOutlet weak var lbl_capacity: UILabel!
+    @IBOutlet weak var lbl_address: UILabel!
+    @IBOutlet weak var lbl_distance: UILabel!
+    @IBOutlet weak var lbl_walkingDistance: UILabel!
     
     fileprivate var view: UIView!
     
@@ -37,18 +43,24 @@ class CarPopupView: UIView {
         guard let viewModel = viewModel else {
             return
         }
-        viewModel.showType.asObservable()
-            .subscribe(onNext: {[weak self] (showType) in
+        viewModel.type.asObservable()
+            .subscribe(onNext: {[weak self] (type) in
                 DispatchQueue.main.async {
-                    if showType {
-                        self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 50
-                    } else {
+                    if type.isEmpty {
                         self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 0
+                    } else {
+                        self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 50
+                        self?.lbl_type.text = type
                     }
                 }
         }).addDisposableTo(disposeBag)
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carPopupBackground.value
+    }
+    
+    func updateWithCar(car: Car) {
+        self.viewModel?.updateWithCar(car: car)
+        self.lbl_plate.styledText = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
     }
     
     override init(frame: CGRect) {
