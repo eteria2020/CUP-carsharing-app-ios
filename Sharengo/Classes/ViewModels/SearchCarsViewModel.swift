@@ -101,7 +101,7 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
         }.addDisposableTo(resultsDispose!)
     }
     
-    fileprivate func manageAnnotations() {
+    func manageAnnotations() {
         self.nearestCar = nil
         var annotationsToAdd: [CarAnnotation] = []
         var annotationsToRemove: [CarAnnotation] = []

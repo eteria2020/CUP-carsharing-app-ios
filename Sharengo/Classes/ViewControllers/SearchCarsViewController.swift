@@ -24,7 +24,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
     fileprivate var checkedUserPosition:Bool = false
-    fileprivate var resultsTask: DispatchWorkItem?
     fileprivate var closeCarPopupHeight: CGFloat = 0.0
     
     var viewModel: SearchCarsViewModel?
@@ -138,6 +137,15 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 self?.mapView?.showsUserLocation = true
                 self?.setUserPositionButtonVisible(true)
                 self?.centerMap(on: userLocation)
+            }
+        }
+        NotificationCenter.observe(notificationWithName: LocationControllerNotification.locationDidUpdate) { [weak self] _ in
+            self?.viewModel?.manageAnnotations()
+            if let carAnnotation = self?.mapView.selectedAnnotations.first as? CarAnnotation {
+                if let car = carAnnotation.car {
+                    self?.view_carPopup.updateWithCar(car: car)
+                    self?.view.layoutIfNeeded()
+                }
             }
         }
         NotificationCenter.default.addObserver(forName:
@@ -283,8 +291,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func stopRequest() {
-        // TODO: ???
-        self.resultsTask?.cancel()
         self.setUpdateButtonAnimated(false)
         self.viewModel?.stopRequest()
     }
