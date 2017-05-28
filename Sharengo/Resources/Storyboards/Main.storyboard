@@ -91,14 +91,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HvB-0X-3Aj" customClass="CarPopupView" customModule="Sharengo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="483.5" width="375" height="183.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" identifier="carPopupHeight" id="SJ7-jA-Qia"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIb-al-qds">
-                                <rect key="frame" x="330" y="444.5" width="45" height="45"/>
+                                <rect key="frame" x="330" y="461" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hIb-al-qds" secondAttribute="height" multiplier="1:1" id="Ma0-Ep-1ak"/>
                                     <constraint firstAttribute="width" constant="45" id="bI1-C3-RRH"/>
@@ -116,7 +116,7 @@
                             <constraint firstAttribute="trailing" secondItem="pcm-CS-Q7s" secondAttribute="trailing" id="Tq9-UD-U8B"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="centerY" secondItem="0Jc-nj-FbD" secondAttribute="bottom" constant="5" id="VEU-iu-srp"/>
                             <constraint firstItem="Z6f-rl-N6T" firstAttribute="top" secondItem="0Jc-nj-FbD" secondAttribute="top" id="Zz0-qC-kYA"/>
-                            <constraint firstItem="HvB-0X-3Aj" firstAttribute="height" secondItem="0Jc-nj-FbD" secondAttribute="height" multiplier="0.3" priority="750" id="cuD-Or-7bN"/>
+                            <constraint firstItem="HvB-0X-3Aj" firstAttribute="height" secondItem="0Jc-nj-FbD" secondAttribute="height" multiplier="0.275" priority="750" id="cuD-Or-7bN"/>
                             <constraint firstItem="j3B-a6-ECE" firstAttribute="centerX" secondItem="0Jc-nj-FbD" secondAttribute="trailing" constant="-10" id="e8g-va-7yP"/>
                             <constraint firstItem="hIb-al-qds" firstAttribute="centerY" secondItem="HvB-0X-3Aj" secondAttribute="top" id="hd3-OM-eP4"/>
                             <constraint firstItem="pcm-CS-Q7s" firstAttribute="top" secondItem="Z6f-rl-N6T" secondAttribute="bottom" id="orX-8V-fw8"/>

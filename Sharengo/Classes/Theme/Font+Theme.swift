@@ -32,7 +32,7 @@ enum FontWeight {
 }
 
 enum Font {
-    // Akert
+    // Alert
     case alertMessage
     case alertButtons
     
@@ -41,6 +41,7 @@ enum Font {
     case searchBarTextFieldPlaceholder
     
     // CarPopup
+    case carPopupType
     case carPopup
     case carPopupEmphasized
     
@@ -58,8 +59,10 @@ enum Font {
             case .searchBarTextFieldPlaceholder:
                 return FontWeight.regular.font(withSize: 14)
             // CarPopup
+            case .carPopupType:
+                return FontWeight.regular.font(withSize: 14)
             case .carPopup:
-                return FontWeight.regular.font(withSize: 12)
+                return FontWeight.medium.font(withSize: 12)
             case .carPopupEmphasized:
                 return FontWeight.bold.font(withSize: 12)
             }

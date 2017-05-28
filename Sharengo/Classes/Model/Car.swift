@@ -83,6 +83,7 @@ public class Car: ModelType, Decodable {
     var location: CLLocation?
     var distance: CLLocationDistance?
     var nearest: Bool = false
+    var address: String?
 
     static var empty:Car {
         return Car()

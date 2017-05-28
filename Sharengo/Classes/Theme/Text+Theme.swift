@@ -25,8 +25,10 @@ enum TextStyle: String, TextStyleType {
     case searchBarTextField = "searchBarTextField"
    
     // CarPopup
+    case carPopupType = "carPopupType"
     case carPopupPlate = "carPopupPlate"
     case carPopupCapacity = "carPopupCapacity"
+    case carPopupAddressPlaceholder = "carPopupAddressPlaceholder"
     case carPopupAddress = "carPopupAddress"
     case carPopupDistance = "carPopupDistance"
     case carPopupWalkingDistance = "carPopupWalkingDistance"
@@ -36,8 +38,10 @@ enum TextStyle: String, TextStyleType {
             // SearchBar
             .searchBarTextField,
             // CarPopup
+            .carPopupType,
             .carPopupPlate,
             .carPopupCapacity,
+            .carPopupAddressPlaceholder,
             .carPopupAddress,
             .carPopupDistance,
             .carPopupWalkingDistance
@@ -55,9 +59,13 @@ enum TextStyle: String, TextStyleType {
             case .searchBarTextField:
                 return StringStyle(.font(Font.searchBarTextField.value), .color(Color.searchBarTextField.value), .alignment(.center))
             // CarPopup
+            case .carPopupType:
+                return StringStyle(.font(Font.carPopupType.value), .color(Color.carPopupLabel.value), .alignment(.center))
             case .carPopupPlate, .carPopupCapacity:
                 let boldStyle = StringStyle(.font(Font.carPopupEmphasized.value), .color(Color.carPopupLabel.value), .alignment(.center))
                 return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+            case .carPopupAddressPlaceholder:
+                return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.left))
             case .carPopupAddress, .carPopupDistance, .carPopupWalkingDistance:
                 return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.left))
             }

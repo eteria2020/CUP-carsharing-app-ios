@@ -61,7 +61,9 @@ enum Color {
     
     // CarPopup
     case carPopupBackground
+    case carPopupType
     case carPopupLabel
+    case carPopupAddressPlaceholder
     
     var value: UIColor {
         get {
@@ -98,8 +100,12 @@ enum Color {
             // CarPopup
             case .carPopupBackground:
                 return ColorBrand.gray.value
+            case .carPopupType:
+                return ColorBrand.black.value
             case .carPopupLabel:
                 return ColorBrand.black.value
+            case .carPopupAddressPlaceholder:
+                return ColorBrand.black.value.withAlphaComponent(0.7)
             }
         }
     }

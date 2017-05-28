@@ -23,8 +23,7 @@ public enum CarPopupOutput: SelectionInput {
 }
 
 final class CarPopupViewModel: ViewModelTypeSelectable {
-    fileprivate var car: Car?
-
+    var car: Car?
     var type: Variable<String> = Variable("")
     
     public var selection: Action<CarPopupInput, CarPopupOutput> = Action { _ in

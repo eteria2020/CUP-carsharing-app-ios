@@ -39,8 +39,8 @@
 		4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
 		4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178651ED63C4D00EBD32B /* UIImage.swift */; };
 		4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178661ED63C4D00EBD32B /* ZAlertView.swift */; };
+		4DC59F991EDADC6200DD658A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC59F981EDADC6200DD658A /* Response.swift */; };
 		4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A01ED3106200906DA0 /* APIController.swift */; };
-		4DCC70A31ED31D3400906DA0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A21ED31D3400906DA0 /* Error.swift */; };
 		4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
 		4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A811ECDC16400FC8BF5 /* Operators.swift */; };
 		4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A821ECDC16400FC8BF5 /* SeparatorLayout.swift */; };
@@ -99,8 +99,8 @@
 		4DA178641ED63C4D00EBD32B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4DA178651ED63C4D00EBD32B /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		4DA178661ED63C4D00EBD32B /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
+		4DC59F981EDADC6200DD658A /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Classes/Model/Response.swift; sourceTree = "<group>"; };
 		4DCC70A01ED3106200906DA0 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
-		4DCC70A21ED31D3400906DA0 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Classes/Model/Error.swift; sourceTree = "<group>"; };
 		4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DCD1A811ECDC16400FC8BF5 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Classes/Utilities/Operators.swift; sourceTree = "<group>"; };
@@ -274,8 +274,8 @@
 		4DCD1A5E1ECDBF7400FC8BF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4DC59F981EDADC6200DD658A /* Response.swift */,
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
-				4DCC70A21ED31D3400906DA0 /* Error.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -627,10 +627,10 @@
 				4D1AE8161ED1B9F600C8A1D3 /* SearchBarViewController.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
-				4DCC70A31ED31D3400906DA0 /* Error.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
+				4DC59F991EDADC6200DD658A /* Response.swift in Sources */,
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,

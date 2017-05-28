@@ -72,7 +72,15 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
-            default: break
+            default:
+                let car = Car.empty
+                car.nearest = true
+                car.capacity = 1000
+                car.plate = "AAAA"
+                car.distance = 200.0
+                self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self!.closeCarPopupHeight + 40
+                self?.view_carPopup.updateWithCar(car: car)
             }
         }).addDisposableTo(self.disposeBag)
         // CircularMenu
@@ -375,6 +383,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
 
 extension SearchCarsViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
         let point = touch.location(in: self.view_navigationBar)
         if self.view_navigationBar.frame.contains(point) {
             return false
@@ -434,7 +443,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
                 if car.getTypeDescription().isEmpty {
                     self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
                 } else {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 50
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
                 }
                 self.view_carPopup.updateWithCar(car: car)
             }

@@ -12,6 +12,7 @@ import Boomerang
 import Action
 import MapKit
 import Moya
+import Gloss
 import ReachabilitySwift
 
 enum SearchCarSelectionInput: SelectionInput {
@@ -61,35 +62,39 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
             self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
-            switch event {
-            case .next(let cars):
-                self.cars = cars.filter({ (car) -> Bool in
-                    return car.status == .operative
-                })
-                self.manageAnnotations()
-            case .error(_):
-                let dispatchTime = DispatchTime.now() + 0.5
-                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    if Reachability()?.isReachable == false {
-                        let dialog = ZAlertView(title: nil, message: "lbl_connectionError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.data {
+                            if let cars = [Car].from(jsonArray: data) {
+                                self.cars = cars.filter({ (car) -> Bool in
+                                    return car.status == .operative
+                                })
+                                self.manageAnnotations()
+                            }
+                        }
+                    case .error(_):
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            if Reachability()?.isReachable == false {
+                                let dialog = ZAlertView(title: nil, message: "lbl_connectionError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
+                            }
+                            else {
+                                let dialog = ZAlertView(title: nil, message: "lbl_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
+                            }
+                            self.cars = []
+                            self.manageAnnotations()
+                        }
+                    default:
+                        break
                     }
-                    else {
-                        let dialog = ZAlertView(title: nil, message: "lbl_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
-                    }
-                }
-                self.cars = []
-                self.manageAnnotations()
-            default:
-                break
-            }
         }.addDisposableTo(resultsDispose!)
     }
     

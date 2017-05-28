@@ -40,7 +40,7 @@ final class ApiController {
         }
     }
     
-    func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<[Car]> {
+    func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -51,13 +51,12 @@ final class ApiController {
                 }
             })])//NetworkLoggerPlugin(verbose: true)
             return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius))
-                // TODO: check status and response
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapArray(type: Car.self, forKeyPath: "data")
+                .mapObject(type: Response.self)
                 .subscribe { event in
                 switch event {
-                case .next(let cars):
-                    observable.onNext(cars)
+                case .next(let response):
+                    observable.onNext(response)
                     observable.onCompleted()
                 case .error(let error):
                     observable.onError(error)
@@ -89,11 +88,6 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        /*
-        case .searchCars(_, _, _):
-            return [:]
-        */
-        // TODO: with parameters it doesn't work
         case .searchCars(let latitude, let longitude, let radius):
             return ["lat": latitude, "lon": longitude, "radius": Int(radius)]
         }
