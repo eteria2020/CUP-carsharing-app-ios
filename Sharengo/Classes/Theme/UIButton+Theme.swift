@@ -21,7 +21,7 @@ public extension UIButton {
             self.layer.cornerRadius = ZAlertView.cornerRadius
             self.clipsToBounds = true
             self.setTitle(title, for: UIControlState())
-            self.titleLabel?.font = ZAlertView.buttonFont ?? UIFont.boldSystemFont(ofSize: 14)
+            self.titleLabel?.font = Font.roundedButton.value
             self.setTitleColor(ZAlertView.buttonTitleColor, for: .normal)
             // TODO: ???
             self.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: self.frame.size), for: .highlighted)

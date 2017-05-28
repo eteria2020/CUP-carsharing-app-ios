@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ZAlertView.messageColor = Color.alertMessage.value
         ZAlertView.buttonTitleColor = Color.alertButton.value
         ZAlertView.messageFont = Font.alertMessage.value
-        ZAlertView.buttonFont = Font.alertButtons.value
+        ZAlertView.buttonFont = Font.alertButton.value
         ZAlertView.blurredBackground = false
         ZAlertView.showAnimation = .bounceTop
         ZAlertView.hideAnimation = .bounceBottom

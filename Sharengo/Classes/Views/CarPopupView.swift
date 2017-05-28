@@ -13,6 +13,7 @@ import Boomerang
 import Action
 import CoreLocation
 import AddressBookUI
+import DeviceKit
 
 class CarPopupView: UIView {
     @IBOutlet weak var btn_open: UIButton!
@@ -69,6 +70,13 @@ class CarPopupView: UIView {
         self.btn_book.style(.roundedButton, title: "btn_book".localized())
         self.btn_book.rx.bind(to: viewModel.selection, input: .book)
         self.view_separator.constraint(withIdentifier: "separatorHeight", searchInSubviews: false)?.constant = 1
+        let device = Device()
+        switch device.diagonal {
+        case 3.5:
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 40
+        default:
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 45
+        }
     }
     
     func updateWithCar(car: Car) {
@@ -79,6 +87,10 @@ class CarPopupView: UIView {
             self.lbl_distance.styledText = String(format: "lbl_carPopupDistance".localized(), Int(distance.rounded()))
             let minutes: Float = Float(distance.rounded()/100.0)
             self.lbl_walkingDistance.styledText = String(format: "lbl_carPopupWalkingDistance".localized(), Int(minutes.rounded()))
+            self.icn_walkingDistance.isHidden = false
+            self.lbl_walkingDistance.isHidden = false
+            self.icn_distance.isHidden = false
+            self.lbl_distance.isHidden = false
         } else {
             self.icn_walkingDistance.isHidden = true
             self.lbl_walkingDistance.isHidden = true
@@ -124,7 +136,12 @@ class CarPopupView: UIView {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
                 if let placemark = placemarks?.last {
-                    if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                    if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                        let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                        self.lbl_address.bonMotStyleName = "carPopupAddress"
+                        self.lbl_address.styledText = address
+                        self.viewModel?.car?.address = address
+                    } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
                         let address = "\(thoroughfare), \(locality)"
                         self.lbl_address.bonMotStyleName = "carPopupAddress"
                         self.lbl_address.styledText = address

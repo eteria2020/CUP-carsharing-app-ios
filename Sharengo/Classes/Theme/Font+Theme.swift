@@ -33,9 +33,12 @@ enum FontWeight {
 }
 
 enum Font {
+    // Genera
+    case roundedButton
+    
     // Alert
     case alertMessage
-    case alertButtons
+    case alertButton
     
     // SearchBar
     case searchBarTextField
@@ -49,10 +52,13 @@ enum Font {
     var value: UIFont {
         get {
             switch self {
+            // General
+            case .roundedButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // Alert
             case .alertMessage:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
-            case .alertButtons:
+            case .alertButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // SearchBar
             case .searchBarTextField:
@@ -61,7 +67,7 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
             // CarPopup
             case .carPopupType:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             case .carPopup:
                 return FontWeight.medium.font(withSize: self.getFontSize(size: 12))
             case .carPopupEmphasized:

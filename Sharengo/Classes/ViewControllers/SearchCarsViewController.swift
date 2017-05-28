@@ -58,7 +58,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             }).addDisposableTo(disposeBag)
         btn_closeCarPopup.rx.tap.asObservable()
             .subscribe(onNext:{
-                self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
+                self.closeCarPopup()
             }).addDisposableTo(disposeBag)
     }
    
@@ -72,7 +72,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
-            default: break
+            default:
+                self?.closeCarPopup()
             }
         }).addDisposableTo(self.disposeBag)
         // CircularMenu
@@ -116,8 +117,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             default: break
             }
         }).addDisposableTo(self.disposeBag)
+        self.view_carPopup.alpha = 0.0
         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
-        self.closeCarPopupHeight = self.view_carPopup.frame.size.height
+        self.closeCarPopupHeight = max(175.0, self.view_carPopup.frame.size.height)
         // SearchBar
         self.view.addSubview(searchBarViewController.view)
         self.addChildViewController(searchBarViewController)
@@ -226,7 +228,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                     let button = arrayOfButtons[i]
                     if menuItem.input == .compass {
                         UIView.animate(withDuration: 0.2, animations: { 
-                            button.transform = CGAffineTransform(rotationAngle: degrees.degreesToRadians)
+                            button.transform = CGAffineTransform(rotationAngle: -(degrees.degreesToRadians))
                         })
                         return
                     }
@@ -369,6 +371,14 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         newCamera.heading = 0
         self.mapView.setCamera(newCamera, animated: true)
     }
+    
+    fileprivate func closeCarPopup() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view_carPopup.alpha = 0.0
+            self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
+            self.view.layoutIfNeeded()
+        })
+    }
 }
 
 // MARK: - Gesture delegate
@@ -394,7 +404,6 @@ extension SearchCarsViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
         self.stopRequest()
     }
@@ -429,19 +438,19 @@ extension SearchCarsViewController: MKMapViewDelegate {
         guard !(view.annotation is MKUserLocation) else { return }
         if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
-                // TODO: execute animation
-                self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
-                if car.getTypeDescription().isEmpty {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
-                } else {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
-                }
                 self.view_carPopup.updateWithCar(car: car)
+                self.view.layoutIfNeeded()
+                UIView .animate(withDuration: 0.2, animations: {
+                    if car.getTypeDescription().isEmpty {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+                    } else {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
+                    }
+                    self.view_carPopup.alpha = 1.0
+                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                    self.view.layoutIfNeeded()
+                })
             }
         }
-    }
-    
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
     }
 }
