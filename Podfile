@@ -24,6 +24,7 @@ def shared_pods
     pod 'KeychainSwift'
     pod 'ReachabilitySwift'
     pod 'StoryboardConstraint'
+    pod 'DeviceKit'
 end
 
 target 'Sharengo' do

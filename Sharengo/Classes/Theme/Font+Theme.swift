@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DeviceKit
 
 enum FontWeight {
     case light
@@ -50,22 +51,38 @@ enum Font {
             switch self {
             // Alert
             case .alertMessage:
-                return FontWeight.regular.font(withSize: 14)
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
             case .alertButtons:
-                return FontWeight.bold.font(withSize: 14)
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // SearchBar
             case .searchBarTextField:
-                return FontWeight.regular.font(withSize: 14)
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
             case .searchBarTextFieldPlaceholder:
-                return FontWeight.regular.font(withSize: 14)
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
             // CarPopup
             case .carPopupType:
-                return FontWeight.regular.font(withSize: 14)
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
             case .carPopup:
-                return FontWeight.medium.font(withSize: 12)
+                return FontWeight.medium.font(withSize: self.getFontSize(size: 12))
             case .carPopupEmphasized:
-                return FontWeight.bold.font(withSize: 12)
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
+        }
+    }
+    
+    func getFontSize(size: CGFloat) -> CGFloat {
+        let device = Device()
+        switch device.diagonal {
+        case 3.5:
+            return size * 0.9
+        case 4:
+            return size
+        case 4.7:
+            return size * 1.1
+        case 5.5:
+            return size * 1.2
+        default:
+            return size
         }
     }
 }

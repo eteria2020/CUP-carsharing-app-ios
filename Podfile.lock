@@ -13,6 +13,7 @@ PODS:
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - DateToolsSwift (2.0.3)
+  - DeviceKit (1.0.1)
   - Fabric (1.6.11)
   - Gloss (1.2.4)
   - Hero (0.3.6)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - Boomerang (from `https://github.com/synesthesia-it/Boomerang.git`, branch `v1`)
   - Crashlytics
   - DateToolsSwift
+  - DeviceKit
   - Fabric
   - Gloss
   - Hero
@@ -95,6 +97,7 @@ SPEC CHECKSUMS:
   Boomerang: eaa3faf38fea21672cc65df2c900dd4d474b4df0
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
+  DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
@@ -114,6 +117,6 @@ SPEC CHECKSUMS:
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
   StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
 
-PODFILE CHECKSUM: cf6bbe2cee34320b93f473111a57c35c052c58a4
+PODFILE CHECKSUM: 979ab2b4ef3daae48bef4c60d6370acc218163f9
 
 COCOAPODS: 1.2.1
