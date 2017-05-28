@@ -70,8 +70,11 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
                                     return car.status == .operative
                                 })
                                 self.manageAnnotations()
+                                return
                             }
                         }
+                        self.cars = []
+                        self.manageAnnotations()
                     case .error(_):
                         let dispatchTime = DispatchTime.now() + 0.5
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
