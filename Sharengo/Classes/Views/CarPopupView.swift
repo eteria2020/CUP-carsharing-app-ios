@@ -73,11 +73,11 @@ class CarPopupView: UIView {
         let device = Device()
         switch device.diagonal {
         case 3.5:
-            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 40
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 35
         case 4:
-            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 43
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 38
         default:
-            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 45
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 40
         }
     }
     

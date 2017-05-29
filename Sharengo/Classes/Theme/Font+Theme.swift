@@ -54,24 +54,24 @@ enum Font {
             switch self {
             // General
             case .roundedButton:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
             // Alert
             case .alertMessage:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .alertButton:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // SearchBar
             case .searchBarTextField:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .searchBarTextFieldPlaceholder:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             // CarPopup
             case .carPopupType:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 11))
             case .carPopup:
-                return FontWeight.medium.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.medium.font(withSize: self.getFontSize(size: 11))
             case .carPopupEmphasized:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
             }
         }
     }

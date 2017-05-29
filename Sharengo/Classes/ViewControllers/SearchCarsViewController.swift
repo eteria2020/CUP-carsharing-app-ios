@@ -13,6 +13,7 @@ import Boomerang
 import Action
 import MapKit
 import StoryboardConstraint
+import DeviceKit
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
@@ -118,7 +119,19 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         self.view_carPopup.alpha = 0.0
         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
-        self.closeCarPopupHeight = max(175.0, self.view_carPopup.frame.size.height)
+        let device = Device()
+        switch device.diagonal {
+        case 3.5:
+            self.closeCarPopupHeight = 160
+        case 4:
+            self.closeCarPopupHeight = 170
+        case 4.7:
+            self.closeCarPopupHeight = 185
+        case 5.5:
+            self.closeCarPopupHeight = 195
+        default:
+            break
+        }
         // SearchBar
         self.view.addSubview(searchBarViewController.view)
         self.addChildViewController(searchBarViewController)

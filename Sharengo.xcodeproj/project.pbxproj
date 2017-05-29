@@ -219,8 +219,8 @@
 		4DA178631ED63C4D00EBD32B /* ZAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				4DA178641ED63C4D00EBD32B /* UIColor.swift */,
 				4DA178651ED63C4D00EBD32B /* UIImage.swift */,
+				4DA178641ED63C4D00EBD32B /* UIColor.swift */,
 				4DA178661ED63C4D00EBD32B /* ZAlertView.swift */,
 			);
 			name = ZAlertView;
