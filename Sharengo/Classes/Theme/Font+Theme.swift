@@ -33,7 +33,7 @@ enum FontWeight {
 }
 
 enum Font {
-    // Genera
+    // General
     case roundedButton
     
     // Alert

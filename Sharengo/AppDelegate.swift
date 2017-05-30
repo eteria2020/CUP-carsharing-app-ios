@@ -7,14 +7,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.setupInit()
-        self.setupAlertView()
+        self.setupAlert()
         #if ISDEBUG
         #elseif ISRELEASE
             Fabric.with([Crashlytics.self])
         #endif
-        // self.printFonts()
-        TextStyle.setup()
+       TextStyle.setup()
         Router.start(self)
         return true
     }
@@ -36,11 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Utilities methods
     
-    fileprivate func setupInit() {
+    fileprivate func setupAlert() {
         UserDefaults.standard.set(false, forKey: "alertShowed")
-    }
-    
-    fileprivate func setupAlertView() {
         ZAlertView.positiveColor = Color.alerButtonsBackground.value
         ZAlertView.negativeColor = Color.alerButtonsBackground.value
         ZAlertView.backgroundColor = Color.alertBackground.value
@@ -54,20 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ZAlertView.initialSpringVelocity = 0.9
         ZAlertView.duration = 2
         ZAlertView.buttonSectionExtraGap = 20
-    }
-    
-    // MARK: - Utility methods
-    
-    func printFonts()
-    {
-        let fontFamilyNames = UIFont.familyNames
-        for familyName in fontFamilyNames
-        {
-            print("------------------------------")
-            print("Font Family Name = [\(familyName)]")
-            let names = UIFont.fontNames(forFamilyName: familyName)
-            print("Font Names = [\(names)]")
-        }
     }
 }
 

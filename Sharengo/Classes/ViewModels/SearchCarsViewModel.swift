@@ -15,6 +15,7 @@ import Moya
 import Gloss
 import ReachabilitySwift
 
+// TODO: ???
 enum SearchCarSelectionInput: SelectionInput {
     case item(IndexPath)
 }
@@ -24,7 +25,7 @@ enum SearchCarSelectionOutput: SelectionOutput {
 }
 
 final class SearchCarsViewModel: ViewModelTypeSelectable {
-    fileprivate var dic_carAnnotations:[String:CarAnnotation] = [:]
+    fileprivate var dic_carAnnotations: [String:CarAnnotation] = [:]
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var oldNearestCar: Car?
@@ -44,9 +45,9 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
     // MARK: - Cars methods
     
     func resetCars() {
-        self.cars = []
-        var annotationsToRemove: [CarAnnotation] = []
+        self.cars.removeAll()
         self.array_annotationsToAdd.value = []
+        var annotationsToRemove: [CarAnnotation] = []
         self.dic_carAnnotations.forEach({ (key, value) in
             annotationsToRemove.append(value)
         })
@@ -59,46 +60,41 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
     }
     
     func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
-            self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status == 200, let data = response.data {
-                            if let cars = [Car].from(jsonArray: data) {
-                                self.cars = cars.filter({ (car) -> Bool in
-                                    return car.status == .operative
-                                })
-                                self.manageAnnotations()
-                                return
-                            }
-                        }
-                        self.cars = []
-                        self.manageAnnotations()
-                    case .error(_):
-                        let dispatchTime = DispatchTime.now() + 0.5
-                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            if Reachability()?.isReachable == false {
-                                let dialog = ZAlertView(title: nil, message: "lbl_connectionError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                    alertView.dismissAlertView()
-                                })
-                                dialog.allowTouchOutsideToDismiss = false
-                                dialog.show()
-                            }
-                            else {
-                                let dialog = ZAlertView(title: nil, message: "lbl_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                    alertView.dismissAlertView()
-                                })
-                                dialog.allowTouchOutsideToDismiss = false
-                                dialog.show()
-                            }
-                            self.cars = []
+        self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.data {
+                        if let cars = [Car].from(jsonArray: data) {
+                            self.cars = cars.filter({ (car) -> Bool in
+                                return car.status == .operative
+                            })
                             self.manageAnnotations()
+                            return
                         }
-                    default:
-                        break
                     }
-        }.addDisposableTo(resultsDispose!)
+                    self.cars.removeAll()
+                    self.manageAnnotations()
+                case .error(_):
+                    let dispatchTime = DispatchTime.now() + 0.5
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        var message = "lbl_generalError".localized()
+                        if Reachability()?.isReachable == false {
+                            message = "lbl_connectionError".localized()
+                        }
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                        self.cars.removeAll()
+                        self.manageAnnotations()
+                    }
+                default:
+                    break
+                }
+            }.addDisposableTo(resultsDispose!)
     }
     
     func manageAnnotations() {
@@ -106,8 +102,8 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
         var annotationsToAdd: [CarAnnotation] = []
         var annotationsToRemove: [CarAnnotation] = []
         var dic_carAnnotationsKeys = Array(dic_carAnnotations.keys)
+        // Distance
         for car in self.cars {
-            // Distance
             let locationController = LocationController.shared
             if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
                 if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
@@ -129,7 +125,7 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
         // Annotations
         for car in self.cars {
             if let key = car.plate {
-                if car.plate == oldNearestCar?.plate || car.plate == nearestCar?.plate {
+                if key == oldNearestCar?.plate || key == nearestCar?.plate {
                     if let coordinate = car.location?.coordinate {
                         let annotation = CarAnnotation()
                         annotation.coordinate = coordinate

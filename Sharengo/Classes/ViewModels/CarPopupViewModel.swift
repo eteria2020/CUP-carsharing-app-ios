@@ -23,7 +23,7 @@ public enum CarPopupOutput: SelectionInput {
 }
 
 final class CarPopupViewModel: ViewModelTypeSelectable {
-    var car: Car?
+    fileprivate var car: Car?
     var type: Variable<String> = Variable("")
     
     public var selection: Action<CarPopupInput, CarPopupOutput> = Action { _ in
@@ -34,15 +34,20 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .open:
-                return .just(.open(self.car ?? Car.empty))
+                if let car = self.car {
+                    return .just(.open(car))
+                }
             case .book:
-                return .just(.book(self.car ?? Car.empty))
+                if let car = self.car {
+                    return .just(.book(car))
+                }
             }
+            return .just(.empty)
         }
     }
     
     func updateWithCar(car: Car) {
         self.car = car
-        self.type.value = car.getTypeDescription()
+        self.type.value = car.type
     }
 }

@@ -12,9 +12,8 @@ import Boomerang
 import Action
 
 class CircularMenuView: UIView {
-    @IBOutlet weak var view_main: UIView!
-    @IBOutlet weak var view_background: UIView!
-    
+    @IBOutlet fileprivate weak var view_main: UIView!
+    @IBOutlet fileprivate weak var view_background: UIView!
     fileprivate var view: UIView!
     
     var array_buttons: [UIButton] = []
@@ -27,23 +26,9 @@ class CircularMenuView: UIView {
             return
         }
         self.viewModel = viewModel
-        self.setupInterface()
     }
     
     // MARK: - View methods
-    
-    fileprivate func setupInterface() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        self.layoutIfNeeded()
-        self.view_background.backgroundColor = viewModel.type.getBackgroundViewColor()
-        self.view_background.layer.borderColor = viewModel.type.getBackgroundBorderColor().cgColor
-        self.view_background.layer.borderWidth = viewModel.type.getBackgroundBorderSize()
-        self.view_background.layer.cornerRadius = self.view_background.frame.size.width/2
-        self.view_background.layer.masksToBounds = true
-        self.generateButtons()
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +45,16 @@ class CircularMenuView: UIView {
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
+        guard let type = viewModel?.type else {
+            return
+        }
+        self.layoutIfNeeded()
+        self.view_background.backgroundColor = type.getBackgroundViewColor()
+        self.view_background.layer.borderColor = type.getBackgroundBorderColor().cgColor
+        self.view_background.layer.borderWidth = type.getBackgroundBorderSize()
+        self.view_background.layer.cornerRadius = self.view_background.frame.size.width/2
+        self.view_background.layer.masksToBounds = true
+        self.generateButtons()
     }
     
     fileprivate func loadViewFromNib() -> UIView {

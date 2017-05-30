@@ -83,8 +83,9 @@ public class Car: ModelType, Decodable {
     var location: CLLocation?
     var distance: CLLocationDistance?
     var nearest: Bool = false
-    var address: String?
-
+    lazy var type: String = self.getType()
+    var address: Variable<String?> = Variable(nil)
+    
     static var empty:Car {
         return Car()
     }
@@ -105,23 +106,32 @@ public class Car: ModelType, Decodable {
         }
     }
     
-    // MARK: - Map methods
+    // MARK: - Lazy methods
     
-    func getAnnotationViewImage() -> UIImage? {
-        if nearest {
-            // TODO: execute animation
-            return UIImage(named: "ic_auto_vicina")
-        }
-        return UIImage(named: "ic_auto")
-    }
-    
-    // MARK: - Type methods
-    
-    func getTypeDescription() -> String {
+    func getType() -> String {
         if self.nearest {
            return "lbl_carPopupType".localized()
         } else {
             return ""
+        }
+    }
+    
+    // MARK: - Variable methods
+    
+    func getAddress() {
+        if let location = self.location {
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                if let placemark = placemarks?.last {
+                    if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                        let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                        self.address.value = address
+                    } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                        let address = "\(thoroughfare), \(locality)"
+                        self.address.value = address
+                    }
+                }
+            })
         }
     }
 }

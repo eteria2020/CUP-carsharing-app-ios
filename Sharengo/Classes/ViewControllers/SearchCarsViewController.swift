@@ -18,15 +18,14 @@ import DeviceKit
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
-    // TODO: ???
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var mapView: MKMapView!
     @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
-    
-    fileprivate let searchBarViewController:SearchBarViewController = (Storyboard.main.scene(.searchBar))
-    fileprivate var checkedUserPosition:Bool = false
+    fileprivate let searchBarViewController: SearchBarViewController = (Storyboard.main.scene(.searchBar))
     fileprivate var closeCarPopupHeight: CGFloat = 0.0
     
+    fileprivate var checkedUserPosition: Bool = false
+    fileprivate let carPopupDistanceOpenDoors: Int = 50
     var viewModel: SearchCarsViewModel?
     
     // MARK: - ViewModel methods
@@ -56,7 +55,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                     self?.setUpdateButtonAnimated(false)
                 }
             }).addDisposableTo(disposeBag)
-        btn_closeCarPopup.rx.tap.asObservable()
+        self.btn_closeCarPopup.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.closeCarPopup()
             }).addDisposableTo(disposeBag)
@@ -98,8 +97,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
-                if let distance = car.distance {
-                    if Int(distance.rounded()) <= 50 {
+                if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
+                    if Int(distance.rounded()) <= distanceOpenDoors {
                         print("Open doors \(car)")
                     } else {
                         let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
@@ -119,8 +118,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         self.view_carPopup.alpha = 0.0
         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
-        let device = Device()
-        switch device.diagonal {
+        switch Device().diagonal {
         case 3.5:
             self.closeCarPopupHeight = 160
         case 4:
@@ -138,6 +136,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.searchBarViewController.didMove(toParentViewController: self)
         // TODO: ???
         self.searchBarViewController.view.isUserInteractionEnabled = false
+        // Gesture
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapButtons(_:)))
         tapGesture.delegate = self
         tapGesture.numberOfTapsRequired = 1
@@ -187,13 +186,14 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }
     }
     
-    func setupMap() {
-        self.mapView.showsUserLocation = false
-        self.setUserPositionButtonVisible(false)
-        let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        let overlay = MKTileOverlay(urlTemplate: template)
-        overlay.canReplaceMapContent = true
-        self.mapView.add(overlay, level: .aboveLabels)
+    // MARK: - CarPopup methods
+    
+    fileprivate func closeCarPopup() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view_carPopup.alpha = 0.0
+            self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
+            self.view.layoutIfNeeded()
+        })
     }
     
     // MARK: - CircularMenu methods
@@ -322,6 +322,15 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
 
     // MARK: - Map methods
     
+    fileprivate func setupMap() {
+        self.mapView.showsUserLocation = false
+        self.setUserPositionButtonVisible(false)
+        let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        let overlay = MKTileOverlay(urlTemplate: template)
+        overlay.canReplaceMapContent = true
+        self.mapView.add(overlay, level: .aboveLabels)
+    }
+    
     fileprivate func checkUserPosition() {
         let locationController = LocationController.shared
         if locationController.isAuthorized, let userLocation = locationController.currentLocation {
@@ -340,8 +349,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }
     }
     
-    fileprivate func getRadius() -> CLLocationDistance?
-    {
+    fileprivate func getRadius() -> CLLocationDistance? {
         if let mapView = self.mapView {
             let distanceMeters = mapView.radiusBaseOnViewHeight
             return distanceMeters
@@ -356,23 +364,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         } else {
             self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
         }
-    }
-    
-    fileprivate func showLocalizationAlert(message: String) {
-        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                okButtonHandler: { alertView in
-                                    alertView.dismissAlertView()
-                                    if #available(iOS 10.0, *) {
-                                        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
-                                    } else {
-                                        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
-                                    }
-        },
-                                cancelButtonHandler: { alertView in
-                                    alertView.dismissAlertView()
-        })
-        dialog.allowTouchOutsideToDismiss = false
-        dialog.show()
     }
     
     fileprivate func centerMap(on position: CLLocation) {
@@ -391,12 +382,23 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.mapView.setCamera(newCamera, animated: true)
     }
     
-    fileprivate func closeCarPopup() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.view_carPopup.alpha = 0.0
-            self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
-            self.view.layoutIfNeeded()
+    // MARK: - Alert methods
+    
+    fileprivate func showLocalizationAlert(message: String) {
+        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                okButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                    if #available(iOS 10.0, *) {
+                                        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+                                    } else {
+                                        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                                    }
+        },
+                                cancelButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
         })
+        dialog.allowTouchOutsideToDismiss = false
+        dialog.show()
     }
 }
 
@@ -443,9 +445,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
         }
         if let annotationView = annotationView {
             if let carAnnotation = annotationView.annotation as? CarAnnotation {
-                if let car = carAnnotation.car {
-                    annotationView.image = car.getAnnotationViewImage()
-                }
+                annotationView.image = carAnnotation.image
             } else if annotationView.annotation is MKUserLocation {
                 annotationView.image = UIImage(named: "ic_user")
             }
@@ -460,7 +460,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
                 self.view_carPopup.updateWithCar(car: car)
                 self.view.layoutIfNeeded()
                 UIView .animate(withDuration: 0.2, animations: {
-                    if car.getTypeDescription().isEmpty {
+                    if car.type.isEmpty {
                         self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
                     } else {
                         self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
