@@ -151,6 +151,13 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 self?.centerMap(on: userLocation)
             }
         }
+        NotificationCenter.observe(notificationWithName: LocationControllerNotification.didUnAuthorized) { [weak self] _ in
+            let locationController = LocationController.shared
+            if !locationController.isAuthorized && UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
+                self?.mapView?.showsUserLocation = false
+                self?.setUserPositionButtonVisible(false)
+            }
+        }
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.locationDidUpdate) { [weak self] _ in
             self?.viewModel?.manageAnnotations()
             if let carAnnotation = self?.mapView.selectedAnnotations.first as? CarAnnotation {
@@ -163,6 +170,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(forName:
         NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
+            self.searchBarViewController.updateInterface()
             let locationController = LocationController.shared
             if locationController.isAuthorized && locationController.currentLocation != nil {
                 self.mapView?.showsUserLocation = true
@@ -265,7 +273,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         if (sender.state == UIGestureRecognizerState.ended) {
             var point = sender.location(in: self.searchBarViewController.view_microphone)
             if self.searchBarViewController.btn_microphone.frame.contains(point) {
-                self.searchBarViewController.startDictated()
+                self.searchBarViewController.toggleDictated()
                 return
             }
             point = sender.location(in: searchBarViewController.view_search)
@@ -323,8 +331,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - Map methods
     
     fileprivate func setupMap() {
-        self.mapView.showsUserLocation = false
-        self.setUserPositionButtonVisible(false)
+        if UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
+            self.mapView.showsUserLocation = false
+            self.setUserPositionButtonVisible(false)
+        }
         let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
         let overlay = MKTileOverlay(urlTemplate: template)
         overlay.canReplaceMapContent = true
@@ -338,14 +348,11 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             self.setUserPositionButtonVisible(true)
             self.centerMap(on: userLocation)
             self.checkedUserPosition = true
-        } else {
-            let firstCheckUserPosition = "FirstCheckUserPosition"
-            if !UserDefaults.standard.bool(forKey: firstCheckUserPosition) {
+        } else if !UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
                 locationController.requestLocationAuthorization(handler: { (status) in
-                    UserDefaults.standard.set(true, forKey: firstCheckUserPosition)
+                    UserDefaults.standard.set(true, forKey: "FirstCheckUserPosition")
                     self.checkedUserPosition = true
                 })
-            }
         }
     }
     

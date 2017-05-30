@@ -56,6 +56,7 @@ enum Color {
     // SearchBar
     case searchBarBackground
     case searchBarBackgroundMicrophone
+    case searchBarBackgroundMicrophoneSpeechInProgress
     case searchBarTextField
     case searchBarTextFieldPlaceholder
     
@@ -93,6 +94,8 @@ enum Color {
                 return ColorBrand.black.value
             case .searchBarBackgroundMicrophone:
                 return ColorBrand.white.value
+            case .searchBarBackgroundMicrophoneSpeechInProgress:
+                return ColorBrand.yellow.value
             case .searchBarTextField:
                 return ColorBrand.white.value
             case .searchBarTextFieldPlaceholder:

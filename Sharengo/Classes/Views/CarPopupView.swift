@@ -52,6 +52,7 @@ class CarPopupView: UIView {
                     }
                 }
         }).addDisposableTo(disposeBag)
+        xibSetup()
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
         self.btn_book.rx.bind(to: viewModel.selection, input: .book)
     }
@@ -96,12 +97,10 @@ class CarPopupView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        xibSetup()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        xibSetup()
     }
     
     fileprivate func xibSetup() {

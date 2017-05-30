@@ -1,3 +1,5 @@
 /* Localized versions of Info.plist keys for the English version */
 
 "NSLocationWhenInUseUsageDescription" = "Permetti a Sharen'go di accedere alle tua posizione durante il suo utilizzo";
+"NSMicrophoneUsageDescription" = "Permetti a Sharen'go di accedere al microfono";
+"NSSpeechRecognitionUsageDescription" = "Permetti a Sharen'go di riconoscere la tua voce";

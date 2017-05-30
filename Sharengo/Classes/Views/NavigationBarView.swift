@@ -26,6 +26,7 @@ class NavigationBarView: UIView {
             return
         }
         self.viewModel = viewModel
+        xibSetup()
         self.btn_left.rx.bind(to: viewModel.selection, input: viewModel.letfItem.input)
         self.btn_right.rx.bind(to: viewModel.selection, input: viewModel.rightItem.input)
     }
@@ -34,12 +35,10 @@ class NavigationBarView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        xibSetup()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        xibSetup()
     }
     
     fileprivate func xibSetup() {

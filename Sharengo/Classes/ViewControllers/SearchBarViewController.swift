@@ -22,6 +22,9 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
     @IBOutlet weak var txt_search: UITextField!
     
     var viewModel: SearchBarViewModel?
+    @available(iOS 10.0, *)
+    fileprivate lazy var speechController = SpeechController()
+    fileprivate var speechInProgress = false
     
     // MARK: - ViewModel methods
     
@@ -49,6 +52,20 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
         self.btn_microphone.layer.cornerRadius = self.btn_microphone.frame.size.width/2
         self.btn_microphone.layer.masksToBounds = true
         self.txt_search.attributedPlaceholder = NSAttributedString(string:"lbl_searchBarTextField".localized(), attributes:[NSForegroundColorAttributeName: Color.searchBarTextFieldPlaceholder.value, NSFontAttributeName: Font.searchBarTextFieldPlaceholder.value])
+        self.updateInterface()
+    }
+    
+    func updateInterface() {
+        if #available(iOS 10.0, *) {
+            self.view_microphone.isHidden = false
+            if (UserDefaults.standard.bool(forKey: "alertSpeechRecognizer") || UserDefaults.standard.bool(forKey: "alertSpeechRecognizer")) && speechController.isAuthorized == false {
+                self.view_microphone.alpha = 0.5
+            } else {
+                self.view_microphone.alpha = 1.0
+            }
+        } else {
+            self.view_microphone.isHidden = true
+        }
     }
     
     // MARK: - TextField methods
@@ -59,7 +76,56 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
     
     // MARK: - Microphone methods
     
-    func startDictated() {
-        print("Start Dictated")
+    func toggleDictated() {
+        if #available(iOS 10.0, *) {
+            if speechInProgress {
+                self.speechInProgress = false
+                self.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophone.value
+                speechController.manageRecording()
+            } else {
+                self.speechInProgress = true
+                self.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophoneSpeechInProgress.value
+                self.speechController.requestSpeechAuthorization()
+                self.speechController.speechTranscription.asObservable()
+                    .subscribe(onNext: {[weak self] (speechTransition) in
+                        DispatchQueue.main.async {
+                            self?.txt_search.text = speechTransition ?? ""
+                        }
+                    }).addDisposableTo(disposeBag)
+                self.speechController.speechError.asObservable()
+                    .subscribe(onNext: { (error) in
+                        DispatchQueue.main.async {
+                            if let error = error {
+                                self.speechInProgress = false
+                                self.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophone.value
+                                if error.hideButton() {
+                                    self.view_microphone.alpha = 0.5
+                                }
+                                if error != .empty {
+                                    if error.showSettings() == false {
+                                        let dialog = ZAlertView(title: nil, message: error.getMessage(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                                        })
+                                        dialog.allowTouchOutsideToDismiss = false
+                                        dialog.show()
+                                    } else {
+                                        let dialog = ZAlertView(title: nil, message: error.getMessage(), isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                                okButtonHandler: { alertView in
+                                                                    alertView.dismissAlertView()
+                                                                    UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+                                        },
+                                                                cancelButtonHandler: { alertView in
+                                                                    alertView.dismissAlertView()
+                                        })
+                                        dialog.allowTouchOutsideToDismiss = false
+                                        dialog.show()
+                                    }
+                                }
+                            }
+                        }
+                    }).addDisposableTo(disposeBag)
+            }
+        }
     }
 }
+

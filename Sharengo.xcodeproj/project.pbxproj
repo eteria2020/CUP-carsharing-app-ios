@@ -58,6 +58,7 @@
 		4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */; };
 		4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */; };
+		4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */; };
 		4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */; };
 		4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98341ED471B800880EA1 /* HomeViewController.swift */; };
 		4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98361ED471F500880EA1 /* HomeViewModel.swift */; };
@@ -120,6 +121,7 @@
 		4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+Theme.swift"; path = "Classes/Theme/Image+Theme.swift"; sourceTree = "<group>"; };
 		4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewController.swift; path = Classes/ViewControllers/SearchCarsViewController.swift; sourceTree = "<group>"; };
 		4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewModel.swift; path = Classes/ViewModels/SearchCarsViewModel.swift; sourceTree = "<group>"; };
+		4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechController.swift; sourceTree = "<group>"; };
 		4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
 		4DFD98341ED471B800880EA1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Classes/ViewControllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
 				4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */,
+				4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -638,6 +641,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
+				4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
