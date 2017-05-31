@@ -58,7 +58,7 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
     func updateInterface() {
         if #available(iOS 10.0, *) {
             self.view_microphone.isHidden = false
-            if (UserDefaults.standard.bool(forKey: "alertSpeechRecognizer") || UserDefaults.standard.bool(forKey: "alertSpeechRecognizer")) && speechController.isAuthorized == false {
+            if (UserDefaults.standard.bool(forKey: "alertSpeechRecognizerRequestAuthorization") || UserDefaults.standard.bool(forKey: "alertMicrophoneRequestAuthorization")) && speechController.isAuthorized == false {
                 self.view_microphone.alpha = 0.5
             } else {
                 self.view_microphone.alpha = 1.0
@@ -84,8 +84,17 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
                 speechController.manageRecording()
             } else {
                 self.speechInProgress = true
-                self.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophoneSpeechInProgress.value
                 self.speechController.requestSpeechAuthorization()
+                self.speechController.speechInProgress.asObservable()
+                    .subscribe(onNext: {[weak self] (speechInProgress) in
+                        DispatchQueue.main.async {
+                            if speechInProgress {
+                                self?.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophoneSpeechInProgress.value
+                            } else {
+                                self?.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophone.value
+                            }
+                        }
+                    }).addDisposableTo(disposeBag)
                 self.speechController.speechTranscription.asObservable()
                     .subscribe(onNext: {[weak self] (speechTransition) in
                         DispatchQueue.main.async {

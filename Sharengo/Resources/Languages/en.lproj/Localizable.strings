@@ -13,11 +13,13 @@
 
 // SearchBar
 "lbl_searchBarTextField" = "Cerca indirizzo o targa";
-"alert_searchBarAuthDenied" = "Hai negato l'accesso al riconoscimento della tua voce. Vuoi aprire le impostazioni per abilitare il servizio?";
-"alert_searchBarAuthRestricted" = "Il riconoscimento vocale non può funzionare causa limiti del dispositivo";
-"alert_searchBarAuthNotDetermined" = "Non è stato possibile determinare l'accesso al riconoscimento della tua voce. Vuoi aprire le impostazioni per abilitare il servizio?";
-"alert_searchBarNotSetted" = "Impossibile eseguire il riconoscimento vocale";
-"alert_searchBarNotAvailable" = "Errore nell'utilizzo del riconoscimento vocale";
+"alert_searchBarAuthSpeechAuthorizationDenied" = "Hai negato l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarAuthSpeechAuthorizationRestricted" = "Il riconoscimento vocale non può funzionare causa limiti del dispositivo";
+"alert_searchBarAuthSpeechAuthorizationNotDetermined" = "Non è stato possibile determinare l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarAuthMicrophoneDenied" = "Hai negato l'accesso al microfono. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarAuthMicrophoneUndetermined" = "Non è stato possibile determinare l'accesso al microfono. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarNotSetted" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
+"alert_searchBarNotAvailable" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
 
 // SearchCars
 "alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";

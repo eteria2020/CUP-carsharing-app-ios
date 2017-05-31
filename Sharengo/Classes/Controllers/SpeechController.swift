@@ -14,9 +14,11 @@ import RxSwift
 
 enum SpeechErrorType {
     case empty
-    case authDenied
-    case authRestricted
-    case authNotDetermined
+    case authSpeechAuthorizationDenied
+    case authSpeechAuthorizationRestricted
+    case authSpeechAuthorizationNotDetermined
+    case authMicrophoneDenied
+    case authMicrophoneUndetermined
     case notSetted
     case notAvailable
     
@@ -24,12 +26,16 @@ enum SpeechErrorType {
         switch self {
         case .empty:
             return ""
-        case .authDenied:
-            return "alert_searchBarAuthDenied".localized()
-        case .authRestricted:
-            return "alert_searchBarAuthRestricted".localized()
-        case .authNotDetermined:
-            return "alert_searchBarAuthNotDetermined".localized()
+        case .authSpeechAuthorizationDenied:
+            return "alert_searchBarAuthSpeechAuthorizationDenied".localized()
+        case .authSpeechAuthorizationRestricted:
+            return "alert_searchBarAuthSpeechAuthorizationRestricted".localized()
+        case .authSpeechAuthorizationNotDetermined:
+            return "alert_searchBarAuthSpeechAuthorizationNotDetermined".localized()
+        case .authMicrophoneDenied:
+            return "alert_searchBarAuthMicrophoneDenied".localized()
+        case .authMicrophoneUndetermined:
+            return "alert_searchBarAuthMicrophoneUndetermined".localized()
         case .notSetted:
             return "alert_searchBarNotSetted".localized()
         case .notAvailable:
@@ -41,11 +47,15 @@ enum SpeechErrorType {
         switch self {
         case .empty:
             return false
-        case .authDenied:
+        case .authSpeechAuthorizationDenied:
             return true
-        case .authRestricted:
+        case .authSpeechAuthorizationRestricted:
             return false
-        case .authNotDetermined:
+        case .authSpeechAuthorizationNotDetermined:
+            return true
+        case .authMicrophoneDenied:
+            return true
+        case .authMicrophoneUndetermined:
             return true
         case .notSetted:
             return false
@@ -58,11 +68,15 @@ enum SpeechErrorType {
         switch self {
         case .empty:
             return true
-        case .authDenied:
+        case .authSpeechAuthorizationDenied:
             return true
-        case .authRestricted:
+        case .authSpeechAuthorizationRestricted:
             return true
-        case .authNotDetermined:
+        case .authSpeechAuthorizationNotDetermined:
+            return true
+        case .authMicrophoneDenied:
+            return true
+        case .authMicrophoneUndetermined:
             return true
         case .notSetted:
             return false
@@ -81,6 +95,7 @@ class SpeechController: NSObject
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     
+    var speechInProgress: Variable<Bool> = Variable(false)
     var speechTranscription: Variable<String?> = Variable(nil)
     var speechError: Variable<SpeechErrorType?> = Variable(nil)
     var isAuthorized:Bool {
@@ -89,29 +104,29 @@ class SpeechController: NSObject
         }
     }
     
-    func requestSpeechAuthorization()
-    {
+    func requestSpeechAuthorization() {
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
+            UserDefaults.standard.set(true, forKey: "alertSpeechRecognizerRequestAuthorization")
             switch authStatus {
             case .authorized:
                 self.requestMicrophoneAuthorization()
             case .denied:
                 if UserDefaults.standard.bool(forKey: "alertSpeechRecognizer") {
-                    self.speechError.value = .authDenied
+                    self.speechError.value = .authSpeechAuthorizationDenied
                 } else {
                     UserDefaults.standard.set(true, forKey: "alertSpeechRecognizer")
                     self.speechError.value = .empty
                 }
             case .restricted:
                 if UserDefaults.standard.bool(forKey: "alertSpeechRecognizer") {
-                    self.speechError.value = .authRestricted
+                    self.speechError.value = .authSpeechAuthorizationRestricted
                 } else {
                     UserDefaults.standard.set(true, forKey: "alertSpeechRecognizer")
                     self.speechError.value = .empty
                 }
             case .notDetermined:
                 if UserDefaults.standard.bool(forKey: "alertSpeechRecognizer") {
-                    self.speechError.value = .authNotDetermined
+                    self.speechError.value = .authSpeechAuthorizationNotDetermined
                 } else {
                     UserDefaults.standard.set(true, forKey: "alertSpeechRecognizer")
                     self.speechError.value = .empty
@@ -121,20 +136,21 @@ class SpeechController: NSObject
     }
     
     func requestMicrophoneAuthorization() {
+        UserDefaults.standard.set(true, forKey: "alertMicrophoneRequestAuthorization")
         AVAudioSession.sharedInstance().requestRecordPermission { (success) in
             switch AVAudioSession.sharedInstance().recordPermission() {
             case AVAudioSessionRecordPermission.granted:
                 self.manageRecording()
             case AVAudioSessionRecordPermission.denied:
                 if UserDefaults.standard.bool(forKey: "alertMicrophone") {
-                    self.speechError.value = .authDenied
+                    self.speechError.value = .authMicrophoneDenied
                 } else {
                     UserDefaults.standard.set(true, forKey: "alertMicrophone")
                     self.speechError.value = .empty
                 }
             case AVAudioSessionRecordPermission.undetermined:
                 if UserDefaults.standard.bool(forKey: "alertMicrophone") {
-                    self.speechError.value = .authNotDetermined
+                    self.speechError.value = .authMicrophoneUndetermined
                 } else {
                     UserDefaults.standard.set(true, forKey: "alertMicrophone")
                     self.speechError.value = .empty
@@ -145,8 +161,7 @@ class SpeechController: NSObject
         }
     }
     
-    func manageRecording()
-    {
+    func manageRecording() {
         if self.audioEngine.isRunning {
             // Terminiamo l'ascolto
             self.audioEngine.stop()
@@ -200,6 +215,7 @@ class SpeechController: NSObject
         }
         self.audioEngine.prepare()
         do {
+            self.speechInProgress.value = true
             try self.audioEngine.start()
         } catch {
             self.speechError.value = .notSetted
@@ -208,9 +224,9 @@ class SpeechController: NSObject
 }
 
 @available(iOS 10.0, *)
-extension SpeechController: SFSpeechRecognizerDelegate
-{
+extension SpeechController: SFSpeechRecognizerDelegate {
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        self.speechInProgress.value = false
         self.speechError.value = .notAvailable
         self.manageRecording()
     }
