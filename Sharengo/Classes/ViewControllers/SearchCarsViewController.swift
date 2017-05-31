@@ -134,6 +134,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.view.addSubview(searchBarViewController.view)
         self.addChildViewController(searchBarViewController)
         self.searchBarViewController.didMove(toParentViewController: self)
+        self.searchBarViewController.bind(to: ViewModelFactory.searchBar())
         // TODO: ???
         self.searchBarViewController.view.isUserInteractionEnabled = false
         // Gesture

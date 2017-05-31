@@ -36,6 +36,8 @@
 		4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B3481ED964CD002C2375 /* CarPopupView.swift */; };
 		4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */; };
 		4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D72B34D1ED96736002C2375 /* CarPopupView.xib */; };
+		4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */; };
+		4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D61EDF4BFE00AD0EC6 /* Address.swift */; };
 		4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
 		4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178651ED63C4D00EBD32B /* UIImage.swift */; };
 		4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178661ED63C4D00EBD32B /* ZAlertView.swift */; };
@@ -97,6 +99,8 @@
 		4D72B3481ED964CD002C2375 /* CarPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupView.swift; path = Classes/Views/CarPopupView.swift; sourceTree = "<group>"; };
 		4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupViewModel.swift; path = Classes/ViewModels/CarPopupViewModel.swift; sourceTree = "<group>"; };
 		4D72B34D1ED96736002C2375 /* CarPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarPopupView.xib; path = Resources/Xibs/CarPopupView.xib; sourceTree = "<group>"; };
+		4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominatimAPIController.swift; sourceTree = "<group>"; };
+		4D9400D61EDF4BFE00AD0EC6 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Classes/Model/Address.swift; sourceTree = "<group>"; };
 		4DA178641ED63C4D00EBD32B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4DA178651ED63C4D00EBD32B /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		4DA178661ED63C4D00EBD32B /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
+				4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */,
 				4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */,
 				4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */,
 			);
@@ -279,6 +284,7 @@
 			children = (
 				4DC59F981EDADC6200DD658A /* Response.swift */,
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
+				4D9400D61EDF4BFE00AD0EC6 /* Address.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -611,6 +617,7 @@
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
+				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
 				4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */,
 				4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */,
 				4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */,
@@ -641,6 +648,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
+				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
 				4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

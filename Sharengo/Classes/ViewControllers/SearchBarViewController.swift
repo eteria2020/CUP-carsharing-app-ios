@@ -71,7 +71,18 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
     // MARK: - TextField methods
     
     func startSearching() {
-        print("Start Searching")
+        self.txt_search.becomeFirstResponder()
+    }
+    
+    // MARK: - Data methods
+    
+    fileprivate func stopRequest() {
+        self.viewModel?.stopRequest()
+    }
+    
+    fileprivate func getResults(text: String) {
+        self.stopRequest()
+        self.viewModel?.reloadResults(text: text)
     }
     
     // MARK: - Microphone methods
@@ -138,3 +149,19 @@ class SearchBarViewController : UIViewController, ViewModelBindable {
     }
 }
 
+extension SearchBarViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if string == "\n"
+//        {
+//            textField.resignFirstResponder()
+//        }
+//        else
+//        {
+            let text = (textField.text! as NSString).replacingCharacters(in: range, with:string)
+            self.getResults(text: text)
+        
+//        }
+        
+        return true
+    }
+}
