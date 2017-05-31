@@ -19,6 +19,11 @@ enum SearchBarSelectionOutput: SelectionOutput {
     case viewModel(ViewModelType)
 }
 
+// TODO: bloccare la chiamata per evitare ri-caricamento dei dati
+// TODO: la chiamata deve partire al terzo carattere
+// TODO: visualizzare i risultati
+// TODO: la ricerca viene chiamata dal riconoscimento vocale
+
 final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     var dataHolder: ListDataHolderType = ListDataHolder()
     fileprivate var resultsDispose: DisposeBag?
@@ -39,23 +44,16 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     }
     
     func reloadResults(text: String) {
-        self.apiController.searchAddress()
+        self.apiController.searchAddress(text: text)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
-                case .next(let response):
-                    if response.status == 200, let data = response.data {
-//                        if let cars = [Car].from(jsonArray: data) {
-//                            self.cars = cars.filter({ (car) -> Bool in
-//                                return car.status == .operative
-//                            })
-//                            self.manageAnnotations()
-//                            return
-//                        }
-                    }
+                case .next(let addresses):
+                    print(addresses)
 //                    self.cars.removeAll()
 //                    self.manageAnnotations()
-                case .error(_):
+                case .error(let error):
+                    print(error)
                     let dispatchTime = DispatchTime.now() + 0.5
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                         var message = "lbl_generalError".localized()

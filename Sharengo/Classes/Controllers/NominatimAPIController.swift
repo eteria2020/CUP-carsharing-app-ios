@@ -26,7 +26,7 @@ final class NominatimAPIController {
         )
     }
     
-    func searchAddress() -> Observable<Response> {
+    func searchAddress(text: String) -> Observable<[Address]> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -36,13 +36,13 @@ final class NominatimAPIController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])//NetworkLoggerPlugin(verbose: true)
-            return provider.request(.searchAddress())
+            return provider.request(.searchAddress(text: text))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapArray(type: Address.self)
                 .subscribe { event in
                 switch event {
-                case .next(let response):
-                    observable.onNext(response)
+                case .next(let addresses):
+                    observable.onNext(addresses)
                     observable.onCompleted()
                 case .error(let error):
                     observable.onError(error)
@@ -55,16 +55,16 @@ final class NominatimAPIController {
 }
 
 fileprivate enum API {
-    case searchAddress()
+    case searchAddress(text: String)
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "maps.sharengo.it/search.php")! }
+    var baseURL: URL { return URL(string: "http://maps.sharengo.it")! }
     
     var path: String {
         switch self {
-        case .searchAddress():
-            return ""
+        case .searchAddress(_):
+            return "search.php"
         }
     }
     
@@ -74,8 +74,8 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case .searchAddress():
-            return ["q": "via+dei+pelaghi", "format": "json"]
+        case .searchAddress(let text):
+            return ["q": text, "format": "json"]
         }
     }
     

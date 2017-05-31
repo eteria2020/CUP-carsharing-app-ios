@@ -60,39 +60,36 @@ class CarPopupView: UIView {
     // MARK: - View methods
     
     func updateWithCar(car: Car) {
-        self.viewModel?.updateWithCar(car: car)
-        self.lbl_plate.styledText = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
-        self.lbl_capacity.styledText = String(format: "lbl_carPopupCapacity".localized(), car.capacity != nil ? "\(car.capacity!)%" : "")
-        if let distance = car.distance {
-            self.lbl_distance.styledText = String(format: "lbl_carPopupDistance".localized(), Int(distance.rounded()))
-            let minutes: Float = Float(distance.rounded()/100.0)
-            self.lbl_walkingDistance.styledText = String(format: "lbl_carPopupWalkingDistance".localized(), Int(minutes.rounded()))
-            self.icn_walkingDistance.isHidden = false
-            self.lbl_walkingDistance.isHidden = false
-            self.icn_distance.isHidden = false
-            self.lbl_distance.isHidden = false
-        } else {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.updateWithCar(car: car)
+        self.lbl_plate.styledText = viewModel.plate
+        self.lbl_capacity.styledText = viewModel.capacity
+        self.lbl_distance.styledText = viewModel.distance
+        self.lbl_walkingDistance.styledText = viewModel.walkingDistance
+        if viewModel.distance.isEmpty {
             self.icn_walkingDistance.isHidden = true
             self.lbl_walkingDistance.isHidden = true
             self.icn_distance.isHidden = true
             self.lbl_distance.isHidden = true
-        }
-        if let address = car.address.value {
-            self.lbl_address.styledText = address
         } else {
-            self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
-            self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
-            car.getAddress()
-            car.address.asObservable()
-                .subscribe(onNext: {[weak self] (address) in
-                    DispatchQueue.main.async {
-                        if address != nil {
-                            self?.lbl_address.bonMotStyleName = "carPopupAddress"
-                            self?.lbl_address.styledText = address!
-                        }
-                    }
-            }).addDisposableTo(disposeBag)
+            self.icn_walkingDistance.isHidden = false
+            self.lbl_walkingDistance.isHidden = false
+            self.icn_distance.isHidden = false
+            self.lbl_distance.isHidden = false
         }
+        self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
+        self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
+        viewModel.address.asObservable()
+            .subscribe(onNext: {[weak self] (address) in
+                DispatchQueue.main.async {
+                    if address != nil {
+                        self?.lbl_address.bonMotStyleName = "carPopupAddress"
+                        self?.lbl_address.styledText = address
+                    }
+                }
+        }).addDisposableTo(disposeBag)
     }
     
     override init(frame: CGRect) {
