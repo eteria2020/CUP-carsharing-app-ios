@@ -29,7 +29,7 @@
 "btn_book" = "PRENOTA AUTO";
 "lbl_carPopupType" = "Auto più vicina";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
-"lbl_carPopupCapacity" = "autonomia: <bold>%d km</bold>";
+"lbl_carPopupCapacity" = "autonomia: <bold>%@</bold>";
 "lbl_carPopupDistance" = "%d mt di distanza";
 "lbl_carPopupWalkingDistance" = "%d minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";

@@ -62,7 +62,7 @@ class CarPopupView: UIView {
     func updateWithCar(car: Car) {
         self.viewModel?.updateWithCar(car: car)
         self.lbl_plate.styledText = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
-        self.lbl_capacity.styledText = String(format: "lbl_carPopupCapacity".localized(), car.capacity ?? "")
+        self.lbl_capacity.styledText = String(format: "lbl_carPopupCapacity".localized(), car.capacity != nil ? "\(car.capacity!)%" : "")
         if let distance = car.distance {
             self.lbl_distance.styledText = String(format: "lbl_carPopupDistance".localized(), Int(distance.rounded()))
             let minutes: Float = Float(distance.rounded()/100.0)

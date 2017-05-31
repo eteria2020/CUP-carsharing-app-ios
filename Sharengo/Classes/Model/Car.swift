@@ -95,7 +95,7 @@ public class Car: ModelType, Decodable {
 
     required public init?(json: JSON) {
         self.plate = "plate" <~~ json
-        self.capacity = "km" <~~ json
+        self.capacity = "battery" <~~ json
         if let latitude: String = "latitude" <~~ json, let longitude: String = "longitude" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
                 self.location = CLLocation(latitude: lat, longitude: lon)
