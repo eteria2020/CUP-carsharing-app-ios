@@ -23,9 +23,6 @@ public extension UIButton {
             self.setTitle(title, for: UIControlState())
             self.titleLabel?.font = Font.roundedButton.value
             self.setTitleColor(ZAlertView.buttonTitleColor, for: .normal)
-            // TODO: ???
-            self.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: self.frame.size), for: .highlighted)
-            self.setTitleColor(ZAlertView.buttonTitleColor, for: .highlighted)
         }
     }
 }

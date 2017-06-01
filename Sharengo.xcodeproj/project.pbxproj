@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */; };
-		4D1AE8161ED1B9F600C8A1D3 /* SearchBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8151ED1B9F600C8A1D3 /* SearchBarViewController.swift */; };
 		4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */; };
 		4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */; };
 		4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */; };
@@ -36,6 +35,8 @@
 		4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B3481ED964CD002C2375 /* CarPopupView.swift */; };
 		4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */; };
 		4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D72B34D1ED96736002C2375 /* CarPopupView.xib */; };
+		4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93514E1EE0346B008C65C3 /* SearchBarView.swift */; };
+		4D9351511EE03497008C65C3 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9351501EE03497008C65C3 /* SearchBarView.xib */; };
 		4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */; };
 		4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D61EDF4BFE00AD0EC6 /* Address.swift */; };
 		4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
@@ -71,7 +72,6 @@
 /* Begin PBXFileReference section */
 		21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Theme.swift"; path = "Classes/Theme/UIButton+Theme.swift"; sourceTree = "<group>"; };
-		4D1AE8151ED1B9F600C8A1D3 /* SearchBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarViewController.swift; path = Classes/ViewControllers/SearchBarViewController.swift; sourceTree = "<group>"; };
 		4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarViewModel.swift; path = Classes/ViewModels/SearchBarViewModel.swift; sourceTree = "<group>"; };
 		4D1AE81F1ED1E1A800C8A1D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Text+Theme.swift"; path = "Classes/Theme/Text+Theme.swift"; sourceTree = "<group>"; };
@@ -99,6 +99,8 @@
 		4D72B3481ED964CD002C2375 /* CarPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupView.swift; path = Classes/Views/CarPopupView.swift; sourceTree = "<group>"; };
 		4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupViewModel.swift; path = Classes/ViewModels/CarPopupViewModel.swift; sourceTree = "<group>"; };
 		4D72B34D1ED96736002C2375 /* CarPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarPopupView.xib; path = Resources/Xibs/CarPopupView.xib; sourceTree = "<group>"; };
+		4D93514E1EE0346B008C65C3 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarView.swift; path = Classes/Views/SearchBarView.swift; sourceTree = "<group>"; };
+		4D9351501EE03497008C65C3 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchBarView.xib; path = Resources/Xibs/SearchBarView.xib; sourceTree = "<group>"; };
 		4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominatimAPIController.swift; sourceTree = "<group>"; };
 		4D9400D61EDF4BFE00AD0EC6 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Classes/Model/Address.swift; sourceTree = "<group>"; };
 		4DA178641ED63C4D00EBD32B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -157,8 +159,9 @@
 		4D1AE8191ED1BA2500C8A1D3 /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
-				4D1AE8151ED1B9F600C8A1D3 /* SearchBarViewController.swift */,
+				4D93514E1EE0346B008C65C3 /* SearchBarView.swift */,
 				4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */,
+				4D9351501EE03497008C65C3 /* SearchBarView.xib */,
 			);
 			name = SearchBar;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				4D4EED691ECF947200700CC0 /* NavigationBar */,
 				4D4EED6A1ECF947E00700CC0 /* CircularMenu */,
 				4D72B34C1ED965F7002C2375 /* CarPopup */,
+				4D1AE8191ED1BA2500C8A1D3 /* SearchBar */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -314,7 +318,6 @@
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
 				4DFD98381ED471FC00880EA1 /* Home */,
-				4D1AE8191ED1BA2500C8A1D3 /* SearchBar */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 			);
 			name = ViewControllers;
@@ -527,6 +530,7 @@
 				4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */,
 				4D1AE82E1ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf in Resources */,
 				4D1AE82A1ED1E40E00C8A1D3 /* Poppins-Bold.ttf in Resources */,
+				4D9351511EE03497008C65C3 /* SearchBarView.xib in Resources */,
 				4D1AE82B1ED1E40E00C8A1D3 /* Poppins-Light.ttf in Resources */,
 				4DCD1AA31ECDC22900FC8BF5 /* Assets.xcassets in Resources */,
 				4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */,
@@ -634,7 +638,6 @@
 				4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */,
 				4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
-				4D1AE8161ED1B9F600C8A1D3 /* SearchBarViewController.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
@@ -647,6 +650,7 @@
 				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
+				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
 				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
 				4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */,

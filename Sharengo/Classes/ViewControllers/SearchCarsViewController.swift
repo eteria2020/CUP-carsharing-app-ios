@@ -19,9 +19,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
+    @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
     @IBOutlet fileprivate weak var mapView: MKMapView!
     @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
-    fileprivate let searchBarViewController: SearchBarViewController = (Storyboard.main.scene(.searchBar))
     fileprivate var closeCarPopupHeight: CGFloat = 0.0
     
     fileprivate var checkedUserPosition: Bool = false
@@ -89,8 +89,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             default: break
             }
         }).addDisposableTo(self.disposeBag)
-        // TODO: ???
-        self.view_circularMenu.isUserInteractionEnabled = false
         // CarPopup
         self.view_carPopup.bind(to: ViewModelFactory.carPopup())
         self.view_carPopup.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -131,17 +129,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             break
         }
         // SearchBar
-        self.view.addSubview(searchBarViewController.view)
-        self.addChildViewController(searchBarViewController)
-        self.searchBarViewController.didMove(toParentViewController: self)
-        self.searchBarViewController.bind(to: ViewModelFactory.searchBar())
-        // TODO: ???
-        self.searchBarViewController.view.isUserInteractionEnabled = false
-        // Gesture
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapButtons(_:)))
-        tapGesture.delegate = self
-        tapGesture.numberOfTapsRequired = 1
-        self.view.addGestureRecognizer(tapGesture)
+        self.view_searchBar.bind(to: ViewModelFactory.searchBar())
         // Map
         self.setupMap()
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.didAuthorized) { [weak self] _ in
@@ -171,7 +159,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(forName:
         NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
-            self.searchBarViewController.updateInterface()
+            self.view_searchBar.updateInterface()
             let locationController = LocationController.shared
             if locationController.isAuthorized && locationController.currentLocation != nil {
                 self.mapView?.showsUserLocation = true
@@ -261,45 +249,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                             button.transform = CGAffineTransform(rotationAngle: -(degrees.degreesToRadians))
                         })
                         return
-                    }
-                }
-            }
-        }
-    }
-    
-    // MARK: - Gesture methods
-    
-    // TODO: ???
-    func tapButtons(_ sender: UITapGestureRecognizer) {
-        if (sender.state == UIGestureRecognizerState.ended) {
-            var point = sender.location(in: self.searchBarViewController.view_microphone)
-            if self.searchBarViewController.btn_microphone.frame.contains(point) {
-                self.searchBarViewController.toggleDictated()
-                return
-            }
-            point = sender.location(in: searchBarViewController.view_search)
-            if self.searchBarViewController.txt_search.frame.contains(point) {
-                self.searchBarViewController.startSearching()
-                return
-            }
-            point = sender.location(in: self.view_circularMenu)
-            let arrayOfButtons = self.view_circularMenu.array_buttons
-            if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
-                for i in 0..<arrayOfButtons.count {
-                    if arrayOfItems.count > i {
-                        let menuItem = arrayOfItems[i]
-                        let button = arrayOfButtons[i]
-                        if button.frame.contains(point) {
-                            switch menuItem.input {
-                            case .refresh:
-                                self.updateData()
-                            case .center:
-                                self.centerMap()
-                            case .compass:
-                                self.turnMap()
-                            }
-                            return
-                        }
                     }
                 }
             }
@@ -407,18 +356,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         })
         dialog.allowTouchOutsideToDismiss = false
         dialog.show()
-    }
-}
-
-// MARK: - Gesture delegate
-
-extension SearchCarsViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        let point = touch.location(in: self.view_navigationBar)
-        if self.view_navigationBar.frame.contains(point) {
-            return false
-        }
-        return true
     }
 }
 

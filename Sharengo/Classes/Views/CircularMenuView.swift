@@ -62,6 +62,15 @@ class CircularMenuView: UIView {
         return view
     }
     
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        for subview in view_main.subviews {
+            if subview.point(inside: convert(point, to: subview), with: event) {
+                return true
+            }
+        }
+        return false
+    }
+    
     // MARK: - Buttons methods
     
     fileprivate func generateButtons() {

@@ -56,9 +56,6 @@ class NavigationBarView: UIView {
         self.view.backgroundColor = Color.navigationBarBackground.value
         self.btn_left.setBackgroundImage(UIImage(named: letfItem.icon), for: .normal)
         self.btn_right.setBackgroundImage(UIImage(named: rightItem.icon), for: .normal)
-         // TODO: ???
-        self.btn_left.setBackgroundImage(UIImage(named: letfItem.icon), for: .highlighted)
-        self.btn_right.setBackgroundImage(UIImage(named: rightItem.icon), for: .highlighted)
     }
     
     fileprivate func loadViewFromNib() -> UIView {
