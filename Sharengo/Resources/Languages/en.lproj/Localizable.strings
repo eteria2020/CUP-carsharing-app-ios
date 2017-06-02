@@ -20,6 +20,8 @@
 "alert_searchBarAuthMicrophoneUndetermined" = "Non è stato possibile determinare l'accesso al microfono. Vuoi aprire le impostazioni per abilitare il servizio?";
 "alert_searchBarNotSetted" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
 "alert_searchBarNotAvailable" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
+"lbl_searchBarNoFavorites" = "Nessun preferito\nmemorizzali nella sezione impostazioni";
+"lbl_searchBarPlate" = "%@\nTarga Share'ngo";
 
 // SearchCars
 "alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";

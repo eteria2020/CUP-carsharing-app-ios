@@ -1,6 +1,8 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Boomerang
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -8,11 +10,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.setupAlert()
+        self.setupHistory()
         #if ISDEBUG
         #elseif ISRELEASE
             Fabric.with([Crashlytics.self])
         #endif
-       TextStyle.setup()
+        TextStyle.setup()
         Router.start(self)
         return true
     }
@@ -49,6 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ZAlertView.initialSpringVelocity = 0.9
         ZAlertView.duration = 2
         ZAlertView.buttonSectionExtraGap = 20
+    }
+    
+    fileprivate func setupHistory() {
+        if UserDefaults.standard.object(forKey: "historyArray") == nil {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [HistoryAddress]() as Array)
+            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+        }
     }
 }
 

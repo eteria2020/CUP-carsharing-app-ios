@@ -23,6 +23,7 @@ public extension NamedStyles {
 enum TextStyle: String, TextStyleType {
     // SearchBar
     case searchBarTextField = "searchBarTextField"
+    case searchBarResult = "searchBarResult"
    
     // CarPopup
     case carPopupType = "carPopupType"
@@ -37,6 +38,7 @@ enum TextStyle: String, TextStyleType {
         return [
             // SearchBar
             .searchBarTextField,
+            .searchBarResult,
             // CarPopup
             .carPopupType,
             .carPopupPlate,
@@ -58,6 +60,8 @@ enum TextStyle: String, TextStyleType {
             // SearchBar
             case .searchBarTextField:
                 return StringStyle(.font(Font.searchBarTextField.value), .color(Color.searchBarTextField.value), .alignment(.center))
+            case .searchBarResult:
+                return StringStyle(.font(Font.searchBarResult.value), .color(Color.searchBarResult.value), .alignment(.center))
             // CarPopup
             case .carPopupType:
                 return StringStyle(.font(Font.carPopupType.value), .color(Color.carPopupLabel.value), .alignment(.center))

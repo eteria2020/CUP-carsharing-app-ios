@@ -72,6 +72,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             default:
+                self?.view_searchBar.endEditing(true)
                 self?.closeCarPopup()
             }
         }).addDisposableTo(self.disposeBag)
@@ -130,6 +131,49 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         }
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())
+        self.view_searchBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            case .reload:
+                self?.view_searchBar.updateCollectionView(show: true)
+            case .address(let address):
+                if let location = address.location {
+                    self?.centerMap(on: location)
+                }
+                self?.view_searchBar.updateCollectionView(show: false)
+                if self?.view_searchBar.viewModel?.speechInProgress.value == true {
+                    self?.view_searchBar.viewModel?.speechInProgress.value = false
+                    if #available(iOS 10.0, *) {
+                        self?.view_searchBar.viewModel?.speechController.manageRecording()
+                    }
+                }
+            case .car(let car):
+                if let location = car.location {
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.005, longitude: location.coordinate.longitude)
+                    self?.centerMap(on: newLocation)
+                }
+                self?.view_carPopup.updateWithCar(car: car)
+                self?.view.layoutIfNeeded()
+                UIView .animate(withDuration: 0.2, animations: {
+                    if car.type.isEmpty {
+                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0
+                    } else {
+                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0 + 40
+                    }
+                    self?.view_carPopup.alpha = 1.0
+                    self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                    self?.view.layoutIfNeeded()
+                })
+                self?.view_searchBar.updateCollectionView(show: false)
+                if self?.view_searchBar.viewModel?.speechInProgress.value == true {
+                    self?.view_searchBar.viewModel?.speechInProgress.value = false
+                    if #available(iOS 10.0, *) {
+                        self?.view_searchBar.viewModel?.speechController.manageRecording()
+                    }
+                }
+            default: break
+            }
+        }).addDisposableTo(self.disposeBag)
         // Map
         self.setupMap()
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.didAuthorized) { [weak self] _ in
@@ -372,6 +416,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
         self.stopRequest()
+        self.view_searchBar.stopSearchBar()
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
@@ -402,6 +447,10 @@ extension SearchCarsViewController: MKMapViewDelegate {
         guard !(view.annotation is MKUserLocation) else { return }
         if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
+                if let location = car.location {
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.005, longitude: location.coordinate.longitude)
+                    self.centerMap(on: newLocation)
+                }
                 self.view_carPopup.updateWithCar(car: car)
                 self.view.layoutIfNeeded()
                 UIView .animate(withDuration: 0.2, animations: {

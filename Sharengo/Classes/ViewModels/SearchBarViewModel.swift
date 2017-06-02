@@ -15,36 +15,79 @@ import ReachabilitySwift
 enum SearchBarSelectionInput: SelectionInput {
     case item(IndexPath)
     case dictated
+    case reload
 }
 enum SearchBarSelectionOutput: SelectionOutput {
     case empty
-    case viewModel(ViewModelType)
     case dictated
+    case reload
+    case address(Address)
+    case car(Car)
 }
 
-// TODO: bloccare la chiamata per evitare ri-caricamento dei dati
-// TODO: la chiamata deve partire al terzo carattere
-// TODO: visualizzare i risultati
-// TODO: la ricerca viene chiamata dal riconoscimento vocale
-
 final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder()
+    var dataHolder: ListDataHolderType = ListDataHolder.empty
     var speechInProgress: Variable<Bool> = Variable(false)
     var speechTranscription: Variable<String?> = Variable(nil)
     var hideButton: Variable<Bool> = Variable(false)
+    var itemSelected: Bool = false
+    @available(iOS 10.0, *)
+    lazy var speechController = SpeechController()
     
     fileprivate var resultsDispose: DisposeBag?
-    fileprivate var apiController: NominatimAPIController = NominatimAPIController()
-    @available(iOS 10.0, *)
-    fileprivate lazy var speechController = SpeechController()
+    fileprivate var apiController: ApiController = ApiController()
+    fileprivate var nominatimApiController: NominatimAPIController = NominatimAPIController()
+    fileprivate let numberOfResults: Int = 15
+    fileprivate var cars: [Car] = []
     
     lazy var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
         return .empty()
     }
     
+    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+        if let item = model as? Address {
+            return ViewModelFactory.searchBarItem(fromModel: item)
+        }
+        if let item = model as? Car {
+            return ViewModelFactory.searchBarItem(fromModel: item)
+        }
+        if let item = model as? Favorite {
+            return ViewModelFactory.searchBarItem(fromModel: item)
+        }
+        return nil
+    }
+    
     init() {
         self.selection = Action { input in
             switch input {
+            case .item(let indexPath):
+                if let model = self.model(atIndex: indexPath) as? Address {
+                    self.itemSelected = true
+                    if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                            let historyAddress = model.getHistoryAddress()
+                            let index = unarchivedArray.index(where: { (address) -> Bool in
+                                return address.identifier == model.identifier
+                            })
+                            if index != nil {
+                                unarchivedArray.remove(at: index!)
+                            }
+                            unarchivedArray.insert(historyAddress, at: 0)
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+                        }
+                    }
+                    self.speechTranscription.value = model.name
+                    return .just(.address(model))
+                } else if let model = self.model(atIndex: indexPath) as? Car {
+                    self.itemSelected = true
+                    self.speechTranscription.value = model.plate
+                    return .just(.car(model))
+                } else if let model = self.model(atIndex: indexPath) as? Favorite {
+                    print(model)
+                }
+            case .reload:
+                return .just(.reload)
             case .dictated:
                 if #available(iOS 10.0, *) {
                     if self.speechInProgress.value {
@@ -99,10 +142,26 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                     }
                 }
                 return .just(.dictated)
-            default: break
             }
             return .just(.empty)
         }
+        self.apiController.searchCars()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.data {
+                        if let cars = [Car].from(jsonArray: data) {
+                            self.cars = cars.filter({ (car) -> Bool in
+                                return car.status == .operative
+                            })
+                        }
+                    }
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        self.getHistoryAndFavorites()
     }
     
     // MARK: - Dictated methods
@@ -123,29 +182,64 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     }
     
     func reloadResults(text: String) {
-        self.apiController.searchAddress(text: text)
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let addresses):
-                    print(addresses)
-                case .error(let error):
-                    print(error)
-                    let dispatchTime = DispatchTime.now() + 0.5
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        var message = "lbl_generalError".localized()
-                        if Reachability()?.isReachable == false {
-                            message = "lbl_connectionError".localized()
+        if text.characters.count > 2 {
+            // TODO: first 2 characters + 1 number
+            let regEx = "XXX"
+            let predicate = NSPredicate(format:"SELF MATCHES %@", regEx)
+            if predicate.evaluate(with: text) {
+            }
+            // TODO: remove
+            if text.range(of: "EF6") != nil {
+                self.dataHolder = ListDataHolder(data:Observable.just(self.cars.filter({ (car) -> Bool in
+                    return car.plate?.contains(text) ?? false
+                })).structured())
+                self.selection.execute(.reload)
+            } else {
+            self.nominatimApiController.searchAddress(text: text)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let addresses):
+                        self.dataHolder = ListDataHolder(data:Observable.just(Array(addresses.prefix(self.numberOfResults))).structured())
+                        self.selection.execute(.reload)
+                    case .error(let error):
+                        print(error)
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            var message = "lbl_generalError".localized()
+                            if Reachability()?.isReachable == false {
+                                message = "lbl_connectionError".localized()
+                            }
+                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                alertView.dismissAlertView()
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
                         }
-                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
+                    default:
+                        break
                     }
-                default:
-                    break
+                }.addDisposableTo(resultsDispose!)
+            }
+        } else if text.characters.count == 0 {
+            self.getHistoryAndFavorites()
+        } else {
+            self.dataHolder = ListDataHolder.empty
+            self.selection.execute(.reload)
+        }
+    }
+    
+    func getHistoryAndFavorites() {
+        var historyAndFavorites: [ModelType] = [ModelType]()
+        historyAndFavorites.append(Favorite.empty)
+        if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
+            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                for historyAddress in Array(unarchivedArray.prefix(self.numberOfResults)) {
+                    historyAndFavorites.append(historyAddress.getAddress())
                 }
-            }.addDisposableTo(resultsDispose!)
+            }
+        }
+        self.dataHolder = ListDataHolder(data:Observable.just(historyAndFavorites).structured())
+        self.selection.execute(.reload)
     }
 }

@@ -43,6 +43,7 @@ enum Font {
     // SearchBar
     case searchBarTextField
     case searchBarTextFieldPlaceholder
+    case searchBarResult
     
     // CarPopup
     case carPopupType
@@ -65,6 +66,8 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .searchBarTextFieldPlaceholder:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .searchBarResult:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             // CarPopup
             case .carPopupType:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 11))

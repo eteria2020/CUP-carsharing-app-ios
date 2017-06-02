@@ -40,6 +40,33 @@ final class ApiController {
         }
     }
     
+    func searchCars() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.searchAllCars())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
     func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
@@ -69,6 +96,7 @@ final class ApiController {
 }
 
 fileprivate enum API {
+    case searchAllCars()
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
 }
 
@@ -77,6 +105,8 @@ extension API: TargetType {
     
     var path: String {
         switch self {
+        case .searchAllCars():
+            return "cars"
         case .searchCars(_, _, _):
             return "cars"
         }
@@ -88,6 +118,8 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
+        case .searchAllCars():
+            return [:]
         case .searchCars(let latitude, let longitude, let radius):
             return ["lat": latitude, "lon": longitude, "radius": Int(radius)]
         }

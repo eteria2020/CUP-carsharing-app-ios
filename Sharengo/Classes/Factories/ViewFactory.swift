@@ -25,10 +25,10 @@ extension ListViewModelType {
 }
 
 enum CollectionViewCell : String, ListIdentifier {
-    case test = "TestItemCollectionViewCell"
+    case searchBar = "SearchBarCollectionViewCell"
     static func all() -> [CollectionViewCell] {
         return [
-            .test
+            .searchBar
         ]
     }
     static func headers() -> [CollectionViewCell] {

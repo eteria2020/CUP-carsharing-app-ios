@@ -59,6 +59,10 @@
 		4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA01ECDC22900FC8BF5 /* LaunchScreen.storyboard */; };
 		4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */; };
 		4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */; };
+		4DCE7EEA1EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DCE7EE91EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib */; };
+		4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */; };
+		4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */; };
+		4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */; };
 		4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */; };
 		4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */; };
@@ -125,6 +129,10 @@
 		4DCD1AA01ECDC22900FC8BF5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+Theme.swift"; path = "Classes/Theme/Image+Theme.swift"; sourceTree = "<group>"; };
+		4DCE7EE91EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchBarCollectionViewCell.xib; path = Resources/Xibs/SearchBarCollectionViewCell.xib; sourceTree = "<group>"; };
+		4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarCollectionViewCell.swift; path = Classes/Views/SearchBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarItemViewModel.swift; path = Classes/ViewModels/SearchBarItemViewModel.swift; sourceTree = "<group>"; };
+		4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Favorite.swift; path = Classes/Model/Favorite.swift; sourceTree = "<group>"; };
 		4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewController.swift; path = Classes/ViewControllers/SearchCarsViewController.swift; sourceTree = "<group>"; };
 		4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewModel.swift; path = Classes/ViewModels/SearchCarsViewModel.swift; sourceTree = "<group>"; };
 		4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechController.swift; sourceTree = "<group>"; };
@@ -162,6 +170,9 @@
 				4D93514E1EE0346B008C65C3 /* SearchBarView.swift */,
 				4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */,
 				4D9351501EE03497008C65C3 /* SearchBarView.xib */,
+				4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */,
+				4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */,
+				4DCE7EE91EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib */,
 			);
 			name = SearchBar;
 			sourceTree = "<group>";
@@ -289,6 +300,7 @@
 				4DC59F981EDADC6200DD658A /* Response.swift */,
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
 				4D9400D61EDF4BFE00AD0EC6 /* Address.swift */,
+				4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -539,6 +551,7 @@
 				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
 				4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */,
+				4DCE7EEA1EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,8 +642,10 @@
 				4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
+				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
 				4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */,
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
+				4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
@@ -652,6 +667,7 @@
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
+				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,
 				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
 				4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */,
 			);

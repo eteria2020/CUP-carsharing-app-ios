@@ -59,6 +59,8 @@ enum Color {
     case searchBarBackgroundMicrophoneSpeechInProgress
     case searchBarTextField
     case searchBarTextFieldPlaceholder
+    case searchBarResult
+    case searchBarResultBackground
     
     // CarPopup
     case carPopupBackground
@@ -100,6 +102,10 @@ enum Color {
                 return ColorBrand.white.value
             case .searchBarTextFieldPlaceholder:
                 return ColorBrand.white.value.withAlphaComponent(0.6)
+            case .searchBarResult:
+                return ColorBrand.white.value
+            case .searchBarResultBackground:
+                return UIColor(hexString: "#1C2329").withAlphaComponent(0.95)
             // CarPopup
             case .carPopupBackground:
                 return ColorBrand.gray.value
