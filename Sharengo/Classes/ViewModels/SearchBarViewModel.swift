@@ -183,15 +183,11 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     func reloadResults(text: String) {
         if text.characters.count > 2 {
-            // TODO: first 2 characters + 1 number
-            let regEx = "XXX"
-            let predicate = NSPredicate(format:"SELF MATCHES %@", regEx)
-            if predicate.evaluate(with: text) {
-            }
-            // TODO: remove
-            if text.range(of: "EF6") != nil {
+            let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
+            let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.characters.count))
+            if (match != nil) {
                 self.dataHolder = ListDataHolder(data:Observable.just(self.cars.filter({ (car) -> Bool in
-                    return car.plate?.contains(text) ?? false
+                    return car.plate?.lowercased().contains(text.lowercased()) ?? false
                 })).structured())
                 self.selection.execute(.reload)
             } else {
