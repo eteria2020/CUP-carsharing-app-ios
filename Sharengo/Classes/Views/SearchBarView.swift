@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Boomerang
 import Action
+import DeviceKit
 
 class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_background: UIView!
@@ -72,6 +73,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             .subscribe(onNext: {[weak self] (speechInProgress) in
                 DispatchQueue.main.async {
                     if speechInProgress {
+                        self?.txt_search.becomeFirstResponder()
+                        self?.updateCollectionView(show: true)
                         self?.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophoneSpeechInProgress.value
                     } else {
                         self?.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophone.value
@@ -83,6 +86,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
                 DispatchQueue.main.async {
                     self?.txt_search.text = speechTransition ?? ""
                     if speechTransition != nil && self?.viewModel?.speechInProgress.value == true {
+                        self?.viewModel?.stopRequest()
                         self?.viewModel?.reloadResults(text: speechTransition ?? "")
                     }
                 }
@@ -98,6 +102,18 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
                 }
             }).addDisposableTo(self.disposeBag)
         self.btn_microphone.rx.bind(to: viewModel.selection, input: .dictated)
+        switch Device().diagonal {
+        case 3.5:
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 115
+        case 4:
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 198
+        case 4.7:
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 285
+        case 5.5:
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 335
+        default:
+            break
+        }
     }
     
     fileprivate func loadViewFromNib() -> UIView {
@@ -133,12 +149,12 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     func updateCollectionView(show: Bool) {
-        // TODO: ???
         if show {
             DispatchQueue.main.async {
                 self.collectionView.isHidden = false
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
+                self.collectionView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 10), animated: false)
             }
         } else {
             DispatchQueue.main.async {
@@ -180,7 +196,9 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        let newSize = CGSize(width: size.width, height: max(70, size.height))
+        return newSize
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -210,8 +228,14 @@ extension SearchBarView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if self.viewModel?.speechInProgress.value == true && self.viewModel?.itemSelected == false {
+            self.viewModel?.selection.execute(.dictated)
+        }
         if self.viewModel?.itemSelected == false {
             self.viewModel?.speechTranscription.value = ""
+            if #available(iOS 10.0, *) {
+                self.viewModel?.speechController.speechTranscription.value = ""
+            }
             self.viewModel?.getHistoryAndFavorites()
         }
         self.updateCollectionView(show: false)

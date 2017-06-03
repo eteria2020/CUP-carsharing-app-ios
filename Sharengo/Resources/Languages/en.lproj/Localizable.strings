@@ -22,6 +22,7 @@
 "alert_searchBarNotAvailable" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
 "lbl_searchBarNoFavorites" = "Nessun preferito\nmemorizzali nella sezione impostazioni";
 "lbl_searchBarPlate" = "%@\nTarga Share'ngo";
+"lcl_searchBarSpeechRecognizer" = "it-IT";
 
 // SearchCars
 "alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
@@ -36,7 +37,7 @@
 "lbl_carPopupDistance_mt" = "%.3d mt di distanza";
 "lbl_carPopupWalkingDistance_h" = "%d ore a piedi";
 "lbl_carPopupWalkingDistance_m" = "%d minuti a piedi";
-"lbl_carPopupWalkingDistance_h_m" = "%d:%@ ore a piedi";
+"lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Sharen'go ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 "alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren’go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";

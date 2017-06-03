@@ -35,12 +35,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             return
         }
         self.viewModel = viewModel
-        viewModel.selection.elements.subscribe(onNext:{ selection in
-            switch selection {
-            case .viewModel(let viewModel):
-                Router.from(self,viewModel: viewModel).execute()
-            }
-        }).addDisposableTo(self.disposeBag)
         viewModel.array_annotationsToAdd.asObservable()
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {
@@ -71,7 +65,17 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
+            case .home:
+                Router.back(self!)
+                self?.view_searchBar.endEditing(true)
+                self?.closeCarPopup()
+            case .menu:
+                print("Open menu")
+                self?.view_searchBar.endEditing(true)
+                self?.closeCarPopup()
+                break
             default:
+                break
                 self?.view_searchBar.endEditing(true)
                 self?.closeCarPopup()
             }

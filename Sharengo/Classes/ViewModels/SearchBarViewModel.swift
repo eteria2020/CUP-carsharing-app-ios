@@ -11,6 +11,7 @@ import RxSwift
 import Boomerang
 import Action
 import ReachabilitySwift
+import CoreLocation
 
 enum SearchBarSelectionInput: SelectionInput {
     case item(IndexPath)
@@ -94,6 +95,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                         self.speechInProgress.value = false
                         self.speechController.manageRecording()
                     } else {
+                        self.speechController.speechTranscription.value = self.speechTranscription.value
                         self.speechInProgress.value = true
                         self.speechController.requestSpeechAuthorization()
                         self.speechController.speechInProgress.asObservable()
@@ -105,16 +107,18 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                         self.speechController.speechTranscription.asObservable()
                             .subscribe(onNext: {[weak self] (speechTransition) in
                                 DispatchQueue.main.async {
+                                    self?.itemSelected = false
                                     self?.speechTranscription.value = speechTransition ?? ""
                                 }
                             }).addDisposableTo(self.disposeBag)
                         self.speechController.speechError.asObservable()
-                            .subscribe(onNext: { (error) in
+                            .subscribe(onNext: {[weak self] (error) in
                                 DispatchQueue.main.async {
+                                    self?.itemSelected = false
                                     if let error = error {
-                                        self.speechInProgress.value = false
+                                        self?.speechInProgress.value = false
                                         if error.hideButton() {
-                                            self.hideButton.value = true
+                                            self?.hideButton.value = true
                                         }
                                         if error != .empty {
                                             if error.showSettings() == false {
@@ -155,6 +159,14 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                             self.cars = cars.filter({ (car) -> Bool in
                                 return car.status == .operative
                             })
+                            for car in self.cars {
+                                let locationController = LocationController.shared
+                                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
+                                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                                    }
+                                }
+                            }
                         }
                     }
                 default:

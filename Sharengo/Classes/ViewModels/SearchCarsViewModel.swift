@@ -15,16 +15,7 @@ import Moya
 import Gloss
 import ReachabilitySwift
 
-// TODO: ???
-enum SearchCarSelectionInput: SelectionInput {
-    case item(IndexPath)
-}
-
-enum SearchCarSelectionOutput: SelectionOutput {
-    case viewModel(ViewModelType)
-}
-
-final class SearchCarsViewModel: ViewModelTypeSelectable {
+final class SearchCarsViewModel: ViewModelType {
     fileprivate var dic_carAnnotations: [String:CarAnnotation] = [:]
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var resultsDispose: DisposeBag?
@@ -34,10 +25,6 @@ final class SearchCarsViewModel: ViewModelTypeSelectable {
     
     var array_annotationsToAdd: Variable<[CarAnnotation]> = Variable([])
     var array_annotationsToRemove: Variable<[CarAnnotation]> = Variable([])
-    
-    lazy var selection:Action<SearchCarSelectionInput,SearchCarSelectionOutput> = Action { input in
-        return .empty()
-    }
     
     init() {
     }

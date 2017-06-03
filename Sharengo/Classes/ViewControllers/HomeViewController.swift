@@ -41,5 +41,6 @@ class HomeViewController : UIViewController, ViewModelBindable {
         self.view_searchCar.backgroundColor = Color.homeSearchCarBackground.value
         self.view_searchCar.layer.cornerRadius = self.view_searchCar.frame.size.width/2
         self.view_searchCar.layer.masksToBounds = true
+        self.btn_searchCar.setImage(self.btn_searchCar.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
     }
 }

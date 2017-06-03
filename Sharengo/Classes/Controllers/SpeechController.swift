@@ -90,7 +90,7 @@ enum SpeechErrorType {
 class SpeechController: NSObject
 {
     // TODO: ???
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "it-IT"))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "lcl_searchBarSpeechRecognizer".localized()))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
@@ -163,6 +163,7 @@ class SpeechController: NSObject
     
     func manageRecording() {
         if self.audioEngine.isRunning {
+            self.speechInProgress.value = false
             // Terminiamo l'ascolto
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
@@ -199,8 +200,10 @@ class SpeechController: NSObject
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             var isFinal = false
             if result != nil {
-                self.speechTranscription.value = result?.bestTranscription.formattedString ?? nil
                 isFinal = (result?.isFinal)!
+                if self.speechInProgress.value == true {
+                    self.speechTranscription.value = result?.bestTranscription.formattedString ?? nil
+                }
             }
             if error != nil || isFinal {
                 self.audioEngine.stop()

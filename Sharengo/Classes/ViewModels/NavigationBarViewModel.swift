@@ -37,6 +37,8 @@ public enum NavigationBarInput: SelectionInput {
 
 public enum NavigationBarOutput: SelectionInput {
     case empty
+    case home
+    case menu
 }
 
 final class NavigationBarViewModel: ViewModelTypeSelectable {
@@ -52,13 +54,10 @@ final class NavigationBarViewModel: ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .home:
-                print("Go to home")
-                break
+                return .just(.home)
             case .menu:
-                print("Open menu")
-                break
+                return .just(.menu)
             }
-            return .just(.empty)
         }
     }
 }

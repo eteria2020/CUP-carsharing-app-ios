@@ -25,6 +25,11 @@ struct Router : RouterType {
         _ = source.navigationController?.popToRootViewController(animated: true)
     }
     
+    public static func back<Source>(_ source:Source) where Source: UIViewController{
+        print(source.navigationController)
+        _ = source.navigationController?.popViewController(animated: true)
+    }
+    
     public static func dismiss<Source>(_ source:Source) where Source: UIViewController{
         _ = source.dismiss(animated: true, completion: nil)
     }
