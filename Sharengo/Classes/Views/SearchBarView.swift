@@ -198,8 +198,8 @@ extension SearchBarView: UITextFieldDelegate {
             if self.viewModel?.itemSelected == false {
                 self.viewModel?.speechTranscription.value = ""
                 self.viewModel?.getHistoryAndFavorites()
-                self.updateCollectionView(show: false)
             }
+            self.updateCollectionView(show: false)
             textField.resignFirstResponder()
             return false
         }
@@ -213,7 +213,7 @@ extension SearchBarView: UITextFieldDelegate {
         if self.viewModel?.itemSelected == false {
             self.viewModel?.speechTranscription.value = ""
             self.viewModel?.getHistoryAndFavorites()
-            self.updateCollectionView(show: false)
         }
+        self.updateCollectionView(show: false)
     }
 }
