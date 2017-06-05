@@ -16,16 +16,14 @@ import Gloss
 import ReachabilitySwift
 
 final class SearchCarsViewModel: ViewModelType {
-    fileprivate var dic_carAnnotations: [String:CarAnnotation] = [:]
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var oldNearestCar: Car?
     fileprivate var nearestCar: Car?
     fileprivate var cars: [Car] = []
     
-    var array_annotationsToAdd: Variable<[CarAnnotation]> = Variable([])
-    var array_annotationsToRemove: Variable<[CarAnnotation]> = Variable([])
-    
+    var array_annotations: Variable<[CarAnnotation]> = Variable([])
+
     init() {
     }
     
@@ -33,12 +31,7 @@ final class SearchCarsViewModel: ViewModelType {
     
     func resetCars() {
         self.cars.removeAll()
-        self.array_annotationsToAdd.value = []
-        var annotationsToRemove: [CarAnnotation] = []
-        self.dic_carAnnotations.forEach({ (key, value) in
-            annotationsToRemove.append(value)
-        })
-        self.array_annotationsToRemove.value = annotationsToRemove
+        self.array_annotations.value = []
     }
     
     func stopRequest() {
@@ -75,8 +68,7 @@ final class SearchCarsViewModel: ViewModelType {
                         })
                         dialog.allowTouchOutsideToDismiss = false
                         dialog.show()
-                        self.cars.removeAll()
-                        self.manageAnnotations()
+                        self.resetCars()
                     }
                 default:
                     break
@@ -86,9 +78,7 @@ final class SearchCarsViewModel: ViewModelType {
     
     func manageAnnotations() {
         self.nearestCar = nil
-        var annotationsToAdd: [CarAnnotation] = []
-        var annotationsToRemove: [CarAnnotation] = []
-        var dic_carAnnotationsKeys = Array(dic_carAnnotations.keys)
+        var annotations: [CarAnnotation] = []
         // Distance
         for car in self.cars {
             let locationController = LocationController.shared
@@ -111,38 +101,13 @@ final class SearchCarsViewModel: ViewModelType {
         self.nearestCar?.nearest = true
         // Annotations
         for car in self.cars {
-            if let key = car.plate {
-                if key == oldNearestCar?.plate || key == nearestCar?.plate {
-                    if let coordinate = car.location?.coordinate {
-                        let annotation = CarAnnotation()
-                        annotation.coordinate = coordinate
-                        annotation.car = car
-                        annotationsToAdd.append(annotation)
-                        if let annotation = dic_carAnnotations[key] {
-                            annotationsToRemove.append(annotation)
-                            dic_carAnnotationsKeys.remove(key)
-                        }
-                        self.dic_carAnnotations[key] = annotation
-                    }
-                } else if dic_carAnnotationsKeys.contains(key) {
-                    dic_carAnnotationsKeys.remove(key)
-                } else if let coordinate = car.location?.coordinate {
-                    let annotation = CarAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.car = car
-                    annotationsToAdd.append(annotation)
-                    self.dic_carAnnotations[key] = annotation
-                }
+            if let coordinate = car.location?.coordinate {
+                let annotation = CarAnnotation()
+                annotation.coordinate = coordinate
+                annotation.car = car
+                annotations.append(annotation)
             }
         }
-        for key in dic_carAnnotationsKeys {
-            if let annotation = dic_carAnnotations[key] {
-                annotationsToRemove.append(annotation)
-                self.dic_carAnnotations.removeValue(forKey: key)
-            }
-        }
-        self.array_annotationsToAdd.value = annotationsToAdd
-        self.array_annotationsToRemove.value = annotationsToRemove
-        self.oldNearestCar = self.nearestCar
+        self.array_annotations.value = annotations
     }
 }

@@ -73,6 +73,9 @@ enum Color {
     // Home
     case homeSearchCarBackground
     
+    // SearchCars
+    case searchCarsClusterLabel
+    
     // SearchBar
     case searchBarBackground
     case searchBarBackgroundMicrophone
@@ -110,6 +113,9 @@ enum Color {
                 return ColorBrand.clear.value
             // Home
             case .homeSearchCarBackground:
+                return ColorBrand.green.value
+            // SearchCars
+            case .searchCarsClusterLabel:
                 return ColorBrand.green.value
             // SearchBar
             case .searchBarBackground:

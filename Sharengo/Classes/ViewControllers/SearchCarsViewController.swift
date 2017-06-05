@@ -26,6 +26,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate var checkedUserPosition: Bool = false
     fileprivate let carPopupDistanceOpenDoors: Int = 50
+    fileprivate let clusteringManager = FBClusteringManager()
     var viewModel: SearchCarsViewModel?
     
     // MARK: - ViewModel methods
@@ -35,17 +36,20 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             return
         }
         self.viewModel = viewModel
-        viewModel.array_annotationsToAdd.asObservable()
+        viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {
-                    self?.mapView.addAnnotations(array)
-                    self?.setUpdateButtonAnimated(false)
-                }
-            }).addDisposableTo(disposeBag)
-        viewModel.array_annotationsToRemove.asObservable()
-            .subscribe(onNext: {[weak self] (array) in
-                DispatchQueue.main.async {
-                    self?.mapView.removeAnnotations(array)
+                    self?.clusteringManager.removeAll()
+                    self?.clusteringManager.add(annotations: array)
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
+                        let mapRectWidth = self?.mapView?.visibleMapRect.size.width
+                        let scale = mapBoundsWidth / mapRectWidth!
+                        let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
+                        DispatchQueue.main.async {
+                            self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
+                        }
+                    }
                     self?.setUpdateButtonAnimated(false)
                 }
             }).addDisposableTo(disposeBag)
@@ -53,6 +57,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             .subscribe(onNext:{
                 self.closeCarPopup()
             }).addDisposableTo(disposeBag)
+        self.clusteringManager.delegate = self
     }
    
     // MARK: - View methods
@@ -426,30 +431,58 @@ extension SearchCarsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
         self.getResults()
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+            let mapRectWidth = self.mapView.visibleMapRect.size.width
+            let scale = mapBoundsWidth / mapRectWidth
+            
+            let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
+            
+            DispatchQueue.main.async {
+                self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
+            }
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationIdentifier = "AnnotationIdentifier"
-        var annotationView: MKAnnotationView?
-        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
-            annotationView = dequeuedAnnotationView
-            annotationView?.annotation = annotation
-        } else {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-        }
-        if let annotationView = annotationView {
-            if let carAnnotation = annotationView.annotation as? CarAnnotation {
-                annotationView.image = carAnnotation.image
-            } else if annotationView.annotation is MKUserLocation {
-                annotationView.image = UIImage(named: "ic_user")
+        var reuseId = ""
+        if annotation is FBAnnotationCluster {
+            reuseId = "Cluster"
+            var clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            if clusterView == nil {
+                clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, configuration: FBAnnotationClusterViewConfiguration.custom())
+            } else {
+                clusterView?.annotation = annotation
             }
+            return clusterView
+        } else {
+            let annotationIdentifier = "AnnotationIdentifier"
+            var annotationView: MKAnnotationView?
+            if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+                annotationView = dequeuedAnnotationView
+                annotationView?.annotation = annotation
+            } else {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            }
+            if let annotationView = annotationView {
+                if let carAnnotation = annotationView.annotation as? CarAnnotation {
+                    annotationView.image = carAnnotation.image
+                } else if annotationView.annotation is MKUserLocation {
+                    annotationView.image = UIImage(named: "ic_user")
+                }
+            }
+            return annotationView
         }
-        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard !(view.annotation is MKUserLocation) else { return }
-        if let carAnnotation = view.annotation as? CarAnnotation {
+        if let cluster = view.annotation as? FBAnnotationCluster {
+            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.2, mapView.region.span.longitudeDelta * 0.2)
+            let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+        } else if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
                 if let location = car.location {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.005, longitude: location.coordinate.longitude)
@@ -469,5 +502,34 @@ extension SearchCarsViewController: MKMapViewDelegate {
                 })
             }
         }
+    }
+}
+
+extension SearchCarsViewController: FBClusteringManagerDelegate {
+    func cellSizeFactor(forCoordinator coordinator: FBClusteringManager) -> CGFloat {
+        return 1.0
+    }
+}
+
+//	MARK: - FBAnnotationClusterViewConfiguration
+
+extension FBAnnotationClusterViewConfiguration {
+    public static func custom() -> FBAnnotationClusterViewConfiguration {
+        var smallTemplate = FBAnnotationClusterTemplate(range: Range(uncheckedBounds: (lower: 0, upper: 6)), displayMode: .Image(imageName: "ic_cluster"))
+        smallTemplate.borderWidth = 0
+        smallTemplate.fontName = Font.searchCarsClusterLabel.value.fontName
+        smallTemplate.fontSize = Font.searchCarsClusterLabel.value.pointSize
+        smallTemplate.labelColor = Color.searchCarsClusterLabel.value
+        var mediumTemplate = FBAnnotationClusterTemplate(range: Range(uncheckedBounds: (lower: 6, upper: 15)), displayMode: .Image(imageName: "ic_cluster"))
+        mediumTemplate.borderWidth = 0
+        mediumTemplate.fontName = Font.searchCarsClusterLabel.value.fontName
+        mediumTemplate.fontSize = Font.searchCarsClusterLabel.value.pointSize
+        mediumTemplate.labelColor = Color.searchCarsClusterLabel.value
+        var largeTemplate = FBAnnotationClusterTemplate(range: nil, displayMode: .Image(imageName: "ic_cluster"))
+        largeTemplate.borderWidth = 0
+        largeTemplate.fontName = Font.searchCarsClusterLabel.value.fontName
+        largeTemplate.fontSize = Font.searchCarsClusterLabel.value.pointSize
+        largeTemplate.labelColor = Color.searchCarsClusterLabel.value
+        return FBAnnotationClusterViewConfiguration(templates: [smallTemplate, mediumTemplate], defaultTemplate: largeTemplate)
     }
 }

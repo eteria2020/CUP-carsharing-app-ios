@@ -42,6 +42,17 @@
 		4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
 		4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178651ED63C4D00EBD32B /* UIImage.swift */; };
 		4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178661ED63C4D00EBD32B /* ZAlertView.swift */; };
+		4DA554451EE55284001627E7 /* FBAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5543A1EE55284001627E7 /* FBAnnotation.swift */; };
+		4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5543B1EE55284001627E7 /* FBAnnotationCluster.swift */; };
+		4DA554471EE55284001627E7 /* FBAnnotationClusterTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5543C1EE55284001627E7 /* FBAnnotationClusterTemplate.swift */; };
+		4DA554481EE55284001627E7 /* FBAnnotationClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5543D1EE55284001627E7 /* FBAnnotationClusterView.swift */; };
+		4DA554491EE55284001627E7 /* FBAnnotationClusterViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5543E1EE55284001627E7 /* FBAnnotationClusterViewConfiguration.swift */; };
+		4DA5544A1EE55284001627E7 /* FBBoundingBox+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA5543F1EE55284001627E7 /* FBBoundingBox+MapKit.swift */; };
+		4DA5544B1EE55284001627E7 /* FBBoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554401EE55284001627E7 /* FBBoundingBox.swift */; };
+		4DA5544C1EE55284001627E7 /* FBClusteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554411EE55284001627E7 /* FBClusteringManager.swift */; };
+		4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554421EE55284001627E7 /* FBQuadTree.swift */; };
+		4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554431EE55284001627E7 /* FBQuadTreeNode.swift */; };
+		4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554441EE55284001627E7 /* FBZoomLevel.swift */; };
 		4DC59F991EDADC6200DD658A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC59F981EDADC6200DD658A /* Response.swift */; };
 		4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A01ED3106200906DA0 /* APIController.swift */; };
 		4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
@@ -110,6 +121,18 @@
 		4DA178641ED63C4D00EBD32B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4DA178651ED63C4D00EBD32B /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		4DA178661ED63C4D00EBD32B /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
+		4DA554381EE54EA0001627E7 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		4DA5543A1EE55284001627E7 /* FBAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotation.swift; sourceTree = "<group>"; };
+		4DA5543B1EE55284001627E7 /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationCluster.swift; sourceTree = "<group>"; };
+		4DA5543C1EE55284001627E7 /* FBAnnotationClusterTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationClusterTemplate.swift; sourceTree = "<group>"; };
+		4DA5543D1EE55284001627E7 /* FBAnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationClusterView.swift; sourceTree = "<group>"; };
+		4DA5543E1EE55284001627E7 /* FBAnnotationClusterViewConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationClusterViewConfiguration.swift; sourceTree = "<group>"; };
+		4DA5543F1EE55284001627E7 /* FBBoundingBox+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FBBoundingBox+MapKit.swift"; sourceTree = "<group>"; };
+		4DA554401EE55284001627E7 /* FBBoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBBoundingBox.swift; sourceTree = "<group>"; };
+		4DA554411EE55284001627E7 /* FBClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBClusteringManager.swift; sourceTree = "<group>"; };
+		4DA554421EE55284001627E7 /* FBQuadTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBQuadTree.swift; sourceTree = "<group>"; };
+		4DA554431EE55284001627E7 /* FBQuadTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBQuadTreeNode.swift; sourceTree = "<group>"; };
+		4DA554441EE55284001627E7 /* FBZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBZoomLevel.swift; sourceTree = "<group>"; };
 		4DC59F981EDADC6200DD658A /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Classes/Model/Response.swift; sourceTree = "<group>"; };
 		4DCC70A01ED3106200906DA0 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +273,34 @@
 			path = Classes/Utilities/ZAlertView;
 			sourceTree = "<group>";
 		};
+		4DA554371EE54EA0001627E7 /* Various */ = {
+			isa = PBXGroup;
+			children = (
+				4DA554381EE54EA0001627E7 /* Bridging-Header.h */,
+			);
+			name = Various;
+			path = Classes/Various;
+			sourceTree = "<group>";
+		};
+		4DA554391EE55284001627E7 /* FBAnnotationClusteringSwift */ = {
+			isa = PBXGroup;
+			children = (
+				4DA5543A1EE55284001627E7 /* FBAnnotation.swift */,
+				4DA5543B1EE55284001627E7 /* FBAnnotationCluster.swift */,
+				4DA5543C1EE55284001627E7 /* FBAnnotationClusterTemplate.swift */,
+				4DA5543D1EE55284001627E7 /* FBAnnotationClusterView.swift */,
+				4DA5543E1EE55284001627E7 /* FBAnnotationClusterViewConfiguration.swift */,
+				4DA5543F1EE55284001627E7 /* FBBoundingBox+MapKit.swift */,
+				4DA554401EE55284001627E7 /* FBBoundingBox.swift */,
+				4DA554411EE55284001627E7 /* FBClusteringManager.swift */,
+				4DA554421EE55284001627E7 /* FBQuadTree.swift */,
+				4DA554431EE55284001627E7 /* FBQuadTreeNode.swift */,
+				4DA554441EE55284001627E7 /* FBZoomLevel.swift */,
+			);
+			name = FBAnnotationClusteringSwift;
+			path = Classes/Utilities/FBAnnotationClusteringSwift;
+			sourceTree = "<group>";
+		};
 		4DCD1A491ECDBF7400FC8BF5 = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +340,7 @@
 				4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */,
 				4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */,
 				4D2628F31ED57D7B001C4E38 /* PKCS12.swift */,
+				4DA554391EE55284001627E7 /* FBAnnotationClusteringSwift */,
 				4DA178631ED63C4D00EBD32B /* ZAlertView */,
 			);
 			name = Utilities;
@@ -346,6 +398,7 @@
 				4DCD1AA71ECDC26000FC8BF5 /* Theme */,
 				4DCD1A571ECDBF7400FC8BF5 /* Utilities */,
 				4D36D7BC1ED2EF86005FAEB8 /* Controllers */,
+				4DA554371EE54EA0001627E7 /* Various */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -627,6 +680,7 @@
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
 				4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */,
+				4DA554481EE55284001627E7 /* FBAnnotationClusterView.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
 				4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
@@ -634,10 +688,13 @@
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
+				4DA554471EE55284001627E7 /* FBAnnotationClusterTemplate.swift in Sources */,
 				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
+				4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */,
 				4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */,
 				4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */,
 				4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */,
+				4DA554491EE55284001627E7 /* FBAnnotationClusterViewConfiguration.swift in Sources */,
 				4D3BF1251ED76EAF00E595E7 /* UIView+Extensions.swift in Sources */,
 				4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
@@ -647,6 +704,7 @@
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
 				4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
+				4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
@@ -655,17 +713,23 @@
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
+				4DA554451EE55284001627E7 /* FBAnnotation.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
+				4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
+				4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
+				4DA5544A1EE55284001627E7 /* FBBoundingBox+MapKit.swift in Sources */,
 				4DC59F991EDADC6200DD658A /* Response.swift in Sources */,
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
+				4DA5544C1EE55284001627E7 /* FBClusteringManager.swift in Sources */,
 				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
+				4DA5544B1EE55284001627E7 /* FBBoundingBox.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,
 				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
@@ -741,6 +805,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -785,6 +850,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -806,6 +872,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6065a077-f3d1-45e8-aa58-70e53a340ebd";
 				PROVISIONING_PROFILE_SPECIFIER = "Dedecube Development";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -827,6 +894,7 @@
 				PROVISIONING_PROFILE = "bdde28f0-2c4c-46c8-a46e-eb2cd1ab184f";
 				PROVISIONING_PROFILE_SPECIFIER = "Sharengo Development";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

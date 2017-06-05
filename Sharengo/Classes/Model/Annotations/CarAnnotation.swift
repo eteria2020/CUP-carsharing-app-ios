@@ -8,10 +8,8 @@
 import UIKit
 import MapKit
 
-class CarAnnotation: NSObject, MKAnnotation
+class CarAnnotation: FBAnnotation
 {
-    var coordinate = CLLocationCoordinate2D()
-    var title: String?
     var car:Car?
     lazy var image: UIImage = self.getImage()
     

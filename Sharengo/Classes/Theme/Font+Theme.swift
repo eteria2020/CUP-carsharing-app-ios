@@ -40,6 +40,9 @@ enum Font {
     case alertMessage
     case alertButton
     
+    // SearchCars
+    case searchCarsClusterLabel
+    
     // SearchBar
     case searchBarTextField
     case searchBarTextFieldPlaceholder
@@ -61,6 +64,9 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .alertButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // SearchCars
+            case .searchCarsClusterLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // SearchBar
             case .searchBarTextField:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
