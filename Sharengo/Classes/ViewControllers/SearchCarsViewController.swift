@@ -27,6 +27,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate var checkedUserPosition: Bool = false
     fileprivate let carPopupDistanceOpenDoors: Int = 50
     fileprivate let clusteringManager = FBClusteringManager()
+    fileprivate let clusteringRadius: Double = 35000
+    fileprivate var clusteringInProgress: Bool = false
     var viewModel: SearchCarsViewModel?
     
     // MARK: - ViewModel methods
@@ -39,18 +41,20 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {
-                    self?.clusteringManager.removeAll()
-                    self?.clusteringManager.add(annotations: array)
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
-                        let mapRectWidth = self?.mapView?.visibleMapRect.size.width
-                        let scale = mapBoundsWidth / mapRectWidth!
-                        let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
-                        DispatchQueue.main.async {
-                            self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
+                    if self?.clusteringInProgress == true {
+                        self?.clusteringManager.removeAll()
+                        self?.clusteringManager.add(annotations: array)
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
+                            let mapRectWidth = self?.mapView?.visibleMapRect.size.width
+                            let scale = mapBoundsWidth / mapRectWidth!
+                            let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
+                            DispatchQueue.main.async {
+                                self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
+                            }
                         }
+                        self?.setUpdateButtonAnimated(false)
                     }
-                    self?.setUpdateButtonAnimated(false)
                 }
             }).addDisposableTo(disposeBag)
         self.btn_closeCarPopup.rx.tap.asObservable()
@@ -158,7 +162,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 }
             case .car(let car):
                 if let location = car.location {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.005, longitude: location.coordinate.longitude)
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.001, longitude: location.coordinate.longitude)
                     self?.centerMap(on: newLocation)
                 }
                 self?.view_carPopup.updateWithCar(car: car)
@@ -322,13 +326,44 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate func getResults() {
         self.stopRequest()
         if let radius = self.getRadius() {
-            if let mapView = self.mapView {
-                self.setUpdateButtonAnimated(true)
-                self.viewModel?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
-                return
+            print(radius)
+            print("-----")
+            if radius < clusteringRadius {
+                self.clusteringInProgress = true
+                if let mapView = self.mapView {
+                    self.setUpdateButtonAnimated(true)
+                    self.viewModel?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
+                    return
+                }
+            } else {
+                self.clusteringInProgress = false
+                self.addCityAnnotations()
             }
         }
         self.viewModel?.resetCars()
+    }
+    
+    fileprivate func addCityAnnotations() {
+        self.clusteringManager.removeAll()
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        var annotationsArray: [CityAnnotation] = []
+        let milanAnnotation = CityAnnotation()
+        milanAnnotation.coordinate = CLLocationCoordinate2D(latitude: 45.465454, longitude: 9.186515)
+        milanAnnotation.city = .milan
+        annotationsArray.append(milanAnnotation)
+        let romeAnnotation = CityAnnotation()
+        romeAnnotation.coordinate = CLLocationCoordinate2D(latitude: 41.902783, longitude: 12.496365)
+        romeAnnotation.city = .rome
+        annotationsArray.append(romeAnnotation)
+        let modenaAnnotation = CityAnnotation()
+        modenaAnnotation.coordinate = CLLocationCoordinate2D(latitude: 44.647128, longitude: 10.925226)
+        modenaAnnotation.city = .modena
+        annotationsArray.append(modenaAnnotation)
+        let firenceAnnotation = CityAnnotation()
+        firenceAnnotation.coordinate = CLLocationCoordinate2D(latitude: 43.769560, longitude: 11.255813)
+        firenceAnnotation.city = .firence
+        annotationsArray.append(firenceAnnotation)
+        self.mapView.addAnnotations(annotationsArray)
     }
 
     // MARK: - Map methods
@@ -377,7 +412,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func centerMap(on position: CLLocation) {
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.01, 0.01)
         let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
         let region = MKCoordinateRegionMake(location, span)
         self.mapView?.setRegion(region, animated: true)
@@ -431,16 +466,15 @@ extension SearchCarsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
         self.getResults()
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            let mapBoundsWidth = Double(self.mapView.bounds.size.width)
-            let mapRectWidth = self.mapView.visibleMapRect.size.width
-            let scale = mapBoundsWidth / mapRectWidth
-            
-            let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
-            
-            DispatchQueue.main.async {
-                self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
+        if self.clusteringInProgress {
+            DispatchQueue.global(qos: .userInitiated).async {
+                let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+                let mapRectWidth = self.mapView.visibleMapRect.size.width
+                let scale = mapBoundsWidth / mapRectWidth
+                let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
+                DispatchQueue.main.async {
+                    self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
+                }
             }
         }
     }
@@ -468,6 +502,8 @@ extension SearchCarsViewController: MKMapViewDelegate {
             if let annotationView = annotationView {
                 if let carAnnotation = annotationView.annotation as? CarAnnotation {
                     annotationView.image = carAnnotation.image
+                } else if let cityAnnotation = annotationView.annotation as? CityAnnotation {
+                    annotationView.image = cityAnnotation.image
                 } else if annotationView.annotation is MKUserLocation {
                     annotationView.image = UIImage(named: "ic_user")
                 }
@@ -482,10 +518,14 @@ extension SearchCarsViewController: MKMapViewDelegate {
             let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.2, mapView.region.span.longitudeDelta * 0.2)
             let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
             mapView.setRegion(region, animated: true)
+        } else if let cityAnnotation = view.annotation as? CityAnnotation {
+            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.03, mapView.region.span.longitudeDelta * 0.03)
+            let region = MKCoordinateRegion(center: cityAnnotation.coordinate, span: span)
+            mapView.setRegion(region, animated: true)
         } else if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
                 if let location = car.location {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.005, longitude: location.coordinate.longitude)
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.001, longitude: location.coordinate.longitude)
                     self.centerMap(on: newLocation)
                 }
                 self.view_carPopup.updateWithCar(car: car)

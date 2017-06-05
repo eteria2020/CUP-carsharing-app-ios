@@ -53,6 +53,7 @@
 		4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554421EE55284001627E7 /* FBQuadTree.swift */; };
 		4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554431EE55284001627E7 /* FBQuadTreeNode.swift */; };
 		4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554441EE55284001627E7 /* FBZoomLevel.swift */; };
+		4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554501EE56337001627E7 /* CityAnnotation.swift */; };
 		4DC59F991EDADC6200DD658A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC59F981EDADC6200DD658A /* Response.swift */; };
 		4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A01ED3106200906DA0 /* APIController.swift */; };
 		4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
@@ -133,6 +134,7 @@
 		4DA554421EE55284001627E7 /* FBQuadTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBQuadTree.swift; sourceTree = "<group>"; };
 		4DA554431EE55284001627E7 /* FBQuadTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBQuadTreeNode.swift; sourceTree = "<group>"; };
 		4DA554441EE55284001627E7 /* FBZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBZoomLevel.swift; sourceTree = "<group>"; };
+		4DA554501EE56337001627E7 /* CityAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityAnnotation.swift; sourceTree = "<group>"; };
 		4DC59F981EDADC6200DD658A /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Classes/Model/Response.swift; sourceTree = "<group>"; };
 		4DCC70A01ED3106200906DA0 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -502,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */,
+				4DA554501EE56337001627E7 /* CityAnnotation.swift */,
 			);
 			name = Annotations;
 			path = Classes/Model/Annotations;
@@ -704,6 +707,7 @@
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
 				4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
+				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
 				4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
