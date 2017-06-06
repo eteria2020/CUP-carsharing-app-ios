@@ -29,6 +29,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate let clusteringManager = FBClusteringManager()
     fileprivate let clusteringRadius: Double = 35000
     fileprivate var clusteringInProgress: Bool = false
+    fileprivate var selectedCar: Car?
     var viewModel: SearchCarsViewModel?
     
     // MARK: - ViewModel methods
@@ -54,6 +55,12 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                             }
                         }
                         self?.setUpdateButtonAnimated(false)
+                    }
+                    if let car = self?.selectedCar {
+                        self?.view_carPopup.updateWithCar(car: car)
+                    }
+                    if let allCars = self?.viewModel?.allCars {
+                        self?.view_searchBar.viewModel?.allCars = allCars
                     }
                 }
             }).addDisposableTo(disposeBag)
@@ -151,7 +158,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 self?.view_searchBar.updateCollectionView(show: true)
             case .address(let address):
                 if let location = address.location {
-                    self?.centerMap(on: location)
+                    let span = MKCoordinateSpanMake(0.01, 0.01)
+                    self?.centerMap(on: location, span: span)
                 }
                 self?.view_searchBar.updateCollectionView(show: false)
                 if self?.view_searchBar.viewModel?.speechInProgress.value == true {
@@ -162,8 +170,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 }
             case .car(let car):
                 if let location = car.location {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.001, longitude: location.coordinate.longitude)
-                    self?.centerMap(on: newLocation)
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+                    let span = MKCoordinateSpanMake(0.001, 0.001)
+                    self?.centerMap(on: newLocation, span: span)
                 }
                 self?.view_carPopup.updateWithCar(car: car)
                 self?.view.layoutIfNeeded()
@@ -194,7 +203,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             if locationController.isAuthorized, let userLocation = locationController.currentLocation {
                 self?.mapView?.showsUserLocation = true
                 self?.setUserPositionButtonVisible(true)
-                self?.centerMap(on: userLocation)
+                let span = MKCoordinateSpanMake(0.01, 0.01)
+                self?.centerMap(on: userLocation, span: span)
             }
         }
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.didUnAuthorized) { [weak self] _ in
@@ -244,6 +254,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     fileprivate func closeCarPopup() {
         UIView.animate(withDuration: 0.2, animations: {
+            self.selectedCar = nil
             self.view_carPopup.alpha = 0.0
             self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
             self.view.layoutIfNeeded()
@@ -326,8 +337,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate func getResults() {
         self.stopRequest()
         if let radius = self.getRadius() {
-            print(radius)
-            print("-----")
             if radius < clusteringRadius {
                 self.clusteringInProgress = true
                 if let mapView = self.mapView {
@@ -384,7 +393,8 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         if locationController.isAuthorized, let userLocation = locationController.currentLocation {
             self.mapView?.showsUserLocation = true
             self.setUserPositionButtonVisible(true)
-            self.centerMap(on: userLocation)
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+            self.centerMap(on: userLocation, span: span)
             self.checkedUserPosition = true
         } else if !UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
                 locationController.requestLocationAuthorization(handler: { (status) in
@@ -405,14 +415,14 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate func centerMap() {
         let locationController = LocationController.shared
         if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-            self.centerMap(on: userLocation)
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+            self.centerMap(on: userLocation, span: span)
         } else {
             self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
         }
     }
     
-    fileprivate func centerMap(on position: CLLocation) {
-        let span = MKCoordinateSpanMake(0.01, 0.01)
+    fileprivate func centerMap(on position: CLLocation, span: MKCoordinateSpan) {
         let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
         let region = MKCoordinateRegionMake(location, span)
         self.mapView?.setRegion(region, animated: true)
@@ -525,8 +535,9 @@ extension SearchCarsViewController: MKMapViewDelegate {
         } else if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
                 if let location = car.location {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.001, longitude: location.coordinate.longitude)
-                    self.centerMap(on: newLocation)
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+                    let span = MKCoordinateSpanMake(0.001, 0.001)
+                    self.centerMap(on: newLocation, span: span)
                 }
                 self.view_carPopup.updateWithCar(car: car)
                 self.view.layoutIfNeeded()
@@ -539,6 +550,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
                     self.view_carPopup.alpha = 1.0
                     self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                     self.view.layoutIfNeeded()
+                    self.selectedCar = car
                 })
             }
         }

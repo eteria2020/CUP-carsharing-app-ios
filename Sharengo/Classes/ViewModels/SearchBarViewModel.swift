@@ -39,7 +39,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var nominatimApiController: NominatimAPIController = NominatimAPIController()
     fileprivate let numberOfResults: Int = 15
-    fileprivate var cars: [Car] = []
+    var allCars: [Car] = []
     
     lazy var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
         return .empty()
@@ -149,30 +149,6 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
             }
             return .just(.empty)
         }
-        self.apiController.searchCars()
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    if response.status == 200, let data = response.data {
-                        if let cars = [Car].from(jsonArray: data) {
-                            self.cars = cars.filter({ (car) -> Bool in
-                                return car.status == .operative
-                            })
-                            for car in self.cars {
-                                let locationController = LocationController.shared
-                                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-                                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                default:
-                    break
-                }
-            }.addDisposableTo(self.disposeBag)
         self.getHistoryAndFavorites()
     }
     
@@ -198,7 +174,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
             let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
             let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.characters.count))
             if (match != nil) {
-                self.dataHolder = ListDataHolder(data:Observable.just(self.cars.filter({ (car) -> Bool in
+                self.dataHolder = ListDataHolder(data:Observable.just(self.allCars.filter({ (car) -> Bool in
                     return car.plate?.lowercased().contains(text.lowercased()) ?? false
                 })).structured())
                 self.selection.execute(.reload)
