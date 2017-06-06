@@ -83,6 +83,8 @@ public class Car: ModelType, Decodable {
     var location: CLLocation?
     var distance: CLLocationDistance?
     var nearest: Bool = false
+    var booked: Bool = false
+    var opened: Bool = false
     lazy var type: String = self.getType()
     var address: Variable<String?> = Variable(nil)
     

@@ -39,8 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate func setupAlert() {
         UserDefaults.standard.set(false, forKey: "alertShowed")
-        ZAlertView.positiveColor = Color.alerButtonsBackground.value
-        ZAlertView.negativeColor = Color.alerButtonsBackground.value
+        ZAlertView.positiveColor = Color.alertButtonsPositiveBackground.value
+        ZAlertView.negativeColor = Color.alertButtonsPositiveBackground.value
         ZAlertView.backgroundColor = Color.alertBackground.value
         ZAlertView.messageColor = Color.alertMessage.value
         ZAlertView.buttonTitleColor = Color.alertButton.value

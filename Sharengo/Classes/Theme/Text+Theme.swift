@@ -34,6 +34,11 @@ enum TextStyle: String, TextStyleType {
     case carPopupDistance = "carPopupDistance"
     case carPopupWalkingDistance = "carPopupWalkingDistance"
     
+    // CarBookingPopup
+    case carBookingPopupPin = "carBookingPopupPin"
+    case carBookingPopupInfo = "carBookingPopupInfo"
+    case carBookingPopupTime = "carBookingPopupTime"
+    
     static var all:[TextStyle] {
         return [
             // SearchBar
@@ -46,7 +51,11 @@ enum TextStyle: String, TextStyleType {
             .carPopupAddressPlaceholder,
             .carPopupAddress,
             .carPopupDistance,
-            .carPopupWalkingDistance
+            .carPopupWalkingDistance,
+            // CarBookingPopup
+            .carBookingPopupPin,
+            .carBookingPopupInfo,
+            .carBookingPopupTime
         ]
     }
     
@@ -72,6 +81,16 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.left))
             case .carPopupAddress, .carPopupDistance, .carPopupWalkingDistance:
                 return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.left))
+            // CarBookingPopup
+            case .carBookingPopupPin:
+                return StringStyle(.font(Font.carBookingPopupPin.value), .color(Color.carBookingPopupPin.value), .alignment(.center))
+            case .carBookingPopupInfo:
+                let statusStyle = StringStyle(.font(Font.carBookingPopupStatus.value), .color(Color.carBookingPopupStatus.value), .alignment(.center))
+                let boldStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle), .style("status", statusStyle)]))
+            case .carBookingPopupTime:
+                let boldStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.left))
+                return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.left),.xmlRules([.style("bold", boldStyle)]))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

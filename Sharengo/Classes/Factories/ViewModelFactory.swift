@@ -35,12 +35,18 @@ struct ViewModelFactory {
         return CarPopupViewModel()
     }
     
+    static func carBookingPopup() -> ViewModelType {
+        return CarBookingPopupViewModel()
+    }
+    
     static func searchBarItem(fromModel model:Address) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }
+    
     static func searchBarItem(fromModel model:Car) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }
+    
     static func searchBarItem(fromModel model:Favorite) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }

@@ -31,8 +31,7 @@ enum City {
     }
 }
 
-class CityAnnotation: FBAnnotation
-{
+class CityAnnotation: FBAnnotation {
     var city: City = .empty
     lazy var image: UIImage = self.getImage()
     

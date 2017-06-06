@@ -9,15 +9,16 @@
 import UIKit
 
 public enum ButtonStyle {
-    case roundedButton
+    case roundedButton(UIColor)
 }
 
 public extension UIButton {
     func style(_ style:ButtonStyle, title: String) {
         switch style {
-        case .roundedButton:
+        case .roundedButton(let backgroundColor):
+            // TODO: sostituire le variabili relative a ZAlertView
             self.backgroundColor = .clear
-            self.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: self.frame.size), for: .normal)
+            self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
             self.layer.cornerRadius = ZAlertView.cornerRadius
             self.clipsToBounds = true
             self.setTitle(title, for: UIControlState())

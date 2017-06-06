@@ -8,8 +8,7 @@
 import UIKit
 import MapKit
 
-class CarAnnotation: FBAnnotation
-{
+class CarAnnotation: FBAnnotation {
     var car:Car?
     lazy var image: UIImage = self.getImage()
     
@@ -20,6 +19,9 @@ class CarAnnotation: FBAnnotation
             if car.nearest {
                 // TODO: execute animation
                 return UIImage(named: "ic_auto_vicina")!
+            } else if car.booked {
+                // TODO: execute animation
+                return UIImage(named: "ic_auto_prenotata")!
             }
         }
         return UIImage(named: "ic_auto")!

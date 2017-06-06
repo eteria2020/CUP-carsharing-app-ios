@@ -33,6 +33,7 @@ enum ColorBrand {
     case green
     case black
     case white
+    case lightGray
     case gray
     case clear
 
@@ -47,8 +48,10 @@ enum ColorBrand {
                 return UIColor(red: 27/255.0, green: 35/255.0, blue: 41/255.0, alpha: 1.0)
             case .white:
                 return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
-            case .gray:
+            case .lightGray:
                 return UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1.0)
+            case .gray:
+                return UIColor(hexString: "#b0b0b0")
             case .clear:
                 return UIColor.clear
             }
@@ -59,7 +62,8 @@ enum ColorBrand {
 enum Color {
     // Alert
     case alertBackground
-    case alerButtonsBackground
+    case alertButtonsPositiveBackground
+    case alertButtonsNegativeBackground
     case alertMessage
     case alertButton
     
@@ -90,15 +94,23 @@ enum Color {
     case carPopupType
     case carPopupLabel
     case carPopupAddressPlaceholder
-    
+
+    // CarBookingPopup
+    case carBookingPopupBackground
+    case carBookingPopupPin
+    case carBookingPopupLabel
+    case carBookingPopupStatus
+
     var value: UIColor {
         get {
             switch self {
             // Alert
             case .alertBackground:
                 return ColorBrand.black.value
-            case .alerButtonsBackground:
+            case .alertButtonsPositiveBackground:
                 return ColorBrand.yellow.value
+            case .alertButtonsNegativeBackground:
+                return ColorBrand.gray.value
             case .alertMessage:
                 return ColorBrand.white.value
             case .alertButton:
@@ -134,13 +146,22 @@ enum Color {
                 return UIColor(hexString: "#1C2329").withAlphaComponent(0.95)
             // CarPopup
             case .carPopupBackground:
-                return ColorBrand.gray.value
+                return ColorBrand.lightGray.value
             case .carPopupType:
                 return ColorBrand.black.value
             case .carPopupLabel:
                 return ColorBrand.black.value
             case .carPopupAddressPlaceholder:
                 return ColorBrand.black.value.withAlphaComponent(0.7)
+            // CarBookingPopup
+            case .carBookingPopupBackground:
+                return ColorBrand.clear.value
+            case .carBookingPopupPin:
+                return ColorBrand.yellow.value
+            case .carBookingPopupLabel:
+                return ColorBrand.black.value
+            case .carBookingPopupStatus:
+                return ColorBrand.green.value
             }
         }
     }
