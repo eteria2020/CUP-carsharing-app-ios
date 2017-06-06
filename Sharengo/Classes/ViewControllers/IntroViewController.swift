@@ -10,9 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
+import YYWebImage
 
 class IntroViewController : UIViewController, ViewModelBindable {
-    @IBOutlet fileprivate weak var img_intro: FLAnimatedImageView!
+    @IBOutlet fileprivate weak var img_intro: YYAnimatedImageView!
     
     var viewModel: IntroViewModel?
   
@@ -47,12 +48,21 @@ class IntroViewController : UIViewController, ViewModelBindable {
             }
         }
         */
+//        do {
+//        if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
+//            let data = try Data(contentsOf: url)
+//            img_intro.animatedImage = FLAnimatedImage(animatedGIFData: data)
+//            }
+//        } catch {
+//        }
+        
         do {
-        if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
-            let data = try Data(contentsOf: url)
-            img_intro.animatedImage = FLAnimatedImage(animatedGIFData: data)
+            if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
+                img_intro.yy_imageURL = url
             }
-        } catch {
-        }
+        } catch {}
+
+        
+        
     }
 }

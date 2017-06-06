@@ -6,3 +6,4 @@
 //
 
 #import "FLAnimatedImage.h"
+#import <YYWebImage/YYWebImage.h>
