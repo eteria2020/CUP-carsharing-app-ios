@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarBookingPopupView" customModule="Sharengo" customModuleProvider="target">
             <connections>
-                <outlet property="btn_cancel" destination="hIM-os-7nn" id="3A7-Zo-t5I"/>
+                <outlet property="btn_delete" destination="hIM-os-7nn" id="ADC-hG-uK9"/>
                 <outlet property="btn_open" destination="0y1-aY-MhT" id="b67-ER-nLP"/>
                 <outlet property="icn_time" destination="aLg-CH-6lV" id="tTS-tP-RBc"/>
                 <outlet property="lbl_info" destination="KpP-6T-CZZ" id="SmV-3i-Y48"/>

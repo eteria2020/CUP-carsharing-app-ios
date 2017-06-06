@@ -22,6 +22,7 @@ final class SearchCarsViewModel: ViewModelType {
     fileprivate var nearestCar: Car?
     fileprivate var timerCars: Timer?
     fileprivate var cars: [Car] = []
+    var bookedCar: Car?
     var allCars: [Car] = []
     
     var array_annotations: Variable<[CarAnnotation]> = Variable([])
@@ -64,7 +65,6 @@ final class SearchCarsViewModel: ViewModelType {
                                     }
                                 }
                             }
-                            self.updateNearestCar()
                             self.manageAnnotations()
                             return
                         }
@@ -138,7 +138,7 @@ final class SearchCarsViewModel: ViewModelType {
                 }
             }
         }
-        self.updateNearestCar()
+        self.updateCarProperties()
         var annotations: [CarAnnotation] = []
         for car in self.cars {
             if let coordinate = car.location?.coordinate {
@@ -151,9 +151,17 @@ final class SearchCarsViewModel: ViewModelType {
         self.array_annotations.value = annotations
     }
     
-    func updateNearestCar () {
+    fileprivate func updateCarProperties () {
         self.nearestCar = nil
         for car in self.allCars {
+            car.booked = false
+            car.opened = false
+            if let bookedCar = self.bookedCar {
+                if car.plate == bookedCar.plate {
+                    car.booked = true
+                    car.opened = bookedCar.opened
+                }
+            }
             if self.nearestCar == nil {
                 self.nearestCar = car
             } else if let nearestCar = nearestCar {
@@ -162,6 +170,12 @@ final class SearchCarsViewModel: ViewModelType {
                         self.nearestCar = car
                     }
                 }
+            }
+            let index = self.cars.index(where: { (singleCar) -> Bool in
+                return car.plate == singleCar.plate
+            })
+            if let index = index {
+                self.cars[index] = car
             }
         }
         self.nearestCar?.nearest = true

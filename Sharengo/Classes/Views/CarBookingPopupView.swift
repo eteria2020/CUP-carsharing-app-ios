@@ -16,7 +16,7 @@ import DeviceKit
 
 class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
-    @IBOutlet fileprivate weak var btn_cancel: UIButton!
+    @IBOutlet fileprivate weak var btn_delete: UIButton!
     @IBOutlet fileprivate weak var lbl_pin: UILabel!
     @IBOutlet fileprivate weak var lbl_info: UILabel!
     @IBOutlet fileprivate weak var lbl_time: UILabel!
@@ -34,7 +34,7 @@ class CarBookingPopupView: UIView {
         self.viewModel = viewModel
         xibSetup()
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
-        self.btn_cancel.rx.bind(to: viewModel.selection, input: .cancel)
+        self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
     }
     
     // MARK: - View methods
@@ -47,6 +47,12 @@ class CarBookingPopupView: UIView {
         self.lbl_pin.styledText = viewModel.pin
         self.lbl_info.styledText = viewModel.info
         self.lbl_time.styledText = viewModel.time
+        self.btn_open.isHidden = false
+        self.btn_delete.isHidden = false
+        if viewModel.hideButtons {
+            self.btn_open.isHidden = true
+            self.btn_delete.isHidden = true
+        }
     }
     
     override init(frame: CGRect) {
@@ -65,7 +71,7 @@ class CarBookingPopupView: UIView {
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carBookingPopupBackground.value
         self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
-        self.btn_cancel.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "bnt_delete".localized())
+        self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "bnt_delete".localized())
     }
     
     fileprivate func loadViewFromNib() -> UIView {

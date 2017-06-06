@@ -13,13 +13,13 @@ import Action
 
 public enum CarBookingPopupInput: SelectionInput {
     case open
-    case cancel
+    case delete
 }
 
 public enum CarBookingPopupOutput: SelectionInput {
     case empty
     case open(Car)
-    case cancel(Car)
+    case delete(Car)
 }
 
 final class CarBookingPopupViewModel: ViewModelTypeSelectable {
@@ -27,6 +27,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     var pin: String = ""
     var info: String = ""
     var time: String = ""
+    var hideButtons: Bool = false
     
     public var selection: Action<CarBookingPopupInput, CarBookingPopupOutput> = Action { _ in
         return .just(.empty)
@@ -39,9 +40,9 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 if let car = self.carBooking?.car {
                     return .just(.open(car))
                 }
-            case .cancel:
+            case .delete:
                 if let car = self.carBooking?.car {
-                    return .just(.cancel(car))
+                    return .just(.delete(car))
                 }
             }
 
@@ -53,8 +54,13 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     func updateWithCarBooking(carBooking: CarBooking) {
         self.carBooking = carBooking
         self.pin = String(format: "lbl_carBookingPopupPin".localized(), carBooking.pin ?? "")
+        self.info = ""
+        self.hideButtons = false
         if let car = self.carBooking?.car {
             self.info = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", car.address.value ?? "")
+            if car.opened {
+                self.hideButtons = true
+            }
         }
         self.time = String(format: "lbl_carBookingPopupTime".localized(), carBooking.time ?? "")
         // TODO: può succedere che l'indirizzo non sia ancora stato calcolato?

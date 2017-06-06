@@ -71,10 +71,11 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             }).addDisposableTo(disposeBag)
         self.clusteringManager.delegate = self
     }
-   
+    
     // MARK: - View methods
     
     override func viewDidLoad() {
+        // TODO: verifica di prenotazione in corso per mostrare direttamente il carBookingPopup
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         // NavigationBar
@@ -119,7 +120,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             case .open(let car):
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
-                        print("Open doors \(car)")
+                        // TODO: chiamata per aprire le portiere
+                        car.opened = true
+                        self?.bookCar(car: car)
                     } else {
                         let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                             alertView.dismissAlertView()
@@ -128,14 +131,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                         dialog.show()
                     }
                 } else {
-                   self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
+                    self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
             case .book(let car):
-                // TODO: chiamata al server di prenotazione
-                self?.closeCarPopup()
-                self?.view_carBookingPopup.updateWithCarBooking(carBooking: CarBooking(car: car))
-                self?.view_carBookingPopup.alpha = 1.0
-                break
+                self?.bookCar(car: car)
             default: break
             }
         }).addDisposableTo(self.disposeBag)
@@ -161,7 +160,12 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             case .open(let car):
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
-                        print("Open doors \(car)")
+                        // TODO: chiamata per aprire le portiere
+                        car.opened = true
+                        // TODO: sostituire CarBooking
+                        self?.view_carBookingPopup.updateWithCarBooking(carBooking: CarBooking(car: car))
+                        self?.viewModel?.bookedCar = car
+                        self?.viewModel?.manageAnnotations()
                     } else {
                         let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                             alertView.dismissAlertView()
@@ -172,9 +176,29 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 } else {
                     self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
-            case .cancel(let car):
-                print("Cancel booking for car \(car)")
-                break
+            case .delete(let car):
+                let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupDeleteMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(),
+                                        okButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                                            let dispatchTime = DispatchTime.now() + 1
+                                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                                // TODO: chiamare il servizio di annullamento prenotazione auto
+                                                // TODO: verificare il blocco delle 4 ore sulla prenotazione dell'auto annullata
+                                                let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
+                                                    self?.view_carBookingPopup.alpha = 0.0
+                                                    self?.viewModel?.bookedCar = nil
+                                                    self?.viewModel?.manageAnnotations()
+                                                })
+                                                confirmDialog.allowTouchOutsideToDismiss = false
+                                                confirmDialog.show()
+                                            }
+                },
+                                        cancelButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
             default: break
             }
         }).addDisposableTo(self.disposeBag)
@@ -304,6 +328,19 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         })
     }
     
+    // MARK: - CarBookingPopup methods
+    
+    fileprivate func bookCar(car: Car) {
+        // TODO: chiamata al server di prenotazione e prelevamento della prenotazione per mostrarne i dati
+        car.booked = true
+        self.closeCarPopup()
+        // TODO: sostituire CarBooking
+        self.view_carBookingPopup.updateWithCarBooking(carBooking: CarBooking(car: car))
+        self.view_carBookingPopup.alpha = 1.0
+        self.viewModel?.bookedCar = car
+        self.viewModel?.manageAnnotations()
+    }
+    
     // MARK: - CircularMenu methods
     
     fileprivate func setUserPositionButtonVisible(_ visible: Bool) {
@@ -356,7 +393,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                     let menuItem = arrayOfItems[i]
                     let button = arrayOfButtons[i]
                     if menuItem.input == .compass {
-                        UIView.animate(withDuration: 0.2, animations: { 
+                        UIView.animate(withDuration: 0.2, animations: {
                             button.transform = CGAffineTransform(rotationAngle: -(degrees.degreesToRadians))
                         })
                         return
@@ -417,7 +454,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         annotationsArray.append(firenceAnnotation)
         self.mapView.addAnnotations(annotationsArray)
     }
-
+    
     // MARK: - Map methods
     
     fileprivate func setupMap() {
@@ -440,10 +477,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             self.centerMap(on: userLocation, span: span)
             self.checkedUserPosition = true
         } else if !UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
-                locationController.requestLocationAuthorization(handler: { (status) in
-                    UserDefaults.standard.set(true, forKey: "FirstCheckUserPosition")
-                    self.checkedUserPosition = true
-                })
+            locationController.requestLocationAuthorization(handler: { (status) in
+                UserDefaults.standard.set(true, forKey: "FirstCheckUserPosition")
+                self.checkedUserPosition = true
+            })
         }
     }
     
@@ -577,6 +614,16 @@ extension SearchCarsViewController: MKMapViewDelegate {
             mapView.setRegion(region, animated: true)
         } else if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
+                if let bookedCar = self.viewModel?.bookedCar {
+                    if car.plate != bookedCar.plate {
+                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                    return
+                }
                 if let location = car.location {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
                     let span = MKCoordinateSpanMake(0.001, 0.001)
