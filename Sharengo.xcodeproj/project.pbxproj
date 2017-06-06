@@ -17,6 +17,14 @@
 		4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */; };
 		4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */; };
 		4D1AE82E1ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */; };
+		4D2339951EE6CCE300780384 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2339941EE6CCE300780384 /* IntroViewController.swift */; };
+		4D2339981EE6CDFC00780384 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2339971EE6CDFC00780384 /* IntroViewModel.swift */; };
+		4D23399B1EE6CF4B00780384 /* INTRO BREVE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399A1EE6CF4B00780384 /* INTRO BREVE.gif */; };
+		4D2339A01EE72F3500780384 /* INTRO LUNGA FINE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399E1EE72F3500780384 /* INTRO LUNGA FINE.gif */; };
+		4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399F1EE72F3500780384 /* INTRO LUNGA INIZIO.gif */; };
+		4D2339A41EE7344400780384 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2339A31EE7344400780384 /* UIImage+Gif.swift */; };
+		4D2339A91EE7384500780384 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2339A61EE7384500780384 /* FLAnimatedImage.m */; };
+		4D2339AA1EE7384500780384 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2339A81EE7384500780384 /* FLAnimatedImageView.m */; };
 		4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 4D2628F11ED57CCD001C4E38 /* client.p12 */; };
 		4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2628F31ED57D7B001C4E38 /* PKCS12.swift */; };
 		4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */; };
@@ -97,6 +105,16 @@
 		4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		4D2339941EE6CCE300780384 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = Classes/ViewControllers/IntroViewController.swift; sourceTree = "<group>"; };
+		4D2339971EE6CDFC00780384 /* IntroViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewModel.swift; path = Classes/ViewModels/IntroViewModel.swift; sourceTree = "<group>"; };
+		4D23399A1EE6CF4B00780384 /* INTRO BREVE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "INTRO BREVE.gif"; sourceTree = "<group>"; };
+		4D23399E1EE72F3500780384 /* INTRO LUNGA FINE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "INTRO LUNGA FINE.gif"; sourceTree = "<group>"; };
+		4D23399F1EE72F3500780384 /* INTRO LUNGA INIZIO.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "INTRO LUNGA INIZIO.gif"; sourceTree = "<group>"; };
+		4D2339A31EE7344400780384 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		4D2339A51EE7384500780384 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		4D2339A61EE7384500780384 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		4D2339A71EE7384500780384 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		4D2339A81EE7384500780384 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		4D2628F11ED57CCD001C4E38 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
 		4D2628F31ED57D7B001C4E38 /* PKCS12.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PKCS12.swift; path = Classes/Utilities/PKCS12.swift; sourceTree = "<group>"; };
 		4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
@@ -200,6 +218,39 @@
 				4DCE7EE91EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib */,
 			);
 			name = SearchBar;
+			sourceTree = "<group>";
+		};
+		4D2339961EE6CD2A00780384 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				4D2339941EE6CCE300780384 /* IntroViewController.swift */,
+				4D2339971EE6CDFC00780384 /* IntroViewModel.swift */,
+			);
+			name = Intro;
+			sourceTree = "<group>";
+		};
+		4D2339991EE6CF4B00780384 /* Gifs */ = {
+			isa = PBXGroup;
+			children = (
+				4D23399A1EE6CF4B00780384 /* INTRO BREVE.gif */,
+				4D23399E1EE72F3500780384 /* INTRO LUNGA FINE.gif */,
+				4D23399F1EE72F3500780384 /* INTRO LUNGA INIZIO.gif */,
+			);
+			name = Gifs;
+			path = Resources/Gifs;
+			sourceTree = "<group>";
+		};
+		4D2339A21EE7344400780384 /* SwiftGif */ = {
+			isa = PBXGroup;
+			children = (
+				4D2339A51EE7384500780384 /* FLAnimatedImage.h */,
+				4D2339A61EE7384500780384 /* FLAnimatedImage.m */,
+				4D2339A71EE7384500780384 /* FLAnimatedImageView.h */,
+				4D2339A81EE7384500780384 /* FLAnimatedImageView.m */,
+				4D2339A31EE7344400780384 /* UIImage+Gif.swift */,
+			);
+			name = SwiftGif;
+			path = Classes/Utilities/SwiftGif;
 			sourceTree = "<group>";
 		};
 		4D2628F01ED57CCD001C4E38 /* Certificates */ = {
@@ -383,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
+				4D2339961EE6CD2A00780384 /* Intro */,
 				4DFD98381ED471FC00880EA1 /* Home */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 			);
@@ -401,6 +453,7 @@
 				4DCD1A571ECDBF7400FC8BF5 /* Utilities */,
 				4D36D7BC1ED2EF86005FAEB8 /* Controllers */,
 				4DA554371EE54EA0001627E7 /* Various */,
+				4D2339A21EE7344400780384 /* SwiftGif */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -408,6 +461,7 @@
 		4DCD1A961ECDC20500FC8BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4D2339991EE6CF4B00780384 /* Gifs */,
 				4D2628F01ED57CCD001C4E38 /* Certificates */,
 				4DCD1A981ECDC22900FC8BF5 /* Assets */,
 				4DCD1A9A1ECDC22900FC8BF5 /* Fonts */,
@@ -594,6 +648,7 @@
 			files = (
 				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
 				4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */,
+				4D23399B1EE6CF4B00780384 /* INTRO BREVE.gif in Resources */,
 				4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */,
 				4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */,
 				4D1AE82E1ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf in Resources */,
@@ -605,9 +660,11 @@
 				4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */,
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
 				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
+				4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
 				4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */,
 				4DCE7EEA1EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib in Resources */,
+				4D2339A01EE72F3500780384 /* INTRO LUNGA FINE.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +744,7 @@
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
 				4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
+				4D2339A91EE7384500780384 /* FLAnimatedImage.m in Sources */,
 				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
@@ -694,6 +752,7 @@
 				4DA554471EE55284001627E7 /* FBAnnotationClusterTemplate.swift in Sources */,
 				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
 				4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */,
+				4D2339951EE6CCE300780384 /* IntroViewController.swift in Sources */,
 				4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */,
 				4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */,
 				4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */,
@@ -712,6 +771,7 @@
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
+				4D2339AA1EE7384500780384 /* FLAnimatedImageView.m in Sources */,
 				4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */,
 				4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
@@ -722,6 +782,7 @@
 				4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */,
+				4D2339981EE6CDFC00780384 /* IntroViewModel.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
 				4DA5544A1EE55284001627E7 /* FBBoundingBox+MapKit.swift in Sources */,
 				4DC59F991EDADC6200DD658A /* Response.swift in Sources */,
@@ -733,6 +794,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
+				4D2339A41EE7344400780384 /* UIImage+Gif.swift in Sources */,
 				4DA5544B1EE55284001627E7 /* FBBoundingBox.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,

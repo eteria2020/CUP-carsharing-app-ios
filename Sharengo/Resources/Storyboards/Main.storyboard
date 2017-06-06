@@ -11,6 +11,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Intro View Controller-->
+        <scene sceneID="Ved-mp-yDl">
+            <objects>
+                <viewController storyboardIdentifier="intro" id="B0g-Pa-SrU" customClass="IntroViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zMm-Sh-ocw"/>
+                        <viewControllerLayoutGuide type="bottom" id="OtM-oh-CUE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vbs-rE-TfA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yYC-de-gla" customClass="FLAnimatedImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="yYC-de-gla" secondAttribute="bottom" id="2mz-Ng-gEX"/>
+                            <constraint firstItem="yYC-de-gla" firstAttribute="top" secondItem="Vbs-rE-TfA" secondAttribute="top" id="8Ie-ZX-Xov"/>
+                            <constraint firstItem="yYC-de-gla" firstAttribute="leading" secondItem="Vbs-rE-TfA" secondAttribute="leading" id="Hmq-sl-4JT"/>
+                            <constraint firstAttribute="trailing" secondItem="yYC-de-gla" secondAttribute="trailing" id="b7p-Fk-XU1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="img_intro" destination="yYC-de-gla" id="afL-mr-wq5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oU9-Uu-L8P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-660" y="-607"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="ZDZ-ZO-Mmz">
             <objects>

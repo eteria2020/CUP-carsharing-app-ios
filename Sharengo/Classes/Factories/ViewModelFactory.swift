@@ -15,6 +15,10 @@ struct ViewModelFactory {
         return CircularMenuViewModel(type: type)
     }
     
+    static func intro() -> ViewModelType {
+        return IntroViewModel()
+    }
+
     static func home() -> ViewModelType {
         return HomeViewModel()
     }

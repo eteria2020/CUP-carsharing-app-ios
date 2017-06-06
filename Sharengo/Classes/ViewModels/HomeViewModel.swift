@@ -14,6 +14,7 @@ import Action
 enum HomeSelectionInput: SelectionInput {
     case searchCars
 }
+
 enum HomeSelectionOutput: SelectionOutput {
     case viewModel(ViewModelType)
 }
