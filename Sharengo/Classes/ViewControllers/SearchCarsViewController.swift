@@ -17,6 +17,7 @@ import DeviceKit
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
+    @IBOutlet fileprivate weak var view_carBookingPopup: CarBookingPopupView!
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
@@ -130,7 +131,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                    self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
             case .book(let car):
-                print("Book car \(car)")
+                // TODO: chiamata al server di prenotazione
+                self?.closeCarPopup()
+                self?.view_carBookingPopup.updateWithCarBooking(carBooking: CarBooking(car: car))
+                self?.view_carBookingPopup.alpha = 1.0
                 break
             default: break
             }
@@ -146,6 +150,45 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             self.closeCarPopupHeight = 185
         case 5.5:
             self.closeCarPopupHeight = 195
+        default:
+            break
+        }
+        // CarBookingPopup
+        self.view_carBookingPopup.bind(to: ViewModelFactory.carBookingPopup())
+        self.view_carBookingPopup.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            case .open(let car):
+                if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
+                    if Int(distance.rounded()) <= distanceOpenDoors {
+                        print("Open doors \(car)")
+                    } else {
+                        let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                } else {
+                    self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
+                }
+            case .cancel(let car):
+                print("Cancel booking for car \(car)")
+                break
+            default: break
+            }
+        }).addDisposableTo(self.disposeBag)
+        self.view_carBookingPopup.backgroundColor = Color.carBookingPopupBackground.value
+        self.view_carBookingPopup.alpha = 0.0
+        switch Device().diagonal {
+        case 3.5:
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
+        case 4:
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195
+        case 4.7:
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+        case 5.5:
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
         default:
             break
         }

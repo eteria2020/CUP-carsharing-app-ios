@@ -89,7 +89,6 @@ enum SpeechErrorType {
 @available(iOS 10.0, *)
 class SpeechController: NSObject
 {
-    // TODO: ???
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "lcl_searchBarSpeechRecognizer".localized()))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?

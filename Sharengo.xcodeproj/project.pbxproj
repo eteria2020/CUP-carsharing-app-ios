@@ -28,6 +28,10 @@
 		4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377AB91ECEE01A005DF900 /* View+Theme.swift */; };
 		4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377ABB1ECEE442005DF900 /* Color+Theme.swift */; };
 		4D3BF1251ED76EAF00E595E7 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */; };
+		4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB281EE69895004C7287 /* CarBookingPopupView.swift */; };
+		4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */; };
+		4D45BB2D1EE698C2004C7287 /* CarBookingPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D45BB2C1EE698C2004C7287 /* CarBookingPopupView.xib */; };
+		4D45BB301EE69F49004C7287 /* CarBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB2F1EE69F49004C7287 /* CarBooking.swift */; };
 		4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */; };
 		4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */; };
 		4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */; };
@@ -108,6 +112,10 @@
 		4D377AB91ECEE01A005DF900 /* View+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "View+Theme.swift"; path = "Classes/Theme/View+Theme.swift"; sourceTree = "<group>"; };
 		4D377ABB1ECEE442005DF900 /* Color+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Color+Theme.swift"; path = "Classes/Theme/Color+Theme.swift"; sourceTree = "<group>"; };
 		4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Classes/Utilities/UIView+Extensions.swift"; sourceTree = "<group>"; };
+		4D45BB281EE69895004C7287 /* CarBookingPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingPopupView.swift; path = Classes/Views/CarBookingPopupView.swift; sourceTree = "<group>"; };
+		4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingPopupViewModel.swift; path = Classes/ViewModels/CarBookingPopupViewModel.swift; sourceTree = "<group>"; };
+		4D45BB2C1EE698C2004C7287 /* CarBookingPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarBookingPopupView.xib; path = Resources/Xibs/CarBookingPopupView.xib; sourceTree = "<group>"; };
+		4D45BB2F1EE69F49004C7287 /* CarBooking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBooking.swift; path = Classes/Model/CarBooking.swift; sourceTree = "<group>"; };
 		4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularMenuViewModel.swift; path = Classes/ViewModels/CircularMenuViewModel.swift; sourceTree = "<group>"; };
 		4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationBarView.xib; path = Resources/Xibs/NavigationBarView.xib; sourceTree = "<group>"; };
 		4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBarView.swift; path = Classes/Views/NavigationBarView.swift; sourceTree = "<group>"; };
@@ -229,9 +237,20 @@
 				4D4EED691ECF947200700CC0 /* NavigationBar */,
 				4D4EED6A1ECF947E00700CC0 /* CircularMenu */,
 				4D72B34C1ED965F7002C2375 /* CarPopup */,
+				4D45BB2E1EE698C7004C7287 /* CarBookingPopup */,
 				4D1AE8191ED1BA2500C8A1D3 /* SearchBar */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4D45BB2E1EE698C7004C7287 /* CarBookingPopup */ = {
+			isa = PBXGroup;
+			children = (
+				4D45BB281EE69895004C7287 /* CarBookingPopupView.swift */,
+				4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */,
+				4D45BB2C1EE698C2004C7287 /* CarBookingPopupView.xib */,
+			);
+			name = CarBookingPopup;
 			sourceTree = "<group>";
 		};
 		4D4EED691ECF947200700CC0 /* NavigationBar */ = {
@@ -352,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				4DC59F981EDADC6200DD658A /* Response.swift */,
+				4D45BB2F1EE69F49004C7287 /* CarBooking.swift */,
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
 				4D9400D61EDF4BFE00AD0EC6 /* Address.swift */,
 				4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */,
@@ -606,6 +626,7 @@
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
 				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
+				4D45BB2D1EE698C2004C7287 /* CarBookingPopupView.xib in Resources */,
 				4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */,
 				4DCE7EEA1EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib in Resources */,
 			);
@@ -682,6 +703,7 @@
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
+				4D45BB301EE69F49004C7287 /* CarBooking.swift in Sources */,
 				4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */,
 				4DA554481EE55284001627E7 /* FBAnnotationClusterView.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
@@ -708,6 +730,7 @@
 				4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
+				4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */,
 				4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
@@ -733,6 +756,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
+				4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */,
 				4DA5544B1EE55284001627E7 /* FBBoundingBox.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,

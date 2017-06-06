@@ -107,8 +107,8 @@ class CarPopupView: UIView {
         addSubview(view)
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carPopupBackground.value
-        self.btn_open.style(.roundedButton, title: "btn_open".localized())
-        self.btn_book.style(.roundedButton, title: "btn_book".localized())
+        self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
+        self.btn_book.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_book".localized())
         self.view_separator.constraint(withIdentifier: "separatorHeight", searchInSubviews: false)?.constant = 1
         switch Device().diagonal {
         case 3.5:
