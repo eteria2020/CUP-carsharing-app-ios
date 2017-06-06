@@ -40,6 +40,35 @@ final class ApiController {
         }
     }
     
+    func getUser() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.getUser())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                        /* {"status":200,"reason":"","data":{"name":"Francesco","surname":"Galatro","gender":"male","country":null,"province":null,"town":"Castel San Giorgio","address":"Via Avvocato Raffaele Lanzara 9/I","zip_code":"20145","phone":"0236552737","mobile":"+393497277108","pin":8427,"discount_rate":20,"email":"francesco.galatro@gmail.com","enabled":true,"bonus":"0"},"time":1496783191} */
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+
+    
     func searchCars() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
@@ -93,35 +122,204 @@ final class ApiController {
             }
         }
     }
+    
+    func searchCar(plate: String) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.searchCar(plate: plate))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                        /* {"status":200,"reason":"","data":{"plate":"EF72806","manufactures":"Xindayang Ltd.","model":"ZD 80","label":"-","active":true,"int_cleanliness":"clean","ext_cleanliness":"average","notes":"TELAIO 1835","longitude":"9.24071","latitude":"45.4161","damages":["Paraurti posteriore","Cofano","Indicatori di direzione"],"battery":67,"frame":null,"location":"0101000020E6100000ECA353573E7B2240CCEEC9C342B54640","firmware_version":"V4.6.1","software_version":"0.104.10","mac":null,"imei":"861311004782362","last_contact":"2017-06-06T20:34:08.000Z","last_location_time":"2017-06-06T19:07:40.000Z","busy":false,"hidden":false,"rpm":0,"speed":0,"obc_in_use":0,"obc_wl_size":67913,"km":7120,"running":false,"parking":false,"status":"operative","soc":67,"vin":null,"key_status":"OFF","charging":false,"battery_offset":0,"gps_data":{"time":"06/06/2017 22:28:08","fix_age":1581300,"accuracy":0,"change_age":5084,"satellites":0},"park_enabled":false,"plug":false,"fleet_id":1,"fleets":{"id":1,"label":"Milano"}},"time":1496781334} */
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func bookingList() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.bookingList())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                        /* {"status":200,"reason":"","data":[{"id":1679899,"reservation_timestamp":1496780744,"timestamp_start":1496780744,"is_active":true,"car_plate":"EF72806","length":1200}],"time":1496780819} */
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func bookCar(car: Car) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.bookCar(car: car))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                        /* {"status":200,"reason":"Reservation created successfully","data":{"reservation_id":1679899},"time":1496780744} */
+                        /* {"status":200,"reason":"Error: reservation:false - status:false - trip:false - limit:false - limit_archive:true","data":null,"time":1496783451} */
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func deleteCarBooking(carBooking: CarBooking) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.deleteCarBooking(carBooking: carBooking))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                        /* {"status":200,"reason":"","data":[{"id":1679899,"reservation_timestamp":1496780744,"timestamp_start":1496780744,"is_active":true,"car_plate":"EF72806","length":1200}],"time":1496781905} */
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func openCar(car: Car) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.openCar(car: car))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                        /* {"status":200,"reason":"","data":{"plate":"EF72806","manufactures":"Xindayang Ltd.","model":"ZD 80","label":"-","active":true,"int_cleanliness":"clean","ext_cleanliness":"average","notes":"TELAIO 1835","longitude":"9.24071","latitude":"45.4161","damages":["Paraurti posteriore","Cofano","Indicatori di direzione"],"battery":67,"frame":null,"location":"0101000020E6100000ECA353573E7B2240CCEEC9C342B54640","firmware_version":"V4.6.1","software_version":"0.104.10","mac":null,"imei":"861311004782362","last_contact":"2017-06-06T20:53:19.000Z","last_location_time":"2017-06-06T19:07:40.000Z","busy":false,"hidden":false,"rpm":0,"speed":0,"obc_in_use":0,"obc_wl_size":67915,"km":7120,"running":false,"parking":false,"status":"operative","soc":67,"vin":null,"key_status":"OFF","charging":false,"battery_offset":0,"gps_data":{"time":"06/06/2017 22:47:16","fix_age":1582447,"accuracy":0,"change_age":6232,"satellites":0},"park_enabled":false,"plug":false,"fleet_id":1,"fleets":{"id":1,"label":"Milano"}},"time":1496782681} */
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
 }
 
 fileprivate enum API {
+    case getUser()
     case searchAllCars()
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
+    case searchCar(plate: String)
+    case bookingList()
+    case bookCar(car: Car)
+    case deleteCarBooking(carBooking: CarBooking)
+    case openCar(car: Car)
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "https://api.sharengo.it:8023/v2")! }
+    var baseURL: URL {
+        switch self {
+        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_), .getUser():
+            return URL(string: "https://francesco.galatro%40gmail.com:508c82b943ae51118d905553b8213c8a@api.sharengo.it:8023/v2")!
+        default:
+            return URL(string: "https://api.sharengo.it:8023/v2")!
+        }
+    }
     
     var path: String {
         switch self {
-        case .searchAllCars():
+        case .getUser():
+            return "user"
+        case .searchAllCars(), .searchCars(_, _, _), .searchCar(_), .openCar(_):
             return "cars"
-        case .searchCars(_, _, _):
-            return "cars"
+        case .bookingList(), .bookCar(_), .deleteCarBooking(_):
+            return "reservations"
         }
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .bookCar(_):
+            return .post
+        default:
+            return .get
+        }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .searchAllCars():
-            return [:]
         case .searchCars(let latitude, let longitude, let radius):
             return ["lat": latitude, "lon": longitude, "radius": Int(radius)]
+        case .searchCar(let plate):
+            return ["plate": plate]
+        case .bookCar(let car):
+            return ["plate": car.plate ?? ""]
+        case .deleteCarBooking(let carBooking):
+            return ["reservation_id": "1680072"]
+        case .openCar(let car):
+            return ["plate": car.plate ?? "", "action": "open-door"]
+        default:
+            return [:]
         }
     }
     

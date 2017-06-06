@@ -5,5 +5,4 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
-#import "FLAnimatedImage.h"
 #import <YYWebImage/YYWebImage.h>

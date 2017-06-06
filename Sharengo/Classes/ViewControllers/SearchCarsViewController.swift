@@ -31,6 +31,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     fileprivate let clusteringRadius: Double = 35000
     fileprivate var clusteringInProgress: Bool = false
     fileprivate var selectedCar: Car?
+    fileprivate var apiController: ApiController = ApiController()
     var viewModel: SearchCarsViewModel?
     
     // MARK: - ViewModel methods
@@ -331,6 +332,45 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - CarBookingPopup methods
     
     fileprivate func bookCar(car: Car) {
+        /*
+        self.apiController.bookCar(car: car)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    print("---------")
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        */
+       
+        /*
+        self.apiController.deleteCarBooking(carBooking: CarBooking(car: car))
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    print("---------")
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        */
+        
+        /*
+        self.apiController.openCar(car: car)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    print("---------")
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        */
+        
         // TODO: chiamata al server di prenotazione e prelevamento della prenotazione per mostrarne i dati
         car.booked = true
         self.closeCarPopup()

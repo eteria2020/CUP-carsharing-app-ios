@@ -16,7 +16,8 @@ class HomeViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_searchCar: UIView!
     
     var viewModel: HomeViewModel?
-  
+    fileprivate var apiController: ApiController = ApiController()
+    
     // MARK: - ViewModel methods
     
     func bind(to viewModel: ViewModelType?) {
@@ -31,6 +32,45 @@ class HomeViewController : UIViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         self.btn_searchCar.rx.bind(to: viewModel.selection, input: .searchCars)
+        
+        /*
+        self.apiController.bookingList()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    print("---------")
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        */
+        
+        /*
+        self.apiController.searchCar(plate: "EF72806")
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    print("---------")
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        */
+        
+        /*
+        self.apiController.getUser()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    print("---------")
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        */
     }
     
     // MARK: - View methods

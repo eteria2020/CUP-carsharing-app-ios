@@ -39,30 +39,19 @@ class IntroViewController : UIViewController, ViewModelBindable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        /*
-        if UserDefaults.standard.bool(forKey: "longIntro") == false {
-            self.img_intro.loadGif(name: "INTRO LUNGA INIZIO")
-            let dispatchTime = DispatchTime.now() + 3
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.img_intro.loadGif(name: "INTRO LUNGA FINE")
-            }
-        }
-        */
-//        do {
-//        if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
-//            let data = try Data(contentsOf: url)
-//            img_intro.animatedImage = FLAnimatedImage(animatedGIFData: data)
-//            }
-//        } catch {
-//        }
-        
-        do {
-            if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
-                img_intro.yy_imageURL = url
-            }
-        } catch {}
+         if UserDefaults.standard.bool(forKey: "longIntro") == false {
+            do {
+                if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
+                    self.img_intro.yy_imageURL = url
+                    let dispatchTime = DispatchTime.now() + 3
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        if let url = Bundle.main.url(forResource: "INTRO LUNGA FINE", withExtension: "gif") {
+                            self.img_intro.yy_imageURL = url
+                        }
+                    }
 
-        
-        
+                }
+            } catch {}
+        }
     }
 }
