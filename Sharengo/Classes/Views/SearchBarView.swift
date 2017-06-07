@@ -104,13 +104,13 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         self.btn_microphone.rx.bind(to: viewModel.selection, input: .dictated)
         switch Device().diagonal {
         case 3.5:
-            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 115
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 119
         case 4:
-            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 198
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 179
         case 4.7:
-            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 285
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 259
         case 5.5:
-            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 335
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 299
         default:
             break
         }
@@ -197,7 +197,20 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        let newSize = CGSize(width: size.width, height: max(70, size.height))
+        var height: CGFloat = 0.0
+        switch Device().diagonal {
+        case 3.5:
+            height = 60.0
+        case 4:
+            height = 60.0
+        case 4.7:
+            height = 65.0
+        case 5.5:
+            height = 75.0
+        default:
+            break
+        }
+        let newSize = CGSize(width: size.width, height: height)
         return newSize
     }
     
