@@ -16,12 +16,8 @@ class CarAnnotation: FBAnnotation {
     
     func getImage() -> UIImage {
         if let car = self.car {
-            if car.nearest {
-                // TODO: execute animation
-                return UIImage(named: "ic_auto_vicina")!
-            } else if car.booked {
-                // TODO: execute animation
-                return UIImage(named: "ic_auto_prenotata")!
+            if car.nearest || car.booked {
+                return UIImage(named: "ic_auto_big")!
             }
         }
         return UIImage(named: "ic_auto")!

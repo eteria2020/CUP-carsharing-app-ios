@@ -622,15 +622,23 @@ extension SearchCarsViewController: MKMapViewDelegate {
             return clusterView
         } else {
             let annotationIdentifier = "AnnotationIdentifier"
-            var annotationView: MKAnnotationView?
-            if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+            var annotationView: SVPulsingAnnotationView?
+            if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? SVPulsingAnnotationView {
                 annotationView = dequeuedAnnotationView
                 annotationView?.annotation = annotation
             } else {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+                annotationView = SVPulsingAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             }
+            annotationView?.annotationColor = UIColor.clear
             if let annotationView = annotationView {
                 if let carAnnotation = annotationView.annotation as? CarAnnotation {
+                    if carAnnotation.car?.nearest == true || carAnnotation.car?.booked == true {
+                        if carAnnotation.car?.booked == true {
+                            annotationView.annotationColor = Color.searchCarsBookedCar.value
+                        } else if carAnnotation.car?.nearest == true {
+                            annotationView.annotationColor = Color.searchCarsNearestCar.value
+                        }
+                    }
                     annotationView.image = carAnnotation.image
                 } else if let cityAnnotation = annotationView.annotation as? CityAnnotation {
                     annotationView.image = cityAnnotation.image

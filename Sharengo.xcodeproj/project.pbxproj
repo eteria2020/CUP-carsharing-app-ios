@@ -86,6 +86,7 @@
 		4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */; };
 		4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */; };
+		4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */; };
 		4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */; };
 		4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */; };
 		4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98341ED471B800880EA1 /* HomeViewController.swift */; };
@@ -178,6 +179,8 @@
 		4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Favorite.swift; path = Classes/Model/Favorite.swift; sourceTree = "<group>"; };
 		4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewController.swift; path = Classes/ViewControllers/SearchCarsViewController.swift; sourceTree = "<group>"; };
 		4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewModel.swift; path = Classes/ViewModels/SearchCarsViewModel.swift; sourceTree = "<group>"; };
+		4DE361651EE801F9007DC92C /* SVPulsingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPulsingAnnotationView.h; sourceTree = "<group>"; };
+		4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPulsingAnnotationView.m; sourceTree = "<group>"; };
 		4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechController.swift; sourceTree = "<group>"; };
 		4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
 		4DFD98341ED471B800880EA1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Classes/ViewControllers/HomeViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +394,7 @@
 				4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */,
 				4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */,
 				4D2628F31ED57D7B001C4E38 /* PKCS12.swift */,
+				4DE361641EE801F9007DC92C /* SVPulsingAnnotation */,
 				4DA554391EE55284001627E7 /* FBAnnotationClusteringSwift */,
 				4DA178631ED63C4D00EBD32B /* ZAlertView */,
 			);
@@ -550,6 +554,16 @@
 				4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */,
 			);
 			name = SearchCars;
+			sourceTree = "<group>";
+		};
+		4DE361641EE801F9007DC92C /* SVPulsingAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				4DE361651EE801F9007DC92C /* SVPulsingAnnotationView.h */,
+				4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */,
+			);
+			name = SVPulsingAnnotation;
+			path = Classes/Utilities/SVPulsingAnnotation;
 			sourceTree = "<group>";
 		};
 		4DFD982F1ED45CCE00880EA1 /* Annotations */ = {
@@ -780,6 +794,7 @@
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
+				4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */,
 				4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */,
 				4D2339981EE6CDFC00780384 /* IntroViewModel.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,

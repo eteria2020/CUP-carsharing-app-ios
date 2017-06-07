@@ -79,6 +79,8 @@ enum Color {
     
     // SearchCars
     case searchCarsClusterLabel
+    case searchCarsNearestCar
+    case searchCarsBookedCar
     
     // SearchBar
     case searchBarBackground
@@ -129,6 +131,10 @@ enum Color {
             // SearchCars
             case .searchCarsClusterLabel:
                 return ColorBrand.green.value
+            case .searchCarsNearestCar:
+                return ColorBrand.green.value
+            case .searchCarsBookedCar:
+                return ColorBrand.yellow.value
             // SearchBar
             case .searchBarBackground:
                 return ColorBrand.black.value
