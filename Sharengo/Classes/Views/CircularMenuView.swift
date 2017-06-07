@@ -68,6 +68,11 @@ class CircularMenuView: UIView {
                 return true
             }
         }
+        let circlePath1 = UIBezierPath(arcCenter: self.view_background.center, radius: CGFloat(self.view_background.frame.size.width/2), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        let circlePath2 = UIBezierPath(arcCenter: self.view_background.center, radius: CGFloat((self.view_background.frame.size.width/2)-(self.viewModel?.type.getBackgroundBorderSize() ?? 0.0)), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        if circlePath1.contains(point) && !circlePath2.contains(point) {
+            return true
+        }
         return false
     }
     
