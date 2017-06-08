@@ -14,6 +14,7 @@ import Action
 import MapKit
 import StoryboardConstraint
 import DeviceKit
+import ReachabilitySwift
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
@@ -76,7 +77,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - View methods
     
     override func viewDidLoad() {
-        // TODO: verifica di prenotazione in corso per mostrare direttamente il carBookingPopup
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         // NavigationBar
@@ -165,7 +165,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                         car.opened = true
                         // TODO: sostituire CarBooking
                         self?.view_carBookingPopup.updateWithCarBooking(carBooking: CarBooking(car: car))
-                        self?.viewModel?.bookedCar = car
+                        self?.viewModel?.carBooked = car
                         self?.viewModel?.manageAnnotations()
                     } else {
                         let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
@@ -177,23 +177,11 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 } else {
                     self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
-            case .delete(let car):
+            case .delete():
                 let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupDeleteMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(),
                                         okButtonHandler: { alertView in
                                             alertView.dismissAlertView()
-                                            let dispatchTime = DispatchTime.now() + 1
-                                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                // TODO: chiamare il servizio di annullamento prenotazione auto
-                                                // TODO: verificare il blocco delle 4 ore sulla prenotazione dell'auto annullata
-                                                let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                                    alertView.dismissAlertView()
-                                                    self?.view_carBookingPopup.alpha = 0.0
-                                                    self?.viewModel?.bookedCar = nil
-                                                    self?.viewModel?.manageAnnotations()
-                                                })
-                                                confirmDialog.allowTouchOutsideToDismiss = false
-                                                confirmDialog.show()
-                                            }
+                                            self?.deleteBookCar()
                 },
                                         cancelButtonHandler: { alertView in
                                             alertView.dismissAlertView()
@@ -216,6 +204,21 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
         default:
             break
+        }
+        if let carBooking = CoreController.shared.allCarBookings.first {
+            if let car = carBooking.car {
+                car.booked = true
+                self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                self.view_carBookingPopup.alpha = 1.0
+                self.viewModel?.carBooked = car
+                self.viewModel?.carBooking = carBooking
+                self.viewModel?.manageAnnotations()
+                if let location = car.location {
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    let span = MKCoordinateSpanMake(0.001, 0.001)
+                    self.centerMap(on: newLocation, span: span)
+                }
+            }
         }
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())
@@ -332,53 +335,139 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - CarBookingPopup methods
     
     fileprivate func bookCar(car: Car) {
-        /*
+        // TODO: move in view model please
+        self.showLoader()
         self.apiController.bookCar(car: car)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
                 case .next(let response):
-                    print("---------")
+                    if response.status == 200, let data = response.dic_data {
+                        if let id = data["reservation_id"] as? Int {
+                            self.apiController.getCarBooking(id: id)
+                                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                                .subscribe { event in
+                                    switch event {
+                                    case .next(let response):
+                                        if response.status == 200, let data = response.array_data {
+                                            if let carBookings = [CarBooking].from(jsonArray: data) {
+                                                if let carBooking = carBookings.first {
+                                                    DispatchQueue.main.async {
+                                                        self.hideLoader()
+                                                        car.booked = true
+                                                        carBooking.car = car
+                                                        self.closeCarPopup()
+                                                        self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                                        self.view_carBookingPopup.alpha = 1.0
+                                                        self.viewModel?.carBooked = car
+                                                        self.viewModel?.carBooking = carBooking
+                                                        self.viewModel?.manageAnnotations()
+                                                    }
+                                                } else {
+                                                    self.hideLoader()
+                                                    self.showGeneralAlert()
+                                                }
+                                            } else {
+                                                self.hideLoader()
+                                                self.showGeneralAlert()
+                                            }
+                                        } else {
+                                            self.hideLoader()
+                                            self.showGeneralAlert()
+                                        }
+                                    default:
+                                        break
+                                    }
+                                }.addDisposableTo(CoreController.shared.disposeBag)
+                        } else {
+                            self.hideLoader()
+                            self.showGeneralAlert()
+                        }
+                    } else {
+                        self.hideLoader()
+                        DispatchQueue.main.async {
+                            let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                alertView.dismissAlertView()
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                        }
+                    }
+                case .error(_):
+                    let dispatchTime = DispatchTime.now() + 0.5
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        self.hideLoader()
+                        var message = "alert_generalError".localized()
+                        if Reachability()?.isReachable == false {
+                            message = "alert_connectionError".localized()
+                        }
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
                 default:
                     break
                 }
             }.addDisposableTo(self.disposeBag)
-        */
-       
-        /*
-        self.apiController.deleteCarBooking(carBooking: CarBooking(car: car))
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    print("---------")
-                default:
-                    break
-                }
-            }.addDisposableTo(self.disposeBag)
-        */
-        
-        /*
-        self.apiController.openCar(car: car)
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    print("---------")
-                default:
-                    break
-                }
-            }.addDisposableTo(self.disposeBag)
-        */
-        
-        // TODO: chiamata al server di prenotazione e prelevamento della prenotazione per mostrarne i dati
-        car.booked = true
-        self.closeCarPopup()
-        // TODO: sostituire CarBooking
-        self.view_carBookingPopup.updateWithCarBooking(carBooking: CarBooking(car: car))
-        self.view_carBookingPopup.alpha = 1.0
-        self.viewModel?.bookedCar = car
-        self.viewModel?.manageAnnotations()
+    }
+    
+    fileprivate func deleteBookCar() {
+        // TODO: move in view model please
+        if let carBooking = self.viewModel?.carBooking {
+            self.showLoader()
+            self.apiController.deleteCarBooking(carBooking: carBooking)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200 {
+                            let dispatchTime = DispatchTime.now() + 1
+                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                self.hideLoader()
+                                let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                    self.view_carBookingPopup.alpha = 0.0
+                                    self.viewModel?.carBooked = nil
+                                    if let radius = self.getRadius() {
+                                        if radius < self.clusteringRadius {
+                                            self.viewModel?.reloadResults(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude, radius: radius)
+                                        }
+                                    }
+                                })
+                                confirmDialog.allowTouchOutsideToDismiss = false
+                                confirmDialog.show()
+                            }
+                        } else {
+                            self.hideLoader()
+                            DispatchQueue.main.async {
+                                let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
+                            }
+                        }
+                    case .error(_):
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.hideLoader()
+                            var message = "alert_generalError".localized()
+                            if Reachability()?.isReachable == false {
+                                message = "alert_connectionError".localized()
+                            }
+                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                alertView.dismissAlertView()
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                        }
+                    default:
+                        break
+                    }
+                }.addDisposableTo(self.disposeBag)
+        }
     }
     
     // MARK: - CircularMenu methods
@@ -559,6 +648,14 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     // MARK: - Alert methods
     
+    fileprivate func showGeneralAlert() {
+        let dialog = ZAlertView(title: nil, message: "alert_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+            alertView.dismissAlertView()
+        })
+        dialog.allowTouchOutsideToDismiss = false
+        dialog.show()
+    }
+    
     fileprivate func showLocalizationAlert(message: String) {
         let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                 okButtonHandler: { alertView in
@@ -586,6 +683,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
         }
         return MKTileOverlayRenderer(tileOverlay: tileOverlay)
     }
+    
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
@@ -662,7 +760,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
             mapView.setRegion(region, animated: true)
         } else if let carAnnotation = view.annotation as? CarAnnotation {
             if let car = carAnnotation.car {
-                if let bookedCar = self.viewModel?.bookedCar {
+                if let bookedCar = self.viewModel?.carBooked {
                     if car.plate != bookedCar.plate {
                         let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                             alertView.dismissAlertView()

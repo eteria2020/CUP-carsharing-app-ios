@@ -42,7 +42,7 @@ final class ApiController {
     
     func getUser() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -58,7 +58,6 @@ final class ApiController {
                     case .next(let response):
                         observable.onNext(response)
                         observable.onCompleted()
-                        /* {"status":200,"reason":"","data":{"name":"Francesco","surname":"Galatro","gender":"male","country":null,"province":null,"town":"Castel San Giorgio","address":"Via Avvocato Raffaele Lanzara 9/I","zip_code":"20145","phone":"0236552737","mobile":"+393497277108","pin":8427,"discount_rate":20,"email":"francesco.galatro@gmail.com","enabled":true,"bonus":"0"},"time":1496783191} */
                     case .error(let error):
                         observable.onError(error)
                     default:
@@ -68,7 +67,6 @@ final class ApiController {
         }
     }
 
-    
     func searchCars() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
@@ -141,7 +139,6 @@ final class ApiController {
                     case .next(let response):
                         observable.onNext(response)
                         observable.onCompleted()
-                        /* {"status":200,"reason":"","data":{"plate":"EF72806","manufactures":"Xindayang Ltd.","model":"ZD 80","label":"-","active":true,"int_cleanliness":"clean","ext_cleanliness":"average","notes":"TELAIO 1835","longitude":"9.24071","latitude":"45.4161","damages":["Paraurti posteriore","Cofano","Indicatori di direzione"],"battery":67,"frame":null,"location":"0101000020E6100000ECA353573E7B2240CCEEC9C342B54640","firmware_version":"V4.6.1","software_version":"0.104.10","mac":null,"imei":"861311004782362","last_contact":"2017-06-06T20:34:08.000Z","last_location_time":"2017-06-06T19:07:40.000Z","busy":false,"hidden":false,"rpm":0,"speed":0,"obc_in_use":0,"obc_wl_size":67913,"km":7120,"running":false,"parking":false,"status":"operative","soc":67,"vin":null,"key_status":"OFF","charging":false,"battery_offset":0,"gps_data":{"time":"06/06/2017 22:28:08","fix_age":1581300,"accuracy":0,"change_age":5084,"satellites":0},"park_enabled":false,"plug":false,"fleet_id":1,"fleets":{"id":1,"label":"Milano"}},"time":1496781334} */
                     case .error(let error):
                         observable.onError(error)
                     default:
@@ -169,7 +166,6 @@ final class ApiController {
                     case .next(let response):
                         observable.onNext(response)
                         observable.onCompleted()
-                        /* {"status":200,"reason":"","data":[{"id":1679899,"reservation_timestamp":1496780744,"timestamp_start":1496780744,"is_active":true,"car_plate":"EF72806","length":1200}],"time":1496780819} */
                     case .error(let error):
                         observable.onError(error)
                     default:
@@ -197,8 +193,6 @@ final class ApiController {
                     case .next(let response):
                         observable.onNext(response)
                         observable.onCompleted()
-                        /* {"status":200,"reason":"Reservation created successfully","data":{"reservation_id":1679899},"time":1496780744} */
-                        /* {"status":200,"reason":"Error: reservation:false - status:false - trip:false - limit:false - limit_archive:true","data":null,"time":1496783451} */
                     case .error(let error):
                         observable.onError(error)
                     default:
@@ -226,7 +220,33 @@ final class ApiController {
                     case .next(let response):
                         observable.onNext(response)
                         observable.onCompleted()
-                        /* {"status":200,"reason":"","data":[{"id":1679899,"reservation_timestamp":1496780744,"timestamp_start":1496780744,"is_active":true,"car_plate":"EF72806","length":1200}],"time":1496781905} */
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func getCarBooking(id: Int) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.getCarBooking(id: id))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
                     case .error(let error):
                         observable.onError(error)
                     default:
@@ -273,6 +293,7 @@ fileprivate enum API {
     case bookingList()
     case bookCar(car: Car)
     case deleteCarBooking(carBooking: CarBooking)
+    case getCarBooking(id: Int)
     case openCar(car: Car)
 }
 
@@ -292,8 +313,10 @@ extension API: TargetType {
             return "user"
         case .searchAllCars(), .searchCars(_, _, _), .searchCar(_), .openCar(_):
             return "cars"
-        case .bookingList(), .bookCar(_), .deleteCarBooking(_):
+        case .bookingList(), .bookCar(_), .getCarBooking(_):
             return "reservations"
+        case .deleteCarBooking(let carBooking):
+            return "reservations/\(carBooking.id ?? 0)"
         }
     }
     
@@ -301,6 +324,8 @@ extension API: TargetType {
         switch self {
         case .bookCar(_):
             return .post
+        case .deleteCarBooking(_):
+            return .delete
         default:
             return .get
         }
@@ -314,8 +339,8 @@ extension API: TargetType {
             return ["plate": plate]
         case .bookCar(let car):
             return ["plate": car.plate ?? ""]
-        case .deleteCarBooking(let carBooking):
-            return ["reservation_id": "1680072"]
+        case .getCarBooking(let id):
+            return ["reservation_id": id]
         case .openCar(let car):
             return ["plate": car.plate ?? "", "action": "open-door"]
         default:

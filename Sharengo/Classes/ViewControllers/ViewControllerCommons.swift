@@ -119,6 +119,7 @@ extension UIViewController {
     private struct AssociatedKeys {
         static var loaderCount = "loaderCount"
         static var disposeBag = "vc_disposeBag"
+        static var loadingViewController = "loadingViewController"
     }
     
     public var disposeBag: DisposeBag {
@@ -165,26 +166,40 @@ extension UIViewController {
         set { objc_setAssociatedObject(self, &AssociatedKeys.loaderCount, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
     }
     
+    private var loadingViewController:LoadingViewController? {
+        get { return objc_getAssociatedObject(self, &AssociatedKeys.loadingViewController) as? LoadingViewController ?? nil}
+        set { objc_setAssociatedObject(self, &AssociatedKeys.loadingViewController, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
+    }
+    
     func loaderView() -> UIView {
         return RTSpinKitView(style: .stylePulse, color: UIColor.red, spinnerSize: 44)
     }
     
     func loaderContentView() -> UIView {
-        return self.navigationController?.view ?? self.view
+        return self.view
     }
     
     func showLoader() {
         if (self.loaderCount == 0) {
             DispatchQueue.main.async {[unowned self] in
-                let hud = MBProgressHUD.showAdded(to: self.loaderContentView(), animated: true)
-                let spin = self.loaderView()
-                hud.customView = spin
-                hud.mode = .customView
-                hud.bezelView.color = .white
-                hud.tintColor = .red
-                hud.contentColor = .red
+                if self.loadingViewController != nil {
+                    self.loadingViewController!.view.removeFromSuperview()
+                    self.loadingViewController!.removeFromParentViewController()
+                }
+                self.loadingViewController = (Storyboard.main.scene(.loading))
+                self.loadingViewController!.view.alpha = 0.0
+                self.addChildViewController(self.loadingViewController!)
+                self.loaderContentView().addSubview(self.loadingViewController!.view)
+                self.loadingViewController!.view.snp.makeConstraints { (make) -> Void in
+                    make.left.equalTo(self.loaderContentView().snp.left)
+                    make.right.equalTo(self.loaderContentView().snp.right)
+                    make.top.equalTo(self.loaderContentView().snp.top)
+                    make.bottom.equalTo(self.loaderContentView().snp.bottom)
+                }
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.loadingViewController!.view.alpha = 1.0
+                })
             }
-            
         }
         self.loaderCount += 1
     }
@@ -196,7 +211,10 @@ extension UIViewController {
             }
             self!.loaderCount = max(0, (self!.loaderCount ) - 1)
             if (self!.loaderCount == 0) {
-                MBProgressHUD.hide(for: self!.loaderContentView(), animated: true)
+                if self?.loadingViewController != nil {
+                    self?.loadingViewController!.view.removeFromSuperview()
+                    self?.loadingViewController!.removeFromParentViewController()
+                }
             }
         }
     }

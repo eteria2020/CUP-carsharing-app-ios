@@ -16,14 +16,13 @@ public extension UIButton {
     func style(_ style:ButtonStyle, title: String) {
         switch style {
         case .roundedButton(let backgroundColor):
-            // TODO: sostituire le variabili relative a ZAlertView
             self.backgroundColor = .clear
             self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
-            self.layer.cornerRadius = ZAlertView.cornerRadius
+            self.layer.cornerRadius = 4
             self.clipsToBounds = true
             self.setTitle(title, for: UIControlState())
             self.titleLabel?.font = Font.roundedButton.value
-            self.setTitleColor(ZAlertView.buttonTitleColor, for: .normal)
+            self.setTitleColor(Color.alertButton.value, for: .normal)
         }
     }
 }

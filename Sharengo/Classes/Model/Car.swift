@@ -110,7 +110,7 @@ public class Car: ModelType, Decodable {
     
     // MARK: - Lazy methods
     
-    func getType() -> String {
+    fileprivate func getType() -> String {
         if self.nearest {
            return "lbl_carPopupType".localized()
         } else {

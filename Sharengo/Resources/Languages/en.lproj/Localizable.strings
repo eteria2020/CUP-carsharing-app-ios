@@ -10,8 +10,8 @@
 "btn_cancel" = "ANNULLA";
 "btn_yes" = "SÌ";
 "btn_no" = "NO";
-"lbl_connectionError" = "Non sei connesso ad internet, per favore riprova";
-"lbl_generalError" = "Si è verificato un errore, per favore riprova";
+"alert_connectionError" = "Non sei connesso ad internet, per favore riprova";
+"alert_generalError" = "Si è verificato un errore, per favore riprova";
 "btn_open" = "APRI PORTIERE";
 "btn_book" = "PRENOTA AUTO";
 "bnt_delete" = "ELIMINA";
@@ -43,12 +43,16 @@
 "lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Sharen'go ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren’go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 
 // CarBookingPopup
-"lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
+"lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %d";
 "lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
-"lbl_carBookingPopupTime" = "Scade tra\n<bold>%@</bold> min";
+"lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
+"lbl_carBookingPopupTime" = "Scade tra\n<bold>%@</bold>";
+"lbl_carBookingPopupTimeMin" = "minuti";
+"lbl_carBookingPopupTimeSec" = "secondi";
 "alert_carBookingPopupDeleteMessage" = "Eliminando questa prenotazione, non potrai più prenotare la stessa auto nelle prossime 4 ore. Confermi di voler cancellare la prenotazione?";
 "alert_carBookingPopupConfirmDeleteMessage" = "La tua prenotazione è stata annullata correttamente.";
 "alert_carBookingPopupBookedMessage" = "Hai già una prenotazione attiva";
+"alert_carBookingPopupAlreadyBooked" = "Non puoi prenotare questa auto fino a che non saranno passate 4 ore da quando hai annullato la prenotazione";

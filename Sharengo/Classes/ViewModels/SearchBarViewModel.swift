@@ -190,9 +190,9 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                         print(error)
                         let dispatchTime = DispatchTime.now() + 0.5
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            var message = "lbl_generalError".localized()
+                            var message = "alert_generalError".localized()
                             if Reachability()?.isReachable == false {
-                                message = "lbl_connectionError".localized()
+                                message = "alert_connectionError".localized()
                             }
                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()

@@ -22,7 +22,8 @@ final class SearchCarsViewModel: ViewModelType {
     fileprivate var nearestCar: Car?
     fileprivate var timerCars: Timer?
     fileprivate var cars: [Car] = []
-    var bookedCar: Car?
+    var carBooked: Car?
+    var carBooking: CarBooking?
     var allCars: [Car] = []
     
     var array_annotations: Variable<[CarAnnotation]> = Variable([])
@@ -45,7 +46,7 @@ final class SearchCarsViewModel: ViewModelType {
             .subscribe { event in
                 switch event {
                 case .next(let response):
-                    if response.status == 200, let data = response.data {
+                    if response.status == 200, let data = response.array_data {
                         if let cars = [Car].from(jsonArray: data) {
                             self.allCars = cars.filter({ (car) -> Bool in
                                 return car.status == .operative
@@ -93,7 +94,7 @@ final class SearchCarsViewModel: ViewModelType {
             .subscribe { event in
                 switch event {
                 case .next(let response):
-                    if response.status == 200, let data = response.data {
+                    if response.status == 200, let data = response.array_data {
                         if let cars = [Car].from(jsonArray: data) {
                             self.cars = cars.filter({ (car) -> Bool in
                                 return car.status == .operative
@@ -106,9 +107,9 @@ final class SearchCarsViewModel: ViewModelType {
                 case .error(_):
                     let dispatchTime = DispatchTime.now() + 0.5
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        var message = "lbl_generalError".localized()
+                        var message = "alert_generalError".localized()
                         if Reachability()?.isReachable == false {
-                            message = "lbl_connectionError".localized()
+                            message = "alert_connectionError".localized()
                         }
                         let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                             alertView.dismissAlertView()
@@ -124,6 +125,7 @@ final class SearchCarsViewModel: ViewModelType {
     }
     
     func manageAnnotations() {
+        var carBookedFounded: Bool = false
         for car in self.cars {
             let locationController = LocationController.shared
             if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
@@ -134,6 +136,9 @@ final class SearchCarsViewModel: ViewModelType {
                     })
                     if let index = index {
                         self.allCars[index].distance = car.distance
+                    }
+                    if car.plate == self.carBooked?.plate {
+                        carBookedFounded = true
                     }
                 }
             }
@@ -148,6 +153,14 @@ final class SearchCarsViewModel: ViewModelType {
                 annotations.append(annotation)
             }
         }
+        if carBookedFounded == false && self.carBooked != nil {
+            if let coordinate = self.carBooked!.location?.coordinate {
+                let annotation = CarAnnotation()
+                annotation.coordinate = coordinate
+                annotation.car = self.carBooked!
+                annotations.append(annotation)
+            }
+        }
         self.array_annotations.value = annotations
     }
     
@@ -156,10 +169,10 @@ final class SearchCarsViewModel: ViewModelType {
         for car in self.allCars {
             car.booked = false
             car.opened = false
-            if let bookedCar = self.bookedCar {
-                if car.plate == bookedCar.plate {
+            if let carBooked = self.carBooked {
+                if car.plate == carBooked.plate {
                     car.booked = true
-                    car.opened = bookedCar.opened
+                    car.opened = carBooked.opened
                 }
             }
             if self.nearestCar == nil {

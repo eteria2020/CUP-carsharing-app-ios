@@ -63,6 +63,8 @@
 		4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554431EE55284001627E7 /* FBQuadTreeNode.swift */; };
 		4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554441EE55284001627E7 /* FBZoomLevel.swift */; };
 		4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554501EE56337001627E7 /* CityAnnotation.swift */; };
+		4DC10DFF1EE9AA3300A74E26 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */; };
+		4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10E011EE9D6F000A74E26 /* CoreController.swift */; };
 		4DC59F991EDADC6200DD658A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC59F981EDADC6200DD658A /* Response.swift */; };
 		4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A01ED3106200906DA0 /* APIController.swift */; };
 		4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
@@ -154,6 +156,8 @@
 		4DA554431EE55284001627E7 /* FBQuadTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBQuadTreeNode.swift; sourceTree = "<group>"; };
 		4DA554441EE55284001627E7 /* FBZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBZoomLevel.swift; sourceTree = "<group>"; };
 		4DA554501EE56337001627E7 /* CityAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityAnnotation.swift; sourceTree = "<group>"; };
+		4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = Classes/ViewControllers/LoadingViewController.swift; sourceTree = "<group>"; };
+		4DC10E011EE9D6F000A74E26 /* CoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreController.swift; sourceTree = "<group>"; };
 		4DC59F981EDADC6200DD658A /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Classes/Model/Response.swift; sourceTree = "<group>"; };
 		4DCC70A01ED3106200906DA0 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,6 +259,7 @@
 		4D36D7BC1ED2EF86005FAEB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DC10E011EE9D6F000A74E26 /* CoreController.swift */,
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
 				4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */,
 				4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */,
@@ -355,6 +360,14 @@
 			path = Classes/Utilities/FBAnnotationClusteringSwift;
 			sourceTree = "<group>";
 		};
+		4DC10E001EE9AC5800A74E26 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
 		4DCD1A491ECDBF7400FC8BF5 = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
+				4DC10E001EE9AC5800A74E26 /* Loading */,
 				4D2339961EE6CD2A00780384 /* Intro */,
 				4DFD98381ED471FC00880EA1 /* Home */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
@@ -759,6 +773,7 @@
 				4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
+				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
@@ -790,6 +805,7 @@
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
+				4DC10DFF1EE9AA3300A74E26 /* LoadingViewController.swift in Sources */,
 				4DA554451EE55284001627E7 /* FBAnnotation.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */,

@@ -45,14 +45,24 @@ class CarBookingPopupView: UIView {
         }
         viewModel.updateWithCarBooking(carBooking: carBooking)
         self.lbl_pin.styledText = viewModel.pin
-        self.lbl_info.styledText = viewModel.info
-        self.lbl_time.styledText = viewModel.time
         self.btn_open.isHidden = false
         self.btn_delete.isHidden = false
         if viewModel.hideButtons {
             self.btn_open.isHidden = true
             self.btn_delete.isHidden = true
         }
+        viewModel.info.asObservable()
+            .subscribe(onNext: {[weak self] (info) in
+                DispatchQueue.main.async {
+                    self?.lbl_info.styledText = info
+                }
+            }).addDisposableTo(disposeBag)
+        viewModel.time.asObservable()
+            .subscribe(onNext: {[weak self] (time) in
+                DispatchQueue.main.async {
+                    self?.lbl_time.styledText = time
+                }
+            }).addDisposableTo(disposeBag)
     }
     
     override init(frame: CGRect) {
