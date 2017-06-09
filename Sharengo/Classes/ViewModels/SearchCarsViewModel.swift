@@ -137,10 +137,10 @@ final class SearchCarsViewModel: ViewModelType {
                     if let index = index {
                         self.allCars[index].distance = car.distance
                     }
-                    if car.plate == self.carBooked?.plate {
-                        carBookedFounded = true
-                    }
                 }
+            }
+            if car.plate == self.carBooked?.plate {
+                carBookedFounded = true
             }
         }
         self.updateCarProperties()

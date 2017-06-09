@@ -20,6 +20,7 @@ class CoreController
     var allCarBookings: [CarBooking] = []
     var apiController: ApiController = ApiController()
     var bookingsTimer: Timer?
+    var getBookingsInProgress = false
     
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -37,11 +38,13 @@ class CoreController
     }
     
     @objc func updateBookings() {
+        self.getBookingsInProgress = true
         self.apiController.bookingList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
                 case .next(let response):
+                    self.getBookingsInProgress = false
                     if response.status == 200, let data = response.array_data {
                         if let carBookings = [CarBooking].from(jsonArray: data) {
                             self.allCarBookings = carBookings.filter({ (carBooking) -> Bool in
@@ -49,6 +52,20 @@ class CoreController
                             })
                         }
                     }
+                default:
+                    self.getBookingsInProgress = false
+                    self.allCarBookings = []
+                }
+            }.addDisposableTo(self.disposeBag)
+        
+        // TODO: MOVE IT DAMN!
+        self.apiController.tripsList()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    print("-----")
+                    break
                 default:
                     break
                 }

@@ -150,7 +150,7 @@ final class ApiController {
     
     func bookingList() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -175,9 +175,36 @@ final class ApiController {
         }
     }
     
+    func tripsList() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])//NetworkLoggerPlugin(verbose: true)
+            return provider.request(.tripsList())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
     func bookCar(car: Car) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -195,6 +222,7 @@ final class ApiController {
                         observable.onCompleted()
                     case .error(let error):
                         observable.onError(error)
+//                        {"status":200,"reason":"Error: reservation:false - status:false - trip:true - limit:false - limit_archive:false","data":null,"time":1497018296}
                     default:
                         break
                     }
@@ -258,7 +286,7 @@ final class ApiController {
     
     func openCar(car: Car) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -295,12 +323,13 @@ fileprivate enum API {
     case deleteCarBooking(carBooking: CarBooking)
     case getCarBooking(id: Int)
     case openCar(car: Car)
+    case tripsList()
 }
 
 extension API: TargetType {
     var baseURL: URL {
         switch self {
-        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_), .getUser():
+        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_), .getUser(), .tripsList():
             return URL(string: "https://francesco.galatro%40gmail.com:508c82b943ae51118d905553b8213c8a@api.sharengo.it:8023/v2")!
         default:
             return URL(string: "https://api.sharengo.it:8023/v2")!
@@ -311,12 +340,16 @@ extension API: TargetType {
         switch self {
         case .getUser():
             return "user"
-        case .searchAllCars(), .searchCars(_, _, _), .searchCar(_), .openCar(_):
+        case .searchAllCars(), .searchCars(_, _, _), .searchCar(_):
             return "cars"
         case .bookingList(), .bookCar(_), .getCarBooking(_):
             return "reservations"
         case .deleteCarBooking(let carBooking):
             return "reservations/\(carBooking.id ?? 0)"
+        case .openCar(let car):
+            return "cars/\(car.plate ?? "")"
+        case .tripsList():
+            return "trips"
         }
     }
     
@@ -326,6 +359,8 @@ extension API: TargetType {
             return .post
         case .deleteCarBooking(_):
             return .delete
+        case .openCar(_):
+            return .put
         default:
             return .get
         }
@@ -341,8 +376,10 @@ extension API: TargetType {
             return ["plate": car.plate ?? ""]
         case .getCarBooking(let id):
             return ["reservation_id": id]
-        case .openCar(let car):
-            return ["plate": car.plate ?? "", "action": "open-door"]
+        case .openCar(_):
+            return ["action": "close"]
+        case .tripsList():
+            return ["active": "true"]
         default:
             return [:]
         }

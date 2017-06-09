@@ -28,7 +28,7 @@ class HomeViewController : UIViewController, ViewModelBindable {
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
             case .viewModel(let viewModel):
-              Router.from(self,viewModel: viewModel).execute()
+                self.openSearchCars(viewModel: viewModel)
             }
         }).addDisposableTo(self.disposeBag)
         self.btn_searchCar.rx.bind(to: viewModel.selection, input: .searchCars)
@@ -65,5 +65,16 @@ class HomeViewController : UIViewController, ViewModelBindable {
                     break
                 }
             }.addDisposableTo(self.disposeBag)
+    }
+    
+    fileprivate func openSearchCars(viewModel: ViewModelType) {
+        if !CoreController.shared.getBookingsInProgress {
+            Router.from(self,viewModel: viewModel).execute()
+        } else {
+            let dispatchTime = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                self.openSearchCars(viewModel: viewModel)
+            }
+        }
     }
 }
