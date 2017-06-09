@@ -14,13 +14,14 @@ import Boomerang
 class CoreController
 {
     private init() {
-        self.bookingsTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateBookings), userInfo: nil, repeats: true)
+        self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
     }
     static let shared = CoreController()
-    var allCarBookings: [CarBooking] = []
     var apiController: ApiController = ApiController()
-    var bookingsTimer: Timer?
-    var getBookingsInProgress = false
+    var updateTimer: Timer?
+    var updateInProgress = false
+    var allCarBookings: [CarBooking] = []
+    var allCarTrips: [CarTrip] = []
     
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -37,14 +38,17 @@ class CoreController
         return disposeBag
     }
     
-    @objc func updateBookings() {
-        self.getBookingsInProgress = true
+    @objc func updateData() {
+        self.updateInProgress = true
+        self.updateCarBookings()
+    }
+    
+    fileprivate func updateCarBookings() {
         self.apiController.bookingList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
                 case .next(let response):
-                    self.getBookingsInProgress = false
                     if response.status == 200, let data = response.array_data {
                         if let carBookings = [CarBooking].from(jsonArray: data) {
                             self.allCarBookings = carBookings.filter({ (carBooking) -> Bool in
@@ -52,23 +56,36 @@ class CoreController
                             })
                         }
                     }
+                    self.updateCarTrips()
                 default:
-                    self.getBookingsInProgress = false
                     self.allCarBookings = []
+                    self.updateCarTrips()
                 }
             }.addDisposableTo(self.disposeBag)
-        
-        // TODO: MOVE IT DAMN!
+    }
+    
+    fileprivate func updateCarTrips() {
         self.apiController.tripsList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
                 case .next(let response):
-                    print("-----")
+                    if response.status == 200, let data = response.array_data {
+                        if let carTrips = [CarTrip].from(jsonArray: data) {
+                            self.allCarTrips = carTrips
+                        }
+                        self.stopUpdateData()
+                    }
                     break
                 default:
-                    break
+                    self.allCarTrips = []
+                    self.stopUpdateData()
                 }
             }.addDisposableTo(self.disposeBag)
+    }
+    
+    fileprivate func stopUpdateData() {
+        self.updateInProgress = false
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
 }

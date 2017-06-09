@@ -51,6 +51,7 @@
 		4D9351511EE03497008C65C3 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9351501EE03497008C65C3 /* SearchBarView.xib */; };
 		4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */; };
 		4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D61EDF4BFE00AD0EC6 /* Address.swift */; };
+		4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D965B6D1EEAF3780006294E /* CarTrip.swift */; };
 		4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
 		4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178651ED63C4D00EBD32B /* UIImage.swift */; };
 		4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178661ED63C4D00EBD32B /* ZAlertView.swift */; };
@@ -146,6 +147,7 @@
 		4D9351501EE03497008C65C3 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchBarView.xib; path = Resources/Xibs/SearchBarView.xib; sourceTree = "<group>"; };
 		4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominatimAPIController.swift; sourceTree = "<group>"; };
 		4D9400D61EDF4BFE00AD0EC6 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Classes/Model/Address.swift; sourceTree = "<group>"; };
+		4D965B6D1EEAF3780006294E /* CarTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTrip.swift; path = Classes/Model/CarTrip.swift; sourceTree = "<group>"; };
 		4DA178641ED63C4D00EBD32B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4DA178651ED63C4D00EBD32B /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		4DA178661ED63C4D00EBD32B /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 			children = (
 				4DC59F981EDADC6200DD658A /* Response.swift */,
 				4D45BB2F1EE69F49004C7287 /* CarBooking.swift */,
+				4D965B6D1EEAF3780006294E /* CarTrip.swift */,
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
 				4D9400D61EDF4BFE00AD0EC6 /* Address.swift */,
 				4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */,
@@ -795,6 +798,7 @@
 				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
+				4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
 				4DA554471EE55284001627E7 /* FBAnnotationClusterTemplate.swift in Sources */,
 				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,

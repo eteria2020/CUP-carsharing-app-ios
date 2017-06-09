@@ -302,7 +302,6 @@ final class ApiController {
                     case .next(let response):
                         observable.onNext(response)
                         observable.onCompleted()
-                        /* {"status":200,"reason":"","data":{"plate":"EF72806","manufactures":"Xindayang Ltd.","model":"ZD 80","label":"-","active":true,"int_cleanliness":"clean","ext_cleanliness":"average","notes":"TELAIO 1835","longitude":"9.24071","latitude":"45.4161","damages":["Paraurti posteriore","Cofano","Indicatori di direzione"],"battery":67,"frame":null,"location":"0101000020E6100000ECA353573E7B2240CCEEC9C342B54640","firmware_version":"V4.6.1","software_version":"0.104.10","mac":null,"imei":"861311004782362","last_contact":"2017-06-06T20:53:19.000Z","last_location_time":"2017-06-06T19:07:40.000Z","busy":false,"hidden":false,"rpm":0,"speed":0,"obc_in_use":0,"obc_wl_size":67915,"km":7120,"running":false,"parking":false,"status":"operative","soc":67,"vin":null,"key_status":"OFF","charging":false,"battery_offset":0,"gps_data":{"time":"06/06/2017 22:47:16","fix_age":1582447,"accuracy":0,"change_age":6232,"satellites":0},"park_enabled":false,"plug":false,"fleet_id":1,"fleets":{"id":1,"label":"Milano"}},"time":1496782681} */
                     case .error(let error):
                         observable.onError(error)
                     default:

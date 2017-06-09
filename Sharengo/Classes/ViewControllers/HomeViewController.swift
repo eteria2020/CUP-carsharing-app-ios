@@ -49,7 +49,7 @@ class HomeViewController : UIViewController, ViewModelBindable {
         super.viewWillAppear(animated)
         // TODO: move in intro please
         self.setupUser()
-        CoreController.shared.updateBookings()
+        CoreController.shared.updateData()
     }
    
     fileprivate func setupUser() {
@@ -68,7 +68,7 @@ class HomeViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func openSearchCars(viewModel: ViewModelType) {
-        if !CoreController.shared.getBookingsInProgress {
+        if !CoreController.shared.updateInProgress {
             Router.from(self,viewModel: viewModel).execute()
         } else {
             let dispatchTime = DispatchTime.now() + 0.5
