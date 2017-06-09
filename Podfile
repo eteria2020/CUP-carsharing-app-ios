@@ -26,6 +26,7 @@ def shared_pods
     pod 'StoryboardConstraint'
     pod 'DeviceKit'	
     pod 'YYWebImage'
+    pod 'BRYXBanner'
 end
 
 target 'Sharengo' do
