@@ -21,6 +21,9 @@ class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var lbl_info: UILabel!
     @IBOutlet fileprivate weak var lbl_time: UILabel!
     @IBOutlet fileprivate weak var icn_time: UIImageView!
+    @IBOutlet fileprivate weak var view_time: UIView!
+    @IBOutlet fileprivate weak var view_pin: UIView!
+    @IBOutlet fileprivate weak var view_info: UIView!
     fileprivate var view: UIView!
     
     var viewModel: CarBookingPopupViewModel?
@@ -43,10 +46,29 @@ class CarBookingPopupView: UIView {
         guard let viewModel = viewModel else {
             return
         }
+        viewModel.carTrip = nil
         viewModel.updateWithCarBooking(carBooking: carBooking)
+        self.updateData()
+    }
+    
+    func updateWithCarTrip(carTrip: CarTrip) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.carBooking = nil
+        viewModel.updateWithCarTrip(carTrip: carTrip)
+        self.updateData()
+    }
+    
+    fileprivate func updateData() {
+        guard let viewModel = viewModel else {
+            return
+        }
         self.lbl_pin.styledText = viewModel.pin
         self.btn_open.isHidden = false
         self.btn_delete.isHidden = false
+        self.icn_time.isHidden = true
+        self.view_time.isHidden = true
         if viewModel.hideButtons {
             self.btn_open.isHidden = true
             self.btn_delete.isHidden = true
@@ -61,6 +83,13 @@ class CarBookingPopupView: UIView {
             .subscribe(onNext: {[weak self] (time) in
                 DispatchQueue.main.async {
                     self?.lbl_time.styledText = time
+                    if time == "" {
+                        self?.icn_time.isHidden = true
+                        self?.view_time.isHidden = true
+                    } else {
+                        self?.icn_time.isHidden = false
+                        self?.view_time.isHidden = false
+                    }
                 }
             }).addDisposableTo(disposeBag)
     }
@@ -88,5 +117,18 @@ class CarBookingPopupView: UIView {
         let nib = ViewXib.carBookingPopup.getNib()
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if self.view.point(inside: convert(point, to: self.view), with: event) {
+            if self.viewModel?.time.value != "" && view_time.point(inside: convert(point, to: view_time), with: event) {
+                return true
+            } else if view_pin.point(inside: convert(point, to: view_pin), with: event) {
+                return true
+            } else if view_info.point(inside: convert(point, to: view_info), with: event) {
+                return true
+            }
+        }
+        return false
     }
 }

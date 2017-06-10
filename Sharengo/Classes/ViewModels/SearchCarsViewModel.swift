@@ -22,9 +22,10 @@ final class SearchCarsViewModel: ViewModelType {
     fileprivate var nearestCar: Car?
     fileprivate var timerCars: Timer?
     fileprivate var cars: [Car] = []
+    var allCars: [Car] = []
     var carBooked: Car?
     var carBooking: CarBooking?
-    var allCars: [Car] = []
+    var carTrip: CarTrip?
     
     var array_annotations: Variable<[CarAnnotation]> = Variable([])
 

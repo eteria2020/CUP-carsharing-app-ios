@@ -23,7 +23,8 @@ public enum CarBookingPopupOutput: SelectionInput {
 }
 
 final class CarBookingPopupViewModel: ViewModelTypeSelectable {
-    fileprivate var carBooking: CarBooking?
+    var carBooking: CarBooking?
+    var carTrip: CarTrip?
     var pin: String = ""
     var time: Variable<String> = Variable("")
     var hideButtons: Bool = false
@@ -52,18 +53,12 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     
     func updateWithCarBooking(carBooking: CarBooking) {
         self.carBooking = carBooking
-        if let pin = UserDefaults.standard.object(forKey: "UserPin") as? Int {
-            self.pin = String(format: "lbl_carBookingPopupPin".localized(), pin)
-        } else {
-            self.pin = ""
-        }
-        self.info.value = ""
-        self.hideButtons = false
+        self.updateData()
         if let car = self.carBooking?.car {
             self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
             if let address = car.address.value {
                 self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
-             } else {
+            } else {
                 car.getAddress()
                 car.address.asObservable()
                     .subscribe(onNext: {[weak self] (address) in
@@ -78,13 +73,49 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 self.hideButtons = true
             }
         }
+    }
+    
+    func updateWithCarTrip(carTrip: CarTrip) {
+        self.carTrip = carTrip
+        self.updateData()
+        if let car = self.carTrip?.car {
+            self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
+            if let address = car.address.value {
+                self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
+            } else {
+                car.getAddress()
+                car.address.asObservable()
+                    .subscribe(onNext: {[weak self] (address) in
+                        DispatchQueue.main.async {
+                            if address != nil {
+                                self?.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address!)
+                            }
+                        }
+                    }).addDisposableTo(disposeBag)
+            }
+            if car.opened {
+                self.hideButtons = true
+            }
+        }
+    }
+    
+    func updateData() {
+        if let pin = UserDefaults.standard.object(forKey: "UserPin") as? Int {
+            self.pin = String(format: "lbl_carBookingPopupPin".localized(), pin)
+        } else {
+            self.pin = ""
+        }
+        self.info.value = ""
+        self.hideButtons = false
         self.updateTime()
     }
     
     @objc fileprivate func updateTime() {
         self.time.value = ""
-        if let time = self.carBooking?.time {
-            self.time.value = String(format: "lbl_carBookingPopupTime".localized(), time)
+        if self.carBooking?.car?.opened == false {
+            if let time = self.carBooking?.time {
+                self.time.value = String(format: "lbl_carBookingPopupTime".localized(), time)
+            }
         }
     }
 }

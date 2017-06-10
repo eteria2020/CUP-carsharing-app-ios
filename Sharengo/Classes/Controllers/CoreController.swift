@@ -57,9 +57,11 @@ class CoreController
                         }
                     }
                     self.updateCarTrips()
-                default:
+                case .error(_):
                     self.allCarBookings = []
                     self.updateCarTrips()
+                default:
+                    break
                 }
             }.addDisposableTo(self.disposeBag)
     }
@@ -74,12 +76,13 @@ class CoreController
                         if let carTrips = [CarTrip].from(jsonArray: data) {
                             self.allCarTrips = carTrips
                         }
-                        self.stopUpdateData()
                     }
-                    break
-                default:
+                    self.stopUpdateData()
+                case .error(_):
                     self.allCarTrips = []
                     self.stopUpdateData()
+                default:
+                    break
                 }
             }.addDisposableTo(self.disposeBag)
     }

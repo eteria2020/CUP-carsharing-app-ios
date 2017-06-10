@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,6 +19,9 @@
                 <outlet property="lbl_info" destination="KpP-6T-CZZ" id="SmV-3i-Y48"/>
                 <outlet property="lbl_pin" destination="4Fa-FO-OGd" id="Haw-Oz-wRH"/>
                 <outlet property="lbl_time" destination="ipR-dL-nAT" id="fy5-h2-6ZU"/>
+                <outlet property="view_info" destination="jIK-Jw-10e" id="oVi-C8-dbO"/>
+                <outlet property="view_pin" destination="oCz-P8-TIz" id="RRl-aB-31K"/>
+                <outlet property="view_time" destination="vvp-c2-hMv" id="8Jf-Kc-7kh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -88,21 +91,24 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="carBookingPopupInfo"/>
                             </userDefinedRuntimeAttributes>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_border_booking_popup" translatesAutoresizingMaskIntoConstraints="NO" id="kCq-yu-KHd">
+                            <rect key="frame" x="0.0" y="123" width="400" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="Whs-Mc-7Rv"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="kCq-yu-KHd" firstAttribute="top" secondItem="KpP-6T-CZZ" secondAttribute="bottom" id="3VT-h2-mZm"/>
                         <constraint firstAttribute="trailing" secondItem="KpP-6T-CZZ" secondAttribute="trailing" constant="10" id="Iff-ih-Rga"/>
                         <constraint firstItem="KpP-6T-CZZ" firstAttribute="leading" secondItem="jIK-Jw-10e" secondAttribute="leading" constant="10" id="Nrc-Vn-FhS"/>
+                        <constraint firstItem="kCq-yu-KHd" firstAttribute="leading" secondItem="jIK-Jw-10e" secondAttribute="leading" id="SJG-BE-HF2"/>
+                        <constraint firstAttribute="trailing" secondItem="kCq-yu-KHd" secondAttribute="trailing" id="UVs-mp-o11"/>
                         <constraint firstItem="KpP-6T-CZZ" firstAttribute="top" secondItem="jIK-Jw-10e" secondAttribute="top" id="WiY-v9-mbN"/>
                         <constraint firstAttribute="bottom" secondItem="KpP-6T-CZZ" secondAttribute="bottom" id="dBV-el-MzR"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_border_booking_popup" translatesAutoresizingMaskIntoConstraints="NO" id="CvU-ea-MGv">
-                    <rect key="frame" x="0.0" y="243" width="400" height="28"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="I91-lh-KI8"/>
-                    </constraints>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvp-c2-hMv">
                     <rect key="frame" x="0.0" y="168" width="400" height="75"/>
                     <subviews>
@@ -144,15 +150,24 @@
                                 <constraint firstAttribute="trailing" secondItem="ipR-dL-nAT" secondAttribute="trailing" constant="10" id="zS3-h1-yp6"/>
                             </constraints>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_border_booking_popup" translatesAutoresizingMaskIntoConstraints="NO" id="CvU-ea-MGv">
+                            <rect key="frame" x="0.0" y="75" width="400" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="I91-lh-KI8"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="2fF-f1-a2Q" secondAttribute="bottom" id="0q3-ag-bRh"/>
                         <constraint firstItem="2fF-f1-a2Q" firstAttribute="leading" secondItem="NSy-WS-YN0" secondAttribute="trailing" id="1hG-m9-RNf"/>
+                        <constraint firstItem="CvU-ea-MGv" firstAttribute="top" secondItem="2fF-f1-a2Q" secondAttribute="bottom" id="5bs-9N-NkL"/>
                         <constraint firstItem="NSy-WS-YN0" firstAttribute="top" secondItem="vvp-c2-hMv" secondAttribute="top" id="878-47-hiJ"/>
+                        <constraint firstItem="CvU-ea-MGv" firstAttribute="leading" secondItem="vvp-c2-hMv" secondAttribute="leading" id="HE9-Or-Mon"/>
                         <constraint firstItem="NSy-WS-YN0" firstAttribute="leading" secondItem="vvp-c2-hMv" secondAttribute="leading" id="RuK-id-skM"/>
                         <constraint firstItem="2fF-f1-a2Q" firstAttribute="top" secondItem="vvp-c2-hMv" secondAttribute="top" id="S0I-4p-waF"/>
                         <constraint firstItem="NSy-WS-YN0" firstAttribute="width" secondItem="vvp-c2-hMv" secondAttribute="width" multiplier="0.4" id="VMH-Zm-2KB"/>
+                        <constraint firstAttribute="trailing" secondItem="CvU-ea-MGv" secondAttribute="trailing" id="Y3B-ap-Xbg"/>
                         <constraint firstAttribute="trailing" secondItem="2fF-f1-a2Q" secondAttribute="trailing" id="nlH-cj-5pC"/>
                         <constraint firstAttribute="bottom" secondItem="NSy-WS-YN0" secondAttribute="bottom" id="wBL-94-ZnA"/>
                     </constraints>
@@ -163,7 +178,6 @@
                 <constraint firstAttribute="trailing" secondItem="2e5-ZQ-WEq" secondAttribute="trailing" id="4kW-M4-Avm"/>
                 <constraint firstItem="oCz-P8-TIz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4me-VZ-0Yh"/>
                 <constraint firstAttribute="trailing" secondItem="jIK-Jw-10e" secondAttribute="trailing" id="622-vY-bCp"/>
-                <constraint firstItem="CvU-ea-MGv" firstAttribute="top" secondItem="vvp-c2-hMv" secondAttribute="bottom" id="6X0-Wq-xHO"/>
                 <constraint firstItem="vvp-c2-hMv" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="AaY-hG-zCP"/>
                 <constraint firstItem="2e5-ZQ-WEq" firstAttribute="top" secondItem="vvp-c2-hMv" secondAttribute="bottom" constant="10" id="BH0-ZB-heV"/>
                 <constraint firstItem="oCz-P8-TIz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="C6Q-R4-BB0"/>
@@ -171,9 +185,7 @@
                 <constraint firstItem="2e5-ZQ-WEq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KEN-V5-ErA"/>
                 <constraint firstAttribute="trailing" secondItem="oCz-P8-TIz" secondAttribute="trailing" id="MXC-f1-uzK"/>
                 <constraint firstItem="oCz-P8-TIz" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.15" id="NCT-9T-krh"/>
-                <constraint firstItem="CvU-ea-MGv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pqc-w2-gh1"/>
                 <constraint firstItem="jIK-Jw-10e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="c7n-ob-dPG"/>
-                <constraint firstAttribute="trailing" secondItem="CvU-ea-MGv" secondAttribute="trailing" id="cZo-2p-xh9"/>
                 <constraint firstItem="vvp-c2-hMv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h5k-il-fUf"/>
                 <constraint firstItem="jIK-Jw-10e" firstAttribute="top" secondItem="oCz-P8-TIz" secondAttribute="bottom" id="hIa-UL-dIf"/>
                 <constraint firstItem="vvp-c2-hMv" firstAttribute="top" secondItem="jIK-Jw-10e" secondAttribute="bottom" id="lIE-SJ-j9G"/>

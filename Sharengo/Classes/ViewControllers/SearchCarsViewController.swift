@@ -304,6 +304,24 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - Update methods
     
     @objc fileprivate func updateData() {
+        if let carTrip = CoreController.shared.allCarTrips.first {
+            if carTrip.id != self.viewModel?.carTrip?.id {
+                if let car = carTrip.car {
+                    car.booked = true
+                    car.opened = true
+                    self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                    self.view_carBookingPopup.alpha = 1.0
+                    self.viewModel?.carBooked = car
+                    self.viewModel?.carTrip = carTrip
+                    self.viewModel?.manageAnnotations()
+                    if let location = car.location {
+                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        let span = MKCoordinateSpanMake(0.001, 0.001)
+                        self.centerMap(on: newLocation, span: span)
+                    }
+                }
+            }
+        }
         if let carBooking = CoreController.shared.allCarBookings.first {
             if carBooking.id != self.viewModel?.carBooking?.id {
                 if let car = carBooking.car {
@@ -358,12 +376,12 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                                                         if self.viewModel?.carBooked == nil {
                                                             car.booked = true
                                                             car.opened = true
-                                                            //carBooking.car = car
+                                                            carTrip.car = car
                                                             self.closeCarPopup()
-                                                            //self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
                                                             self.view_carBookingPopup.alpha = 1.0
                                                             self.viewModel?.carBooked = car
-                                                            //self.viewModel?.carBooking = carBooking
+                                                            self.viewModel?.carTrip = carTrip
                                                             self.viewModel?.manageAnnotations()
                                                         }
                                                     }
