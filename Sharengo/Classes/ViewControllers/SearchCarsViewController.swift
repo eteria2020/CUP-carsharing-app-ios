@@ -305,40 +305,100 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     
     @objc fileprivate func updateData() {
         if let carTrip = CoreController.shared.allCarTrips.first {
-            if carTrip.id != self.viewModel?.carTrip?.id {
-                if let car = carTrip.car {
-                    car.booked = true
-                    car.opened = true
-                    self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
-                    self.view_carBookingPopup.alpha = 1.0
-                    self.viewModel?.carBooked = car
-                    self.viewModel?.carTrip = carTrip
-                    self.viewModel?.manageAnnotations()
-                    if let location = car.location {
-                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                        let span = MKCoordinateSpanMake(0.001, 0.001)
-                        self.centerMap(on: newLocation, span: span)
+            carTrip.car.asObservable()
+                .subscribe(onNext: {[weak self] (car) in
+                    DispatchQueue.main.async {
+                        if let car = car {
+                            if carTrip.id != self?.viewModel?.carTrip?.id {
+                                // Open
+                                car.booked = true
+                                car.opened = true
+                                self?.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                                self?.view_carBookingPopup.alpha = 1.0
+                                self?.viewModel?.carBooked = car
+                                self?.viewModel?.carTrip = carTrip
+                                self?.getResultsWithoutLoading()
+                                if let location = car.location {
+                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                                    let span = MKCoordinateSpanMake(0.001, 0.001)
+                                    self?.centerMap(on: newLocation, span: span)
+                                }
+                            } else {
+                                // Update
+                                car.booked = true
+                                car.opened = true
+                                self?.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                                self?.viewModel?.carBooked = car
+                                self?.viewModel?.carTrip = carTrip
+                                self?.getResultsWithoutLoading()
+                            }
+                        }
                     }
-                }
+                }).addDisposableTo(disposeBag)
+        } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carTrip != nil {
+            // Close
+            if let car = self.view_carBookingPopup?.viewModel?.carTrip?.car.value {
+                car.booked = false
+                car.opened = false
             }
+            self.view_carBookingPopup.alpha = 0.0
+            self.view_carBookingPopup?.viewModel?.carTrip = nil
+            self.view_carBookingPopup?.viewModel?.carBooking = nil
+            self.viewModel?.carBooked = nil
+            self.viewModel?.carTrip = nil
+            self.viewModel?.carBooking = nil
+            self.getResultsWithoutLoading()
         }
         if let carBooking = CoreController.shared.allCarBookings.first {
-            if carBooking.id != self.viewModel?.carBooking?.id {
-                if let car = carBooking.car {
-                    car.booked = true
-                    self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
-                    self.view_carBookingPopup.alpha = 1.0
-                    self.viewModel?.carBooked = car
-                    self.viewModel?.carBooking = carBooking
-                    self.viewModel?.manageAnnotations()
-                    if let location = car.location {
-                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                        let span = MKCoordinateSpanMake(0.001, 0.001)
-                        self.centerMap(on: newLocation, span: span)
+            carBooking.car.asObservable()
+                .subscribe(onNext: {[weak self] (car) in
+                    DispatchQueue.main.async {
+                        if let car = car {
+                            if carBooking.id != self?.viewModel?.carBooking?.id {
+                                // Open
+                                car.booked = true
+                                self?.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                self?.view_carBookingPopup.alpha = 1.0
+                                self?.viewModel?.carBooked = car
+                                self?.viewModel?.carBooking = carBooking
+                                self?.getResultsWithoutLoading()
+                                if let location = car.location {
+                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                                    let span = MKCoordinateSpanMake(0.001, 0.001)
+                                    self?.centerMap(on: newLocation, span: span)
+                                }
+                            } else {
+                                // Update
+                                car.booked = true
+                                self?.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                self?.viewModel?.carBooked = car
+                                self?.viewModel?.carBooking = carBooking
+                                self?.getResultsWithoutLoading()
+                            }
+                        }
                     }
-                }
+                }).addDisposableTo(disposeBag)
+        } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carBooking != nil {
+            // Close
+            if let car = self.view_carBookingPopup?.viewModel?.carBooking?.car.value {
+                car.booked = false
+                car.opened = false
+            }
+            self.view_carBookingPopup.alpha = 0.0
+            self.view_carBookingPopup?.viewModel?.carTrip = nil
+            self.view_carBookingPopup?.viewModel?.carBooking = nil
+            self.viewModel?.carBooked = nil
+            self.viewModel?.carTrip = nil
+            self.viewModel?.carBooking = nil
+            self.getResultsWithoutLoading()
+        }
+        if let carAnnotation = self.mapView.selectedAnnotations.first as? CarAnnotation {
+            if let car = carAnnotation.car {
+                self.view_carPopup.updateWithCar(car: car)
+                self.view.layoutIfNeeded()
             }
         }
+        self.getResultsWithoutLoading()
     }
     
     // MARK: - CarPopup methods
@@ -363,44 +423,19 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 switch event {
                 case .next(let response):
                     if response.status == 200 {
-                            self.apiController.tripsList()
-                                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                                .subscribe { event in
-                                    switch event {
-                                    case .next(let response):
-                                        if response.status == 200, let data = response.array_data {
-                                            if let carTrips = [CarTrip].from(jsonArray: data) {
-                                                if let carTrip = carTrips.first {
-                                                    DispatchQueue.main.async {
-                                                        self.hideLoader()
-                                                        if self.viewModel?.carBooked == nil {
-                                                            car.booked = true
-                                                            car.opened = true
-                                                            carTrip.car = car
-                                                            self.closeCarPopup()
-                                                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
-                                                            self.view_carBookingPopup.alpha = 1.0
-                                                            self.viewModel?.carBooked = car
-                                                            self.viewModel?.carTrip = carTrip
-                                                            self.viewModel?.manageAnnotations()
-                                                        }
-                                                    }
-                                                } else {
-                                                    self.hideLoader()
-                                                    self.showGeneralAlert()
-                                                }
-                                            } else {
-                                                self.hideLoader()
-                                                self.showGeneralAlert()
-                                            }
-                                        } else {
-                                            self.hideLoader()
-                                            self.showGeneralAlert()
-                                        }
-                                    default:
-                                        break
-                                    }
-                                }.addDisposableTo(CoreController.shared.disposeBag)
+                        let carTrip = CarTrip(car: car)
+                        DispatchQueue.main.async {
+                            self.hideLoader()
+                            car.booked = true
+                            car.opened = true
+                            carTrip.car.value = car
+                            self.closeCarPopup()
+                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                            self.view_carBookingPopup.alpha = 1.0
+                            self.viewModel?.carBooked = car
+                            self.viewModel?.carTrip = carTrip
+                            self.getResultsWithoutLoading()
+                        }
                     }
                 case .error(_):
                     let dispatchTime = DispatchTime.now() + 0.5
@@ -437,19 +472,25 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                                 .subscribe { event in
                                     switch event {
                                     case .next(let response):
-                                        if response.status == 200, let data = response.array_data {
-                                            if let carBookings = [CarBooking].from(jsonArray: data) {
-                                                if let carBooking = carBookings.first {
-                                                    DispatchQueue.main.async {
+                                        let dispatchTime = DispatchTime.now() + 0.5
+                                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                            if response.status == 200, let data = response.array_data {
+                                                if let carBookings = [CarBooking].from(jsonArray: data) {
+                                                    if let carBooking = carBookings.first {
+                                                        DispatchQueue.main.async {
+                                                            self.hideLoader()
+                                                            car.booked = true
+                                                            carBooking.car.value = car
+                                                            self.closeCarPopup()
+                                                            self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                                            self.view_carBookingPopup.alpha = 1.0
+                                                            self.viewModel?.carBooked = car
+                                                            self.viewModel?.carBooking = carBooking
+                                                            self.getResultsWithoutLoading()
+                                                        }
+                                                    } else {
                                                         self.hideLoader()
-                                                        car.booked = true
-                                                        carBooking.car = car
-                                                        self.closeCarPopup()
-                                                        self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
-                                                        self.view_carBookingPopup.alpha = 1.0
-                                                        self.viewModel?.carBooked = car
-                                                        self.viewModel?.carBooking = carBooking
-                                                        self.viewModel?.manageAnnotations()
+                                                        self.showGeneralAlert()
                                                     }
                                                 } else {
                                                     self.hideLoader()
@@ -459,21 +500,22 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                                                 self.hideLoader()
                                                 self.showGeneralAlert()
                                             }
-                                        } else {
-                                            self.hideLoader()
-                                            self.showGeneralAlert()
                                         }
                                     default:
                                         break
                                     }
                                 }.addDisposableTo(CoreController.shared.disposeBag)
                         } else {
-                            self.hideLoader()
-                            self.showGeneralAlert()
+                            let dispatchTime = DispatchTime.now() + 0.5
+                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                self.hideLoader()
+                                self.showGeneralAlert()
+                            }
                         }
                     } else {
-                        self.hideLoader()
-                        DispatchQueue.main.async {
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.hideLoader()
                             let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
                             })
@@ -511,25 +553,24 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                     switch event {
                     case .next(let response):
                         if response.status == 200 {
-                            let dispatchTime = DispatchTime.now() + 1
+                            let dispatchTime = DispatchTime.now() + 0.5
                             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                                 self.hideLoader()
                                 let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                     alertView.dismissAlertView()
                                     self.view_carBookingPopup.alpha = 0.0
                                     self.viewModel?.carBooked = nil
-                                    if let radius = self.getRadius() {
-                                        if radius < self.clusteringRadius {
-                                            self.viewModel?.reloadResults(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude, radius: radius)
-                                        }
-                                    }
+                                    self.viewModel?.carBooking = nil
+                                    self.viewModel?.carTrip = nil
+                                    self.getResultsWithoutLoading()
                                 })
                                 confirmDialog.allowTouchOutsideToDismiss = false
                                 confirmDialog.show()
                             }
                         } else {
-                            self.hideLoader()
-                            DispatchQueue.main.async {
+                            let dispatchTime = DispatchTime.now() + 0.5
+                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                self.hideLoader()
                                 let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                     alertView.dismissAlertView()
                                 })
@@ -647,6 +688,14 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             }
         }
         self.viewModel?.resetCars()
+    }
+    
+    fileprivate func getResultsWithoutLoading() {
+        if let radius = self.getRadius() {
+            if radius < self.clusteringRadius {
+                self.viewModel?.reloadResults(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude, radius: radius)
+            }
+        }
     }
     
     fileprivate func addCityAnnotations() {
@@ -818,8 +867,8 @@ extension SearchCarsViewController: MKMapViewDelegate {
             annotationView?.annotationColor = UIColor.clear
             if let annotationView = annotationView {
                 if let carAnnotation = annotationView.annotation as? CarAnnotation {
-                    if carAnnotation.car?.nearest == true || carAnnotation.car?.booked == true {
-                        if carAnnotation.car?.booked == true {
+                    if carAnnotation.car?.nearest == true || carAnnotation.car?.booked == true || carAnnotation.car?.opened == true {
+                        if carAnnotation.car?.booked == true || carAnnotation.car?.opened == true {
                             annotationView.annotationColor = Color.searchCarsBookedCar.value
                         } else if carAnnotation.car?.nearest == true {
                             annotationView.annotationColor = Color.searchCarsNearestCar.value

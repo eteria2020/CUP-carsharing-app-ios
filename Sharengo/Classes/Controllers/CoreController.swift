@@ -54,8 +54,11 @@ class CoreController
                             self.allCarBookings = carBookings.filter({ (carBooking) -> Bool in
                                 return carBooking.isActive == true
                             })
+                            self.updateCarTrips()
+                            return
                         }
                     }
+                    self.allCarBookings = []
                     self.updateCarTrips()
                 case .error(_):
                     self.allCarBookings = []
@@ -75,8 +78,11 @@ class CoreController
                     if response.status == 200, let data = response.array_data {
                         if let carTrips = [CarTrip].from(jsonArray: data) {
                             self.allCarTrips = carTrips
+                            self.stopUpdateData()
+                            return
                         }
                     }
+                    self.allCarTrips = []
                     self.stopUpdateData()
                 case .error(_):
                     self.allCarTrips = []

@@ -16,7 +16,7 @@ class CarAnnotation: FBAnnotation {
     
     func getImage() -> UIImage {
         if let car = self.car {
-            if car.nearest || car.booked {
+            if car.nearest || car.booked || car.opened {
                 return UIImage(named: "ic_auto_big")!
             }
         }

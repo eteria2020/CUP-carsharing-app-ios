@@ -28,7 +28,9 @@ public class CarBooking: ModelType, Decodable {
     var carPlate: String?
     var timeStart: Date?
     var timeLength: Int = 1200
-    var car: Car?
+    
+    var car: Variable<Car?> = Variable(nil)
+  
     var time: String? {
         get {
             if let timeStart = self.timeStart {
@@ -39,9 +41,12 @@ public class CarBooking: ModelType, Decodable {
                 if let seconds = datecomponenets.second {
                     let min = (Float(timeLength-seconds) / 60).rounded(.towardZero)
                     let sec = Float(timeLength-seconds).truncatingRemainder(dividingBy: 60)
-                        let m = (min < 10) ? "0\(Int(min))" : "\(Int(min))"
-                        let s = (sec < 10) ? "0\(Int(sec))" : "\(Int(sec))"
-                        return "\(m):\(s) \("lbl_carBookingPopupTimeMin".localized())"
+                    if min <= 0 && sec <= 0 {
+                        return "<bold>00:00</bold> \("lbl_carBookingPopupTimeMin".localized())"
+                    }
+                    let m = (min < 10) ? "0\(Int(min))" : "\(Int(min))"
+                    let s = (sec < 10) ? "0\(Int(sec))" : "\(Int(sec))"
+                    return "<bold>\(m):\(s)</bold> \("lbl_carBookingPopupTimeMin".localized())"
                 }
             }
             return nil
@@ -49,7 +54,7 @@ public class CarBooking: ModelType, Decodable {
     }
 
     init(car: Car) {
-        self.car = car
+        self.car.value = car
     }
     
     required public init?(json: JSON) {
@@ -67,7 +72,7 @@ public class CarBooking: ModelType, Decodable {
                     switch event {
                     case .next(let response):
                         if response.status == 200, let data = response.dic_data {
-                            self.car = Car(json: data)
+                            self.car.value = Car(json: data)
                         }
                     default:
                         break

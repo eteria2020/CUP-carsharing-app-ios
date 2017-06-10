@@ -127,6 +127,8 @@ class CarBookingPopupView: UIView {
                 return true
             } else if view_info.point(inside: convert(point, to: view_info), with: event) {
                 return true
+            } else if self.viewModel?.hideButtons == false && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event)) {
+                return true
             }
         }
         return false

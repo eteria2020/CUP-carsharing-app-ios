@@ -39,7 +39,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .open:
-                if let car = self.carBooking?.car {
+                if let car = self.carBooking?.car.value {
                     return .just(.open(car))
                 }
             case .delete:
@@ -54,7 +54,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     func updateWithCarBooking(carBooking: CarBooking) {
         self.carBooking = carBooking
         self.updateData()
-        if let car = self.carBooking?.car {
+        if let car = self.carBooking?.car.value {
             self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
             if let address = car.address.value {
                 self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
@@ -78,7 +78,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     func updateWithCarTrip(carTrip: CarTrip) {
         self.carTrip = carTrip
         self.updateData()
-        if let car = self.carTrip?.car {
+        if let car = self.carTrip?.car.value {
             self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
             if let address = car.address.value {
                 self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
@@ -112,7 +112,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     
     @objc fileprivate func updateTime() {
         self.time.value = ""
-        if self.carBooking?.car?.opened == false {
+        if self.carBooking?.car.value?.opened == false {
             if let time = self.carBooking?.time {
                 self.time.value = String(format: "lbl_carBookingPopupTime".localized(), time)
             }

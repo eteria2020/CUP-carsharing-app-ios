@@ -123,7 +123,7 @@ final class ApiController {
     
     func searchCar(plate: String) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -177,7 +177,7 @@ final class ApiController {
     
     func tripsList() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -204,7 +204,7 @@ final class ApiController {
     
     func bookCar(car: Car) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -222,7 +222,6 @@ final class ApiController {
                         observable.onCompleted()
                     case .error(let error):
                         observable.onError(error)
-//                        {"status":200,"reason":"Error: reservation:false - status:false - trip:true - limit:false - limit_archive:false","data":null,"time":1497018296}
                     default:
                         break
                     }
@@ -377,7 +376,7 @@ extension API: TargetType {
             return ["reservation_id": id]
         case .openCar(_):
             return ["action": "open"]
-        case .tripsList():
+        case .tripsList(), .bookingList():
             return ["active": "true"]
         default:
             return [:]

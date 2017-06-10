@@ -33,10 +33,10 @@ public class CarTrip: ModelType, Decodable {
     var timeStart: Date?
     var timeEnd: Date?
     
-    var car: Car?
-    
+    var car: Variable<Car?> = Variable(nil)
+  
     init(car: Car) {
-        self.car = car
+        self.car.value = car
     }
     
     required public init?(json: JSON) {
@@ -55,7 +55,7 @@ public class CarTrip: ModelType, Decodable {
                     switch event {
                     case .next(let response):
                         if response.status == 200, let data = response.dic_data {
-                            self.car = Car(json: data)
+                            self.car.value = Car(json: data)
                         }
                     default:
                         break
