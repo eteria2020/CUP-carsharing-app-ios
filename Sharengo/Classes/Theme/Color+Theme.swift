@@ -103,6 +103,13 @@ enum Color {
     case carBookingPopupLabel
     case carBookingPopupStatus
 
+    // CarBookingCompleted
+    case carBookingCompletedBannerBackground
+    case carBookingCompletedBannerLabel
+    case carBookingCompletedBackground
+    case carBookingCompletedDescription
+    case carBookingCompletedCo2
+    
     var value: UIColor {
         get {
             switch self {
@@ -167,6 +174,17 @@ enum Color {
             case .carBookingPopupLabel:
                 return ColorBrand.black.value
             case .carBookingPopupStatus:
+                return ColorBrand.green.value
+            // CarBookingCompleted
+            case .carBookingCompletedBannerBackground:
+                return ColorBrand.white.value
+            case .carBookingCompletedBannerLabel:
+                return ColorBrand.black.value
+            case .carBookingCompletedBackground:
+                return ColorBrand.lightGray.value
+            case .carBookingCompletedDescription:
+                return ColorBrand.black.value
+            case .carBookingCompletedCo2:
                 return ColorBrand.green.value
             }
         }

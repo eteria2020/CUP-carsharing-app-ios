@@ -50,8 +50,16 @@
 "lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
 "lbl_carBookingPopupTime" = "Scade tra\n%@";
-"lbl_carBookingPopupTimeMin" = "minuti";
+"lbl_carBookingPopupTimeMinute" = "minuto";
+"lbl_carBookingPopupTimeMinutes" = "minuti";
 "alert_carBookingPopupDeleteMessage" = "Eliminando questa prenotazione, non potrai più prenotare la stessa auto nelle prossime 4 ore. Confermi di voler cancellare la prenotazione?";
 "alert_carBookingPopupConfirmDeleteMessage" = "La tua prenotazione è stata annullata correttamente.";
 "alert_carBookingPopupBookedMessage" = "Hai già una prenotazione attiva";
 "alert_carBookingPopupAlreadyBooked" = "Non puoi prenotare questa auto fino a che non saranno passate 4 ore da quando hai annullato la prenotazione";
+
+// CarBookingCompleted
+"lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nAttendi la chiusura delle portiere fuori dall'auto.\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
+"lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
+"btn_carRides" = "STORICO CORSE";
+"banner_carBookingCompletedTitle" = "Sharen'go";
+"banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Sharen'go.";

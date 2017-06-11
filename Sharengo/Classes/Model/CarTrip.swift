@@ -35,6 +35,43 @@ public class CarTrip: ModelType, Decodable {
     
     var car: Variable<Car?> = Variable(nil)
   
+    var time: String {
+        get {
+            if let timeStart = self.timeStart {
+                let start = timeStart
+                let enddt = Date()
+                let calendar = Calendar.current
+                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
+                if let seconds = datecomponenets.second {
+                    let min = (Float(seconds) / 60).rounded(.towardZero)
+                    if min <= 0 {
+                        return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
+                    } else if min == 1 {
+                        return "1 \("lbl_carBookingPopupTimeMinute".localized())"
+                    }
+                    let m = Int(min)
+                    return "\(m) \("lbl_carBookingPopupTimeMinutes".localized())"
+                }
+            }
+            return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
+        }
+    }
+    var minutes: Int {
+        get {
+            if let timeStart = self.timeStart {
+                let start = timeStart
+                let enddt = Date()
+                let calendar = Calendar.current
+                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
+                if let seconds = datecomponenets.second {
+                    let min = (Float(seconds) / 60).rounded(.towardZero)
+                    return Int(min)
+                }
+            }
+            return 0
+        }
+    }
+    
     init(car: Car) {
         self.car.value = car
     }
@@ -44,7 +81,7 @@ public class CarTrip: ModelType, Decodable {
         if let timestampStart: Double = "timestamp_start" <~~ json {
             self.timeStart = Date(timeIntervalSince1970: timestampStart)
         }
-        if let timestampEnd: Double = "timestamp_start" <~~ json {
+        if let timestampEnd: Double = "timestamp_end" <~~ json {
             self.timeEnd = Date(timeIntervalSince1970: timestampEnd)
         }
         if let carPlate: String = "car_plate" <~~ json {

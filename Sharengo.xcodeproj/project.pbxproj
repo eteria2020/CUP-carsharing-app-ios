@@ -93,6 +93,7 @@
 		4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */; };
 		4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */; };
+		4DEBEE711EED373800AEF617 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBEE701EED373800AEF617 /* Banner.swift */; };
 		4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */; };
 		4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */; };
 		4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98341ED471B800880EA1 /* HomeViewController.swift */; };
@@ -193,6 +194,7 @@
 		4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewModel.swift; path = Classes/ViewModels/SearchCarsViewModel.swift; sourceTree = "<group>"; };
 		4DE361651EE801F9007DC92C /* SVPulsingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPulsingAnnotationView.h; sourceTree = "<group>"; };
 		4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPulsingAnnotationView.m; sourceTree = "<group>"; };
+		4DEBEE701EED373800AEF617 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechController.swift; sourceTree = "<group>"; };
 		4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
 		4DFD98341ED471B800880EA1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Classes/ViewControllers/HomeViewController.swift; sourceTree = "<group>"; };
@@ -214,13 +216,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03653E1D1EEA76A200AC7A93 /* Car Booking Completed */ = {
+		03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */ = {
 			isa = PBXGroup;
 			children = (
 				03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */,
 				03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */,
 			);
-			name = "Car Booking Completed";
+			name = CarBookingCompleted;
 			sourceTree = "<group>";
 		};
 		0725785E328265441F78D09B /* Frameworks */ = {
@@ -425,6 +427,7 @@
 				4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */,
 				4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */,
 				4D2628F31ED57D7B001C4E38 /* PKCS12.swift */,
+				4DEBEE6F1EED373800AEF617 /* BRYXBanner */,
 				4DE361641EE801F9007DC92C /* SVPulsingAnnotation */,
 				4DA554391EE55284001627E7 /* FBAnnotationClusteringSwift */,
 				4DA178631ED63C4D00EBD32B /* ZAlertView */,
@@ -473,7 +476,7 @@
 				4D2339961EE6CD2A00780384 /* Intro */,
 				4DFD98381ED471FC00880EA1 /* Home */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
-				03653E1D1EEA76A200AC7A93 /* Car Booking Completed */,
+				03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -598,6 +601,15 @@
 			);
 			name = SVPulsingAnnotation;
 			path = Classes/Utilities/SVPulsingAnnotation;
+			sourceTree = "<group>";
+		};
+		4DEBEE6F1EED373800AEF617 /* BRYXBanner */ = {
+			isa = PBXGroup;
+			children = (
+				4DEBEE701EED373800AEF617 /* Banner.swift */,
+			);
+			name = BRYXBanner;
+			path = Classes/Utilities/BRYXBanner;
 			sourceTree = "<group>";
 		};
 		4DFD982F1ED45CCE00880EA1 /* Annotations */ = {
@@ -812,6 +824,7 @@
 				4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
+				4DEBEE711EED373800AEF617 /* Banner.swift in Sources */,
 				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
 				4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */,
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,

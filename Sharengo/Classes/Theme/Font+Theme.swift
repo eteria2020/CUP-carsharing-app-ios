@@ -59,6 +59,12 @@ enum Font {
     case carBookingPopupLabelEmphasized
     case carBookingPopupStatus
     
+    // CarBookingCompleted
+    case carBookingCompletedBannerLabel
+    case carBookingCompletedBannerLabelEmphasized
+    case carBookingCompletedDescription
+    case carBookingCompletedDescriptionEmphasized
+    
     var value: UIFont {
         get {
             switch self {
@@ -96,6 +102,15 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
             case .carBookingPopupStatus:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+            // CarBookingCompleted
+            case .carBookingCompletedBannerLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .carBookingCompletedBannerLabelEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .carBookingCompletedDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .carBookingCompletedDescriptionEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

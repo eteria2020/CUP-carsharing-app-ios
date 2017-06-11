@@ -42,11 +42,11 @@ public class CarBooking: ModelType, Decodable {
                     let min = (Float(timeLength-seconds) / 60).rounded(.towardZero)
                     let sec = Float(timeLength-seconds).truncatingRemainder(dividingBy: 60)
                     if min <= 0 && sec <= 0 {
-                        return "<bold>00:00</bold> \("lbl_carBookingPopupTimeMin".localized())"
+                        return "<bold>00:00</bold> \("lbl_carBookingPopupTimeMinutes".localized())"
                     }
                     let m = (min < 10) ? "0\(Int(min))" : "\(Int(min))"
                     let s = (sec < 10) ? "0\(Int(sec))" : "\(Int(sec))"
-                    return "<bold>\(m):\(s)</bold> \("lbl_carBookingPopupTimeMin".localized())"
+                    return "<bold>\(m):\(s)</bold> \("lbl_carBookingPopupTimeMinutes".localized())"
                 }
             }
             return nil

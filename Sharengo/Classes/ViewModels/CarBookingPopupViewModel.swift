@@ -19,7 +19,7 @@ public enum CarBookingPopupInput: SelectionInput {
 public enum CarBookingPopupOutput: SelectionInput {
     case empty
     case open(Car)
-    case delete()
+    case delete
 }
 
 final class CarBookingPopupViewModel: ViewModelTypeSelectable {
@@ -39,13 +39,15 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .open:
-                if let car = self.carBooking?.car.value {
+//                if let car = self.carBooking?.car.value {
+//                    return .just(.open(car))
+//                }
+                if let car = self.carTrip?.car.value {
                     return .just(.open(car))
                 }
             case .delete:
-                return .just(.delete())
+                return .just(.delete)
             }
-
             return .just(.empty)
         }
         self.timeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
@@ -70,7 +72,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     }).addDisposableTo(disposeBag)
             }
             if car.opened {
-                self.hideButtons = true
+                //self.hideButtons = true
             }
         }
     }
@@ -94,7 +96,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     }).addDisposableTo(disposeBag)
             }
             if car.opened {
-                self.hideButtons = true
+                //self.hideButtons = true
             }
         }
     }

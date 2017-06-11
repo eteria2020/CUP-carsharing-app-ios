@@ -65,6 +65,11 @@ struct Router : RouterType {
             let destination:SearchCarsViewController = (Storyboard.main.scene(.searchCars))
             destination.bind(to: ViewModelFactory.searchCars(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is CarBookingCompletedViewModel:
+            let destination:CarBookingCompletedViewController = (Storyboard.main.scene(.carBookingCompleted))
+            let viewModel = ViewModelFactory.carBookingCompleted(carTrip: (viewModel as! CarBookingCompletedViewModel).carTrip ?? CarTrip(car: Car()))
+            destination.bind(to: viewModel, afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

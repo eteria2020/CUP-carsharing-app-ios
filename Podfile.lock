@@ -10,7 +10,6 @@ PODS:
   - Boomerang (0.9.3):
     - Action (~> 3.0)
     - RxSwift (~> 3)
-  - BRYXBanner (0.7.3)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - DateToolsSwift (2.0.3)
@@ -62,7 +61,6 @@ DEPENDENCIES:
   - AlamofireImage
   - BonMot
   - Boomerang (from `https://github.com/synesthesia-it/Boomerang.git`, branch `v1`)
-  - BRYXBanner
   - Crashlytics
   - DateToolsSwift
   - DeviceKit
@@ -105,7 +103,6 @@ SPEC CHECKSUMS:
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
   Boomerang: eaa3faf38fea21672cc65df2c900dd4d474b4df0
-  BRYXBanner: bd26a91cb8a5826a8bc7687891043d287dd3ee53
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
@@ -131,6 +128,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: d768a5920e9b52d96ccd8abcad4f3f80c86b09c3
+PODFILE CHECKSUM: 6f27244335aa37bcbaa0dd368fd0a78c7cfc105f
 
 COCOAPODS: 1.2.1

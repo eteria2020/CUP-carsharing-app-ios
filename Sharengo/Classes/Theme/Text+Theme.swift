@@ -39,6 +39,10 @@ enum TextStyle: String, TextStyleType {
     case carBookingPopupInfo = "carBookingPopupInfo"
     case carBookingPopupTime = "carBookingPopupTime"
     
+    // CarBookingCompleted
+    case carBookingCompletedDescription = "carBookingCompletedDescription"
+    case carBookingCompletedCo2 = "carBookingCompletedCo2"
+    
     static var all:[TextStyle] {
         return [
             // SearchBar
@@ -55,7 +59,10 @@ enum TextStyle: String, TextStyleType {
             // CarBookingPopup
             .carBookingPopupPin,
             .carBookingPopupInfo,
-            .carBookingPopupTime
+            .carBookingPopupTime,
+            // CarBookingCompleted
+            .carBookingCompletedDescription,
+            .carBookingCompletedCo2
         ]
     }
     
@@ -92,6 +99,13 @@ enum TextStyle: String, TextStyleType {
             case .carBookingPopupTime:
                 let boldStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.left))
                 return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.left),.xmlRules([.style("bold", boldStyle)]))
+            // CarBookingCompleted
+            case .carBookingCompletedDescription:
+                let boldStyle = StringStyle(.font(Font.carBookingCompletedDescriptionEmphasized.value), .color(Color.carBookingCompletedDescription.value), .alignment(.center))
+                return StringStyle(.font(Font.carBookingCompletedDescription.value), .color(Color.carBookingCompletedDescription.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+            case .carBookingCompletedCo2:
+                let boldStyle = StringStyle(.font(Font.carBookingCompletedDescriptionEmphasized.value), .color(Color.carBookingCompletedCo2.value), .alignment(.center))
+                return StringStyle(.font(Font.carBookingCompletedDescription.value), .color(Color.carBookingCompletedDescription.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

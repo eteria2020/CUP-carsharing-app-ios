@@ -50,4 +50,8 @@ struct ViewModelFactory {
     static func searchBarItem(fromModel model:Favorite) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }
+    
+    static func carBookingCompleted(carTrip: CarTrip) -> ViewModelType {
+        return CarBookingCompletedViewModel(carTrip: carTrip)
+    }
 }
