@@ -25,6 +25,10 @@ struct Router : RouterType {
         _ = source.navigationController?.popToRootViewController(animated: true)
     }
     
+    public static func back<Source>(_ source:Source) where Source: UIViewController{
+        _ = source.navigationController?.popViewController(animated: true)
+    }
+    
     public static func dismiss<Source>(_ source:Source) where Source: UIViewController{
         _ = source.dismiss(animated: true, completion: nil)
     }
@@ -61,15 +65,26 @@ struct Router : RouterType {
             let destination:SearchCarsViewController = (Storyboard.main.scene(.searchCars))
             destination.bind(to: ViewModelFactory.searchCars(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is CarBookingCompletedViewModel:
+            let destination:CarBookingCompletedViewController = (Storyboard.main.scene(.carBookingCompleted))
+            let viewModel = ViewModelFactory.carBookingCompleted(carTrip: (viewModel as! CarBookingCompletedViewModel).carTrip ?? CarTrip(car: Car()))
+            destination.bind(to: viewModel, afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }
     }
 
     public static func root() -> UIViewController {
-        let destination: HomeViewController  = (Storyboard.main.scene(.home))
+        let destination: HomeViewController = (Storyboard.main.scene(.home))
         destination.bind(to: ViewModelFactory.home(), afterLoad: true)
         return destination.withNavigation()
+ 
+        /*
+        let destination: IntroViewController  = (Storyboard.main.scene(.intro))
+        destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
+        return destination.withNavigation()
+        */
     }
     
     public static func rootController() -> UIViewController? {

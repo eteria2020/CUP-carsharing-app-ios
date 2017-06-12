@@ -14,12 +14,13 @@ import Action
 enum HomeSelectionInput: SelectionInput {
     case searchCars
 }
+
 enum HomeSelectionOutput: SelectionOutput {
     case viewModel(ViewModelType)
 }
 
 final class HomeViewModel: ViewModelTypeSelectable {
-    lazy var selection:Action<HomeSelectionInput,SearchBarSelectionOutput> = Action { input in
+    lazy var selection:Action<HomeSelectionInput,HomeSelectionOutput> = Action { input in
         switch input {
         case .searchCars:
             return .just(.viewModel(ViewModelFactory.searchCars()))

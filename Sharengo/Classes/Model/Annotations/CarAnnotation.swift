@@ -8,9 +8,18 @@
 import UIKit
 import MapKit
 
-class CarAnnotation: NSObject, MKAnnotation
-{
-    var coordinate = CLLocationCoordinate2D()
-    var title: String?
+class CarAnnotation: FBAnnotation {
     var car:Car?
+    lazy var image: UIImage = self.getImage()
+    
+    // MARK: - Lazy methods
+    
+    func getImage() -> UIImage {
+        if let car = self.car {
+            if car.nearest || car.booked || car.opened {
+                return UIImage(named: "ic_auto_big")!
+            }
+        }
+        return UIImage(named: "ic_auto")!
+    }
 }

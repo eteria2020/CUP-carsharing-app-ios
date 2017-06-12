@@ -12,24 +12,22 @@ import RxCocoa
 import Boomerang
 import Action
 import CoreLocation
-import AddressBookUI
 import DeviceKit
 
 class CarPopupView: UIView {
-    @IBOutlet weak var btn_open: UIButton!
-    @IBOutlet weak var btn_book: UIButton!
-    @IBOutlet weak var view_type: UIView!
-    @IBOutlet weak var lbl_type: UILabel!
-    @IBOutlet weak var view_separator: UIView!
-    @IBOutlet weak var lbl_plate: UILabel!
-    @IBOutlet weak var lbl_capacity: UILabel!
-    @IBOutlet weak var icn_address: UIImageView!
-    @IBOutlet weak var lbl_address: UILabel!
-    @IBOutlet weak var icn_distance: UIImageView!
-    @IBOutlet weak var lbl_distance: UILabel!
-    @IBOutlet weak var lbl_walkingDistance: UILabel!
-    @IBOutlet weak var icn_walkingDistance: UIImageView!
-    
+    @IBOutlet fileprivate weak var btn_open: UIButton!
+    @IBOutlet fileprivate weak var btn_book: UIButton!
+    @IBOutlet fileprivate weak var view_type: UIView!
+    @IBOutlet fileprivate weak var lbl_type: UILabel!
+    @IBOutlet fileprivate weak var view_separator: UIView!
+    @IBOutlet fileprivate weak var lbl_plate: UILabel!
+    @IBOutlet fileprivate weak var lbl_capacity: UILabel!
+    @IBOutlet fileprivate weak var icn_address: UIImageView!
+    @IBOutlet fileprivate weak var lbl_address: UILabel!
+    @IBOutlet fileprivate weak var icn_distance: UIImageView!
+    @IBOutlet fileprivate weak var lbl_distance: UILabel!
+    @IBOutlet fileprivate weak var lbl_walkingDistance: UILabel!
+    @IBOutlet fileprivate weak var icn_walkingDistance: UIImageView!
     fileprivate var view: UIView!
     
     var viewModel: CarPopupViewModel?
@@ -41,15 +39,6 @@ class CarPopupView: UIView {
             return
         }
         self.viewModel = viewModel
-        self.setupInterface()
-    }
-    
-    // MARK: - View methods
-    
-    fileprivate func setupInterface() {
-        guard let viewModel = viewModel else {
-            return
-        }
         viewModel.type.asObservable()
             .subscribe(onNext: {[weak self] (type) in
                 DispatchQueue.main.async {
@@ -63,15 +52,65 @@ class CarPopupView: UIView {
                     }
                 }
         }).addDisposableTo(disposeBag)
+        xibSetup()
+        self.btn_open.rx.bind(to: viewModel.selection, input: .open)
+        self.btn_book.rx.bind(to: viewModel.selection, input: .book)
+    }
+    
+    // MARK: - View methods
+    
+    func updateWithCar(car: Car) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.updateWithCar(car: car)
+        self.lbl_plate.styledText = viewModel.plate
+        self.lbl_capacity.styledText = viewModel.capacity
+        self.lbl_distance.styledText = viewModel.distance
+        self.lbl_walkingDistance.styledText = viewModel.walkingDistance
+        if viewModel.distance.isEmpty {
+            self.icn_walkingDistance.isHidden = true
+            self.lbl_walkingDistance.isHidden = true
+            self.icn_distance.isHidden = true
+            self.lbl_distance.isHidden = true
+        } else {
+            self.icn_walkingDistance.isHidden = false
+            self.lbl_walkingDistance.isHidden = false
+            self.icn_distance.isHidden = false
+            self.lbl_distance.isHidden = false
+        }
+        self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
+        self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
+        viewModel.address.asObservable()
+            .subscribe(onNext: {[weak self] (address) in
+                DispatchQueue.main.async {
+                    if address != nil {
+                        self?.lbl_address.bonMotStyleName = "carPopupAddress"
+                        self?.lbl_address.styledText = address
+                    }
+                }
+        }).addDisposableTo(disposeBag)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
+    fileprivate func xibSetup() {
+        view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        addSubview(view)
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carPopupBackground.value
-        self.btn_open.style(.roundedButton, title: "btn_open".localized())
-        self.btn_open.rx.bind(to: viewModel.selection, input: .open)
-        self.btn_book.style(.roundedButton, title: "btn_book".localized())
-        self.btn_book.rx.bind(to: viewModel.selection, input: .book)
+        self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
+        self.btn_book.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_book".localized())
         self.view_separator.constraint(withIdentifier: "separatorHeight", searchInSubviews: false)?.constant = 1
-        let device = Device()
-        switch device.diagonal {
+        switch Device().diagonal {
         case 3.5:
             self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 35
         case 4:
@@ -81,76 +120,9 @@ class CarPopupView: UIView {
         }
     }
     
-    func updateWithCar(car: Car) {
-        self.viewModel?.updateWithCar(car: car)
-        self.lbl_plate.styledText = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
-        self.lbl_capacity.styledText = String(format: "lbl_carPopupCapacity".localized(), car.capacity ?? "")
-        if let distance = car.distance {
-            self.lbl_distance.styledText = String(format: "lbl_carPopupDistance".localized(), Int(distance.rounded()))
-            let minutes: Float = Float(distance.rounded()/100.0)
-            self.lbl_walkingDistance.styledText = String(format: "lbl_carPopupWalkingDistance".localized(), Int(minutes.rounded()))
-            self.icn_walkingDistance.isHidden = false
-            self.lbl_walkingDistance.isHidden = false
-            self.icn_distance.isHidden = false
-            self.lbl_distance.isHidden = false
-        } else {
-            self.icn_walkingDistance.isHidden = true
-            self.lbl_walkingDistance.isHidden = true
-            self.icn_distance.isHidden = true
-            self.lbl_distance.isHidden = true
-        }
-        if let address = car.address {
-            self.lbl_address.styledText = address
-        } else {
-            self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
-            self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
-            self.loadAddress()
-        }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        xibSetup()
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        xibSetup()
-    }
-    
-    fileprivate func xibSetup() {
-        view = loadViewFromNib()
-        view.frame = bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        addSubview(view)
-    }
-    
     fileprivate func loadViewFromNib() -> UIView {
         let nib = ViewXib.carPopup.getNib()
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
-    }
-    
-    // MARK: - Address methods
-    
-    fileprivate func loadAddress() {
-        if let location = viewModel?.car?.location {
-            let geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
-                if let placemark = placemarks?.last {
-                    if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
-                        let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
-                        self.lbl_address.bonMotStyleName = "carPopupAddress"
-                        self.lbl_address.styledText = address
-                        self.viewModel?.car?.address = address
-                    } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
-                        let address = "\(thoroughfare), \(locality)"
-                        self.lbl_address.bonMotStyleName = "carPopupAddress"
-                        self.lbl_address.styledText = address
-                        self.viewModel?.car?.address = address
-                    }
-                }
-            })
-        }
     }
 }

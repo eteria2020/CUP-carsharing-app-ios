@@ -15,6 +15,10 @@ struct ViewModelFactory {
         return CircularMenuViewModel(type: type)
     }
     
+    static func intro() -> ViewModelType {
+        return IntroViewModel()
+    }
+
     static func home() -> ViewModelType {
         return HomeViewModel()
     }
@@ -23,7 +27,31 @@ struct ViewModelFactory {
         return SearchCarsViewModel()
     }
     
+    static func searchBar() -> ViewModelType {
+        return SearchBarViewModel()
+    }
+    
     static func carPopup() -> ViewModelType {
         return CarPopupViewModel()
+    }
+    
+    static func carBookingPopup() -> ViewModelType {
+        return CarBookingPopupViewModel()
+    }
+    
+    static func searchBarItem(fromModel model:Address) -> ItemViewModelType {
+        return SearchBarItemViewModel(model: model)
+    }
+    
+    static func searchBarItem(fromModel model:Car) -> ItemViewModelType {
+        return SearchBarItemViewModel(model: model)
+    }
+    
+    static func searchBarItem(fromModel model:Favorite) -> ItemViewModelType {
+        return SearchBarItemViewModel(model: model)
+    }
+    
+    static func carBookingCompleted(carTrip: CarTrip) -> ViewModelType {
+        return CarBookingCompletedViewModel(carTrip: carTrip)
     }
 }

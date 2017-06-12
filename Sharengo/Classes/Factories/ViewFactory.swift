@@ -9,9 +9,12 @@ enum Storyboard : String {
 }
 
 enum SceneIdentifier : String, ListIdentifier {
+    case intro = "intro"
+    case loading = "loading"
     case home = "home"
     case searchBar = "searchBar"
     case searchCars = "searchCars"
+    case carBookingCompleted = "carBookingCompleted"
     var name: String {
         return self.rawValue
     }
@@ -25,10 +28,10 @@ extension ListViewModelType {
 }
 
 enum CollectionViewCell : String, ListIdentifier {
-    case test = "TestItemCollectionViewCell"
+    case searchBar = "SearchBarCollectionViewCell"
     static func all() -> [CollectionViewCell] {
         return [
-            .test
+            .searchBar
         ]
     }
     static func headers() -> [CollectionViewCell] {

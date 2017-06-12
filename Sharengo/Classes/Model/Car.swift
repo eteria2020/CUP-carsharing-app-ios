@@ -83,8 +83,11 @@ public class Car: ModelType, Decodable {
     var location: CLLocation?
     var distance: CLLocationDistance?
     var nearest: Bool = false
-    var address: String?
-
+    var booked: Bool = false
+    var opened: Bool = false
+    lazy var type: String = self.getType()
+    var address: Variable<String?> = Variable(nil)
+    
     static var empty:Car {
         return Car()
     }
@@ -94,7 +97,7 @@ public class Car: ModelType, Decodable {
 
     required public init?(json: JSON) {
         self.plate = "plate" <~~ json
-        self.capacity = "km" <~~ json
+        self.capacity = "battery" <~~ json
         if let latitude: String = "latitude" <~~ json, let longitude: String = "longitude" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
                 self.location = CLLocation(latitude: lat, longitude: lon)
@@ -105,23 +108,32 @@ public class Car: ModelType, Decodable {
         }
     }
     
-    // MARK: - Map methods
+    // MARK: - Lazy methods
     
-    func getAnnotationViewImage() -> UIImage? {
-        if nearest {
-            // TODO: execute animation
-            return UIImage(named: "ic_auto_vicina")
-        }
-        return UIImage(named: "ic_auto")
-    }
-    
-    // MARK: - Type methods
-    
-    func getTypeDescription() -> String {
+    fileprivate func getType() -> String {
         if self.nearest {
            return "lbl_carPopupType".localized()
         } else {
             return ""
+        }
+    }
+    
+    // MARK: - Variable methods
+    
+    func getAddress() {
+        if let location = self.location {
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                if let placemark = placemarks?.last {
+                    if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                        let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                        self.address.value = address
+                    } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                        let address = "\(thoroughfare), \(locality)"
+                        self.address.value = address
+                    }
+                }
+            })
         }
     }
 }

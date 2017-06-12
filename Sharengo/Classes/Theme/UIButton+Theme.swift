@@ -9,23 +9,20 @@
 import UIKit
 
 public enum ButtonStyle {
-    case roundedButton
+    case roundedButton(UIColor)
 }
 
 public extension UIButton {
     func style(_ style:ButtonStyle, title: String) {
         switch style {
-        case .roundedButton:
+        case .roundedButton(let backgroundColor):
             self.backgroundColor = .clear
-            self.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: self.frame.size), for: .normal)
-            self.layer.cornerRadius = ZAlertView.cornerRadius
+            self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
+            self.layer.cornerRadius = 4
             self.clipsToBounds = true
             self.setTitle(title, for: UIControlState())
             self.titleLabel?.font = Font.roundedButton.value
-            self.setTitleColor(ZAlertView.buttonTitleColor, for: .normal)
-            // TODO: ???
-            self.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: self.frame.size), for: .highlighted)
-            self.setTitleColor(ZAlertView.buttonTitleColor, for: .highlighted)
+            self.setTitleColor(Color.alertButton.value, for: .normal)
         }
     }
 }

@@ -8,23 +8,58 @@
 // General
 "btn_ok" = "OK";
 "btn_cancel" = "ANNULLA";
-"lbl_connectionError" = "Non sei connesso ad internet, per favore riprova";
-"lbl_generalError" = "Si è verificato un errore, per favore riprova";
+"btn_yes" = "SÌ";
+"btn_no" = "NO";
+"alert_connectionError" = "Non sei connesso ad internet, per favore riprova";
+"alert_generalError" = "Si è verificato un errore, per favore riprova";
+"btn_open" = "APRI PORTIERE";
+"btn_book" = "PRENOTA AUTO";
+"bnt_delete" = "ELIMINA";
 
 // SearchBar
 "lbl_searchBarTextField" = "Cerca indirizzo o targa";
+"alert_searchBarAuthSpeechAuthorizationDenied" = "Hai negato l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarAuthSpeechAuthorizationRestricted" = "Il riconoscimento vocale non può funzionare causa limiti del dispositivo";
+"alert_searchBarAuthSpeechAuthorizationNotDetermined" = "Non è stato possibile determinare l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarAuthMicrophoneDenied" = "Hai negato l'accesso al microfono. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarAuthMicrophoneUndetermined" = "Non è stato possibile determinare l'accesso al microfono. Vuoi aprire le impostazioni per abilitare il servizio?";
+"alert_searchBarNotSetted" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
+"alert_searchBarNotAvailable" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
+"lbl_searchBarNoFavorites" = "Nessun preferito\nmemorizzali nella sezione impostazioni";
+"lbl_searchBarPlate" = "%@\nTarga Share'ngo";
+"lcl_searchBarSpeechRecognizer" = "it-IT";
 
 // SearchCars
 "alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 
 // CarPopup
-"btn_open" = "APRI PORTIERE";
-"btn_book" = "PRENOTA AUTO";
 "lbl_carPopupType" = "Auto più vicina";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
-"lbl_carPopupCapacity" = "autonomia: <bold>%d km</bold>";
-"lbl_carPopupDistance" = "%d mt di distanza";
-"lbl_carPopupWalkingDistance" = "%d minuti a piedi";
+"lbl_carPopupCapacity" = "autonomia: <bold>%@</bold>";
+"lbl_carPopupDistance_km" = "%.2f km di distanza";
+"lbl_carPopupDistance_mt" = "%.3d mt di distanza";
+"lbl_carPopupWalkingDistance_h" = "%d ore a piedi";
+"lbl_carPopupWalkingDistance_m" = "%d minuti a piedi";
+"lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Sharen'go ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren’go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+
+// CarBookingPopup
+"lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %d";
+"lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
+"lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
+"lbl_carBookingPopupTime" = "Scade tra\n%@";
+"lbl_carBookingPopupTimeMinute" = "minuto";
+"lbl_carBookingPopupTimeMinutes" = "minuti";
+"alert_carBookingPopupDeleteMessage" = "Eliminando questa prenotazione, non potrai più prenotare la stessa auto nelle prossime 4 ore. Confermi di voler cancellare la prenotazione?";
+"alert_carBookingPopupConfirmDeleteMessage" = "La tua prenotazione è stata annullata correttamente.";
+"alert_carBookingPopupBookedMessage" = "Hai già una prenotazione attiva";
+"alert_carBookingPopupAlreadyBooked" = "Non puoi prenotare questa auto fino a che non saranno passate 4 ore da quando hai annullato la prenotazione";
+
+// CarBookingCompleted
+"lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nAttendi la chiusura delle portiere fuori dall'auto.\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
+"lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
+"btn_carRides" = "STORICO CORSE";
+"banner_carBookingCompletedTitle" = "Sharen'go";
+"banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Sharen'go.";

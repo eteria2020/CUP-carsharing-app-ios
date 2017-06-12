@@ -13,9 +13,8 @@ import Boomerang
 import Action
 
 class NavigationBarView: UIView {
-    @IBOutlet weak var btn_left: UIButton!
-    @IBOutlet weak var btn_right: UIButton!
-    
+    @IBOutlet fileprivate weak var btn_left: UIButton!
+    @IBOutlet fileprivate weak var btn_right: UIButton!
     fileprivate var view: UIView!
     
     var viewModel: NavigationBarViewModel?
@@ -27,34 +26,19 @@ class NavigationBarView: UIView {
             return
         }
         self.viewModel = viewModel
-        self.setupInterface()
+        xibSetup()
+        self.btn_left.rx.bind(to: viewModel.selection, input: viewModel.letfItem.input)
+        self.btn_right.rx.bind(to: viewModel.selection, input: viewModel.rightItem.input)
     }
     
     // MARK: - View methods
     
-    fileprivate func setupInterface() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        self.layoutIfNeeded()
-        self.view.backgroundColor = Color.navigationBarBackground.value
-        self.btn_left.setBackgroundImage(UIImage(named: viewModel.letfItem.icon), for: .normal)
-        self.btn_left.rx.bind(to: viewModel.selection, input: viewModel.letfItem.input)
-        self.btn_right.setBackgroundImage(UIImage(named: viewModel.rightItem.icon), for: .normal)
-        self.btn_right.rx.bind(to: viewModel.selection, input: viewModel.rightItem.input)
-        // TODO: ???
-        self.btn_left.setBackgroundImage(UIImage(named: viewModel.letfItem.icon), for: .highlighted)
-        self.btn_right.setBackgroundImage(UIImage(named: viewModel.rightItem.icon), for: .highlighted)
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        xibSetup()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        xibSetup()
     }
     
     fileprivate func xibSetup() {
@@ -62,6 +46,16 @@ class NavigationBarView: UIView {
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
+        guard let letfItem = viewModel?.letfItem else {
+            return
+        }
+        guard let rightItem = viewModel?.rightItem else {
+            return
+        }
+        self.layoutIfNeeded()
+        self.view.backgroundColor = Color.navigationBarBackground.value
+        self.btn_left.setBackgroundImage(UIImage(named: letfItem.icon), for: .normal)
+        self.btn_right.setBackgroundImage(UIImage(named: rightItem.icon), for: .normal)
     }
     
     fileprivate func loadViewFromNib() -> UIView {

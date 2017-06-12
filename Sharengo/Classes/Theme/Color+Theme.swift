@@ -8,11 +8,32 @@
 
 import UIKit
 
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt32()
+        Scanner(string: hex).scanHexInt32(&int)
+        let a, r, g, b: UInt32
+        switch hex.characters.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
+}
+
 enum ColorBrand {
     case yellow
     case green
     case black
     case white
+    case lightGray
     case gray
     case clear
 
@@ -27,8 +48,10 @@ enum ColorBrand {
                 return UIColor(red: 27/255.0, green: 35/255.0, blue: 41/255.0, alpha: 1.0)
             case .white:
                 return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
-            case .gray:
+            case .lightGray:
                 return UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1.0)
+            case .gray:
+                return UIColor(hexString: "#b0b0b0")
             case .clear:
                 return UIColor.clear
             }
@@ -39,7 +62,8 @@ enum ColorBrand {
 enum Color {
     // Alert
     case alertBackground
-    case alerButtonsBackground
+    case alertButtonsPositiveBackground
+    case alertButtonsNegativeBackground
     case alertMessage
     case alertButton
     
@@ -53,17 +77,38 @@ enum Color {
     // Home
     case homeSearchCarBackground
     
+    // SearchCars
+    case searchCarsClusterLabel
+    case searchCarsNearestCar
+    case searchCarsBookedCar
+    
     // SearchBar
     case searchBarBackground
     case searchBarBackgroundMicrophone
+    case searchBarBackgroundMicrophoneSpeechInProgress
     case searchBarTextField
     case searchBarTextFieldPlaceholder
+    case searchBarResult
+    case searchBarResultBackground
     
     // CarPopup
     case carPopupBackground
     case carPopupType
     case carPopupLabel
     case carPopupAddressPlaceholder
+
+    // CarBookingPopup
+    case carBookingPopupBackground
+    case carBookingPopupPin
+    case carBookingPopupLabel
+    case carBookingPopupStatus
+
+    // CarBookingCompleted
+    case carBookingCompletedBannerBackground
+    case carBookingCompletedBannerLabel
+    case carBookingCompletedBackground
+    case carBookingCompletedDescription
+    case carBookingCompletedCo2
     
     var value: UIColor {
         get {
@@ -71,8 +116,10 @@ enum Color {
             // Alert
             case .alertBackground:
                 return ColorBrand.black.value
-            case .alerButtonsBackground:
+            case .alertButtonsPositiveBackground:
                 return ColorBrand.yellow.value
+            case .alertButtonsNegativeBackground:
+                return ColorBrand.gray.value
             case .alertMessage:
                 return ColorBrand.white.value
             case .alertButton:
@@ -88,24 +135,57 @@ enum Color {
             // Home
             case .homeSearchCarBackground:
                 return ColorBrand.green.value
+            // SearchCars
+            case .searchCarsClusterLabel:
+                return ColorBrand.green.value
+            case .searchCarsNearestCar:
+                return ColorBrand.green.value
+            case .searchCarsBookedCar:
+                return ColorBrand.yellow.value
             // SearchBar
             case .searchBarBackground:
                 return ColorBrand.black.value
             case .searchBarBackgroundMicrophone:
                 return ColorBrand.white.value
+            case .searchBarBackgroundMicrophoneSpeechInProgress:
+                return ColorBrand.yellow.value
             case .searchBarTextField:
                 return ColorBrand.white.value
             case .searchBarTextFieldPlaceholder:
                 return ColorBrand.white.value.withAlphaComponent(0.6)
+            case .searchBarResult:
+                return ColorBrand.white.value
+            case .searchBarResultBackground:
+                return UIColor(hexString: "#1C2329").withAlphaComponent(0.95)
             // CarPopup
             case .carPopupBackground:
-                return ColorBrand.gray.value
+                return ColorBrand.lightGray.value
             case .carPopupType:
                 return ColorBrand.black.value
             case .carPopupLabel:
                 return ColorBrand.black.value
             case .carPopupAddressPlaceholder:
                 return ColorBrand.black.value.withAlphaComponent(0.7)
+            // CarBookingPopup
+            case .carBookingPopupBackground:
+                return ColorBrand.clear.value
+            case .carBookingPopupPin:
+                return ColorBrand.yellow.value
+            case .carBookingPopupLabel:
+                return ColorBrand.black.value
+            case .carBookingPopupStatus:
+                return ColorBrand.green.value
+            // CarBookingCompleted
+            case .carBookingCompletedBannerBackground:
+                return ColorBrand.white.value
+            case .carBookingCompletedBannerLabel:
+                return ColorBrand.black.value
+            case .carBookingCompletedBackground:
+                return ColorBrand.lightGray.value
+            case .carBookingCompletedDescription:
+                return ColorBrand.black.value
+            case .carBookingCompletedCo2:
+                return ColorBrand.green.value
             }
         }
     }

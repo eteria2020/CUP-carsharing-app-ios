@@ -33,21 +33,37 @@ enum FontWeight {
 }
 
 enum Font {
-    // Genera
+    // General
     case roundedButton
     
     // Alert
     case alertMessage
     case alertButton
     
+    // SearchCars
+    case searchCarsClusterLabel
+    
     // SearchBar
     case searchBarTextField
     case searchBarTextFieldPlaceholder
+    case searchBarResult
     
     // CarPopup
     case carPopupType
     case carPopup
     case carPopupEmphasized
+    
+    // CarBookingPopup
+    case carBookingPopupPin
+    case carBookingPopupLabel
+    case carBookingPopupLabelEmphasized
+    case carBookingPopupStatus
+    
+    // CarBookingCompleted
+    case carBookingCompletedBannerLabel
+    case carBookingCompletedBannerLabelEmphasized
+    case carBookingCompletedDescription
+    case carBookingCompletedDescriptionEmphasized
     
     var value: UIFont {
         get {
@@ -60,11 +76,16 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .alertButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // SearchCars
+            case .searchCarsClusterLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // SearchBar
             case .searchBarTextField:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .searchBarTextFieldPlaceholder:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .searchBarResult:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             // CarPopup
             case .carPopupType:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 11))
@@ -72,6 +93,24 @@ enum Font {
                 return FontWeight.medium.font(withSize: self.getFontSize(size: 11))
             case .carPopupEmphasized:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+            // CarBookingPopup
+            case .carBookingPopupPin:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+            case .carBookingPopupLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 11))
+            case .carBookingPopupLabelEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+            case .carBookingPopupStatus:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+            // CarBookingCompleted
+            case .carBookingCompletedBannerLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .carBookingCompletedBannerLabelEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .carBookingCompletedDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .carBookingCompletedDescriptionEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

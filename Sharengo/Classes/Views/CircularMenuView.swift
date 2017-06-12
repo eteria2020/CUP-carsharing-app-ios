@@ -12,9 +12,8 @@ import Boomerang
 import Action
 
 class CircularMenuView: UIView {
-    @IBOutlet weak var view_main: UIView!
-    @IBOutlet weak var view_background: UIView!
-    
+    @IBOutlet fileprivate weak var view_main: UIView!
+    @IBOutlet fileprivate weak var view_background: UIView!
     fileprivate var view: UIView!
     
     var array_buttons: [UIButton] = []
@@ -27,32 +26,17 @@ class CircularMenuView: UIView {
             return
         }
         self.viewModel = viewModel
-        self.setupInterface()
+        xibSetup()
     }
     
     // MARK: - View methods
     
-    fileprivate func setupInterface() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        self.layoutIfNeeded()
-        self.view_background.backgroundColor = viewModel.type.getBackgroundViewColor()
-        self.view_background.layer.borderColor = viewModel.type.getBackgroundBorderColor().cgColor
-        self.view_background.layer.borderWidth = viewModel.type.getBackgroundBorderSize()
-        self.view_background.layer.cornerRadius = self.view_background.frame.size.width/2
-        self.view_background.layer.masksToBounds = true
-        self.generateButtons()
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        xibSetup()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        xibSetup()
     }
     
     fileprivate func xibSetup() {
@@ -60,12 +44,36 @@ class CircularMenuView: UIView {
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
+        guard let type = viewModel?.type else {
+            return
+        }
+        self.layoutIfNeeded()
+        self.view_background.backgroundColor = type.getBackgroundViewColor()
+        self.view_background.layer.borderColor = type.getBackgroundBorderColor().cgColor
+        self.view_background.layer.borderWidth = type.getBackgroundBorderSize()
+        self.view_background.layer.cornerRadius = self.view_background.frame.size.width/2
+        self.view_background.layer.masksToBounds = true
+        self.generateButtons()
     }
     
     fileprivate func loadViewFromNib() -> UIView {
         let nib = ViewXib.circularMenu.getNib()
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        for subview in view_main.subviews {
+            if subview.point(inside: convert(point, to: subview), with: event) {
+                return true
+            }
+        }
+        let circlePath1 = UIBezierPath(arcCenter: self.view_background.center, radius: CGFloat(self.view_background.frame.size.width/2), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        let circlePath2 = UIBezierPath(arcCenter: self.view_background.center, radius: CGFloat((self.view_background.frame.size.width/2)-(self.viewModel?.type.getBackgroundBorderSize() ?? 0.0)), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        if circlePath1.contains(point) && !circlePath2.contains(point) {
+            return true
+        }
+        return false
     }
     
     // MARK: - Buttons methods

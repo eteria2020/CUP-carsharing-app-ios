@@ -1,19 +1,20 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Boomerang
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.setupInit()
-        self.setupAlertView()
+        self.setupAlert()
+        self.setupHistory()
         #if ISDEBUG
         #elseif ISRELEASE
             Fabric.with([Crashlytics.self])
         #endif
-        // self.printFonts()
         TextStyle.setup()
         Router.start(self)
         return true
@@ -36,13 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Utilities methods
     
-    fileprivate func setupInit() {
+    fileprivate func setupAlert() {
         UserDefaults.standard.set(false, forKey: "alertShowed")
-    }
-    
-    fileprivate func setupAlertView() {
-        ZAlertView.positiveColor = Color.alerButtonsBackground.value
-        ZAlertView.negativeColor = Color.alerButtonsBackground.value
+        ZAlertView.positiveColor = Color.alertButtonsPositiveBackground.value
+        ZAlertView.negativeColor = Color.alertButtonsPositiveBackground.value
         ZAlertView.backgroundColor = Color.alertBackground.value
         ZAlertView.messageColor = Color.alertMessage.value
         ZAlertView.buttonTitleColor = Color.alertButton.value
@@ -56,17 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ZAlertView.buttonSectionExtraGap = 20
     }
     
-    // MARK: - Utility methods
-    
-    func printFonts()
-    {
-        let fontFamilyNames = UIFont.familyNames
-        for familyName in fontFamilyNames
-        {
-            print("------------------------------")
-            print("Font Family Name = [\(familyName)]")
-            let names = UIFont.fontNames(forFamilyName: familyName)
-            print("Font Names = [\(names)]")
+    fileprivate func setupHistory() {
+        if UserDefaults.standard.object(forKey: "historyArray") == nil {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [HistoryAddress]() as Array)
+            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
         }
     }
 }
