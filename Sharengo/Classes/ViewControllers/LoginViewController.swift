@@ -46,13 +46,14 @@ class LoginViewController : UIViewController, ViewModelBindable {
             .subscribe(onNext: {[weak self] (loginExecuted) in
                 DispatchQueue.main.async {
                     self?.hideLoader()
-                    if loginExecuted
-                    {
+                    if loginExecuted {
                         // TODO: refactoring
                         let destination:CarBookingCompletedViewController = (Storyboard.main.scene(.carBookingCompleted))
                         let viewModel = ViewModelFactory.carBookingCompleted(carTrip: CarTrip(car: Car()))
                         destination.bind(to: viewModel, afterLoad: true)
                         self?.navigationController?.pushViewController(destination, animated: true)
+                    } else {
+                        self?.hideLoader()
                     }
                 }
             }).addDisposableTo(disposeBag)

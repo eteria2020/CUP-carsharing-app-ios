@@ -26,6 +26,8 @@ class Response: ModelType, Decodable {
     
     var status: Int?
     var reason: String?
+    var code: String?
+    var msg: String?
     var array_data: [JSON]?
     var dic_data: JSON?
     
@@ -39,11 +41,9 @@ class Response: ModelType, Decodable {
     required init?(json: JSON) {
         self.status = "status" <~~ json
         self.reason = "reason" <~~ json
-        if let data: [JSON] = "data" <~~ json {
-            self.array_data = data
-        }
-        if let data: JSON = "data" <~~ json {
-            self.dic_data = data
-        }
+        self.code = "code" <~~ json
+        self.msg = "msg" <~~ json
+        self.array_data =  "data" <~~ json
+        self.dic_data = "data" <~~ json
     }
 }

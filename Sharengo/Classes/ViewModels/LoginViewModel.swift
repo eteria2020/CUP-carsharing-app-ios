@@ -65,12 +65,11 @@ final class LoginViewModel: ViewModelType {
                         UserDefaults.standard.set(data["pin"], forKey: "UserPin")
                         UserDefaults.standard.set(username, forKey: "Username")
                         UserDefaults.standard.set(password.md5!, forKey: "Password")
-
                         self.loginExecuted.value = true
                     }
-                    else if response.status == 404, let data = response.dic_data {
-                        if data["code"] as! String  == "not_found"
-                        {
+                    else if response.status == 404, let code = response.code {
+                        if code == "not_found" {
+                            self.loginExecuted.value = false
                             let dispatchTime = DispatchTime.now() + 0.5
                             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                                 let message = "alert_loginWrongEmail".localized()
@@ -82,9 +81,9 @@ final class LoginViewModel: ViewModelType {
                             }
                         }
                     }
-                    else if response.status == 406, let data = response.dic_data {
-                        if data["msg"] as! String == "invalid_credentials"
-                        {
+                    else if let msg = response.msg {
+                        if msg == "invalid_credentials" {
+                            self.loginExecuted.value = false
                             let dispatchTime = DispatchTime.now() + 0.5
                             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                                 let message = "alert_loginWrongPassword".localized()
@@ -99,6 +98,7 @@ final class LoginViewModel: ViewModelType {
                 case .error(_):
                     let dispatchTime = DispatchTime.now() + 0.5
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        self.loginExecuted.value = false
                         var message = "alert_generalError".localized()
                         if Reachability()?.isReachable == false {
                             message = "alert_connectionError".localized()
