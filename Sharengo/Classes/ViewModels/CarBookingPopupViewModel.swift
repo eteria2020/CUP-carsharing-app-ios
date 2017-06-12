@@ -39,10 +39,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .open:
-//                if let car = self.carBooking?.car.value {
-//                    return .just(.open(car))
-//                }
-                if let car = self.carTrip?.car.value {
+                if let car = self.carBooking?.car.value {
                     return .just(.open(car))
                 }
             case .delete:
@@ -72,7 +69,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     }).addDisposableTo(disposeBag)
             }
             if car.opened {
-                //self.hideButtons = true
+                self.hideButtons = true
             }
         }
     }
@@ -96,7 +93,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     }).addDisposableTo(disposeBag)
             }
             if car.opened {
-                //self.hideButtons = true
+                self.hideButtons = true
             }
         }
     }
