@@ -28,23 +28,23 @@ func nonMarkedText(_ textInput: UITextInput) -> String? {
     return (textInput.text(in: startRange) ?? "") + (textInput.text(in: endRange) ?? "")
 }
 
-func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variable<String>) -> Disposable {
-    let bindToUIDisposable = variable.asObservable()
-        .bind(to: textInput.text)
-    let bindToVariable = textInput.text
-        .subscribe(onNext: { [weak base = textInput.base] n in
-            guard let base = base else {
-                return
-            }
-            let nonMarkedTextValue = nonMarkedText(base)
-            if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != variable.value {
-                variable.value = nonMarkedTextValue
-            }
-            }, onCompleted:  {
-                bindToUIDisposable.dispose()
-        })
-    return Disposables.create(bindToUIDisposable, bindToVariable)
-}
+//func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variable<String>) -> Disposable {
+//    let bindToUIDisposable = variable.asObservable()
+//        .bind(to: textInput.text)
+//    let bindToVariable = textInput.text
+//        .subscribe(onNext: { [weak base = textInput.base] n in
+//            guard let base = base else {
+//                return
+//            }
+//            let nonMarkedTextValue = nonMarkedText(base)
+//            if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != variable.value {
+//                variable.value = nonMarkedTextValue
+//            }
+//            }, onCompleted:  {
+//                bindToUIDisposable.dispose()
+//        })
+//    return Disposables.create(bindToUIDisposable, bindToVariable)
+//}
 
 func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable {
     if T.self == String.self {

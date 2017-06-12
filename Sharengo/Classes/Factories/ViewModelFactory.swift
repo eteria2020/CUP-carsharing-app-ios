@@ -19,6 +19,10 @@ struct ViewModelFactory {
         return IntroViewModel()
     }
 
+    static func login() -> ViewModelType {
+        return LoginViewModel()
+    }
+
     static func home() -> ViewModelType {
         return HomeViewModel()
     }

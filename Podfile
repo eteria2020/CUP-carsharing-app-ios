@@ -26,6 +26,7 @@ def shared_pods
     pod 'StoryboardConstraint'
     pod 'DeviceKit'	
     pod 'YYWebImage'
+    pod 'TPKeyboardAvoiding'
 end
 
 target 'Sharengo' do

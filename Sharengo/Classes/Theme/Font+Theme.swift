@@ -64,7 +64,12 @@ enum Font {
     case carBookingCompletedBannerLabelEmphasized
     case carBookingCompletedDescription
     case carBookingCompletedDescriptionEmphasized
-    
+
+    // Login
+    case loginHeaderLabel
+    case loginTextField
+    case loginTextFieldPlaceholder
+
     var value: UIFont {
         get {
             switch self {
@@ -111,6 +116,13 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .carBookingCompletedDescriptionEmphasized:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // Login
+            case .loginHeaderLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .loginTextField:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .loginTextFieldPlaceholder:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             }
         }
     }

@@ -7,3 +7,4 @@
 
 #import <YYWebImage/YYWebImage.h>
 #import "SVPulsingAnnotationView.h"
+#import <CommonCrypto/CommonCrypto.h>

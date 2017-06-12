@@ -10,6 +10,23 @@
 		03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
 		03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
 		03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
+		03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */; };
+		03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */; };
+		03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */; };
+		03AF5D6A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5B1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png */; };
+		03AF5D6B1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png */; };
+		03AF5D6C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5D1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png */; };
+		03AF5D6D1EEE83FC00AC8826 /* disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5E1EEE83FC00AC8826 /* disclosure.png */; };
+		03AF5D6E1EEE83FC00AC8826 /* disclosure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5F1EEE83FC00AC8826 /* disclosure@2x.png */; };
+		03AF5D6F1EEE83FC00AC8826 /* disclosure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D601EEE83FC00AC8826 /* disclosure@3x.png */; };
+		03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D621EEE83FC00AC8826 /* AnimatedLine.swift */; };
+		03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D631EEE83FC00AC8826 /* AnimatedTextField.swift */; };
+		03AF5D721EEE83FC00AC8826 /* AnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D641EEE83FC00AC8826 /* AnimatedTextInput.swift */; };
+		03AF5D731EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D651EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift */; };
+		03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D661EEE83FC00AC8826 /* AnimatedTextInputStyle.swift */; };
+		03AF5D751EEE83FC00AC8826 /* AnimatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D671EEE83FC00AC8826 /* AnimatedTextView.swift */; };
+		03AF5D761EEE83FC00AC8826 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D681EEE83FC00AC8826 /* UIViewExtensions.swift */; };
+		03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D771EEEBED300AC8826 /* String+Extensions.swift */; };
 		4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */; };
 		4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */; };
 		4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */; };
@@ -106,6 +123,23 @@
 		03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewController.swift; path = Classes/ViewControllers/CarBookingCompletedViewController.swift; sourceTree = "<group>"; };
 		03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewModel.swift; path = Classes/ViewModels/CarBookingCompletedViewModel.swift; sourceTree = "<group>"; };
 		03653E221EEADA4800AC7A93 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Classes/ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
+		03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = Classes/ViewModels/LoginViewModel.swift; sourceTree = "<group>"; };
+		03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_icon_input_eye_normal@2x.png"; sourceTree = "<group>"; };
+		03AF5D5B1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_icon_input_eye_normal@3x.png"; sourceTree = "<group>"; };
+		03AF5D5C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_icon_input_eye_selected@2x.png"; sourceTree = "<group>"; };
+		03AF5D5D1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_icon_input_eye_selected@3x.png"; sourceTree = "<group>"; };
+		03AF5D5E1EEE83FC00AC8826 /* disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure.png; sourceTree = "<group>"; };
+		03AF5D5F1EEE83FC00AC8826 /* disclosure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosure@2x.png"; sourceTree = "<group>"; };
+		03AF5D601EEE83FC00AC8826 /* disclosure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosure@3x.png"; sourceTree = "<group>"; };
+		03AF5D621EEE83FC00AC8826 /* AnimatedLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedLine.swift; sourceTree = "<group>"; };
+		03AF5D631EEE83FC00AC8826 /* AnimatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
+		03AF5D641EEE83FC00AC8826 /* AnimatedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInput.swift; sourceTree = "<group>"; };
+		03AF5D651EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputFieldConfigurator.swift; sourceTree = "<group>"; };
+		03AF5D661EEE83FC00AC8826 /* AnimatedTextInputStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextInputStyle.swift; sourceTree = "<group>"; };
+		03AF5D671EEE83FC00AC8826 /* AnimatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextView.swift; sourceTree = "<group>"; };
+		03AF5D681EEE83FC00AC8826 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		03AF5D771EEEBED300AC8826 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Extensions.swift"; path = "Classes/Utilities/String+Extensions.swift"; sourceTree = "<group>"; };
 		21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Theme.swift"; path = "Classes/Theme/UIButton+Theme.swift"; sourceTree = "<group>"; };
 		4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarViewModel.swift; path = Classes/ViewModels/SearchBarViewModel.swift; sourceTree = "<group>"; };
@@ -223,6 +257,53 @@
 				03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */,
 			);
 			name = CarBookingCompleted;
+			sourceTree = "<group>";
+		};
+		03AF5D321EEE7B4000AC8826 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */,
+				03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		03AF5D581EEE83FC00AC8826 /* AnimatedTextInput */ = {
+			isa = PBXGroup;
+			children = (
+				03AF5D591EEE83FC00AC8826 /* Assets */,
+				03AF5D611EEE83FC00AC8826 /* Classes */,
+			);
+			name = AnimatedTextInput;
+			path = Classes/Utilities/AnimatedTextInput;
+			sourceTree = "<group>";
+		};
+		03AF5D591EEE83FC00AC8826 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */,
+				03AF5D5B1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png */,
+				03AF5D5C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png */,
+				03AF5D5D1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png */,
+				03AF5D5E1EEE83FC00AC8826 /* disclosure.png */,
+				03AF5D5F1EEE83FC00AC8826 /* disclosure@2x.png */,
+				03AF5D601EEE83FC00AC8826 /* disclosure@3x.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		03AF5D611EEE83FC00AC8826 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				03AF5D621EEE83FC00AC8826 /* AnimatedLine.swift */,
+				03AF5D631EEE83FC00AC8826 /* AnimatedTextField.swift */,
+				03AF5D641EEE83FC00AC8826 /* AnimatedTextInput.swift */,
+				03AF5D651EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift */,
+				03AF5D661EEE83FC00AC8826 /* AnimatedTextInputStyle.swift */,
+				03AF5D671EEE83FC00AC8826 /* AnimatedTextView.swift */,
+				03AF5D681EEE83FC00AC8826 /* UIViewExtensions.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		0725785E328265441F78D09B /* Frameworks */ = {
@@ -427,6 +508,8 @@
 				4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */,
 				4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */,
 				4D2628F31ED57D7B001C4E38 /* PKCS12.swift */,
+				03AF5D771EEEBED300AC8826 /* String+Extensions.swift */,
+				03AF5D581EEE83FC00AC8826 /* AnimatedTextInput */,
 				4DEBEE6F1EED373800AEF617 /* BRYXBanner */,
 				4DE361641EE801F9007DC92C /* SVPulsingAnnotation */,
 				4DA554391EE55284001627E7 /* FBAnnotationClusteringSwift */,
@@ -473,6 +556,7 @@
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
 				4DC10E001EE9AC5800A74E26 /* Loading */,
+				03AF5D321EEE7B4000AC8826 /* Login */,
 				4D2339961EE6CD2A00780384 /* Intro */,
 				4DFD98381ED471FC00880EA1 /* Home */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
@@ -704,8 +788,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03AF5D6C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png in Resources */,
+				03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */,
 				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
+				03AF5D6A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png in Resources */,
 				4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */,
+				03AF5D6D1EEE83FC00AC8826 /* disclosure.png in Resources */,
 				4D23399B1EE6CF4B00780384 /* INTRO BREVE.gif in Resources */,
 				4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */,
 				4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */,
@@ -715,15 +803,18 @@
 				4D1AE82B1ED1E40E00C8A1D3 /* Poppins-Light.ttf in Resources */,
 				4DCD1AA31ECDC22900FC8BF5 /* Assets.xcassets in Resources */,
 				4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */,
+				03AF5D6E1EEE83FC00AC8826 /* disclosure@2x.png in Resources */,
 				4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */,
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
 				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
 				4D45BB2D1EE698C2004C7287 /* CarBookingPopupView.xib in Resources */,
+				03AF5D6B1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png in Resources */,
 				4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */,
 				4DCE7EEA1EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib in Resources */,
 				4D2339A01EE72F3500780384 /* INTRO LUNGA FINE.gif in Resources */,
+				03AF5D6F1EEE83FC00AC8826 /* disclosure@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,12 +900,14 @@
 				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
 				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
+				03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
 				4DA554471EE55284001627E7 /* FBAnnotationClusterTemplate.swift in Sources */,
 				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
 				4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */,
+				03AF5D731EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
 				4D2339951EE6CCE300780384 /* IntroViewController.swift in Sources */,
 				4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */,
 				4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */,
@@ -824,16 +917,20 @@
 				4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
+				03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */,
 				4DEBEE711EED373800AEF617 /* Banner.swift in Sources */,
 				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
 				4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */,
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
 				4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */,
+				03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
+				03AF5D721EEE83FC00AC8826 /* AnimatedTextInput.swift in Sources */,
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
 				4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */,
 				4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */,
+				03AF5D761EEE83FC00AC8826 /* UIViewExtensions.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
@@ -856,10 +953,14 @@
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
+				03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */,
+				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,
 				4DA5544C1EE55284001627E7 /* FBClusteringManager.swift in Sources */,
+				03AF5D751EEE83FC00AC8826 /* AnimatedTextView.swift in Sources */,
 				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
+				03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */,
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
 				4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */,
 				4DA5544B1EE55284001627E7 /* FBBoundingBox.swift in Sources */,

@@ -42,7 +42,15 @@ enum TextStyle: String, TextStyleType {
     // CarBookingCompleted
     case carBookingCompletedDescription = "carBookingCompletedDescription"
     case carBookingCompletedCo2 = "carBookingCompletedCo2"
-    
+
+    // Login
+    case loginFormHeader = "loginFormHeader"
+    case loginEmail = "loginEmail"
+    case loginEmailPlaceholder = "loginEmailPlaceholder"
+    case loginPassword = "loginPassword"
+    case loginPasswordPlaceholder = "loginPasswordPlaceholder"
+    case loginNotYetRegistered = "loginNotYetRegistered"
+
     static var all:[TextStyle] {
         return [
             // SearchBar
@@ -62,7 +70,14 @@ enum TextStyle: String, TextStyleType {
             .carBookingPopupTime,
             // CarBookingCompleted
             .carBookingCompletedDescription,
-            .carBookingCompletedCo2
+            .carBookingCompletedCo2,
+            // Login
+            .loginFormHeader,
+            .loginEmail,
+            .loginEmailPlaceholder,
+            .loginPassword,
+            .loginPasswordPlaceholder,
+            .loginNotYetRegistered
         ]
     }
     
@@ -106,6 +121,19 @@ enum TextStyle: String, TextStyleType {
             case .carBookingCompletedCo2:
                 let boldStyle = StringStyle(.font(Font.carBookingCompletedDescriptionEmphasized.value), .color(Color.carBookingCompletedCo2.value), .alignment(.center))
                 return StringStyle(.font(Font.carBookingCompletedDescription.value), .color(Color.carBookingCompletedDescription.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+            // Login
+            case .loginFormHeader:
+                return StringStyle(.font(Font.loginHeaderLabel.value), .color(Color.loginHeaderLabel.value), .alignment(.center))
+            case .loginEmail:
+                return StringStyle(.font(Font.loginTextField.value), .color(Color.loginTextField.value), .alignment(.center))
+            case .loginEmailPlaceholder:
+                return StringStyle(.font(Font.loginTextFieldPlaceholder.value), .color(Color.loginTextFieldPlaceholder.value), .alignment(.center))
+            case .loginPassword:
+                return StringStyle(.font(Font.loginTextField.value), .color(Color.loginTextField.value), .alignment(.center))
+            case .loginPasswordPlaceholder:
+                return StringStyle(.font(Font.loginTextFieldPlaceholder.value), .color(Color.loginTextFieldPlaceholder.value), .alignment(.center))
+            case .loginNotYetRegistered:
+                return StringStyle(.font(Font.loginHeaderLabel.value), .color(Color.loginHeaderLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
