@@ -109,6 +109,8 @@ class SignupViewController : UIViewController, ViewModelBindable {
                     var frame = self!.scrollView_main.frame
                     frame.origin.x = (frame.size.width * CGFloat(self!.pgc_steps.currentPage - 1))
                     self!.scrollView_main.scrollRectToVisible(frame, animated: true)
+
+                    self!.pgc_steps.currentPage = self!.pgc_steps.currentPage - 1
                 }
             }
         }).addDisposableTo(self.disposeBag)
@@ -120,9 +122,13 @@ class SignupViewController : UIViewController, ViewModelBindable {
                     var frame = self!.scrollView_main.frame
                     frame.origin.x = (frame.size.width * CGFloat(self!.pgc_steps.currentPage + 1))
                     self!.scrollView_main.scrollRectToVisible(frame, animated: true)
+                
+                    self!.pgc_steps.currentPage = self!.pgc_steps.currentPage + 1
                 }
             }
         }).addDisposableTo(self.disposeBag)
+        self.btn_previousStep.isHidden = true
+        self.img_leftArrow.isHidden = true
 
         self.btn_signup.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_signupSignup".localized())
         self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -136,6 +142,8 @@ class SignupViewController : UIViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
     }
 }
+
+// MARK: - ScrollViewDelegate methods
 
 extension SignupViewController: UIScrollViewDelegate
 {

@@ -24,7 +24,10 @@ enum TextStyle: String, TextStyleType {
     // SearchBar
     case searchBarTextField = "searchBarTextField"
     case searchBarResult = "searchBarResult"
-   
+
+    // Signup
+    case signupHeader = "signupHeader"
+
     // CarPopup
     case carPopupType = "carPopupType"
     case carPopupPlate = "carPopupPlate"
@@ -77,7 +80,9 @@ enum TextStyle: String, TextStyleType {
             .loginEmailPlaceholder,
             .loginPassword,
             .loginPasswordPlaceholder,
-            .loginNotYetRegistered
+            .loginNotYetRegistered,
+            // Signup
+            .signupHeader
         ]
     }
     
@@ -93,6 +98,10 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.searchBarTextField.value), .color(Color.searchBarTextField.value), .alignment(.center))
             case .searchBarResult:
                 return StringStyle(.font(Font.searchBarResult.value), .color(Color.searchBarResult.value), .alignment(.center))
+            // Signup
+            case .signupHeader:
+                let titleStyle = StringStyle(.font(Font.signupHeaderTitleLabel.value), .color(Color.signupHeaderTitleLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.signupHeaderSubTitleLabel.value), .color(Color.signupHeaderSubTitleLabel.value), .alignment(.center),.xmlRules([.style("title", titleStyle)]))
             // CarPopup
             case .carPopupType:
                 return StringStyle(.font(Font.carPopupType.value), .color(Color.carPopupLabel.value), .alignment(.center))

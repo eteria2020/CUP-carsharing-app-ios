@@ -26,8 +26,8 @@ class SignupStepView: UIView {
         }
         self.viewModel = viewModel
        
-        self.lbl_title.text = viewModel.title
+        self.lbl_title.styledText = viewModel.title
         self.icn_main.image = viewModel.icon
-        self.lbl_description.text = viewModel.description
+        self.lbl_description.styledText = viewModel.description
     }
 }

@@ -376,6 +376,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="signupHeader"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -386,7 +389,7 @@
                                     <constraint firstAttribute="bottom" secondItem="6zC-o1-oYN" secondAttribute="bottom" constant="15" id="gxc-IB-Od3"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoj-3u-fp8">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoj-3u-fp8">
                                 <rect key="frame" x="0.0" y="156" width="375" height="411"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBG-aH-zUx">
@@ -404,6 +407,9 @@
                                     <constraint firstItem="OBG-aH-zUx" firstAttribute="leading" secondItem="zoj-3u-fp8" secondAttribute="leading" id="UnW-aJ-oO6"/>
                                     <constraint firstItem="OBG-aH-zUx" firstAttribute="top" secondItem="zoj-3u-fp8" secondAttribute="top" id="iDR-qS-daX"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="p7W-Du-Wng" id="0ul-A5-xu3"/>
+                                </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="y6r-eS-fPe">
                                 <rect key="frame" x="168" y="515" width="39" height="37"/>

@@ -65,6 +65,10 @@ enum Font {
     case carBookingCompletedDescription
     case carBookingCompletedDescriptionEmphasized
 
+    // Signup
+    case signupHeaderTitleLabel
+    case signupHeaderSubTitleLabel
+
     // Login
     case loginHeaderLabel
     case loginTextField
@@ -116,6 +120,11 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .carBookingCompletedDescriptionEmphasized:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // Signup
+            case .signupHeaderTitleLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .signupHeaderSubTitleLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             // Login
             case .loginHeaderLabel:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
