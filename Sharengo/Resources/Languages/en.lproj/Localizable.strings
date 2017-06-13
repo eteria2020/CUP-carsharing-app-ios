@@ -16,6 +16,18 @@
 "btn_book" = "PRENOTA AUTO";
 "bnt_delete" = "ELIMINA";
 
+// Signup
+"lbl_signupHeader" = "Iscriviti a Share'ngo\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
+"btn_signupSignup" = "ISCRIVITI";
+"lbl_signupStepTitle1" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepDescription1" = "CARTA DI IDENTITÀ";
+"lbl_signupStepTitle2" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepDescription2" = "CODICE FISCALE";
+"lbl_signupStepTitle3" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepDescription3" = "PATENTE";
+"lbl_signupStepTitle4" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepDescription4" = "CARTA DI CREDITO";
+
 // Login
 "alert_loginMissingFields" = "Uno o più campi non sono compilati.";
 "alert_loginWrongEmail" = "Attenzione! L'indirizzo email che hai inserito non è presente nel nostro database.";

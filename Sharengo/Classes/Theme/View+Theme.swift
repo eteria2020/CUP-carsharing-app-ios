@@ -14,6 +14,7 @@ enum ViewXib: String {
     case carPopup = "CarPopupView"
     case carBookingPopup = "CarBookingPopupView"
     case searchBar = "SearchBarView"
+    case signupStep = "SignupStepView"
     
     func getNib() -> UINib {
         let bundle = Bundle.main

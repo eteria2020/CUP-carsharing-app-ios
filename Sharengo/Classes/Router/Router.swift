@@ -76,15 +76,21 @@ struct Router : RouterType {
     }
 
     public static func root() -> UIViewController {
+        let destination: SignupViewController = (Storyboard.main.scene(.signup))
+        destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
+        return destination.withNavigation()
+
         /*
         let destination: HomeViewController = (Storyboard.main.scene(.home))
         destination.bind(to: ViewModelFactory.home(), afterLoad: true)
         return destination.withNavigation()
         */
-        
+
+        /*
         let destination: LoginViewController = (Storyboard.main.scene(.login))
         destination.bind(to: ViewModelFactory.login(), afterLoad: true)
         return destination.withNavigation()
+        */
         
         /*
         let destination: IntroViewController  = (Storyboard.main.scene(.intro))

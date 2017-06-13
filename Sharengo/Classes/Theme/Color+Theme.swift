@@ -74,6 +74,9 @@ enum Color {
     case circularMenuBackgroundBorder
     case circularMenuBackground
 
+    // Signup
+    case signupBackground
+
     // Login
     case loginBackground
     case loginHeaderLabel
@@ -138,6 +141,9 @@ enum Color {
                 return ColorBrand.yellow.value.withAlphaComponent(0.5)
             case .circularMenuBackground:
                 return ColorBrand.clear.value
+            // Signup
+            case .signupBackground:
+                return ColorBrand.lightGray.value
             // Login
             case .loginBackground:
                 return ColorBrand.lightGray.value
