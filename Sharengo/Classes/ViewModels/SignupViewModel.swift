@@ -34,9 +34,9 @@ final class SignupViewModel: ViewModelType {
         var stepsArray = [SignupStepView]()
         
         let step1 = Bundle.main.loadNibNamed(ViewXib.signupStep.rawValue, owner: nil, options: nil)?.last as? SignupStepView
-        step1?.bind(to: SignupStepViewModel(title: "Aaa", icon: "icon_Car", description: "BBB"))
+        step1?.bind(to: SignupStepViewModel(title: "Aaa", icon: "mizzie_05_finecorsa", description: "BBB"))
         let step2 = Bundle.main.loadNibNamed(ViewXib.signupStep.rawValue, owner: nil, options: nil)?.last as? SignupStepView
-        step2?.bind(to: SignupStepViewModel(title: "Aaa", icon: "icon_Car", description: "BBB"))
+        step2?.bind(to: SignupStepViewModel(title: "Aaa", icon: "mizzie_05_finecorsa", description: "BBB"))
         
         stepsArray.append(step1!)
         stepsArray.append(step2!)
