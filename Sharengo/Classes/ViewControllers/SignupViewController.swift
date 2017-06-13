@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import DeviceKit
 import SnapKit
+import BonMot
 
 class SignupViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -90,8 +91,12 @@ class SignupViewController : UIViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
 
         // Labels
-        self.lbl_header.styledText = "lbl_signupHeader".localized()
-
+        self.lbl_header.attributedText = NSAttributedString.composed(of: [
+            "lbl_signupHeader".localized().styled(with: TextStyle.signupHeader.style),
+            Special.noBreakSpace,
+            UIImage(named: "ic_close")!,
+            ])
+        
         // Buttons
         switch Device().diagonal {
         case 3.5:

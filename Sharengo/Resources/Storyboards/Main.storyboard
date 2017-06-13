@@ -369,10 +369,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Idb-X6-gKu">
-                                <rect key="frame" x="0.0" y="56" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="167"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zC-o1-oYN">
-                                        <rect key="frame" x="15" y="15" width="345" height="70"/>
+                                        <rect key="frame" x="15" y="15" width="345" height="137"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -390,10 +390,10 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoj-3u-fp8">
-                                <rect key="frame" x="0.0" y="156" width="375" height="411"/>
+                                <rect key="frame" x="0.0" y="223" width="375" height="344"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBG-aH-zUx">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="411"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="344"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="375" id="srB-kE-yr0"/>
@@ -479,7 +479,7 @@
                             <constraint firstItem="y6r-eS-fPe" firstAttribute="bottom" secondItem="zoj-3u-fp8" secondAttribute="bottom" constant="-15" id="aYv-7v-kNO"/>
                             <constraint firstItem="QvA-Ts-oEW" firstAttribute="centerY" secondItem="ptF-bd-xTM" secondAttribute="centerY" id="b2U-nz-Svi"/>
                             <constraint firstItem="Idb-X6-gKu" firstAttribute="top" secondItem="ZD9-QT-zG7" secondAttribute="bottom" id="brh-2x-RGJ"/>
-                            <constraint firstItem="Idb-X6-gKu" firstAttribute="height" secondItem="ow9-nV-UZt" secondAttribute="height" multiplier="0.15" id="dSH-gG-qPA"/>
+                            <constraint firstItem="Idb-X6-gKu" firstAttribute="height" secondItem="ow9-nV-UZt" secondAttribute="height" multiplier="0.25" id="dSH-gG-qPA"/>
                             <constraint firstAttribute="bottom" secondItem="i0z-FA-KTK" secondAttribute="bottom" id="fOZ-D4-K2z"/>
                             <constraint firstItem="QvA-Ts-oEW" firstAttribute="trailing" secondItem="0FM-kF-SPV" secondAttribute="trailing" id="fdy-Cf-IWT"/>
                             <constraint firstItem="QvA-Ts-oEW" firstAttribute="leading" secondItem="0FM-kF-SPV" secondAttribute="leading" id="kdu-6Q-OGI"/>
