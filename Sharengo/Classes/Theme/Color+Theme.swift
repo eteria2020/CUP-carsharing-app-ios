@@ -121,6 +121,9 @@ enum Color {
     case carBookingCompletedDescription
     case carBookingCompletedCo2
     
+    // Profile
+    case profileBackground
+    
     var value: UIColor {
         get {
             switch self {
@@ -213,6 +216,9 @@ enum Color {
                 return ColorBrand.black.value
             case .carBookingCompletedCo2:
                 return ColorBrand.green.value
+            // Profile
+            case .profileBackground:
+                return ColorBrand.lightGray.value
             }
         }
     }
