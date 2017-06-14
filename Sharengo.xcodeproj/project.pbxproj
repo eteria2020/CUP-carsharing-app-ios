@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03427AC71EF12991008485B3 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03427AC61EF12991008485B3 /* ProfileTableViewCell.swift */; };
 		03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
 		03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
 		03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
@@ -127,6 +128,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03427AC61EF12991008485B3 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTableViewCell.swift; path = Classes/Views/ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewController.swift; path = Classes/ViewControllers/CarBookingCompletedViewController.swift; sourceTree = "<group>"; };
 		03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewModel.swift; path = Classes/ViewModels/CarBookingCompletedViewModel.swift; sourceTree = "<group>"; };
 		03653E221EEADA4800AC7A93 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			children = (
 				03C6325E1EF02E8400BFEDA3 /* ProfileViewController.swift */,
 				03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */,
+				03427AC61EF12991008485B3 /* ProfileTableViewCell.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,
 				03C632331EEFC87600BFEDA3 /* SignupViewModel.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
+				03427AC71EF12991008485B3 /* ProfileTableViewCell.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
 				03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */,
 				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,

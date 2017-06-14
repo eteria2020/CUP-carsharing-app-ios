@@ -30,7 +30,11 @@ struct ViewModelFactory {
     static func home() -> ViewModelType {
         return HomeViewModel()
     }
-    
+
+    static func profile() -> ViewModelType {
+        return ProfileViewModel()
+    }
+
     static func searchCars() -> ViewModelType {
         return SearchCarsViewModel()
     }
