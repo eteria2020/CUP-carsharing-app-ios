@@ -48,10 +48,6 @@ enum TextStyle: String, TextStyleType {
 
     // Login
     case loginFormHeader = "loginFormHeader"
-    case loginEmail = "loginEmail"
-    case loginEmailPlaceholder = "loginEmailPlaceholder"
-    case loginPassword = "loginPassword"
-    case loginPasswordPlaceholder = "loginPasswordPlaceholder"
     case loginNotYetRegistered = "loginNotYetRegistered"
 
     static var all:[TextStyle] {
@@ -76,10 +72,6 @@ enum TextStyle: String, TextStyleType {
             .carBookingCompletedCo2,
             // Login
             .loginFormHeader,
-            .loginEmail,
-            .loginEmailPlaceholder,
-            .loginPassword,
-            .loginPasswordPlaceholder,
             .loginNotYetRegistered,
             // Signup
             .signupHeader
@@ -133,14 +125,6 @@ enum TextStyle: String, TextStyleType {
             // Login
             case .loginFormHeader:
                 return StringStyle(.font(Font.loginHeaderLabel.value), .color(Color.loginHeaderLabel.value), .alignment(.center))
-            case .loginEmail:
-                return StringStyle(.font(Font.loginTextField.value), .color(Color.loginTextField.value), .alignment(.center))
-            case .loginEmailPlaceholder:
-                return StringStyle(.font(Font.loginTextFieldPlaceholder.value), .color(Color.loginTextFieldPlaceholder.value), .alignment(.center))
-            case .loginPassword:
-                return StringStyle(.font(Font.loginTextField.value), .color(Color.loginTextField.value), .alignment(.center))
-            case .loginPasswordPlaceholder:
-                return StringStyle(.font(Font.loginTextFieldPlaceholder.value), .color(Color.loginTextFieldPlaceholder.value), .alignment(.center))
             case .loginNotYetRegistered:
                 return StringStyle(.font(Font.loginHeaderLabel.value), .color(Color.loginHeaderLabel.value), .alignment(.center))
             }

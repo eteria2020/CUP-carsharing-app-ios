@@ -100,11 +100,11 @@ class SignupViewController : UIViewController, ViewModelBindable {
         // Buttons
         switch Device().diagonal {
         case 3.5:
-            self.btn_signup.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 30
-        case 4:
             self.btn_signup.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
+        case 4:
+            self.btn_signup.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
         default:
-            self.btn_signup.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 35
+            self.btn_signup.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
         self.btn_previousStep.rx.tap.subscribe(onNext:{[weak self] output in
             if self != nil

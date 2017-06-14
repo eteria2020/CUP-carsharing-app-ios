@@ -66,6 +66,7 @@ enum Color {
     case alertButtonsNegativeBackground
     case alertMessage
     case alertButton
+    case alertLightButton
     
     // NavigationBar
     case navigationBarBackground
@@ -84,6 +85,7 @@ enum Color {
     case loginHeaderLabel
     case loginTextField
     case loginTextFieldPlaceholder
+    case loginContinueAsNotLoggedButton
 
     // Home
     case homeSearchCarBackground
@@ -138,6 +140,8 @@ enum Color {
                 return ColorBrand.white.value
             case .alertButton:
                 return ColorBrand.black.value
+            case .alertLightButton:
+                return ColorBrand.white.value
             // NavigationBar
             case .navigationBarBackground:
                 return ColorBrand.yellow.value
@@ -162,6 +166,8 @@ enum Color {
                 return ColorBrand.black.value
             case .loginTextFieldPlaceholder:
                 return ColorBrand.black.value.withAlphaComponent(0.6)
+            case .loginContinueAsNotLoggedButton:
+                return ColorBrand.green.value
             // Home
             case .homeSearchCarBackground:
                 return ColorBrand.green.value

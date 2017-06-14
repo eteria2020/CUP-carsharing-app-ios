@@ -46,12 +46,12 @@ class CarBookingCompletedViewController : UIViewController, ViewModelBindable {
         self.lbl_warning.styledText = "lbl_carBookingCompletedDescription".localized()
         switch Device().diagonal {
         case 3.5:
-            self.btn_carRides.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 30
+            self.btn_carRides.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
             self.img_completed.constraint(withIdentifier: "imageHeight", searchInSubviews: false)?.constant = 130
         case 4:
-            self.btn_carRides.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
+            self.btn_carRides.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
         default:
-            self.btn_carRides.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 35
+            self.btn_carRides.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
         self.btn_carRides.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_carRides".localized())
         // NavigationBar

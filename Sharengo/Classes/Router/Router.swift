@@ -8,7 +8,6 @@ internal extension UIViewController {
     func withNavigation() -> NavigationController {
         let navigationController = NavigationController(rootViewController: self)
         navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.interactivePopGestureRecognizer?.delegate = nil
         return navigationController
     }
 }
@@ -65,10 +64,13 @@ struct Router : RouterType {
             let destination:SearchCarsViewController = (Storyboard.main.scene(.searchCars))
             destination.bind(to: ViewModelFactory.searchCars(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
-        case is CarBookingCompletedViewModel:
-            let destination:CarBookingCompletedViewController = (Storyboard.main.scene(.carBookingCompleted))
-            let viewModel = ViewModelFactory.carBookingCompleted(carTrip: (viewModel as! CarBookingCompletedViewModel).carTrip ?? CarTrip(car: Car()))
-            destination.bind(to: viewModel, afterLoad: true)
+        case is LoginViewModel:
+            let destination: LoginViewController = (Storyboard.main.scene(.login))
+            destination.bind(to: ViewModelFactory.login(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is HomeViewModel:
+            let destination: HomeViewController = (Storyboard.main.scene(.home))
+            destination.bind(to: ViewModelFactory.home(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
@@ -76,16 +78,16 @@ struct Router : RouterType {
     }
 
     public static func root() -> UIViewController {
-        let destination: SignupViewController = (Storyboard.main.scene(.signup))
-        destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
-        return destination.withNavigation()
-
-        /*
         let destination: HomeViewController = (Storyboard.main.scene(.home))
         destination.bind(to: ViewModelFactory.home(), afterLoad: true)
         return destination.withNavigation()
+        
+        /*
+        let destination: SignupViewController = (Storyboard.main.scene(.signup))
+        destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
+        return destination.withNavigation()
         */
-
+       
         /*
         let destination: LoginViewController = (Storyboard.main.scene(.login))
         destination.bind(to: ViewModelFactory.login(), afterLoad: true)

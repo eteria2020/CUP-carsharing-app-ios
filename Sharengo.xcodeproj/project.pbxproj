@@ -633,7 +633,6 @@
 				4D2628F01ED57CCD001C4E38 /* Certificates */,
 				4DCD1A981ECDC22900FC8BF5 /* Assets */,
 				4DCD1A9A1ECDC22900FC8BF5 /* Fonts */,
-				4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */,
 				4DCD1A9C1ECDC22900FC8BF5 /* Languages */,
 				4DCD1A9D1ECDC22900FC8BF5 /* Plists */,
 				4DCD1A9F1ECDC22900FC8BF5 /* Storyboards */,
@@ -668,12 +667,13 @@
 			children = (
 			);
 			name = Frameworks;
-			path = Resources/Frameworks;
+			path = ../Frameworks;
 			sourceTree = "<group>";
 		};
 		4DCD1A9C1ECDC22900FC8BF5 /* Languages */ = {
 			isa = PBXGroup;
 			children = (
+				4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */,
 				4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */,
 				4D36D7BF1ED2F279005FAEB8 /* InfoPlist.strings */,
 			);

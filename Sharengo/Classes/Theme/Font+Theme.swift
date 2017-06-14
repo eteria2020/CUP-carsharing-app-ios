@@ -73,6 +73,7 @@ enum Font {
     case loginHeaderLabel
     case loginTextField
     case loginTextFieldPlaceholder
+    case loginForgotPassword
 
     var value: UIFont {
         get {
@@ -127,10 +128,12 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             // Login
             case .loginHeaderLabel:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .loginTextField:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             case .loginTextFieldPlaceholder:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .loginForgotPassword:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             }
         }

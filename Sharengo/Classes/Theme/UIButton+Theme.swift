@@ -9,12 +9,20 @@
 import UIKit
 
 public enum ButtonStyle {
+    case clearButton(UIFont)
     case roundedButton(UIColor)
+    case squaredButton(UIColor)
 }
 
 public extension UIButton {
     func style(_ style:ButtonStyle, title: String) {
         switch style {
+        case .clearButton(let font):
+            self.backgroundColor = .clear
+            self.setBackgroundImage(UIImage.imageWithSolidColor(UIColor.clear, size: self.frame.size), for: .normal)
+            self.setTitle(title, for: UIControlState())
+            self.titleLabel?.font = font
+            self.setTitleColor(Color.alertButton.value, for: .normal)
         case .roundedButton(let backgroundColor):
             self.backgroundColor = .clear
             self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
@@ -23,6 +31,12 @@ public extension UIButton {
             self.setTitle(title, for: UIControlState())
             self.titleLabel?.font = Font.roundedButton.value
             self.setTitleColor(Color.alertButton.value, for: .normal)
+        case .squaredButton(let backgroundColor):
+            self.backgroundColor = .clear
+            self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
+            self.setTitle(title, for: UIControlState())
+            self.titleLabel?.font = Font.roundedButton.value
+            self.setTitleColor(Color.alertLightButton.value, for: .normal)
         }
     }
 }

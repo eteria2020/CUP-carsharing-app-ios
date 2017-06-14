@@ -22,7 +22,9 @@ enum LoginSelectionInput: SelectionInput {
 enum LoginSelectionOutput: SelectionOutput {
     case viewModel(ViewModelType)
     case login
-    case empty
+    case forgotPassword
+    case register
+    case continueAsNotLogged
 }
 
 final class LoginViewModel: ViewModelType {
@@ -31,23 +33,22 @@ final class LoginViewModel: ViewModelType {
         case .login:
             return .just(.login)
         case .forgotPassword:
-            return .just(.empty)
+            return .just(.forgotPassword)
         case .register:
-            return .just(.empty)
+            return .just(.register)
         case .continueAsNotLogged:
-            return .just(.empty)
+            return .just(.continueAsNotLogged)
         }
     }
+    
     fileprivate var apiController: ApiController = ApiController()
     var loginExecuted: Variable<Bool> = Variable(false)
 
     init() {
     }
     
-    func login(username: String, password: String)
-    {
-        if (username.isEmpty || password.isEmpty)
-        {
+    func login(username: String, password: String) {
+        if (username.isEmpty || password.isEmpty) {
             let message = "alert_loginMissingFields".localized()
             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                 alertView.dismissAlertView()
@@ -55,7 +56,6 @@ final class LoginViewModel: ViewModelType {
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
         }
-        
         self.apiController.getUser(username: username.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!, password: password.md5!)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
