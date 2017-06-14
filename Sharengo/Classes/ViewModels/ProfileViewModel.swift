@@ -19,7 +19,25 @@ enum ProfileSelectionOutput: SelectionOutput {
     case empty
 }
 
+struct ProfileTableViewCellStruct
+{
+    var title = ""
+    
+    init(title: String)
+    {
+        self.title = title
+    }
+}
+
 final class ProfileViewModel: ViewModelType {
+    let cellsArray: [ProfileTableViewCellStruct]
+
     init() {
+        let cell1 = ProfileTableViewCellStruct(title: "lbl_profileCellTitle1".localized())
+        let cell2 = ProfileTableViewCellStruct(title: "lbl_profileCellTitle2".localized())
+        let cell3 = ProfileTableViewCellStruct(title: "lbl_profileCellTitle3".localized())
+        let cell4 = ProfileTableViewCellStruct(title: "lbl_profileCellTitle4".localized())
+        
+        cellsArray = [cell1, cell2, cell3, cell4]
     }
 }

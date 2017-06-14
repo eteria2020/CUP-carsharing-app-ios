@@ -90,6 +90,90 @@
             </objects>
             <point key="canvasLocation" x="70" y="-606"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="eSB-Qv-Hhs">
+            <objects>
+                <viewController storyboardIdentifier="profile" id="OQy-VA-oXn" customClass="ProfileViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RlT-on-x5g"/>
+                        <viewControllerLayoutGuide type="bottom" id="NxT-iN-QyF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YHa-64-gGI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bj-L8-u4d" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="ofB-DD-Lke"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fss-Nc-1fi">
+                                <rect key="frame" x="0.0" y="56" width="375" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k1D-1g-dUT">
+                                <rect key="frame" x="0.0" y="256" width="375" height="411"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" id="f1g-OZ-5Ka" customClass="ProfileTableViewCell" customModule="Sharengo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f1g-OZ-5Ka" id="DaQ-sB-D0b">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GL6-f9-mYx">
+                                                    <rect key="frame" x="15" y="10" width="345" height="23.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GL6-f9-mYx" firstAttribute="leading" secondItem="DaQ-sB-D0b" secondAttribute="leading" constant="15" id="BPu-mr-gMI"/>
+                                                <constraint firstAttribute="bottom" secondItem="GL6-f9-mYx" secondAttribute="bottom" constant="10" id="M5G-9A-GfZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="GL6-f9-mYx" secondAttribute="trailing" constant="15" id="f3K-sz-j1d"/>
+                                                <constraint firstItem="GL6-f9-mYx" firstAttribute="top" secondItem="DaQ-sB-D0b" secondAttribute="top" constant="10" id="fs1-5F-qSh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="GL6-f9-mYx" id="7Ww-zu-brY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="OQy-VA-oXn" id="4RW-89-SPZ"/>
+                                    <outlet property="delegate" destination="OQy-VA-oXn" id="m9r-HM-ZXC"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fss-Nc-1fi" firstAttribute="top" secondItem="3bj-L8-u4d" secondAttribute="bottom" id="5oB-g0-cwg"/>
+                            <constraint firstItem="3bj-L8-u4d" firstAttribute="leading" secondItem="YHa-64-gGI" secondAttribute="leading" id="Hdv-kw-xRf"/>
+                            <constraint firstAttribute="trailing" secondItem="k1D-1g-dUT" secondAttribute="trailing" id="Htx-13-xBi"/>
+                            <constraint firstItem="k1D-1g-dUT" firstAttribute="leading" secondItem="YHa-64-gGI" secondAttribute="leading" id="Lsk-hw-oHf"/>
+                            <constraint firstAttribute="trailing" secondItem="3bj-L8-u4d" secondAttribute="trailing" id="MGO-0p-vc4"/>
+                            <constraint firstItem="fss-Nc-1fi" firstAttribute="leading" secondItem="YHa-64-gGI" secondAttribute="leading" id="U0p-up-VBU"/>
+                            <constraint firstItem="3bj-L8-u4d" firstAttribute="top" secondItem="YHa-64-gGI" secondAttribute="top" id="Wbc-OK-aBv"/>
+                            <constraint firstItem="k1D-1g-dUT" firstAttribute="top" secondItem="fss-Nc-1fi" secondAttribute="bottom" id="XCm-xO-Tds"/>
+                            <constraint firstItem="NxT-iN-QyF" firstAttribute="top" secondItem="k1D-1g-dUT" secondAttribute="bottom" id="bk8-qM-yZk"/>
+                            <constraint firstAttribute="trailing" secondItem="fss-Nc-1fi" secondAttribute="trailing" id="gva-T3-Wx8"/>
+                            <constraint firstItem="fss-Nc-1fi" firstAttribute="height" secondItem="YHa-64-gGI" secondAttribute="height" multiplier="0.3" id="vdz-Sg-jOL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView_main" destination="k1D-1g-dUT" id="9aC-St-bOX"/>
+                        <outlet property="view_navigationBar" destination="3bj-L8-u4d" id="QSO-Q0-EG5"/>
+                        <outlet property="view_top" destination="fss-Nc-1fi" id="aOe-Ry-LsW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fx-rO-uWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="801" y="-607"/>
+        </scene>
         <!--Search Cars View Controller-->
         <scene sceneID="Tzm-Tm-dDi">
             <objects>

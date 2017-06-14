@@ -91,3 +91,8 @@
 "btn_loginRegister" = "REGISTRATI";
 "btn_loginContinueAsNotLogged" = "CONTINUA SENZA LOGGARTI";
 
+// Profile
+"lbl_profileCellTitle1" = "Come guadagnare semini";
+"lbl_profileCellTitle2" = "Le tue azioni Angel sostenibili";
+"lbl_profileCellTitle3" = "Categorie di eventi su cui ricevi notifiche";
+"lbl_profileCellTitle4" = "Eventi a cui sei interessato";

@@ -14,6 +14,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case signup = "signup"
     case login = "login"
     case home = "home"
+    case profile = "profile"
     case searchBar = "searchBar"
     case searchCars = "searchCars"
     case carBookingCompleted = "carBookingCompleted"
