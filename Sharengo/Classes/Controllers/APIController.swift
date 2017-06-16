@@ -13,6 +13,8 @@ import RxSwift
 import MapKit
 import Alamofire
 
+// NetworkLoggerPlugin(verbose: true, cURL: true)
+
 final class ApiController {
     fileprivate var manager: SessionManager?
    
@@ -49,7 +51,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.getUser())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -76,7 +78,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.searchAllCars())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -103,7 +105,7 @@ final class ApiController {
                 case .ended:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -130,7 +132,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.searchCar(plate: plate))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -157,7 +159,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.bookingList())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -184,7 +186,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.tripsList())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -211,7 +213,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.bookCar(car: car))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -238,7 +240,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.deleteCarBooking(carBooking: carBooking))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -265,7 +267,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.getCarBooking(id: id))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -292,7 +294,7 @@ final class ApiController {
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.openCar(car: car))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
