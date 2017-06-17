@@ -20,7 +20,6 @@ enum LoginSelectionInput: SelectionInput {
 }
 
 enum LoginSelectionOutput: SelectionOutput {
-    case viewModel(ViewModelType)
     case login
     case forgotPassword
     case register
@@ -56,15 +55,17 @@ final class LoginViewModel: ViewModelType {
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
         }
-        self.apiController.getUser(username: username.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!, password: password.md5!)
+        let modifiedUsername = username.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let modifiedPassword = password.md5!
+        self.apiController.getUser(username: modifiedUsername, password: modifiedPassword)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
                         UserDefaults.standard.set(data["pin"], forKey: "UserPin")
-                        UserDefaults.standard.set(username, forKey: "Username")
-                        UserDefaults.standard.set(password.md5!, forKey: "Password")
+                        UserDefaults.standard.set(modifiedUsername, forKey: "Username")
+                        UserDefaults.standard.set(modifiedPassword, forKey: "Password")
                         self.loginExecuted.value = true
                     }
                     else if response.status == 404, let code = response.code {

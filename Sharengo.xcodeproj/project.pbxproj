@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03427AC71EF12991008485B3 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03427AC61EF12991008485B3 /* ProfileTableViewCell.swift */; };
 		03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
 		03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
 		03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
@@ -94,6 +93,8 @@
 		4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554501EE56337001627E7 /* CityAnnotation.swift */; };
 		4DC10DFF1EE9AA3300A74E26 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */; };
 		4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10E011EE9D6F000A74E26 /* CoreController.swift */; };
+		4DC4D4A71EF46F7100330F23 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D4A61EF46F7100330F23 /* WebViewController.swift */; };
+		4DC4D4A91EF46F9000330F23 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D4A81EF46F9000330F23 /* WebViewModel.swift */; };
 		4DC59F991EDADC6200DD658A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC59F981EDADC6200DD658A /* Response.swift */; };
 		4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A01ED3106200906DA0 /* APIController.swift */; };
 		4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
@@ -128,7 +129,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03427AC61EF12991008485B3 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileTableViewCell.swift; path = Classes/Views/ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewController.swift; path = Classes/ViewControllers/CarBookingCompletedViewController.swift; sourceTree = "<group>"; };
 		03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewModel.swift; path = Classes/ViewModels/CarBookingCompletedViewModel.swift; sourceTree = "<group>"; };
 		03653E221EEADA4800AC7A93 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
@@ -217,6 +217,8 @@
 		4DA554501EE56337001627E7 /* CityAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityAnnotation.swift; sourceTree = "<group>"; };
 		4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = Classes/ViewControllers/LoadingViewController.swift; sourceTree = "<group>"; };
 		4DC10E011EE9D6F000A74E26 /* CoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreController.swift; sourceTree = "<group>"; };
+		4DC4D4A61EF46F7100330F23 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Classes/ViewControllers/WebViewController.swift; sourceTree = "<group>"; };
+		4DC4D4A81EF46F9000330F23 /* WebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewModel.swift; path = Classes/ViewModels/WebViewModel.swift; sourceTree = "<group>"; };
 		4DC59F981EDADC6200DD658A /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Classes/Model/Response.swift; sourceTree = "<group>"; };
 		4DCC70A01ED3106200906DA0 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharengo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,7 +348,6 @@
 			children = (
 				03C6325E1EF02E8400BFEDA3 /* ProfileViewController.swift */,
 				03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */,
-				03427AC61EF12991008485B3 /* ProfileTableViewCell.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -515,6 +516,15 @@
 			name = Loading;
 			sourceTree = "<group>";
 		};
+		4DC4D4AA1EF46F9400330F23 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				4DC4D4A61EF46F7100330F23 /* WebViewController.swift */,
+				4DC4D4A81EF46F9000330F23 /* WebViewModel.swift */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
 		4DCD1A491ECDBF7400FC8BF5 = {
 			isa = PBXGroup;
 			children = (
@@ -602,13 +612,14 @@
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
 				4DC10E001EE9AC5800A74E26 /* Loading */,
-				03AF5D321EEE7B4000AC8826 /* Login */,
-				03C6322F1EEFC84B00BFEDA3 /* Signup */,
 				4D2339961EE6CD2A00780384 /* Intro */,
 				4DFD98381ED471FC00880EA1 /* Home */,
+				03AF5D321EEE7B4000AC8826 /* Login */,
+				03C6322F1EEFC84B00BFEDA3 /* Signup */,
+				03C6323B1EF0165700BFEDA3 /* Profile */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 				03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */,
-				03C6323B1EF0165700BFEDA3 /* Profile */,
+				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -637,6 +648,7 @@
 				4DCD1A981ECDC22900FC8BF5 /* Assets */,
 				4DCD1A9A1ECDC22900FC8BF5 /* Fonts */,
 				4DCD1A9C1ECDC22900FC8BF5 /* Languages */,
+				4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */,
 				4DCD1A9D1ECDC22900FC8BF5 /* Plists */,
 				4DCD1A9F1ECDC22900FC8BF5 /* Storyboards */,
 			);
@@ -670,13 +682,12 @@
 			children = (
 			);
 			name = Frameworks;
-			path = ../Frameworks;
+			path = Resources/Frameworks;
 			sourceTree = "<group>";
 		};
 		4DCD1A9C1ECDC22900FC8BF5 /* Languages */ = {
 			isa = PBXGroup;
 			children = (
-				4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */,
 				4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */,
 				4D36D7BF1ED2F279005FAEB8 /* InfoPlist.strings */,
 			);
@@ -968,6 +979,7 @@
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
 				03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */,
+				4DC4D4A71EF46F7100330F23 /* WebViewController.swift in Sources */,
 				4DEBEE711EED373800AEF617 /* Banner.swift in Sources */,
 				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
 				4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */,
@@ -1006,8 +1018,8 @@
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,
 				03C632331EEFC87600BFEDA3 /* SignupViewModel.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
-				03427AC71EF12991008485B3 /* ProfileTableViewCell.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
+				4DC4D4A91EF46F9000330F23 /* WebViewModel.swift in Sources */,
 				03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */,
 				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,
 				4DA5544C1EE55284001627E7 /* FBClusteringManager.swift in Sources */,

@@ -15,11 +15,11 @@ extension UIColor {
         Scanner(string: hex).scanHexInt32(&int)
         let a, r, g, b: UInt32
         switch hex.characters.count {
-        case 3: // RGB (12-bit)
+        case 3:
             (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
+        case 6:
             (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
+        case 8:
             (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
             (a, r, g, b) = (255, 0, 0, 0)
@@ -51,7 +51,7 @@ enum ColorBrand {
             case .lightGray:
                 return UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1.0)
             case .gray:
-                return UIColor(hexString: "#b0b0b0")
+                return UIColor(red: 176/255.0, green: 176/255.0, blue: 176/255.0, alpha: 1.0)
             case .clear:
                 return UIColor.clear
             }
@@ -125,6 +125,9 @@ enum Color {
     
     // Profile
     case profileBackground
+    
+    // Web
+    case webBackground
     
     var value: UIColor {
         get {
@@ -224,6 +227,9 @@ enum Color {
                 return ColorBrand.green.value
             // Profile
             case .profileBackground:
+                return ColorBrand.lightGray.value
+            // Web
+            case .webBackground:
                 return ColorBrand.lightGray.value
             }
         }

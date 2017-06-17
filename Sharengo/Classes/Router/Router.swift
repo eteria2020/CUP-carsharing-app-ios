@@ -67,6 +67,13 @@ struct Router : RouterType {
         case is LoginViewModel:
             let destination: LoginViewController = (Storyboard.main.scene(.login))
             destination.bind(to: ViewModelFactory.login(), afterLoad: true)
+            if source is SearchCarsViewController {
+                destination.goBackAfterLogin = true
+            }
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is ProfileViewModel:
+            let destination: ProfileViewController = (Storyboard.main.scene(.profile))
+            destination.bind(to: ViewModelFactory.profile(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is HomeViewModel:
             let destination: HomeViewController = (Storyboard.main.scene(.home))
@@ -81,19 +88,6 @@ struct Router : RouterType {
         let destination: HomeViewController = (Storyboard.main.scene(.home))
         destination.bind(to: ViewModelFactory.home(), afterLoad: true)
         return destination.withNavigation()
-        
-        /*
-        let destination: SignupViewController = (Storyboard.main.scene(.signup))
-        destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
-        return destination.withNavigation()
-        */
-       
-        /*
-        let destination: LoginViewController = (Storyboard.main.scene(.login))
-        destination.bind(to: ViewModelFactory.login(), afterLoad: true)
-        return destination.withNavigation()
-        */
-        
         /*
         let destination: IntroViewController  = (Storyboard.main.scene(.intro))
         destination.bind(to: ViewModelFactory.intro(), afterLoad: true)

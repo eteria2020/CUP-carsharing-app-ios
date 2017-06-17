@@ -9,10 +9,6 @@ import Boomerang
 import RxSwift
 import Gloss
 
-enum ResponseType {
-    case cars
-}
-
 class Response: ModelType, Decodable {
     /*
     JSON response example:

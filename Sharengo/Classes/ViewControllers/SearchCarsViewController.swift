@@ -86,7 +86,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .home:
-                Router.back(self!)
+                if self != nil {
+                    Router.back(self!)
+                }
                 self?.view_searchBar.endEditing(true)
                 self?.closeCarPopup()
             case .menu:
@@ -424,7 +426,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - CarBookingPopup methods
     
     fileprivate func openCar(car: Car) {
-        // TODO: move in view model please
+        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+            self.showLoginAlert()
+            return
+        }
         self.showLoader()
         self.apiController.openCar(car: car)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -467,7 +472,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func bookCar(car: Car) {
-        // TODO: move in view model please
+        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+            self.showLoginAlert()
+            return
+        }
         self.showLoader()
         self.apiController.bookCar(car: car)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -553,7 +561,10 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func deleteBookCar() {
-        // TODO: move in view model please
+        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+            self.showLoginAlert()
+            return
+        }
         if let carBooking = self.viewModel?.carBooking {
             self.showLoader()
             self.apiController.deleteCarBooking(carBooking: carBooking)
@@ -811,6 +822,19 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                                     } else {
                                         UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
                                     }
+        },
+                                cancelButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+        })
+        dialog.allowTouchOutsideToDismiss = false
+        dialog.show()
+    }
+    
+    fileprivate func showLoginAlert() {
+        let dialog = ZAlertView(title: nil, message: "alert_loginError".localized(), isOkButtonLeft: false, okButtonText: "btn_login".localized(), cancelButtonText: "btn_cancel".localized(),
+                                okButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                    Router.from(self,viewModel: ViewModelFactory.login()).execute()
         },
                                 cancelButtonHandler: { alertView in
                                     alertView.dismissAlertView()

@@ -12,6 +12,8 @@
 "btn_no" = "NO";
 "alert_connectionError" = "Non sei connesso ad internet, per favore riprova";
 "alert_generalError" = "Si è verificato un errore, per favore riprova";
+"alert_loginError" = "Devi effettuare l'accesso per utilizzare questa funzionalità";
+"btn_login" = "LOGIN";
 "btn_open" = "APRI PORTIERE";
 "btn_book" = "PRENOTA AUTO";
 "bnt_delete" = "ELIMINA";
@@ -47,7 +49,7 @@
 "lcl_searchBarSpeechRecognizer" = "it-IT";
 
 // SearchCars
-"alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_centerMapMessage" = "Share'ngo ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 
 // CarPopup
 "lbl_carPopupType" = "Auto più vicina";
@@ -59,7 +61,7 @@
 "lbl_carPopupWalkingDistance_m" = "%d minuti a piedi";
 "lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
-"alert_carPopupLocalizationMessage" = "Sharen'go ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 "alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 
 // CarBookingPopup
@@ -78,8 +80,8 @@
 "lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nAttendi la chiusura delle portiere fuori dall'auto.\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
 "lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
 "btn_carRides" = "STORICO CORSE";
-"banner_carBookingCompletedTitle" = "Sharen'go";
-"banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Sharen'go.";
+"banner_carBookingCompletedTitle" = "Share'ngo";
+"banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
 
 // Login
 "lbl_loginFormHeader" = "Compila i campi per effettuare il login";

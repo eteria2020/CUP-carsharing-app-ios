@@ -13,6 +13,7 @@ import Action
 
 enum HomeSelectionInput: SelectionInput {
     case searchCars
+    case profile
 }
 
 enum HomeSelectionOutput: SelectionOutput {
@@ -24,6 +25,12 @@ final class HomeViewModel: ViewModelTypeSelectable {
         switch input {
         case .searchCars:
             return .just(.viewModel(ViewModelFactory.searchCars()))
+        case .profile:
+            if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+                return .just(.viewModel(ViewModelFactory.login()))
+            } else {
+                return .just(.viewModel(ViewModelFactory.profile()))
+            }
         }
     }
     

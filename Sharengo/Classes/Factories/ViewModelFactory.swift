@@ -15,6 +15,10 @@ struct ViewModelFactory {
         return CircularMenuViewModel(type: type)
     }
     
+    static func web(with type: WebType) -> ViewModelType {
+        return WebViewModel(with: type)
+    }
+    
     static func intro() -> ViewModelType {
         return IntroViewModel()
     }
@@ -26,13 +30,13 @@ struct ViewModelFactory {
     static func login() -> ViewModelType {
         return LoginViewModel()
     }
+    
+    static func profile() -> ViewModelType {
+        return ProfileViewModel()
+    }
 
     static func home() -> ViewModelType {
         return HomeViewModel()
-    }
-
-    static func profile() -> ViewModelType {
-        return ProfileViewModel()
     }
 
     static func searchCars() -> ViewModelType {

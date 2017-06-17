@@ -17,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         TextStyle.setup()
         Router.start(self)
+        
+        let memoryCapacity = 500 * 1024 * 1024
+        let diskCapacity = 500 * 1024 * 1024
+        let cache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDataPath")
+        URLCache.shared = cache
+        
         return true
     }
 

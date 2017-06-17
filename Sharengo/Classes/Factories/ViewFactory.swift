@@ -9,6 +9,7 @@ enum Storyboard : String {
 }
 
 enum SceneIdentifier : String, ListIdentifier {
+    case web = "web"
     case intro = "intro"
     case loading = "loading"
     case signup = "signup"

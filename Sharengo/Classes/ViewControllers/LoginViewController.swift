@@ -45,6 +45,7 @@ class LoginViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_continueAsNotLogged: UIButton!
     
     var viewModel: LoginViewModel?
+    var goBackAfterLogin: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -62,6 +63,10 @@ class LoginViewController : UIViewController, ViewModelBindable {
                 DispatchQueue.main.async {
                     self?.hideLoader()
                     if loginExecuted {
+                        if self?.goBackAfterLogin == true && self != nil {
+                            Router.back(self!)
+                            return
+                        }
                         let destination: HomeViewController = (Storyboard.main.scene(.home))
                         destination.bind(to: ViewModelFactory.home(), afterLoad: true)
                         self?.navigationController?.pushViewController(destination, animated: true)
@@ -116,12 +121,14 @@ class LoginViewController : UIViewController, ViewModelBindable {
             if (self == nil) { return }
             self?.view.endEditing(true)
             switch output {
+            case .forgotPassword:
+                let destination: WebViewController = (Storyboard.main.scene(.web))
+              let viewModel = ViewModelFactory.web(with: WebType.forgotPassword)
+                destination.bind(to: viewModel, afterLoad: true)
+                self?.navigationController?.pushViewController(destination, animated: true)
             case .login:
                 self?.showLoader()
                 self?.viewModel?.login(username: (self?.txt_email.text)!, password: (self?.txt_password.text)!)
-            case .forgotPassword:
-                print("forgotPassword")
-                break
             case .register:
                 let destination: SignupViewController = (Storyboard.main.scene(.signup))
                 destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
@@ -130,8 +137,6 @@ class LoginViewController : UIViewController, ViewModelBindable {
                 let destination: HomeViewController = (Storyboard.main.scene(.home))
                 destination.bind(to: ViewModelFactory.home(), afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
-            default:
-                break
             }
         }).addDisposableTo(self.disposeBag)
 

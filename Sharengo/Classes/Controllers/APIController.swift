@@ -69,34 +69,6 @@ final class ApiController {
         }
     }
 
-    // TODO: ?? Vedi anche enum, ecc...
-    func getUser() -> Observable<Response> {
-        return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
-            return provider.request(.getUser())
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        observable.onNext(response)
-                        observable.onCompleted()
-                    case .error(let error):
-                        observable.onError(error)
-                    default:
-                        break
-                    }
-            }
-        }
-    }
-
     func searchCars() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
@@ -342,7 +314,6 @@ final class ApiController {
 }
 
 fileprivate enum API {
-    case getUser()
     case getUserWith(username: String, password: String)
     case searchAllCars()
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
@@ -358,8 +329,10 @@ fileprivate enum API {
 extension API: TargetType {
     var baseURL: URL {
         switch self {
-        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_), .getUser(), .tripsList():
-            return URL(string: "https://francesco.galatro%40gmail.com:508c82b943ae51118d905553b8213c8a@api.sharengo.it:8023/v2")!
+        case .bookingList(), .tripsList(), .bookCar(_), .deleteCarBooking(_), .openCar(_):
+            let username = UserDefaults.standard.object(forKey: "Username")!
+            let password = UserDefaults.standard.object(forKey: "Password")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
         case .getUserWith(let username, let password):
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
         default:
@@ -369,7 +342,7 @@ extension API: TargetType {
     
     var path: String {
         switch self {
-        case .getUser(), .getUserWith(_, _):
+        case .getUserWith(_, _):
             return "user"
         case .searchAllCars(), .searchCars(_, _, _), .searchCar(_):
             return "cars"

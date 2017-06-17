@@ -11,11 +11,7 @@ import RxSwift
 import RxCocoa
 import Boomerang
 
-class CoreController
-{
-    private init() {
-        self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
-    }
+class CoreController {
     static let shared = CoreController()
     var apiController: ApiController = ApiController()
     var updateTimer: Timer?
@@ -26,7 +22,7 @@ class CoreController
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
     }
-   
+    
     public var disposeBag: DisposeBag {
         var disposeBag: DisposeBag
         if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
@@ -38,7 +34,14 @@ class CoreController
         return disposeBag
     }
     
+    private init() {
+        self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
+    }
+    
     @objc func updateData() {
+        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+            return
+        }
         self.updateInProgress = true
         self.updateCarBookings()
     }
