@@ -79,6 +79,8 @@ enum Color {
     case signupBackground
     case signupHeaderTitleLabel
     case signupHeaderSubTitleLabel
+    case signupStepHeaderLabel
+    case signupStepDescriptionLabel
 
     // Login
     case loginBackground
@@ -159,6 +161,10 @@ enum Color {
             case .signupHeaderTitleLabel:
                 return ColorBrand.green.value
             case .signupHeaderSubTitleLabel:
+                return ColorBrand.black.value
+            case .signupStepHeaderLabel:
+                return ColorBrand.green.value
+            case .signupStepDescriptionLabel:
                 return ColorBrand.black.value
             // Login
             case .loginBackground:

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,33 +14,39 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIX-aj-SE0">
-                    <rect key="frame" x="15" y="15" width="345" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIX-aj-SE0">
+                    <rect key="frame" x="35" y="25" width="305" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="signupStepHeader"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="830-w1-Q8S">
-                    <rect key="frame" x="25" y="61" width="325" height="545"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="830-w1-Q8S">
+                    <rect key="frame" x="25" y="71" width="325" height="525"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37A-kZ-jDn">
-                    <rect key="frame" x="15" y="631" width="345" height="21"/>
+                    <rect key="frame" x="35" y="621" width="305" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="signupStepDescription"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="830-w1-Q8S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="2c4-fc-FZF"/>
-                <constraint firstItem="37A-kZ-jDn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Npa-A1-7kv"/>
+                <constraint firstItem="37A-kZ-jDn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="Npa-A1-7kv"/>
                 <constraint firstItem="830-w1-Q8S" firstAttribute="top" secondItem="mIX-aj-SE0" secondAttribute="bottom" constant="25" id="QEa-0k-t4g"/>
-                <constraint firstAttribute="trailing" secondItem="mIX-aj-SE0" secondAttribute="trailing" constant="15" id="UUa-di-77f"/>
-                <constraint firstItem="mIX-aj-SE0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="fBR-B9-gFF"/>
-                <constraint firstItem="mIX-aj-SE0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="mxJ-5m-Ucg"/>
-                <constraint firstAttribute="trailing" secondItem="37A-kZ-jDn" secondAttribute="trailing" constant="15" id="nCd-At-xy6"/>
+                <constraint firstAttribute="trailing" secondItem="mIX-aj-SE0" secondAttribute="trailing" constant="35" id="UUa-di-77f"/>
+                <constraint firstItem="mIX-aj-SE0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="fBR-B9-gFF"/>
+                <constraint firstItem="mIX-aj-SE0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="mxJ-5m-Ucg"/>
+                <constraint firstAttribute="trailing" secondItem="37A-kZ-jDn" secondAttribute="trailing" constant="35" id="nCd-At-xy6"/>
                 <constraint firstItem="37A-kZ-jDn" firstAttribute="top" secondItem="830-w1-Q8S" secondAttribute="bottom" constant="25" id="rQ1-D1-UF5"/>
-                <constraint firstAttribute="bottom" secondItem="37A-kZ-jDn" secondAttribute="bottom" constant="15" id="tkt-Wr-EIU"/>
+                <constraint firstAttribute="bottom" secondItem="37A-kZ-jDn" secondAttribute="bottom" constant="25" id="tkt-Wr-EIU"/>
                 <constraint firstAttribute="trailing" secondItem="830-w1-Q8S" secondAttribute="trailing" constant="25" id="yfR-6A-gYy"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

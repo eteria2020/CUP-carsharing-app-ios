@@ -21,13 +21,13 @@
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
 "btn_signupSignup" = "ISCRIVITI";
-"lbl_signupStepTitle1" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepTitle1" = "Per iscriverti devi avere\na portata di mano:";
 "lbl_signupStepDescription1" = "CARTA DI IDENTITÀ";
-"lbl_signupStepTitle2" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepTitle2" = "Per iscriverti devi avere\na portata di mano:";
 "lbl_signupStepDescription2" = "CODICE FISCALE";
-"lbl_signupStepTitle3" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepTitle3" = "Per iscriverti devi avere\na portata di mano:";
 "lbl_signupStepDescription3" = "PATENTE";
-"lbl_signupStepTitle4" = "Per iscriverti devi avere a portata di mano:";
+"lbl_signupStepTitle4" = "Per iscriverti devi avere\na portata di mano:";
 "lbl_signupStepDescription4" = "CARTA DI CREDITO";
 
 // Login

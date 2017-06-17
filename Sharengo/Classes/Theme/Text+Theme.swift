@@ -27,6 +27,8 @@ enum TextStyle: String, TextStyleType {
 
     // Signup
     case signupHeader = "signupHeader"
+    case signupStepHeader = "signupStepHeader"
+    case signupStepDescription = "signupStepDescription"
 
     // CarPopup
     case carPopupType = "carPopupType"
@@ -74,7 +76,9 @@ enum TextStyle: String, TextStyleType {
             .loginFormHeader,
             .loginNotYetRegistered,
             // Signup
-            .signupHeader
+            .signupHeader,
+            .signupStepHeader,
+            .signupStepDescription,
         ]
     }
     
@@ -94,6 +98,10 @@ enum TextStyle: String, TextStyleType {
             case .signupHeader:
                 let titleStyle = StringStyle(.font(Font.signupHeaderTitleLabel.value), .color(Color.signupHeaderTitleLabel.value), .alignment(.center))
                 return StringStyle(.font(Font.signupHeaderSubTitleLabel.value), .color(Color.signupHeaderSubTitleLabel.value), .alignment(.center),.xmlRules([.style("title", titleStyle)]))
+            case .signupStepHeader:
+                return StringStyle(.font(Font.signupStepHeaderLabel.value), .color(Color.signupStepHeaderLabel.value), .alignment(.center))
+            case .signupStepDescription:
+                return StringStyle(.font(Font.signupStepDescriptionLabel.value), .color(Color.signupStepDescriptionLabel.value), .alignment(.center))
             // CarPopup
             case .carPopupType:
                 return StringStyle(.font(Font.carPopupType.value), .color(Color.carPopupLabel.value), .alignment(.center))

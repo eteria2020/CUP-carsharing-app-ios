@@ -52,12 +52,12 @@ class SignupViewController : UIViewController, ViewModelBindable {
                 step.frame.origin.y = 0
                 view_scrollViewContainer.addSubview(step)
                 step.snp.makeConstraints { (make) -> Void in
-                    make.width.equalTo(UIScreen.main.bounds.width)
+                    make.width.equalTo(UIScreen.main.bounds.width-20)
                     make.left.equalTo(stepX)
                     make.top.equalTo(0)
                     make.bottom.equalTo(0)
                 }
-                stepX = stepX + UIScreen.main.bounds.width
+                stepX = stepX + UIScreen.main.bounds.width-20
             }
             scrollView_main.contentSize = CGSize(width: scrollView_main.frame.width * CGFloat(stepsArray.count), height: scrollView_main.frame.height)
             view_scrollViewContainerWidthConstraint.constant = scrollView_main.contentSize.width
@@ -83,7 +83,7 @@ class SignupViewController : UIViewController, ViewModelBindable {
         self.lbl_header.attributedText = NSAttributedString.composed(of: [
             "lbl_signupHeader".localized().styled(with: TextStyle.signupHeader.style),
             Special.noBreakSpace,
-            UIImage(named: "ic_close")!,
+            UIImage(named: "ic_chat")!,
             ])
         // Buttons
         switch Device().diagonal {

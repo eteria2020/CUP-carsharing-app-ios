@@ -68,6 +68,8 @@ enum Font {
     // Signup
     case signupHeaderTitleLabel
     case signupHeaderSubTitleLabel
+    case signupStepHeaderLabel
+    case signupStepDescriptionLabel
 
     // Login
     case loginHeaderLabel
@@ -123,9 +125,13 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // Signup
             case .signupHeaderTitleLabel:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .signupHeaderSubTitleLabel:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .signupStepHeaderLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .signupStepDescriptionLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             // Login
             case .loginHeaderLabel:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
