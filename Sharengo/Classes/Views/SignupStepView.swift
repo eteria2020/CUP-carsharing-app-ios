@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
+import DeviceKit
 
 class SignupStepView: UIView {
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -29,5 +30,12 @@ class SignupStepView: UIView {
         self.lbl_title.styledText = viewModel.title
         self.icn_main.image = viewModel.icon
         self.lbl_description.styledText = viewModel.description
+        switch Device().diagonal {
+        case 3.5:
+            self.constraint(withIdentifier: "topLblTitle", searchInSubviews: true)?.constant = 15
+            self.constraint(withIdentifier: "bottomLblDescription", searchInSubviews: true)?.constant = 40
+        default:
+            break
+        }
     }
 }

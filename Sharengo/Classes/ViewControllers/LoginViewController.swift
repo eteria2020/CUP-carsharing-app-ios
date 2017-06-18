@@ -110,6 +110,9 @@ class LoginViewController : UIViewController, ViewModelBindable {
                 self.btn_login.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
                 self.btn_register.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
                 self.btn_continueAsNotLogged.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
+                self.view.constraint(withIdentifier: "topTxtEmail", searchInSubviews: true)?.constant = 5
+                self.view.constraint(withIdentifier: "topTxtPassword", searchInSubviews: true)?.constant = 5
+                self.view.constraint(withIdentifier: "topBtnForgotPassword", searchInSubviews: true)?.constant = 5
             case 4:
                 self.btn_login.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
                 self.btn_register.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
