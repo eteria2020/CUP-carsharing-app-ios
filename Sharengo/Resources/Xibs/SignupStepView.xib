@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIX-aj-SE0">
-                    <rect key="frame" x="35" y="25" width="305" height="21"/>
+                    <rect key="frame" x="35" y="25" width="305" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -23,11 +25,14 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="signupStepHeader"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="830-w1-Q8S">
-                    <rect key="frame" x="25" y="71" width="325" height="525"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="830-w1-Q8S">
+                    <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="830-w1-Q8S" secondAttribute="height" multiplier="1:1" id="FKB-O1-O2F"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37A-kZ-jDn">
-                    <rect key="frame" x="35" y="621" width="305" height="21"/>
+                    <rect key="frame" x="35" y="586.5" width="305" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -38,16 +43,17 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="830-w1-Q8S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="2c4-fc-FZF"/>
+                <constraint firstItem="830-w1-Q8S" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mIX-aj-SE0" secondAttribute="bottom" constant="25" id="78A-Tt-2Cn"/>
                 <constraint firstItem="37A-kZ-jDn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="Npa-A1-7kv"/>
-                <constraint firstItem="830-w1-Q8S" firstAttribute="top" secondItem="mIX-aj-SE0" secondAttribute="bottom" constant="25" id="QEa-0k-t4g"/>
+                <constraint firstItem="830-w1-Q8S" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Q02-Gj-XUH"/>
+                <constraint firstItem="37A-kZ-jDn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="830-w1-Q8S" secondAttribute="bottom" constant="25" id="UCh-MQ-0mm"/>
                 <constraint firstAttribute="trailing" secondItem="mIX-aj-SE0" secondAttribute="trailing" constant="35" id="UUa-di-77f"/>
+                <constraint firstItem="830-w1-Q8S" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3:1" id="VEx-JF-9nM"/>
                 <constraint firstItem="mIX-aj-SE0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="fBR-B9-gFF"/>
+                <constraint firstItem="830-w1-Q8S" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="fYA-o9-JT4"/>
                 <constraint firstItem="mIX-aj-SE0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="mxJ-5m-Ucg"/>
                 <constraint firstAttribute="trailing" secondItem="37A-kZ-jDn" secondAttribute="trailing" constant="35" id="nCd-At-xy6"/>
-                <constraint firstItem="37A-kZ-jDn" firstAttribute="top" secondItem="830-w1-Q8S" secondAttribute="bottom" constant="25" id="rQ1-D1-UF5"/>
-                <constraint firstAttribute="bottom" secondItem="37A-kZ-jDn" secondAttribute="bottom" constant="25" id="tkt-Wr-EIU"/>
-                <constraint firstAttribute="trailing" secondItem="830-w1-Q8S" secondAttribute="trailing" constant="25" id="yfR-6A-gYy"/>
+                <constraint firstAttribute="bottom" secondItem="37A-kZ-jDn" secondAttribute="bottom" constant="60" id="tkt-Wr-EIU"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>

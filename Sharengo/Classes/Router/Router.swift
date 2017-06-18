@@ -69,6 +69,8 @@ struct Router : RouterType {
             destination.bind(to: ViewModelFactory.login(), afterLoad: true)
             if source is SearchCarsViewController {
                 destination.goBackAfterLogin = true
+            } else {
+                destination.goToProfileAfterLogin = true
             }
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is ProfileViewModel:

@@ -46,6 +46,7 @@ class LoginViewController : UIViewController, ViewModelBindable {
     
     var viewModel: LoginViewModel?
     var goBackAfterLogin: Bool = false
+    var goToProfileAfterLogin: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -65,6 +66,12 @@ class LoginViewController : UIViewController, ViewModelBindable {
                     if loginExecuted {
                         if self?.goBackAfterLogin == true && self != nil {
                             Router.back(self!)
+                            return
+                        } else if self?.goToProfileAfterLogin == true && self != nil {
+                            let destination: ProfileViewController = (Storyboard.main.scene(.profile))
+                            destination.bind(to: ViewModelFactory.profile(), afterLoad: true)
+                            self?.navigationController?.pushViewController(destination, animated: true)
+                    
                             return
                         }
                         let destination: HomeViewController = (Storyboard.main.scene(.home))

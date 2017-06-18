@@ -39,6 +39,7 @@ class SignupViewController : UIViewController, ViewModelBindable {
             return
         }
         self.viewModel = viewModel
+        self.btn_signup.rx.bind(to: viewModel.selection, input: .signup)
     }
     
     // MARK: - View methods
