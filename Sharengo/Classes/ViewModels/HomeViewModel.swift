@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
+import KeychainSwift
 
 enum HomeSelectionInput: SelectionInput {
     case searchCars
@@ -26,7 +27,7 @@ final class HomeViewModel: ViewModelTypeSelectable {
         case .searchCars:
             return .just(.viewModel(ViewModelFactory.searchCars()))
         case .profile:
-            if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+            if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
                 return .just(.viewModel(ViewModelFactory.login()))
             } else {
                 return .just(.viewModel(ViewModelFactory.profile()))

@@ -12,6 +12,7 @@ import Moya_Gloss
 import RxSwift
 import MapKit
 import Alamofire
+import KeychainSwift
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
@@ -330,8 +331,8 @@ extension API: TargetType {
     var baseURL: URL {
         switch self {
         case .bookingList(), .tripsList(), .bookCar(_), .deleteCarBooking(_), .openCar(_):
-            let username = UserDefaults.standard.object(forKey: "Username")!
-            let password = UserDefaults.standard.object(forKey: "Password")!
+            let username = KeychainSwift().get("Username")!
+            let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
         case .getUserWith(let username, let password):
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!

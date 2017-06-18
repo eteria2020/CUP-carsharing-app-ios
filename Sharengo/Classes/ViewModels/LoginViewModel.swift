@@ -11,6 +11,7 @@ import RxSwift
 import Boomerang
 import Action
 import ReachabilitySwift
+import KeychainSwift
 
 enum LoginSelectionInput: SelectionInput {
     case login
@@ -63,9 +64,9 @@ final class LoginViewModel: ViewModelType {
                 switch event {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
-                        UserDefaults.standard.set(data["pin"], forKey: "UserPin")
-                        UserDefaults.standard.set(modifiedUsername, forKey: "Username")
-                        UserDefaults.standard.set(modifiedPassword, forKey: "Password")
+                        KeychainSwift().set("\(String(describing: data["pin"]))", forKey: "UserPin")
+                        KeychainSwift().set(modifiedUsername, forKey: "Username")
+                        KeychainSwift().set(modifiedPassword, forKey: "Password")
                         self.loginExecuted.value = true
                     }
                     else if response.status == 404, let code = response.code {

@@ -15,6 +15,7 @@ import MapKit
 import StoryboardConstraint
 import DeviceKit
 import ReachabilitySwift
+import KeychainSwift
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
@@ -426,7 +427,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - CarBookingPopup methods
     
     fileprivate func openCar(car: Car) {
-        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
             return
         }
@@ -472,7 +473,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func bookCar(car: Car) {
-        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
             return
         }
@@ -561,7 +562,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func deleteBookCar() {
-        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
             return
         }

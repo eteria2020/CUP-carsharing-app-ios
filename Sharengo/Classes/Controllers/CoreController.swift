@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Boomerang
+import KeychainSwift
 
 class CoreController {
     static let shared = CoreController()
@@ -39,7 +40,7 @@ class CoreController {
     }
     
     @objc func updateData() {
-        if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
+        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
         self.updateInProgress = true

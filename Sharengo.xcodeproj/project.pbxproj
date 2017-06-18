@@ -248,6 +248,7 @@
 		4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPulsingAnnotationView.m; sourceTree = "<group>"; };
 		4DEBEE701EED373800AEF617 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechController.swift; sourceTree = "<group>"; };
+		4DFC9A011EF673D9003427F2 /* Sharengo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sharengo.entitlements; sourceTree = "<group>"; };
 		4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarAnnotation.swift; sourceTree = "<group>"; };
 		4DFD98341ED471B800880EA1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Classes/ViewControllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
@@ -546,6 +547,7 @@
 		4DCD1A541ECDBF7400FC8BF5 /* Sharengo */ = {
 			isa = PBXGroup;
 			children = (
+				4DFC9A011EF673D9003427F2 /* Sharengo.entitlements */,
 				4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */,
 				4DCD1A951ECDC1F600FC8BF5 /* Classes */,
 				4DCD1A961ECDC20500FC8BF5 /* Resources */,
@@ -821,6 +823,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 44H73976E5;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1164,6 +1171,7 @@
 			baseConfigurationReference = 21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 44H73976E5;
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
@@ -1185,6 +1193,7 @@
 			baseConfigurationReference = DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6T384SC3AF;
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;

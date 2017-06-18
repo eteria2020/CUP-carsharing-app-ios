@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
+import KeychainSwift
 
 public enum CarBookingPopupInput: SelectionInput {
     case open
@@ -99,7 +100,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     }
     
     func updateData() {
-        if let pin = UserDefaults.standard.object(forKey: "UserPin") as? Int {
+        if let pin = KeychainSwift().get("UserPin") {
             self.pin = String(format: "lbl_carBookingPopupPin".localized(), pin)
         } else {
             self.pin = ""

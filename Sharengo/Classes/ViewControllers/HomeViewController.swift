@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
+import KeychainSwift
 
 class HomeViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_searchCar: UIButton!
@@ -62,13 +63,12 @@ class HomeViewController : UIViewController, ViewModelBindable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !self.loginIsShowed {
-            if UserDefaults.standard.object(forKey: "UserPin") == nil || UserDefaults.standard.object(forKey: "Username") == nil || UserDefaults.standard.object(forKey: "Password") == nil {
-                    if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
-                        UserDefaults.standard.set(true, forKey: "LoginShowed")
-                        let destination: LoginViewController = (Storyboard.main.scene(.login))
-                        destination.bind(to: ViewModelFactory.login(), afterLoad: true)
-                        self.navigationController?.pushViewController(destination, animated: false)
-                }
+            if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
+                KeychainSwift().clear()
+                let destination: LoginViewController = (Storyboard.main.scene(.login))
+                destination.bind(to: ViewModelFactory.login(), afterLoad: true)
+                self.navigationController?.pushViewController(destination, animated: false)
+                UserDefaults.standard.set(true, forKey: "LoginShowed")
             }
         }
         self.loginIsShowed = true
