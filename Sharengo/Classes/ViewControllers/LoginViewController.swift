@@ -149,11 +149,9 @@ class LoginViewController : UIViewController, ViewModelBindable {
                 self?.navigationController?.pushViewController(destination, animated: true)
             }
         }).addDisposableTo(self.disposeBag)
-
         // Labels
         self.lbl_formHeader.styledText = "lbl_loginFormHeader".localized()
         self.lbl_notYetRegistered.styledText = "lbl_loginNotYetRegistered".localized()
-        
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in

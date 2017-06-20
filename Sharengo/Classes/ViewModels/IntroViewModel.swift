@@ -11,20 +11,6 @@ import RxSwift
 import Boomerang
 import Action
 
-enum IntroSelectionInput: SelectionInput {
-    case item(IndexPath)
-}
-
-enum IntroSelectionOutput: SelectionOutput {
-    case viewModel(ViewModelType)
-}
-
-final class IntroViewModel: ViewModelType { // ViewModelTypeSelectable {
-    /*
-    lazy var selection:Action<HomeSelectionInput,HomeSelectionOutput> = Action { input in
-    }
-    */
-    
-    init() {
-    }
+final class IntroViewModel: ViewModelType {
+    init() { }
 }
