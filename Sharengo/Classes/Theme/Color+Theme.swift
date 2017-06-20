@@ -91,6 +91,9 @@ enum Color {
     case loginTextField
     case loginTextFieldPlaceholder
     case loginContinueAsNotLoggedButton
+    
+    // Intro
+    case introTitle
 
     // Home
     case homeEnabledBackground
@@ -182,6 +185,9 @@ enum Color {
             case .loginTextFieldPlaceholder:
                 return ColorBrand.black.value.withAlphaComponent(0.6)
             case .loginContinueAsNotLoggedButton:
+                return ColorBrand.green.value
+            // Intro
+            case .introTitle:
                 return ColorBrand.green.value
             // Home
             case .homeEnabledBackground:

@@ -40,6 +40,9 @@ enum Font {
     case alertMessage
     case alertButton
     
+    // Intro
+    case introTitle
+    
     // Home
     case homeDescription
     case homeDescriptionEmphasized
@@ -92,6 +95,9 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .alertButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // Intro
+            case .introTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
             // Home
             case .homeDescription:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 14))

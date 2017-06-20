@@ -49,6 +49,11 @@
 "lbl_homeDescriptionLogged" = "<bold>Bentornato %@!</bold>";
 "lbl_homeDescriptionNotLogged" = "<bold>Benvenuto!</bold>";
 
+// Intro
+"lbl_introTitle1" = "Elettrica";
+"lbl_introTitle2" = "Condivisa";
+"lbl_introTitle3" = "Sotto\ncasa";
+
 // SearchBar
 "lbl_searchBarTextField" = "Cerca indirizzo o targa";
 "alert_searchBarAuthSpeechAuthorizationDenied" = "Hai negato l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
