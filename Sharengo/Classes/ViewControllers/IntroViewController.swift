@@ -24,34 +24,30 @@ class IntroViewController : UIViewController, ViewModelBindable {
             return
         }
         self.viewModel = viewModel
-        /*
-        viewModel.selection.elements.subscribe(onNext:{ selection in
-            switch selection {
-            case .viewModel(let viewModel):
-                Router.from(self,viewModel: viewModel).execute()
-            }
-        }).addDisposableTo(self.disposeBag)
-        */
     }
     
     // MARK: - View methods
     
     override func viewDidLoad() {
+        // TODO: scritte in INTRO LUNGA FINE
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-         if UserDefaults.standard.bool(forKey: "longIntro") == false {
-            do {
-                if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
-                    self.img_intro.yy_imageURL = url
-                    let dispatchTime = DispatchTime.now() + 3
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        if let url = Bundle.main.url(forResource: "INTRO LUNGA FINE", withExtension: "gif") {
-                            self.img_intro.yy_imageURL = url
-                        }
+        if UserDefaults.standard.bool(forKey: "LongIntro") == false {
+            if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
+                self.img_intro.yy_imageURL = url
+                let dispatchTime = DispatchTime.now() + 3
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    if let url = Bundle.main.url(forResource: "INTRO LUNGA FINE", withExtension: "gif") {
+                        self.img_intro.yy_imageURL = url
+                        UserDefaults.standard.set(true, forKey: "LongIntro")
                     }
-
                 }
-            } catch {}
+                
+            }
+        } else {
+            if let url = Bundle.main.url(forResource: "INTRO BREVE", withExtension: "gif") {
+                self.img_intro.yy_imageURL = url
+            }
         }
     }
 }

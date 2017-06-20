@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -56,8 +56,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHt-ZL-VHF" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="2Dk-P1-KMf"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_sfondo" translatesAutoresizingMaskIntoConstraints="NO" id="oJH-8h-d4d">
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozH-SZ-gyS">
+                                <rect key="frame" x="62.5" y="208" width="250" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ozH-SZ-gyS" secondAttribute="height" multiplier="1:1" id="Uzo-5T-Lw3"/>
+                                    <constraint firstAttribute="height" constant="250" id="vLB-hZ-THE"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hag-IA-zQe">
-                                <rect key="frame" x="150" y="216" width="75" height="75"/>
+                                <rect key="frame" x="150" y="176" width="75" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCp-lr-Etq">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
@@ -74,7 +92,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLO-45-Nei">
-                                <rect key="frame" x="230" y="296" width="75" height="75"/>
+                                <rect key="frame" x="260" y="356" width="75" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gl2-Jg-1gC">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
@@ -94,16 +112,27 @@
                         <constraints>
                             <constraint firstItem="hag-IA-zQe" firstAttribute="width" secondItem="29D-Sx-MLm" secondAttribute="width" multiplier="0.2" id="5DV-tX-56U"/>
                             <constraint firstItem="yLO-45-Nei" firstAttribute="width" secondItem="hag-IA-zQe" secondAttribute="width" id="5Ob-2P-8hg"/>
-                            <constraint firstItem="yLO-45-Nei" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" id="Jmw-ra-gYI"/>
+                            <constraint firstItem="rHt-ZL-VHF" firstAttribute="leading" secondItem="29D-Sx-MLm" secondAttribute="leading" id="6o3-p5-G4X"/>
+                            <constraint firstItem="oJH-8h-d4d" firstAttribute="top" secondItem="rHt-ZL-VHF" secondAttribute="bottom" id="7by-cP-6d6"/>
+                            <constraint firstAttribute="trailing" secondItem="rHt-ZL-VHF" secondAttribute="trailing" id="92C-Bq-qvi"/>
+                            <constraint firstAttribute="bottom" secondItem="oJH-8h-d4d" secondAttribute="bottom" id="AbS-i7-qll"/>
+                            <constraint firstItem="yLO-45-Nei" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" constant="60" id="Jmw-ra-gYI"/>
+                            <constraint firstAttribute="trailing" secondItem="oJH-8h-d4d" secondAttribute="trailing" id="LwL-tG-IwB"/>
+                            <constraint firstItem="ozH-SZ-gyS" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" id="N3e-i2-Wed"/>
+                            <constraint firstItem="oJH-8h-d4d" firstAttribute="leading" secondItem="29D-Sx-MLm" secondAttribute="leading" id="Xwp-oG-Nbi"/>
                             <constraint firstItem="yLO-45-Nei" firstAttribute="width" secondItem="yLO-45-Nei" secondAttribute="height" multiplier="1:1" id="Y7C-gm-0mD"/>
                             <constraint firstItem="hag-IA-zQe" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" id="iYB-6s-gf2"/>
-                            <constraint firstItem="hag-IA-zQe" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" constant="-80" id="k89-Lq-wJa"/>
-                            <constraint firstItem="yLO-45-Nei" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" constant="80" id="xEt-pn-UD1"/>
+                            <constraint firstItem="hag-IA-zQe" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" constant="-120" id="k89-Lq-wJa"/>
+                            <constraint firstItem="rHt-ZL-VHF" firstAttribute="top" secondItem="29D-Sx-MLm" secondAttribute="top" id="kMB-Ti-p0W"/>
+                            <constraint firstItem="ozH-SZ-gyS" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" id="tax-hc-UPl"/>
+                            <constraint firstItem="yLO-45-Nei" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" constant="110" id="xEt-pn-UD1"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btn_profile" destination="Gl2-Jg-1gC" id="xQe-X3-7M1"/>
                         <outlet property="btn_searchCar" destination="DCp-lr-Etq" id="TFo-ca-G7f"/>
+                        <outlet property="view_dotted" destination="ozH-SZ-gyS" id="Atr-nc-O8s"/>
+                        <outlet property="view_navigationBar" destination="rHt-ZL-VHF" id="dZb-8h-uT3"/>
                         <outlet property="view_profile" destination="yLO-45-Nei" id="t2k-T3-UQT"/>
                         <outlet property="view_searchCar" destination="hag-IA-zQe" id="9PE-CA-4Tm"/>
                     </connections>
@@ -829,6 +858,7 @@
         <image name="ic_right" width="30" height="30"/>
         <image name="ic_utente_home" width="32" height="36"/>
         <image name="img_border_popup" width="4" height="14"/>
+        <image name="img_sfondo" width="320" height="568"/>
         <image name="mizzie_05_finecorsa" width="300" height="190"/>
     </resources>
 </document>
