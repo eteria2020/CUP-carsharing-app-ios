@@ -289,7 +289,6 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
             self.getResults()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
-        self.updateData()
     }
     
     deinit {
@@ -301,6 +300,11 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
         if !self.checkedUserPosition {
             self.checkUserPosition()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateData()
     }
     
     // MARK: - Update methods
@@ -427,7 +431,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     // MARK: - CarBookingPopup methods
     
     fileprivate func openCar(car: Car) {
-        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
             return
         }
@@ -473,7 +477,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func bookCar(car: Car) {
-        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
             return
         }
@@ -562,7 +566,7 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
     }
     
     fileprivate func deleteBookCar() {
-        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
             return
         }

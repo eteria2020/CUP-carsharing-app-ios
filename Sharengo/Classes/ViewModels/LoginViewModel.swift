@@ -73,6 +73,7 @@ final class LoginViewModel: ViewModelType {
                         KeychainSwift().set(modifiedUsername, forKey: "Username")
                         KeychainSwift().set(modifiedPassword, forKey: "Password")
                         self.loginExecuted.value = true
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
                     }
                     else if response.status == 404, let code = response.code {
                         if code == "not_found" {

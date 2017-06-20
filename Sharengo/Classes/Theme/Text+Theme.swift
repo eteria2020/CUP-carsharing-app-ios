@@ -21,6 +21,9 @@ public extension NamedStyles {
 }
 
 enum TextStyle: String, TextStyleType {
+    // Intro
+    case introTitle = "introTitle"
+    
     // Home
     case homeDescription = "homeDescription"
     
@@ -57,6 +60,8 @@ enum TextStyle: String, TextStyleType {
 
     static var all:[TextStyle] {
         return [
+            // Intro
+            .introTitle,
             // Home
             .homeDescription,
             // SearchBar
@@ -94,6 +99,9 @@ enum TextStyle: String, TextStyleType {
     var style:StringStyle {
         return { () -> StringStyle in
             switch self {
+            // Intro
+            case .introTitle:
+                return StringStyle(.font(Font.introTitle.value), .color(Color.introTitle.value), .alignment(.center))
             // Home
             case .homeDescription:
                 let boldStyle = StringStyle(.font(Font.homeDescriptionEmphasized.value), .color(Color.homeDescriptionLabel.value), .alignment(.center))

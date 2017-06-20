@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         TextStyle.setup()
         Router.start(self)
+        CoreController.shared.updateData()
         return true
     }
 

@@ -43,6 +43,7 @@ class LoginViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_notYetRegistered: UILabel!
     @IBOutlet fileprivate weak var btn_register: UIButton!
     @IBOutlet fileprivate weak var btn_continueAsNotLogged: UIButton!
+    fileprivate var introIsShowed: Bool = false
     
     var viewModel: LoginViewModel?
     var goBackAfterLogin: Bool = false
@@ -166,6 +167,21 @@ class LoginViewController : UIViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
+            UserDefaults.standard.set(true, forKey: "LoginShowed")
+            if !self.introIsShowed {
+                let destination: IntroViewController  = (Storyboard.main.scene(.intro))
+                destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
+                self.addChildViewController(destination)
+                self.view.addSubview(destination.view)
+                self.view.layoutIfNeeded()
+            }
+            self.introIsShowed = true
+        }
     }
 }
 

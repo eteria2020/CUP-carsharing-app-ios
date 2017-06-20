@@ -40,7 +40,7 @@ class CoreController {
     }
     
     @objc func updateData() {
-        if KeychainSwift().get("UserPin") == nil || KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
         self.updateInProgress = true
@@ -84,6 +84,9 @@ class CoreController {
     }
     
     fileprivate func updateCarBookings() {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            return
+        }
         self.apiController.bookingList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -110,6 +113,9 @@ class CoreController {
     }
     
     fileprivate func updateCarTrips() {
+        if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            return
+        }
         self.apiController.tripsList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in

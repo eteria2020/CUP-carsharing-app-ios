@@ -90,12 +90,10 @@ class HomeViewController : UIViewController, ViewModelBindable {
         shapeLayer.lineDashPattern = [2,2]
         shapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: CGFloat(self.view_dotted.frame.size.width/2), y: CGFloat(self.view_dotted.frame.size.width/2)), radius: CGFloat(self.view_dotted.frame.size.width/2), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath
         self.view_dotted.layer.addSublayer(shapeLayer)
+        self.view.bringSubview(toFront: self.view_searchCar)
+        self.view.bringSubview(toFront: self.view_profile)
+        self.view.bringSubview(toFront: self.view_feeds)
         self.view_dotted.alpha = 0.0
-        if let firstname = KeychainSwift().get("UserFirstname") {
-            self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
-        } else {
-            self.lbl_description.styledText = "lbl_homeDescriptionNotLogged"
-        }
         self.lbl_description.alpha = 0.0
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -111,22 +109,23 @@ class HomeViewController : UIViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !self.loginIsShowed {
+            self.loginIsShowed = true
             if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
                 KeychainSwift().clear()
-                /*
                 let destination: LoginViewController = (Storyboard.main.scene(.login))
                 destination.bind(to: ViewModelFactory.login(), afterLoad: true)
                 self.navigationController?.pushViewController(destination, animated: false)
-                */
-                UserDefaults.standard.set(true, forKey: "LoginShowed")
+                self.introIsShowed = true
+                self.animateButtons()
+                return
             }
         }
-        self.loginIsShowed = true
         if !self.introIsShowed {
             let destination: IntroViewController  = (Storyboard.main.scene(.intro))
             destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
@@ -146,7 +145,19 @@ class HomeViewController : UIViewController, ViewModelBindable {
             }
         }
         self.introIsShowed = true
-        CoreController.shared.updateData()
+        self.updateData()
+    }
+    
+    // MARK: - Update methods
+    
+    @objc fileprivate func updateData() {
+        DispatchQueue.main.async {
+            if let firstname = KeychainSwift().get("UserFirstname") {
+                self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
+            } else {
+                self.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
+            }
+        }
     }
     
     // MARK: - Animation methods
