@@ -10,6 +10,12 @@
 		03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
 		03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
 		03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
+		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
+		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
+		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
+		03A86FA41EF97171009C72F4 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */; };
+		03A86FA61EF971D9009C72F4 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */; };
+		03A86FA81EF9726D009C72F4 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA71EF9726D009C72F4 /* Menu.swift */; };
 		03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */; };
 		03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */; };
 		03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */; };
@@ -132,6 +138,12 @@
 		03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewController.swift; path = Classes/ViewControllers/CarBookingCompletedViewController.swift; sourceTree = "<group>"; };
 		03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewModel.swift; path = Classes/ViewModels/CarBookingCompletedViewModel.swift; sourceTree = "<group>"; };
 		03653E221EEADA4800AC7A93 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
+		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
+		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
+		03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemCollectionViewCell.swift; path = Classes/Views/MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuItemCollectionViewCell.xib; path = Resources/Xibs/MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		03A86FA71EF9726D009C72F4 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Classes/Model/Menu.swift; sourceTree = "<group>"; };
 		03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Classes/ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = Classes/ViewModels/LoginViewModel.swift; sourceTree = "<group>"; };
 		03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_icon_input_eye_normal@2x.png"; sourceTree = "<group>"; };
@@ -276,6 +288,18 @@
 				03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */,
 			);
 			name = CarBookingCompleted;
+			sourceTree = "<group>";
+		};
+		03A86F921EF96F8E009C72F4 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				03A86F931EF96FAD009C72F4 /* MenuViewController.swift */,
+				03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */,
+				03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */,
+				03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */,
+				03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 		03AF5D321EEE7B4000AC8826 /* Login */ = {
@@ -585,6 +609,7 @@
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
 				4D9400D61EDF4BFE00AD0EC6 /* Address.swift */,
 				4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */,
+				03A86FA71EF9726D009C72F4 /* Menu.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -614,6 +639,7 @@
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
 				4DC10E001EE9AC5800A74E26 /* Loading */,
+				03A86F921EF96F8E009C72F4 /* Menu */,
 				4D2339961EE6CD2A00780384 /* Intro */,
 				4DFD98381ED471FC00880EA1 /* Home */,
 				03AF5D321EEE7B4000AC8826 /* Login */,
@@ -875,6 +901,7 @@
 				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */,
 				03C6323A1EEFD04000BFEDA3 /* SignupStepView.xib in Resources */,
+				03A86FA61EF971D9009C72F4 /* MenuItemCollectionViewCell.xib in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
 				4D45BB2D1EE698C2004C7287 /* CarBookingPopupView.xib in Resources */,
 				03AF5D6B1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png in Resources */,
@@ -963,11 +990,13 @@
 				03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
 				4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */,
+				03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
 				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */,
+				03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
@@ -1000,6 +1029,7 @@
 				03AF5D721EEE83FC00AC8826 /* AnimatedTextInput.swift in Sources */,
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
 				4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */,
+				03A86FA81EF9726D009C72F4 /* Menu.swift in Sources */,
 				4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */,
 				03AF5D761EEE83FC00AC8826 /* UIViewExtensions.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
@@ -1010,8 +1040,10 @@
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
+				03A86FA41EF97171009C72F4 /* MenuItemCollectionViewCell.swift in Sources */,
 				4DC10DFF1EE9AA3300A74E26 /* LoadingViewController.swift in Sources */,
 				4DA554451EE55284001627E7 /* FBAnnotation.swift in Sources */,
+				03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
