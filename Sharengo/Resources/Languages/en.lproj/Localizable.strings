@@ -17,6 +17,7 @@
 "btn_open" = "APRI PORTIERE";
 "btn_book" = "PRENOTA AUTO";
 "bnt_delete" = "ELIMINA";
+"btn_carRides" = "STORICO CORSE";
 
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
@@ -34,6 +35,14 @@
 "alert_loginMissingFields" = "Uno o più campi non sono compilati.";
 "alert_loginWrongEmail" = "Attenzione! L'indirizzo email che hai inserito non è presente nel nostro database.";
 "alert_loginWrongPassword" = "Attenzione! Password errata.";
+"lbl_loginFormHeader" = "Compila i campi per effettuare il login";
+"txt_loginEmailPlaceholder" = "email";
+"txt_loginPasswordPlaceholder" = "password";
+"btn_loginForgotPassword" = "Ho dimenticato la password";
+"btn_loginLogin" = "LOGIN";
+"lbl_loginNotYetRegistered" = "Non sei ancora iscritto?";
+"btn_loginRegister" = "REGISTRATI";
+"btn_loginContinueAsNotLogged" = "CONTINUA SENZA LOGGARTI";
 
 // SearchBar
 "lbl_searchBarTextField" = "Cerca indirizzo o targa";
@@ -79,22 +88,5 @@
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nAttendi la chiusura delle portiere fuori dall'auto.\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
 "lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
-"btn_carRides" = "STORICO CORSE";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
-
-// Login
-"lbl_loginFormHeader" = "Compila i campi per effettuare il login";
-"txt_loginEmailPlaceholder" = "email";
-"txt_loginPasswordPlaceholder" = "password";
-"btn_loginForgotPassword" = "Ho dimenticato la password";
-"btn_loginLogin" = "LOGIN";
-"lbl_loginNotYetRegistered" = "Non sei ancora iscritto?";
-"btn_loginRegister" = "REGISTRATI";
-"btn_loginContinueAsNotLogged" = "CONTINUA SENZA LOGGARTI";
-
-// Profile
-"lbl_profileCellTitle1" = "Come guadagnare semini";
-"lbl_profileCellTitle2" = "Le tue azioni Angel sostenibili";
-"lbl_profileCellTitle3" = "Categorie di eventi su cui ricevi notifiche";
-"lbl_profileCellTitle4" = "Eventi a cui sei interessato";
