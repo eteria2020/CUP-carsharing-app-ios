@@ -15,10 +15,12 @@ import KeychainSwift
 enum HomeSelectionInput: SelectionInput {
     case searchCars
     case profile
+    case feeds
 }
 
 enum HomeSelectionOutput: SelectionOutput {
     case viewModel(ViewModelType)
+    case feeds
 }
 
 final class HomeViewModel: ViewModelTypeSelectable {
@@ -32,6 +34,8 @@ final class HomeViewModel: ViewModelTypeSelectable {
             } else {
                 return .just(.viewModel(ViewModelFactory.profile()))
             }
+        case .feeds:
+            return .just(.feeds)
         }
     }
     

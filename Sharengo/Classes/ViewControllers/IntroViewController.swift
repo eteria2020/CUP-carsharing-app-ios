@@ -29,24 +29,34 @@ class IntroViewController : UIViewController, ViewModelBindable {
     // MARK: - View methods
     
     override func viewDidLoad() {
-        // TODO: scritte in INTRO LUNGA FINE
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         if UserDefaults.standard.bool(forKey: "LongIntro") == false {
             if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
                 self.img_intro.yy_imageURL = url
-                let dispatchTime = DispatchTime.now() + 3
+                var dispatchTime = DispatchTime.now() + 3
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                     if let url = Bundle.main.url(forResource: "INTRO LUNGA FINE", withExtension: "gif") {
                         self.img_intro.yy_imageURL = url
-                        UserDefaults.standard.set(true, forKey: "LongIntro")
+                        dispatchTime = DispatchTime.now() + 4
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            UserDefaults.standard.set(true, forKey: "LongIntro")
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.view.frame.origin.y = -UIScreen.main.bounds.size.height
+                            })
+                        }
                     }
                 }
-                
             }
         } else {
             if let url = Bundle.main.url(forResource: "INTRO BREVE", withExtension: "gif") {
                 self.img_intro.yy_imageURL = url
+                let dispatchTime = DispatchTime.now() + 1
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.view.frame.origin.y = -UIScreen.main.bounds.size.height
+                    })
+                }
             }
         }
     }

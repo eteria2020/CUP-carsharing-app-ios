@@ -45,14 +45,14 @@ final class ApiController {
     
     func getUser(username: String, password: String) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
                 case .ended:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.getUserWith(username: username, password: password))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)

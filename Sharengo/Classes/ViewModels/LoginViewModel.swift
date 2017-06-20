@@ -64,7 +64,12 @@ final class LoginViewModel: ViewModelType {
                 switch event {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
-                        KeychainSwift().set("\(String(describing: data["pin"]))", forKey: "UserPin")
+                        if let pin = data["pin"] {
+                            KeychainSwift().set("\(String(describing: pin))", forKey: "UserPin")
+                        }
+                        if let firstname = data["name"] {
+                            KeychainSwift().set("\(String(describing: firstname))", forKey: "UserFirstname")
+                        }
                         KeychainSwift().set(modifiedUsername, forKey: "Username")
                         KeychainSwift().set(modifiedPassword, forKey: "Password")
                         self.loginExecuted.value = true

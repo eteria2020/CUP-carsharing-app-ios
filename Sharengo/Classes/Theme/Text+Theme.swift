@@ -21,6 +21,9 @@ public extension NamedStyles {
 }
 
 enum TextStyle: String, TextStyleType {
+    // Home
+    case homeDescription = "homeDescription"
+    
     // SearchBar
     case searchBarTextField = "searchBarTextField"
     case searchBarResult = "searchBarResult"
@@ -54,6 +57,8 @@ enum TextStyle: String, TextStyleType {
 
     static var all:[TextStyle] {
         return [
+            // Home
+            .homeDescription,
             // SearchBar
             .searchBarTextField,
             .searchBarResult,
@@ -89,6 +94,10 @@ enum TextStyle: String, TextStyleType {
     var style:StringStyle {
         return { () -> StringStyle in
             switch self {
+            // Home
+            case .homeDescription:
+                let boldStyle = StringStyle(.font(Font.homeDescriptionEmphasized.value), .color(Color.homeDescriptionLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.homeDescription.value), .color(Color.homeDescriptionLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
             // SearchBar
             case .searchBarTextField:
                 return StringStyle(.font(Font.searchBarTextField.value), .color(Color.searchBarTextField.value), .alignment(.center))

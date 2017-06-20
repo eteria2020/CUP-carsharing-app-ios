@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -107,6 +107,31 @@
                                     <constraint firstItem="Gl2-Jg-1gC" firstAttribute="leading" secondItem="yLO-45-Nei" secondAttribute="leading" id="nHy-fO-JBn"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSy-wc-TK1">
+                                <rect key="frame" x="40" y="356" width="75" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YT-JM-wdT">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                        <state key="normal" image="ic_milano"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="0YT-JM-wdT" secondAttribute="bottom" id="15X-4H-gbE"/>
+                                    <constraint firstItem="0YT-JM-wdT" firstAttribute="top" secondItem="HSy-wc-TK1" secondAttribute="top" id="QJg-83-ezR"/>
+                                    <constraint firstItem="0YT-JM-wdT" firstAttribute="leading" secondItem="HSy-wc-TK1" secondAttribute="leading" id="VyW-hb-tcq"/>
+                                    <constraint firstAttribute="trailing" secondItem="0YT-JM-wdT" secondAttribute="trailing" id="XvZ-x0-aTn"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLy-nQ-Met">
+                                <rect key="frame" x="30" y="488" width="315" height="149"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="homeDescription"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -116,22 +141,33 @@
                             <constraint firstItem="oJH-8h-d4d" firstAttribute="top" secondItem="rHt-ZL-VHF" secondAttribute="bottom" id="7by-cP-6d6"/>
                             <constraint firstAttribute="trailing" secondItem="rHt-ZL-VHF" secondAttribute="trailing" id="92C-Bq-qvi"/>
                             <constraint firstAttribute="bottom" secondItem="oJH-8h-d4d" secondAttribute="bottom" id="AbS-i7-qll"/>
+                            <constraint firstItem="mLy-nQ-Met" firstAttribute="leading" secondItem="29D-Sx-MLm" secondAttribute="leading" constant="30" id="DMJ-me-Fgg"/>
+                            <constraint firstItem="mLy-nQ-Met" firstAttribute="top" secondItem="ozH-SZ-gyS" secondAttribute="bottom" constant="30" id="DSC-lf-ZZm"/>
+                            <constraint firstItem="HSy-wc-TK1" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" constant="-110" id="GCs-Fb-d8s"/>
+                            <constraint firstAttribute="trailing" secondItem="mLy-nQ-Met" secondAttribute="trailing" constant="30" id="J8L-yZ-luX"/>
                             <constraint firstItem="yLO-45-Nei" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" constant="60" id="Jmw-ra-gYI"/>
                             <constraint firstAttribute="trailing" secondItem="oJH-8h-d4d" secondAttribute="trailing" id="LwL-tG-IwB"/>
                             <constraint firstItem="ozH-SZ-gyS" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" id="N3e-i2-Wed"/>
+                            <constraint firstItem="HSy-wc-TK1" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" constant="60" id="Qx2-Bs-JNL"/>
+                            <constraint firstItem="STo-jJ-oEN" firstAttribute="top" secondItem="mLy-nQ-Met" secondAttribute="bottom" constant="30" id="RO1-Tg-Gq4"/>
                             <constraint firstItem="oJH-8h-d4d" firstAttribute="leading" secondItem="29D-Sx-MLm" secondAttribute="leading" id="Xwp-oG-Nbi"/>
                             <constraint firstItem="yLO-45-Nei" firstAttribute="width" secondItem="yLO-45-Nei" secondAttribute="height" multiplier="1:1" id="Y7C-gm-0mD"/>
+                            <constraint firstItem="HSy-wc-TK1" firstAttribute="width" secondItem="HSy-wc-TK1" secondAttribute="height" multiplier="1:1" id="ehH-ND-LTm"/>
                             <constraint firstItem="hag-IA-zQe" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" id="iYB-6s-gf2"/>
                             <constraint firstItem="hag-IA-zQe" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" constant="-120" id="k89-Lq-wJa"/>
                             <constraint firstItem="rHt-ZL-VHF" firstAttribute="top" secondItem="29D-Sx-MLm" secondAttribute="top" id="kMB-Ti-p0W"/>
                             <constraint firstItem="ozH-SZ-gyS" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" id="tax-hc-UPl"/>
+                            <constraint firstItem="HSy-wc-TK1" firstAttribute="width" secondItem="hag-IA-zQe" secondAttribute="width" id="uTs-JK-yqK"/>
                             <constraint firstItem="yLO-45-Nei" firstAttribute="centerX" secondItem="29D-Sx-MLm" secondAttribute="centerX" constant="110" id="xEt-pn-UD1"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btn_feeds" destination="0YT-JM-wdT" id="9vq-DE-xpN"/>
                         <outlet property="btn_profile" destination="Gl2-Jg-1gC" id="xQe-X3-7M1"/>
                         <outlet property="btn_searchCar" destination="DCp-lr-Etq" id="TFo-ca-G7f"/>
+                        <outlet property="lbl_description" destination="mLy-nQ-Met" id="CqA-YP-ead"/>
                         <outlet property="view_dotted" destination="ozH-SZ-gyS" id="Atr-nc-O8s"/>
+                        <outlet property="view_feeds" destination="HSy-wc-TK1" id="RPb-mT-HPZ"/>
                         <outlet property="view_navigationBar" destination="rHt-ZL-VHF" id="dZb-8h-uT3"/>
                         <outlet property="view_profile" destination="yLO-45-Nei" id="t2k-T3-UQT"/>
                         <outlet property="view_searchCar" destination="hag-IA-zQe" id="9PE-CA-4Tm"/>
@@ -855,6 +891,7 @@
         <image name="ic_cat_home" width="46" height="28"/>
         <image name="ic_close" width="13" height="13"/>
         <image name="ic_left" width="30" height="30"/>
+        <image name="ic_milano" width="39" height="35"/>
         <image name="ic_right" width="30" height="30"/>
         <image name="ic_utente_home" width="32" height="36"/>
         <image name="img_border_popup" width="4" height="14"/>

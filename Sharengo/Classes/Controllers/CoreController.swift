@@ -44,7 +44,43 @@ class CoreController {
             return
         }
         self.updateInProgress = true
-        self.updateCarBookings()
+        self.updateUser()
+    }
+    
+    fileprivate func updateUser() {
+        if let username = KeychainSwift().get("Username"), let password = KeychainSwift().get("Password") {
+        self.apiController.getUser(username: username, password: password)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.dic_data {
+                        if let pin = data["pin"] {
+                            KeychainSwift().set("\(String(describing: pin))", forKey: "UserPin")
+                        }
+                        if let firstname = data["name"] {
+                            KeychainSwift().set("\(String(describing: firstname))", forKey: "UserFirstname")
+                        }
+                        self.updateCarBookings()
+                    }
+                    else if response.status == 404, let code = response.code {
+                        if code == "not_found" {
+                            // TODO: logout
+                        }
+                    }
+                    else if let msg = response.msg {
+                        if msg == "invalid_credentials" {
+                            // TODO: logout
+                        }
+                    }
+                case .error(_):
+                    // TODO: logout
+                    break
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        }
     }
     
     fileprivate func updateCarBookings() {

@@ -35,6 +35,7 @@ enum ColorBrand {
     case white
     case lightGray
     case gray
+    case grayDisabled
     case clear
 
     var value: UIColor {
@@ -52,6 +53,8 @@ enum ColorBrand {
                 return UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1.0)
             case .gray:
                 return UIColor(red: 176/255.0, green: 176/255.0, blue: 176/255.0, alpha: 1.0)
+            case .grayDisabled:
+                return UIColor(red: 158/255.0, green: 153/255.0, blue: 146/255.0, alpha: 1.0)
             case .clear:
                 return UIColor.clear
             }
@@ -90,7 +93,10 @@ enum Color {
     case loginContinueAsNotLoggedButton
 
     // Home
-    case homeSearchCarBackground
+    case homeEnabledBackground
+    case homeDisabledBackground
+    case homeDisabledIcon
+    case homeDescriptionLabel
     
     // SearchCars
     case searchCarsClusterLabel
@@ -178,8 +184,14 @@ enum Color {
             case .loginContinueAsNotLoggedButton:
                 return ColorBrand.green.value
             // Home
-            case .homeSearchCarBackground:
+            case .homeEnabledBackground:
                 return ColorBrand.green.value
+            case .homeDisabledBackground:
+                return ColorBrand.grayDisabled.value
+            case .homeDisabledIcon:
+                return UIColor(hexString: "#b4ada7")
+            case .homeDescriptionLabel:
+                return ColorBrand.black.value
             // SearchCars
             case .searchCarsClusterLabel:
                 return ColorBrand.green.value
