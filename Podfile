@@ -27,6 +27,7 @@ def shared_pods
     pod 'DeviceKit'	
     pod 'YYWebImage'
     pod 'TPKeyboardAvoiding'
+    pod 'SideMenu'
 end
 
 target 'Sharengo' do

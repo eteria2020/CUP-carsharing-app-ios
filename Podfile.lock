@@ -44,6 +44,7 @@ PODS:
   - RxCocoa (3.4.1):
     - RxSwift (~> 3.4)
   - RxSwift (3.4.1)
+  - SideMenu (2.3.2)
   - SnapKit (3.0.2)
   - SpinKit (1.2.0)
   - StoryboardConstraint (0.1.0)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - pop
   - ReachabilitySwift
   - RxSwift
+  - SideMenu
   - SnapKit (~> 3.0.2)
   - SpinKit
   - StoryboardConstraint
@@ -123,6 +125,7 @@ SPEC CHECKSUMS:
   Result: 4edd39003fdccf281d418ee1b006571f70123250
   RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
+  SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
   StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
@@ -131,6 +134,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: dc1b54bcdeff2bc603d44083a2736f4cfef50d20
+PODFILE CHECKSUM: 46296d0feb215b1d655f95924f773d5d2872a9d8
 
 COCOAPODS: 1.2.1

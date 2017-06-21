@@ -23,7 +23,11 @@ public extension NamedStyles {
 enum TextStyle: String, TextStyleType {
     // Intro
     case introTitle = "introTitle"
-    
+
+    // Menu
+    case menuHeader = "menuHeader"
+    case menuItemTitle = "menuItemTitle"
+
     // Home
     case homeDescription = "homeDescription"
     
@@ -64,6 +68,9 @@ enum TextStyle: String, TextStyleType {
             .introTitle,
             // Home
             .homeDescription,
+            // Menu
+            .menuHeader,
+            .menuItemTitle,
             // SearchBar
             .searchBarTextField,
             .searchBarResult,
@@ -102,6 +109,11 @@ enum TextStyle: String, TextStyleType {
             // Intro
             case .introTitle:
                 return StringStyle(.font(Font.introTitle.value), .color(Color.introTitle.value), .alignment(.center))
+            // Menu
+            case .menuHeader:
+                return StringStyle(.font(Font.menuLabel.value), .color(Color.menuLabel.value), .alignment(.left))
+            case .menuItemTitle:
+                return StringStyle(.font(Font.menuLabel.value), .color(Color.menuLabel.value), .alignment(.left))
             // Home
             case .homeDescription:
                 let boldStyle = StringStyle(.font(Font.homeDescriptionEmphasized.value), .color(Color.homeDescriptionLabel.value), .alignment(.center))

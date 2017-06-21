@@ -34,5 +34,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.backgroundColor = Color.menuTopBackground.value
     }
 }

@@ -16,7 +16,7 @@ final class MenuItemViewModel : ItemViewModelType {
     var title: String?
     var icon: UIImage?
 
-    init(model: Menu) {
+    init(model: MenuItem) {
         self.model = model
         self.title = model.title
         self.icon = UIImage(named: model.icon)

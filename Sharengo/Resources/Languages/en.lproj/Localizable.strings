@@ -44,6 +44,10 @@
 "btn_loginRegister" = "REGISTRATI";
 "btn_loginContinueAsNotLogged" = "CONTINUA SENZA LOGGARTI";
 
+// Menu
+"lbl_menuHeaderTitleLogged" = "Ciao %@, bentornato!";
+"lbl_menuHeaderTitleGuest" = "Ciao, benvenuto!";
+
 // Home
 "alert_homeNotAvailable" = "Questa funzione sarà disponibile prossimamente.";
 "lbl_homeDescriptionLogged" = "<bold>Bentornato %@!</bold>";

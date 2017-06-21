@@ -42,7 +42,10 @@ enum Font {
     
     // Intro
     case introTitle
-    
+
+    // Menu
+    case menuLabel
+
     // Home
     case homeDescription
     case homeDescriptionEmphasized
@@ -98,6 +101,8 @@ enum Font {
             // Intro
             case .introTitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            case .menuLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // Home
             case .homeDescription:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 14))

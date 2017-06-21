@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import DeviceKit
 import TPKeyboardAvoiding
+import SideMenu
 
 struct CustomTextInputStyle: AnimatedTextInputStyle {
     let activeColor = ColorBrand.black.value

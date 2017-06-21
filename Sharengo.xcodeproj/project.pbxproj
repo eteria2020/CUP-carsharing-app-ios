@@ -15,7 +15,7 @@
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
 		03A86FA41EF97171009C72F4 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */; };
 		03A86FA61EF971D9009C72F4 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */; };
-		03A86FA81EF9726D009C72F4 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA71EF9726D009C72F4 /* Menu.swift */; };
+		03A86FA81EF9726D009C72F4 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA71EF9726D009C72F4 /* MenuItem.swift */; };
 		03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */; };
 		03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */; };
 		03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */; };
@@ -143,7 +143,7 @@
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
 		03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemCollectionViewCell.swift; path = Classes/Views/MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuItemCollectionViewCell.xib; path = Resources/Xibs/MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
-		03A86FA71EF9726D009C72F4 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Classes/Model/Menu.swift; sourceTree = "<group>"; };
+		03A86FA71EF9726D009C72F4 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItem.swift; path = Classes/Model/MenuItem.swift; sourceTree = "<group>"; };
 		03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Classes/ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = Classes/ViewModels/LoginViewModel.swift; sourceTree = "<group>"; };
 		03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_icon_input_eye_normal@2x.png"; sourceTree = "<group>"; };
@@ -609,7 +609,7 @@
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
 				4D9400D61EDF4BFE00AD0EC6 /* Address.swift */,
 				4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */,
-				03A86FA71EF9726D009C72F4 /* Menu.swift */,
+				03A86FA71EF9726D009C72F4 /* MenuItem.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -1029,7 +1029,7 @@
 				03AF5D721EEE83FC00AC8826 /* AnimatedTextInput.swift in Sources */,
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
 				4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */,
-				03A86FA81EF9726D009C72F4 /* Menu.swift in Sources */,
+				03A86FA81EF9726D009C72F4 /* MenuItem.swift in Sources */,
 				4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */,
 				03AF5D761EEE83FC00AC8826 /* UIViewExtensions.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,

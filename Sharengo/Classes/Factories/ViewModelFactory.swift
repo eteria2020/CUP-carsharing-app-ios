@@ -55,7 +55,11 @@ struct ViewModelFactory {
         return CarBookingPopupViewModel()
     }
 
-    static func menuItem(fromModel model:Menu) -> ItemViewModelType {
+    static func menu() -> ViewModelType {
+        return MenuViewModel()
+    }
+
+    static func menuItem(fromModel model:MenuItem) -> ItemViewModelType {
         return MenuItemViewModel(model: model)
     }
 

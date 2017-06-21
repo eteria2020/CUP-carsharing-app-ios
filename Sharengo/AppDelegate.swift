@@ -4,10 +4,12 @@ import Crashlytics
 import Boomerang
 import RxSwift
 import Gloss
+import SideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    fileprivate let menuPadding: CGFloat = 100.0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.setupAlert()
@@ -19,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TextStyle.setup()
         Router.start(self)
         CoreController.shared.updateData()
+        
+        self.setupSideMenu()
+
         return true
     }
 
@@ -64,3 +69,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate
+{
+    func setupSideMenu()
+    {
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuShadowColor = .black
+        SideMenuManager.menuFadeStatusBar = false
+        SideMenuManager.menuWidth = UIScreen.main.bounds.width-menuPadding
+        SideMenuManager.menuAnimationBackgroundColor = UIColor.red
+        
+        let menuRightNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "menuNavigation") as! UISideMenuNavigationController
+        SideMenuManager.menuRightNavigationController = menuRightNavigationController
+        if let menu = menuRightNavigationController.topViewController as? MenuViewController
+        {
+            menu.bind(to: ViewModelFactory.menu(), afterLoad: true)
+        }
+        
+        SideMenuManager.menuRightNavigationController = menuRightNavigationController
+    }
+}

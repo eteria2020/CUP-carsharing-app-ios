@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import KeychainSwift
 import pop
+import SideMenu
 
 class HomeViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -103,7 +104,8 @@ class HomeViewController : UIViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                print("Open menu")
+                print("Open Menu")
+//                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
                 break
             default:
                 break
