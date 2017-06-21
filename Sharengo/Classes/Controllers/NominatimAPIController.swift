@@ -35,7 +35,7 @@ final class NominatimAPIController {
                 case .ended:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
-            })])//NetworkLoggerPlugin(verbose: true)
+            })])
             return provider.request(.searchAddress(text: text))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapArray(type: Address.self)
