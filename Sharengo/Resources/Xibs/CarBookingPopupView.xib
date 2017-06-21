@@ -115,7 +115,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-WS-YN0">
                             <rect key="frame" x="0.0" y="0.0" width="160" height="75"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time" translatesAutoresizingMaskIntoConstraints="NO" id="aLg-CH-6lV">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_1" translatesAutoresizingMaskIntoConstraints="NO" id="aLg-CH-6lV">
                                     <rect key="frame" x="105" y="10" width="55" height="55"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="aLg-CH-6lV" secondAttribute="height" multiplier="1:1" id="66O-dg-ihD"/>
@@ -197,7 +197,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_time" width="40" height="40"/>
+        <image name="ic_time_1" width="40" height="40"/>
         <image name="img_border_booking_popup" width="4" height="14"/>
     </resources>
 </document>
