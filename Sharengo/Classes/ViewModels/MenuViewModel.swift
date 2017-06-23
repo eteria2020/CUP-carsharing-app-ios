@@ -53,10 +53,16 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             welcome = "lbl_menuHeaderTitleGuest".localized()
 
             var menuItems = [MenuItem]()
-            let menuItem1 = MenuItem(title: "aaa", icon: "ic_close")
-            let menuItem2 = MenuItem(title: "aaa", icon: "ic_close")
+            let menuItem1 = MenuItem(title: "lbl_menuLogin", icon: "ic_login")
+            let menuItem2 = MenuItem(title: "lbl_menuSignUp", icon: "ic_iscrizione")
+            let menuItem3 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero")
+            let menuItem4 = MenuItem(title: "lbl_rates", icon: "ic_tariffe")
+            let menuItem5 = MenuItem(title: "lbl_help", icon: "ic_assistenza")
             menuItems.append(menuItem1)
             menuItems.append(menuItem2)
+            menuItems.append(menuItem3)
+            menuItems.append(menuItem4)
+            menuItems.append(menuItem5)
             
             return menuItems
         } else {

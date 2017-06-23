@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -255,7 +255,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -283,10 +283,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppd-tN-ADM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ciao Mario, bentornato!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk8-yT-tGS">
-                                        <rect key="frame" x="10" y="22" width="288.5" height="21"/>
+                                        <rect key="frame" x="15" y="24.5" width="289" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -295,34 +295,35 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qIE-Sm-dc5">
-                                        <rect key="frame" x="308.5" y="5" width="56.5" height="56.5"/>
+                                        <rect key="frame" x="319" y="5" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qIE-Sm-dc5" secondAttribute="height" multiplier="1:1" id="zjS-Tn-aA9"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZV-Xg-5mS">
-                                        <rect key="frame" x="0.0" y="64.5" width="375" height="2"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="0.0" y="55" width="375" height="1"/>
+                                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="ojI-hE-6YL"/>
+                                            <constraint firstAttribute="height" constant="1" id="ojI-hE-6YL"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="HZV-Xg-5mS" secondAttribute="bottom" id="7JO-5q-UYy"/>
-                                    <constraint firstItem="qIE-Sm-dc5" firstAttribute="leading" secondItem="gk8-yT-tGS" secondAttribute="trailing" constant="10" id="BmT-Ct-eKt"/>
+                                    <constraint firstItem="qIE-Sm-dc5" firstAttribute="leading" secondItem="gk8-yT-tGS" secondAttribute="trailing" constant="15" id="BmT-Ct-eKt"/>
                                     <constraint firstItem="HZV-Xg-5mS" firstAttribute="leading" secondItem="ppd-tN-ADM" secondAttribute="leading" id="GO4-rc-a9y"/>
+                                    <constraint firstAttribute="height" constant="56" id="HTk-rM-NKG"/>
                                     <constraint firstItem="qIE-Sm-dc5" firstAttribute="top" secondItem="ppd-tN-ADM" secondAttribute="top" constant="5" id="La3-2m-Qdx"/>
                                     <constraint firstAttribute="trailing" secondItem="qIE-Sm-dc5" secondAttribute="trailing" constant="10" id="T2g-KZ-F0Y"/>
-                                    <constraint firstItem="gk8-yT-tGS" firstAttribute="leading" secondItem="ppd-tN-ADM" secondAttribute="leading" constant="10" id="bj6-Op-mqX"/>
+                                    <constraint firstItem="gk8-yT-tGS" firstAttribute="leading" secondItem="ppd-tN-ADM" secondAttribute="leading" constant="15" id="bj6-Op-mqX"/>
                                     <constraint firstAttribute="trailing" secondItem="HZV-Xg-5mS" secondAttribute="trailing" id="eRb-1u-37K"/>
-                                    <constraint firstItem="gk8-yT-tGS" firstAttribute="centerY" secondItem="ppd-tN-ADM" secondAttribute="centerY" id="imR-1s-Zbm"/>
+                                    <constraint firstItem="gk8-yT-tGS" firstAttribute="centerY" secondItem="ppd-tN-ADM" secondAttribute="centerY" constant="7" id="imR-1s-Zbm"/>
                                     <constraint firstAttribute="bottom" secondItem="qIE-Sm-dc5" secondAttribute="bottom" constant="5" id="jIE-hP-Z46"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wbo-mR-slJ">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b6N-3k-WXq">
                                     <size key="itemSize" width="50" height="50"/>
@@ -335,7 +336,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ppd-tN-ADM" firstAttribute="height" secondItem="9dc-cS-pjO" secondAttribute="height" multiplier="0.1" id="0jV-MM-6qj"/>
                             <constraint firstItem="wbo-mR-slJ" firstAttribute="leading" secondItem="9dc-cS-pjO" secondAttribute="leading" id="1JR-bG-Oto"/>
                             <constraint firstItem="wbo-mR-slJ" firstAttribute="top" secondItem="ppd-tN-ADM" secondAttribute="bottom" id="Cy2-tu-eTi"/>
                             <constraint firstItem="ppd-tN-ADM" firstAttribute="top" secondItem="9dc-cS-pjO" secondAttribute="top" id="PzS-vR-ffW"/>

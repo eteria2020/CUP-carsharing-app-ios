@@ -18,7 +18,7 @@ final class MenuItemViewModel : ItemViewModelType {
 
     init(model: MenuItem) {
         self.model = model
-        self.title = model.title
+        self.title = model.title.localized()
         self.icon = UIImage(named: model.icon)
     }
 }

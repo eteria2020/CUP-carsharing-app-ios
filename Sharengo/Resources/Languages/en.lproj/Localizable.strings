@@ -47,6 +47,11 @@
 // Menu
 "lbl_menuHeaderTitleLogged" = "Ciao %@, bentornato!";
 "lbl_menuHeaderTitleGuest" = "Ciao, benvenuto!";
+"lbl_menuLogin" = "Login";
+"lbl_menuSignUp" = "Iscrizione";
+"lbl_menuFaq" = "Faq e tutorial";
+"lbl_rates" = "Tariffe";
+"lbl_help" = "Richiedi assistenza";
 
 // Home
 "alert_homeNotAvailable" = "Questa funzione sarà disponibile prossimamente.";

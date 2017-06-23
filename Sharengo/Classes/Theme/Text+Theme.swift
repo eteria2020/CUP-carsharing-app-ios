@@ -111,7 +111,7 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.introTitle.value), .color(Color.introTitle.value), .alignment(.center))
             // Menu
             case .menuHeader:
-                return StringStyle(.font(Font.menuLabel.value), .color(Color.menuLabel.value), .alignment(.left))
+                return StringStyle(.font(Font.menuHeader.value), .color(Color.menuLabel.value), .alignment(.left))
             case .menuItemTitle:
                 return StringStyle(.font(Font.menuLabel.value), .color(Color.menuLabel.value), .alignment(.left))
             // Home
