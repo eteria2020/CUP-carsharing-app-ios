@@ -16,6 +16,7 @@ import StoryboardConstraint
 import DeviceKit
 import ReachabilitySwift
 import KeychainSwift
+import SideMenu
 
 class SearchCarsViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
@@ -93,10 +94,9 @@ class SearchCarsViewController : UIViewController, ViewModelBindable {
                 self?.view_searchBar.endEditing(true)
                 self?.closeCarPopup()
             case .menu:
-                print("Open menu")
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
                 self?.view_searchBar.endEditing(true)
                 self?.closeCarPopup()
-                break
             default:
                 break
             }

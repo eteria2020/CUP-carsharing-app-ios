@@ -104,9 +104,7 @@ class HomeViewController : UIViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                print("Open Menu")
-//                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
-                break
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

@@ -162,8 +162,7 @@ class LoginViewController : UIViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                print("Open menu")
-                break
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

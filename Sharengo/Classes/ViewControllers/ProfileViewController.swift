@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
+import SideMenu
 
 class ProfileViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -39,8 +40,7 @@ class ProfileViewController : UIViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                print("Open menu")
-                break
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

@@ -13,6 +13,7 @@ import Boomerang
 import DeviceKit
 import SnapKit
 import BonMot
+import SideMenu
 
 class SignupViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -74,8 +75,7 @@ class SignupViewController : UIViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                print("Open menu")
-                break
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
