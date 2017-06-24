@@ -115,6 +115,13 @@ extension Collectionable where Self : UIViewController {
     }
 }
 
+class BaseViewController: UIViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        CoreController.shared.currentViewController = self
+    }
+}
+
 extension UIViewController {
     private struct AssociatedKeys {
         static var loaderCount = "loaderCount"

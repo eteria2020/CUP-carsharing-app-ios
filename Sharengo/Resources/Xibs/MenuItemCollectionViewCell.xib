@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,18 +21,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="431" height="50"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqW-RM-RtP">
-                                <rect key="frame" x="69" y="12" width="26" height="26"/>
+                                <rect key="frame" x="14" y="12" width="26" height="26"/>
                                 <color key="backgroundColor" red="1" green="0.46942816840277779" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_login" translatesAutoresizingMaskIntoConstraints="NO" id="TcS-Vs-btW">
-                                <rect key="frame" x="75" y="18" width="14" height="14"/>
+                                <rect key="frame" x="20" y="18" width="14" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="Ooh-k7-voh"/>
                                     <constraint firstAttribute="height" constant="14" id="aoS-ho-ejP"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pn0-7h-aBD">
-                                <rect key="frame" x="109" y="15" width="312" height="20"/>
+                                <rect key="frame" x="54" y="15" width="367" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TcS-Vs-btW" firstAttribute="leading" secondItem="jqW-RM-RtP" secondAttribute="leading" constant="6" id="0rZ-VL-gtz"/>
-                            <constraint firstItem="TcS-Vs-btW" firstAttribute="leading" secondItem="1FR-r4-DEU" secondAttribute="leading" constant="75" id="4cK-uA-qje"/>
+                            <constraint firstItem="TcS-Vs-btW" firstAttribute="leading" secondItem="1FR-r4-DEU" secondAttribute="leading" constant="20" id="4cK-uA-qje"/>
                             <constraint firstAttribute="trailing" secondItem="pn0-7h-aBD" secondAttribute="trailing" constant="10" id="QE1-UQ-NEB"/>
                             <constraint firstItem="pn0-7h-aBD" firstAttribute="leading" secondItem="TcS-Vs-btW" secondAttribute="trailing" constant="20" id="RE2-GD-vxP"/>
                             <constraint firstItem="TcS-Vs-btW" firstAttribute="bottom" secondItem="jqW-RM-RtP" secondAttribute="bottom" constant="-6" id="UZX-Kf-dmv"/>

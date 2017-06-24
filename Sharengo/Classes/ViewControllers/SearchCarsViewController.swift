@@ -18,7 +18,7 @@ import ReachabilitySwift
 import KeychainSwift
 import SideMenu
 
-class SearchCarsViewController : UIViewController, ViewModelBindable {
+class SearchCarsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_carBookingPopup: CarBookingPopupView!
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!

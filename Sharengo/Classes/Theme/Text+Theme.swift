@@ -61,6 +61,9 @@ enum TextStyle: String, TextStyleType {
     // Login
     case loginFormHeader = "loginFormHeader"
     case loginNotYetRegistered = "loginNotYetRegistered"
+    
+    // Profile
+    case profileEcoStatus = "profileEcoStatus"
 
     static var all:[TextStyle] {
         return [
@@ -96,6 +99,8 @@ enum TextStyle: String, TextStyleType {
             .signupHeader,
             .signupStepHeader,
             .signupStepDescription,
+            // Profile
+            .profileEcoStatus
         ]
     }
     
@@ -164,6 +169,9 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.loginHeaderLabel.value), .color(Color.loginHeaderLabel.value), .alignment(.center))
             case .loginNotYetRegistered:
                 return StringStyle(.font(Font.loginHeaderLabel.value), .color(Color.loginHeaderLabel.value), .alignment(.center))
+            // Profile
+            case .profileEcoStatus:
+                return StringStyle(.font(Font.profileEcoStatus.value), .color(Color.profileEcoStatus.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

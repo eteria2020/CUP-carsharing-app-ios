@@ -60,6 +60,9 @@
 "lbl_menuSettings" = "Impostazioni";
 "lbl_menuLogout" = "Logout";
 
+// Profilo
+"lbl_profileEcoStatus" = "Profilo\nEco Status";
+
 // Home
 "alert_homeNotAvailable" = "Questa funzione sarà disponibile prossimamente.";
 "lbl_homeDescriptionLogged" = "<bold>Bentornato %@!</bold>";

@@ -13,7 +13,7 @@ import Boomerang
 import YYWebImage
 import DeviceKit
 
-class IntroViewController : UIViewController, ViewModelBindable {
+class IntroViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var img_intro: YYAnimatedImageView!
     @IBOutlet fileprivate weak var lbl_title1: UILabel!
     @IBOutlet fileprivate weak var lbl_title2: UILabel!

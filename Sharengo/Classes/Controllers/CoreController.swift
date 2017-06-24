@@ -14,6 +14,7 @@ import KeychainSwift
 
 class CoreController {
     static let shared = CoreController()
+    var currentViewController: UIViewController?
     var apiController: ApiController = ApiController()
     var updateTimer: Timer?
     var updateInProgress = false

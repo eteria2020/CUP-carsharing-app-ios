@@ -13,7 +13,7 @@ import Boomerang
 import DeviceKit
 import SideMenu
 
-class CarBookingCompletedViewController : UIViewController, ViewModelBindable {
+class CarBookingCompletedViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var img_completed: UIImageView!
     @IBOutlet fileprivate weak var lbl_warning: UILabel!

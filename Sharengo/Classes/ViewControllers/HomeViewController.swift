@@ -14,7 +14,7 @@ import KeychainSwift
 import pop
 import SideMenu
 
-class HomeViewController : UIViewController, ViewModelBindable {
+class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var btn_searchCar: UIButton!
     @IBOutlet fileprivate weak var view_searchCar: UIView!
@@ -110,6 +110,10 @@ class HomeViewController : UIViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

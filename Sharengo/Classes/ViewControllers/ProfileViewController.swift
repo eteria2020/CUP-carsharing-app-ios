@@ -12,8 +12,9 @@ import RxCocoa
 import Boomerang
 import SideMenu
 
-class ProfileViewController : UIViewController, ViewModelBindable {
+class ProfileViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
+    @IBOutlet fileprivate weak var lbl_profileEcoStatus: UILabel!
     
     var viewModel: ProfileViewModel?
     
@@ -32,6 +33,7 @@ class ProfileViewController : UIViewController, ViewModelBindable {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.profileBackground.value
+        self.lbl_profileEcoStatus.styledText = "lbl_profileEcoStatus".localized()
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in

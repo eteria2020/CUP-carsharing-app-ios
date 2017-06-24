@@ -12,9 +12,11 @@ import RxSwift
 public class MenuItem: ModelType {
     var title: String = ""
     var icon: String = ""
+    var viewModel: ViewModelType?
     
-    init(title: String, icon: String) {
+    init(title: String, icon: String, viewModel: ViewModelType?) {
         self.title = title
         self.icon = icon
+        self.viewModel = viewModel
     }
 }

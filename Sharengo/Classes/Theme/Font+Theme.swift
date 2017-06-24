@@ -87,6 +87,9 @@ enum Font {
     case loginTextField
     case loginTextFieldPlaceholder
     case loginForgotPassword
+    
+    // Profile
+    case profileEcoStatus
 
     var value: UIFont {
         get {
@@ -165,6 +168,9 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             case .loginForgotPassword:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            // Profile
+            case .profileEcoStatus:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
             }
         }
     }

@@ -73,6 +73,10 @@ struct Router : RouterType {
                 destination.goToProfileAfterLogin = true
             }
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SignupViewModel:
+            let destination: SignupViewController = (Storyboard.main.scene(.signup))
+            destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is ProfileViewModel:
             let destination: ProfileViewController = (Storyboard.main.scene(.profile))
             destination.bind(to: ViewModelFactory.profile(), afterLoad: true)

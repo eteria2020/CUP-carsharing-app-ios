@@ -31,7 +31,7 @@ struct CustomTextInputStyle: AnimatedTextInputStyle {
     let yPlaceholderPositionOffset: CGFloat = 0
 }
 
-class LoginViewController : UIViewController, ViewModelBindable {
+class LoginViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var scrollView_main: TPKeyboardAvoidingScrollView!
     @IBOutlet fileprivate weak var view_scrollViewContainer: UIView!
@@ -73,12 +73,10 @@ class LoginViewController : UIViewController, ViewModelBindable {
                             let destination: ProfileViewController = (Storyboard.main.scene(.profile))
                             destination.bind(to: ViewModelFactory.profile(), afterLoad: true)
                             self?.navigationController?.pushViewController(destination, animated: true)
-                    
                             return
+                        } else if self != nil {
+                            Router.exit(self!)
                         }
-                        let destination: HomeViewController = (Storyboard.main.scene(.home))
-                        destination.bind(to: ViewModelFactory.home(), afterLoad: true)
-                        self?.navigationController?.pushViewController(destination, animated: true)
                     } else {
                         self?.hideLoader()
                     }

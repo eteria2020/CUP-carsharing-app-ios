@@ -12,7 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 
-class WebViewController : UIViewController, ViewModelBindable {
+class WebViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var webView: UIWebView!
     

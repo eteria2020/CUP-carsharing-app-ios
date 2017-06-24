@@ -142,6 +142,7 @@ enum Color {
     
     // Profile
     case profileBackground
+    case profileEcoStatus
     
     // Web
     case webBackground
@@ -267,6 +268,8 @@ enum Color {
             // Profile
             case .profileBackground:
                 return ColorBrand.lightGray.value
+            case .profileEcoStatus:
+                return ColorBrand.green.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value
