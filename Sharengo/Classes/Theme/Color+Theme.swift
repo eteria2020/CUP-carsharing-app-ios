@@ -81,8 +81,8 @@ enum Color {
     // Menu
     case menuTopBackground
     case menuBackBackground
-    case menuSeparator
     case menuLabel
+    case menuProfile
 
     // Signup
     case signupBackground
@@ -175,10 +175,10 @@ enum Color {
                 return ColorBrand.white.value
             case .menuBackBackground:
                 return ColorBrand.lightGray.value
-            case .menuSeparator:
-                return ColorBrand.gray.value
             case .menuLabel:
                 return ColorBrand.black.value
+            case .menuProfile:
+                return ColorBrand.green.value
             // Signup
             case .signupBackground:
                 return ColorBrand.lightGray.value

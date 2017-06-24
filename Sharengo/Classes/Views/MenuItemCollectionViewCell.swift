@@ -25,7 +25,6 @@ class MenuItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         guard let viewModel = viewModel as? MenuItemViewModel else {
             return
         }
-        
         self.layoutIfNeeded()
         self.viewModel = viewModel
         self.lbl_title.styledText = viewModel.title
@@ -41,7 +40,6 @@ class MenuItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.backgroundColor = Color.menuTopBackground.value
     }
 }

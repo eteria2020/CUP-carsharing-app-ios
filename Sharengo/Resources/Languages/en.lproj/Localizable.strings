@@ -50,8 +50,15 @@
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Iscrizione";
 "lbl_menuFaq" = "Faq e tutorial";
-"lbl_rates" = "Tariffe";
-"lbl_help" = "Richiedi assistenza";
+"lbl_menuRates" = "Tariffe";
+"lbl_menuHelp" = "Richiedi assistenza";
+"lbl_menuProfile" = "Profilo";
+"lbl_menuSearchCars" = "Prenota un'auto";
+"lbl_menuRaces" = "Cronologia corse";
+"lbl_menuBuyMinutes" = "Acquista minuti";
+"lbl_menuInvite" = "Invita un amico";
+"lbl_menuSettings" = "Impostazioni";
+"lbl_menuLogout" = "Logout";
 
 // Home
 "alert_homeNotAvailable" = "Questa funzione sarà disponibile prossimamente.";
