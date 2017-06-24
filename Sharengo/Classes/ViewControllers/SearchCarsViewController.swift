@@ -590,6 +590,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                     self.viewModel?.carBooking = nil
                                     self.viewModel?.carTrip = nil
                                     self.getResultsWithoutLoading()
+                                    CoreController.shared.allCarBookings = []
                                 })
                                 confirmDialog.allowTouchOutsideToDismiss = false
                                 confirmDialog.show()

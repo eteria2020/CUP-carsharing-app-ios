@@ -44,7 +44,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
-                guard let model = self.model(atIndex: indexPath) as? MenuItem else { return .empty() }
+                guard let model = self.model(atIndex: indexPath) as?  MenuItem else { return .empty() }
                 if let viewModel = model.viewModel  {
                     switch viewModel {
                     case is HomeViewModel:
