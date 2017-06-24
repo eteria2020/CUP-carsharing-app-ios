@@ -907,14 +907,18 @@ extension SearchCarsViewController: MKMapViewDelegate {
             annotationView?.annotationColor = UIColor.clear
             if let annotationView = annotationView {
                 if let carAnnotation = annotationView.annotation as? CarAnnotation {
+                    annotationView.image = carAnnotation.image
                     if carAnnotation.car?.nearest == true || carAnnotation.car?.booked == true || carAnnotation.car?.opened == true {
                         if carAnnotation.car?.booked == true || carAnnotation.car?.opened == true {
                             annotationView.annotationColor = Color.searchCarsBookedCar.value
                         } else if carAnnotation.car?.nearest == true {
-                            annotationView.annotationColor = Color.searchCarsNearestCar.value
+                            if self.viewModel?.carBooked != nil {
+                                annotationView.image = UIImage(named: "ic_auto")
+                            } else {
+                                annotationView.annotationColor = Color.searchCarsNearestCar.value
+                            }
                         }
                     }
-                    annotationView.image = carAnnotation.image
                 } else if let cityAnnotation = annotationView.annotation as? CityAnnotation {
                     annotationView.image = cityAnnotation.image
                 } else if annotationView.annotation is MKUserLocation {

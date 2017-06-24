@@ -192,10 +192,10 @@
     pulseAnimation.duration = self.outerPulseAnimationDuration;
     [animations addObject:pulseAnimation];
     
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     animation.duration = self.outerPulseAnimationDuration;
-    animation.values = @[@0.75, @0.5, @0.25];
-    animation.keyTimes = @[@0, @0.2, @1];
+    animation.fromValue = @1.0;
+    animation.toValue = @0.0;
     animation.removedOnCompletion = NO;
     [animations addObject:animation];
     
