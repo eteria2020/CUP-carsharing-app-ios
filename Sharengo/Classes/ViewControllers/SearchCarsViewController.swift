@@ -297,8 +297,10 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !self.checkedUserPosition {
+        if !self.checkedUserPosition && self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
             self.checkUserPosition()
+        } else {
+            self.checkedUserPosition = true
         }
     }
     
