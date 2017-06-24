@@ -902,6 +902,8 @@ extension SearchCarsViewController: MKMapViewDelegate {
             } else {
                 annotationView = SVPulsingAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             }
+            annotationView?.outerPulseAnimationDuration = 1.5
+            annotationView?.delayBetweenPulseCycles = 0.5
             annotationView?.annotationColor = UIColor.clear
             if let annotationView = annotationView {
                 if let carAnnotation = annotationView.annotation as? CarAnnotation {

@@ -194,7 +194,7 @@
     
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
     animation.duration = self.outerPulseAnimationDuration;
-    animation.values = @[@0.45, @0.45, @0];
+    animation.values = @[@0.75, @0.5, @0.25];
     animation.keyTimes = @[@0, @0.2, @1];
     animation.removedOnCompletion = NO;
     [animations addObject:animation];
