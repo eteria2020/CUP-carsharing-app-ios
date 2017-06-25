@@ -84,10 +84,12 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         viewModel.speechTranscription.asObservable()
             .subscribe(onNext: {[weak self] (speechTransition) in
                 DispatchQueue.main.async {
-                    self?.txt_search.text = speechTransition ?? ""
-                    if speechTransition != nil && self?.viewModel?.speechInProgress.value == true {
-                        self?.viewModel?.stopRequest()
-                        self?.viewModel?.reloadResults(text: speechTransition ?? "")
+                    if self?.viewModel?.speechInProgress.value == true {
+                        self?.txt_search.text = speechTransition ?? ""
+                        if speechTransition != nil && self?.viewModel?.speechInProgress.value == true {
+                            self?.viewModel?.stopRequest()
+                            self?.viewModel?.reloadResults(text: speechTransition ?? "")
+                        }
                     }
                 }
             }).addDisposableTo(self.disposeBag)
@@ -234,6 +236,12 @@ extension SearchBarView: UITextFieldDelegate {
             textField.resignFirstResponder()
             return false
         }
+        if self.viewModel?.speechInProgress.value == true && self.viewModel?.itemSelected == false {
+            self.viewModel?.selection.execute(.dictated)
+            if #available(iOS 10.0, *) {
+                self.viewModel?.speechController.speechTranscription.value = ""
+            }
+        }
         let text = (textField.text! as NSString).replacingCharacters(in: range, with:string)
         self.viewModel?.itemSelected = false
         self.getResults(text: text)
@@ -249,6 +257,7 @@ extension SearchBarView: UITextFieldDelegate {
             if #available(iOS 10.0, *) {
                 self.viewModel?.speechController.speechTranscription.value = ""
             }
+            textField.text = ""
             self.viewModel?.getHistoryAndFavorites()
         }
         self.updateCollectionView(show: false)

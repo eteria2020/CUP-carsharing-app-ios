@@ -52,7 +52,7 @@ public class CarTrip: ModelType, Decodable {
                     return "<bold>\(h):\(m):\(s)</bold>"
                 }
             }
-            return "<bold>00:00:00</bold>"
+            return nil
         }
     }
     var time: String {

@@ -127,6 +127,20 @@ final class SearchCarsViewModel: ViewModelType {
     
     func manageAnnotations() {
         var carBookedFounded: Bool = false
+        if let car = self.carBooked {
+            let locationController = LocationController.shared
+            if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
+                if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                    car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                    let index = self.cars.index(where: { (singleCar) -> Bool in
+                        return car.plate == singleCar.plate
+                    })
+                    if let index = index {
+                        self.cars[index].distance = car.distance
+                    }
+                }
+            }
+        }
         for car in self.cars {
             let locationController = LocationController.shared
             if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {

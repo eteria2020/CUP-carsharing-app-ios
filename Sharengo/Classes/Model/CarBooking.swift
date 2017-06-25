@@ -42,6 +42,7 @@ public class CarBooking: ModelType, Decodable {
                     let min = (Float(timeLength-seconds) / 60).rounded(.towardZero)
                     let sec = Float(timeLength-seconds).truncatingRemainder(dividingBy: 60)
                     if min <= 0 && sec <= 0 {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
                         return "<bold>00:00</bold> \("lbl_carBookingPopupTimeMinutes".localized())"
                     }
                     let m = (min < 10) ? "0\(Int(min))" : "\(Int(min))"

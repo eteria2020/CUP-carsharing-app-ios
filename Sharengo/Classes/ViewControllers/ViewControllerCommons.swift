@@ -127,6 +127,7 @@ extension UIViewController {
         static var loaderCount = "loaderCount"
         static var disposeBag = "vc_disposeBag"
         static var loadingViewController = "loadingViewController"
+        static var menuBackgroundView = "menuBackgroundView"
     }
     
     public var disposeBag: DisposeBag {
@@ -178,6 +179,11 @@ extension UIViewController {
         set { objc_setAssociatedObject(self, &AssociatedKeys.loadingViewController, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
     }
     
+    private var menuBackgroundView:UIView? {
+        get { return objc_getAssociatedObject(self, &AssociatedKeys.menuBackgroundView) as? UIView ?? nil}
+        set { objc_setAssociatedObject(self, &AssociatedKeys.menuBackgroundView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
+    }
+    
     func loaderView() -> UIView {
         return RTSpinKitView(style: .stylePulse, color: UIColor.red, spinnerSize: 44)
     }
@@ -223,6 +229,30 @@ extension UIViewController {
                     self?.loadingViewController!.removeFromParentViewController()
                 }
             }
+        }
+    }
+    
+    func showMenuBackground() {
+        if self.menuBackgroundView == nil {
+            self.menuBackgroundView = UIView(frame: self.view.frame)
+            self.menuBackgroundView!.backgroundColor = ColorBrand.green.value
+            self.menuBackgroundView!.alpha = 0.0
+            self.view.addSubview(self.menuBackgroundView!)
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.menuBackgroundView!.alpha = 0.7
+            })
+        }
+    }
+    
+    func hideMenuBackground() {
+        if self.menuBackgroundView != nil {
+            UIView.animate(withDuration: 0.3, animations: { 
+                self.menuBackgroundView!.alpha = 0.0
+            }, completion: { (success) in
+                self.menuBackgroundView!.removeFromSuperview()
+                self.menuBackgroundView = nil
+            })
         }
     }
     

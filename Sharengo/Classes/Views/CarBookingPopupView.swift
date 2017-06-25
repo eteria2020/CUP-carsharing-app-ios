@@ -80,13 +80,19 @@ class CarBookingPopupView: UIView {
         viewModel.time.asObservable()
             .subscribe(onNext: {[weak self] (time) in
                 DispatchQueue.main.async {
-                    self?.lbl_time.styledText = time
-                    if self?.viewModel?.carBooking != nil {
-                        self?.icn_time.image = UIImage(named: "ic_time_1")
-                        self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.4
-                    } else if self?.viewModel?.carTrip != nil {
-                        self?.icn_time.image = UIImage(named: "ic_time_2")
-                        self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.45
+                    if time != "" {
+                        self?.icn_time.isHidden = false
+                        self?.lbl_time.styledText = time
+                        if self?.viewModel?.carBooking != nil {
+                            self?.icn_time.image = UIImage(named: "ic_time_1")
+                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.4
+                        } else if self?.viewModel?.carTrip != nil {
+                            self?.icn_time.image = UIImage(named: "ic_time_2")
+                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.45
+                        }
+                    } else {
+                        self?.lbl_time.styledText = ""
+                        self?.icn_time.isHidden = true
                     }
                 }
             }).addDisposableTo(disposeBag)

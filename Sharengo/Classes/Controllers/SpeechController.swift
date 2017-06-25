@@ -173,6 +173,7 @@ class SpeechController: NSObject
     }
     
     fileprivate func startRecording() {
+        audioEngine.inputNode?.removeTap(onBus: 0)
         self.speechRecognizer?.delegate = self
         if self.recognitionTask != nil {
             self.recognitionTask?.cancel()

@@ -39,6 +39,8 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                 Router.from(self,viewModel: viewModel).execute()
             case .logout:
                 KeychainSwift().clear()
+                CoreController.shared.allCarBookings = []
+                CoreController.shared.allCarTrips = []
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
                 let dispatchTime = DispatchTime.now() + 0.3
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -68,11 +70,20 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.menuBackBackground.value
-        view_header.backgroundColor = Color.menuTopBackground.value
+        self.view_header.backgroundColor = Color.menuTopBackground.value
+        self.view_userIcon.isHidden = true
+        self.img_userIcon.isHidden = true
+        self.btn_profileEco.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        CoreController.shared.currentViewController?.showMenuBackground()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        CoreController.shared.currentViewController?.hideMenuBackground()
     }
     
     deinit {

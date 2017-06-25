@@ -52,12 +52,24 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                         self?.clusteringManager.removeAll()
                         self?.clusteringManager.add(annotations: array)
                         DispatchQueue.global(qos: .userInitiated).async {
-                            let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
-                            let mapRectWidth = self?.mapView?.visibleMapRect.size.width
-                            let scale = mapBoundsWidth / mapRectWidth!
-                            let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
-                            DispatchQueue.main.async {
-                                self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
+                            if let radius = self?.getRadius() {
+                                if radius > 150 {
+                                    let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
+                                    let mapRectWidth = self?.mapView?.visibleMapRect.size.width
+                                    let scale = mapBoundsWidth / mapRectWidth!
+                                    let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
+                                    DispatchQueue.main.async {
+                                        self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
+                                    }
+                                } else {
+                                    DispatchQueue.main.async {
+                                        self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
+                                    }
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
+                                }
                             }
                         }
                         self?.setUpdateButtonAnimated(false)
@@ -121,8 +133,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
-                self?.openCar(car: car)
-                /*
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
                         self?.openCar(car: car)
@@ -136,7 +146,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 } else {
                     self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
-                */
             case .book(let car):
                 self?.bookCar(car: car)
             default: break
@@ -162,8 +171,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
-                self?.openCar(car: car)
-                /*
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
                         self?.openCar(car: car)
@@ -177,7 +184,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 } else {
                     self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
-                */
             case .delete:
                 let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupDeleteMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(),
                                         okButtonHandler: { alertView in
@@ -283,18 +289,19 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(forName:
         NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
-            self.view_searchBar.updateInterface()
-            let locationController = LocationController.shared
-            if locationController.isAuthorized && locationController.currentLocation != nil {
-                self.mapView?.showsUserLocation = true
-                self.setUserPositionButtonVisible(true)
-            } else {
-                self.mapView?.showsUserLocation = false
-                self.setUserPositionButtonVisible(false)
-            }
-            self.getResults()
+                self.view_searchBar.updateInterface()
+                let locationController = LocationController.shared
+                if locationController.isAuthorized && locationController.currentLocation != nil {
+                    self.mapView?.showsUserLocation = true
+                    self.setUserPositionButtonVisible(true)
+                } else {
+                    self.mapView?.showsUserLocation = false
+                    self.setUserPositionButtonVisible(false)
+                }
+                self.getResults()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
     }
     
     deinit {
@@ -303,7 +310,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !self.checkedUserPosition && self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
+        if !self.checkedUserPosition {
             self.checkUserPosition()
         } else {
             self.checkedUserPosition = true
@@ -376,17 +383,19 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                     DispatchQueue.main.async {
                         if let car = car {
                             if carBooking.id != self?.viewModel?.carBooking?.id {
-                                // Open
-                                car.booked = true
-                                self?.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
-                                self?.view_carBookingPopup.alpha = 1.0
-                                self?.viewModel?.carBooked = car
-                                self?.viewModel?.carBooking = carBooking
-                                self?.getResultsWithoutLoading()
-                                if let location = car.location {
-                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                    let span = MKCoordinateSpanMake(0.001, 0.001)
-                                    self?.centerMap(on: newLocation, span: span)
+                                if carBooking.timer != "<bold>00:00</bold> \("lbl_carBookingPopupTimeMinutes".localized())" {
+                                    // Open
+                                    car.booked = true
+                                    self?.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                    self?.view_carBookingPopup.alpha = 1.0
+                                    self?.viewModel?.carBooked = car
+                                    self?.viewModel?.carBooking = carBooking
+                                    self?.getResultsWithoutLoading()
+                                    if let location = car.location {
+                                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                                        let span = MKCoordinateSpanMake(0.001, 0.001)
+                                        self?.centerMap(on: newLocation, span: span)
+                                    }
                                 }
                             } else {
                                 // Update
@@ -400,6 +409,19 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                     }
                 }).addDisposableTo(disposeBag)
         } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carBooking != nil {
+            self.closeCarBookingPopupView()
+        }
+        if let carAnnotation = self.mapView.selectedAnnotations.first as? CarAnnotation {
+            if let car = carAnnotation.car {
+                self.view_carPopup.updateWithCar(car: car)
+                self.view.layoutIfNeeded()
+            }
+        }
+        self.getResultsWithoutLoading()
+    }
+    
+    @objc func closeCarBookingPopupView() {
+        if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carBooking != nil {
             let dispatchTime = DispatchTime.now() + 1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 // Close
@@ -416,13 +438,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 self.getResultsWithoutLoading()
             }
         }
-        if let carAnnotation = self.mapView.selectedAnnotations.first as? CarAnnotation {
-            if let car = carAnnotation.car {
-                self.view_carPopup.updateWithCar(car: car)
-                self.view.layoutIfNeeded()
-            }
-        }
-        self.getResultsWithoutLoading()
     }
     
     // MARK: - CarPopup methods
@@ -591,12 +606,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                 self.hideLoader()
                                 let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                     alertView.dismissAlertView()
-                                    self.view_carBookingPopup.alpha = 0.0
-                                    self.viewModel?.carBooked = nil
-                                    self.viewModel?.carBooking = nil
-                                    self.viewModel?.carTrip = nil
-                                    self.getResultsWithoutLoading()
-                                    CoreController.shared.allCarBookings = []
+                                    self.closeCarBookingPopupView()
                                 })
                                 confirmDialog.allowTouchOutsideToDismiss = false
                                 confirmDialog.show()
@@ -644,11 +654,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                     let button = arrayOfButtons[i]
                     if menuItem.input == .center {
                         if visible {
-                            button.isUserInteractionEnabled = true
-                            button.isEnabled = true
+                            button.alpha = 1
+                            //button.isUserInteractionEnabled = true
+                            //button.isEnabled = true
                         } else {
-                            button.isUserInteractionEnabled = false
-                            button.isEnabled = false
+                            button.alpha = 0.5
+                            //button.isUserInteractionEnabled = false
+                            //button.isEnabled = false
                         }
                         return
                     }
@@ -773,9 +785,11 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         if locationController.isAuthorized, let userLocation = locationController.currentLocation {
             self.mapView?.showsUserLocation = true
             self.setUserPositionButtonVisible(true)
-            let span = MKCoordinateSpanMake(0.01, 0.01)
-            self.centerMap(on: userLocation, span: span)
             self.checkedUserPosition = true
+            if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
+                let span = MKCoordinateSpanMake(0.01, 0.01)
+                self.centerMap(on: userLocation, span: span)
+            }
         } else if !UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
             locationController.requestLocationAuthorization(handler: { (status) in
                 UserDefaults.standard.set(true, forKey: "FirstCheckUserPosition")
@@ -880,12 +894,24 @@ extension SearchCarsViewController: MKMapViewDelegate {
         self.getResults()
         if self.clusteringInProgress {
             DispatchQueue.global(qos: .userInitiated).async {
-                let mapBoundsWidth = Double(self.mapView.bounds.size.width)
-                let mapRectWidth = self.mapView.visibleMapRect.size.width
-                let scale = mapBoundsWidth / mapRectWidth
-                let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
-                DispatchQueue.main.async {
-                    self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
+                if let radius = self.getRadius() {
+                    if radius > 150 {
+                        let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+                        let mapRectWidth = self.mapView.visibleMapRect.size.width
+                        let scale = mapBoundsWidth / mapRectWidth
+                        let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
+                        DispatchQueue.main.async {
+                            self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.clusteringManager.display(annotations: self.viewModel?.array_annotations.value ?? [], onMapView:self.mapView!)
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.clusteringManager.display(annotations: self.viewModel?.array_annotations.value ?? [], onMapView:self.mapView!)
+                    }
                 }
             }
         }

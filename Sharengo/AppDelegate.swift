@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        LocationController.shared.locationManager.stopUpdatingLocation()
+        LocationController.shared.locationManager.startUpdatingLocation()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -69,10 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate
-{
-    func setupSideMenu()
-    {
+extension AppDelegate {
+    func setupSideMenu() {
         SideMenuManager.menuPresentMode = .menuSlideIn
         SideMenuManager.menuShadowColor = .black
         SideMenuManager.menuFadeStatusBar = false
