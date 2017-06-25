@@ -35,6 +35,26 @@ public class CarTrip: ModelType, Decodable {
     
     var car: Variable<Car?> = Variable(nil)
   
+    var timer: String? {
+        get {
+            if let timeStart = self.timeStart {
+                let start = timeStart
+                let enddt = Date()
+                let calendar = Calendar.current
+                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
+                if let seconds = datecomponenets.second {
+                    let hours = (Float(seconds) / 60 / 60).rounded(.towardZero)
+                    let min = (Float(seconds - Int(60*hours)) / 60).rounded(.towardZero)
+                    let sec = (Float(seconds - Int(60*min))).rounded(.towardZero)
+                    let h = (hours < 10) ? "0\(Int(hours))" : "\(Int(hours))"
+                    let m = (min < 10) ? "0\(Int(min))" : "\(Int(min))"
+                    let s = (sec < 10) ? "0\(Int(sec))" : "\(Int(sec))"
+                    return "<bold>\(h):\(m):\(s)</bold>"
+                }
+            }
+            return "<bold>00:00:00</bold>"
+        }
+    }
     var time: String {
         get {
             if let timeStart = self.timeStart {

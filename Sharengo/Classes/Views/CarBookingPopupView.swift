@@ -67,8 +67,6 @@ class CarBookingPopupView: UIView {
         self.lbl_pin.styledText = viewModel.pin
         self.btn_open.isHidden = false
         self.btn_delete.isHidden = false
-        self.icn_time.isHidden = true
-        self.view_time.isHidden = true
         if viewModel.hideButtons {
             self.btn_open.isHidden = true
             self.btn_delete.isHidden = true
@@ -83,12 +81,12 @@ class CarBookingPopupView: UIView {
             .subscribe(onNext: {[weak self] (time) in
                 DispatchQueue.main.async {
                     self?.lbl_time.styledText = time
-                    if time == "" {
-                        self?.icn_time.isHidden = true
-                        self?.view_time.isHidden = true
-                    } else {
-                        self?.icn_time.isHidden = false
-                        self?.view_time.isHidden = false
+                    if self?.viewModel?.carBooking != nil {
+                        self?.icn_time.image = UIImage(named: "ic_time_1")
+                        self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.4
+                    } else if self?.viewModel?.carTrip != nil {
+                        self?.icn_time.image = UIImage(named: "ic_time_2")
+                        self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.45
                     }
                 }
             }).addDisposableTo(disposeBag)

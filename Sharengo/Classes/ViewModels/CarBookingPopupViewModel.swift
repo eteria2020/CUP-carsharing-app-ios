@@ -80,7 +80,9 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.updateData()
         if let car = self.carTrip?.car.value {
             self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
-            if let address = car.address.value {
+            if self.carTrip != nil {
+                self.info.value = String(format: "lbl_carTripPopupInfo".localized(), car.plate ?? "")
+            } else if let address = car.address.value {
                 self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
             } else {
                 car.getAddress()
@@ -113,8 +115,12 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     @objc fileprivate func updateTime() {
         self.time.value = ""
         if self.carBooking?.car.value?.opened == false {
-            if let time = self.carBooking?.time {
-                self.time.value = String(format: "lbl_carBookingPopupTime".localized(), time)
+            if let timer = self.carBooking?.timer {
+                self.time.value = String(format: "lbl_carBookingPopupTime".localized(), timer)
+            }
+        } else if self.carTrip?.car.value?.opened == true {
+            if let timer = self.carTrip?.timer {
+                self.time.value = timer
             }
         }
     }

@@ -121,6 +121,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
+                self?.openCar(car: car)
+                /*
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
                         self?.openCar(car: car)
@@ -134,6 +136,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 } else {
                     self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
+                */
             case .book(let car):
                 self?.bookCar(car: car)
             default: break
@@ -159,6 +162,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
+                self?.openCar(car: car)
+                /*
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
                         self?.openCar(car: car)
@@ -172,6 +177,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 } else {
                     self?.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
                 }
+                */
             case .delete:
                 let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupDeleteMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(),
                                         okButtonHandler: { alertView in

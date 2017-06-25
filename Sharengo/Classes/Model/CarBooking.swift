@@ -31,7 +31,7 @@ public class CarBooking: ModelType, Decodable {
     
     var car: Variable<Car?> = Variable(nil)
   
-    var time: String? {
+    var timer: String? {
         get {
             if let timeStart = self.timeStart {
                 let start = timeStart

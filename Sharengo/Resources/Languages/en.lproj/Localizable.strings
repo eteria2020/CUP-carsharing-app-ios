@@ -106,6 +106,7 @@
 "lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
 "lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
+"lbl_carTripPopupInfo" = "<status>CORSA ATTIVA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
 "lbl_carBookingPopupTime" = "Scade tra\n%@";
 "lbl_carBookingPopupTimeMinute" = "minuto";
 "lbl_carBookingPopupTimeMinutes" = "minuti";

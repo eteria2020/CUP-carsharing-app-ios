@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -113,10 +113,10 @@
                     <rect key="frame" x="0.0" y="168" width="400" height="75"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-WS-YN0">
-                            <rect key="frame" x="0.0" y="0.0" width="160" height="75"/>
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="75"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_1" translatesAutoresizingMaskIntoConstraints="NO" id="aLg-CH-6lV">
-                                    <rect key="frame" x="105" y="10" width="55" height="55"/>
+                                    <rect key="frame" x="45" y="10" width="55" height="55"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="aLg-CH-6lV" secondAttribute="height" multiplier="1:1" id="66O-dg-ihD"/>
                                     </constraints>
@@ -124,16 +124,17 @@
                             </subviews>
                             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="100" identifier="widthIcnTime" id="LQ6-HY-Lxb"/>
                                 <constraint firstItem="aLg-CH-6lV" firstAttribute="top" secondItem="NSy-WS-YN0" secondAttribute="top" constant="10" id="f6s-gJ-acH"/>
                                 <constraint firstAttribute="trailing" secondItem="aLg-CH-6lV" secondAttribute="trailing" id="nIP-j7-Upp"/>
                                 <constraint firstAttribute="bottom" secondItem="aLg-CH-6lV" secondAttribute="bottom" constant="10" id="qYg-t7-e9C"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fF-f1-a2Q">
-                            <rect key="frame" x="160" y="0.0" width="240" height="75"/>
+                            <rect key="frame" x="100" y="0.0" width="300" height="75"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipR-dL-nAT">
-                                    <rect key="frame" x="10" y="0.0" width="220" height="75"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipR-dL-nAT">
+                                    <rect key="frame" x="10" y="0.0" width="280" height="75"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -166,7 +167,6 @@
                         <constraint firstItem="CvU-ea-MGv" firstAttribute="leading" secondItem="vvp-c2-hMv" secondAttribute="leading" id="HE9-Or-Mon"/>
                         <constraint firstItem="NSy-WS-YN0" firstAttribute="leading" secondItem="vvp-c2-hMv" secondAttribute="leading" id="RuK-id-skM"/>
                         <constraint firstItem="2fF-f1-a2Q" firstAttribute="top" secondItem="vvp-c2-hMv" secondAttribute="top" id="S0I-4p-waF"/>
-                        <constraint firstItem="NSy-WS-YN0" firstAttribute="width" secondItem="vvp-c2-hMv" secondAttribute="width" multiplier="0.4" id="VMH-Zm-2KB"/>
                         <constraint firstAttribute="trailing" secondItem="CvU-ea-MGv" secondAttribute="trailing" id="Y3B-ap-Xbg"/>
                         <constraint firstAttribute="trailing" secondItem="2fF-f1-a2Q" secondAttribute="trailing" id="nlH-cj-5pC"/>
                         <constraint firstAttribute="bottom" secondItem="NSy-WS-YN0" secondAttribute="bottom" id="wBL-94-ZnA"/>
