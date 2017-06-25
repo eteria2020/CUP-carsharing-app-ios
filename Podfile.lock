@@ -15,6 +15,7 @@ PODS:
   - DateToolsSwift (2.0.3)
   - DeviceKit (1.0.1)
   - Fabric (1.6.11)
+  - Gifu (2.0.0)
   - Gloss (1.2.4)
   - Hero (0.3.6)
   - KeychainSwift (8.0.2)
@@ -49,13 +50,6 @@ PODS:
   - SpinKit (1.2.0)
   - StoryboardConstraint (0.1.0)
   - TPKeyboardAvoiding (1.3.1)
-  - YYCache (1.0.4)
-  - YYImage (1.0.4):
-    - YYImage/Core (= 1.0.4)
-  - YYImage/Core (1.0.4)
-  - YYWebImage (1.0.5):
-    - YYCache
-    - YYImage
 
 DEPENDENCIES:
   - Action (from `https://github.com/RxSwiftCommunity/Action.git`)
@@ -67,6 +61,7 @@ DEPENDENCIES:
   - DateToolsSwift
   - DeviceKit
   - Fabric
+  - Gifu
   - Gloss
   - Hero
   - KeychainSwift
@@ -83,7 +78,6 @@ DEPENDENCIES:
   - SpinKit
   - StoryboardConstraint
   - TPKeyboardAvoiding
-  - YYWebImage
 
 EXTERNAL SOURCES:
   Action:
@@ -111,6 +105,7 @@ SPEC CHECKSUMS:
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Gifu: 56a4d8f1092399159fa32662aa2232158b48d8ac
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   KeychainSwift: 213db04dfe7244988e61f77c72a2afb2f775954a
@@ -130,10 +125,7 @@ SPEC CHECKSUMS:
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
   StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
-  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
-  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
-  YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 46296d0feb215b1d655f95924f773d5d2872a9d8
+PODFILE CHECKSUM: e091d841453cdb3f14364ccf28b72b67b226e48e
 
 COCOAPODS: 1.2.1

@@ -97,6 +97,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Boomerang/Boomerang.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DateToolsSwift/DateToolsSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DeviceKit/DeviceKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Gifu/Gifu.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Gloss/Gloss.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Hero/Hero.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainSwift/KeychainSwift.framework"
@@ -115,9 +116,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SpinKit/SpinKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/StoryboardConstraint/StoryboardConstraint.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TPKeyboardAvoiding/TPKeyboardAvoiding.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YYCache/YYCache.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YYImage/YYImage.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YYWebImage/YYWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -129,6 +127,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Boomerang/Boomerang.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DateToolsSwift/DateToolsSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DeviceKit/DeviceKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Gifu/Gifu.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Gloss/Gloss.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Hero/Hero.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainSwift/KeychainSwift.framework"
@@ -147,9 +146,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SpinKit/SpinKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/StoryboardConstraint/StoryboardConstraint.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TPKeyboardAvoiding/TPKeyboardAvoiding.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YYCache/YYCache.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YYImage/YYImage.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/YYWebImage/YYWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

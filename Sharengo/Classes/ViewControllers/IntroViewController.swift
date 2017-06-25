@@ -10,11 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
-import YYWebImage
+import Gifu
 import DeviceKit
 
 class IntroViewController : UIViewController, ViewModelBindable {
-    @IBOutlet fileprivate weak var img_intro: YYAnimatedImageView!
+    @IBOutlet fileprivate weak var img_intro: GIFImageView!
     @IBOutlet fileprivate weak var lbl_title1: UILabel!
     @IBOutlet fileprivate weak var lbl_title2: UILabel!
     @IBOutlet fileprivate weak var lbl_title3: UILabel!
@@ -69,64 +69,57 @@ class IntroViewController : UIViewController, ViewModelBindable {
         default:
             break
         }
-        if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
-            self.img_intro.yy_imageURL = url
-            var dispatchTime = DispatchTime.now() + 2.8
+        self.img_intro.animate(withGIFNamed: "INTRO LUNGA INIZIO.gif", loopCount: 1)
+        var dispatchTime = DispatchTime.now() + 2.8
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            self.img_intro.animate(withGIFNamed: "INTRO LUNGA FINE.gif", loopCount: 1)
+            self.lbl_title1.alpha = 1.0
+            UIView.animate(withDuration: 0.8, animations: {
+                self.view.constraint(withIdentifier: "bottomLblTitle1", searchInSubviews: true)?.constant = bottomTitle1
+                self.view.layoutIfNeeded()
+            })
+            dispatchTime = DispatchTime.now() + 1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                if let url = Bundle.main.url(forResource: "INTRO LUNGA FINE", withExtension: "gif") {
-                    self.img_intro.yy_imageURL = url
-                    self.lbl_title1.alpha = 1.0
+                self.lbl_title2.alpha = 1.0
+                UIView.animate(withDuration: 0.8, animations: {
+                    self.view.constraint(withIdentifier: "bottomLblTitle2", searchInSubviews: true)?.constant = bottomTitle2
+                    self.view.layoutIfNeeded()
+                })
+                dispatchTime = DispatchTime.now() + 1
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    self.lbl_title3.alpha = 1.0
                     UIView.animate(withDuration: 0.8, animations: {
-                        self.view.constraint(withIdentifier: "bottomLblTitle1", searchInSubviews: true)?.constant = bottomTitle1
+                        self.lbl_title1.alpha = 0.0
+                        self.lbl_title2.alpha = 0.0
+                        self.view.constraint(withIdentifier: "bottomLblTitle3", searchInSubviews: true)?.constant = bottomTitle3
                         self.view.layoutIfNeeded()
                     })
                     dispatchTime = DispatchTime.now() + 1
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        self.lbl_title2.alpha = 1.0
                         UIView.animate(withDuration: 0.8, animations: {
-                            self.view.constraint(withIdentifier: "bottomLblTitle2", searchInSubviews: true)?.constant = bottomTitle2
-                            self.view.layoutIfNeeded()
-                        })
-                        dispatchTime = DispatchTime.now() + 1
-                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            self.lbl_title3.alpha = 1.0
-                            UIView.animate(withDuration: 0.8, animations: {
-                                self.lbl_title1.alpha = 0.0
-                                self.lbl_title2.alpha = 0.0
-                                self.view.constraint(withIdentifier: "bottomLblTitle3", searchInSubviews: true)?.constant = bottomTitle3
-                                self.view.layoutIfNeeded()
-                            })
-                            dispatchTime = DispatchTime.now() + 1
-                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                UIView.animate(withDuration: 0.8, animations: {
-                                    self.lbl_title3.alpha = 0.0
-                                })
-                            }
-                        }
-                    }
-                    dispatchTime = DispatchTime.now() + 4.8
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        self.img_intro.stopAnimating()
-                        UserDefaults.standard.set(true, forKey: "LongIntro")
-                        UIView.animate(withDuration: 0.5, animations: {
-                            self.view.frame.origin.y = -UIScreen.main.bounds.size.height
+                            self.lbl_title3.alpha = 0.0
                         })
                     }
                 }
+            }
+            dispatchTime = DispatchTime.now() + 4.8
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                self.img_intro.stopAnimating()
+                UserDefaults.standard.set(true, forKey: "LongIntro")
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.frame.origin.y = -UIScreen.main.bounds.size.height
+                })
             }
         }
     }
     
     fileprivate func executeShortIntro() {
-        if let url = Bundle.main.url(forResource: "INTRO BREVE", withExtension: "gif") {
-            self.img_intro.yy_imageURL = url
-            let dispatchTime = DispatchTime.now() + 1
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.img_intro.stopAnimating()
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.frame.origin.y = -UIScreen.main.bounds.size.height
-                })
-            }
+        self.img_intro.animate(withGIFNamed: "INTRO BREVE.gif", loopCount: 1)
+        let dispatchTime = DispatchTime.now() + 1.3
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.frame.origin.y = -UIScreen.main.bounds.size.height
+            })
         }
     }
 }

@@ -142,7 +142,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                     self.animateButtons()
                 }
             } else {
-                let dispatchTime = DispatchTime.now() + 1.5
+                let dispatchTime = DispatchTime.now() + 1.8
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                     self.animateButtons()
                 }

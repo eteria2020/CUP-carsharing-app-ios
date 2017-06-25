@@ -25,7 +25,7 @@ def shared_pods
     pod 'ReachabilitySwift'
     pod 'StoryboardConstraint'
     pod 'DeviceKit'	
-    pod 'YYWebImage'
+    pod 'Gifu'
     pod 'TPKeyboardAvoiding'
     pod 'SideMenu'
 end
