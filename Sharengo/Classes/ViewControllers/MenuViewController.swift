@@ -78,12 +78,16 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        CoreController.shared.currentViewController?.showMenuBackground()
+        if animated {
+            CoreController.shared.currentViewController?.showMenuBackground()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        CoreController.shared.currentViewController?.hideMenuBackground()
+        if animated {
+            CoreController.shared.currentViewController?.hideMenuBackground()
+        }
     }
     
     deinit {
@@ -121,7 +125,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-56)/9)
+        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-76)/9)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

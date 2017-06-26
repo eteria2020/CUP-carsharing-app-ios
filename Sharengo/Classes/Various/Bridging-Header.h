@@ -5,6 +5,5 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
-#import <YYWebImage/YYWebImage.h>
 #import "SVPulsingAnnotationView.h"
 #import <CommonCrypto/CommonCrypto.h>
