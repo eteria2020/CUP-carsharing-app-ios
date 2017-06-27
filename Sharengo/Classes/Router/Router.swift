@@ -85,6 +85,10 @@ struct Router : RouterType {
             let destination: HomeViewController = (Storyboard.main.scene(.home))
             destination.bind(to: ViewModelFactory.home(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SettingsViewModel:
+            let destination: SettingsViewController = (Storyboard.main.scene(.settings))
+            destination.bind(to: ViewModelFactory.settings(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

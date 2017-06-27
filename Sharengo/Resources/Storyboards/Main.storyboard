@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1058,6 +1058,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWG-Sf-dBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="70" y="768"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="BDb-KC-6Zh">
+            <objects>
+                <viewController storyboardIdentifier="settings" id="7sH-Vu-0ky" customClass="SettingsViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FFT-nh-Rph"/>
+                        <viewControllerLayoutGuide type="bottom" id="QKf-sF-JSc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xMR-ry-dtA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XA8-el-Ar4" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="A76-dT-z6t"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sdl-K3-HYF">
+                                <rect key="frame" x="0.0" y="56" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZf-VS-rzB">
+                                        <rect key="frame" x="15" y="15" width="345" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="menuHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OKe-It-MK8"/>
+                                    <constraint firstAttribute="trailing" secondItem="nZf-VS-rzB" secondAttribute="trailing" constant="15" id="kqW-40-bsU"/>
+                                    <constraint firstAttribute="bottom" secondItem="nZf-VS-rzB" secondAttribute="bottom" constant="15" id="vJN-vw-Sov"/>
+                                    <constraint firstItem="nZf-VS-rzB" firstAttribute="top" secondItem="Sdl-K3-HYF" secondAttribute="top" constant="15" id="vJp-7D-qTy"/>
+                                    <constraint firstItem="nZf-VS-rzB" firstAttribute="leading" secondItem="Sdl-K3-HYF" secondAttribute="leading" constant="15" id="yT2-KL-76A"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ggH-TX-OeB">
+                                <rect key="frame" x="0.0" y="106" width="375" height="561"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PzZ-Fe-G0B">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ggH-TX-OeB" firstAttribute="leading" secondItem="xMR-ry-dtA" secondAttribute="leading" id="PRz-4n-6xd"/>
+                            <constraint firstItem="ggH-TX-OeB" firstAttribute="top" secondItem="Sdl-K3-HYF" secondAttribute="bottom" id="RMp-Wu-yZS"/>
+                            <constraint firstItem="QKf-sF-JSc" firstAttribute="top" secondItem="ggH-TX-OeB" secondAttribute="bottom" id="ToT-CA-fh2"/>
+                            <constraint firstAttribute="trailing" secondItem="Sdl-K3-HYF" secondAttribute="trailing" id="YAa-bH-5tm"/>
+                            <constraint firstAttribute="trailing" secondItem="ggH-TX-OeB" secondAttribute="trailing" id="gBh-Ku-Ubt"/>
+                            <constraint firstItem="Sdl-K3-HYF" firstAttribute="leading" secondItem="xMR-ry-dtA" secondAttribute="leading" id="hNF-cC-LKB"/>
+                            <constraint firstAttribute="trailing" secondItem="Sdl-K3-HYF" secondAttribute="trailing" id="lLT-zC-Xn3"/>
+                            <constraint firstItem="XA8-el-Ar4" firstAttribute="top" secondItem="FFT-nh-Rph" secondAttribute="bottom" id="nkv-he-sIx"/>
+                            <constraint firstItem="Sdl-K3-HYF" firstAttribute="leading" secondItem="xMR-ry-dtA" secondAttribute="leading" id="qaA-JO-DDN"/>
+                            <constraint firstAttribute="trailing" secondItem="XA8-el-Ar4" secondAttribute="trailing" id="rvW-B2-5N5"/>
+                            <constraint firstItem="Sdl-K3-HYF" firstAttribute="top" secondItem="XA8-el-Ar4" secondAttribute="bottom" id="vHm-4b-mDq"/>
+                            <constraint firstItem="XA8-el-Ar4" firstAttribute="leading" secondItem="xMR-ry-dtA" secondAttribute="leading" id="zxL-9D-Gps"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dop-kk-ufq"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ggH-TX-OeB" id="flg-18-quZ"/>
+                        <outlet property="lbl_title" destination="nZf-VS-rzB" id="3bg-wy-Q0l"/>
+                        <outlet property="view_header" destination="Sdl-K3-HYF" id="BNr-Bf-SDb"/>
+                        <outlet property="view_navigationBar" destination="XA8-el-Ar4" id="lqb-w9-Hym"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2p2-7v-Au9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="223" y="1605"/>
         </scene>
     </scenes>
     <resources>

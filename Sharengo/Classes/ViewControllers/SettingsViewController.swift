@@ -10,8 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
+import SideMenu
 
 class SettingsViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+    @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
@@ -49,6 +51,20 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
+        
+        // NavigationBar
+        self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
+        self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            case .home:
+                Router.exit(self!)
+            case .menu:
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+            default:
+                break
+            }
+        }).addDisposableTo(self.disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

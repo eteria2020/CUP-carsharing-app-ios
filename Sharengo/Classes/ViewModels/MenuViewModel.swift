@@ -61,6 +61,10 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
                         if !(CoreController.shared.currentViewController is SearchCarsViewController) {
                             return .just(.viewModel(viewModel))
                         }
+                    case is SettingsViewModel:
+                        if !(CoreController.shared.currentViewController is SettingsViewController) {
+                            return .just(.viewModel(viewModel))
+                        }
                     default:
                         return .just(.viewModel(viewModel))
                     }
