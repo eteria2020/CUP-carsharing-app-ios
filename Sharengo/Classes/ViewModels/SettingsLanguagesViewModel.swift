@@ -20,19 +20,19 @@ enum SettingsLanguageSelectionOutput : SelectionOutput {
     case empty
 }
 
-final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
+final class SettingsLanguagesViewModel : ListViewModelType, ViewModelTypeSelectable {
     var dataHolder: ListDataHolderType = ListDataHolder.empty
     var languages = [Language]()
     var title = ""
     fileprivate var resultsDispose: DisposeBag?
     
-    lazy var selection:Action<SettingSelectionInput,SettingSelectionOutput> = Action { input in
+    lazy var selection:Action<SettingsLanguageSelectionInput,SettingsLanguageSelectionOutput> = Action { input in
         return .empty()
     }
     
     func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
-        if let item = model as? Setting {
-            return ViewModelFactory.settingItem(fromModel: item)
+        if let item = model as? Language {
+            return ViewModelFactory.settingsLanguagesItem(fromModel: item)
         }
         return nil
     }
@@ -40,8 +40,8 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     init() {
         self.title = "lbl_settingsLanguagesHeaderTitle".localized()
         
-        let languageItem1 = Setting(title: "language_italian", icon: "ic_login", viewModel: ViewModelFactory.login())
-        let languageItem2 = Setting(title: "language_english", icon: "ic_iscrizione", viewModel: ViewModelFactory.signup())
+        let languageItem1 = Language(title: "language_italian")
+        let languageItem2 = Language(title: "language_english")
         languages.append(languageItem1)
         languages.append(languageItem2)
         

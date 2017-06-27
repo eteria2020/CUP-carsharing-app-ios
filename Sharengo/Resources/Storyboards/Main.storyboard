@@ -1144,7 +1144,7 @@
         <!--Settings Languages View Controller-->
         <scene sceneID="xdO-p7-sRe">
             <objects>
-                <viewController storyboardIdentifier="settings" id="pM0-be-QVZ" customClass="SettingsLanguagesViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsLanguages" id="pM0-be-QVZ" customClass="SettingsLanguagesViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hbM-kI-wEa"/>
                         <viewControllerLayoutGuide type="bottom" id="Ux6-Ut-5GV"/>

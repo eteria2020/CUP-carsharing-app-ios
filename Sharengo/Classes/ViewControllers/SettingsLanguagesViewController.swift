@@ -21,12 +21,12 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
     
-    var viewModel: SettingsViewModel?
+    var viewModel: SettingsLanguagesViewModel?
     
     // MARK: - ViewModel methods
     
     func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? SettingsViewModel else {
+        guard let viewModel = viewModel as? SettingsLanguagesViewModel else {
             return
         }
         viewModel.selection.elements.subscribe(onNext:{ selection in
