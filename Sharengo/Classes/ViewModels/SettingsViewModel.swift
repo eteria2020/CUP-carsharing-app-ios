@@ -40,9 +40,9 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     init() {
         self.title = "lbl_settingsHeaderTitle".localized()
 
-         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_login", viewModel: ViewModelFactory.login())
-         let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_iscrizione", viewModel: ViewModelFactory.signup())
-         let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_faq_nero", viewModel: nil)
+         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_login", viewModel: nil)
+         let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_iscrizione", viewModel: nil)
+         let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_faq_nero", viewModel: ViewModelFactory.settingsLanguages())
          settings.append(settingItem1)
          settings.append(settingItem2)
          settings.append(settingItem3)
@@ -54,12 +54,7 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
             case .item(let indexPath):
                 guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
                 if let viewModel = model.viewModel  {
-                    switch viewModel {
-                    case is HomeViewModel:
-                        return .just(.viewModel(viewModel))
-                    default:
-                        return .just(.viewModel(viewModel))
-                    }
+                    return .just(.viewModel(viewModel))
                 }
             return .just(.empty)
         }

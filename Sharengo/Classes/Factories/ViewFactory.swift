@@ -38,7 +38,7 @@ enum CollectionViewCell : String, ListIdentifier {
     case searchBar = "SearchBarCollectionViewCell"
     case menu = "MenuItemCollectionViewCell"
     case setting = "SettingItemCollectionViewCell"
-    case settingsLanguage = "SettingLanguageItemCollectionViewCell"
+    case settingsLanguage = "SettingsLanguageItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [

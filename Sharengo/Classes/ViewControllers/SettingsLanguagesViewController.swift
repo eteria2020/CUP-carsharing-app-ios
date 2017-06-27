@@ -104,17 +104,16 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel?.selection.execute(.item(indexPath))
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0
         {
-            cell.backgroundColor = Color.settingEvenCellBackground.value
+            cell.backgroundColor = Color.settingsLanguagesEvenCellBackground.value
         }
         else
         {
-            cell.backgroundColor = Color.settingOddCellBackground.value
+            cell.backgroundColor = Color.settingsLanguagesOddCellBackground.value
         }
     }
 }

@@ -15,7 +15,7 @@ final class SettingsLanguageItemViewModel : ItemViewModelType {
     var itemIdentifier:ListIdentifier = CollectionViewCell.settingsLanguage
     var title: String?
     
-    init(model: Setting) {
+    init(model: Language) {
         self.model = model
         self.title = model.title.localized()
     }

@@ -46,21 +46,13 @@ final class SettingsLanguagesViewModel : ListViewModelType, ViewModelTypeSelecta
         languages.append(languageItem2)
         
         self.dataHolder = ListDataHolder(data:Observable.just(languages).structured())
-        
-        self.selection = Action { input in
-            switch input {
-            case .item(let indexPath):
-                guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
-                if let viewModel = model.viewModel  {
-                    switch viewModel {
-                    case is HomeViewModel:
-                        return .just(.viewModel(viewModel))
-                    default:
-                        return .just(.viewModel(viewModel))
-                    }
-                }
-                return .just(.empty)
-            }
-        }
+//
+//        self.selection = Action { input in
+//            switch input {
+//            case .item(let indexPath):
+//                guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
+//                return .just(.empty)
+//            }
+//        }
     }
 }
