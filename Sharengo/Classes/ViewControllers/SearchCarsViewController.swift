@@ -300,12 +300,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 }
                 self.getResults()
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -319,12 +315,12 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.updateData()
+        self.updateCarData()
     }
     
     // MARK: - Update methods
     
-    @objc fileprivate func updateData() {
+    @objc fileprivate func updateCarData() {
         if let carTrip = CoreController.shared.allCarTrips.first {
             self.carTripTimeStart = carTrip.timeStart
             carTrip.car.asObservable()
@@ -374,7 +370,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 self.viewModel?.carTrip = nil
                 self.viewModel?.carBooking = nil
                 self.getResultsWithoutLoading()
-                NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescription".localized(), carTrip.time), carTrip: carTrip, source: self)
             }
         }
         if let carBooking = CoreController.shared.allCarBookings.first {
@@ -477,6 +472,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                             self.viewModel?.carBooked = car
                             self.viewModel?.carTrip = carTrip
                             self.getResultsWithoutLoading()
+                            CoreController.shared.updateData()
                         }
                     }
                 case .error(_):
@@ -532,6 +528,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                                             self.viewModel?.carBooked = car
                                                             self.viewModel?.carBooking = carBooking
                                                             self.getResultsWithoutLoading()
+                                                            CoreController.shared.updateData()
                                                         }
                                                     } else {
                                                         self.hideLoader()
@@ -607,6 +604,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                 let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                     alertView.dismissAlertView()
                                     self.closeCarBookingPopupView()
+                                    CoreController.shared.currentCarBooking = nil
+                                    CoreController.shared.updateData()
                                 })
                                 confirmDialog.allowTouchOutsideToDismiss = false
                                 confirmDialog.show()

@@ -109,7 +109,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
-        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateUserData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
     
     deinit {
@@ -149,12 +149,12 @@ class HomeViewController : BaseViewController, ViewModelBindable {
             }
         }
         self.introIsShowed = true
-        self.updateData()
+        self.updateUserData()
     }
     
     // MARK: - Update methods
     
-    @objc fileprivate func updateData() {
+    @objc fileprivate func updateUserData() {
         DispatchQueue.main.async {
             if let firstname = KeychainSwift().get("UserFirstname") {
                 self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)

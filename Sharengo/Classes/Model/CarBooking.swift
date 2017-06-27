@@ -58,6 +58,10 @@ public class CarBooking: ModelType, Decodable {
         self.car.value = car
     }
     
+    static var empty:CarBooking {
+        return CarBooking(car: Car())
+    }
+    
     required public init?(json: JSON) {
         self.id = "id" <~~ json
         self.isActive = "is_active" <~~ json ?? false

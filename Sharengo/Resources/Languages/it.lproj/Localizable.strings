@@ -122,3 +122,5 @@
 "lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
+"banner_carBookingDeletedTitle" = "Share'ngo";
+"banner_carBookingDeletedDescription" = "Il tempo di prenotazione è scaduto, la tua prenotazione è stata annullata. Prenota un’altra auto in mappa.";

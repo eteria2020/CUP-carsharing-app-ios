@@ -120,6 +120,37 @@ class BaseViewController: UIViewController {
         super.viewWillAppear(animated)
         CoreController.shared.currentViewController = self
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(BaseViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Update methods
+    
+    @objc fileprivate func updateData() {
+        let carTrip = CoreController.shared.currentCarTrip
+        let carBooking = CoreController.shared.currentCarBooking
+        let dispatchTime = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            if CoreController.shared.notificationIsShowed == false {
+                if CoreController.shared.allCarTrips.first != nil {
+                } else if let carTrip = carTrip {
+                    CoreController.shared.notificationIsShowed = true
+                    NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescription".localized(), carTrip.time), carTrip: carTrip, source: self)
+                }
+                if CoreController.shared.allCarBookings.first != nil {
+                } else if carBooking != nil {
+                    CoreController.shared.notificationIsShowed = true
+                    NotificationsController.showNotification(title: "banner_carBookingDeletedTitle".localized(), description: "banner_carBookingDeletedDescription".localized(), carTrip: nil, source: self)
+                }
+            }
+        }
+    }
 }
 
 extension UIViewController {

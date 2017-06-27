@@ -20,6 +20,9 @@ class CoreController {
     var updateInProgress = false
     var allCarBookings: [CarBooking] = []
     var allCarTrips: [CarTrip] = []
+    var currentCarBooking: CarBooking?
+    var currentCarTrip: CarTrip?
+    var notificationIsShowed: Bool = false
     
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -44,6 +47,7 @@ class CoreController {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
+        self.notificationIsShowed = false
         self.updateInProgress = true
         self.updateUser()
     }
@@ -72,10 +76,11 @@ class CoreController {
                     else if let msg = response.msg {
                         if msg == "invalid_credentials" {
                             // TODO: logout
+                        } else if msg == "user_disabled" {
+                            // TODO: logout
                         }
                     }
                 case .error(_):
-                    // TODO: logout
                     break
                 default:
                     break
@@ -143,5 +148,7 @@ class CoreController {
     fileprivate func stopUpdateData() {
         self.updateInProgress = false
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
+        self.currentCarBooking = self.allCarBookings.first
+        self.currentCarTrip = self.allCarTrips.first
     }
 }

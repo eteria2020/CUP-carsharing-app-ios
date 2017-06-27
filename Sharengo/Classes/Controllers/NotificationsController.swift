@@ -9,7 +9,7 @@ import Foundation
 
 class NotificationsController
 {
-    class func showNotification(title: String, description: String, carTrip: CarTrip, source: UIViewController) {
+    class func showNotification(title: String, description: String, carTrip: CarTrip?, source: UIViewController) {
         let banner = Banner(title: title, subtitle: description, image: UIImage(named: "img_notification_car"), backgroundColor: Color.carBookingCompletedBannerBackground.value)
         banner.shouldTintImage = false
         banner.springiness = BannerSpringiness.slight
@@ -18,11 +18,12 @@ class NotificationsController
         banner.titleLabel.font = Font.carBookingCompletedBannerLabelEmphasized.value
         banner.detailLabel.font = Font.carBookingCompletedBannerLabel.value
         banner.didTapBlock = {
-            // TODO: refactoring
-            let destination:CarBookingCompletedViewController = (Storyboard.main.scene(.carBookingCompleted))
-            let viewModel = ViewModelFactory.carBookingCompleted(carTrip: carTrip)
-            destination.bind(to: viewModel, afterLoad: true)
-            source.navigationController?.pushViewController(destination, animated: true)
+            if carTrip != nil {
+                let destination:CarBookingCompletedViewController = (Storyboard.main.scene(.carBookingCompleted))
+                let viewModel = ViewModelFactory.carBookingCompleted(carTrip: carTrip!)
+                destination.bind(to: viewModel, afterLoad: true)
+                source.navigationController?.pushViewController(destination, animated: true)
+            }
         }
         banner.show(duration: 3.0)
     }
