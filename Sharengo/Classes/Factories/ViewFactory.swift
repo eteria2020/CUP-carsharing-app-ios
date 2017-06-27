@@ -35,11 +35,13 @@ extension ListViewModelType {
 enum CollectionViewCell : String, ListIdentifier {
     case searchBar = "SearchBarCollectionViewCell"
     case menu = "MenuItemCollectionViewCell"
+    case setting = "SettingItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [
             .searchBar,
-            .menu
+            .menu,
+            .setting
         ]
     }
     static func headers() -> [CollectionViewCell] {
