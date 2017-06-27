@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  SettingsViewModel.swift
 //  Sharengo
 //
 //  Created by Dedecube on 27/06/17.
@@ -10,12 +10,16 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
+import KeychainSwift
 
 enum SettingSelectionInput : SelectionInput {
     case item(IndexPath)
+    case profileEco
 }
 enum SettingSelectionOutput : SelectionOutput {
     case viewModel(ViewModelType)
+    case logout
+    case empty
 }
 
 final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {

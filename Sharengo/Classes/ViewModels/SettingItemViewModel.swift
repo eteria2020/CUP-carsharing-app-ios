@@ -12,9 +12,13 @@ import Boomerang
 
 final class SettingItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier
+    var itemIdentifier:ListIdentifier = CollectionViewCell.menu
+    var title: String?
+    var icon: UIImage?
     
-    init(model: Setting) {
+    init(model: MenuItem) {
         self.model = model
+        self.title = model.title.localized()
+        self.icon = UIImage(named: model.icon)
     }
 }
