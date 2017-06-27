@@ -22,7 +22,7 @@ class SettingItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     // MARK: - ViewModel methods
     
     func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? MenuItemViewModel else {
+        guard let viewModel = viewModel as? SettingItemViewModel else {
             return
         }
         self.layoutIfNeeded()
@@ -33,13 +33,13 @@ class SettingItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true
         self.view_icon.layer.borderWidth = 1
-        self.view_icon.layer.borderColor = Color.menuLabel.value.cgColor
+        self.view_icon.layer.borderColor = Color.settingItemLabel.value.cgColor
     }
     
     // MARK: - View methods
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = Color.menuTopBackground.value
+        self.backgroundColor = Color.settingHeaderBackground.value
     }
 }

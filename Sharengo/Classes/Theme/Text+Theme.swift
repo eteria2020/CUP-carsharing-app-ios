@@ -104,7 +104,7 @@ enum TextStyle: String, TextStyleType {
             .signupStepHeader,
             .signupStepDescription,
             // Profile
-            .profileEcoStatus
+            .profileEcoStatus,
             // Setting
             .settingHeader,
             .settingItemTitle

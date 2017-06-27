@@ -1,22 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SettingItemCollectionViewCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Zhz-07-SCi" customClass="SettingItemCollectionViewCell" customModule="Sharengo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th1-td-Rwz" userLabel="Content View">
+                        <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZd-ZB-OJB">
+                                <rect key="frame" x="202.5" y="11" width="26" height="26"/>
+                                <color key="backgroundColor" red="1" green="0.46942816840000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_login" translatesAutoresizingMaskIntoConstraints="NO" id="y4S-YN-jDs">
+                                <rect key="frame" x="208.5" y="17" width="14" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="1Ql-LE-I3t"/>
+                                    <constraint firstAttribute="height" constant="14" id="wSK-KN-K60"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASc-t8-Xv1">
+                                <rect key="frame" x="15" y="47" width="401" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="menuItemTitle"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ASc-t8-Xv1" secondAttribute="trailing" constant="15" id="5Nd-4v-pKw"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="centerX" secondItem="th1-td-Rwz" secondAttribute="centerX" id="6Le-MM-1Gt"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="top" secondItem="LZd-ZB-OJB" secondAttribute="top" constant="6" id="7C0-1I-4Be"/>
+                            <constraint firstItem="ASc-t8-Xv1" firstAttribute="top" secondItem="LZd-ZB-OJB" secondAttribute="bottom" constant="10" id="WOL-OG-FOo"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="LZd-ZB-OJB" secondAttribute="bottom" constant="-6" id="Xwn-b0-Cxl"/>
+                            <constraint firstAttribute="bottom" secondItem="ASc-t8-Xv1" secondAttribute="bottom" constant="10" id="a8S-jv-9aW"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="th1-td-Rwz" secondAttribute="centerY" constant="-10" id="dSS-MS-kES"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="trailing" secondItem="LZd-ZB-OJB" secondAttribute="trailing" constant="-6" id="tI5-RO-ted"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="leading" secondItem="LZd-ZB-OJB" secondAttribute="leading" constant="6" id="w2D-VS-3Wo"/>
+                            <constraint firstItem="ASc-t8-Xv1" firstAttribute="leading" secondItem="th1-td-Rwz" secondAttribute="leading" constant="15" id="ww3-ur-evQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="th1-td-Rwz" firstAttribute="leading" secondItem="Zhz-07-SCi" secondAttribute="leading" id="K1f-ck-YfM"/>
+                <constraint firstAttribute="trailing" secondItem="th1-td-Rwz" secondAttribute="trailing" id="dFg-7e-aU4"/>
+                <constraint firstAttribute="bottom" secondItem="th1-td-Rwz" secondAttribute="bottom" id="iGT-sb-PYB"/>
+                <constraint firstItem="th1-td-Rwz" firstAttribute="top" secondItem="Zhz-07-SCi" secondAttribute="top" id="qC4-Iq-7qK"/>
+            </constraints>
+            <size key="customSize" width="431" height="82"/>
+            <connections>
+                <outlet property="img_icon" destination="y4S-YN-jDs" id="B4x-y6-4rt"/>
+                <outlet property="lbl_title" destination="ASc-t8-Xv1" id="6Xs-6q-3N6"/>
+                <outlet property="view_icon" destination="LZd-ZB-OJB" id="e9b-wH-f0R"/>
+            </connections>
+            <point key="canvasLocation" x="224.5" y="70"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ic_login" width="12" height="15"/>
+    </resources>
 </document>
