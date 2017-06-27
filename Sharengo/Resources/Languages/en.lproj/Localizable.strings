@@ -121,3 +121,9 @@
 "lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
+
+// Settings
+"lbl_settingsHeaderTitle" = "IMPOSTAZIONI";
+"lbl_settingsCities" = "Imposta città";
+"lbl_settingsFavourites" = "Imposta i tuoi indirizzi preferiti";
+"lbl_settingsLanguages" = "Imposta lingua";
