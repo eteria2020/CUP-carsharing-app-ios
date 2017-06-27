@@ -40,9 +40,9 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
-    
-//        self.collectionView?.reloadData()
         self.lbl_title.styledText = self.viewModel?.title
+        
+        self.viewModel?.reload()
     }
     
     // MARK: - View methods
@@ -72,6 +72,11 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
         super.viewWillAppear(animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -95,7 +100,7 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-76)/3)
+        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-106)/3)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

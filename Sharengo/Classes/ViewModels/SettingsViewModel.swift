@@ -31,8 +31,8 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     }
     
     func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
-        if let item = model as? MenuItem {
-            return ViewModelFactory.menuItem(fromModel: item)
+        if let item = model as? Setting {
+            return ViewModelFactory.settingItem(fromModel: item)
         }
         return nil
     }
