@@ -267,7 +267,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1139,7 +1139,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2p2-7v-Au9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="223" y="1605"/>
+            <point key="canvasLocation" x="-1407" y="2340"/>
+        </scene>
+        <!--Settings Languages View Controller-->
+        <scene sceneID="xdO-p7-sRe">
+            <objects>
+                <viewController storyboardIdentifier="settings" id="pM0-be-QVZ" customClass="SettingsLanguagesViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hbM-kI-wEa"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ux6-Ut-5GV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UYo-he-orR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdZ-27-oKG" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="l46-QT-R0a"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5A-pX-MgN">
+                                <rect key="frame" x="0.0" y="56" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtF-NF-UOZ">
+                                        <rect key="frame" x="15" y="15" width="345" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="settingHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="rtF-NF-UOZ" secondAttribute="trailing" constant="15" id="9TT-fD-uzB"/>
+                                    <constraint firstItem="rtF-NF-UOZ" firstAttribute="leading" secondItem="K5A-pX-MgN" secondAttribute="leading" constant="15" id="9yl-ax-Sk0"/>
+                                    <constraint firstAttribute="bottom" secondItem="rtF-NF-UOZ" secondAttribute="bottom" constant="15" id="Mzm-Ag-74p"/>
+                                    <constraint firstItem="rtF-NF-UOZ" firstAttribute="top" secondItem="K5A-pX-MgN" secondAttribute="top" constant="15" id="OPL-Tg-2z0"/>
+                                    <constraint firstAttribute="height" constant="50" id="rLW-8R-Om3"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ix8-Gx-s7G">
+                                <rect key="frame" x="0.0" y="106" width="375" height="561"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xtc-Xj-xbK">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="K5A-pX-MgN" firstAttribute="leading" secondItem="UYo-he-orR" secondAttribute="leading" id="6Nr-vt-uK2"/>
+                            <constraint firstAttribute="trailing" secondItem="zdZ-27-oKG" secondAttribute="trailing" id="D30-ue-V5c"/>
+                            <constraint firstItem="Ux6-Ut-5GV" firstAttribute="top" secondItem="ix8-Gx-s7G" secondAttribute="bottom" id="QB0-Rd-HSh"/>
+                            <constraint firstItem="zdZ-27-oKG" firstAttribute="leading" secondItem="UYo-he-orR" secondAttribute="leading" id="Vew-zj-gl8"/>
+                            <constraint firstItem="ix8-Gx-s7G" firstAttribute="leading" secondItem="UYo-he-orR" secondAttribute="leading" id="Xfs-cW-u89"/>
+                            <constraint firstAttribute="trailing" secondItem="K5A-pX-MgN" secondAttribute="trailing" id="XsQ-W7-MrK"/>
+                            <constraint firstAttribute="trailing" secondItem="K5A-pX-MgN" secondAttribute="trailing" id="b8b-5E-OPZ"/>
+                            <constraint firstItem="K5A-pX-MgN" firstAttribute="leading" secondItem="UYo-he-orR" secondAttribute="leading" id="bu4-Th-eSx"/>
+                            <constraint firstItem="ix8-Gx-s7G" firstAttribute="top" secondItem="K5A-pX-MgN" secondAttribute="bottom" id="mog-mH-vlt"/>
+                            <constraint firstAttribute="trailing" secondItem="ix8-Gx-s7G" secondAttribute="trailing" id="nUN-bK-ocW"/>
+                            <constraint firstItem="K5A-pX-MgN" firstAttribute="top" secondItem="zdZ-27-oKG" secondAttribute="bottom" id="osL-hf-oOF"/>
+                            <constraint firstItem="zdZ-27-oKG" firstAttribute="top" secondItem="UYo-he-orR" secondAttribute="top" id="vxS-fI-t8C"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vld-i4-jJ6"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ix8-Gx-s7G" id="qs2-Rf-8ex"/>
+                        <outlet property="lbl_title" destination="rtF-NF-UOZ" id="vDN-a1-ZEW"/>
+                        <outlet property="view_header" destination="K5A-pX-MgN" id="WVr-gs-vjh"/>
+                        <outlet property="view_navigationBar" destination="zdZ-27-oKG" id="dba-c0-uNp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Dz-5h-Vre" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-660" y="2339"/>
         </scene>
     </scenes>
     <resources>
