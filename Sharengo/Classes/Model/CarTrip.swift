@@ -96,6 +96,10 @@ public class CarTrip: ModelType, Decodable {
         self.car.value = car
     }
     
+    static var empty:CarTrip {
+        return CarTrip(car: Car())
+    }
+    
     required public init?(json: JSON) {
         self.id = "id" <~~ json
         if let timestampStart: Double = "timestamp_start" <~~ json {
