@@ -94,6 +94,10 @@ enum Font {
     // Settings
     case settingHeader
     case settingLabel
+    
+    // SettingsLanguages
+    case settingsLanguagesHeader
+    case settingsLanguagesLabel
 
     var value: UIFont {
         get {
@@ -179,6 +183,11 @@ enum Font {
             case .settingHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .settingLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            // SettingsLanguages
+            case .settingsLanguagesHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .settingsLanguagesLabel:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
         }
