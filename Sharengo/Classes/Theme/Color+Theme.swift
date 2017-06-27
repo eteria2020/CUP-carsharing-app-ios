@@ -148,8 +148,9 @@ enum Color {
     case settingHeaderBackground
     case settingHeaderLabel
     case settingItemLabel
-    case settingBackgroundOddCell
-    case settingBackgroundEvenCell
+    case settingIconBackground
+    case settingOddCellBackground
+    case settingEvenCellBackground
     
     // Web
     case webBackground
@@ -284,9 +285,11 @@ enum Color {
                 return ColorBrand.white.value
             case .settingItemLabel:
                 return ColorBrand.green.value
-            case .settingBackgroundOddCell:
+            case .settingIconBackground:
+                return ColorBrand.green.value
+            case .settingOddCellBackground:
                 return ColorBrand.lightGray.value
-            case .settingBackgroundEvenCell:
+            case .settingEvenCellBackground:
                 return ColorBrand.white.value
             // Web
             case .webBackground:

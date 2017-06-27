@@ -183,7 +183,7 @@ enum TextStyle: String, TextStyleType {
             case .settingHeader:
                 return StringStyle(.font(Font.settingHeader.value), .color(Color.settingHeaderLabel.value), .alignment(.center))
             case .settingItemTitle:
-                return StringStyle(.font(Font.settingLabel.value), .color(Color.settingItemLabel.value), .alignment(.left))
+                return StringStyle(.font(Font.settingLabel.value), .color(Color.settingItemLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
