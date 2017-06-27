@@ -40,6 +40,5 @@ class SettingItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = Color.settingHeaderBackground.value
     }
 }

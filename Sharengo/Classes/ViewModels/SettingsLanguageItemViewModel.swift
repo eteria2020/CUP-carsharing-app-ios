@@ -14,11 +14,9 @@ final class SettingsLanguageItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
     var itemIdentifier:ListIdentifier = CollectionViewCell.settingsLanguage
     var title: String?
-    var icon: UIImage?
     
     init(model: Setting) {
         self.model = model
         self.title = model.title.localized()
-        self.icon = UIImage(named: model.icon)
     }
 }
