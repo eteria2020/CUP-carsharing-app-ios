@@ -19,6 +19,8 @@
 "btn_book" = "PRENOTA AUTO";
 "bnt_delete" = "ELIMINA";
 "btn_carRides" = "STORICO CORSE";
+"language_italian" = "Italiano";
+"language_english" = "Inglese";
 
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
@@ -127,3 +129,6 @@
 "lbl_settingsCities" = "Imposta città";
 "lbl_settingsFavourites" = "Imposta i tuoi indirizzi preferiti";
 "lbl_settingsLanguages" = "Imposta lingua";
+
+// Settings Languages
+"lbl_settingsLanguagesHeaderTitle" = "IMPOSTA LINGUA";
