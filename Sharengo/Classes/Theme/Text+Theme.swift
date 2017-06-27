@@ -181,7 +181,7 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.profileEcoStatus.value), .color(Color.profileEcoStatus.value), .alignment(.center))
             // Settings
             case .settingHeader:
-                return StringStyle(.font(Font.settingHeader.value), .color(Color.settingHeaderLabel.value), .alignment(.left))
+                return StringStyle(.font(Font.settingHeader.value), .color(Color.settingHeaderLabel.value), .alignment(.center))
             case .settingItemTitle:
                 return StringStyle(.font(Font.settingLabel.value), .color(Color.settingItemLabel.value), .alignment(.left))
             }

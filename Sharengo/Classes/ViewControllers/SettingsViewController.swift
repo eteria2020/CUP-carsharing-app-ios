@@ -42,7 +42,7 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
         self.collectionView?.delegate = self
     
 //        self.collectionView?.reloadData()
-//        self.lbl_welcome.styledText = self.viewModel?.welcome
+        self.lbl_title.styledText = self.viewModel?.title
     }
     
     // MARK: - View methods
@@ -51,6 +51,7 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
+        self.lbl_title.textColor = Color.settingHeaderLabel.value
         
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
