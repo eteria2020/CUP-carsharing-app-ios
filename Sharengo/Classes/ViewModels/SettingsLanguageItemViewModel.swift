@@ -2,7 +2,7 @@
 //  SettingsLanguageItemViewModel.swift
 //  Sharengo
 //
-//  Created by Fabrizio Infante on 27/06/17.
+//  Created by Dedecube on 27/06/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
@@ -12,9 +12,13 @@ import Boomerang
 
 final class SettingsLanguageItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier
+    var itemIdentifier:ListIdentifier = CollectionViewCell.settingsLanguage
+    var title: String?
+    var icon: UIImage?
     
-    init(model: SettingsLanguage) {
+    init(model: Setting) {
         self.model = model
+        self.title = model.title.localized()
+        self.icon = UIImage(named: model.icon)
     }
 }

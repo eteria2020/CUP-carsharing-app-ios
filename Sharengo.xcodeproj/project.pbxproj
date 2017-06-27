@@ -334,8 +334,8 @@
 			children = (
 				036D92271F028E960076D22D /* SettingsLanguagesViewController.swift */,
 				036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */,
-				036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */,
 				036D92291F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift */,
+				036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */,
 				036D92251F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib */,
 			);
 			name = Languages;
