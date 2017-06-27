@@ -21,6 +21,7 @@
 		036D922A1F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92291F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift */; };
 		036D922D1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */; };
 		036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */; };
+		036D92301F028EF30076D22D /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922F1F028EF30076D22D /* Language.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -160,6 +161,7 @@
 		036D92291F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguageItemCollectionViewCell.swift; path = Classes/Views/SettingsLanguageItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguageItemViewModel.swift; path = Classes/ViewModels/SettingsLanguageItemViewModel.swift; sourceTree = "<group>"; };
 		036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguagesViewModel.swift; path = Classes/ViewModels/SettingsLanguagesViewModel.swift; sourceTree = "<group>"; };
+		036D922F1F028EF30076D22D /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Language.swift; path = Classes/Model/Language.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 				03A86FA71EF9726D009C72F4 /* MenuItem.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 				036D92181F0258540076D22D /* Setting.swift */,
+				036D922F1F028EF30076D22D /* Language.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1100,6 +1103,7 @@
 				4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */,
 				4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
+				036D92301F028EF30076D22D /* Language.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
 				03A86FA41EF97171009C72F4 /* MenuItemCollectionViewCell.swift in Sources */,
