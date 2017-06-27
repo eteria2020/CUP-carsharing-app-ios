@@ -16,6 +16,11 @@
 		036D92151F0256E00076D22D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92141F0256E00076D22D /* SettingsViewController.swift */; };
 		036D92171F0256F00076D22D /* SettingItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */; };
 		036D92191F0258540076D22D /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92181F0258540076D22D /* Setting.swift */; };
+		036D92261F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D92251F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib */; };
+		036D92281F028E960076D22D /* SettingsLanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92271F028E960076D22D /* SettingsLanguagesViewController.swift */; };
+		036D922A1F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92291F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift */; };
+		036D922D1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */; };
+		036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -150,6 +155,11 @@
 		036D92141F0256E00076D22D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Classes/ViewControllers/SettingsViewController.swift; sourceTree = "<group>"; };
 		036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingItemCollectionViewCell.xib; path = Resources/Xibs/SettingItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		036D92181F0258540076D22D /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = Classes/Model/Setting.swift; sourceTree = "<group>"; };
+		036D92251F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsLanguageItemCollectionViewCell.xib; path = Resources/Xibs/SettingsLanguageItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		036D92271F028E960076D22D /* SettingsLanguagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguagesViewController.swift; path = Classes/ViewControllers/SettingsLanguagesViewController.swift; sourceTree = "<group>"; };
+		036D92291F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguageItemCollectionViewCell.swift; path = Classes/Views/SettingsLanguageItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguageItemViewModel.swift; path = Classes/ViewModels/SettingsLanguageItemViewModel.swift; sourceTree = "<group>"; };
+		036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguagesViewModel.swift; path = Classes/ViewModels/SettingsLanguagesViewModel.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -312,8 +322,21 @@
 				036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */,
 				036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */,
 				036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */,
+				036D921A1F028E330076D22D /* Languages */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		036D921A1F028E330076D22D /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				036D92271F028E960076D22D /* SettingsLanguagesViewController.swift */,
+				036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */,
+				036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */,
+				036D92291F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift */,
+				036D92251F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib */,
+			);
+			name = Languages;
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -922,6 +945,7 @@
 				4D1AE82A1ED1E40E00C8A1D3 /* Poppins-Bold.ttf in Resources */,
 				4D9351511EE03497008C65C3 /* SearchBarView.xib in Resources */,
 				4D1AE82B1ED1E40E00C8A1D3 /* Poppins-Light.ttf in Resources */,
+				036D92261F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib in Resources */,
 				4DCD1AA31ECDC22900FC8BF5 /* Assets.xcassets in Resources */,
 				4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */,
 				03AF5D6E1EEE83FC00AC8826 /* disclosure@2x.png in Resources */,
@@ -1044,6 +1068,7 @@
 				4DA554491EE55284001627E7 /* FBAnnotationClusterViewConfiguration.swift in Sources */,
 				4D3BF1251ED76EAF00E595E7 /* UIView+Extensions.swift in Sources */,
 				4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */,
+				036D922A1F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
 				036D92151F0256E00076D22D /* SettingsViewController.swift in Sources */,
@@ -1055,9 +1080,11 @@
 				4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */,
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
 				4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */,
+				036D922D1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift in Sources */,
 				03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */,
 				03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
+				036D92281F028E960076D22D /* SettingsLanguagesViewController.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */,
 				036D92101F0256CB0076D22D /* SettingItemViewModel.swift in Sources */,
@@ -1085,6 +1112,7 @@
 				4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */,
 				03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */,
 				4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */,
+				036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */,
 				4D2339981EE6CDFC00780384 /* IntroViewModel.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
 				4DA5544A1EE55284001627E7 /* FBBoundingBox+MapKit.swift in Sources */,
