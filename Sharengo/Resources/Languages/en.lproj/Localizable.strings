@@ -36,6 +36,7 @@
 "alert_loginMissingFields" = "Uno o più campi non sono compilati.";
 "alert_loginWrongEmail" = "Attenzione! L'indirizzo email che hai inserito non è presente nel nostro database.";
 "alert_loginWrongPassword" = "Attenzione! Password errata.";
+"alert_loginUserDisabled" = "Attenzione! L'utente non è abilitato per l'accesso.";
 "lbl_loginFormHeader" = "Compila i campi per effettuare il login";
 "txt_loginEmailPlaceholder" = "email";
 "txt_loginPasswordPlaceholder" = "password";

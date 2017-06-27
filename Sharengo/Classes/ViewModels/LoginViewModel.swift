@@ -102,6 +102,17 @@ final class LoginViewModel: ViewModelType {
                                 dialog.allowTouchOutsideToDismiss = false
                                 dialog.show()
                             }
+                        } else if msg == "user_disabled" {
+                            self.loginExecuted.value = false
+                            let dispatchTime = DispatchTime.now() + 0.5
+                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                let message = "alert_loginUserDisabled".localized()
+                                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
+                            }
                         }
                     }
                 case .error(_):
