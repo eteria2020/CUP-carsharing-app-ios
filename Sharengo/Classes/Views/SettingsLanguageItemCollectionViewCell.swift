@@ -27,6 +27,15 @@ class SettingsLanguageItemCollectionViewCell: UICollectionViewCell, ViewModelBin
         self.layoutIfNeeded()
         self.viewModel = viewModel
         self.lbl_title.styledText = viewModel.title
+        
+        if viewModel.selected == true
+        {
+            self.btn_selectedLanguage.setImage(UIImage(named: "ic_compass")!, for: .normal)
+        }
+        else
+        {
+            self.btn_selectedLanguage.setImage(nil, for: .normal)
+        }
     }
     
     // MARK: - View methods
@@ -34,4 +43,6 @@ class SettingsLanguageItemCollectionViewCell: UICollectionViewCell, ViewModelBin
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    
 }

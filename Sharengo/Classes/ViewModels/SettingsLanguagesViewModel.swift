@@ -16,7 +16,8 @@ enum SettingsLanguageSelectionInput : SelectionInput {
     case item(IndexPath)
 }
 enum SettingsLanguageSelectionOutput : SelectionOutput {
-    case viewModel(ViewModelType)
+    case english
+    case italian
     case empty
 }
 
@@ -40,19 +41,37 @@ final class SettingsLanguagesViewModel : ListViewModelType, ViewModelTypeSelecta
     init() {
         self.title = "lbl_settingsLanguagesHeaderTitle".localized()
         
-        let languageItem1 = Language(title: "language_italian")
-        let languageItem2 = Language(title: "language_english")
+        self.updateData()
+        
+        self.selection = Action { input in
+            switch input {
+            case .item(let indexPath):
+                guard let model = self.model(atIndex: indexPath) as?  Language else { return .empty() }
+                return .just(model.action)
+            }
+        }
+    }
+    
+    func updateData()
+    {
+        languages.removeAll()
+        var italian: Bool = false
+        var english: Bool = false
+        
+        if UserDefaults.standard.object(forKey: "language") as? String == "it"
+        {
+            italian = true
+        }
+        else if UserDefaults.standard.object(forKey: "language") as? String == "en"
+        {
+            english = true
+        }
+        
+        let languageItem1 = Language(title: "language_italian", action: .italian, selected: italian)
+        let languageItem2 = Language(title: "language_english", action: .english, selected: english)
         languages.append(languageItem1)
         languages.append(languageItem2)
         
         self.dataHolder = ListDataHolder(data:Observable.just(languages).structured())
-//
-//        self.selection = Action { input in
-//            switch input {
-//            case .item(let indexPath):
-//                guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
-//                return .just(.empty)
-//            }
-//        }
     }
 }

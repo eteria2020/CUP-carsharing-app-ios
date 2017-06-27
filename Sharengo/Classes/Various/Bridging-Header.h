@@ -7,3 +7,4 @@
 
 #import "SVPulsingAnnotationView.h"
 #import <CommonCrypto/CommonCrypto.h>
+#import "NSBundle+Language.h"

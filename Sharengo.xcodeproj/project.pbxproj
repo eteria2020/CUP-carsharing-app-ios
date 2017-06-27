@@ -22,6 +22,7 @@
 		036D922D1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */; };
 		036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */; };
 		036D92301F028EF30076D22D /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922F1F028EF30076D22D /* Language.swift */; };
+		036D92341F02A5F70076D22D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 036D92331F02A5F70076D22D /* NSBundle+Language.m */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -162,6 +163,8 @@
 		036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguageItemViewModel.swift; path = Classes/ViewModels/SettingsLanguageItemViewModel.swift; sourceTree = "<group>"; };
 		036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsLanguagesViewModel.swift; path = Classes/ViewModels/SettingsLanguagesViewModel.swift; sourceTree = "<group>"; };
 		036D922F1F028EF30076D22D /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Language.swift; path = Classes/Model/Language.swift; sourceTree = "<group>"; };
+		036D92321F02A5F70076D22D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
+		036D92331F02A5F70076D22D /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -339,6 +342,16 @@
 				036D92251F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib */,
 			);
 			name = Languages;
+			sourceTree = "<group>";
+		};
+		036D92311F02A5F70076D22D /* NSBundleLanguage */ = {
+			isa = PBXGroup;
+			children = (
+				036D92321F02A5F70076D22D /* NSBundle+Language.h */,
+				036D92331F02A5F70076D22D /* NSBundle+Language.m */,
+			);
+			name = NSBundleLanguage;
+			path = Classes/Utilities/NSBundleLanguage;
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -647,6 +660,7 @@
 				4DE361641EE801F9007DC92C /* SVPulsingAnnotation */,
 				4DA554391EE55284001627E7 /* FBAnnotationClusteringSwift */,
 				4DA178631ED63C4D00EBD32B /* ZAlertView */,
+				036D92311F02A5F70076D22D /* NSBundleLanguage */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1037,6 +1051,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				036D92341F02A5F70076D22D /* NSBundle+Language.m in Sources */,
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,

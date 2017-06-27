@@ -5,6 +5,8 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
+"language" = "it";
+
 // General
 "btn_ok" = "OK";
 "btn_cancel" = "ANNULLA";

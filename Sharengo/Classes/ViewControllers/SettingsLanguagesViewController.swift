@@ -31,8 +31,14 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
         }
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
-            case .viewModel(let viewModel):
-                Router.from(self,viewModel: viewModel).execute()
+            case .italian:
+                UserDefaults.standard.setValue("it", forKey: "language")
+                Bundle.setLanguage("it")
+                self.updateData()
+            case .english:
+                UserDefaults.standard.setValue("en", forKey: "language")
+                Bundle.setLanguage("en")
+                self.updateData()
             default: break
             }
             self.dismiss(animated: true, completion: nil)
@@ -84,6 +90,16 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
     deinit {
     }
     
+    // MARK: - Update methods
+    
+    @objc fileprivate func updateData() {
+        DispatchQueue.main.async {
+            self.viewModel?.updateData()
+            self.viewModel?.reload()
+            self.collectionView?.reloadData()
+        }
+    }
+    
     // MARK: - Collection methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -104,6 +120,7 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.viewModel?.selection.execute(.item(indexPath))
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

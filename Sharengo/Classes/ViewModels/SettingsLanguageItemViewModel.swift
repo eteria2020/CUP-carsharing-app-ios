@@ -13,10 +13,12 @@ import Boomerang
 final class SettingsLanguageItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
     var itemIdentifier:ListIdentifier = CollectionViewCell.settingsLanguage
+    var selected: Bool = false
     var title: String?
     
     init(model: Language) {
         self.model = model
         self.title = model.title.localized()
+        self.selected = model.selected
     }
 }

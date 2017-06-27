@@ -11,8 +11,12 @@ import RxSwift
 
 public class Language: ModelType {
     var title: String = ""
+    var action: SettingsLanguageSelectionOutput = SettingsLanguageSelectionOutput.empty
+    var selected = false
     
-    init(title: String) {
+    init(title: String, action: SettingsLanguageSelectionOutput, selected: Bool) {
         self.title = title
+        self.action = action
+        self.selected = selected
     }
 }

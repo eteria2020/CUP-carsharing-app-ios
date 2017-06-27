@@ -23,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreController.shared.updateData()
         
         self.setupSideMenu()
+        
+        if UserDefaults.standard.object(forKey: "language") == nil
+        {
+            UserDefaults.standard.setValue("language".localized(), forKey: "language")
+        }
+
 
         return true
     }
