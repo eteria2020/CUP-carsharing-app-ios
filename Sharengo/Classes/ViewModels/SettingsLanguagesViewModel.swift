@@ -45,7 +45,7 @@ final class SettingsLanguagesViewModel : ListViewModelType, ViewModelTypeSelecta
         languages.append(languageItem1)
         languages.append(languageItem2)
         
-        self.dataHolder = ListDataHolder(data:Observable.just(settingsLanguages).structured())
+        self.dataHolder = ListDataHolder(data:Observable.just(languages).structured())
         
         self.selection = Action { input in
             switch input {
