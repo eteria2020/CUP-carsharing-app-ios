@@ -156,6 +156,7 @@ enum Color {
     case settingsLanguagesHeaderBackground
     case settingsLanguagesHeaderLabel
     case settingsLanguagesItemLabel
+    case settingsLanguagesBackground
     case settingsLanguagesOddCellBackground
     case settingsLanguagesEvenCellBackground
 
@@ -305,6 +306,8 @@ enum Color {
                 return ColorBrand.white.value
             case .settingsLanguagesItemLabel:
                 return ColorBrand.green.value
+            case .settingsLanguagesBackground:
+                return ColorBrand.gray.value
             case .settingsLanguagesOddCellBackground:
                 return ColorBrand.lightGray.value
             case .settingsLanguagesEvenCellBackground:
