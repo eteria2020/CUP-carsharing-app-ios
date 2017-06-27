@@ -10,6 +10,11 @@
 		03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
 		03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
 		03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
+		036D92101F0256CB0076D22D /* SettingItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */; };
+		036D92111F0256CB0076D22D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D920F1F0256CB0076D22D /* SettingsViewModel.swift */; };
+		036D92131F0256D60076D22D /* SettingItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */; };
+		036D92151F0256E00076D22D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92141F0256E00076D22D /* SettingsViewController.swift */; };
+		036D92171F0256F00076D22D /* SettingItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -138,6 +143,11 @@
 		03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewController.swift; path = Classes/ViewControllers/CarBookingCompletedViewController.swift; sourceTree = "<group>"; };
 		03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewModel.swift; path = Classes/ViewModels/CarBookingCompletedViewModel.swift; sourceTree = "<group>"; };
 		03653E221EEADA4800AC7A93 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingItemViewModel.swift; path = Classes/ViewModels/SettingItemViewModel.swift; sourceTree = "<group>"; };
+		036D920F1F0256CB0076D22D /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewModel.swift; path = Classes/ViewModels/SettingsViewModel.swift; sourceTree = "<group>"; };
+		036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingItemCollectionViewCell.swift; path = Classes/Views/SettingItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		036D92141F0256E00076D22D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Classes/ViewControllers/SettingsViewController.swift; sourceTree = "<group>"; };
+		036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingItemCollectionViewCell.xib; path = Resources/Xibs/SettingItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -290,6 +300,18 @@
 				03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */,
 			);
 			name = CarBookingCompleted;
+			sourceTree = "<group>";
+		};
+		036D92031F0256330076D22D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				036D92141F0256E00076D22D /* SettingsViewController.swift */,
+				036D920F1F0256CB0076D22D /* SettingsViewModel.swift */,
+				036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */,
+				036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */,
+				036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -649,6 +671,7 @@
 				03C6323B1EF0165700BFEDA3 /* Profile */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 				03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */,
+				036D92031F0256330076D22D /* Settings */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
@@ -909,6 +932,7 @@
 				4D45BB2D1EE698C2004C7287 /* CarBookingPopupView.xib in Resources */,
 				03AF5D6B1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png in Resources */,
 				4D1AE82D1ED1E40E00C8A1D3 /* Poppins-Regular.ttf in Resources */,
+				036D92171F0256F00076D22D /* SettingItemCollectionViewCell.xib in Resources */,
 				4DCE7EEA1EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib in Resources */,
 				4D2339A01EE72F3500780384 /* INTRO LUNGA FINE.gif in Resources */,
 				03AF5D6F1EEE83FC00AC8826 /* disclosure@3x.png in Resources */,
@@ -1000,6 +1024,7 @@
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */,
 				03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */,
+				036D92111F0256CB0076D22D /* SettingsViewModel.swift in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
@@ -1017,7 +1042,9 @@
 				4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
+				036D92151F0256E00076D22D /* SettingsViewController.swift in Sources */,
 				03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */,
+				036D92131F0256D60076D22D /* SettingItemCollectionViewCell.swift in Sources */,
 				4DC4D4A71EF46F7100330F23 /* WebViewController.swift in Sources */,
 				4DEBEE711EED373800AEF617 /* Banner.swift in Sources */,
 				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
@@ -1029,6 +1056,7 @@
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */,
+				036D92101F0256CB0076D22D /* SettingItemViewModel.swift in Sources */,
 				03AF5D721EEE83FC00AC8826 /* AnimatedTextInput.swift in Sources */,
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
 				4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */,
