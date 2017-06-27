@@ -13,6 +13,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case intro = "intro"
     case loading = "loading"
     case menu = "menu"
+    case setting = "setting"
     case signup = "signup"
     case login = "login"
     case home = "home"

@@ -65,6 +65,10 @@ enum TextStyle: String, TextStyleType {
     // Profile
     case profileEcoStatus = "profileEcoStatus"
 
+    // Setting
+    case settingHeader = "settingHeader"
+    case settingItemTitle = "settingItemTitle"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -101,6 +105,9 @@ enum TextStyle: String, TextStyleType {
             .signupStepDescription,
             // Profile
             .profileEcoStatus
+            // Setting
+            .settingHeader,
+            .settingItemTitle
         ]
     }
     
@@ -172,6 +179,11 @@ enum TextStyle: String, TextStyleType {
             // Profile
             case .profileEcoStatus:
                 return StringStyle(.font(Font.profileEcoStatus.value), .color(Color.profileEcoStatus.value), .alignment(.center))
+            // Settings
+            case .settingHeader:
+                return StringStyle(.font(Font.settingHeader.value), .color(Color.settingHeaderLabel.value), .alignment(.left))
+            case .settingItemTitle:
+                return StringStyle(.font(Font.settingLabel.value), .color(Color.settingItemLabel.value), .alignment(.left))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

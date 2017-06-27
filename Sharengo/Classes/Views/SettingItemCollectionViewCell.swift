@@ -2,7 +2,7 @@
 //  SettingItemCollectionViewCell.swift
 //  Sharengo
 //
-//  Created by Dedecube on 20/06/17.
+//  Created by Dedecube on 27/06/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 

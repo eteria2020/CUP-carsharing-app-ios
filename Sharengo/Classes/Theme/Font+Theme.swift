@@ -91,6 +91,10 @@ enum Font {
     // Profile
     case profileEcoStatus
 
+    // Settings
+    case settingHeader
+    case settingLabel
+
     var value: UIFont {
         get {
             switch self {
@@ -171,6 +175,11 @@ enum Font {
             // Profile
             case .profileEcoStatus:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            // Settings
+            case .settingHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .settingLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
         }
     }

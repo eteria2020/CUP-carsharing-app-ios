@@ -144,6 +144,13 @@ enum Color {
     case profileBackground
     case profileEcoStatus
     
+    // Setting
+    case settingHeaderBackground
+    case settingHeaderLabel
+    case settingItemLabel
+    case settingBackgroundOddCell
+    case settingBackgroundEvenCell
+    
     // Web
     case webBackground
     
@@ -270,6 +277,17 @@ enum Color {
                 return ColorBrand.lightGray.value
             case .profileEcoStatus:
                 return ColorBrand.green.value
+            // Setting
+            case .settingHeaderBackground:
+                return ColorBrand.black.value
+            case .settingHeaderLabel:
+                return ColorBrand.white.value
+            case .settingItemLabel:
+                return ColorBrand.green.value
+            case .settingBackgroundOddCell:
+                return ColorBrand.lightGray.value
+            case .settingBackgroundEvenCell:
+                return ColorBrand.white.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value
