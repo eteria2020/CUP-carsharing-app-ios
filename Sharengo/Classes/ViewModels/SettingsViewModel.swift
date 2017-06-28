@@ -40,7 +40,7 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     init() {
         self.title = "lbl_settingsHeaderTitle".localized()
 
-         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_login", viewModel: nil)
+         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_login", viewModel: ViewModelFactory.settingsCities())
          let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_iscrizione", viewModel: nil)
          let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_faq_nero", viewModel: ViewModelFactory.settingsLanguages())
          settings.append(settingItem1)

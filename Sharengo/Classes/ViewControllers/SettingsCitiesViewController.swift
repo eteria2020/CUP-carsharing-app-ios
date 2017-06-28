@@ -31,13 +31,17 @@ class SettingsCitiesViewController : UIViewController, ViewModelBindable, UIColl
         }
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
-            case .italian:
-                UserDefaults.standard.setValue("it", forKey: "language")
-                Bundle.setLanguage("it")
+            case .milano:
+                UserDefaults.standard.setValue("milano", forKey: "city")
                 self.updateData()
-            case .english:
-                UserDefaults.standard.setValue("en", forKey: "language")
-                Bundle.setLanguage("en")
+            case .roma:
+                UserDefaults.standard.setValue("roma", forKey: "city")
+                self.updateData()
+            case .firenze:
+                UserDefaults.standard.setValue("firenze", forKey: "city")
+                self.updateData()
+            case .modena:
+                UserDefaults.standard.setValue("modena", forKey: "city")
                 self.updateData()
             default: break
             }
@@ -56,8 +60,8 @@ class SettingsCitiesViewController : UIViewController, ViewModelBindable, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        self.view_header.backgroundColor = Color.settingHeaderBackground.value
-        self.lbl_title.textColor = Color.settingHeaderLabel.value
+        self.view_header.backgroundColor = Color.settingsCitiesHeaderBackground.value
+        self.lbl_title.textColor = Color.settingsCitiesHeaderLabel.value
         
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -126,11 +130,11 @@ class SettingsCitiesViewController : UIViewController, ViewModelBindable, UIColl
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0
         {
-            cell.backgroundColor = Color.settingsLanguagesEvenCellBackground.value
+            cell.backgroundColor = Color.settingsCitiesEvenCellBackground.value
         }
         else
         {
-            cell.backgroundColor = Color.settingsLanguagesOddCellBackground.value
+            cell.backgroundColor = Color.settingsCitiesOddCellBackground.value
         }
     }
 }
