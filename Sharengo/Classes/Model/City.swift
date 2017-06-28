@@ -12,10 +12,10 @@ import RxSwift
 public class City: ModelType {
     var title: String = ""
     var icon: String = ""
-    var action: SettingsLanguageSelectionOutput = SettingsLanguageSelectionOutput.empty
+    var action: SettingsCitySelectionOutput = SettingsCitySelectionOutput.empty
     var selected = false
     
-    init(title: String, icon: String, action: SettingsLanguageSelectionOutput, selected: Bool) {
+    init(title: String, icon: String, action: SettingsCitySelectionOutput, selected: Bool) {
         self.title = title
         self.icon = icon
         self.action = action
