@@ -39,13 +39,15 @@ enum CollectionViewCell : String, ListIdentifier {
     case menu = "MenuItemCollectionViewCell"
     case setting = "SettingItemCollectionViewCell"
     case settingsLanguage = "SettingsLanguageItemCollectionViewCell"
+    case settingsCity = "SettingsCityItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [
             .searchBar,
             .menu,
             .setting,
-            .settingsLanguage
+            .settingsLanguage,
+            .settingsCity
         ]
     }
     static func headers() -> [CollectionViewCell] {

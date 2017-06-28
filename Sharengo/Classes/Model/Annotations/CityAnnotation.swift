@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-enum City {
+enum CityCluster {
     case empty
     case milan
     case rome
@@ -32,7 +32,7 @@ enum City {
 }
 
 class CityAnnotation: FBAnnotation {
-    var city: City = .empty
+    var city: CityCluster = .empty
     lazy var image: UIImage = self.getImage()
     
     // MARK: - Lazy methods

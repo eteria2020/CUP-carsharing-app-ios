@@ -1,5 +1,5 @@
 //
-//  SettingsLanguagesViewController
+//  SettingsLanguagesViewController.swift
 //  Sharengo
 //
 //  Created by Dedecube on 27/06/17.

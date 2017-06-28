@@ -79,6 +79,14 @@ struct ViewModelFactory {
         return SettingsLanguageItemViewModel(model: model)
     }
 
+    static func settingsCities() -> ViewModelType {
+        return SettingsCitiesViewModel()
+    }
+    
+    static func settingsCitiesItem(fromModel model:City) -> ItemViewModelType {
+        return SettingsCityItemViewModel(model: model)
+    }
+
     static func searchBarItem(fromModel model:Address) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }
