@@ -24,6 +24,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case searchCars = "searchCars"
     case carBookingCompleted = "carBookingCompleted"
     case noFavourites = "noFavourites"
+    case newFavourite = "newFavourite"
     var name: String {
         return self.rawValue
     }

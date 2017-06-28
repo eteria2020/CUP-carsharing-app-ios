@@ -101,6 +101,10 @@ struct Router : RouterType {
             let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
             destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is NewFavouriteViewModel:
+            let destination: NewFavouriteViewController = (Storyboard.main.scene(.newFavourite))
+            destination.bind(to: ViewModelFactory.newFavourite(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

@@ -144,7 +144,13 @@
 
 // Settings Favourites
 
-"lbl_settingsFavouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
-"lbl_settingsFavouritesTitle" = "Peccato!";
-"lbl_settingsFavouritesDescription" = "Non hai ancora nessun indirizzo preferito o recente! Imposta le tue destinazioni più frequenti e risparmia tempo quando scegli dove andare.";
-"btn_settingsFavouritesNewFavourite" = "IMPOSTA NUOVO INDIRIZZO";
+"lbl_noFavouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
+"lbl_noFavouritesTitle" = "Peccato!";
+"lbl_noFavouritesDescription" = "Non hai ancora nessun indirizzo preferito o recente! Imposta le tue destinazioni più frequenti e risparmia tempo quando scegli dove andare.";
+"btn_noFavouritesNewFavourite" = "IMPOSTA NUOVO INDIRIZZO";
+"lbl_newFavouriteHeaderTitle" = "NUOVO INDIRIZZO PREFERITO";
+"lbl_newFavouriteTitle" = "<green>Imposta un nuovo indirizzo</green> per aggiungerlo ai tuoi preferiti";
+"txt_newFavouriteAddressPlaceholder" = "imposta indirizzo";
+"txt_newFavouriteNamePlaceholder" = "nome preferito";
+"btn_newFavouriteSaveFavourite" = "SALVA PREFERITO";
+"btn_newFavouriteUndo" = "Annulla";

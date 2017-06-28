@@ -31,6 +31,8 @@
 		037BDFC11F03949A00C95962 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC01F03949A00C95962 /* City.swift */; };
 		037BDFC61F03B2EC00C95962 /* NoFavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC51F03B2EC00C95962 /* NoFavouritesViewController.swift */; };
 		037BDFC81F03B30500C95962 /* NoFavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */; };
+		037BDFCA1F03E47D00C95962 /* NewFavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC91F03E47D00C95962 /* NewFavouriteViewController.swift */; };
+		037BDFCC1F03E4D700C95962 /* NewFavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFCB1F03E4D700C95962 /* NewFavouriteViewModel.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -181,6 +183,8 @@
 		037BDFC01F03949A00C95962 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = City.swift; path = Classes/Model/City.swift; sourceTree = "<group>"; };
 		037BDFC51F03B2EC00C95962 /* NoFavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoFavouritesViewController.swift; path = Classes/ViewControllers/NoFavouritesViewController.swift; sourceTree = "<group>"; };
 		037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoFavouritesViewModel.swift; path = Classes/ViewModels/NoFavouritesViewModel.swift; sourceTree = "<group>"; };
+		037BDFC91F03E47D00C95962 /* NewFavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewFavouriteViewController.swift; path = Classes/ViewControllers/NewFavouriteViewController.swift; sourceTree = "<group>"; };
+		037BDFCB1F03E4D700C95962 /* NewFavouriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewFavouriteViewModel.swift; path = Classes/ViewModels/NewFavouriteViewModel.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 			children = (
 				037BDFC51F03B2EC00C95962 /* NoFavouritesViewController.swift */,
 				037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */,
+				037BDFC91F03E47D00C95962 /* NewFavouriteViewController.swift */,
+				037BDFCB1F03E4D700C95962 /* NewFavouriteViewModel.swift */,
 			);
 			name = Favourites;
 			sourceTree = "<group>";
@@ -1148,6 +1154,7 @@
 				03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */,
 				03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
+				037BDFCA1F03E47D00C95962 /* NewFavouriteViewController.swift in Sources */,
 				037BDFC81F03B30500C95962 /* NoFavouritesViewModel.swift in Sources */,
 				036D92281F028E960076D22D /* SettingsLanguagesViewController.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
@@ -1196,6 +1203,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */,
+				037BDFCC1F03E4D700C95962 /* NewFavouriteViewModel.swift in Sources */,
 				03C632361EEFD01100BFEDA3 /* SignupStepView.swift in Sources */,
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
 				4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */,
