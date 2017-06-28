@@ -16,8 +16,10 @@ enum SettingsCitySelectionInput : SelectionInput {
     case item(IndexPath)
 }
 enum SettingsCitySelectionOutput : SelectionOutput {
-    case english
-    case italian
+    case milano
+    case roma
+    case firenze
+    case modena
     case empty
 }
 
@@ -43,35 +45,50 @@ final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable
         
         self.updateData()
         
-//        self.selection = Action { input in
-//            switch input {
-//            case .item(let indexPath):
-//                guard let model = self.model(atIndex: indexPath) as?  City else { return .empty() }
-//                return .just(model.action)
-//            }
-//        }
+        self.selection = Action { input in
+            switch input {
+            case .item(let indexPath):
+                guard let model = self.model(atIndex: indexPath) as?  City else { return .empty() }
+                return .just(model.action)
+            }
+        }
     }
     
     func updateData()
     {
         cities.removeAll()
-//        var italian: Bool = false
-//        var english: Bool = false
-//        
-//        if UserDefaults.standard.object(forKey: "language") as? String == "it"
-//        {
-//            italian = true
-//        }
-//        else if UserDefaults.standard.object(forKey: "language") as? String == "en"
-//        {
-//            english = true
-//        }
-//        
-//        let languageItem1 = Language(title: "language_italian", action: .italian, selected: italian)
-//        let languageItem2 = Language(title: "language_english", action: .english, selected: english)
-//        cities.append(languageItem1)
-//        languages.append(languageItem2)
+        var cityMilano: Bool = false
+        var cityRoma: Bool = false
+        var cityFirenze: Bool = false
+        var cityModena: Bool = false
         
-//        self.dataHolder = ListDataHolder(data:Observable.just(languages).structured())
+        if UserDefaults.standard.object(forKey: "city") as? String == "milano"
+        {
+            cityMilano = true
+        }
+        else if UserDefaults.standard.object(forKey: "city") as? String == "roma"
+        {
+            cityRoma = true
+        }
+        else if UserDefaults.standard.object(forKey: "city") as? String == "firenze"
+        {
+            cityFirenze = true
+        }
+        else if UserDefaults.standard.object(forKey: "city") as? String == "modena"
+        {
+            cityModena = true
+        }
+        
+        let cityItem1 = City(title: "city_milano".localized(), icon: "ic_compass", action: .milano, selected: cityMilano)
+        let cityItem2 = City(title: "city_roma".localized(), icon: "ic_compass", action: .roma, selected: cityRoma)
+        let cityItem3 = City(title: "city_firenze".localized(), icon: "ic_compass", action: .firenze, selected: cityFirenze)
+        let cityItem4 = City(title: "city_modena".localized(), icon: "ic_compass", action: .modena, selected: cityModena)
+        
+        cities.append(cityItem1)
+        cities.append(cityItem2)
+        cities.append(cityItem3)
+        cities.append(cityItem4)
+        
+        self.dataHolder = ListDataHolder(data:Observable.just(cities).structured())
     }
 }
