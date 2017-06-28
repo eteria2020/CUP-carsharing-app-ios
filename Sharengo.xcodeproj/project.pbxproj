@@ -23,6 +23,12 @@
 		036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */; };
 		036D92301F028EF30076D22D /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922F1F028EF30076D22D /* Language.swift */; };
 		036D92341F02A5F70076D22D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 036D92331F02A5F70076D22D /* NSBundle+Language.m */; };
+		037BDFB71F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037BDFB61F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib */; };
+		037BDFB91F03944700C95962 /* SettingsCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFB81F03944700C95962 /* SettingsCitiesViewController.swift */; };
+		037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBA1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift */; };
+		037BDFBE1F03947F00C95962 /* SettingsCitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBC1F03947F00C95962 /* SettingsCitiesViewModel.swift */; };
+		037BDFBF1F03947F00C95962 /* SettingsCityItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBD1F03947F00C95962 /* SettingsCityItemViewModel.swift */; };
+		037BDFC11F03949A00C95962 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC01F03949A00C95962 /* City.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -165,6 +171,12 @@
 		036D922F1F028EF30076D22D /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Language.swift; path = Classes/Model/Language.swift; sourceTree = "<group>"; };
 		036D92321F02A5F70076D22D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
 		036D92331F02A5F70076D22D /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
+		037BDFB61F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsCityItemCollectionViewCell.xib; path = Resources/Xibs/SettingsCityItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		037BDFB81F03944700C95962 /* SettingsCitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCitiesViewController.swift; path = Classes/ViewControllers/SettingsCitiesViewController.swift; sourceTree = "<group>"; };
+		037BDFBA1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCityItemCollectionViewCell.swift; path = Classes/Views/SettingsCityItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		037BDFBC1F03947F00C95962 /* SettingsCitiesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCitiesViewModel.swift; path = Classes/ViewModels/SettingsCitiesViewModel.swift; sourceTree = "<group>"; };
+		037BDFBD1F03947F00C95962 /* SettingsCityItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCityItemViewModel.swift; path = Classes/ViewModels/SettingsCityItemViewModel.swift; sourceTree = "<group>"; };
+		037BDFC01F03949A00C95962 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = City.swift; path = Classes/Model/City.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -328,6 +340,7 @@
 				036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */,
 				036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */,
 				036D921A1F028E330076D22D /* Languages */,
+				037BDFAB1F0393BA00C95962 /* Cities */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -352,6 +365,18 @@
 			);
 			name = NSBundleLanguage;
 			path = Classes/Utilities/NSBundleLanguage;
+			sourceTree = "<group>";
+		};
+		037BDFAB1F0393BA00C95962 /* Cities */ = {
+			isa = PBXGroup;
+			children = (
+				037BDFB81F03944700C95962 /* SettingsCitiesViewController.swift */,
+				037BDFBC1F03947F00C95962 /* SettingsCitiesViewModel.swift */,
+				037BDFBA1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift */,
+				037BDFBD1F03947F00C95962 /* SettingsCityItemViewModel.swift */,
+				037BDFB61F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib */,
+			);
+			name = Cities;
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -678,6 +703,7 @@
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 				036D92181F0258540076D22D /* Setting.swift */,
 				036D922F1F028EF30076D22D /* Language.swift */,
+				037BDFC01F03949A00C95962 /* City.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -972,6 +998,7 @@
 				4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */,
 				03C6323A1EEFD04000BFEDA3 /* SignupStepView.xib in Resources */,
 				03A86FA61EF971D9009C72F4 /* MenuItemCollectionViewCell.xib in Resources */,
+				037BDFB71F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib in Resources */,
 				4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */,
 				4D45BB2D1EE698C2004C7287 /* CarBookingPopupView.xib in Resources */,
 				03AF5D6B1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png in Resources */,
@@ -1054,18 +1081,22 @@
 				036D92341F02A5F70076D22D /* NSBundle+Language.m in Sources */,
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
+				037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
 				4D45BB301EE69F49004C7287 /* CarBooking.swift in Sources */,
 				4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */,
+				037BDFB91F03944700C95962 /* SettingsCitiesViewController.swift in Sources */,
 				03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */,
 				4DA554481EE55284001627E7 /* FBAnnotationClusterView.swift in Sources */,
 				03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */,
+				037BDFC11F03949A00C95962 /* City.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
 				4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */,
 				03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
 				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
+				037BDFBE1F03947F00C95962 /* SettingsCitiesViewModel.swift in Sources */,
 				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
 				03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */,
 				03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */,
@@ -1153,6 +1184,7 @@
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
 				4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */,
 				4DA5544B1EE55284001627E7 /* FBBoundingBox.swift in Sources */,
+				037BDFBF1F03947F00C95962 /* SettingsCityItemViewModel.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,
 				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
