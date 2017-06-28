@@ -49,6 +49,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                 }
             default: break
             }
+            CoreController.shared.currentViewController?.hideMenuBackground()
             self.dismiss(animated: true, completion: nil)
         }).addDisposableTo(self.disposeBag)
         self.viewModel = viewModel

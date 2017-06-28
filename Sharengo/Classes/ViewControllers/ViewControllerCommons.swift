@@ -277,14 +277,16 @@ extension UIViewController {
     }
     
     func hideMenuBackground() {
-        if self.menuBackgroundView != nil {
-            UIView.animate(withDuration: 0.3, animations: { 
+        UIView.animate(withDuration: 0.3, animations: {
+            if self.menuBackgroundView != nil {
                 self.menuBackgroundView!.alpha = 0.0
-            }, completion: { (success) in
+            }
+        }, completion: { (success) in
+            if self.menuBackgroundView != nil {
                 self.menuBackgroundView!.removeFromSuperview()
                 self.menuBackgroundView = nil
-            })
-        }
+            }
+        })
     }
     
     func sharedSelection(_ output:SelectionOutput) {
