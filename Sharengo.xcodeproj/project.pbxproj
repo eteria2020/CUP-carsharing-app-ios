@@ -29,6 +29,8 @@
 		037BDFBE1F03947F00C95962 /* SettingsCitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBC1F03947F00C95962 /* SettingsCitiesViewModel.swift */; };
 		037BDFBF1F03947F00C95962 /* SettingsCityItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBD1F03947F00C95962 /* SettingsCityItemViewModel.swift */; };
 		037BDFC11F03949A00C95962 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC01F03949A00C95962 /* City.swift */; };
+		037BDFC61F03B2EC00C95962 /* NoFavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC51F03B2EC00C95962 /* NoFavouritesViewController.swift */; };
+		037BDFC81F03B30500C95962 /* NoFavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -177,6 +179,8 @@
 		037BDFBC1F03947F00C95962 /* SettingsCitiesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCitiesViewModel.swift; path = Classes/ViewModels/SettingsCitiesViewModel.swift; sourceTree = "<group>"; };
 		037BDFBD1F03947F00C95962 /* SettingsCityItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCityItemViewModel.swift; path = Classes/ViewModels/SettingsCityItemViewModel.swift; sourceTree = "<group>"; };
 		037BDFC01F03949A00C95962 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = City.swift; path = Classes/Model/City.swift; sourceTree = "<group>"; };
+		037BDFC51F03B2EC00C95962 /* NoFavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoFavouritesViewController.swift; path = Classes/ViewControllers/NoFavouritesViewController.swift; sourceTree = "<group>"; };
+		037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoFavouritesViewModel.swift; path = Classes/ViewModels/NoFavouritesViewModel.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -339,8 +343,9 @@
 				036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */,
 				036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */,
 				036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */,
-				036D921A1F028E330076D22D /* Languages */,
 				037BDFAB1F0393BA00C95962 /* Cities */,
+				037BDFC21F03B25900C95962 /* Favourites */,
+				036D921A1F028E330076D22D /* Languages */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -377,6 +382,15 @@
 				037BDFB61F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib */,
 			);
 			name = Cities;
+			sourceTree = "<group>";
+		};
+		037BDFC21F03B25900C95962 /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				037BDFC51F03B2EC00C95962 /* NoFavouritesViewController.swift */,
+				037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */,
+			);
+			name = Favourites;
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -1108,6 +1122,7 @@
 				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
 				03C632381EEFD02C00BFEDA3 /* SignupStepViewModel.swift in Sources */,
 				4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */,
+				037BDFC61F03B2EC00C95962 /* NoFavouritesViewController.swift in Sources */,
 				03AF5D731EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
 				4D2339951EE6CCE300780384 /* IntroViewController.swift in Sources */,
 				4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */,
@@ -1133,6 +1148,7 @@
 				03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */,
 				03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
+				037BDFC81F03B30500C95962 /* NoFavouritesViewModel.swift in Sources */,
 				036D92281F028E960076D22D /* SettingsLanguagesViewController.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */,

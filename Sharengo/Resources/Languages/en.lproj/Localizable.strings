@@ -141,3 +141,10 @@
 
 // Settings Cities
 "lbl_settingsCitiesHeaderTitle" = "IMPOSTA CITTÀ";
+
+// Settings Favourites
+
+"lbl_settingsFavouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
+"lbl_settingsFavouritesTitle" = "Peccato!";
+"lbl_settingsFavouritesDescription" = "Non hai ancora nessun indirizzo preferito o recente! Imposta le tue destinazioni più frequenti e risparmia tempo quando scegli dove andare.";
+"btn_settingsFavouritesNewFavourite" = "IMPOSTA NUOVO INDIRIZZO";
