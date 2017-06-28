@@ -15,6 +15,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case menu = "menu"
     case settings = "settings"
     case settingsLanguages = "settingsLanguages"
+    case settingsCities = "settingsCities"
     case signup = "signup"
     case login = "login"
     case home = "home"

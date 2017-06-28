@@ -93,6 +93,10 @@ struct Router : RouterType {
             let destination: SettingsLanguagesViewController = (Storyboard.main.scene(.settingsLanguages))
             destination.bind(to: ViewModelFactory.settingsLanguages(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SettingsCitiesViewModel:
+            let destination: SettingsCitiesViewController = (Storyboard.main.scene(.settingsCities))
+            destination.bind(to: ViewModelFactory.settingsCities(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }
