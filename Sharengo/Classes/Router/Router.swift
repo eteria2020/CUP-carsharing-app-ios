@@ -97,6 +97,10 @@ struct Router : RouterType {
             let destination: SettingsCitiesViewController = (Storyboard.main.scene(.settingsCities))
             destination.bind(to: ViewModelFactory.settingsCities(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is NoFavouritesViewModel:
+            let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
+            destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

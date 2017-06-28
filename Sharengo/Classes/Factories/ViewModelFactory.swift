@@ -87,6 +87,10 @@ struct ViewModelFactory {
         return SettingsCityItemViewModel(model: model)
     }
 
+    static func noFavourites() -> ViewModelType {
+        return NoFavouritesViewModel()
+    }
+
     static func searchBarItem(fromModel model:Address) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }

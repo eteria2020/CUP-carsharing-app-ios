@@ -103,6 +103,10 @@ enum Font {
     case settingsCitiesHeader
     case settingsCitiesLabel
 
+    // NoFavourites
+    case noFavouritesHeader
+    case noFavouritesLabel
+
     var value: UIFont {
         get {
             switch self {
@@ -197,6 +201,11 @@ enum Font {
             case .settingsCitiesHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .settingsCitiesLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            // NoFavourites
+            case .noFavouritesHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .noFavouritesLabel:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
         }

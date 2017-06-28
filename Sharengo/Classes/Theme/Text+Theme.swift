@@ -77,6 +77,11 @@ enum TextStyle: String, TextStyleType {
     case settingsCitiesHeader = "settingsCitiesHeader"
     case settingsCitiesItemTitle = "settingsCitiesItemTitle"
 
+    // NoFavourites
+    case noFavouritesHeader = "noFavouritesHeader"
+    case noFavouritesTitle = "noFavouritesTitle"
+    case noFavouritesDescription = "noFavouritesDescription"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -121,7 +126,11 @@ enum TextStyle: String, TextStyleType {
             .settingsLanguagesItemTitle,
             // SettingsLanguages
             .settingsCitiesHeader,
-            .settingsCitiesItemTitle
+            .settingsCitiesItemTitle,
+            // NoFavourites
+            .noFavouritesHeader,
+            .noFavouritesTitle,
+            .noFavouritesDescription
         ]
     }
     
@@ -207,6 +216,13 @@ enum TextStyle: String, TextStyleType {
             case .settingsCitiesHeader:
                 return StringStyle(.font(Font.settingsCitiesHeader.value), .color(Color.settingsCitiesHeaderLabel.value), .alignment(.center))
             case .settingsCitiesItemTitle:
+                return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
+            // NoFavourites
+            case .noFavouritesHeader:
+                return StringStyle(.font(Font.settingsCitiesHeader.value), .color(Color.settingsCitiesHeaderLabel.value), .alignment(.center))
+            case .noFavouritesTitle:
+                return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
+            case .noFavouritesDescription:
                 return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))

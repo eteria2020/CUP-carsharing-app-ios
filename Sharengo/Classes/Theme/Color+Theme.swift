@@ -168,6 +168,15 @@ enum Color {
     case settingsCitiesOddCellBackground
     case settingsCitiesEvenCellBackground
 
+    // NoFavourites
+    case noFavouritesHeaderBackground
+    case noFavouritesHeaderLabel
+    case noFavouritesBackground
+    case noFavouritesTitle
+    case noFavouritesDescription
+    case noFavouritesNewFavouriteTextButton
+    case noFavouritesNewFavouriteBackgroundButton
+
     // Web
     case webBackground
     
@@ -333,6 +342,21 @@ enum Color {
                 return ColorBrand.lightGray.value
             case .settingsCitiesEvenCellBackground:
                 return ColorBrand.white.value
+            // No Favourites
+            case .noFavouritesHeaderBackground:
+                return ColorBrand.black.value
+            case .noFavouritesHeaderLabel:
+                return ColorBrand.white.value
+            case .noFavouritesBackground:
+                return ColorBrand.lightGray.value
+            case .noFavouritesTitle:
+                return ColorBrand.green.value
+            case .noFavouritesDescription:
+                return ColorBrand.black.value
+            case .noFavouritesNewFavouriteTextButton:
+                return ColorBrand.white.value
+            case .noFavouritesNewFavouriteBackgroundButton:
+                return ColorBrand.green.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value
