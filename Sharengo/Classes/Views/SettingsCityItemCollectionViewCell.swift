@@ -16,7 +16,8 @@ class SettingsCityItemCollectionViewCell: UICollectionViewCell, ViewModelBindabl
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
-    @IBOutlet fileprivate weak var btn_selectedLanguage: UIButton!
+    @IBOutlet fileprivate weak var img_selected: UIImageView!
+    @IBOutlet fileprivate weak var view_selected: UIView!
     
     var viewModel:ItemViewModelType?
     
@@ -28,15 +29,23 @@ class SettingsCityItemCollectionViewCell: UICollectionViewCell, ViewModelBindabl
         }
         self.layoutIfNeeded()
         self.viewModel = viewModel
+    
         self.lbl_title.styledText = viewModel.title
+        if viewModel.icon != nil
+        {
+            if let icon = UIImage(named: viewModel.icon!)
+            {
+                self.img_icon.image = icon
+            }
+        }
         
         if viewModel.selected == true
         {
-            self.btn_selectedLanguage.setImage(UIImage(named: "ic_compass")!, for: .normal)
+            self.img_selected.image = UIImage(named: "ic_compass")!
         }
         else
         {
-            self.btn_selectedLanguage.setImage(nil, for: .normal)
+            self.img_selected.image = nil
         }
     }
     

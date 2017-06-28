@@ -267,7 +267,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1226,7 +1226,7 @@
         <!--Settings Cities View Controller-->
         <scene sceneID="2P2-Es-H8C">
             <objects>
-                <viewController storyboardIdentifier="settingsLanguages" id="2Kn-i0-E3J" customClass="SettingsCitiesViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsCities" id="2Kn-i0-E3J" customClass="SettingsCitiesViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="scB-bu-Icx"/>
                         <viewControllerLayoutGuide type="bottom" id="Boo-hF-lbV"/>

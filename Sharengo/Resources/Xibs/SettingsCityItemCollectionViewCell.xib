@@ -33,7 +33,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNp-A5-9Tl">
-                                <rect key="frame" x="15" y="42" width="401" height="35"/>
+                                <rect key="frame" x="50" y="42" width="366" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,18 +41,35 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="settingItemTitle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYb-NY-8So">
+                                <rect key="frame" x="9" y="41" width="37" height="37"/>
+                                <color key="backgroundColor" red="1" green="0.46942816840000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_login" translatesAutoresizingMaskIntoConstraints="NO" id="GQM-v3-Evq">
+                                <rect key="frame" x="15" y="47" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="4N6-fM-UPh"/>
+                                    <constraint firstAttribute="height" constant="25" id="8KF-py-60n"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="eNp-A5-9Tl" secondAttribute="trailing" constant="15" id="AC1-ck-rhM"/>
+                            <constraint firstItem="GQM-v3-Evq" firstAttribute="top" secondItem="WYb-NY-8So" secondAttribute="top" constant="6" id="CeQ-yR-ps0"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="trailing" secondItem="pj7-iN-ers" secondAttribute="trailing" constant="-6" id="Dr4-7J-vu2"/>
-                            <constraint firstItem="eNp-A5-9Tl" firstAttribute="top" secondItem="pj7-iN-ers" secondAttribute="bottom" constant="5" id="MXP-aQ-sQo"/>
+                            <constraint firstItem="GQM-v3-Evq" firstAttribute="bottom" secondItem="WYb-NY-8So" secondAttribute="bottom" constant="-6" id="LVS-ch-5Ul"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="top" secondItem="pj7-iN-ers" secondAttribute="top" constant="6" id="QXl-Nq-E4e"/>
-                            <constraint firstAttribute="bottom" secondItem="eNp-A5-9Tl" secondAttribute="bottom" constant="5" id="StT-ew-nUf"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="leading" secondItem="pj7-iN-ers" secondAttribute="leading" constant="6" id="Teh-XW-58w"/>
-                            <constraint firstItem="eNp-A5-9Tl" firstAttribute="leading" secondItem="MUv-5c-zGz" secondAttribute="leading" constant="15" id="eMM-ro-dqC"/>
+                            <constraint firstItem="GQM-v3-Evq" firstAttribute="trailing" secondItem="WYb-NY-8So" secondAttribute="trailing" constant="-6" id="XEh-Po-fyH"/>
+                            <constraint firstItem="eNp-A5-9Tl" firstAttribute="top" secondItem="pj7-iN-ers" secondAttribute="bottom" constant="5" id="ZMi-2O-8uO"/>
+                            <constraint firstItem="GQM-v3-Evq" firstAttribute="leading" secondItem="MUv-5c-zGz" secondAttribute="leading" constant="15" id="ZS8-OJ-sc7"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="centerX" secondItem="MUv-5c-zGz" secondAttribute="centerX" id="hEF-Sp-rv9"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="bottom" secondItem="pj7-iN-ers" secondAttribute="bottom" constant="-6" id="ngZ-VL-HIU"/>
+                            <constraint firstItem="eNp-A5-9Tl" firstAttribute="leading" secondItem="GQM-v3-Evq" secondAttribute="trailing" constant="10" id="pVR-Dj-5V4"/>
+                            <constraint firstAttribute="bottom" secondItem="eNp-A5-9Tl" secondAttribute="bottom" constant="5" id="rFE-SX-piS"/>
+                            <constraint firstItem="eNp-A5-9Tl" firstAttribute="centerY" secondItem="GQM-v3-Evq" secondAttribute="centerY" id="tKE-mR-1zg"/>
+                            <constraint firstAttribute="trailing" secondItem="eNp-A5-9Tl" secondAttribute="trailing" constant="15" id="xEL-Gd-R05"/>
+                            <constraint firstItem="GQM-v3-Evq" firstAttribute="leading" secondItem="WYb-NY-8So" secondAttribute="leading" constant="6" id="y4e-7h-Yyv"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="bottom" secondItem="MUv-5c-zGz" secondAttribute="centerY" constant="-10" id="zoe-A8-5O0"/>
                         </constraints>
                     </view>
@@ -67,7 +84,10 @@
             <size key="customSize" width="431" height="82"/>
             <connections>
                 <outlet property="img_icon" destination="zrw-Tk-fns" id="oaw-Vb-qHp"/>
+                <outlet property="img_selected" destination="GQM-v3-Evq" id="Zsn-5x-xy0"/>
                 <outlet property="lbl_title" destination="eNp-A5-9Tl" id="phb-E7-ltv"/>
+                <outlet property="view_icon" destination="pj7-iN-ers" id="Ohh-Vd-rgU"/>
+                <outlet property="view_selected" destination="GQM-v3-Evq" id="oRQ-qs-Ipq"/>
             </connections>
             <point key="canvasLocation" x="224.5" y="70"/>
         </collectionViewCell>
