@@ -99,6 +99,10 @@ enum Font {
     case settingsLanguagesHeader
     case settingsLanguagesLabel
 
+    // SettingsCities
+    case settingsCitiesHeader
+    case settingsCitiesLabel
+
     var value: UIFont {
         get {
             switch self {
@@ -188,6 +192,11 @@ enum Font {
             case .settingsLanguagesHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .settingsLanguagesLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            // SettingsCities
+            case .settingsCitiesHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .settingsCitiesLabel:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
         }

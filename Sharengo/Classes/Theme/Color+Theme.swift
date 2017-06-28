@@ -160,6 +160,14 @@ enum Color {
     case settingsLanguagesOddCellBackground
     case settingsLanguagesEvenCellBackground
 
+    // SettingsCities
+    case settingsCitiesHeaderBackground
+    case settingsCitiesHeaderLabel
+    case settingsCitiesItemLabel
+    case settingsCitiesBackground
+    case settingsCitiesOddCellBackground
+    case settingsCitiesEvenCellBackground
+
     // Web
     case webBackground
     
@@ -311,6 +319,19 @@ enum Color {
             case .settingsLanguagesOddCellBackground:
                 return ColorBrand.lightGray.value
             case .settingsLanguagesEvenCellBackground:
+                return ColorBrand.white.value
+            // SettingsCities
+            case .settingsCitiesHeaderBackground:
+                return ColorBrand.black.value
+            case .settingsCitiesHeaderLabel:
+                return ColorBrand.white.value
+            case .settingsCitiesItemLabel:
+                return ColorBrand.green.value
+            case .settingsCitiesBackground:
+                return ColorBrand.gray.value
+            case .settingsCitiesOddCellBackground:
+                return ColorBrand.lightGray.value
+            case .settingsCitiesEvenCellBackground:
                 return ColorBrand.white.value
             // Web
             case .webBackground:

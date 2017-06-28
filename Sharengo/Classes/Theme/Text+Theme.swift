@@ -73,6 +73,10 @@ enum TextStyle: String, TextStyleType {
     case settingsLanguagesHeader = "settingsLanguagesHeader"
     case settingsLanguagesItemTitle = "settingsLanguagesItemTitle"
 
+    // SettingsCities
+    case settingsCitiesHeader = "settingsCitiesHeader"
+    case settingsCitiesItemTitle = "settingsCitiesItemTitle"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -114,7 +118,10 @@ enum TextStyle: String, TextStyleType {
             .settingItemTitle,
             // SettingsLanguages
             .settingsLanguagesHeader,
-            .settingsLanguagesItemTitle
+            .settingsLanguagesItemTitle,
+            // SettingsLanguages
+            .settingsCitiesHeader,
+            .settingsCitiesItemTitle
         ]
     }
     
@@ -196,6 +203,11 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.settingsLanguagesHeader.value), .color(Color.settingsLanguagesHeaderLabel.value), .alignment(.center))
             case .settingsLanguagesItemTitle:
                 return StringStyle(.font(Font.settingsLanguagesLabel.value), .color(Color.settingsLanguagesItemLabel.value), .alignment(.center))
+            // SettingsCities
+            case .settingsCitiesHeader:
+                return StringStyle(.font(Font.settingsCitiesHeader.value), .color(Color.settingsCitiesHeaderLabel.value), .alignment(.center))
+            case .settingsCitiesItemTitle:
+                return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
