@@ -33,7 +33,7 @@ class NoFavouritesViewController : BaseViewController, ViewModelBindable {
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
             case .newFavourite:
-                Router.from(self,viewModel: viewModel).execute()
+                Router.from(self,viewModel: ViewModelFactory.newFavourite()).execute()
             default: break
             }
         }).addDisposableTo(self.disposeBag)

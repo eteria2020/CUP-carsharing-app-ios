@@ -26,8 +26,9 @@ final class NoFavouritesViewModel: ViewModelType {
         switch input {
         case .newFavourite:
             return .just(.newFavourite)
+        default:
+            return .just(.empty)
         }
-        return .just(.empty)
     }
 
     init() {
