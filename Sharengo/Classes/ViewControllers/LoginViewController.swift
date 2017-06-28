@@ -145,6 +145,7 @@ class LoginViewController : BaseViewController, ViewModelBindable {
                 self?.navigationController?.pushViewController(destination, animated: true)
             case .continueAsNotLogged:
                 let destination: HomeViewController = (Storyboard.main.scene(.home))
+                destination.introIsShowed = true
                 destination.bind(to: ViewModelFactory.home(), afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
             }

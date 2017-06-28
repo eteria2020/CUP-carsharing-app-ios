@@ -26,7 +26,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_description: UILabel!
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var loginIsShowed: Bool = false
-    fileprivate var introIsShowed: Bool = false
+    var introIsShowed: Bool = false
     
     var viewModel: HomeViewModel?
     
@@ -147,6 +147,12 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                     self.animateButtons()
                 }
             }
+        } else {
+            self.view_searchCar.alpha = 1.0
+            self.view_profile.alpha = 1.0
+            self.view_feeds.alpha = 1.0
+            self.view_dotted.alpha = 1.0
+            self.lbl_description.alpha = 1.0
         }
         self.introIsShowed = true
         self.updateUserData()

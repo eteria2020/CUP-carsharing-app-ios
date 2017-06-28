@@ -21,6 +21,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     @IBOutlet fileprivate weak var view_separator: UIView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var btn_profileEco: UIButton!
+    fileprivate var executeAnimation: Bool = true
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
@@ -36,8 +37,27 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
             case .viewModel(let viewModel):
-                Router.from(self,viewModel: viewModel).execute()
-            case .logout:
+                switch viewModel {
+                case is LoginViewModel:
+                    let destination: LoginViewController = (Storyboard.main.scene(.login))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is SignupViewModel:
+                    let destination: SignupViewController = (Storyboard.main.scene(.signup))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is SearchCarsViewModel:
+                    let destination: SearchCarsViewController = (Storyboard.main.scene(.searchCars))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is ProfileViewModel:
+                    let destination: ProfileViewController = (Storyboard.main.scene(.profile))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                default:
+                    break
+                }
+                case .logout:
                 KeychainSwift().clear()
                 CoreController.shared.allCarBookings = []
                 CoreController.shared.allCarTrips = []
@@ -49,6 +69,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                 }
             default: break
             }
+            self.executeAnimation = false
             CoreController.shared.currentViewController?.hideMenuBackground()
             self.dismiss(animated: true, completion: nil)
         }).addDisposableTo(self.disposeBag)
@@ -79,6 +100,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.executeAnimation = true
         if animated {
             CoreController.shared.currentViewController?.showMenuBackground()
         }
@@ -86,7 +108,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if animated {
+        if animated && self.executeAnimation {
             CoreController.shared.currentViewController?.hideMenuBackground()
         }
     }
