@@ -28,6 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             UserDefaults.standard.setValue("language".localized(), forKey: "language")
         }
+        if UserDefaults.standard.object(forKey: "city") == nil
+        {
+            UserDefaults.standard.setValue("milano", forKey: "city")
+        }
 
 
         return true
