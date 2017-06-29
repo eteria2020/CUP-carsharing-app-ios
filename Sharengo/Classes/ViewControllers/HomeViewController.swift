@@ -182,8 +182,8 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 }
             }
             if !cityFounded {
-                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta")?.tinted(Color.homeDisabledIcon.value), for: .normal)
-                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta")?.tinted(Color.homeDisabledIcon.value.withAlphaComponent(0.5)), for: .highlighted)
+                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(Color.homeDisabledIcon.value), for: .normal)
+                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(Color.homeDisabledIcon.value.withAlphaComponent(0.5)), for: .highlighted)
             }
         }
     }

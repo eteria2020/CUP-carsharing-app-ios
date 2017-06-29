@@ -125,7 +125,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        let height = max(56, (UIScreen.main.bounds.height-76)/9)
+        let height = max(54, (UIScreen.main.bounds.height-76)/9)
         return CGSize(width: size.width, height: height)
     }
     

@@ -143,7 +143,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YT-JM-wdT">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                        <state key="normal" image="ic_imposta_citta"/>
+                                        <state key="normal" image="ic_imposta_citta_big"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1540,7 +1540,7 @@
         <image name="btn_close_popup" width="44" height="14"/>
         <image name="ic_cat_home" width="46" height="28"/>
         <image name="ic_close" width="13" height="13"/>
-        <image name="ic_imposta_citta" width="30" height="30"/>
+        <image name="ic_imposta_citta_big" width="32" height="36"/>
         <image name="ic_left" width="30" height="30"/>
         <image name="ic_right" width="30" height="30"/>
         <image name="ic_utente_home" width="32" height="36"/>
