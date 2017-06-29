@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Boomerang
 import SideMenu
+import DeviceKit
 
 class SettingsViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -49,9 +50,22 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
+        //self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
         self.lbl_title.textColor = Color.settingHeaderLabel.value
+       
+        switch Device().diagonal {
+        case 3.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+        case 4:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+        case 4.7:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 180
+        case 5.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 180
+        default:
+            break
+        }
         
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -100,7 +114,7 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-106)/3)
+        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -108,12 +122,9 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row % 2 == 0
-        {
+        if indexPath.row % 2 == 0 {
             cell.backgroundColor = Color.settingEvenCellBackground.value
-        }
-        else
-        {
+        } else {
             cell.backgroundColor = Color.settingOddCellBackground.value
         }
     }

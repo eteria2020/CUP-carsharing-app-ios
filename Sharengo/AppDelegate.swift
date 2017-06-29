@@ -5,6 +5,7 @@ import Boomerang
 import RxSwift
 import Gloss
 import SideMenu
+import Localize_Swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,16 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.setupSideMenu()
         
-        if UserDefaults.standard.object(forKey: "language") == nil
-        {
+        if UserDefaults.standard.object(forKey: "language") == nil {
             UserDefaults.standard.setValue("language".localized(), forKey: "language")
         }
-        if UserDefaults.standard.object(forKey: "city") == nil
-        {
+        
+        /*
+        if UserDefaults.standard.object(forKey: "city") == nil {
             UserDefaults.standard.setValue("milano", forKey: "city")
         }
-
-
+        */
+        
+        // TODO: recuperare le città
+        // TODO: che succede se le città non vengono scaricate neanche una volta?
+        
         return true
     }
 

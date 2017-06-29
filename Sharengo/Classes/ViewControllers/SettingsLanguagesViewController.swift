@@ -11,12 +11,15 @@ import RxSwift
 import RxCocoa
 import Boomerang
 import SideMenu
+import DeviceKit
+import Localize_Swift
 
 class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    @IBOutlet fileprivate weak var btn_back: UIButton!
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
@@ -33,11 +36,11 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
             switch selection {
             case .italian:
                 UserDefaults.standard.setValue("it", forKey: "language")
-                Bundle.setLanguage("it")
+                Localize.setCurrentLanguage("it")
                 self.updateData()
             case .english:
                 UserDefaults.standard.setValue("en", forKey: "language")
-                Bundle.setLanguage("en")
+                Localize.setCurrentLanguage("en")
                 self.updateData()
             default: break
             }
@@ -55,9 +58,22 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
+        //self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
         self.lbl_title.textColor = Color.settingHeaderLabel.value
+        
+        switch Device().diagonal {
+        case 3.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+        case 4:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+        case 4.7:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 180
+        case 5.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 180
+        default:
+            break
+        }
         
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -72,6 +88,12 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
                 break
             }
         }).addDisposableTo(self.disposeBag)
+        
+        self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+        self.btn_back.rx.tap.asObservable()
+            .subscribe(onNext:{
+                Router.back(self)
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +119,7 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
             self.viewModel?.updateData()
             self.viewModel?.reload()
             self.collectionView?.reloadData()
+            self.lbl_title.styledText = self.viewModel?.title
         }
     }
     
@@ -116,7 +139,7 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-106)/3)
+        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/4)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -124,12 +147,9 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row % 2 == 0
-        {
+        if indexPath.row % 2 == 0 {
             cell.backgroundColor = Color.settingsLanguagesEvenCellBackground.value
-        }
-        else
-        {
+        } else {
             cell.backgroundColor = Color.settingsLanguagesOddCellBackground.value
         }
     }

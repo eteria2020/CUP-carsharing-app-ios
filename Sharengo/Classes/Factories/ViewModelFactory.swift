@@ -92,7 +92,7 @@ struct ViewModelFactory {
     }
 
     static func newFavourite() -> ViewModelType {
-        return newFavouriteViewModel()
+        return NewFavouriteViewModel()
     }
 
     static func searchBarItem(fromModel model:Address) -> ItemViewModelType {

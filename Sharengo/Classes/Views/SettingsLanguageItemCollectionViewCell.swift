@@ -30,7 +30,7 @@ class SettingsLanguageItemCollectionViewCell: UICollectionViewCell, ViewModelBin
         
         if viewModel.selected == true
         {
-            self.btn_selectedLanguage.setImage(UIImage(named: "ic_compass")!, for: .normal)
+            self.btn_selectedLanguage.setImage(UIImage(named: "ic_citta_selezionata")!, for: .normal)
         }
         else
         {

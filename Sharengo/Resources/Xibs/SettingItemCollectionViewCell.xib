@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,18 +22,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZd-ZB-OJB">
-                                <rect key="frame" x="197" y="0.0" width="37" height="37"/>
+                                <rect key="frame" x="193" y="6" width="45" height="45"/>
                                 <color key="backgroundColor" red="1" green="0.46942816840000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_login" translatesAutoresizingMaskIntoConstraints="NO" id="y4S-YN-jDs">
-                                <rect key="frame" x="203" y="6" width="25" height="25"/>
+                                <rect key="frame" x="203" y="16" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="1Ql-LE-I3t"/>
                                     <constraint firstAttribute="height" constant="25" id="wSK-KN-K60"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASc-t8-Xv1">
-                                <rect key="frame" x="15" y="42" width="401" height="35"/>
+                                <rect key="frame" x="15" y="61" width="401" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -46,13 +46,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ASc-t8-Xv1" secondAttribute="trailing" constant="15" id="5Nd-4v-pKw"/>
                             <constraint firstItem="y4S-YN-jDs" firstAttribute="centerX" secondItem="th1-td-Rwz" secondAttribute="centerX" id="6Le-MM-1Gt"/>
-                            <constraint firstItem="y4S-YN-jDs" firstAttribute="top" secondItem="LZd-ZB-OJB" secondAttribute="top" constant="6" id="7C0-1I-4Be"/>
-                            <constraint firstItem="ASc-t8-Xv1" firstAttribute="top" secondItem="LZd-ZB-OJB" secondAttribute="bottom" constant="5" id="WOL-OG-FOo"/>
-                            <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="LZd-ZB-OJB" secondAttribute="bottom" constant="-6" id="Xwn-b0-Cxl"/>
-                            <constraint firstAttribute="bottom" secondItem="ASc-t8-Xv1" secondAttribute="bottom" constant="5" id="a8S-jv-9aW"/>
-                            <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="th1-td-Rwz" secondAttribute="centerY" constant="-10" id="dSS-MS-kES"/>
-                            <constraint firstItem="y4S-YN-jDs" firstAttribute="trailing" secondItem="LZd-ZB-OJB" secondAttribute="trailing" constant="-6" id="tI5-RO-ted"/>
-                            <constraint firstItem="y4S-YN-jDs" firstAttribute="leading" secondItem="LZd-ZB-OJB" secondAttribute="leading" constant="6" id="w2D-VS-3Wo"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="top" secondItem="LZd-ZB-OJB" secondAttribute="top" constant="10" id="7C0-1I-4Be"/>
+                            <constraint firstItem="ASc-t8-Xv1" firstAttribute="top" secondItem="LZd-ZB-OJB" secondAttribute="bottom" constant="10" id="WOL-OG-FOo"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="LZd-ZB-OJB" secondAttribute="bottom" constant="-10" id="Xwn-b0-Cxl"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ASc-t8-Xv1" secondAttribute="bottom" constant="5" id="a8S-jv-9aW"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="th1-td-Rwz" secondAttribute="centerY" id="dSS-MS-kES"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="trailing" secondItem="LZd-ZB-OJB" secondAttribute="trailing" constant="-10" id="tI5-RO-ted"/>
+                            <constraint firstItem="y4S-YN-jDs" firstAttribute="leading" secondItem="LZd-ZB-OJB" secondAttribute="leading" constant="10" id="w2D-VS-3Wo"/>
                             <constraint firstItem="ASc-t8-Xv1" firstAttribute="leading" secondItem="th1-td-Rwz" secondAttribute="leading" constant="15" id="ww3-ur-evQ"/>
                         </constraints>
                     </view>

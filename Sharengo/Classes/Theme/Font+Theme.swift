@@ -191,17 +191,17 @@ enum Font {
             case .settingHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .settingLabel:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // SettingsLanguages
             case .settingsLanguagesHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .settingsLanguagesLabel:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // SettingsCities
             case .settingsCitiesHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .settingsCitiesLabel:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // NoFavourites
             case .noFavouritesHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))

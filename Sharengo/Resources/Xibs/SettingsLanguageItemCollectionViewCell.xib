@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,16 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1W-o2-SwJ">
-                                <rect key="frame" x="50" y="15" width="366" height="52"/>
+                                <rect key="frame" x="199" y="15" width="33.5" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="settingItemTitle"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="settingsLanguagesItemTitle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kth-tY-tTe">
-                                <rect key="frame" x="15" y="28.5" width="25" height="25"/>
+                                <rect key="frame" x="169" y="28.5" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="8s0-eL-6kn"/>
                                     <constraint firstAttribute="height" constant="25" id="zoS-Vk-JDh"/>
@@ -40,12 +40,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kth-tY-tTe" firstAttribute="leading" secondItem="Qfy-jA-WeN" secondAttribute="leading" constant="15" id="0cE-jq-sHv"/>
                             <constraint firstItem="P1W-o2-SwJ" firstAttribute="top" secondItem="Qfy-jA-WeN" secondAttribute="top" constant="15" id="Ayz-Uk-1KN"/>
-                            <constraint firstAttribute="trailing" secondItem="P1W-o2-SwJ" secondAttribute="trailing" constant="15" id="CXy-wp-MQM"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="P1W-o2-SwJ" secondAttribute="trailing" constant="15" id="CXy-wp-MQM"/>
+                            <constraint firstItem="P1W-o2-SwJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Qfy-jA-WeN" secondAttribute="leading" constant="15" id="EjQ-OC-gIZ"/>
+                            <constraint firstItem="P1W-o2-SwJ" firstAttribute="centerX" secondItem="Qfy-jA-WeN" secondAttribute="centerX" id="FiF-H9-B2w"/>
+                            <constraint firstItem="P1W-o2-SwJ" firstAttribute="leading" secondItem="kth-tY-tTe" secondAttribute="trailing" constant="5" id="UIu-ig-lpd"/>
                             <constraint firstItem="kth-tY-tTe" firstAttribute="centerY" secondItem="Qfy-jA-WeN" secondAttribute="centerY" id="dpf-dV-OtH"/>
                             <constraint firstAttribute="bottom" secondItem="P1W-o2-SwJ" secondAttribute="bottom" constant="15" id="hdx-ae-3Qy"/>
-                            <constraint firstItem="P1W-o2-SwJ" firstAttribute="leading" secondItem="kth-tY-tTe" secondAttribute="trailing" constant="10" id="oXX-DE-DLK"/>
                         </constraints>
                     </view>
                 </subviews>

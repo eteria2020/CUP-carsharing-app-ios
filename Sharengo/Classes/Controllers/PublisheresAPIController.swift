@@ -1,5 +1,5 @@
 //
-//  NominatimAPIController.swift
+//  PublishersAPIController.swift
 //
 //  Created by Dedecube on 31/05/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
@@ -15,7 +15,7 @@ import Alamofire
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class NominatimAPIController {
+final class PublishersAPIController {
     fileprivate var manager: SessionManager?
    
     init() {
@@ -28,7 +28,7 @@ final class NominatimAPIController {
         )
     }
     
-    func searchAddress(text: String) -> Observable<[Address]> {
+    func getCities() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -38,13 +38,13 @@ final class NominatimAPIController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.searchAddress(text: text))
+            return provider.request(.cities())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapArray(type: Address.self)
+                .mapObject(type: Response.self)
                 .subscribe { event in
                 switch event {
-                case .next(let addresses):
-                    observable.onNext(addresses)
+                case .next(let response):
+                    observable.onNext(response)
                     observable.onCompleted()
                 case .error(let error):
                     observable.onError(error)
@@ -57,16 +57,16 @@ final class NominatimAPIController {
 }
 
 fileprivate enum API {
-    case searchAddress(text: String)
+    case cities()
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "http://maps.sharengo.it")! }
+    var baseURL: URL { return URL(string: "http://universo-sharengo.thedigitalproject.it:universo-sharengo.thedigitalproject.it@universo-sharengo.thedigitalproject.it/feed")! }
     
     var path: String {
         switch self {
-        case .searchAddress(_):
-            return "search.php"
+        case .cities(_):
+            return "cities/list"
         }
     }
     
@@ -76,8 +76,8 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case .searchAddress(let text):
-            return ["q": text, "format": "json"]
+        case .cities():
+            return [:]
         }
     }
     

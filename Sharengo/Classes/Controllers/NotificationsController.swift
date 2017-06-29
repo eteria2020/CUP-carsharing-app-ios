@@ -18,7 +18,6 @@ class NotificationsController
         banner.titleLabel.font = Font.carBookingCompletedBannerLabelEmphasized.value
         banner.detailLabel.font = Font.carBookingCompletedBannerLabel.value
         banner.didTapBlock = {
-            // TODO: refactoring
             let destination:CarBookingCompletedViewController = (Storyboard.main.scene(.carBookingCompleted))
             let viewModel = ViewModelFactory.carBookingCompleted(carTrip: carTrip)
             destination.bind(to: viewModel, afterLoad: true)

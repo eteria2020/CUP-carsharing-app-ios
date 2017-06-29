@@ -39,8 +39,6 @@ final class SettingsLanguagesViewModel : ListViewModelType, ViewModelTypeSelecta
     }
     
     init() {
-        self.title = "lbl_settingsLanguagesHeaderTitle".localized()
-        
         self.updateData()
         
         self.selection = Action { input in
@@ -54,6 +52,7 @@ final class SettingsLanguagesViewModel : ListViewModelType, ViewModelTypeSelecta
     
     func updateData()
     {
+        self.title = "lbl_settingsLanguagesHeaderTitle".localized()
         languages.removeAll()
         var italian: Bool = false
         var english: Bool = false

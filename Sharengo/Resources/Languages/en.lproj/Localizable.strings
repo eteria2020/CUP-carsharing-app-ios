@@ -23,10 +23,6 @@
 "btn_carRides" = "STORICO CORSE";
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
-"city_milano" = "Milano";
-"city_firenze" = "Firenze";
-"city_roma" = "Roma";
-"city_modema" = "Modena";
 
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
