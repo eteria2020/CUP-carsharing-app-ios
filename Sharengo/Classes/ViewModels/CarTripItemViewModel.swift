@@ -26,7 +26,15 @@ final class CarTripItemViewModel : ItemViewModelType {
 
     init(model: CarTrip) {
         self.model = model
-//        self.title = model.title.localized()
-//        self.icon = UIImage(named: model.icon)
+        self.identifier = model.carPlate
+        self.time = model.carPlate
+        self.startDateAndTime = model.carPlate
+        self.startAddress = model.carPlate
+        self.endDateAndTime = model.carPlate
+        self.endAddress = model.carPlate
+        self.minuteRate = model.carPlate
+        self.freeMinutes = model.carPlate
+        self.traveledKilometers = model.carPlate
+        self.plate = model.carPlate
     }
 }
