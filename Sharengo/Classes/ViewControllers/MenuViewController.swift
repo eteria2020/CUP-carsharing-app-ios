@@ -54,6 +54,10 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                     let destination: ProfileViewController = (Storyboard.main.scene(.profile))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is CarTripsViewModel:
+                    let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 default:
                     break
                 }

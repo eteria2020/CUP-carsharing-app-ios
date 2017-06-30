@@ -293,7 +293,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		033A403C1F06334000B05A89 /* CarTrips List */ = {
+		033A403C1F06334000B05A89 /* CarTripsList */ = {
 			isa = PBXGroup;
 			children = (
 				033A404D1F06353500B05A89 /* CarTripsViewController.swift */,
@@ -302,7 +302,7 @@
 				033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */,
 				033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */,
 			);
-			name = "CarTrips List";
+			name = CarTripsList;
 			sourceTree = "<group>";
 		};
 		03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */ = {
@@ -671,7 +671,7 @@
 				03C6323B1EF0165700BFEDA3 /* Profile */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 				03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */,
-				033A403C1F06334000B05A89 /* CarTrips List */,
+				033A403C1F06334000B05A89 /* CarTripsList */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
