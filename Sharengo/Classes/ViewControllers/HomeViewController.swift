@@ -13,6 +13,7 @@ import Boomerang
 import KeychainSwift
 import pop
 import SideMenu
+import DeviceKit
 
 class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!

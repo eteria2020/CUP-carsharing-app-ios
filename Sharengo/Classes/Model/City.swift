@@ -20,15 +20,6 @@ public class City: ModelType, Decodable {
     var icon: String = ""
     var selected = false
     
-    /*
-    init(title: String, icon: String, action: SettingsCitySelectionOutput, selected: Bool) {
-        self.title = title
-        self.icon = icon
-        self.action = action
-        self.selected = selected
-    }
-    */
-    
     required public init?(json: JSON) {
         self.identifier = "tid" <~~ json ?? ""
         self.title = "name" <~~ json ?? ""
