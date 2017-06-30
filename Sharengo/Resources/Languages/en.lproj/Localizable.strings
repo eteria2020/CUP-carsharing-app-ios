@@ -145,7 +145,8 @@
 "lbl_noFavouritesDescription" = "Non hai ancora nessun indirizzo preferito o recente! Imposta le tue destinazioni più frequenti e risparmia tempo quando scegli dove andare.";
 "btn_noFavouritesNewFavourite" = "IMPOSTA NUOVO INDIRIZZO";
 "lbl_newFavouriteHeaderTitle" = "NUOVO INDIRIZZO PREFERITO";
-"lbl_newFavouriteTitle" = "<green>Imposta un nuovo indirizzo</green> per aggiungerlo ai tuoi preferiti";
+"lbl_newFavouriteTitle" = "Imposta un nuovo indirizzo";
+"lbl_newFavouriteDescription" = "per aggiungerlo ai tuoi preferiti";
 "txt_newFavouriteAddressPlaceholder" = "imposta indirizzo";
 "txt_newFavouriteNamePlaceholder" = "nome preferito";
 "btn_newFavouriteSaveFavourite" = "SALVA PREFERITO";
