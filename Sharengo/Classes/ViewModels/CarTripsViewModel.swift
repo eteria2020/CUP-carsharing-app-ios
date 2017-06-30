@@ -12,10 +12,10 @@ import Boomerang
 import Action
 
 enum CarTripSelectionInput : SelectionInput {
-    case item(IndexPath)
+    case empty
 }
 enum CarTripSelectionOutput : SelectionOutput {
-    case viewModel(ViewModelType)
+    case empty
 }
 
 final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
@@ -36,20 +36,13 @@ final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
     }
     
     init() {
-        self.title = "lbl_settingsHeaderTitle".localized()
+        self.title = "lbl_carTripsHeaderTitle".localized()
         
-        
+        self.carTrips = CoreController.shared.allCarTrips
         self.dataHolder = ListDataHolder(data:Observable.just(carTrips).structured())
         
         self.selection = Action { input in
-            switch input {
-            case .item(let indexPath):
-                guard let model = self.model(atIndex: indexPath) as?  CarTrip else { return .empty() }
-                if let viewModel = model.viewModel  {
-                    return .just(.viewModel(viewModel))
-                }
-                return .just(.empty)
-            }
+            return .just(.empty)
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Boomerang
-
+import SideMenu
 
 class CarTripsViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -21,22 +21,15 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
     
-    var viewModel: SettingsViewModel?
+    var viewModel: CarTripsViewModel?
     
     // MARK: - ViewModel methods
     
     func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? SettingsViewModel else {
+        guard let viewModel = viewModel as? CarTripsViewModel else {
             return
         }
-        viewModel.selection.elements.subscribe(onNext:{ selection in
-            switch selection {
-            case .viewModel(let viewModel):
-                Router.from(self,viewModel: viewModel).execute()
-            default: break
-            }
-            self.dismiss(animated: true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
+
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
@@ -50,8 +43,8 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        self.view_header.backgroundColor = Color.settingHeaderBackground.value
-        self.lbl_title.textColor = Color.settingHeaderLabel.value
+        self.view_header.backgroundColor = Color.carTripsHeaderBackground.value
+        self.lbl_title.textColor = Color.carTripsHeaderLabel.value
         
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -104,17 +97,17 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel?.selection.execute(.item(indexPath))
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0
         {
-            cell.backgroundColor = Color.settingEvenCellBackground.value
+            cell.backgroundColor = Color.carTripsEvenCellBackground.value
         }
         else
         {
-            cell.backgroundColor = Color.settingOddCellBackground.value
+            cell.backgroundColor = Color.carTripsOddCellBackground.value
         }
     }
 }

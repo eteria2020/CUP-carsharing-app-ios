@@ -26,11 +26,11 @@ final class CarTripItemViewModel : ItemViewModelType {
 
     init(model: CarTrip) {
         self.model = model
-        self.identifier = model.carPlate
+        self.identifier = "\(model.id)"
         self.time = model.carPlate
-        self.startDateAndTime = model.carPlate
+        self.startDateAndTime = "\(model.timeStart)"
         self.startAddress = model.carPlate
-        self.endDateAndTime = model.carPlate
+        self.endDateAndTime = "\(model.timeEnd)"
         self.endAddress = model.carPlate
         self.minuteRate = model.carPlate
         self.freeMinutes = model.carPlate
