@@ -147,7 +147,9 @@ enum Color {
     // CarTrips
     case carTripsHeaderBackground
     case carTripsHeaderLabel
+    case carTripsItemIconBackground
     case carTripsItemTitle
+    case carTripsItemBorderBackground
     case carTripsItemSubtitle
     case carTripsItemDescriptionTitle
     case carTripsItemDescriptionSubtitle
@@ -289,6 +291,10 @@ enum Color {
                 return ColorBrand.lightGray.value
             case .carTripsEvenCellBackground:
                 return ColorBrand.white.value
+            case .carTripsItemIconBackground:
+                return ColorBrand.green.value
+            case .carTripsItemBorderBackground:
+                return ColorBrand.black.value
             case .carTripsItemTitle:
                 return ColorBrand.green.value
             case .carTripsItemSubtitle:

@@ -30,13 +30,12 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         }
         self.layoutIfNeeded()
         self.viewModel = viewModel
-//        self.lbl_title.styledText = viewModel.title
-//        self.img_icon.image = viewModel.icon ?? UIImage()
-//        self.view_icon.backgroundColor = Color.settingIconBackground.value
+        self.lbl_title.styledText = viewModel.identifier
+        self.view_icon.backgroundColor = Color.carTripsItemIconBackground.value
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true
         self.view_icon.layer.borderWidth = 1
-//        self.view_icon.layer.borderColor = Color.settingItemLabel.value.cgColor
+        self.view_icon.layer.borderColor = Color.carTripsItemTitle.value.cgColor
     }
     
     // MARK: - View methods

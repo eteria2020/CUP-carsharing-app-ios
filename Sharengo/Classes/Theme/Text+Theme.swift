@@ -185,7 +185,7 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.profileEcoStatus.value), .color(Color.profileEcoStatus.value), .alignment(.center))
             // CarTrips
             case .carTripsHeader:
-                return StringStyle(.font(Font.carTripsHeader.value), .color(Color.carTripsHeader.value), .alignment(.center))
+                return StringStyle(.font(Font.carTripsHeader.value), .color(Color.carTripsHeaderLabel.value), .alignment(.center))
             case .carTripsItemTitle:
                 return StringStyle(.font(Font.carTripsItemTitle.value), .color(Color.carTripsItemTitle.value), .alignment(.center))
             case .carTripsItemSubtitle:
