@@ -139,7 +139,6 @@
 "lbl_settingsCitiesHeaderTitle" = "IMPOSTA CITTÀ";
 
 // Settings Favourites
-
 "lbl_noFavouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
 "lbl_noFavouritesTitle" = "Peccato!";
 "lbl_noFavouritesDescription" = "Non hai ancora nessun indirizzo preferito o recente! Imposta le tue destinazioni più frequenti e risparmia tempo quando scegli dove andare.";
@@ -151,3 +150,4 @@
 "txt_newFavouriteNamePlaceholder" = "nome preferito";
 "btn_newFavouriteSaveFavourite" = "SALVA PREFERITO";
 "btn_newFavouriteUndo" = "Annulla";
+"alert_newFavouriteMissingFields" = "Uno o più campi non sono compilati.";

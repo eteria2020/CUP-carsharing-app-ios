@@ -31,6 +31,7 @@ final class SearchBarItemViewModel : ItemViewModelType {
                 }
             }
         }
+        // TODO: favourites
     }
     
     init(model: Car) {

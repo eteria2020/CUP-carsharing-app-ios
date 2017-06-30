@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.setupAlert()
         self.setupHistory()
+        self.setupFavourites()
         #if ISDEBUG
         #elseif ISRELEASE
             Fabric.with([Crashlytics.self])
@@ -81,6 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.object(forKey: "historyArray") == nil {
             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [HistoryAddress]() as Array)
             UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+        }
+    }
+    
+    fileprivate func setupFavourites() {
+        if UserDefaults.standard.object(forKey: "favouritesArray") == nil {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteAddress]() as Array)
+            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
         }
     }
 }

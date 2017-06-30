@@ -40,6 +40,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     fileprivate var nominatimApiController: NominatimAPIController = NominatimAPIController()
     fileprivate let numberOfResults: Int = 15
     var allCars: [Car] = []
+    var favourites: Bool = false
     
     lazy var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
         return .empty()
@@ -78,6 +79,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                             UserDefaults.standard.set(archivedArray, forKey: "historyArray")
                         }
                     }
+                    // TODO: favourites
                     self.speechTranscription.value = model.name
                     return .just(.address(model))
                 } else if let model = self.model(atIndex: indexPath) as? Car {
@@ -173,7 +175,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         if text.characters.count > 2 {
             let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
             let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.characters.count))
-            if (match != nil) {
+            if match != nil && !favourites {
                 self.dataHolder = ListDataHolder(data:Observable.just(self.allCars.filter({ (car) -> Bool in
                     return car.plate?.lowercased().contains(text.lowercased()) ?? false
                 })).structured())
@@ -223,6 +225,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                 }
             }
         }
+        // TODO: caricare i favourites (solo se favourites == false?)
         self.dataHolder = ListDataHolder(data:Observable.just(historyAndFavorites).structured())
         self.selection.execute(.reload)
     }
