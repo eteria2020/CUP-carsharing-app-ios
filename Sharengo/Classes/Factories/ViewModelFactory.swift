@@ -63,6 +63,14 @@ struct ViewModelFactory {
         return MenuItemViewModel(model: model)
     }
 
+    static func carTrips() -> ViewModelType {
+        return CarTripsViewModel()
+    }
+    
+    static func carTripItem(fromModel model:MenuItem) -> ItemViewModelType {
+        return CarTripItemViewModel(model: model)
+    }
+
     static func searchBarItem(fromModel model:Address) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }

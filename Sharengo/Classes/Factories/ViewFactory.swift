@@ -19,6 +19,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case profile = "profile"
     case searchBar = "searchBar"
     case searchCars = "searchCars"
+    case carTrips = "carTrips"
     case carBookingCompleted = "carBookingCompleted"
     var name: String {
         return self.rawValue
@@ -35,11 +36,13 @@ extension ListViewModelType {
 enum CollectionViewCell : String, ListIdentifier {
     case searchBar = "SearchBarCollectionViewCell"
     case menu = "MenuItemCollectionViewCell"
+    case carTrip = "CarTripItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [
             .searchBar,
-            .menu
+            .menu,
+            .carTrip
         ]
     }
     static func headers() -> [CollectionViewCell] {

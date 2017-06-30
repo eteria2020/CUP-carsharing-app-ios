@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */; };
+		033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */; };
+		033A404C1F06351B00B05A89 /* CarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */; };
+		033A404E1F06353500B05A89 /* CarTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404D1F06353500B05A89 /* CarTripsViewController.swift */; };
+		033A40501F06354B00B05A89 /* CarTripItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404F1F06354B00B05A89 /* CarTripItemCollectionViewCell.swift */; };
+		033A40521F06361400B05A89 /* CarTripsFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A40511F06361400B05A89 /* CarTripsFlowLayout.swift */; };
 		03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
 		03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
 		03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
@@ -135,6 +141,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarTripItemCollectionViewCell.xib; path = Resources/Xibs/CarTripItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripItemViewModel.swift; path = Classes/ViewModels/CarTripItemViewModel.swift; sourceTree = "<group>"; };
+		033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripsViewModel.swift; path = Classes/ViewModels/CarTripsViewModel.swift; sourceTree = "<group>"; };
+		033A404D1F06353500B05A89 /* CarTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripsViewController.swift; path = Classes/ViewControllers/CarTripsViewController.swift; sourceTree = "<group>"; };
+		033A404F1F06354B00B05A89 /* CarTripItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripItemCollectionViewCell.swift; path = Classes/Views/CarTripItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		033A40511F06361400B05A89 /* CarTripsFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripsFlowLayout.swift; path = Classes/Layouts/CarTripsFlowLayout.swift; sourceTree = "<group>"; };
 		03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewController.swift; path = Classes/ViewControllers/CarBookingCompletedViewController.swift; sourceTree = "<group>"; };
 		03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewModel.swift; path = Classes/ViewModels/CarBookingCompletedViewModel.swift; sourceTree = "<group>"; };
 		03653E221EEADA4800AC7A93 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
@@ -283,6 +295,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033A403C1F06334000B05A89 /* CarTrips List */ = {
+			isa = PBXGroup;
+			children = (
+				033A404D1F06353500B05A89 /* CarTripsViewController.swift */,
+				033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */,
+				033A404F1F06354B00B05A89 /* CarTripItemCollectionViewCell.swift */,
+				033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */,
+				033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */,
+				033A40511F06361400B05A89 /* CarTripsFlowLayout.swift */,
+			);
+			name = "CarTrips List";
+			sourceTree = "<group>";
+		};
 		03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,6 +674,7 @@
 				03C6323B1EF0165700BFEDA3 /* Profile */,
 				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
 				03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */,
+				033A403C1F06334000B05A89 /* CarTrips List */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
@@ -900,6 +926,7 @@
 				4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */,
 				03AF5D6E1EEE83FC00AC8826 /* disclosure@2x.png in Resources */,
 				4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */,
+				033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */,
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
 				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */,
@@ -988,6 +1015,7 @@
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
 				4D45BB301EE69F49004C7287 /* CarBooking.swift in Sources */,
 				4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */,
+				033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */,
 				03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */,
 				4DA554481EE55284001627E7 /* FBAnnotationClusterView.swift in Sources */,
 				03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */,
@@ -1027,9 +1055,11 @@
 				03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */,
 				03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
+				033A40521F06361400B05A89 /* CarTripsFlowLayout.swift in Sources */,
 				4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */,
 				03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */,
 				03AF5D721EEE83FC00AC8826 /* AnimatedTextInput.swift in Sources */,
+				033A404E1F06353500B05A89 /* CarTripsViewController.swift in Sources */,
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
 				4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */,
 				03A86FA81EF9726D009C72F4 /* MenuItem.swift in Sources */,
@@ -1061,6 +1091,7 @@
 				03C632331EEFC87600BFEDA3 /* SignupViewModel.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
+				033A404C1F06351B00B05A89 /* CarTripsViewModel.swift in Sources */,
 				4DC4D4A91EF46F9000330F23 /* WebViewModel.swift in Sources */,
 				03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */,
 				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,
@@ -1070,6 +1101,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */,
+				033A40501F06354B00B05A89 /* CarTripItemCollectionViewCell.swift in Sources */,
 				03C632361EEFD01100BFEDA3 /* SignupStepView.swift in Sources */,
 				4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */,
 				4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */,

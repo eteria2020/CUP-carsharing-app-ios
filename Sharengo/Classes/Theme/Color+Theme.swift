@@ -143,6 +143,10 @@ enum Color {
     // Profile
     case profileBackground
     case profileEcoStatus
+ 
+    // CarTrips
+    case carTripsHeaderBackground
+    case carTripsHeaderTitleBackground
     
     // Web
     case webBackground
