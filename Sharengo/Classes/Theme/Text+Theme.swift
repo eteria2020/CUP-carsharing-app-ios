@@ -65,6 +65,12 @@ enum TextStyle: String, TextStyleType {
     // Profile
     case profileEcoStatus = "profileEcoStatus"
 
+    // CarTrips
+    case carTripsHeader = "carTripsHeader"
+    case carTripsItemTitle = "carTripsItemTitle"
+    case carTripsItemSubtitle = "carTripsItemSubtitle"
+    case carTripsItemDescription = "carTripsItemDescription"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -100,7 +106,12 @@ enum TextStyle: String, TextStyleType {
             .signupStepHeader,
             .signupStepDescription,
             // Profile
-            .profileEcoStatus
+            .profileEcoStatus,
+            // CarTrips
+            .carTripsHeader,
+            .carTripsItemTitle,
+            .carTripsItemSubtitle,
+            .carTripsItemDescription
         ]
     }
     
@@ -172,6 +183,15 @@ enum TextStyle: String, TextStyleType {
             // Profile
             case .profileEcoStatus:
                 return StringStyle(.font(Font.profileEcoStatus.value), .color(Color.profileEcoStatus.value), .alignment(.center))
+            // CarTrips
+            case .carTripsHeader:
+                return StringStyle(.font(Font.carTripsHeader.value), .color(Color.carTripsHeader.value), .alignment(.center))
+            case .carTripsItemTitle:
+                return StringStyle(.font(Font.carTripsItemTitle.value), .color(Color.carTripsItemTitle.value), .alignment(.center))
+            case .carTripsItemSubtitle:
+                return StringStyle(.font(Font.carTripsItemSubtitle.value), .color(Color.carTripsItemSubtitle.value), .alignment(.center))
+            case .carTripsItemDescription:
+                return StringStyle(.font(Font.carTripsItemDescriptionTitle.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

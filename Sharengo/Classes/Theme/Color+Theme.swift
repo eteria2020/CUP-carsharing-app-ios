@@ -146,8 +146,14 @@ enum Color {
  
     // CarTrips
     case carTripsHeaderBackground
-    case carTripsHeaderTitleBackground
-    
+    case carTripsHeaderLabel
+    case carTripsItemTitle
+    case carTripsItemSubtitle
+    case carTripsItemDescriptionTitle
+    case carTripsItemDescriptionSubtitle
+    case carTripsOddCellBackground
+    case carTripsEvenCellBackground
+
     // Web
     case webBackground
     
@@ -273,6 +279,23 @@ enum Color {
             case .profileBackground:
                 return ColorBrand.lightGray.value
             case .profileEcoStatus:
+                return ColorBrand.green.value
+            // CarTrips
+            case .carTripsHeaderBackground:
+                return ColorBrand.black.value
+            case .carTripsHeaderLabel:
+                return ColorBrand.white.value
+            case .carTripsOddCellBackground:
+                return ColorBrand.lightGray.value
+            case .carTripsEvenCellBackground:
+                return ColorBrand.white.value
+            case .carTripsItemTitle:
+                return ColorBrand.green.value
+            case .carTripsItemSubtitle:
+                return ColorBrand.green.value
+            case .carTripsItemDescriptionTitle:
+                return ColorBrand.green.value
+            case .carTripsItemDescriptionSubtitle:
                 return ColorBrand.green.value
             // Web
             case .webBackground:

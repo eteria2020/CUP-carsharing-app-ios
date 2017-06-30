@@ -91,6 +91,13 @@ enum Font {
     // Profile
     case profileEcoStatus
 
+    // CarTrips
+    case carTripsHeader
+    case carTripsItemTitle
+    case carTripsItemSubtitle
+    case carTripsItemDescriptionTitle
+    case carTripsItemDescriptionSubtitle
+    
     var value: UIFont {
         get {
             switch self {
@@ -171,6 +178,18 @@ enum Font {
             // Profile
             case .profileEcoStatus:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            // CarTrips
+            case .carTripsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            case .carTripsItemTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            case .carTripsItemSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            case .carTripsItemDescriptionTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            case .carTripsItemDescriptionSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+
             }
         }
     }
