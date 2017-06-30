@@ -105,7 +105,8 @@ enum Font {
 
     // NoFavourites
     case noFavouritesHeader
-    case noFavouritesLabel
+    case noFavouritesTitleLabel
+    case noFavouritesDescriptionLabel
 
     var value: UIFont {
         get {
@@ -205,8 +206,10 @@ enum Font {
             // NoFavourites
             case .noFavouritesHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
-            case .noFavouritesLabel:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .noFavouritesTitleLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .noFavouritesDescriptionLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             }
         }
     }

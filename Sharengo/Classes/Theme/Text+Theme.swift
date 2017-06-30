@@ -219,11 +219,11 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
             // NoFavourites
             case .noFavouritesHeader:
-                return StringStyle(.font(Font.settingsCitiesHeader.value), .color(Color.settingsCitiesHeaderLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.noFavouritesHeader.value), .color(Color.noFavouritesHeaderLabel.value), .alignment(.center))
             case .noFavouritesTitle:
-                return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.noFavouritesTitleLabel.value), .color(Color.noFavouritesTitle.value), .alignment(.center))
             case .noFavouritesDescription:
-                return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.noFavouritesDescriptionLabel.value), .color(Color.noFavouritesDescription.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
