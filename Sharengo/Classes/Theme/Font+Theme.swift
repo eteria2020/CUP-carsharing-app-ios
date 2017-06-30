@@ -189,7 +189,6 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
             case .carTripsItemDescriptionSubtitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
-
             }
         }
     }
