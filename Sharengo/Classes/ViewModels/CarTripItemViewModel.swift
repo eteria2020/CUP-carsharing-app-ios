@@ -12,13 +12,21 @@ import Boomerang
 
 final class CarTripItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier = CollectionViewCell.menu
-    var title: String?
-    var icon: UIImage?
-    
-    init(model: MenuItem) {
+    var itemIdentifier:ListIdentifier = CollectionViewCell.carTrip
+    var identifier: String?
+    var time: String?
+    var startDateAndTime: String?
+    var startAddress: String?
+    var endDateAndTime: String?
+    var endAddress: String?
+    var minuteRate: String?
+    var freeMinutes: String?
+    var traveledKilometers: String?
+    var plate: String?
+
+    init(model: CarTrip) {
         self.model = model
-        self.title = model.title.localized()
-        self.icon = UIImage(named: model.icon)
+//        self.title = model.title.localized()
+//        self.icon = UIImage(named: model.icon)
     }
 }

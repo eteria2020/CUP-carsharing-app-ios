@@ -19,28 +19,37 @@ enum CarTripSelectionOutput : SelectionOutput {
 }
 
 final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder()
-    
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
-        guard let item = model as? CarTrip else {
-            return nil
-        }
-        return ViewModelFactory.__proper_factory_method_here()
-    }
+    var dataHolder: ListDataHolderType = ListDataHolder.empty
+    var carTrips = [CarTrip]()
+    var title = ""
+    fileprivate var resultsDispose: DisposeBag?
     
     lazy var selection:Action<CarTripSelectionInput,CarTripSelectionOutput> = Action { input in
-        switch input {
-        case .item(let indexPath):
-            guard let model = (self.model(atIndex:indexPath) as? CarTrip) else {
-                return .empty()
-            }
-            let destinationViewModel = __proper_factory_method_here__
-            return .just(.viewModel(destinationViewModel))
-        }
+        return .empty()
     }
     
+    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+        if let item = model as? CarTrip {
+            return ViewModelFactory.carTripItem(fromModel: item)
+        }
+        return nil
+    }
     
     init() {
+        self.title = "lbl_settingsHeaderTitle".localized()
         
+        
+        self.dataHolder = ListDataHolder(data:Observable.just(carTrips).structured())
+        
+        self.selection = Action { input in
+            switch input {
+            case .item(let indexPath):
+                guard let model = self.model(atIndex: indexPath) as?  CarTrip else { return .empty() }
+                if let viewModel = model.viewModel  {
+                    return .just(.viewModel(viewModel))
+                }
+                return .just(.empty)
+            }
+        }
     }
 }
