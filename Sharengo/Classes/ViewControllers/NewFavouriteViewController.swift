@@ -84,7 +84,7 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        self.view.backgroundColor = Color.loginBackground.value
+        self.view.backgroundColor = Color.noFavouritesBackground.value
         
         self.btn_saveFavourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_newFavouriteSaveFavourite".localized())
         self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value), title: "btn_newFavouriteUndo".localized())

@@ -81,6 +81,9 @@ enum TextStyle: String, TextStyleType {
     case noFavouritesHeader = "noFavouritesHeader"
     case noFavouritesTitle = "noFavouritesTitle"
     case noFavouritesDescription = "noFavouritesDescription"
+    
+    // Favourites
+    case favouritesTitle = "favouritesTitle"
 
     static var all:[TextStyle] {
         return [
@@ -130,7 +133,9 @@ enum TextStyle: String, TextStyleType {
             // NoFavourites
             .noFavouritesHeader,
             .noFavouritesTitle,
-            .noFavouritesDescription
+            .noFavouritesDescription,
+            // Favourites
+            .favouritesTitle
         ]
     }
     
@@ -224,6 +229,10 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.noFavouritesTitleLabel.value), .color(Color.noFavouritesTitle.value), .alignment(.center))
             case .noFavouritesDescription:
                 return StringStyle(.font(Font.noFavouritesDescriptionLabel.value), .color(Color.noFavouritesDescription.value), .alignment(.center))
+            // Favourites
+            case .favouritesTitle:
+                let boldStyle = StringStyle(.font(Font.favouritesTitleLabelEmphasized.value), .color(Color.favouritesTitleLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.favouritesTitleLabel.value), .color(Color.favouritesTitleLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

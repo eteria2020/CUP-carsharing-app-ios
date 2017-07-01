@@ -48,9 +48,8 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
         if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                 if unarchivedArray.count > 0 {
-                    // TODO: favourites
-                    //let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.noFavourites())
-                    //settings.append(settingItem2)
+                    let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.favourites())
+                    settings.append(settingItem2)
                     favourites = true
                 }
             }

@@ -155,3 +155,4 @@
 "btn_newFavouriteSaveFavourite" = "SALVA PREFERITO";
 "btn_newFavouriteUndo" = "Annulla";
 "alert_newFavouriteMissingFields" = "Uno o più campi non sono compilati.";
+"lbl_favouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";

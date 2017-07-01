@@ -110,6 +110,8 @@ enum Font {
     
     // Favourites
     case favouritesUndoButton
+    case favouritesTitleLabelEmphasized
+    case favouritesTitleLabel
 
     var value: UIFont {
         get {
@@ -216,6 +218,10 @@ enum Font {
             // Favourites
             case .favouritesUndoButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .favouritesTitleLabelEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .favouritesTitleLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             }
         }
     }
