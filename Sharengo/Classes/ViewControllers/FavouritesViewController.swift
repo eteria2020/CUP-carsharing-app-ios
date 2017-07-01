@@ -14,6 +14,8 @@ import SideMenu
 import DeviceKit
 
 // TODO: cambiare il colore AnimatedTextInput
+// TODO: quando aggiungo un preferito e torno indietro ai settings mi apre sempre "nessun preferito"
+// TODO: quando aggiungo un preferito e torno indietro mi mostra la schermata di creazione di un preferito
 
 class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!

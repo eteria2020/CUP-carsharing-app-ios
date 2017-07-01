@@ -40,7 +40,20 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     
     init() {
         self.title = "lbl_settingsHeaderTitle".localized()
-
+        self.updateData()
+        self.selection = Action { input in
+            switch input {
+            case .item(let indexPath):
+                guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
+                if let viewModel = model.viewModel  {
+                    return .just(.viewModel(viewModel))
+                }
+            return .just(.empty)
+        }
+        }
+    }
+    
+    func updateData() {
         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_imposta_citta", viewModel: ViewModelFactory.settingsCities())
         settings.append(settingItem1)
         
@@ -59,21 +72,10 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
             let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.noFavourites())
             settings.append(settingItem2)
         }
-      
+        
         let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_imposta_lingua", viewModel: ViewModelFactory.settingsLanguages())
         settings.append(settingItem3)
-
-        self.dataHolder = ListDataHolder(data:Observable.just(settings).structured())
         
-        self.selection = Action { input in
-            switch input {
-            case .item(let indexPath):
-                guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
-                if let viewModel = model.viewModel  {
-                    return .just(.viewModel(viewModel))
-                }
-            return .just(.empty)
-        }
-        }
+        self.dataHolder = ListDataHolder(data:Observable.just(settings).structured())
     }
 }

@@ -84,6 +84,9 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.viewModel?.updateData()
+        self.viewModel?.reload()
+        self.collectionView?.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
