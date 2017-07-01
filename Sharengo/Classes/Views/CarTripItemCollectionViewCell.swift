@@ -34,6 +34,15 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         
         self.lbl_title.styledText = viewModel.title
         self.lbl_subtitle.styledText = viewModel.subtitle
+        
+        if !viewModel.selected
+        {
+            self.lbl_description.bonMotStyleName = "carTripsItemDescription"
+        }
+        else
+        {
+            self.lbl_description.bonMotStyleName = "carTripsItemExtendedDescription"
+        }
         self.lbl_description.styledText = viewModel.description
     }
     

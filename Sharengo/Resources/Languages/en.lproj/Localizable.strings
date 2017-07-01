@@ -129,4 +129,5 @@
 "lbl_carTripsHeaderTitle" = "CRONOLOGIA CORSE";
 "lbl_carTripsItemTitle" = "Prenotazione n. %@";
 "lbl_carTripsItemSubtitle" = "%@ minuti -  € %@";
-"lbl_carTripsItemDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n<startAddress>%@</startAddress>\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n<endAddress>%@</endAddress>\n<minuteRate>Tariffa al minuto: € %@</minuteRate>\n<freeMinutes>MINUTI DI GUIDA GRATUITA UTILIZZATI: %@</freeMinutes>\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>";
+"lbl_carTripsItemDescription" = "%@ - ORE %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n<startAddress>%@</startAddress>\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n<endAddress>%@</endAddress>\n<minuteRate>Tariffa al minuto: € %@</minuteRate>\n<freeMinutes>MINUTI DI GUIDA GRATUITA UTILIZZATI: %@</freeMinutes>\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>";
