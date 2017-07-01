@@ -13,7 +13,7 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-// TODO: tinta textfield
+// TODO: cambiare il colore AnimatedTextInput
 
 class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -263,16 +263,15 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
                     return
                 }
-                // TODO: terminare
                 switch Device().diagonal {
                 case 3.5:
-                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 325
                 case 4:
-                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 325
                 case 4.7:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 375
                 case 5.5:
-                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 375
                 default:
                     break
                 }
@@ -297,16 +296,15 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
                     return
                 }
-                // TODO: terminare
                 switch Device().diagonal {
                 case 3.5:
-                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 250
                 case 4:
-                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 250
                 case 4.7:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 275
                 case 5.5:
-                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 300
                 default:
                     break
                 }

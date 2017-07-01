@@ -186,6 +186,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     func showSearchBar() {
+        self.viewModel?.reloadResults(text: self.txt_search.text ?? "")
         switch Device().diagonal {
         case 3.5:
             self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 70
