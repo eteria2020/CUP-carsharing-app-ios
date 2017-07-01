@@ -153,3 +153,5 @@
 "alert_newFavouriteMissingFields" = "Uno o più campi non sono compilati.";
 "lbl_favouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
 "lbl_favouritesTitle" = "<bold>Imposta i tuoi indirizzi preferiti</bold>\nper rendere più veloci le tue ricerche";
+"lbl_favouritesItemTitle1" = "<bold>%@</bold>\n%@";
+"lbl_favouritesItemTitle2" = "%@";

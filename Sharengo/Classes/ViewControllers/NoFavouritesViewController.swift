@@ -48,7 +48,7 @@ class NoFavouritesViewController : BaseViewController, ViewModelBindable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
+        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         
         self.btn_newFavourite.style(.squaredButton(Color.loginContinueAsNotLoggedButton.value), title: "btn_noFavouritesNewFavourite".localized())

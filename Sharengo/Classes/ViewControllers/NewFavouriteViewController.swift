@@ -32,6 +32,7 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
     
     var viewModel: NewFavouriteViewModel?
+    var fromFavourites: Bool = false
     fileprivate var selectedAddress: Address?
     
     // MARK: - ViewModel methods
@@ -57,14 +58,21 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
                 }
                 if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
                     if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                        let addres = FavouriteAddress(identifier: nil, name: self.txt_name.text!, location: self.selectedAddress?.location)
+                        let uuid = NSUUID().uuidString.lowercased()
+                        let addres = FavouriteAddress(identifier: uuid, name: self.txt_name.text!, location: self.selectedAddress?.location, address: self.selectedAddress?.name)
                         unarchivedArray.insert(addres, at: 0)
                         let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
                         UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
                     }
                 }
-                // TODO: aprire favourites
-        }).addDisposableTo(disposeBag)
+                if self.fromFavourites {
+                    Router.back(self)
+                } else {
+                    let destination: FavouritesViewController = (Storyboard.main.scene(.favourites))
+                    destination.bind(to: ViewModelFactory.favourites(), afterLoad: true)
+                    self.navigationController?.pushViewController(destination, animated: true)
+                }
+            }).addDisposableTo(disposeBag)
         self.btn_address.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.view_searchBar.endEditing(true)
@@ -83,7 +91,7 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
+        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         
         self.btn_saveFavourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_newFavouriteSaveFavourite".localized())
@@ -177,7 +185,7 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     }
     
     deinit {
-        // TODO: rimuovere?
+        // TODO: rimuovere
         NotificationCenter.default.removeObserver(self)
     }
     

@@ -13,7 +13,7 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class FavouritesViewController : BaseViewController, ViewModelBindable {
+class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -21,24 +21,44 @@ class FavouritesViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_newFavourite: UIButton!
     @IBOutlet fileprivate weak var view_title: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
-    
-    var viewModel: FavouritesViewController?
+    @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    fileprivate var flow: UICollectionViewFlowLayout? {
+        return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
+    }
+
+    var viewModel: FavouritesViewModel?
     
     // MARK: - ViewModel methods
     
     func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? FavouritesViewController else {
+        guard let viewModel = viewModel as? FavouritesViewModel else {
             return
         }
         
+        viewModel.selection.elements.subscribe(onNext:{ selection in
+            switch selection {
+            case .newFavourite:
+                let destination: NewFavouriteViewController = (Storyboard.main.scene(.newFavourite))
+                destination.bind(to: ViewModelFactory.newFavourite(), afterLoad: true)
+                destination.fromFavourites = true
+                self.navigationController?.pushViewController(destination, animated: true)
+            default: break
+            }
+        }).addDisposableTo(self.disposeBag)
+        
+        
         self.viewModel = viewModel
+        self.collectionView?.bind(to: viewModel)
+        self.collectionView?.delegate = self
+        self.viewModel?.reload()
+        self.btn_newFavourite.rx.bind(to: viewModel.selection, input: .newFavourite)
     }
     
     // MARK: - View methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
+        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         self.view_title.backgroundColor = Color.favouritesTitle.value
         
@@ -86,5 +106,39 @@ class FavouritesViewController : BaseViewController, ViewModelBindable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.viewModel?.updateData()
+        self.viewModel?.reload()
+        self.collectionView?.reloadData()
+    }
+    
+    // MARK: - Collection methods
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height+self.view_title.frame.size.height))/5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.viewModel?.selection.execute(.item(indexPath))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = Color.settingEvenCellBackground.value
+        } else {
+            cell.backgroundColor = Color.settingOddCellBackground.value
+        }
     }
 }

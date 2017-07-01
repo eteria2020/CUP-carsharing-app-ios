@@ -1,8 +1,8 @@
 //
-//  SearchBarItemViewModel.swift
+//  FavouriteItemViewModel.swift
 //  Sharengo
 //
-//  Created by Dedecube on 02/06/17.
+//  Created by Dedecube on 27/06/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
@@ -10,23 +10,24 @@ import Foundation
 import RxSwift
 import Boomerang
 
-final class SearchBarItemViewModel : ItemViewModelType {
-    var model: ItemViewModelType.Model
-    var itemIdentifier: ListIdentifier = CollectionViewCell.searchBar
-    
-    var name: String?
+final class FavouriteItemViewModel : ItemViewModelType {
+    var model:ItemViewModelType.Model
+    var itemIdentifier:ListIdentifier = CollectionViewCell.favourite
+    var title: String?
     var image: String?
     
     init(model: Address) {
         self.model = model
-        self.name = model.name
+        self.title = String(format: "lbl_favouritesItemTitle2".localized(), model.name ?? "")
         self.image = "ic_location_search"
+        
         if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
                 let index = unarchivedArray.index(where: { (address) -> Bool in
                     return address.identifier == model.identifier
                 })
                 if index != nil {
+                    self.title = String(format: "lbl_favouritesItemTitle2".localized(), model.name ?? "")
                     self.image = "ic_clock"
                 }
             }
@@ -37,21 +38,11 @@ final class SearchBarItemViewModel : ItemViewModelType {
                     return address.identifier == model.identifier
                 })
                 if index != nil {
+                    self.title = String(format: "lbl_favouritesItemTitle1".localized(), model.name ?? "", model.address ?? "")
                     self.image = "ic_favourites"
                 }
             }
         }
-    }
-    
-    init(model: Car) {
-        self.model = model
-        self.name = String(format: "lbl_searchBarPlate".localized(), model.plate ?? "")
-        self.image = "ic_targa_ricerca"
-    }
-    
-    init(model: Favorite) {
-        self.model = model
-        self.name = model.name
-        self.image = "ic_favourites"
+        
     }
 }

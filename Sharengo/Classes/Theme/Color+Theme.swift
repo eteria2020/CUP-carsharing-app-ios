@@ -178,6 +178,8 @@ enum Color {
     case noFavouritesNewFavouriteBackgroundButton
     case favouritesTitle
     case favouritesTitleLabel
+    case favouritesItemTitleLabelEmphasized
+    case favouritesItemTitleLabel
 
     // Web
     case webBackground
@@ -363,6 +365,10 @@ enum Color {
                 return ColorBrand.green.value
             case .favouritesTitleLabel:
                 return ColorBrand.white.value
+            case .favouritesItemTitleLabelEmphasized:
+                return ColorBrand.green.value
+            case .favouritesItemTitleLabel:
+                return ColorBrand.black.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

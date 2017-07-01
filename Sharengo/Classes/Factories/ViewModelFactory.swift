@@ -114,4 +114,8 @@ struct ViewModelFactory {
     static func carBookingCompleted(carTrip: CarTrip) -> ViewModelType {
         return CarBookingCompletedViewModel(carTrip: carTrip)
     }
+    
+    static func favouriteItem(fromModel model:Address) -> ItemViewModelType {
+        return FavouriteItemViewModel(model: model)
+    }
 }

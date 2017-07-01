@@ -89,6 +89,9 @@
 		4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377AB91ECEE01A005DF900 /* View+Theme.swift */; };
 		4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377ABB1ECEE442005DF900 /* Color+Theme.swift */; };
 		4D3BF1251ED76EAF00E595E7 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */; };
+		4D43DDE21F078556001E41F8 /* FavouriteItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D43DDE11F078556001E41F8 /* FavouriteItemCollectionViewCell.swift */; };
+		4D43DDE41F078564001E41F8 /* FavouriteItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D43DDE31F078564001E41F8 /* FavouriteItemViewModel.swift */; };
+		4D43DDE61F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D43DDE51F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib */; };
 		4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB281EE69895004C7287 /* CarBookingPopupView.swift */; };
 		4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */; };
 		4D45BB2D1EE698C2004C7287 /* CarBookingPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D45BB2C1EE698C2004C7287 /* CarBookingPopupView.xib */; };
@@ -245,6 +248,9 @@
 		4D377AB91ECEE01A005DF900 /* View+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "View+Theme.swift"; path = "Classes/Theme/View+Theme.swift"; sourceTree = "<group>"; };
 		4D377ABB1ECEE442005DF900 /* Color+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Color+Theme.swift"; path = "Classes/Theme/Color+Theme.swift"; sourceTree = "<group>"; };
 		4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Classes/Utilities/UIView+Extensions.swift"; sourceTree = "<group>"; };
+		4D43DDE11F078556001E41F8 /* FavouriteItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteItemCollectionViewCell.swift; path = Classes/Views/FavouriteItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		4D43DDE31F078564001E41F8 /* FavouriteItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteItemViewModel.swift; path = Classes/ViewModels/FavouriteItemViewModel.swift; sourceTree = "<group>"; };
+		4D43DDE51F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavouriteItemCollectionViewCell.xib; path = Resources/Xibs/FavouriteItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		4D45BB281EE69895004C7287 /* CarBookingPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingPopupView.swift; path = Classes/Views/CarBookingPopupView.swift; sourceTree = "<group>"; };
 		4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingPopupViewModel.swift; path = Classes/ViewModels/CarBookingPopupViewModel.swift; sourceTree = "<group>"; };
 		4D45BB2C1EE698C2004C7287 /* CarBookingPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarBookingPopupView.xib; path = Resources/Xibs/CarBookingPopupView.xib; sourceTree = "<group>"; };
@@ -390,6 +396,9 @@
 				037BDFCB1F03E4D700C95962 /* NewFavouriteViewModel.swift */,
 				4DF0EC6D1F077AE00003D502 /* FavouritesViewController.swift */,
 				4DF0EC6F1F077AF00003D502 /* FavouritesViewModel.swift */,
+				4D43DDE11F078556001E41F8 /* FavouriteItemCollectionViewCell.swift */,
+				4D43DDE31F078564001E41F8 /* FavouriteItemViewModel.swift */,
+				4D43DDE51F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib */,
 			);
 			name = Favourites;
 			sourceTree = "<group>";
@@ -993,6 +1002,7 @@
 				03AF5D6C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png in Resources */,
 				03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */,
 				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
+				4D43DDE61F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib in Resources */,
 				03AF5D6A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png in Resources */,
 				4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */,
 				03AF5D6D1EEE83FC00AC8826 /* disclosure.png in Resources */,
@@ -1120,6 +1130,7 @@
 				4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
 				4DA554471EE55284001627E7 /* FBAnnotationClusterTemplate.swift in Sources */,
+				4D43DDE21F078556001E41F8 /* FavouriteItemCollectionViewCell.swift in Sources */,
 				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
 				03C632381EEFD02C00BFEDA3 /* SignupStepViewModel.swift in Sources */,
 				4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */,
@@ -1187,6 +1198,7 @@
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
 				4DA5544A1EE55284001627E7 /* FBBoundingBox+MapKit.swift in Sources */,
 				4DC59F991EDADC6200DD658A /* Response.swift in Sources */,
+				4D43DDE41F078564001E41F8 /* FavouriteItemViewModel.swift in Sources */,
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,
 				03C632331EEFC87600BFEDA3 /* SignupViewModel.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,

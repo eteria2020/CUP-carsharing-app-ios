@@ -44,6 +44,7 @@ enum CollectionViewCell : String, ListIdentifier {
     case setting = "SettingItemCollectionViewCell"
     case settingsLanguage = "SettingsLanguageItemCollectionViewCell"
     case settingsCity = "SettingsCityItemCollectionViewCell"
+    case favourite = "FavouriteItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [
@@ -51,7 +52,8 @@ enum CollectionViewCell : String, ListIdentifier {
             .menu,
             .setting,
             .settingsLanguage,
-            .settingsCity
+            .settingsCity,
+            .favourite
         ]
     }
     static func headers() -> [CollectionViewCell] {
