@@ -9,7 +9,7 @@
 import UIKit
 
 public enum ButtonStyle {
-    case clearButton(UIFont)
+    case clearButton(UIFont, UIColor)
     case roundedButton(UIColor)
     case squaredButton(UIColor)
 }
@@ -17,12 +17,12 @@ public enum ButtonStyle {
 public extension UIButton {
     func style(_ style:ButtonStyle, title: String) {
         switch style {
-        case .clearButton(let font):
+        case .clearButton(let font, let color):
             self.backgroundColor = .clear
             self.setBackgroundImage(UIImage.imageWithSolidColor(UIColor.clear, size: self.frame.size), for: .normal)
             self.setTitle(title, for: UIControlState())
             self.titleLabel?.font = font
-            self.setTitleColor(Color.alertButton.value, for: .normal)
+            self.setTitleColor(color, for: .normal)
         case .roundedButton(let backgroundColor):
             self.backgroundColor = .clear
             self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)

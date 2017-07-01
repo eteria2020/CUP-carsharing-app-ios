@@ -85,7 +85,9 @@ enum TextStyle: String, TextStyleType {
     // Favourites
     case favouritesTitle = "favouritesTitle"
     case favouritesItemTitle = "favouritesItemTitle"
-
+    case favouritesPopupTitle = "favouritesPopupTitle"
+    case favouritesPopupDescription = "favouritesPopupDescription"
+    
     static var all:[TextStyle] {
         return [
             // Intro
@@ -137,7 +139,9 @@ enum TextStyle: String, TextStyleType {
             .noFavouritesDescription,
             // Favourites
             .favouritesTitle,
-            .favouritesItemTitle
+            .favouritesItemTitle,
+            .favouritesPopupTitle,
+            .favouritesPopupDescription
         ]
     }
     
@@ -238,6 +242,11 @@ enum TextStyle: String, TextStyleType {
             case .favouritesItemTitle:
                 let statusStyle = StringStyle(.font(Font.favouritesItemTitleLabelEmphasized.value), .color(Color.favouritesItemTitleLabelEmphasized.value), .alignment(.center))
                 return StringStyle(.font(Font.favouritesItemTitleLabel.value), .color(Color.favouritesItemTitleLabel.value), .alignment(.center),.xmlRules([.style("bold", statusStyle)]))
+            case .favouritesPopupTitle:
+                return StringStyle(.font(Font.favouritesPopupTitle.value), .color(Color.favouritesPopupTitle.value), .alignment(.center))
+            case .favouritesPopupDescription:
+                let statusStyle = StringStyle(.font(Font.favouritesItemTitleLabelEmphasized.value), .color(ColorBrand.white.value), .alignment(.center))
+                return StringStyle(.font(Font.favouritesItemTitleLabel.value), .color(ColorBrand.white.value), .alignment(.center),.xmlRules([.style("bold", statusStyle)]))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

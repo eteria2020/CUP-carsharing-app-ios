@@ -159,3 +159,9 @@
 "lbl_favouritesTitle" = "<bold>Imposta i tuoi indirizzi preferiti</bold>\nper rendere più veloci le tue ricerche";
 "lbl_favouritesItemTitle1" = "<bold>%@</bold>\n%@";
 "lbl_favouritesItemTitle2" = "%@";
+"btn_favouritesUndo" = "Annulla";
+"btn_favouritesDelete" = "ELIMINA";
+"lbl_favouritesDeleteFav" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi preferiti?";
+"lbl_favouritesDeleteHis" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi recenti?";
+"lbl_favouritesModify" = "Vuoi modificare questo indirizzo preferito?";
+"lbl_favouritesAdd" = "Vuoi aggiungere questo indirizzo recente alla lista dei tuoi indirizzi preferiti?";

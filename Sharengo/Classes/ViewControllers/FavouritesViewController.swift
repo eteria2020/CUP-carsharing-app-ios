@@ -13,6 +13,8 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
+// TODO: tinta textfield
+
 class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
@@ -22,11 +24,19 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
     @IBOutlet fileprivate weak var view_title: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    @IBOutlet fileprivate weak var view_popup: UIView!
+    @IBOutlet fileprivate weak var btn_action: UIButton!
+    @IBOutlet fileprivate weak var btn_undo: UIButton!
+    @IBOutlet fileprivate weak var lbl_popupTitle: UILabel!
+    @IBOutlet fileprivate weak var lbl_popupDescription: UILabel!
+    @IBOutlet fileprivate weak var txt_address: AnimatedTextInput!
+    @IBOutlet fileprivate weak var txt_name: AnimatedTextInput!
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
 
     var viewModel: FavouritesViewModel?
+    fileprivate var selectedAddress: Address?
     
     // MARK: - ViewModel methods
     
@@ -46,7 +56,6 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
             }
         }).addDisposableTo(self.disposeBag)
         
-        
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
@@ -63,20 +72,25 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
         self.view_title.backgroundColor = Color.favouritesTitle.value
         
         self.btn_newFavourite.style(.squaredButton(Color.loginContinueAsNotLoggedButton.value), title: "btn_noFavouritesNewFavourite".localized())
+        self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value, ColorBrand.white.value), title: "btn_favouritesUndo".localized())
         
         switch Device().diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
+            self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
+            self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
         case 4.7:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         case 5.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         default:
             break
         }
@@ -102,6 +116,112 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
             .subscribe(onNext:{
                 Router.back(self)
             }).addDisposableTo(disposeBag)
+        self.btn_undo.rx.tap.asObservable()
+            .subscribe(onNext:{
+                self.view.endEditing(true)
+                self.view_popup.isHidden = true
+            }).addDisposableTo(disposeBag)
+        self.btn_action.rx.tap.asObservable()
+            .subscribe(onNext:{
+                self.view.endEditing(true)
+                if self.lbl_popupTitle.text == "lbl_favouritesDeleteFav".localized() {
+                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                            let index = unarchivedArray.index(where: { (address) -> Bool in
+                                return address.identifier == self.selectedAddress?.identifier
+                            })
+                            if index != nil {
+                                unarchivedArray.remove(at: index!)
+                            }
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+                        }
+                    }
+                } else if self.lbl_popupTitle.text == "lbl_favouritesDeleteHis".localized() {
+                    if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                            let index = unarchivedArray.index(where: { (address) -> Bool in
+                                return address.identifier == self.selectedAddress?.identifier
+                            })
+                            if index != nil {
+                                unarchivedArray.remove(at: index!)
+                            }
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+                        }
+                    }
+                } else if self.lbl_popupTitle.text == "lbl_favouritesModify".localized() {
+                    if self.txt_address.text?.isEmpty == true || self.txt_name.text?.isEmpty == true  {
+                        let message = "alert_newFavouriteMissingFields".localized()
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                        return
+                    }
+                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                            let index = unarchivedArray.index(where: { (address) -> Bool in
+                                return address.identifier == self.selectedAddress?.identifier
+                            })
+                            if index != nil {
+                                unarchivedArray[index!].name = self.txt_name.text!
+                                unarchivedArray[index!].address = self.txt_address.text!
+                            }
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+                        }
+                    }
+                } else if self.lbl_popupTitle.text == "lbl_favouritesAdd".localized() {
+                    if self.txt_address.text?.isEmpty == true || self.txt_name.text?.isEmpty == true  {
+                        let message = "alert_newFavouriteMissingFields".localized()
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                        return
+                    }
+                    if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                            let index = unarchivedArray.index(where: { (address) -> Bool in
+                                return address.identifier == self.selectedAddress?.identifier
+                            })
+                            if index != nil {
+                                unarchivedArray.remove(at: index!)
+                            }
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+                        }
+                    }
+                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                            let uuid = NSUUID().uuidString.lowercased()
+                            let addres = FavouriteAddress(identifier: uuid, name: self.txt_name.text!, location: self.selectedAddress?.location, address: self.txt_address.text!)
+                            unarchivedArray.insert(addres, at: 0)
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+                        }
+                    }
+                }
+                self.view_popup.isHidden = true
+                self.viewModel?.updateData()
+                self.viewModel?.reload()
+                self.collectionView?.reloadData()
+            }).addDisposableTo(disposeBag)
+        
+        self.view_popup.isHidden = true
+        
+        self.txt_address.delegate = self
+        self.txt_address.returnKeyType = UIReturnKeyType.done
+        self.txt_address.placeHolderText = "txt_newFavouriteAddressPlaceholder".localized()
+        self.txt_address.style = CustomTextInputStyle2()
+         
+        self.txt_name.delegate = self
+        self.txt_name.returnKeyType = UIReturnKeyType.done
+        self.txt_name.placeHolderText = "txt_newFavouriteNamePlaceholder".localized()
+        self.txt_name.style = CustomTextInputStyle2()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,15 +263,65 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
                     return
                 }
-                if itemViewModel.favourite {
-                    print("PROPORRE MODIFICA")
-                } else {
-                    print("PROPORRE AGGIUNTA AI PREFERITI")
+                // TODO: terminare
+                switch Device().diagonal {
+                case 3.5:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                case 4:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                case 4.7:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 375
+                case 5.5:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                default:
+                    break
                 }
+                self.btn_action.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_ok".localized())
+                self.txt_name.isHidden = false
+                self.txt_address.isHidden = false
+                self.lbl_popupDescription.isHidden = true
+                if itemViewModel.favourite {
+                    self.lbl_popupTitle.styledText = "lbl_favouritesModify".localized()
+                    self.txt_address.text = (itemViewModel.model as? Address)?.address
+                    self.txt_name.text = (itemViewModel.model as? Address)?.name
+                } else {
+                    self.lbl_popupTitle.styledText = "lbl_favouritesAdd".localized()
+                    self.txt_address.text = (itemViewModel.model as? Address)?.name
+                    self.txt_name.text = nil
+                }
+                self.selectedAddress = itemViewModel.model as? Address
+                self.view_popup.isHidden = false
             }).addDisposableTo(disposeBag)
         favCell.btn_action2.rx.tap.asObservable()
             .subscribe(onNext:{
-                print("PROPORRE ELIMINAZIONE")
+                guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
+                    return
+                }
+                // TODO: terminare
+                switch Device().diagonal {
+                case 3.5:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                case 4:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                case 4.7:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 275
+                case 5.5:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 200
+                default:
+                    break
+                }
+                self.txt_name.isHidden = true
+                self.txt_address.isHidden = true
+                self.lbl_popupDescription.styledText = itemViewModel.title
+                self.lbl_popupDescription.isHidden = false
+                self.btn_action.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_favouritesDelete".localized())
+                if itemViewModel.favourite {
+                    self.lbl_popupTitle.styledText = "lbl_favouritesDeleteFav".localized()
+                } else {
+                    self.lbl_popupTitle.styledText = "lbl_favouritesDeleteHis".localized()
+                }
+                self.selectedAddress = itemViewModel.model as? Address
+                self.view_popup.isHidden = false
             }).addDisposableTo(disposeBag)
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = Color.settingEvenCellBackground.value
@@ -160,3 +330,16 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
         }
     }
 }
+
+// MARK: - TextField delegate
+
+extension FavouritesViewController: AnimatedTextInputDelegate
+{
+    func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool
+    {
+        _ = animatedTextInput.resignFirstResponder()
+        
+        return true
+    }
+}
+

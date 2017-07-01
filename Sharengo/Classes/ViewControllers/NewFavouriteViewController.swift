@@ -95,7 +95,7 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
         self.view.backgroundColor = Color.noFavouritesBackground.value
         
         self.btn_saveFavourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_newFavouriteSaveFavourite".localized())
-        self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value), title: "btn_newFavouriteUndo".localized())
+        self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value, Color.alertButton.value), title: "btn_newFavouriteUndo".localized())
         
         self.lbl_headerTitle.styledText = "lbl_newFavouriteHeaderTitle".localized()
         self.lbl_title.styledText = "lbl_newFavouriteTitle".localized()
@@ -127,12 +127,12 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
         }
         
         self.txt_address.placeHolderText = "txt_newFavouriteAddressPlaceholder".localized()
-        self.txt_address.style = CustomTextInputStyle()
+        self.txt_address.style = CustomTextInputStyle1()
         
         self.txt_name.delegate = self
         self.txt_name.returnKeyType = UIReturnKeyType.done
         self.txt_name.placeHolderText = "txt_newFavouriteNamePlaceholder".localized()
-        self.txt_name.style = CustomTextInputStyle()
+        self.txt_name.style = CustomTextInputStyle1()
       
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))

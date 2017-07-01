@@ -114,6 +114,7 @@ enum Font {
     case favouritesTitleLabel
     case favouritesItemTitleLabelEmphasized
     case favouritesItemTitleLabel
+    case favouritesPopupTitle
 
     var value: UIFont {
         get {
@@ -228,6 +229,8 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .favouritesItemTitleLabel:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .favouritesPopupTitle:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             }
         }
     }
