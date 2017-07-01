@@ -31,9 +31,10 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
         }
 
         self.viewModel = viewModel
+
+        self.lbl_title.styledText = "lbl_carTripsHeaderTitle".localized()
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
-        self.lbl_title.styledText = self.viewModel?.title
         
         self.viewModel?.reload()
     }
@@ -46,6 +47,17 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
         self.view_header.backgroundColor = Color.carTripsHeaderBackground.value
         self.lbl_title.textColor = Color.carTripsHeaderLabel.value
         
+        self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            case .reload:
+                self?.viewModel?.reload()
+                self?.collectionView?.reloadData()
+            default:
+                break
+            }
+        }).addDisposableTo(self.disposeBag)
+            
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -97,7 +109,7 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        self.viewModel?.selection.execute(.item(indexPath))
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

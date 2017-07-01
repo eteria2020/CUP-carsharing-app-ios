@@ -32,9 +32,10 @@ public class CarTrip: ModelType, Decodable {
     var carPlate: String?
     var timeStart: Date?
     var timeEnd: Date?
+    var selected = false
     
     var car: Variable<Car?> = Variable(nil)
-  
+    
     var timer: String? {
         get {
             if let timeStart = self.timeStart {

@@ -13,7 +13,7 @@ import Action
 import RxCocoa
 
 class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
-    @IBOutlet fileprivate weak var view_icon: UIView!
+    @IBOutlet fileprivate weak var img_iconBackground: UIImageView!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
     @IBOutlet fileprivate weak var view_topBorder: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -31,13 +31,10 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         }
         self.layoutIfNeeded()
         self.viewModel = viewModel
-        self.lbl_title.styledText = viewModel.identifier
-        self.lbl_subtitle.styledText = viewModel.time
-        self.view_icon.backgroundColor = Color.carTripsItemIconBackground.value
-        self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
-        self.view_icon.layer.masksToBounds = true
-        self.view_icon.layer.borderWidth = 1
-        self.view_icon.layer.borderColor = Color.carTripsItemTitle.value.cgColor
+        
+        self.lbl_title.styledText = viewModel.title
+        self.lbl_subtitle.styledText = viewModel.subtitle
+        self.lbl_description.styledText = viewModel.description
     }
     
     // MARK: - View methods

@@ -13,28 +13,23 @@ import Boomerang
 final class CarTripItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
     var itemIdentifier:ListIdentifier = CollectionViewCell.carTrip
-    var identifier: String?
-    var time: String?
-    var startDateAndTime: String?
-    var startAddress: String?
-    var endDateAndTime: String?
-    var endAddress: String?
-    var minuteRate: String?
-    var freeMinutes: String?
-    var traveledKilometers: String?
-    var plate: String?
+    var title: String?
+    var subtitle: String?
+    var description: String?
 
     init(model: CarTrip) {
         self.model = model
-        self.identifier = "\(model.id)"
-        self.time = model.carPlate
-        self.startDateAndTime = "\(model.timeStart)"
-        self.startAddress = model.carPlate
-        self.endDateAndTime = "\(model.timeEnd)"
-        self.endAddress = model.carPlate
-        self.minuteRate = model.carPlate
-        self.freeMinutes = model.carPlate
-        self.traveledKilometers = model.carPlate
-        self.plate = model.carPlate
+        let selected = model.selected
+
+        self.title = String(format: "lbl_carTripsItemTitle".localized(), model.carPlate!)
+        self.subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.carPlate!)
+        if selected
+        {
+            self.description = String(format: "lbl_carTripsItemTitle".localized(), model.carPlate!)
+        }
+        else
+        {
+            self.description = String(format: "lbl_carTripsItemSubtitle".localized(), model.carPlate!)
+        }
     }
 }
