@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Zhz-07-SCi" customClass="SettingItemCollectionViewCell" customModule="Sharengo" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="Zhz-07-SCi" customClass="SettingItemCollectionViewCell" customModule="Sharengo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -41,6 +41,13 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="settingItemTitle"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJa-MZ-nDF">
+                                <rect key="frame" x="0.0" y="82" width="431" height="1"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="IXZ-g1-qhI"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -51,6 +58,9 @@
                             <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="LZd-ZB-OJB" secondAttribute="bottom" constant="-10" id="Xwn-b0-Cxl"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ASc-t8-Xv1" secondAttribute="bottom" constant="5" id="a8S-jv-9aW"/>
                             <constraint firstItem="y4S-YN-jDs" firstAttribute="bottom" secondItem="th1-td-Rwz" secondAttribute="centerY" id="dSS-MS-kES"/>
+                            <constraint firstAttribute="bottom" secondItem="kJa-MZ-nDF" secondAttribute="bottom" constant="-1" id="eaM-rN-cAP"/>
+                            <constraint firstItem="kJa-MZ-nDF" firstAttribute="leading" secondItem="th1-td-Rwz" secondAttribute="leading" id="eka-Rj-ASs"/>
+                            <constraint firstAttribute="trailing" secondItem="kJa-MZ-nDF" secondAttribute="trailing" id="q3z-OU-flW"/>
                             <constraint firstItem="y4S-YN-jDs" firstAttribute="trailing" secondItem="LZd-ZB-OJB" secondAttribute="trailing" constant="-10" id="tI5-RO-ted"/>
                             <constraint firstItem="y4S-YN-jDs" firstAttribute="leading" secondItem="LZd-ZB-OJB" secondAttribute="leading" constant="10" id="w2D-VS-3Wo"/>
                             <constraint firstItem="ASc-t8-Xv1" firstAttribute="leading" secondItem="th1-td-Rwz" secondAttribute="leading" constant="15" id="ww3-ur-evQ"/>

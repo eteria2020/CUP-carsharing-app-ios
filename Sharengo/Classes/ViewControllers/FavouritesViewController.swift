@@ -135,6 +135,24 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let favCell = cell as? FavouriteItemCollectionViewCell else {
+            return
+        }
+        favCell.btn_action1.rx.tap.asObservable()
+            .subscribe(onNext:{
+                guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
+                    return
+                }
+                if itemViewModel.favourite {
+                    print("PROPORRE MODIFICA")
+                } else {
+                    print("PROPORRE AGGIUNTA AI PREFERITI")
+                }
+            }).addDisposableTo(disposeBag)
+        favCell.btn_action2.rx.tap.asObservable()
+            .subscribe(onNext:{
+                print("PROPORRE ELIMINAZIONE")
+            }).addDisposableTo(disposeBag)
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = Color.settingEvenCellBackground.value
         } else {

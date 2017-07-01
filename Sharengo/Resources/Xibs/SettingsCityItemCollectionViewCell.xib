@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Z1G-kA-InK" customClass="SettingsCityItemCollectionViewCell" customModule="Sharengo" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="Z1G-kA-InK" customClass="SettingsCityItemCollectionViewCell" customModule="Sharengo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="431" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -49,9 +49,18 @@
                                 </constraints>
                                 <state key="normal" image="disclosure.png"/>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcP-FA-Fuc">
+                                <rect key="frame" x="0.0" y="100" width="431" height="1"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="DKy-9h-pYF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="HcP-FA-Fuc" secondAttribute="bottom" constant="-1" id="2Xk-dT-uab"/>
+                            <constraint firstAttribute="trailing" secondItem="HcP-FA-Fuc" secondAttribute="trailing" id="4EK-OA-ded"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="trailing" secondItem="pj7-iN-ers" secondAttribute="trailing" constant="-5" id="Dr4-7J-vu2"/>
                             <constraint firstItem="eNp-A5-9Tl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MUv-5c-zGz" secondAttribute="leading" constant="15" id="PIC-o5-eX8"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="top" secondItem="pj7-iN-ers" secondAttribute="top" constant="5" id="QXl-Nq-E4e"/>
@@ -59,6 +68,7 @@
                             <constraint firstItem="eNp-A5-9Tl" firstAttribute="centerX" secondItem="MUv-5c-zGz" secondAttribute="centerX" id="Wmq-FV-fsh"/>
                             <constraint firstItem="eNp-A5-9Tl" firstAttribute="top" secondItem="pj7-iN-ers" secondAttribute="bottom" constant="10" id="ZMi-2O-8uO"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="centerX" secondItem="MUv-5c-zGz" secondAttribute="centerX" id="hEF-Sp-rv9"/>
+                            <constraint firstItem="HcP-FA-Fuc" firstAttribute="leading" secondItem="MUv-5c-zGz" secondAttribute="leading" id="kx5-xq-0h2"/>
                             <constraint firstItem="zrw-Tk-fns" firstAttribute="bottom" secondItem="pj7-iN-ers" secondAttribute="bottom" constant="-5" id="ngZ-VL-HIU"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eNp-A5-9Tl" secondAttribute="bottom" constant="5" id="rFE-SX-piS"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eNp-A5-9Tl" secondAttribute="trailing" constant="15" id="xEL-Gd-R05"/>

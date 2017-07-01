@@ -15,11 +15,13 @@ final class FavouriteItemViewModel : ItemViewModelType {
     var itemIdentifier:ListIdentifier = CollectionViewCell.favourite
     var title: String?
     var image: String?
+    var favourite: Bool = false
     
     init(model: Address) {
         self.model = model
         self.title = String(format: "lbl_favouritesItemTitle2".localized(), model.name ?? "")
         self.image = "ic_location_search"
+        self.favourite = false
         
         if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
@@ -40,6 +42,7 @@ final class FavouriteItemViewModel : ItemViewModelType {
                 if index != nil {
                     self.title = String(format: "lbl_favouritesItemTitle1".localized(), model.name ?? "", model.address ?? "")
                     self.image = "ic_favourites"
+                    self.favourite = true
                 }
             }
         }
