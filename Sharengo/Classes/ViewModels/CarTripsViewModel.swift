@@ -45,15 +45,17 @@ final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
             switch input {
             case .item(let indexPath):
                 guard let model = self.model(atIndex: indexPath) as?  CarTrip else { return .empty() }
-                model.selected = true
-                self.previousSelectedCarTrip?.selected = false
-                self.previousSelectedCarTrip = model
+                if self.previousSelectedCarTrip?.id != model.id {
+                    model.selected = true
+                    self.previousSelectedCarTrip?.selected = false
+                    self.previousSelectedCarTrip = model
+                } else {
+                    model.selected = !model.selected
+                }
                 return .just(.reload)
             default:
                 return .just(.empty)
             }
-            
-            return .just(.empty)
         }
     }
 }

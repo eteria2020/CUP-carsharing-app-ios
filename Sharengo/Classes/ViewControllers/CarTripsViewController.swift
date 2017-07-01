@@ -104,7 +104,11 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let model = self.viewModel?.model(atIndex: indexPath) as?  CarTrip else { return CGSize.zero }
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        if model.selected {
+            return CGSize(width: size.width, height: (UIScreen.main.bounds.height-106)/2)
+        }
         return CGSize(width: size.width, height: (UIScreen.main.bounds.height-106)/3)
     }
     
