@@ -180,15 +180,15 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
             // CarTrips
             case .carTripsHeader:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .carTripsItemTitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .carTripsItemSubtitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .carTripsItemDescriptionTitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .carTripsItemDescriptionSubtitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }
     }

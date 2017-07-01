@@ -298,11 +298,11 @@ enum Color {
             case .carTripsItemTitle:
                 return ColorBrand.green.value
             case .carTripsItemSubtitle:
-                return ColorBrand.green.value
+                return ColorBrand.black.value
             case .carTripsItemDescriptionTitle:
-                return ColorBrand.green.value
+                return ColorBrand.black.value
             case .carTripsItemDescriptionSubtitle:
-                return ColorBrand.green.value
+                return ColorBrand.black.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

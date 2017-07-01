@@ -17,6 +17,7 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_icon: UIImageView!
     @IBOutlet fileprivate weak var view_topBorder: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
+    @IBOutlet fileprivate weak var lbl_subtitle: UILabel!
     @IBOutlet fileprivate weak var view_bottomBorder: UIView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
 
@@ -31,6 +32,7 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.layoutIfNeeded()
         self.viewModel = viewModel
         self.lbl_title.styledText = viewModel.identifier
+        self.lbl_subtitle.styledText = viewModel.time
         self.view_icon.backgroundColor = Color.carTripsItemIconBackground.value
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true
