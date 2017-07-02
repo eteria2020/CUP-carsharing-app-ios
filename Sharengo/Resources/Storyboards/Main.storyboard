@@ -268,7 +268,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -409,6 +409,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8SK-8L-afg" customClass="GIFImageView" customModule="Gifu">
                                 <rect key="frame" x="0.0" y="56" width="375" height="611"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fwu-GE-YBb" customClass="GIFImageView" customModule="Gifu">
+                                <rect key="frame" x="0.0" y="56" width="375" height="434"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68m-Ru-eEK">
                                 <rect key="frame" x="15" y="495" width="345" height="90"/>
                                 <constraints>
@@ -434,6 +437,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="68m-Ru-eEK" firstAttribute="top" secondItem="fwu-GE-YBb" secondAttribute="bottom" constant="5" id="4Kk-3X-bZ9"/>
+                            <constraint firstItem="fwu-GE-YBb" firstAttribute="leading" secondItem="Xmx-1K-BB5" secondAttribute="leading" id="4vt-j6-tdc"/>
                             <constraint firstAttribute="trailing" secondItem="8SK-8L-afg" secondAttribute="trailing" id="58H-8i-V70"/>
                             <constraint firstItem="8SK-8L-afg" firstAttribute="top" secondItem="Nm4-kr-vdH" secondAttribute="bottom" id="9u7-Uc-o9N"/>
                             <constraint firstAttribute="trailing" secondItem="Nm4-kr-vdH" secondAttribute="trailing" id="AWh-iV-k4A"/>
@@ -446,14 +451,17 @@
                             <constraint firstAttribute="trailing" secondItem="68m-Ru-eEK" secondAttribute="trailing" constant="15" id="WnN-z2-wrt"/>
                             <constraint firstAttribute="trailing" secondItem="nlF-rt-hnt" secondAttribute="trailing" constant="15" id="ZKV-qx-1EX"/>
                             <constraint firstItem="68m-Ru-eEK" firstAttribute="leading" secondItem="Xmx-1K-BB5" secondAttribute="leading" constant="15" id="dZM-b5-4P3"/>
+                            <constraint firstItem="fwu-GE-YBb" firstAttribute="top" secondItem="Nm4-kr-vdH" secondAttribute="bottom" id="eBL-P1-P2M"/>
                             <constraint firstAttribute="bottom" secondItem="8SK-8L-afg" secondAttribute="bottom" id="eXz-gJ-05r"/>
                             <constraint firstItem="nlF-rt-hnt" firstAttribute="bottom" secondItem="W9s-Rv-Rpi" secondAttribute="bottom" id="ehd-p2-SYb"/>
                             <constraint firstItem="W9s-Rv-Rpi" firstAttribute="top" secondItem="68m-Ru-eEK" secondAttribute="bottom" constant="15" id="esw-FZ-7SK"/>
+                            <constraint firstAttribute="trailing" secondItem="fwu-GE-YBb" secondAttribute="trailing" id="fzL-SJ-rVc"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btn_skip" destination="nlF-rt-hnt" id="qjH-lT-pUa"/>
                         <outlet property="img_background" destination="8SK-8L-afg" id="KNz-nr-kA4"/>
+                        <outlet property="img_step" destination="fwu-GE-YBb" id="vEU-rs-dlD"/>
                         <outlet property="lbl_description" destination="68m-Ru-eEK" id="IN6-rO-OUd"/>
                         <outlet property="pgc_steps" destination="W9s-Rv-Rpi" id="w7O-C9-haj"/>
                         <outlet property="view_navigationBar" destination="Nm4-kr-vdH" id="edw-tB-f0D"/>

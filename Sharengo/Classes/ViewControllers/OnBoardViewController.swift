@@ -16,10 +16,11 @@ import SideMenu
 class OnBoardViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var img_background: GIFImageView!
+    @IBOutlet fileprivate weak var img_step: GIFImageView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
     @IBOutlet fileprivate weak var btn_skip: UIButton!
     @IBOutlet fileprivate weak var pgc_steps: UIPageControl!
-    
+
     var viewModel: OnBoardViewModel?
     
     // MARK: - ViewModel methods
@@ -53,13 +54,25 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
 
         // Labels
         self.lbl_description.styledText = "lbl_introTitle1".localized()
-        self.lbl_description.alpha = 0.0
         
         // Images
         self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
+        self.img_step.animate(withGIFNamed: "Auto-A-ingresso.gif", loopCount: 1)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.26) {
+            self.img_step.animate(withGIFNamed: "Auto-A-loop.gif", loopCount: 1)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.11) {
+                self.img_step.animate(withGIFNamed: "Auto-A-uscita.gif", loopCount: 1)
+            }
+        }
         
         // PageControl
+        self.pgc_steps.numberOfPages = 3
         self.pgc_steps.pageIndicatorTintColor = Color.onBoardPageControlEmpty.value
         self.pgc_steps.currentPageIndicatorTintColor = Color.onBoardPageControlFilled.value
+        
+        // Gesture recognizer
+        self.view.rx.tapGesture().when(.recognized).subscribe(onNext: {_ in
+            //react to taps
+        }).addDisposableTo(self.disposeBag)
     }
 }
