@@ -414,7 +414,7 @@ extension API: TargetType {
         case .openCar(_):
             return ["action": "open"]
         case .tripsList(), .bookingList():
-            return ["active": "true"]
+            return ["active": "false"] // TODO: ripristinare
         default:
             return [:]
         }

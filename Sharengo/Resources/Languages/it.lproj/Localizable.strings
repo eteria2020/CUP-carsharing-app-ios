@@ -168,3 +168,9 @@
 "lbl_favouritesDeleteHis" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi recenti?";
 "lbl_favouritesModify" = "Vuoi modificare questo indirizzo preferito?";
 "lbl_favouritesAdd" = "Vuoi aggiungere questo indirizzo recente alla lista dei tuoi indirizzi preferiti?";
+
+// CarTrips
+"lbl_carTripsHeaderTitle" = "CRONOLOGIA CORSE";
+"lbl_carTripsItemTitle" = "Prenotazione n. %@";
+"lbl_carTripsItemSubtitle" = "%@ - € %@";
+"lbl_carTripsItemDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n<startAddress>%@</startAddress>\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n<endAddress>%@</endAddress>\n<minuteRate>Tariffa al minuto: € %@</minuteRate>\n<freeMinutes>MINUTI DI GUIDA GRATUITA UTILIZZATI: %@</freeMinutes>\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>";

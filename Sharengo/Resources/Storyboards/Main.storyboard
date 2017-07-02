@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1012,6 +1012,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QKL-mh-lNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="70" y="-1299"/>
+        </scene>
+        <!--Car Trips View Controller-->
+        <scene sceneID="vyx-l9-Qx5">
+            <objects>
+                <viewController storyboardIdentifier="carTrips" id="T6G-M8-7id" customClass="CarTripsViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GxD-LB-RcH"/>
+                        <viewControllerLayoutGuide type="bottom" id="CdJ-gi-tN3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P4W-td-VCq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJ5-HB-aCo" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="YKD-8F-qEm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gg5-y6-qxp">
+                                <rect key="frame" x="0.0" y="56" width="375" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJW-ct-dC5">
+                                        <rect key="frame" x="10" y="6" width="355" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="carTripsHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="GZ1-1v-MsS"/>
+                                    <constraint firstItem="aJW-ct-dC5" firstAttribute="leading" secondItem="gg5-y6-qxp" secondAttribute="leading" constant="10" id="Xig-i1-VW3"/>
+                                    <constraint firstItem="aJW-ct-dC5" firstAttribute="top" secondItem="gg5-y6-qxp" secondAttribute="top" constant="6" id="Y1a-Si-q5M"/>
+                                    <constraint firstAttribute="trailing" secondItem="aJW-ct-dC5" secondAttribute="trailing" constant="10" id="fjK-pf-QOp"/>
+                                    <constraint firstAttribute="bottom" secondItem="aJW-ct-dC5" secondAttribute="bottom" constant="6" id="ikp-ek-3jJ"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F9B-nL-GCm">
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gnR-Tv-DSH">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F9B-nL-GCm" firstAttribute="top" secondItem="gg5-y6-qxp" secondAttribute="bottom" id="9ku-g3-Gt8"/>
+                            <constraint firstItem="wJ5-HB-aCo" firstAttribute="top" secondItem="P4W-td-VCq" secondAttribute="top" id="Jv4-3a-H3V"/>
+                            <constraint firstItem="CdJ-gi-tN3" firstAttribute="top" secondItem="F9B-nL-GCm" secondAttribute="bottom" id="RPI-Aa-gCm"/>
+                            <constraint firstItem="F9B-nL-GCm" firstAttribute="leading" secondItem="P4W-td-VCq" secondAttribute="leading" id="TWH-57-3il"/>
+                            <constraint firstAttribute="trailing" secondItem="gg5-y6-qxp" secondAttribute="trailing" id="ZA8-1R-ov5"/>
+                            <constraint firstItem="wJ5-HB-aCo" firstAttribute="leading" secondItem="P4W-td-VCq" secondAttribute="leading" id="cuA-2i-W8W"/>
+                            <constraint firstItem="gg5-y6-qxp" firstAttribute="leading" secondItem="P4W-td-VCq" secondAttribute="leading" id="gWq-Yb-tUM"/>
+                            <constraint firstAttribute="trailing" secondItem="wJ5-HB-aCo" secondAttribute="trailing" id="jd3-E0-q2z"/>
+                            <constraint firstItem="gg5-y6-qxp" firstAttribute="top" secondItem="wJ5-HB-aCo" secondAttribute="bottom" id="prt-y9-IUL"/>
+                            <constraint firstAttribute="trailing" secondItem="F9B-nL-GCm" secondAttribute="trailing" id="w8V-4O-Zhj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="F9B-nL-GCm" id="Sg0-I2-3cv"/>
+                        <outlet property="lbl_title" destination="aJW-ct-dC5" id="AnK-tE-D5H"/>
+                        <outlet property="view_header" destination="gg5-y6-qxp" id="JOT-5E-6MA"/>
+                        <outlet property="view_navigationBar" destination="wJ5-HB-aCo" id="W4S-Ku-yZG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w6r-cX-NE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="801" y="-1299"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="F4k-AC-DfN">

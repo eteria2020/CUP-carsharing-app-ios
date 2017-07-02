@@ -88,6 +88,13 @@ enum TextStyle: String, TextStyleType {
     case favouritesPopupTitle = "favouritesPopupTitle"
     case favouritesPopupDescription = "favouritesPopupDescription"
     
+    // CarTrips
+    case carTripsHeader = "carTripsHeader"
+    case carTripsItemTitle = "carTripsItemTitle"
+    case carTripsItemSubtitle = "carTripsItemSubtitle"
+    case carTripsItemDescription = "carTripsItemDescription"
+    case carTripsItemExtendedDescription = "carTripsItemExtendedDescription"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -141,7 +148,14 @@ enum TextStyle: String, TextStyleType {
             .favouritesTitle,
             .favouritesItemTitle,
             .favouritesPopupTitle,
-            .favouritesPopupDescription
+            .favouritesPopupDescription,
+            .profileEcoStatus,
+            // CarTrips
+            .carTripsHeader,
+            .carTripsItemTitle,
+            .carTripsItemSubtitle,
+            .carTripsItemDescription,
+            .carTripsItemExtendedDescription
         ]
     }
     
@@ -247,6 +261,24 @@ enum TextStyle: String, TextStyleType {
             case .favouritesPopupDescription:
                 let statusStyle = StringStyle(.font(Font.favouritesItemTitleLabelEmphasized.value), .color(ColorBrand.white.value), .alignment(.center))
                 return StringStyle(.font(Font.favouritesItemTitleLabel.value), .color(ColorBrand.white.value), .alignment(.center),.xmlRules([.style("bold", statusStyle)]))
+            // CarTrips
+            case .carTripsHeader:
+                return StringStyle(.font(Font.carTripsHeader.value), .color(Color.carTripsHeaderLabel.value), .alignment(.center))
+            case .carTripsItemTitle:
+                return StringStyle(.font(Font.carTripsItemTitle.value), .color(Color.carTripsItemTitle.value), .alignment(.center))
+            case .carTripsItemSubtitle:
+                return StringStyle(.font(Font.carTripsItemSubtitle.value), .color(Color.carTripsItemSubtitle.value), .alignment(.center))
+            case .carTripsItemDescription:
+                return StringStyle(.font(Font.carTripsItemDescriptionTitle.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
+            case .carTripsItemExtendedDescription:
+                let startDateAndTimeStyle = StringStyle(.font(Font.carBookingPopupStatus.value), .color(Color.carBookingPopupStatus.value), .alignment(.center))
+                let startAddressStyle = StringStyle(.font(Font.carPopup.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.center))
+                let endDateAndTimeStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                let endAddressStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                let minuteRateStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                let freeMinutesStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                let kmTraveledStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.center),.xmlRules([.style("startDateAndTime", startDateAndTimeStyle), .style("startAddress", startAddressStyle), .style("endDateAndTime", endDateAndTimeStyle), .style("endAddress", endAddressStyle),  .style("minuteRate", minuteRateStyle),  .style("freeMinutes", freeMinutesStyle), .style("kmTraveled", kmTraveledStyle)]))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

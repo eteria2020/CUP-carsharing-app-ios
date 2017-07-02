@@ -182,6 +182,18 @@ enum Color {
     case favouritesItemTitleLabel
     case favouritesPopupTitle
 
+ 
+    // CarTrips
+    case carTripsHeaderBackground
+    case carTripsHeaderLabel
+    case carTripsItemTitle
+    case carTripsItemBorderBackground
+    case carTripsItemSubtitle
+    case carTripsItemDescriptionTitle
+    case carTripsItemDescriptionSubtitle
+    case carTripsOddCellBackground
+    case carTripsEvenCellBackground
+
     // Web
     case webBackground
     
@@ -372,6 +384,25 @@ enum Color {
                 return ColorBrand.black.value
             case .favouritesPopupTitle:
                 return ColorBrand.white.value
+            // CarTrips
+            case .carTripsHeaderBackground:
+                return ColorBrand.black.value
+            case .carTripsHeaderLabel:
+                return ColorBrand.white.value
+            case .carTripsOddCellBackground:
+                return ColorBrand.white.value
+            case .carTripsEvenCellBackground:
+                return ColorBrand.lightGray.value
+            case .carTripsItemBorderBackground:
+                return ColorBrand.black.value
+            case .carTripsItemTitle:
+                return ColorBrand.green.value
+            case .carTripsItemSubtitle:
+                return ColorBrand.black.value
+            case .carTripsItemDescriptionTitle:
+                return ColorBrand.black.value
+            case .carTripsItemDescriptionSubtitle:
+                return ColorBrand.black.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

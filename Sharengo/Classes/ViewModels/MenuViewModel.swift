@@ -65,6 +65,10 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
                         if !(CoreController.shared.currentViewController is SettingsViewController) {
                             return .just(.viewModel(viewModel))
                         }
+                    case is CarTripsViewModel:
+                        if !(CoreController.shared.currentViewController is CarTripsViewController) {
+                            return .just(.viewModel(viewModel))
+                        }
                     default:
                         return .just(.viewModel(viewModel))
                     }
@@ -98,7 +102,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             self.userIconIsHidden = false
             let menuItem1 = MenuItem(title: "lbl_menuProfile", icon: "ic_profilo", viewModel: nil)
             let menuItem2 = MenuItem(title: "lbl_menuSearchCars", icon: "ic_prenota", viewModel: ViewModelFactory.searchCars())
-            let menuItem3 = MenuItem(title: "lbl_menuRaces", icon: "ic_cron_corse", viewModel: nil)
+            let menuItem3 = MenuItem(title: "lbl_menuRaces", icon: "ic_cron_corse", viewModel: ViewModelFactory.carTrips())
             let menuItem4 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: nil)
             let menuItem5 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: nil)
             let menuItem6 = MenuItem(title: "lbl_menuBuyMinutes", icon: "ic_acquistaminuti", viewModel: nil)

@@ -116,6 +116,13 @@ enum Font {
     case favouritesItemTitleLabel
     case favouritesPopupTitle
 
+    // CarTrips
+    case carTripsHeader
+    case carTripsItemTitle
+    case carTripsItemSubtitle
+    case carTripsItemDescriptionTitle
+    case carTripsItemDescriptionSubtitle
+    
     var value: UIFont {
         get {
             switch self {
@@ -231,6 +238,17 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             case .favouritesPopupTitle:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            // CarTrips
+            case .carTripsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .carTripsItemTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .carTripsItemSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .carTripsItemDescriptionTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .carTripsItemDescriptionSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }
     }

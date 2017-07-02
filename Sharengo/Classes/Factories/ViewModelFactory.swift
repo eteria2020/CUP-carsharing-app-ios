@@ -99,6 +99,14 @@ struct ViewModelFactory {
         return FavouritesViewModel()
     }
     
+    static func carTrips() -> ViewModelType {
+        return CarTripsViewModel()
+    }
+    
+    static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
+        return CarTripItemViewModel(model: model)
+    }
+
     static func searchBarItem(fromModel model:Address) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }
