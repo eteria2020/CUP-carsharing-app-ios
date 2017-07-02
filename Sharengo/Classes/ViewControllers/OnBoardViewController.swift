@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 import Boomerang
 import Gifu
 import SideMenu
@@ -53,16 +54,15 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
 
         // Labels
-        self.lbl_description.styledText = "lbl_introTitle1".localized()
+        self.lbl_description.styledText = "lbl_onBoardDescriptionStep1".localized()
         
         // Images
         self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
         self.img_step.animate(withGIFNamed: "Auto-A-ingresso.gif", loopCount: 1)
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.26) {
             self.img_step.animate(withGIFNamed: "Auto-A-loop.gif", loopCount: 1)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.11) {
-                self.img_step.animate(withGIFNamed: "Auto-A-uscita.gif", loopCount: 1)
-            }
+            self.pgc_steps.currentPage = 0
         }
         
         // PageControl
@@ -70,9 +70,36 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
         self.pgc_steps.pageIndicatorTintColor = Color.onBoardPageControlEmpty.value
         self.pgc_steps.currentPageIndicatorTintColor = Color.onBoardPageControlFilled.value
         
+        // Buttons
+        self.btn_skip.rx.tap.asObservable()
+            .subscribe(onNext:{
+                print("Open next")
+            }).addDisposableTo(disposeBag)
+        
         // Gesture recognizer
-        self.view.rx.tapGesture().when(.recognized).subscribe(onNext: {_ in
-            //react to taps
+        self.view.rx.swipeGesture(.left).when(.recognized).subscribe(onNext: {_ in
+            switch self.pgc_steps.currentPage {
+            case 0:
+                self.img_step.animate(withGIFNamed: "Auto-A-uscita.gif", loopCount: 1)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.66) {
+                    self.img_step.animate(withGIFNamed: "Auto-B-ingresso.gif", loopCount: 1)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {
+                        self.img_step.animate(withGIFNamed: "Auto-B-loop.gif", loopCount: 1)
+                        self.pgc_steps.currentPage = 1
+                    }
+                }
+            case 1:
+                self.img_step.animate(withGIFNamed: "Auto-B-uscita.gif", loopCount: 1)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.72) {
+                    self.img_step.animate(withGIFNamed: "Auto-C-ingresso.gif", loopCount: 1)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.05) {
+                        self.img_step.animate(withGIFNamed: "Auto-C-loop.gif", loopCount: 1)
+                        self.pgc_steps.currentPage = 2
+                    }
+                }
+            default:
+                break
+            }
         }).addDisposableTo(self.disposeBag)
     }
 }
