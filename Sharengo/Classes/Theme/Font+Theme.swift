@@ -123,6 +123,10 @@ enum Font {
     case carTripsItemDescriptionTitle
     case carTripsItemDescriptionSubtitle
     
+    // OnBoard
+    case onBoardDescription
+    case onBoardSkipButton
+    
     var value: UIFont {
         get {
             switch self {
@@ -249,6 +253,11 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .carTripsItemDescriptionSubtitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // OnBoard
+            case .onBoardDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
+            case .onBoardSkipButton:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
             }
         }
     }

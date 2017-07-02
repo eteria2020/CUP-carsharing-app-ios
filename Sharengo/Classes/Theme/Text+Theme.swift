@@ -95,6 +95,10 @@ enum TextStyle: String, TextStyleType {
     case carTripsItemDescription = "carTripsItemDescription"
     case carTripsItemExtendedDescription = "carTripsItemExtendedDescription"
 
+    // OnBoard
+    case onBoardDescription = "onBoardDescription"
+    case onBoardSkip = "onBoardSkip"
+    
     static var all:[TextStyle] {
         return [
             // Intro
@@ -155,7 +159,10 @@ enum TextStyle: String, TextStyleType {
             .carTripsItemTitle,
             .carTripsItemSubtitle,
             .carTripsItemDescription,
-            .carTripsItemExtendedDescription
+            .carTripsItemExtendedDescription,
+            // OnBoard
+            .onBoardDescription
+            .onBoardSkip
         ]
     }
     
@@ -279,6 +286,11 @@ enum TextStyle: String, TextStyleType {
                 let freeMinutesStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
                 let kmTraveledStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
                 return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.center),.xmlRules([.style("startDateAndTime", startDateAndTimeStyle), .style("startAddress", startAddressStyle), .style("endDateAndTime", endDateAndTimeStyle), .style("endAddress", endAddressStyle),  .style("minuteRate", minuteRateStyle),  .style("freeMinutes", freeMinutesStyle), .style("kmTraveled", kmTraveledStyle)]))
+            // OnBoard
+            case .onBoardDescription:
+                return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
+            case .onBoardSkip:
+                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
