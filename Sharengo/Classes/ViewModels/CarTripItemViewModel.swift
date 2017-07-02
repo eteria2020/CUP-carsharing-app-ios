@@ -15,7 +15,7 @@ final class CarTripItemViewModel : ItemViewModelType {
     var itemIdentifier:ListIdentifier = CollectionViewCell.carTrip
     var title: String?
     var subtitle: String?
-    var description: String?
+    var description: Variable<String> = Variable("")
     var selected = false
 
     init(model: CarTrip) {
@@ -51,7 +51,7 @@ final class CarTripItemViewModel : ItemViewModelType {
 
         if !selected
         {
-            self.description = String(format: "lbl_carTripsItemDescription".localized(), startDateText.uppercased(), startTimeText.uppercased())
+            self.description.value = String(format: "lbl_carTripsItemDescription".localized(), startDateText.uppercased(), startTimeText.uppercased())
         }
         else
         {
@@ -63,12 +63,45 @@ final class CarTripItemViewModel : ItemViewModelType {
                 endTimeText = timeFormatter.string(from: endDate)
             }
             
-            let startAddress = ""
-            let endAddress = ""
+            var startAddress = "lbl_carTripsItemExtendedDescriptionPlaceholder".localized()
+            var endAddress = "lbl_carTripsItemExtendedDescriptionPlaceholder".localized()
             let kmTraveled = "\((model.kmEnd ?? 0) - (model.kmStart ?? 0))"
             let plate = model.carPlate ?? ""
             
-            self.description = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, plate)
+            self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, plate)
+            
+            if let location = model.locationStart {
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                    if let placemark = placemarks?.last {
+                        if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                            startAddress = "<startAddress>\(address)</startAddress>"
+                            self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, plate)
+                        } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare), \(locality)"
+                            startAddress = "<startAddress>\(address)</startAddress>"
+                            self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, plate)
+                        }
+                    }
+                })
+            }
+            if let location = model.locationEnd {
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                    if let placemark = placemarks?.last {
+                        if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                            endAddress = "<endAddress>\(address)</endAddress>"
+                            self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, plate)
+                        } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare), \(locality)"
+                            endAddress = "<endAddress>\(address)</endAddress>"
+                            self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, plate)
+                        }
+                    }
+                })
+            }
         }
     }
 }

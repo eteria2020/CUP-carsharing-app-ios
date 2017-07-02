@@ -172,4 +172,5 @@
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm";
 "lbl_carTripsItemDescription" = "%@ - ORE %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n<startAddress>%@</startAddress>\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n<endAddress>%@</endAddress>\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n%@\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Caricamento in corso</placeholder>";

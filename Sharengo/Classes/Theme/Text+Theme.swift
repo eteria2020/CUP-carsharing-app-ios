@@ -272,13 +272,14 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.carTripsItemDescriptionTitle.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
             case .carTripsItemExtendedDescription:
                 let startDateAndTimeStyle = StringStyle(.font(Font.carTripsItemDescriptionTitle.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
-                let startAddressStyle = StringStyle(.font(Font.carPopup.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.center))
+                let startAddressStyle = StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carTripsItemExtendedDescription.value), .alignment(.center))
                 let endDateAndTimeStyle = StringStyle(.font(Font.carTripsItemDescriptionTitle.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
-                let endAddressStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                let endAddressStyle = StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carTripsItemExtendedDescription.value), .alignment(.center))
                 let minuteRateStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
                 let freeMinutesStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
                 let kmTraveledStyle = StringStyle(.font(Font.carTripsItemDescriptionTitle.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
-                return StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carTripsItemExtendedDescription.value), .alignment(.center),.xmlRules([.style("startDateAndTime", startDateAndTimeStyle), .style("startAddress", startAddressStyle), .style("endDateAndTime", endDateAndTimeStyle), .style("endAddress", endAddressStyle),  .style("minuteRate", minuteRateStyle),  .style("freeMinutes", freeMinutesStyle), .style("kmTraveled", kmTraveledStyle)]))
+                let placeholderStyle = StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.center))
+                return StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carTripsItemExtendedDescription.value), .alignment(.center),.xmlRules([.style("startDateAndTime", startDateAndTimeStyle), .style("startAddress", startAddressStyle), .style("endDateAndTime", endDateAndTimeStyle), .style("endAddress", endAddressStyle),  .style("minuteRate", minuteRateStyle),  .style("freeMinutes", freeMinutesStyle), .style("kmTraveled", kmTraveledStyle), .style("placeholder", placeholderStyle),]))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

@@ -13,6 +13,8 @@ import Boomerang
 import Gifu
 import DeviceKit
 
+// TODO: le gif dovrebbero avere altezza proporzionale?
+
 class IntroViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var img_intro: GIFImageView!
     @IBOutlet fileprivate weak var lbl_title1: UILabel!
