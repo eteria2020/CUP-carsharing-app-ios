@@ -245,11 +245,17 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
             }
         }
         if !favourites && !self.favourites {
-            historyAndFavorites.append(Favorite.empty)
+            historyAndFavorites.append(Favorite.empty1)
+        } else if self.favourites {
+            historyAndFavorites.append(Favorite.empty2)
         }
         numberOfResults = numberOfResults-historyAndFavorites.count
         if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                if unarchivedArray.count > 0 && self.favourites {
+                    historyAndFavorites.removeFirst()
+                    numberOfResults -= 1
+                }
                 for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {
                     historyAndFavorites.append(historyAddress.getAddress())
                 }

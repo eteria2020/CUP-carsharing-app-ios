@@ -52,6 +52,8 @@ final class SearchBarItemViewModel : ItemViewModelType {
     init(model: Favorite) {
         self.model = model
         self.name = model.name
-        self.image = "ic_favourites"
+        if self.name != "lbl_favouritesNoFavorites".localized() {
+            self.image = "ic_favourites"
+        }
     }
 }

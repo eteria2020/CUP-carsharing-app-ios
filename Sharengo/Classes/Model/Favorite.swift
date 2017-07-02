@@ -18,7 +18,11 @@ public class Favorite: ModelType {
         self.name = name
     }
     
-    static var empty:Favorite {
+    static var empty1:Favorite {
         return Favorite(name: "lbl_searchBarNoFavorites".localized())
+    }
+    
+    static var empty2:Favorite {
+        return Favorite(name: "lbl_favouritesNoFavorites".localized())
     }
 }

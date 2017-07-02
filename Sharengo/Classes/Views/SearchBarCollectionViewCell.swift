@@ -18,6 +18,7 @@ class SearchBarCollectionViewCell: UICollectionViewCell, ViewModelBindable {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var view_separator: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +29,10 @@ class SearchBarCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.viewModel = viewModel
         self.titleLabel.styledText = viewModel.name
         self.iconImage.image = UIImage(named: viewModel.image ?? "") ?? UIImage()
+        
+        self.view_separator.isHidden = false
+        if viewModel.name == "lbl_favouritesNoFavorites".localized() {
+            self.view_separator.isHidden = true
+        }
     }
 }

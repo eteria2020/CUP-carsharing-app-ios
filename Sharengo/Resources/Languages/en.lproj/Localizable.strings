@@ -164,6 +164,7 @@
 "lbl_favouritesDeleteHis" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi recenti?";
 "lbl_favouritesModify" = "Vuoi modificare questo indirizzo preferito?";
 "lbl_favouritesAdd" = "Vuoi aggiungere questo indirizzo recente alla lista dei tuoi indirizzi preferiti?";
+"lbl_favouritesNoFavorites" = "Digita l'indirizzo che vorresti\naggiungere ai tuoi preferiti";
 
 // CarTrips
 "lbl_carTripsHeaderTitle" = "CRONOLOGIA CORSE";
