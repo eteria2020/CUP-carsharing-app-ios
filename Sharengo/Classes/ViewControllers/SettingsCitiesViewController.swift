@@ -13,7 +13,7 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class SettingsCitiesViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -35,7 +35,7 @@ class SettingsCitiesViewController : UIViewController, ViewModelBindable, UIColl
             switch selection {
             case .model(let city):
                 UserDefaults.standard.setValue(city.identifier, forKey: "city")
-                self.updateData()
+                self.updateCities()
             default: break
             }
             self.dismiss(animated: true, completion: nil)
@@ -103,12 +103,9 @@ class SettingsCitiesViewController : UIViewController, ViewModelBindable, UIColl
         super.viewWillDisappear(animated)
     }
     
-    deinit {
-    }
-    
     // MARK: - Update methods
     
-    @objc fileprivate func updateData() {
+    fileprivate func updateCities() {
         DispatchQueue.main.async {
             self.viewModel?.updateData()
             self.viewModel?.reload()

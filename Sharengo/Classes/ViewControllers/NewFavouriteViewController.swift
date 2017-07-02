@@ -184,11 +184,6 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
         }
     }
     
-    deinit {
-        // TODO: rimuovere
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }

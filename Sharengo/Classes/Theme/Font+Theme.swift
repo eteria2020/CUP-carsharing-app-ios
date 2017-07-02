@@ -122,6 +122,7 @@ enum Font {
     case carTripsItemSubtitle
     case carTripsItemDescriptionTitle
     case carTripsItemDescriptionSubtitle
+    case carTripsItemExtendedDescription
     
     var value: UIFont {
         get {
@@ -240,15 +241,17 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             // CarTrips
             case .carTripsHeader:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .carTripsItemTitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .carTripsItemSubtitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .carTripsItemDescriptionTitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .carTripsItemDescriptionSubtitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .carTripsItemExtendedDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

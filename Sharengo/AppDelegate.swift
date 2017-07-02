@@ -7,6 +7,8 @@ import Gloss
 import SideMenu
 import Localize_Swift
 
+// TODO: se faccio swipe sul menù (dall'alto in basso ad esempio) appare e scompare il verde sottostante
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?

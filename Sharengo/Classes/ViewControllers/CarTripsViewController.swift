@@ -11,12 +11,15 @@ import RxSwift
 import RxCocoa
 import Boomerang
 import SideMenu
+import DeviceKit
 
-class CarTripsViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+class CarTripsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    fileprivate var allCarTrips: [CarTrip] = []
+    fileprivate let apiController: ApiController = ApiController()
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
@@ -37,6 +40,37 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
         self.collectionView?.delegate = self
         
         self.viewModel?.reload()
+        
+        self.showLoader()
+        let dispatchTime = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            self.apiController.archivedTripsList()
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.array_data {
+                            if let carTrips = [CarTrip].from(jsonArray: data) {
+                                self.allCarTrips = carTrips
+                                DispatchQueue.main.async {
+                                    self.viewModel?.updateData(carTrips: self.allCarTrips)
+                                    self.viewModel?.reload()
+                                    self.collectionView?.reloadData()
+                                    self.hideLoader()
+                                }
+                                return
+                            }
+                        }
+                        self.allCarTrips = []
+                        // TODO: nessun risultato
+                    case .error(_):
+                        self.allCarTrips = []
+                    // TODO: errore o nessun risultato?
+                    default:
+                        break
+                    }
+                }.addDisposableTo(self.disposeBag)
+        }
     }
     
     // MARK: - View methods
@@ -57,7 +91,20 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
                 break
             }
         }).addDisposableTo(self.disposeBag)
-            
+        
+        switch Device().diagonal {
+        case 3.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+        case 4:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+        case 4.7:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+        case 5.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+        default:
+            break
+        }
+        
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -86,9 +133,6 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
         super.viewWillDisappear(animated)
     }
     
-    deinit {
-    }
-    
     // MARK: - Collection methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -107,9 +151,9 @@ class CarTripsViewController : UIViewController, ViewModelBindable, UICollection
         guard let model = self.viewModel?.model(atIndex: indexPath) as?  CarTrip else { return CGSize.zero }
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         if model.selected {
-            return CGSize(width: size.width, height: (UIScreen.main.bounds.height-106)/2)
+            return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/2)
         }
-        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-106)/3)
+        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

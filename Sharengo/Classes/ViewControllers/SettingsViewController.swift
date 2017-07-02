@@ -13,7 +13,7 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class SettingsViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+class SettingsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -96,9 +96,6 @@ class SettingsViewController : UIViewController, ViewModelBindable, UICollection
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-    }
-    
-    deinit {
     }
     
     // MARK: - Collection methods

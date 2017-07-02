@@ -32,16 +32,13 @@ final class CarTripItemViewModel : ItemViewModelType {
             self.title = String(format: "lbl_carTripsItemTitle".localized(), "")
         }
 
-        // TODO: price missed from model
-        self.subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.time, model.time)
+        self.subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.endTime)
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "lbl_carTripsDateFormatter".localized()
         dateFormatter.locale = Locale.current
         let timeFormatter = DateFormatter()
-        timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .short
+        timeFormatter.dateFormat = "lbl_carTripsTimeFormatter".localized()
         timeFormatter.locale = Locale.current
         var startDateText = ""
         var startTimeText = ""
@@ -54,7 +51,7 @@ final class CarTripItemViewModel : ItemViewModelType {
 
         if !selected
         {
-            self.description = String(format: "lbl_carTripsItemDescription".localized(), startDateText, startTimeText)
+            self.description = String(format: "lbl_carTripsItemDescription".localized(), startDateText.uppercased(), startTimeText.uppercased())
         }
         else
         {
@@ -68,12 +65,10 @@ final class CarTripItemViewModel : ItemViewModelType {
             
             let startAddress = ""
             let endAddress = ""
-            let minuteRate = ""
-            let freeMinutes = ""
-            let kmTraveled = ""
+            let kmTraveled = "\((model.kmEnd ?? 0) - (model.kmStart ?? 0))"
             let plate = model.carPlate ?? ""
             
-            self.description = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText, startTimeText, startAddress, endDateText, endTimeText, endAddress, minuteRate, freeMinutes, kmTraveled, plate)
+            self.description = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, plate)
         }
     }
 }

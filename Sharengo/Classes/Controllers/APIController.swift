@@ -205,6 +205,33 @@ final class ApiController {
         }
     }
     
+    func archivedTripsList() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.archivedTripsList())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
     func bookCar(car: Car) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
@@ -352,13 +379,14 @@ fileprivate enum API {
     case getCarBooking(id: Int)
     case openCar(car: Car)
     case tripsList()
+    case archivedTripsList()
     case getTrip(trip: CarTrip)
 }
 
 extension API: TargetType {
     var baseURL: URL {
         switch self {
-        case .bookingList(), .tripsList(), .bookCar(_), .deleteCarBooking(_), .openCar(_), .getTrip(_):
+        case .bookingList(), .tripsList(), .bookCar(_), .deleteCarBooking(_), .openCar(_), .getTrip(_), .archivedTripsList():
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
@@ -381,7 +409,7 @@ extension API: TargetType {
             return "reservations/\(carBooking.id ?? 0)"
         case .openCar(let car):
             return "cars/\(car.plate ?? "")"
-        case .tripsList():
+        case .tripsList(), .archivedTripsList():
             return "trips"
         case .getTrip(let trip):
             return "trips/\(trip.id ?? 0)"
@@ -414,7 +442,9 @@ extension API: TargetType {
         case .openCar(_):
             return ["action": "open"]
         case .tripsList(), .bookingList():
-            return ["active": "false"] // TODO: ripristinare
+            return ["active": "true"]
+        case .archivedTripsList():
+            return ["active": "false"]
         default:
             return [:]
         }

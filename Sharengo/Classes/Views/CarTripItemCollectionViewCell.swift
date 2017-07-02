@@ -11,10 +11,11 @@ import Boomerang
 import RxSwift
 import Action
 import RxCocoa
+import DeviceKit
 
 class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
-    @IBOutlet fileprivate weak var img_iconBackground: UIImageView!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
+    @IBOutlet fileprivate weak var img_collapsed: UIImageView!
     @IBOutlet fileprivate weak var view_topBorder: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var lbl_subtitle: UILabel!
@@ -38,12 +39,38 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         if !viewModel.selected
         {
             self.lbl_description.bonMotStyleName = "carTripsItemDescription"
+            self.img_collapsed.image = UIImage(named: "ic_open_collapsed")
         }
         else
         {
             self.lbl_description.bonMotStyleName = "carTripsItemExtendedDescription"
+            self.img_collapsed.image = UIImage(named: "ic_close_collapsed")
         }
         self.lbl_description.styledText = viewModel.description
+        
+        switch Device().diagonal {
+        case 3.5:
+            self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = -3
+            self.constraint(withIdentifier: "bottomLblTitle", searchInSubviews: true)?.constant = 1
+            self.constraint(withIdentifier: "topLblDescription", searchInSubviews: true)?.constant = 1
+        case 4:
+            self.constraint(withIdentifier: "bottomLblTitle", searchInSubviews: true)?.constant = 5
+            self.constraint(withIdentifier: "topLblDescription", searchInSubviews: true)?.constant = 5
+        case 4.7:
+            self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 5
+            self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 5
+            
+            if !viewModel.selected {
+                self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
+            } else {
+                self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -28
+            }
+        case 5.5:
+            self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 10
+            self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 10
+        default:
+            break
+        }
     }
     
     // MARK: - View methods

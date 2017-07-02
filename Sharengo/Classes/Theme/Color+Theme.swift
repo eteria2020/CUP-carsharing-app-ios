@@ -193,6 +193,7 @@ enum Color {
     case carTripsItemDescriptionSubtitle
     case carTripsOddCellBackground
     case carTripsEvenCellBackground
+    case carTripsItemExtendedDescription
 
     // Web
     case webBackground
@@ -400,8 +401,10 @@ enum Color {
             case .carTripsItemSubtitle:
                 return ColorBrand.black.value
             case .carTripsItemDescriptionTitle:
-                return ColorBrand.black.value
+                return UIColor(hexString: "#888888")
             case .carTripsItemDescriptionSubtitle:
+                return ColorBrand.black.value
+            case .carTripsItemExtendedDescription:
                 return ColorBrand.black.value
             // Web
             case .webBackground:

@@ -14,7 +14,7 @@ import SideMenu
 import DeviceKit
 import Localize_Swift
 
-class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+class SettingsLanguagesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -37,11 +37,11 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
             case .italian:
                 UserDefaults.standard.setValue("it", forKey: "language")
                 Localize.setCurrentLanguage("it")
-                self.updateData()
+                self.updateLanguages()
             case .english:
                 UserDefaults.standard.setValue("en", forKey: "language")
                 Localize.setCurrentLanguage("en")
-                self.updateData()
+                self.updateLanguages()
             default: break
             }
             self.dismiss(animated: true, completion: nil)
@@ -109,12 +109,9 @@ class SettingsLanguagesViewController : UIViewController, ViewModelBindable, UIC
         super.viewWillDisappear(animated)
     }
     
-    deinit {
-    }
-    
     // MARK: - Update methods
     
-    @objc fileprivate func updateData() {
+    fileprivate func updateLanguages() {
         DispatchQueue.main.async {
             self.viewModel?.updateData()
             self.viewModel?.reload()

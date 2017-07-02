@@ -33,6 +33,10 @@ public class CarTrip: ModelType, Decodable {
     var timeStart: Date?
     var timeEnd: Date?
     var selected = false
+    var kmStart: Int?
+    var kmEnd: Int?
+    var locationStart: CLLocation?
+    var locationEnd: CLLocation?
     
     var car: Variable<Car?> = Variable(nil)
     
@@ -77,6 +81,28 @@ public class CarTrip: ModelType, Decodable {
             return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
         }
     }
+    var endTime: String {
+        get {
+            if let timeStart = self.timeStart,
+                let timeEnd = self.timeEnd {
+                let start = timeStart
+                let enddt = timeEnd
+                let calendar = Calendar.current
+                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
+                if let seconds = datecomponenets.second {
+                    let min = (Float(seconds) / 60).rounded(.towardZero)
+                    if min <= 0 {
+                        return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
+                    } else if min == 1 {
+                        return "1 \("lbl_carBookingPopupTimeMinute".localized())"
+                    }
+                    let m = Int(min)
+                    return "\(m) \("lbl_carBookingPopupTimeMinutes".localized())"
+                }
+            }
+            return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
+        }
+    }
     var minutes: Int {
         get {
             if let timeStart = self.timeStart {
@@ -103,6 +129,18 @@ public class CarTrip: ModelType, Decodable {
     
     required public init?(json: JSON) {
         self.id = "id" <~~ json
+        self.kmStart = "km_start" <~~ json
+        self.kmEnd = "km_end" <~~ json
+        if let latitude: String = "lat_start" <~~ json, let longitude: String = "lon_start" <~~ json {
+            if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
+                self.locationStart = CLLocation(latitude: lat, longitude: lon)
+            }
+        }
+        if let latitude: String = "lat_end" <~~ json, let longitude: String = "lon_end" <~~ json {
+            if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
+                self.locationEnd = CLLocation(latitude: lat, longitude: lon)
+            }
+        }
         if let timestampStart: Double = "timestamp_start" <~~ json {
             self.timeStart = Date(timeIntervalSince1970: timestampStart)
         }

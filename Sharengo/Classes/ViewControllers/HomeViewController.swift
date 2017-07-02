@@ -113,10 +113,6 @@ class HomeViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateUserData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !self.loginIsShowed {

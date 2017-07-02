@@ -38,9 +38,6 @@ final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
     }
     
     init() {
-        self.carTrips = CoreController.shared.allCarTrips
-        self.dataHolder = ListDataHolder(data:Observable.just(carTrips).structured())
-        
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
@@ -57,5 +54,10 @@ final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
                 return .just(.empty)
             }
         }
+    }
+    
+    func updateData(carTrips: [CarTrip]) {
+        self.carTrips = carTrips
+        self.dataHolder = ListDataHolder(data:Observable.just(carTrips).structured())
     }
 }
