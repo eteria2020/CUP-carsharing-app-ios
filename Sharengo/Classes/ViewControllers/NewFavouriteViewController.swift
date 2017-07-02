@@ -70,6 +70,7 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
                 } else {
                     let destination: FavouritesViewController = (Storyboard.main.scene(.favourites))
                     destination.bind(to: ViewModelFactory.favourites(), afterLoad: true)
+                    destination.fromNoFavourites = true
                     self.navigationController?.pushViewController(destination, animated: true)
                 }
             }).addDisposableTo(disposeBag)

@@ -13,10 +13,6 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-// TODO: cambiare il colore AnimatedTextInput
-// TODO: quando aggiungo un preferito e torno indietro ai settings mi apre sempre "nessun preferito"
-// TODO: quando aggiungo un preferito e torno indietro mi mostra la schermata di creazione di un preferito
-
 class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
@@ -38,6 +34,7 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
     }
 
     var viewModel: FavouritesViewModel?
+    var fromNoFavourites: Bool = false
     fileprivate var selectedAddress: Address?
     
     // MARK: - ViewModel methods
@@ -116,7 +113,17 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
-                Router.back(self)
+                if self.fromNoFavourites == true {
+                    if let viewControllers = self.navigationController?.viewControllers {
+                        if let currentIndex = viewControllers.index(of: self)  {
+                            if currentIndex-3 >= 0 {
+                                self.navigationController?.popToViewController(viewControllers[currentIndex-3], animated: true)
+                            }
+                        }
+                    }
+                } else {
+                    Router.back(self)
+                }
             }).addDisposableTo(disposeBag)
         self.btn_undo.rx.tap.asObservable()
             .subscribe(onNext:{
@@ -211,6 +218,14 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 self.viewModel?.updateData()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
+                if self.viewModel?.dataHolder.resultsCount.value == 0 {
+                    let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
+                    destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
+                    var array = self.navigationController?.viewControllers ?? []
+                    array.removeLast()
+                    array.append(destination)
+                    self.navigationController?.viewControllers = array
+                }
             }).addDisposableTo(disposeBag)
         
         self.view_popup.isHidden = true

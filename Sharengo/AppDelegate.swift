@@ -7,7 +7,7 @@ import Gloss
 import SideMenu
 import Localize_Swift
 
-// TODO: se faccio swipe sul menù (dall'alto in basso ad esempio) appare e scompare il verde sottostante
+// TODO: se faccio swipe sul menù (dall'alto in basso ad esempio) appare e scompare il verde sottostante?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         */
         
-        // TODO: recuperare le città
+        // TODO: recuperare le città?
         // TODO: che succede se le città non vengono scaricate neanche una volta?
         
         return true

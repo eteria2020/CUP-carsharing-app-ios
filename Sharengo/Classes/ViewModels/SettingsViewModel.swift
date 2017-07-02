@@ -46,6 +46,20 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
             case .item(let indexPath):
                 guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
                 if let viewModel = model.viewModel  {
+                    if viewModel is NoFavouritesViewModel {
+                        var favourites: Bool = false
+                        if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                if unarchivedArray.count > 0 {
+                                    favourites = true
+                                }
+                            }
+                        }
+                        
+                        if favourites {
+                            return .just(.viewModel(ViewModelFactory.favourites()))
+                        }
+                    }
                     return .just(.viewModel(viewModel))
                 }
             return .just(.empty)
@@ -57,21 +71,8 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_imposta_citta", viewModel: ViewModelFactory.settingsCities())
         settings.append(settingItem1)
         
-        var favourites: Bool = false
-        if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                if unarchivedArray.count > 0 {
-                    let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.favourites())
-                    settings.append(settingItem2)
-                    favourites = true
-                }
-            }
-        }
-        
-        if !favourites {
-            let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.noFavourites())
-            settings.append(settingItem2)
-        }
+        let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.noFavourites())
+        settings.append(settingItem2)
         
         let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_imposta_lingua", viewModel: ViewModelFactory.settingsLanguages())
         settings.append(settingItem3)

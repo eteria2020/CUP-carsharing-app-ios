@@ -36,9 +36,9 @@ fileprivate struct AnimatedTextInputTextConfigurator {
 
     static func generate() -> TextInput {
         let textField = AnimatedTextField()
-        textField.clearButtonMode = .whileEditing
+//        textField.clearButtonMode = .whileEditing
         textField.autocorrectionType = .no
-        textField.clearButtonMode = .whileEditing
+//        textField.clearButtonMode = .whileEditing
         return textField
     }
 }
@@ -47,7 +47,7 @@ fileprivate struct AnimatedTextInputEmailConfigurator {
 
     static func generate() -> TextInput {
         let textField = AnimatedTextField()
-        textField.clearButtonMode = .whileEditing
+//        textField.clearButtonMode = .whileEditing
         textField.keyboardType = .emailAddress
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -60,16 +60,16 @@ fileprivate struct AnimatedTextInputPasswordConfigurator {
 
     static func generate() -> TextInput {
         let textField = AnimatedTextField()
-        textField.rightViewMode = .whileEditing
+//        textField.rightViewMode = .whileEditing
         textField.isSecureTextEntry = true
         textField.autocapitalizationType = .none
         textField.returnKeyType = .done
         let disclosureButton = UIButton(type: .custom)
         disclosureButton.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
-        let normalImage = UIImage(named: "cm_icon_input_eye_normal")
-        let selectedImage = UIImage(named: "cm_icon_input_eye_selected")
-        disclosureButton.setImage(normalImage, for: .normal)
-        disclosureButton.setImage(selectedImage, for: .selected)
+//        let normalImage = UIImage(named: "cm_icon_input_eye_normal")
+//        let selectedImage = UIImage(named: "cm_icon_input_eye_selected")
+//        disclosureButton.setImage(normalImage, for: .normal)
+//        disclosureButton.setImage(selectedImage, for: .selected)
         textField.add(disclosureButton: disclosureButton) {
             disclosureButton.isSelected = !disclosureButton.isSelected
             textField.resignFirstResponder()
@@ -84,7 +84,7 @@ fileprivate struct AnimatedTextInputNumericConfigurator {
 
     static func generate() -> TextInput {
         let textField = AnimatedTextField()
-        textField.clearButtonMode = .whileEditing
+//        textField.clearButtonMode = .whileEditing
         textField.keyboardType = .decimalPad
         textField.autocorrectionType = .no
         textField.returnKeyType = .done
@@ -96,9 +96,9 @@ fileprivate struct AnimatedTextInputSelectionConfigurator {
 
     static func generate() -> TextInput {
         let textField = AnimatedTextField()
-        let arrowImageView = UIImageView(image: UIImage(named: "disclosure"))
-        textField.rightView = arrowImageView
-        textField.rightViewMode = .always
+//        let arrowImageView = UIImageView(image: UIImage(named: "disclosure"))
+//        textField.rightView = arrowImageView
+//        textField.rightViewMode = .always
         textField.isUserInteractionEnabled = false
         textField.returnKeyType = .done
         return textField
