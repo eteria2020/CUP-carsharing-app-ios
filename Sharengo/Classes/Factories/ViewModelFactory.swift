@@ -39,6 +39,10 @@ struct ViewModelFactory {
         return HomeViewModel()
     }
 
+    static func onBoard() -> ViewModelType {
+        return OnBoardViewModel()
+    }
+
     static func searchCars() -> ViewModelType {
         return SearchCarsViewModel()
     }

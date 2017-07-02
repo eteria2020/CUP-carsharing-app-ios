@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032D3A751F08D61900F260A5 /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A741F08D61900F260A5 /* OnBoardViewController.swift */; };
+		032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */; };
 		033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */; };
 		033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */; };
 		033A404C1F06351B00B05A89 /* CarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */; };
@@ -168,6 +170,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		032D3A741F08D61900F260A5 /* OnBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardViewController.swift; path = Classes/ViewControllers/OnBoardViewController.swift; sourceTree = "<group>"; };
+		032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardViewModel.swift; path = Classes/ViewModels/OnBoardViewModel.swift; sourceTree = "<group>"; };
 		033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarTripItemCollectionViewCell.xib; path = Resources/Xibs/CarTripItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripItemViewModel.swift; path = Classes/ViewModels/CarTripItemViewModel.swift; sourceTree = "<group>"; };
 		033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripsViewModel.swift; path = Classes/ViewModels/CarTripsViewModel.swift; sourceTree = "<group>"; };
@@ -349,6 +353,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		032D3A731F08D5FB00F260A5 /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				032D3A741F08D61900F260A5 /* OnBoardViewController.swift */,
+				032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */,
+			);
+			name = OnBoard;
+			sourceTree = "<group>";
+		};
 		033A403C1F06334000B05A89 /* CarTripsList */ = {
 			isa = PBXGroup;
 			children = (
@@ -780,6 +793,7 @@
 				4DC10E001EE9AC5800A74E26 /* Loading */,
 				03A86F921EF96F8E009C72F4 /* Menu */,
 				4D2339961EE6CD2A00780384 /* Intro */,
+				032D3A731F08D5FB00F260A5 /* OnBoard */,
 				4DFD98381ED471FC00880EA1 /* Home */,
 				03AF5D321EEE7B4000AC8826 /* Login */,
 				03C6322F1EEFC84B00BFEDA3 /* Signup */,
@@ -1137,6 +1151,7 @@
 				033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */,
 				03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */,
 				4DA554481EE55284001627E7 /* FBAnnotationClusterView.swift in Sources */,
+				032D3A751F08D61900F260A5 /* OnBoardViewController.swift in Sources */,
 				03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */,
 				037BDFC11F03949A00C95962 /* City.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
@@ -1215,6 +1230,7 @@
 				03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */,
+				032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */,
 				03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */,

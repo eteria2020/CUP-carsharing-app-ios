@@ -174,3 +174,9 @@
 "lbl_carTripsItemTitle" = "Prenotazione n. %@";
 "lbl_carTripsItemSubtitle" = "%@ - € %@";
 "lbl_carTripsItemDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n<startAddress>%@</startAddress>\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n<endAddress>%@</endAddress>\n<minuteRate>Tariffa al minuto: € %@</minuteRate>\n<freeMinutes>MINUTI DI GUIDA GRATUITA UTILIZZATI: %@</freeMinutes>\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>";
+
+// OnBoard
+"lbl_onBoardStep1Description" = "Facili e divertenti da guidare";
+"lbl_onBoardStep2Description" = "Più ne hai bisogno e meno costa";
+"lbl_onBoardStep3Description" = "Ogni corsa una sorpresa e una scoperta";
+"btn_onBoardSkip" = "Skip >>";

@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  IntroViewController.swift
 //  Sharengo
 //
 //  Created by Dedecube on 06/06/17.
