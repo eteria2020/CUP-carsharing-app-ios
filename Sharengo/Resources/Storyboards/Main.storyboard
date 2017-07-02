@@ -406,14 +406,51 @@
                                     <constraint firstAttribute="height" constant="56" id="MDJ-4u-W5d"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8SK-8L-afg" customClass="GIFImageView" customModule="Gifu">
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68m-Ru-eEK">
+                                <rect key="frame" x="15" y="495" width="345" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="pA7-aH-4jG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="W9s-Rv-Rpi">
+                                <rect key="frame" x="168" y="600" width="39" height="37"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlF-rt-hnt">
+                                <rect key="frame" x="307" y="607" width="53" height="30"/>
+                                <state key="normal" title="Skip &gt;&gt;"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8SK-8L-afg" secondAttribute="trailing" id="58H-8i-V70"/>
+                            <constraint firstItem="8SK-8L-afg" firstAttribute="top" secondItem="Nm4-kr-vdH" secondAttribute="bottom" id="9u7-Uc-o9N"/>
                             <constraint firstAttribute="trailing" secondItem="Nm4-kr-vdH" secondAttribute="trailing" id="AWh-iV-k4A"/>
                             <constraint firstItem="Nm4-kr-vdH" firstAttribute="top" secondItem="Xmx-1K-BB5" secondAttribute="top" id="B53-Hq-Cyz"/>
+                            <constraint firstItem="W9s-Rv-Rpi" firstAttribute="centerX" secondItem="Xmx-1K-BB5" secondAttribute="centerX" id="HV8-kO-PfZ"/>
+                            <constraint firstItem="nlF-rt-hnt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W9s-Rv-Rpi" secondAttribute="trailing" constant="15" id="MgD-ML-og3"/>
+                            <constraint firstItem="8SK-8L-afg" firstAttribute="leading" secondItem="Xmx-1K-BB5" secondAttribute="leading" id="PFk-Xu-gsB"/>
+                            <constraint firstItem="OOe-ZE-qsS" firstAttribute="top" secondItem="W9s-Rv-Rpi" secondAttribute="bottom" constant="30" id="Pmm-uD-ReR"/>
                             <constraint firstItem="Nm4-kr-vdH" firstAttribute="leading" secondItem="Xmx-1K-BB5" secondAttribute="leading" id="SnG-7o-Wcg"/>
+                            <constraint firstAttribute="trailing" secondItem="68m-Ru-eEK" secondAttribute="trailing" constant="15" id="WnN-z2-wrt"/>
+                            <constraint firstAttribute="trailing" secondItem="nlF-rt-hnt" secondAttribute="trailing" constant="15" id="ZKV-qx-1EX"/>
+                            <constraint firstItem="68m-Ru-eEK" firstAttribute="leading" secondItem="Xmx-1K-BB5" secondAttribute="leading" constant="15" id="dZM-b5-4P3"/>
+                            <constraint firstAttribute="bottom" secondItem="8SK-8L-afg" secondAttribute="bottom" id="eXz-gJ-05r"/>
+                            <constraint firstItem="nlF-rt-hnt" firstAttribute="bottom" secondItem="W9s-Rv-Rpi" secondAttribute="bottom" id="ehd-p2-SYb"/>
+                            <constraint firstItem="W9s-Rv-Rpi" firstAttribute="top" secondItem="68m-Ru-eEK" secondAttribute="bottom" constant="15" id="esw-FZ-7SK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btn_skip" destination="nlF-rt-hnt" id="qjH-lT-pUa"/>
+                        <outlet property="img_background" destination="8SK-8L-afg" id="KNz-nr-kA4"/>
+                        <outlet property="lbl_description" destination="68m-Ru-eEK" id="IN6-rO-OUd"/>
+                        <outlet property="pgc_steps" destination="W9s-Rv-Rpi" id="w7O-C9-haj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4b-BE-obk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
