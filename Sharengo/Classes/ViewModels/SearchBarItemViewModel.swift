@@ -31,6 +31,16 @@ final class SearchBarItemViewModel : ItemViewModelType {
                 }
             }
         }
+        if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                let index = unarchivedArray.index(where: { (address) -> Bool in
+                    return address.identifier == model.identifier
+                })
+                if index != nil {
+                    self.image = "ic_favourites"
+                }
+            }
+        }
     }
     
     init(model: Car) {

@@ -91,6 +91,31 @@ enum Font {
     // Profile
     case profileEcoStatus
 
+    // Settings
+    case settingHeader
+    case settingLabel
+    
+    // SettingsLanguages
+    case settingsLanguagesHeader
+    case settingsLanguagesLabel
+
+    // SettingsCities
+    case settingsCitiesHeader
+    case settingsCitiesLabel
+
+    // NoFavourites
+    case noFavouritesHeader
+    case noFavouritesTitleLabel
+    case noFavouritesDescriptionLabel
+    
+    // Favourites
+    case favouritesUndoButton
+    case favouritesTitleLabelEmphasized
+    case favouritesTitleLabel
+    case favouritesItemTitleLabelEmphasized
+    case favouritesItemTitleLabel
+    case favouritesPopupTitle
+
     var value: UIFont {
         get {
             switch self {
@@ -171,6 +196,41 @@ enum Font {
             // Profile
             case .profileEcoStatus:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 20))
+            // Settings
+            case .settingHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .settingLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // SettingsLanguages
+            case .settingsLanguagesHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .settingsLanguagesLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // SettingsCities
+            case .settingsCitiesHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .settingsCitiesLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // NoFavourites
+            case .noFavouritesHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .noFavouritesTitleLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .noFavouritesDescriptionLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            // Favourites
+            case .favouritesUndoButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .favouritesTitleLabelEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .favouritesTitleLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .favouritesItemTitleLabelEmphasized:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .favouritesItemTitleLabel:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .favouritesPopupTitle:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

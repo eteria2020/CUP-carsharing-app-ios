@@ -40,6 +40,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     fileprivate var nominatimApiController: NominatimAPIController = NominatimAPIController()
     fileprivate let numberOfResults: Int = 15
     var allCars: [Car] = []
+    var favourites: Bool = false
     
     lazy var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
         return .empty()
@@ -64,18 +65,31 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
             case .item(let indexPath):
                 if let model = self.model(atIndex: indexPath) as? Address {
                     self.itemSelected = true
-                    if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                            let historyAddress = model.getHistoryAddress()
+                    var favourite: Bool = false
+                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                        if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                             let index = unarchivedArray.index(where: { (address) -> Bool in
                                 return address.identifier == model.identifier
                             })
                             if index != nil {
-                                unarchivedArray.remove(at: index!)
+                               favourite = true
                             }
-                            unarchivedArray.insert(historyAddress, at: 0)
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+                        }
+                    }
+                    if !favourite && !self.favourites {
+                        if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
+                            if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                                let historyAddress = model.getHistoryAddress()
+                                let index = unarchivedArray.index(where: { (address) -> Bool in
+                                    return address.identifier == model.identifier
+                                })
+                                if index != nil {
+                                    unarchivedArray.remove(at: index!)
+                                }
+                                unarchivedArray.insert(historyAddress, at: 0)
+                                let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+                            }
                         }
                     }
                     self.speechTranscription.value = model.name
@@ -173,7 +187,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         if text.characters.count > 2 {
             let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
             let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.characters.count))
-            if (match != nil) {
+            if match != nil && !favourites {
                 self.dataHolder = ListDataHolder(data:Observable.just(self.allCars.filter({ (car) -> Bool in
                     return car.plate?.lowercased().contains(text.lowercased()) ?? false
                 })).structured())
@@ -215,10 +229,28 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     func getHistoryAndFavorites() {
         var historyAndFavorites: [ModelType] = [ModelType]()
-        historyAndFavorites.append(Favorite.empty)
+        
+        var favourites: Bool = false
+        var numberOfResults: Int = self.numberOfResults
+        if !self.favourites {
+            if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                    if unarchivedArray.count > 0 {
+                        for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {
+                            historyAndFavorites.append(historyAddress.getAddress())
+                        }
+                        favourites = true
+                    }
+                }
+            }
+        }
+        if !favourites && !self.favourites {
+            historyAndFavorites.append(Favorite.empty)
+        }
+        numberOfResults = numberOfResults-historyAndFavorites.count
         if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                for historyAddress in Array(unarchivedArray.prefix(self.numberOfResults)) {
+                for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {
                     historyAndFavorites.append(historyAddress.getAddress())
                 }
             }

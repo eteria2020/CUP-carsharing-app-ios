@@ -14,13 +14,30 @@ import DeviceKit
 import TPKeyboardAvoiding
 import SideMenu
 
-struct CustomTextInputStyle: AnimatedTextInputStyle {
+struct CustomTextInputStyle1: AnimatedTextInputStyle {
     let activeColor = ColorBrand.black.value
     let inactiveColor = ColorBrand.gray.value
     let lineInactiveColor = ColorBrand.gray.value
     let errorColor = ColorBrand.black.value
     let textInputFont = Font.loginTextField.value
     let textInputFontColor = ColorBrand.black.value
+    let placeholderMinFontSize: CGFloat = 9
+    let counterLabelFont: UIFont? = Font.loginTextFieldPlaceholder.value
+    let leftMargin: CGFloat = 20
+    let topMargin: CGFloat = 25
+    let rightMargin: CGFloat = 20
+    let bottomMargin: CGFloat = 10
+    let yHintPositionOffset: CGFloat = 7
+    let yPlaceholderPositionOffset: CGFloat = 0
+}
+
+struct CustomTextInputStyle2: AnimatedTextInputStyle {
+    let activeColor = ColorBrand.white.value
+    let inactiveColor = ColorBrand.white.value
+    let lineInactiveColor = ColorBrand.white.value
+    let errorColor = ColorBrand.white.value
+    let textInputFont = Font.loginTextField.value
+    let textInputFontColor = ColorBrand.white.value
     let placeholderMinFontSize: CGFloat = 9
     let counterLabelFont: UIFont? = Font.loginTextFieldPlaceholder.value
     let leftMargin: CGFloat = 20
@@ -94,11 +111,11 @@ class LoginViewController : BaseViewController, ViewModelBindable {
         txt_email.type = .email
         txt_email.delegate = self
         txt_email.placeHolderText = "txt_loginEmailPlaceholder".localized()
-        txt_email.style = CustomTextInputStyle()
+        txt_email.style = CustomTextInputStyle1()
         txt_password.type = .password
         txt_password.delegate = self
         txt_password.placeHolderText = "txt_loginPasswordPlaceholder".localized()
-        txt_password.style = CustomTextInputStyle()
+        txt_password.style = CustomTextInputStyle1()
         #if ISDEBUG
             txt_email.text = "francesco.galatro@gmail.com"
             txt_password.text = "AppTest2017"
@@ -122,7 +139,7 @@ class LoginViewController : BaseViewController, ViewModelBindable {
                 self.btn_register.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
                 self.btn_continueAsNotLogged.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
-        self.btn_forgotPassword.style(.clearButton(Font.loginForgotPassword.value), title: "btn_loginForgotPassword".localized())
+        self.btn_forgotPassword.style(.clearButton(Font.loginForgotPassword.value, Color.alertButton.value), title: "btn_loginForgotPassword".localized())
         self.btn_forgotPassword.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         self.btn_login.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_loginLogin".localized())
         self.btn_register.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_loginRegister".localized())

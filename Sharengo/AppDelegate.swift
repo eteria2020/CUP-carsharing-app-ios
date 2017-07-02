@@ -5,6 +5,7 @@ import Boomerang
 import RxSwift
 import Gloss
 import SideMenu
+import Localize_Swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.setupAlert()
         self.setupHistory()
+        self.setupFavourites()
         #if ISDEBUG
         #elseif ISRELEASE
             Fabric.with([Crashlytics.self])
@@ -23,7 +25,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreController.shared.updateData()
         
         self.setupSideMenu()
-
+        
+        if UserDefaults.standard.object(forKey: "language") == nil {
+            UserDefaults.standard.setValue("language".localized(), forKey: "language")
+        }
+        
+        /*
+        if UserDefaults.standard.object(forKey: "city") == nil {
+            UserDefaults.standard.setValue("milano", forKey: "city")
+        }
+        */
+        
+        // TODO: recuperare le città
+        // TODO: che succede se le città non vengono scaricate neanche una volta?
+        
         return true
     }
 
@@ -67,6 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.object(forKey: "historyArray") == nil {
             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [HistoryAddress]() as Array)
             UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+        }
+    }
+    
+    fileprivate func setupFavourites() {
+        if UserDefaults.standard.object(forKey: "favouritesArray") == nil {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteAddress]() as Array)
+            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
         }
     }
 }

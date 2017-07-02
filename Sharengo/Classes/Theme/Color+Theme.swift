@@ -144,6 +144,44 @@ enum Color {
     case profileBackground
     case profileEcoStatus
     
+    // Setting
+    case settingHeaderBackground
+    case settingHeaderLabel
+    case settingItemLabel
+    case settingIconBackground
+    case settingOddCellBackground
+    case settingEvenCellBackground
+
+    // SettingsLanguages
+    case settingsLanguagesHeaderBackground
+    case settingsLanguagesHeaderLabel
+    case settingsLanguagesItemLabel
+    case settingsLanguagesBackground
+    case settingsLanguagesOddCellBackground
+    case settingsLanguagesEvenCellBackground
+
+    // SettingsCities
+    case settingsCitiesHeaderBackground
+    case settingsCitiesHeaderLabel
+    case settingsCitiesItemLabel
+    case settingsCitiesBackground
+    case settingsCitiesOddCellBackground
+    case settingsCitiesEvenCellBackground
+
+    // NoFavourites
+    case noFavouritesHeaderBackground
+    case noFavouritesHeaderLabel
+    case noFavouritesBackground
+    case noFavouritesTitle
+    case noFavouritesDescription
+    case noFavouritesNewFavouriteTextButton
+    case noFavouritesNewFavouriteBackgroundButton
+    case favouritesTitle
+    case favouritesTitleLabel
+    case favouritesItemTitleLabelEmphasized
+    case favouritesItemTitleLabel
+    case favouritesPopupTitle
+
     // Web
     case webBackground
     
@@ -270,6 +308,70 @@ enum Color {
                 return ColorBrand.lightGray.value
             case .profileEcoStatus:
                 return ColorBrand.green.value
+            // Setting
+            case .settingHeaderBackground:
+                return ColorBrand.black.value
+            case .settingHeaderLabel:
+                return ColorBrand.white.value
+            case .settingItemLabel:
+                return ColorBrand.green.value
+            case .settingIconBackground:
+                return ColorBrand.green.value
+            case .settingOddCellBackground:
+                return ColorBrand.lightGray.value
+            case .settingEvenCellBackground:
+                return ColorBrand.white.value
+            // SettingsLanguages
+            case .settingsLanguagesHeaderBackground:
+                return ColorBrand.black.value
+            case .settingsLanguagesHeaderLabel:
+                return ColorBrand.white.value
+            case .settingsLanguagesItemLabel:
+                return ColorBrand.green.value
+            case .settingsLanguagesBackground:
+                return ColorBrand.gray.value
+            case .settingsLanguagesOddCellBackground:
+                return ColorBrand.lightGray.value
+            case .settingsLanguagesEvenCellBackground:
+                return ColorBrand.white.value
+            // SettingsCities
+            case .settingsCitiesHeaderBackground:
+                return ColorBrand.black.value
+            case .settingsCitiesHeaderLabel:
+                return ColorBrand.white.value
+            case .settingsCitiesItemLabel:
+                return ColorBrand.green.value
+            case .settingsCitiesBackground:
+                return ColorBrand.gray.value
+            case .settingsCitiesOddCellBackground:
+                return ColorBrand.lightGray.value
+            case .settingsCitiesEvenCellBackground:
+                return ColorBrand.white.value
+            // No Favourites
+            case .noFavouritesHeaderBackground:
+                return ColorBrand.black.value
+            case .noFavouritesHeaderLabel:
+                return ColorBrand.white.value
+            case .noFavouritesBackground:
+                return ColorBrand.lightGray.value
+            case .noFavouritesTitle:
+                return ColorBrand.green.value
+            case .noFavouritesDescription:
+                return ColorBrand.black.value
+            case .noFavouritesNewFavouriteTextButton:
+                return ColorBrand.white.value
+            case .noFavouritesNewFavouriteBackgroundButton:
+                return ColorBrand.green.value
+            case .favouritesTitle:
+                return ColorBrand.green.value
+            case .favouritesTitleLabel:
+                return ColorBrand.white.value
+            case .favouritesItemTitleLabelEmphasized:
+                return ColorBrand.green.value
+            case .favouritesItemTitleLabel:
+                return ColorBrand.black.value
+            case .favouritesPopupTitle:
+                return ColorBrand.white.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

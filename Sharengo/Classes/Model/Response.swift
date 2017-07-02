@@ -21,6 +21,7 @@ class Response: ModelType, Decodable {
     */
     
     var status: Int?
+    var status_bool: Bool?
     var reason: String?
     var code: String?
     var msg: String?
@@ -36,6 +37,7 @@ class Response: ModelType, Decodable {
     
     required init?(json: JSON) {
         self.status = "status" <~~ json
+        self.status_bool = "status" <~~ json
         self.reason = "reason" <~~ json
         self.code = "code" <~~ json
         self.msg = "msg" <~~ json

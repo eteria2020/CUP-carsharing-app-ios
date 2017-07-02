@@ -13,6 +13,9 @@ enum SceneIdentifier : String, ListIdentifier {
     case intro = "intro"
     case loading = "loading"
     case menu = "menu"
+    case settings = "settings"
+    case settingsLanguages = "settingsLanguages"
+    case settingsCities = "settingsCities"
     case signup = "signup"
     case login = "login"
     case home = "home"
@@ -20,6 +23,9 @@ enum SceneIdentifier : String, ListIdentifier {
     case searchBar = "searchBar"
     case searchCars = "searchCars"
     case carBookingCompleted = "carBookingCompleted"
+    case noFavourites = "noFavourites"
+    case newFavourite = "newFavourite"
+    case favourites = "favourites"
     var name: String {
         return self.rawValue
     }
@@ -35,11 +41,19 @@ extension ListViewModelType {
 enum CollectionViewCell : String, ListIdentifier {
     case searchBar = "SearchBarCollectionViewCell"
     case menu = "MenuItemCollectionViewCell"
+    case setting = "SettingItemCollectionViewCell"
+    case settingsLanguage = "SettingsLanguageItemCollectionViewCell"
+    case settingsCity = "SettingsCityItemCollectionViewCell"
+    case favourite = "FavouriteItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [
             .searchBar,
-            .menu
+            .menu,
+            .setting,
+            .settingsLanguage,
+            .settingsCity,
+            .favourite
         ]
     }
     static func headers() -> [CollectionViewCell] {

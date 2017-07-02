@@ -63,6 +63,42 @@ struct ViewModelFactory {
         return MenuItemViewModel(model: model)
     }
 
+    static func settings() -> ViewModelType {
+        return SettingsViewModel()
+    }
+    
+    static func settingItem(fromModel model:Setting) -> ItemViewModelType {
+        return SettingItemViewModel(model: model)
+    }
+
+    static func settingsLanguages() -> ViewModelType {
+        return SettingsLanguagesViewModel()
+    }
+    
+    static func settingsLanguagesItem(fromModel model:Language) -> ItemViewModelType {
+        return SettingsLanguageItemViewModel(model: model)
+    }
+
+    static func settingsCities() -> ViewModelType {
+        return SettingsCitiesViewModel()
+    }
+    
+    static func settingsCitiesItem(fromModel model:City) -> ItemViewModelType {
+        return SettingsCityItemViewModel(model: model)
+    }
+
+    static func noFavourites() -> ViewModelType {
+        return NoFavouritesViewModel()
+    }
+
+    static func newFavourite() -> ViewModelType {
+        return NewFavouriteViewModel()
+    }
+
+    static func favourites() -> ViewModelType {
+        return FavouritesViewModel()
+    }
+    
     static func searchBarItem(fromModel model:Address) -> ItemViewModelType {
         return SearchBarItemViewModel(model: model)
     }
@@ -77,5 +113,9 @@ struct ViewModelFactory {
     
     static func carBookingCompleted(carTrip: CarTrip) -> ViewModelType {
         return CarBookingCompletedViewModel(carTrip: carTrip)
+    }
+    
+    static func favouriteItem(fromModel model:Address) -> ItemViewModelType {
+        return FavouriteItemViewModel(model: model)
     }
 }

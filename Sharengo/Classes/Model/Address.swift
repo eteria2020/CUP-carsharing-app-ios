@@ -11,23 +11,26 @@ import RxSwift
 import Gloss
 import CoreLocation
 
-public class HistoryAddress: NSObject, NSCoding {
+public class FavouriteAddress: NSObject, NSCoding {
     var identifier: String?
     var name: String?
     var location: CLLocation?
+    var address: String?
     
-    init(identifier: String?, name: String?, location: CLLocation?) {
+    init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
         self.identifier = identifier
         self.name = name
         self.location = location
+        self.address = address
     }
-
+    
     // MARK: - Coding methods
     
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.identifier, forKey: "identifier")
         aCoder.encode(self.name, forKey: "name")
         aCoder.encode(self.location, forKey: "location")
+        aCoder.encode(self.address, forKey: "address")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -40,12 +43,59 @@ public class HistoryAddress: NSObject, NSCoding {
         if let location = aDecoder.decodeObject(forKey: "location") as? CLLocation {
             self.location = location
         }
+        if let address = aDecoder.decodeObject(forKey: "address") as? String {
+            self.address = address
+        }
     }
     
     // MARK: - Address methods
     
     func getAddress() -> Address {
-        return Address(identifier: self.identifier, name: self.name, location: self.location)
+        return Address(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
+    }
+}
+
+public class HistoryAddress: NSObject, NSCoding {
+    var identifier: String?
+    var name: String?
+    var location: CLLocation?
+    var address: String?
+    
+    init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
+        self.identifier = identifier
+        self.name = name
+        self.location = location
+        self.address = address
+    }
+    
+    // MARK: - Coding methods
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.identifier, forKey: "identifier")
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.location, forKey: "location")
+        aCoder.encode(self.address, forKey: "address")
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        if let identifier = aDecoder.decodeObject(forKey: "identifier") as? String {
+            self.identifier = identifier
+        }
+        if let name = aDecoder.decodeObject(forKey: "name") as? String {
+            self.name = name
+        }
+        if let location = aDecoder.decodeObject(forKey: "location") as? CLLocation {
+            self.location = location
+        }
+        if let address = aDecoder.decodeObject(forKey: "address") as? String {
+            self.address = address
+        }
+    }
+    
+    // MARK: - Address methods
+    
+    func getAddress() -> Address {
+        return Address(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
 }
 
@@ -70,15 +120,17 @@ public class Address: ModelType, Decodable {
     var identifier: String?
     var name: String?
     var location: CLLocation?
+    var address: String?
     
     static var empty:Address {
-        return Address(identifier: nil, name: nil, location: nil)
+        return Address(identifier: nil, name: nil, location: nil, address: nil)
     }
     
-    init(identifier: String?, name: String?, location: CLLocation?) {
+    init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
         self.identifier = identifier
         self.name = name
         self.location = location
+        self.address = address
     }
 
     required public init?(json: JSON) {
@@ -94,6 +146,12 @@ public class Address: ModelType, Decodable {
     // MARK: - History methods
     
     func getHistoryAddress() -> HistoryAddress {
-        return HistoryAddress(identifier: self.identifier, name: self.name, location: self.location)
+        return HistoryAddress(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
+    }
+    
+    // MARK: - Favourite methods
+    
+    func getFavouriteAddress() -> FavouriteAddress {
+        return FavouriteAddress(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
 }

@@ -17,6 +17,7 @@
                 <outlet property="icn_search" destination="7i9-Rg-fVz" id="9jK-D3-WNl"/>
                 <outlet property="txt_search" destination="6cN-EC-jcB" id="61S-ZP-P0z"/>
                 <outlet property="view_background" destination="Dt8-8G-2Vq" id="DaI-fH-0iq"/>
+                <outlet property="view_black" destination="DdW-EU-KN0" id="to1-Rf-Rm3"/>
                 <outlet property="view_microphone" destination="vtJ-Kw-uHO" id="qY3-vQ-elT"/>
                 <outlet property="view_search" destination="Fsc-MR-YMO" id="m9I-GH-ihJ"/>
             </connections>
@@ -26,6 +27,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DdW-EU-KN0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-8G-2Vq">
                     <rect key="frame" x="15" y="70" width="345" height="40"/>
                     <subviews>
@@ -123,12 +128,16 @@
             </subviews>
             <color key="backgroundColor" white="0.80000000000000004" alpha="0.0" colorSpace="deviceWhite"/>
             <constraints>
+                <constraint firstItem="DdW-EU-KN0" firstAttribute="leading" secondItem="yeU-cB-q6h" secondAttribute="leading" id="0ea-bx-LxV"/>
                 <constraint firstItem="B5t-4g-trE" firstAttribute="top" secondItem="Dt8-8G-2Vq" secondAttribute="bottom" id="3nL-B6-svD"/>
                 <constraint firstItem="B5t-4g-trE" firstAttribute="leading" secondItem="Dt8-8G-2Vq" secondAttribute="leading" id="58d-My-OmA"/>
+                <constraint firstAttribute="bottom" secondItem="DdW-EU-KN0" secondAttribute="bottom" id="5Pz-Lb-trE"/>
+                <constraint firstItem="DdW-EU-KN0" firstAttribute="top" secondItem="yeU-cB-q6h" secondAttribute="top" id="8qQ-XG-JFx"/>
                 <constraint firstItem="Dt8-8G-2Vq" firstAttribute="height" secondItem="yeU-cB-q6h" secondAttribute="height" multiplier="0.06" id="9Ya-we-jFj"/>
+                <constraint firstAttribute="trailing" secondItem="DdW-EU-KN0" secondAttribute="trailing" id="Amt-Sg-nrA"/>
                 <constraint firstItem="Dt8-8G-2Vq" firstAttribute="leading" secondItem="yeU-cB-q6h" secondAttribute="leading" constant="15" id="JBM-VP-lej"/>
                 <constraint firstAttribute="trailing" secondItem="Dt8-8G-2Vq" secondAttribute="trailing" constant="15" id="NgD-ub-XNt"/>
-                <constraint firstItem="Dt8-8G-2Vq" firstAttribute="top" secondItem="yeU-cB-q6h" secondAttribute="top" constant="70" id="X5D-pb-GLp"/>
+                <constraint firstItem="Dt8-8G-2Vq" firstAttribute="top" secondItem="yeU-cB-q6h" secondAttribute="top" constant="70" identifier="topBackgroundView" id="X5D-pb-GLp"/>
                 <constraint firstItem="Dt8-8G-2Vq" firstAttribute="leading" secondItem="yeU-cB-q6h" secondAttribute="leading" constant="15" id="anQ-FO-uxc"/>
                 <constraint firstAttribute="trailing" secondItem="Dt8-8G-2Vq" secondAttribute="trailing" constant="15" id="cqm-Ih-aLn"/>
                 <constraint firstItem="B5t-4g-trE" firstAttribute="trailing" secondItem="Dt8-8G-2Vq" secondAttribute="trailing" id="wUA-7w-5uq"/>

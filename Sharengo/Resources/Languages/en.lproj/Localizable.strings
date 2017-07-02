@@ -5,6 +5,8 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
+"language" = "en";
+
 // General
 "btn_ok" = "OK";
 "btn_cancel" = "ANNULLA";
@@ -19,6 +21,8 @@
 "btn_book" = "PRENOTA AUTO";
 "bnt_delete" = "ELIMINA";
 "btn_carRides" = "STORICO CORSE";
+"language_italian" = "Italiano";
+"language_english" = "Inglese";
 
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
@@ -124,3 +128,39 @@
 "banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
 "banner_carBookingDeletedTitle" = "Share'ngo";
 "banner_carBookingDeletedDescription" = "Il tempo di prenotazione è scaduto, la tua prenotazione è stata annullata. Prenota un’altra auto in mappa.";
+
+// Settings
+"lbl_settingsHeaderTitle" = "IMPOSTAZIONI";
+"lbl_settingsCities" = "Imposta città";
+"lbl_settingsFavourites" = "Imposta i tuoi indirizzi preferiti";
+"lbl_settingsLanguages" = "Imposta lingua";
+
+// Settings Languages
+"lbl_settingsLanguagesHeaderTitle" = "IMPOSTA LINGUA";
+
+// Settings Cities
+"lbl_settingsCitiesHeaderTitle" = "IMPOSTA CITTÀ";
+
+// Settings Favourites
+"lbl_noFavouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
+"lbl_noFavouritesTitle" = "Peccato!";
+"lbl_noFavouritesDescription" = "Non hai ancora nessun indirizzo preferito o recente! Imposta le tue destinazioni più frequenti e risparmia tempo quando scegli dove andare.";
+"btn_noFavouritesNewFavourite" = "IMPOSTA NUOVO INDIRIZZO";
+"lbl_newFavouriteHeaderTitle" = "NUOVO INDIRIZZO PREFERITO";
+"lbl_newFavouriteTitle" = "Imposta un nuovo indirizzo";
+"lbl_newFavouriteDescription" = "per aggiungerlo ai tuoi preferiti";
+"txt_newFavouriteAddressPlaceholder" = "imposta indirizzo";
+"txt_newFavouriteNamePlaceholder" = "nome preferito";
+"btn_newFavouriteSaveFavourite" = "SALVA PREFERITO";
+"btn_newFavouriteUndo" = "Annulla";
+"alert_newFavouriteMissingFields" = "Uno o più campi non sono compilati.";
+"lbl_favouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
+"lbl_favouritesTitle" = "<bold>Imposta i tuoi indirizzi preferiti</bold>\nper rendere più veloci le tue ricerche";
+"lbl_favouritesItemTitle1" = "<bold>%@</bold>\n%@";
+"lbl_favouritesItemTitle2" = "%@";
+"btn_favouritesUndo" = "Annulla";
+"btn_favouritesDelete" = "ELIMINA";
+"lbl_favouritesDeleteFav" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi preferiti?";
+"lbl_favouritesDeleteHis" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi recenti?";
+"lbl_favouritesModify" = "Vuoi modificare questo indirizzo preferito?";
+"lbl_favouritesAdd" = "Vuoi aggiungere questo indirizzo recente alla lista dei tuoi indirizzi preferiti?";

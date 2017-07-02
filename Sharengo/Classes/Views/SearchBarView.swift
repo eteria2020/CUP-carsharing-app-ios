@@ -14,6 +14,7 @@ import Action
 import DeviceKit
 
 class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+    @IBOutlet fileprivate weak var view_black: UIView!
     @IBOutlet fileprivate weak var view_background: UIView!
     @IBOutlet fileprivate weak var icn_search: UIImageView!
     @IBOutlet fileprivate weak var view_microphone: UIView!
@@ -28,6 +29,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     
     var viewModel: SearchBarViewModel?
     fileprivate var view: UIView!
+    fileprivate var favourites: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -58,6 +60,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
         self.layoutIfNeeded()
+        self.view_black.alpha = 0.0
         self.collectionView.isHidden = true
         self.collectionView.backgroundColor = Color.searchBarResultBackground.value
         self.view_background.backgroundColor = Color.searchBarBackground.value
@@ -160,16 +163,48 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             }
         } else {
             DispatchQueue.main.async {
+                self.view_black.alpha = 0.0
                 self.collectionView.isHidden = true
                 self.endEditing(true)
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
+                if self.favourites {
+                    self.view_background.alpha = 0.0
+                }
             }
         }
     }
     
     func stopSearchBar() {
         self.endEditing(true)
+    }
+    
+    func setupForFavourites() {
+        self.favourites = true
+        self.viewModel?.favourites = true
+        self.view_background.alpha = 0.0
+    }
+    
+    func showSearchBar() {
+        self.viewModel?.reloadResults(text: self.txt_search.text ?? "")
+        switch Device().diagonal {
+        case 3.5:
+            self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 70
+        case 4:
+            self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 93
+        case 4.7:
+            self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 98
+        case 5.5:
+            self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 105
+        default:
+            break
+        }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view_background.alpha = 1.0
+            self.view_black.alpha = 0.65
+        }) { (success) in
+            self.txt_search.becomeFirstResponder()
+        }
     }
     
     // MARK: - Data methods

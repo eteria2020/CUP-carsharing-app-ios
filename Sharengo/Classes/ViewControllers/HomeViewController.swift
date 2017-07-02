@@ -13,6 +13,7 @@ import Boomerang
 import KeychainSwift
 import pop
 import SideMenu
+import DeviceKit
 
 class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -166,6 +167,30 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
             } else {
                 self.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
+            }
+            
+            let selectedIdentifier = UserDefaults.standard.object(forKey: "city") as? String
+            var cityFounded: Bool = false
+            let cities = CoreController.shared.cities
+            for city in cities {
+                if city.identifier == selectedIdentifier {
+                    if let url = URL(string: city.icon)
+                    {
+                        do {
+                            let data = try Data(contentsOf: url)
+                            if let image = UIImage(data: data) {
+                                cityFounded = true
+                                self.btn_feeds.setImage(image.tinted(Color.homeDisabledIcon.value), for: .normal)
+                                self.btn_feeds.setImage(image.tinted(Color.homeDisabledIcon.value.withAlphaComponent(0.5)), for: .highlighted)
+                            }
+                        } catch {
+                        }
+                    }
+                }
+            }
+            if !cityFounded {
+                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(Color.homeDisabledIcon.value), for: .normal)
+                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(Color.homeDisabledIcon.value.withAlphaComponent(0.5)), for: .highlighted)
             }
         }
     }

@@ -13,6 +13,8 @@ import RxSwift
 import MapKit
 import Alamofire
 
+// NetworkLoggerPlugin(verbose: true, cURL: true)
+
 final class NominatimAPIController {
     fileprivate var manager: SessionManager?
    

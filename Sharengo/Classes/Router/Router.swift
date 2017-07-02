@@ -85,6 +85,30 @@ struct Router : RouterType {
             let destination: HomeViewController = (Storyboard.main.scene(.home))
             destination.bind(to: ViewModelFactory.home(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SettingsViewModel:
+            let destination: SettingsViewController = (Storyboard.main.scene(.settings))
+            destination.bind(to: ViewModelFactory.settings(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SettingsLanguagesViewModel:
+            let destination: SettingsLanguagesViewController = (Storyboard.main.scene(.settingsLanguages))
+            destination.bind(to: ViewModelFactory.settingsLanguages(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SettingsCitiesViewModel:
+            let destination: SettingsCitiesViewController = (Storyboard.main.scene(.settingsCities))
+            destination.bind(to: ViewModelFactory.settingsCities(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is NoFavouritesViewModel:
+            let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
+            destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is NewFavouriteViewModel:
+            let destination: NewFavouriteViewController = (Storyboard.main.scene(.newFavourite))
+            destination.bind(to: ViewModelFactory.newFavourite(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is FavouritesViewModel:
+            let destination: FavouritesViewController = (Storyboard.main.scene(.favourites))
+            destination.bind(to: ViewModelFactory.favourites(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

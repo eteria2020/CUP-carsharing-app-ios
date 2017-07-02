@@ -16,6 +16,7 @@ class CoreController {
     static let shared = CoreController()
     var currentViewController: UIViewController?
     var apiController: ApiController = ApiController()
+    var publishersApiController: PublishersAPIController = PublishersAPIController()
     var updateTimer: Timer?
     var updateInProgress = false
     var allCarBookings: [CarBooking] = []
@@ -23,6 +24,7 @@ class CoreController {
     var currentCarBooking: CarBooking?
     var currentCarTrip: CarTrip?
     var notificationIsShowed: Bool = false
+    var cities: [City] = []
     
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -44,12 +46,32 @@ class CoreController {
     }
     
     @objc func updateData() {
+        self.updateCities()
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
         self.notificationIsShowed = false
         self.updateInProgress = true
         self.updateUser()
+    }
+    
+    fileprivate func updateCities() {
+        self.publishersApiController.getCities()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status_bool == true, let data = response.array_data {
+                        if let cities = [City].from(jsonArray: data) {
+                            self.cities = cities
+                        }
+                    }
+                case .error(_):
+                    break
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
     }
     
     fileprivate func updateUser() {

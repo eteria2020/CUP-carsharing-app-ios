@@ -65,6 +65,29 @@ enum TextStyle: String, TextStyleType {
     // Profile
     case profileEcoStatus = "profileEcoStatus"
 
+    // Settings
+    case settingHeader = "settingHeader"
+    case settingItemTitle = "settingItemTitle"
+
+    // SettingsLanguages
+    case settingsLanguagesHeader = "settingsLanguagesHeader"
+    case settingsLanguagesItemTitle = "settingsLanguagesItemTitle"
+
+    // SettingsCities
+    case settingsCitiesHeader = "settingsCitiesHeader"
+    case settingsCitiesItemTitle = "settingsCitiesItemTitle"
+
+    // NoFavourites
+    case noFavouritesHeader = "noFavouritesHeader"
+    case noFavouritesTitle = "noFavouritesTitle"
+    case noFavouritesDescription = "noFavouritesDescription"
+    
+    // Favourites
+    case favouritesTitle = "favouritesTitle"
+    case favouritesItemTitle = "favouritesItemTitle"
+    case favouritesPopupTitle = "favouritesPopupTitle"
+    case favouritesPopupDescription = "favouritesPopupDescription"
+    
     static var all:[TextStyle] {
         return [
             // Intro
@@ -100,7 +123,25 @@ enum TextStyle: String, TextStyleType {
             .signupStepHeader,
             .signupStepDescription,
             // Profile
-            .profileEcoStatus
+            .profileEcoStatus,
+            // Setting
+            .settingHeader,
+            .settingItemTitle,
+            // SettingsLanguages
+            .settingsLanguagesHeader,
+            .settingsLanguagesItemTitle,
+            // SettingsLanguages
+            .settingsCitiesHeader,
+            .settingsCitiesItemTitle,
+            // NoFavourites
+            .noFavouritesHeader,
+            .noFavouritesTitle,
+            .noFavouritesDescription,
+            // Favourites
+            .favouritesTitle,
+            .favouritesItemTitle,
+            .favouritesPopupTitle,
+            .favouritesPopupDescription
         ]
     }
     
@@ -172,6 +213,40 @@ enum TextStyle: String, TextStyleType {
             // Profile
             case .profileEcoStatus:
                 return StringStyle(.font(Font.profileEcoStatus.value), .color(Color.profileEcoStatus.value), .alignment(.center))
+            // Settings
+            case .settingHeader:
+                return StringStyle(.font(Font.settingHeader.value), .color(Color.settingHeaderLabel.value), .alignment(.center))
+            case .settingItemTitle:
+                return StringStyle(.font(Font.settingLabel.value), .color(Color.settingItemLabel.value), .alignment(.center))
+            // SettingsLanguages
+            case .settingsLanguagesHeader:
+                return StringStyle(.font(Font.settingsLanguagesHeader.value), .color(Color.settingsLanguagesHeaderLabel.value), .alignment(.center))
+            case .settingsLanguagesItemTitle:
+                return StringStyle(.font(Font.settingsLanguagesLabel.value), .color(Color.settingsLanguagesItemLabel.value), .alignment(.center))
+            // SettingsCities
+            case .settingsCitiesHeader:
+                return StringStyle(.font(Font.settingsCitiesHeader.value), .color(Color.settingsCitiesHeaderLabel.value), .alignment(.center))
+            case .settingsCitiesItemTitle:
+                return StringStyle(.font(Font.settingsCitiesLabel.value), .color(Color.settingsCitiesItemLabel.value), .alignment(.center))
+            // NoFavourites
+            case .noFavouritesHeader:
+                return StringStyle(.font(Font.noFavouritesHeader.value), .color(Color.noFavouritesHeaderLabel.value), .alignment(.center))
+            case .noFavouritesTitle:
+                return StringStyle(.font(Font.noFavouritesTitleLabel.value), .color(Color.noFavouritesTitle.value), .alignment(.center))
+            case .noFavouritesDescription:
+                return StringStyle(.font(Font.noFavouritesDescriptionLabel.value), .color(Color.noFavouritesDescription.value), .alignment(.center))
+            // Favourites
+            case .favouritesTitle:
+                let boldStyle = StringStyle(.font(Font.favouritesTitleLabelEmphasized.value), .color(Color.favouritesTitleLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.favouritesTitleLabel.value), .color(Color.favouritesTitleLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+            case .favouritesItemTitle:
+                let statusStyle = StringStyle(.font(Font.favouritesItemTitleLabelEmphasized.value), .color(Color.favouritesItemTitleLabelEmphasized.value), .alignment(.center))
+                return StringStyle(.font(Font.favouritesItemTitleLabel.value), .color(Color.favouritesItemTitleLabel.value), .alignment(.center),.xmlRules([.style("bold", statusStyle)]))
+            case .favouritesPopupTitle:
+                return StringStyle(.font(Font.favouritesPopupTitle.value), .color(Color.favouritesPopupTitle.value), .alignment(.center))
+            case .favouritesPopupDescription:
+                let statusStyle = StringStyle(.font(Font.favouritesItemTitleLabelEmphasized.value), .color(ColorBrand.white.value), .alignment(.center))
+                return StringStyle(.font(Font.favouritesItemTitleLabel.value), .color(ColorBrand.white.value), .alignment(.center),.xmlRules([.style("bold", statusStyle)]))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
