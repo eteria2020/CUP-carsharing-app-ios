@@ -36,5 +36,7 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
         self.view.layoutIfNeeded()
         self.lbl_description.styledText = "lbl_introTitle1".localized()
         self.lbl_description.alpha = 0.0
+        
+        self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
     }
 }
