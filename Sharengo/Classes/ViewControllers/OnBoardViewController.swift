@@ -57,5 +57,9 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
         
         // Images
         self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
+        
+        // PageControl
+        self.pgc_steps.pageIndicatorTintColor = Color.onBoardPageControlEmpty.value
+        self.pgc_steps.currentPageIndicatorTintColor = Color.onBoardPageControlFilled.value
     }
 }
