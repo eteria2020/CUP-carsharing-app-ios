@@ -161,7 +161,7 @@ enum TextStyle: String, TextStyleType {
             .carTripsItemDescription,
             .carTripsItemExtendedDescription,
             // OnBoard
-            .onBoardDescription
+            .onBoardDescription,
             .onBoardSkip
         ]
     }

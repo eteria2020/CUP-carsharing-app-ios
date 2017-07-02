@@ -196,8 +196,8 @@ enum Color {
     // OnBoard
     case onBoardDescription
     case onBoardSkipTextButton
-    case onBoardPageViewEmpty
-    case onBoardPageViewFilled
+    case onBoardPageControlEmpty
+    case onBoardPageControlFilled
 
     // Web
     case webBackground
@@ -413,9 +413,9 @@ enum Color {
                 return ColorBrand.green.value
             case .onBoardSkipTextButton:
                 return ColorBrand.green.value
-            case .onBoardPageViewEmpty:
+            case .onBoardPageControlEmpty:
                 return ColorBrand.white.value
-            case .onBoardPageViewFilled:
+            case .onBoardPageControlFilled:
                 return ColorBrand.green.value
             // Web
             case .webBackground:

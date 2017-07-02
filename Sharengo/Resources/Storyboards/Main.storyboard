@@ -268,7 +268,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -398,7 +398,21 @@
                     <view key="view" contentMode="scaleToFill" id="Xmx-1K-BB5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-kr-vdH" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="MDJ-4u-W5d"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Nm4-kr-vdH" secondAttribute="trailing" id="AWh-iV-k4A"/>
+                            <constraint firstItem="Nm4-kr-vdH" firstAttribute="top" secondItem="Xmx-1K-BB5" secondAttribute="top" id="B53-Hq-Cyz"/>
+                            <constraint firstItem="Nm4-kr-vdH" firstAttribute="leading" secondItem="Xmx-1K-BB5" secondAttribute="leading" id="SnG-7o-Wcg"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4b-BE-obk" userLabel="First Responder" sceneMemberID="firstResponder"/>
