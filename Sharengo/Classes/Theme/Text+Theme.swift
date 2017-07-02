@@ -94,6 +94,7 @@ enum TextStyle: String, TextStyleType {
     case carTripsItemSubtitle = "carTripsItemSubtitle"
     case carTripsItemDescription = "carTripsItemDescription"
     case carTripsItemExtendedDescription = "carTripsItemExtendedDescription"
+    case carTripsSearchCarsLabel = "carTripsSearchCarsLabel"
 
     static var all:[TextStyle] {
         return [
@@ -155,7 +156,8 @@ enum TextStyle: String, TextStyleType {
             .carTripsItemTitle,
             .carTripsItemSubtitle,
             .carTripsItemDescription,
-            .carTripsItemExtendedDescription
+            .carTripsItemExtendedDescription,
+            .carTripsSearchCarsLabel
         ]
     }
     
@@ -280,6 +282,8 @@ enum TextStyle: String, TextStyleType {
                 let kmTraveledStyle = StringStyle(.font(Font.carTripsItemDescriptionTitle.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
                 let placeholderStyle = StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.center))
                 return StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carTripsItemExtendedDescription.value), .alignment(.center),.xmlRules([.style("startDateAndTime", startDateAndTimeStyle), .style("startAddress", startAddressStyle), .style("endDateAndTime", endDateAndTimeStyle), .style("endAddress", endAddressStyle),  .style("minuteRate", minuteRateStyle),  .style("freeMinutes", freeMinutesStyle), .style("kmTraveled", kmTraveledStyle), .style("placeholder", placeholderStyle),]))
+            case .carTripsSearchCarsLabel:
+                return StringStyle(.font(Font.carTripsSearchCarsLabel.value), .color(Color.carTripsSearchCarsLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

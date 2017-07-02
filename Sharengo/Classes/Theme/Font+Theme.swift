@@ -123,6 +123,7 @@ enum Font {
     case carTripsItemDescriptionTitle
     case carTripsItemDescriptionSubtitle
     case carTripsItemExtendedDescription
+    case carTripsSearchCarsLabel
     
     var value: UIFont {
         get {
@@ -252,6 +253,8 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .carTripsItemExtendedDescription:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .carTripsSearchCarsLabel:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

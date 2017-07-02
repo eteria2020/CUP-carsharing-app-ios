@@ -1585,7 +1585,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3b-1T-zV5" userLabel="Container View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mizzie_05_finecorsa" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-hC-Wh8">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mizzie" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-hC-Wh8">
                                                 <rect key="frame" x="15" y="15" width="345" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" identifier="imageHeight" id="NC0-cC-wHF"/>
@@ -1956,6 +1956,144 @@
             </objects>
             <point key="canvasLocation" x="2244" y="2337"/>
         </scene>
+        <!--No Car Trips View Controller-->
+        <scene sceneID="KlP-os-Can">
+            <objects>
+                <viewController storyboardIdentifier="noCarTrips" id="Xu0-he-2Ng" customClass="NoCarTripsViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KuG-VT-Vyh"/>
+                        <viewControllerLayoutGuide type="bottom" id="amO-d9-c8p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IWb-0E-PxL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mht-U5-mw9" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="g0l-Qp-tKE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1rH-eW-tIR">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTA-eJ-UAE">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="noFavouritesHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="oTA-eJ-UAE" firstAttribute="top" secondItem="1rH-eW-tIR" secondAttribute="top" constant="5" id="CIg-zU-foU"/>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="YZU-2g-y79"/>
+                                    <constraint firstAttribute="trailing" secondItem="oTA-eJ-UAE" secondAttribute="trailing" constant="15" id="kqf-XB-7dV"/>
+                                    <constraint firstAttribute="bottom" secondItem="oTA-eJ-UAE" secondAttribute="bottom" constant="5" id="ve1-2s-DDY"/>
+                                    <constraint firstItem="oTA-eJ-UAE" firstAttribute="leading" secondItem="1rH-eW-tIR" secondAttribute="leading" constant="15" id="zD6-3h-zOW"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mizzie3" translatesAutoresizingMaskIntoConstraints="NO" id="vJ9-Hc-cRg">
+                                <rect key="frame" x="15" y="93" width="345" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" identifier="imageHeight" id="Ldc-c6-fZt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFA-cd-rPp">
+                                <rect key="frame" x="15" y="318" width="345" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="noFavouritesTitle"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myw-ov-Nbp">
+                                <rect key="frame" x="30" y="354" width="315" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="noFavouritesDescription"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcc-b2-AYs" userLabel="Bottom View">
+                                <rect key="frame" x="10" y="475.5" width="355" height="166.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACL-oL-D9H">
+                                        <rect key="frame" x="25" y="83.5" width="305" height="40"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" identifier="buttonHeight" id="xAh-db-Pcc"/>
+                                        </constraints>
+                                        <state key="normal" title="REGISTRATI">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Non sei ancora iscritto?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pl-IR-3re">
+                                        <rect key="frame" x="25" y="48" width="305" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="carTripsSearchCarsLabel"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8Pl-IR-3re" secondAttribute="trailing" constant="25" id="1uv-gN-0O0"/>
+                                    <constraint firstItem="8Pl-IR-3re" firstAttribute="leading" secondItem="Jcc-b2-AYs" secondAttribute="leading" constant="25" id="Byx-tm-jW4"/>
+                                    <constraint firstAttribute="trailing" secondItem="ACL-oL-D9H" secondAttribute="trailing" constant="25" id="UWC-Hp-gEo"/>
+                                    <constraint firstItem="8Pl-IR-3re" firstAttribute="bottom" secondItem="Jcc-b2-AYs" secondAttribute="centerY" constant="-15" id="hJz-Lm-O5K"/>
+                                    <constraint firstItem="ACL-oL-D9H" firstAttribute="top" secondItem="Jcc-b2-AYs" secondAttribute="centerY" id="s0N-k3-Nhr"/>
+                                    <constraint firstItem="ACL-oL-D9H" firstAttribute="leading" secondItem="Jcc-b2-AYs" secondAttribute="leading" constant="25" id="ygI-Fd-eEx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vJ9-Hc-cRg" secondAttribute="trailing" constant="15" id="0l2-AK-D9m"/>
+                            <constraint firstItem="Jcc-b2-AYs" firstAttribute="height" secondItem="IWb-0E-PxL" secondAttribute="height" multiplier="0.25" id="4uS-Fc-BYz"/>
+                            <constraint firstItem="amO-d9-c8p" firstAttribute="top" secondItem="Jcc-b2-AYs" secondAttribute="bottom" constant="25" id="6Z7-lJ-e19"/>
+                            <constraint firstAttribute="trailing" secondItem="mht-U5-mw9" secondAttribute="trailing" id="EBr-eh-I5H"/>
+                            <constraint firstItem="1rH-eW-tIR" firstAttribute="leading" secondItem="IWb-0E-PxL" secondAttribute="leading" id="ObU-Lq-Ayt"/>
+                            <constraint firstItem="myw-ov-Nbp" firstAttribute="leading" secondItem="gFA-cd-rPp" secondAttribute="leading" constant="15" id="Sld-GC-qsi"/>
+                            <constraint firstAttribute="trailing" secondItem="Jcc-b2-AYs" secondAttribute="trailing" constant="10" id="U4S-d5-wJ6"/>
+                            <constraint firstItem="gFA-cd-rPp" firstAttribute="leading" secondItem="IWb-0E-PxL" secondAttribute="leading" constant="15" id="VDb-0o-jks"/>
+                            <constraint firstAttribute="trailing" secondItem="1rH-eW-tIR" secondAttribute="trailing" id="YnA-Qs-pqA"/>
+                            <constraint firstItem="myw-ov-Nbp" firstAttribute="trailing" secondItem="gFA-cd-rPp" secondAttribute="trailing" constant="-15" id="c4k-Le-JCU"/>
+                            <constraint firstItem="vJ9-Hc-cRg" firstAttribute="height" secondItem="IWb-0E-PxL" secondAttribute="height" multiplier="0.3:1" priority="750" id="fUm-3u-fFi"/>
+                            <constraint firstItem="Jcc-b2-AYs" firstAttribute="leading" secondItem="IWb-0E-PxL" secondAttribute="leading" constant="10" id="hfl-8N-kPS"/>
+                            <constraint firstItem="vJ9-Hc-cRg" firstAttribute="leading" secondItem="IWb-0E-PxL" secondAttribute="leading" constant="15" id="lBi-Sl-VYA"/>
+                            <constraint firstItem="vJ9-Hc-cRg" firstAttribute="top" secondItem="1rH-eW-tIR" secondAttribute="bottom" constant="15" id="mCd-Sw-ZKV"/>
+                            <constraint firstItem="mht-U5-mw9" firstAttribute="top" secondItem="IWb-0E-PxL" secondAttribute="top" id="oPP-mm-myq"/>
+                            <constraint firstItem="mht-U5-mw9" firstAttribute="leading" secondItem="IWb-0E-PxL" secondAttribute="leading" id="pqS-Rn-yCf"/>
+                            <constraint firstItem="myw-ov-Nbp" firstAttribute="top" secondItem="gFA-cd-rPp" secondAttribute="bottom" constant="15" id="uX5-gR-ZZE"/>
+                            <constraint firstItem="1rH-eW-tIR" firstAttribute="top" secondItem="mht-U5-mw9" secondAttribute="bottom" id="uid-o9-yTK"/>
+                            <constraint firstItem="gFA-cd-rPp" firstAttribute="top" secondItem="vJ9-Hc-cRg" secondAttribute="bottom" constant="25" id="xyG-th-J1s"/>
+                            <constraint firstAttribute="trailing" secondItem="gFA-cd-rPp" secondAttribute="trailing" constant="15" id="zvR-y8-p4F"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btn_searchCars" destination="ACL-oL-D9H" id="mQN-sT-9MZ"/>
+                        <outlet property="img_top" destination="vJ9-Hc-cRg" id="t4m-Qg-AQP"/>
+                        <outlet property="lbl_description" destination="myw-ov-Nbp" id="BJ6-CD-MG8"/>
+                        <outlet property="lbl_headerTitle" destination="oTA-eJ-UAE" id="WJa-kE-Y33"/>
+                        <outlet property="lbl_noCarTrips" destination="8Pl-IR-3re" id="1CC-FD-ICC"/>
+                        <outlet property="lbl_title" destination="gFA-cd-rPp" id="7xl-v2-x3g"/>
+                        <outlet property="view_header" destination="1rH-eW-tIR" id="yLP-a8-5X1"/>
+                        <outlet property="view_navigationBar" destination="mht-U5-mw9" id="ahl-UO-d9u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="am8-w2-CLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1591" y="-1299"/>
+        </scene>
     </scenes>
     <resources>
         <image name="btn_close_popup" width="44" height="14"/>
@@ -1966,7 +2104,9 @@
         <image name="ic_right" width="30" height="30"/>
         <image name="ic_utente_home" width="32" height="36"/>
         <image name="img_border_popup" width="4" height="14"/>
+        <image name="img_mizzie" width="300" height="190"/>
         <image name="img_mizzie2" width="300" height="190"/>
+        <image name="img_mizzie3" width="300" height="190"/>
         <image name="img_sfondo" width="320" height="568"/>
         <image name="img_user" width="15" height="16"/>
         <image name="mizzie_05_finecorsa" width="300" height="190"/>

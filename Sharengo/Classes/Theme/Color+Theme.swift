@@ -194,6 +194,8 @@ enum Color {
     case carTripsOddCellBackground
     case carTripsEvenCellBackground
     case carTripsItemExtendedDescription
+    case carTripsSearchCarsLabel
+    case noCarTripsSearchCarsButton
 
     // Web
     case webBackground
@@ -406,6 +408,10 @@ enum Color {
                 return ColorBrand.black.value
             case .carTripsItemExtendedDescription:
                 return ColorBrand.black.value
+            case .noCarTripsSearchCarsButton:
+                return ColorBrand.yellow.value
+            case .carTripsSearchCarsLabel:
+                return UIColor(hexString: "#888888")
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

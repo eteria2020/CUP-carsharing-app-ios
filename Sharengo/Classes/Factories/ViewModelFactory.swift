@@ -103,6 +103,10 @@ struct ViewModelFactory {
         return CarTripsViewModel()
     }
     
+    static func noCarTrips() -> ViewModelType {
+        return NoCarTripsViewModel()
+    }
+    
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }

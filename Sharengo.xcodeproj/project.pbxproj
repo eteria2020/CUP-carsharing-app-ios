@@ -68,6 +68,8 @@
 		03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C6325E1EF02E8400BFEDA3 /* ProfileViewController.swift */; };
 		03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */; };
 		4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */; };
+		4D164BE01F091F5100D4EAB7 /* NoCarTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */; };
+		4D164BE21F091F6500D4EAB7 /* NoCarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */; };
 		4D1AE8181ED1BA2200C8A1D3 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */; };
 		4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */; };
 		4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */; };
@@ -230,6 +232,8 @@
 		03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Classes/ViewModels/ProfileViewModel.swift; sourceTree = "<group>"; };
 		21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Theme.swift"; path = "Classes/Theme/UIButton+Theme.swift"; sourceTree = "<group>"; };
+		4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoCarTripsViewController.swift; path = Classes/ViewControllers/NoCarTripsViewController.swift; sourceTree = "<group>"; };
+		4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoCarTripsViewModel.swift; path = Classes/ViewModels/NoCarTripsViewModel.swift; sourceTree = "<group>"; };
 		4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarViewModel.swift; path = Classes/ViewModels/SearchBarViewModel.swift; sourceTree = "<group>"; };
 		4D1AE81F1ED1E1A800C8A1D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Text+Theme.swift"; path = "Classes/Theme/Text+Theme.swift"; sourceTree = "<group>"; };
@@ -352,6 +356,8 @@
 		033A403C1F06334000B05A89 /* CarTripsList */ = {
 			isa = PBXGroup;
 			children = (
+				4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */,
+				4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */,
 				033A404D1F06353500B05A89 /* CarTripsViewController.swift */,
 				033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */,
 				033A404F1F06354B00B05A89 /* CarTripItemCollectionViewCell.swift */,
@@ -1128,6 +1134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
+				4D164BE21F091F6500D4EAB7 /* NoCarTripsViewModel.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
@@ -1248,6 +1255,7 @@
 				037BDFBF1F03947F00C95962 /* SettingsCityItemViewModel.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,
+				4D164BE01F091F5100D4EAB7 /* NoCarTripsViewController.swift in Sources */,
 				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
 				4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */,
 			);

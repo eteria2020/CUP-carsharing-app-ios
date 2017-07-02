@@ -178,3 +178,7 @@
 "lbl_carTripsItemDescription" = "%@ - ORE %@";
 "lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n%@\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Caricamento in corso</placeholder>";
+"lbl_noCarTripsTitle" = "Peccato!";
+"lbl_noCarTripsDescription" = "Non hai ancora effettuato nessuna corsa con una Share'ngo!";
+"lbl_noCarTrips" = "Cosa aspetti a provarle?";
+"btn_searchCars" = "VAI ALLA MAPPA";

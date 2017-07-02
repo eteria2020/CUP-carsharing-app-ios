@@ -101,7 +101,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             switch output {
             case .home:
                 if self != nil {
-                    Router.back(self!)
+                    Router.exit(self!)
                 }
                 self?.view_searchBar.endEditing(true)
                 self?.closeCarPopup()

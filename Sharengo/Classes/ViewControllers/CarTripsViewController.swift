@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
+import ReachabilitySwift
 
 class CarTripsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -61,11 +62,27 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                                 return
                             }
                         }
+                        let destination: NoCarTripsViewController = (Storyboard.main.scene(.noCarTrips))
+                        destination.bind(to: ViewModelFactory.noCarTrips(), afterLoad: true)
+                        var array = self.navigationController?.viewControllers ?? []
+                        array.removeLast()
+                        array.append(destination)
+                        self.navigationController?.viewControllers = array
+                        self.hideLoader()
                         self.allCarTrips = []
-                        // TODO: nessun risultato
                     case .error(_):
+                        var message = "alert_generalError".localized()
+                        if Reachability()?.isReachable == false {
+                            message = "alert_connectionError".localized()
+                        }
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                            Router.back(self)
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                        self.hideLoader()
                         self.allCarTrips = []
-                    // TODO: errore o nessun risultato?
                     default:
                         break
                     }
