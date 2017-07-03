@@ -133,16 +133,9 @@ class HomeViewController : BaseViewController, ViewModelBindable {
             self.addChildViewController(destination)
             self.view.addSubview(destination.view)
             self.view.layoutIfNeeded()
-            if UserDefaults.standard.bool(forKey: "LongIntro") == false {
-                let dispatchTime = DispatchTime.now() + 7.5
-                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    self.animateButtons()
-                }
-            } else {
-                let dispatchTime = DispatchTime.now() + 1.8
-                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    self.animateButtons()
-                }
+            let dispatchTime = DispatchTime.now() + 2.0
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                self.animateButtons()
             }
         } else {
             self.view_searchCar.alpha = 1.0
