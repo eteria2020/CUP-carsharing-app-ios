@@ -61,7 +61,8 @@ class LoginViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_notYetRegistered: UILabel!
     @IBOutlet fileprivate weak var btn_register: UIButton!
     @IBOutlet fileprivate weak var btn_continueAsNotLogged: UIButton!
-    fileprivate var introIsShowed: Bool = false
+    @IBOutlet fileprivate weak var view_white: UIView!
+    var introIsShowed: Bool = false
     
     var viewModel: LoginViewModel?
     var goBackAfterLogin: Bool = false
@@ -121,6 +122,15 @@ class LoginViewController : BaseViewController, ViewModelBindable {
             txt_password.text = "AppTest2017"
         #elseif ISRELEASE
         #endif
+        
+        if self.introIsShowed {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view_white.alpha = 0.0
+            })
+        } else {
+            self.view_white.alpha = 0.0
+        }
+        
         // Buttons
         switch Device().diagonal {
             case 3.5:
@@ -187,17 +197,6 @@ class LoginViewController : BaseViewController, ViewModelBindable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
-            UserDefaults.standard.set(true, forKey: "LoginShowed")
-            if !self.introIsShowed {
-                let destination: IntroViewController  = (Storyboard.main.scene(.intro))
-                destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
-                self.addChildViewController(destination)
-                self.view.addSubview(destination.view)
-                self.view.layoutIfNeeded()
-            }
-            self.introIsShowed = true
-        }
     }
 }
 

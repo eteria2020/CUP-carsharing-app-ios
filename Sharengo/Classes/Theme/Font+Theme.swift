@@ -255,9 +255,9 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // OnBoard
             case .onBoardDescription:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
             case .onBoardSkipButton:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }
     }

@@ -123,8 +123,8 @@ class HomeViewController : BaseViewController, ViewModelBindable {
             self.loginIsShowed = true
             if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
                 KeychainSwift().clear()
-                let destination: LoginViewController = (Storyboard.main.scene(.login))
-                destination.bind(to: ViewModelFactory.login(), afterLoad: true)
+                let destination: OnBoardViewController = (Storyboard.main.scene(.onBoard))
+                destination.bind(to: ViewModelFactory.onBoard(), afterLoad: true)
                 self.navigationController?.pushViewController(destination, animated: false)
                 self.introIsShowed = true
                 self.animateButtons()
