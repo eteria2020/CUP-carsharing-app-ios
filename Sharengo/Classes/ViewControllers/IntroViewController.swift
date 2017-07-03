@@ -72,7 +72,7 @@ class IntroViewController : UIViewController, ViewModelBindable {
             break
         }
         self.img_intro.animate(withGIFNamed: "INTRO LUNGA INIZIO.gif", loopCount: 1)
-        var dispatchTime = DispatchTime.now() + 2.8
+        var dispatchTime = DispatchTime.now() + 3.4
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.img_intro.animate(withGIFNamed: "INTRO LUNGA FINE.gif", loopCount: 1)
             self.lbl_title1.alpha = 1.0
@@ -104,7 +104,7 @@ class IntroViewController : UIViewController, ViewModelBindable {
                     }
                 }
             }
-            dispatchTime = DispatchTime.now() + 4.8
+            dispatchTime = DispatchTime.now() + 5.2
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.img_intro.stopAnimating()
                 UserDefaults.standard.set(true, forKey: "LongIntro")
@@ -117,7 +117,7 @@ class IntroViewController : UIViewController, ViewModelBindable {
     
     fileprivate func executeShortIntro() {
         self.img_intro.animate(withGIFNamed: "INTRO BREVE.gif", loopCount: 1)
-        let dispatchTime = DispatchTime.now() + 1.3
+        let dispatchTime = DispatchTime.now() + 1.5
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.frame.origin.y = -UIScreen.main.bounds.size.height
