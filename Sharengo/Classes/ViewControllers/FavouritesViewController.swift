@@ -218,13 +218,17 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 self.viewModel?.updateData()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
-                if self.viewModel?.dataHolder.resultsCount.value == 0 {
-                    let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
-                    destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
-                    var array = self.navigationController?.viewControllers ?? []
-                    array.removeLast()
-                    array.append(destination)
-                    self.navigationController?.viewControllers = array
+                if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                        if unarchivedArray.count == 0 {
+                            let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
+                            destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
+                            var array = self.navigationController?.viewControllers ?? []
+                            array.removeLast()
+                            array.append(destination)
+                            self.navigationController?.viewControllers = array
+                        }
+                    }
                 }
             }).addDisposableTo(disposeBag)
         
