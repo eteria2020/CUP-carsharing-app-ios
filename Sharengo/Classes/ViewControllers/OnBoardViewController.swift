@@ -94,7 +94,7 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
         // Images
         self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
         
-        let dispatchTime = DispatchTime.now() + 8.5 
+        let dispatchTime = DispatchTime.now() + 9.0
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.img_step.animate(withGIFNamed: "Auto-A-ingresso.gif", loopCount: 1)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.26) {

@@ -19,10 +19,16 @@ public class City: ModelType, Decodable {
     var title: String = ""
     var icon: String = ""
     var selected = false
+    var location: CLLocation?
     
     required public init?(json: JSON) {
         self.identifier = "tid" <~~ json ?? ""
         self.title = "name" <~~ json ?? ""
         self.icon = "media.images.icon.uri" <~~ json ?? ""
+        if let latitude: String = "informations.address.lat" <~~ json, let longitude: String = "informations.address.lng" <~~ json {
+            if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
+                self.location = CLLocation(latitude: lat, longitude: lon)
+            }
+        }
     }
 }

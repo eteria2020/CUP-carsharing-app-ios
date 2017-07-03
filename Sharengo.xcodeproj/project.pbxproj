@@ -795,10 +795,10 @@
 				4D9400D61EDF4BFE00AD0EC6 /* Address.swift */,
 				4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */,
 				03A86FA71EF9726D009C72F4 /* MenuItem.swift */,
-				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 				036D92181F0258540076D22D /* Setting.swift */,
 				036D922F1F028EF30076D22D /* Language.swift */,
 				037BDFC01F03949A00C95962 /* City.swift */,
+				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
 			sourceTree = "<group>";

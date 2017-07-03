@@ -747,6 +747,17 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         self.clusteringManager.removeAll()
         self.mapView.removeAnnotations(self.mapView.annotations)
         var annotationsArray: [CityAnnotation] = []
+        for city in CoreController.shared.cities {
+            if let location = city.location {
+                let annotation = CityAnnotation()
+                annotation.city = city
+                annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                annotationsArray.append(annotation)
+            }
+        }
+        self.mapView.addAnnotations(annotationsArray)
+        /*
+        var annotationsArray: [CityAnnotation] = []
         let milanAnnotation = CityAnnotation()
         milanAnnotation.coordinate = CLLocationCoordinate2D(latitude: 45.465454, longitude: 9.186515)
         milanAnnotation.city = .milan
@@ -764,6 +775,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         firenceAnnotation.city = .firence
         annotationsArray.append(firenceAnnotation)
         self.mapView.addAnnotations(annotationsArray)
+        */
+        
     }
     
     // MARK: - Map methods

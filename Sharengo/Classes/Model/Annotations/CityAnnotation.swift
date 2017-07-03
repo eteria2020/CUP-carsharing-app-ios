@@ -8,36 +8,37 @@
 import UIKit
 import MapKit
 
-enum CityCluster {
-    case empty
-    case milan
-    case rome
-    case firence
-    case modena
-    
-    var image: UIImage {
-        switch self {
-        case .milan:
-            return UIImage(named: "ic_cluster_milan") ?? UIImage()
-        case .rome:
-            return UIImage(named: "ic_cluster_rome") ?? UIImage()
-        case .firence:
-            return UIImage(named: "ic_cluster_firence") ?? UIImage()
-        case .modena:
-            return UIImage(named: "ic_cluster_modena") ?? UIImage()
-        default:
-            return UIImage(named: "ic_cluster") ?? UIImage()
-        }
-    }
-}
-
 class CityAnnotation: FBAnnotation {
-    var city: CityCluster = .empty
+    var city: City?
     lazy var image: UIImage = self.getImage()
     
     // MARK: - Lazy methods
     
     func getImage() -> UIImage {
-        return city.image
+        if let icon = self.city?.icon,
+            let url = URL(string: icon)
+        {
+            do {
+                let data = try Data(contentsOf: url)
+                if let image = UIImage(data: data) {
+                    let bottomImage = UIImage(named: "ic_cluster")!
+                    let topImage = image.tinted(ColorBrand.green.value)
+                    
+                    let size = CGSize(width: bottomImage.size.width, height: bottomImage.size.height)
+                    UIGraphicsBeginImageContext(size)
+                    
+                    let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                    bottomImage.draw(in: areaSize)
+                    
+                    topImage.draw(in: areaSize, blendMode: CGBlendMode.normal, alpha: 1.0)
+                    
+                    let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+                    UIGraphicsEndImageContext()
+                    return newImage
+                }
+            } catch {
+            }
+        }
+        return UIImage(named: "ic_cluster")!
     }
 }
