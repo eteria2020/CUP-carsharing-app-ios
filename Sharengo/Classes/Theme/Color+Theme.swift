@@ -182,7 +182,6 @@ enum Color {
     case favouritesItemTitleLabel
     case favouritesPopupTitle
 
- 
     // CarTrips
     case carTripsHeaderBackground
     case carTripsHeaderLabel
@@ -196,6 +195,12 @@ enum Color {
     case carTripsItemExtendedDescription
     case carTripsSearchCarsLabel
     case noCarTripsSearchCarsButton
+
+    // OnBoard
+    case onBoardDescription
+    case onBoardSkipTextButton
+    case onBoardPageControlEmpty
+    case onBoardPageControlFilled
 
     // Web
     case webBackground
@@ -412,6 +417,15 @@ enum Color {
                 return ColorBrand.yellow.value
             case .carTripsSearchCarsLabel:
                 return UIColor(hexString: "#888888")
+            // OnBoard
+            case .onBoardDescription:
+                return ColorBrand.green.value
+            case .onBoardSkipTextButton:
+                return ColorBrand.green.value
+            case .onBoardPageControlEmpty:
+                return ColorBrand.white.value
+            case .onBoardPageControlFilled:
+                return ColorBrand.green.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

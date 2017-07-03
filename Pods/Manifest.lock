@@ -44,6 +44,9 @@ PODS:
   - Result (3.2.2)
   - RxCocoa (3.4.1):
     - RxSwift (~> 3.4)
+  - RxGesture (1.0.1):
+    - RxCocoa (~> 3.4)
+    - RxSwift (~> 3.4)
   - RxSwift (3.4.1)
   - SideMenu (2.3.2)
   - SnapKit (3.0.2)
@@ -72,6 +75,7 @@ DEPENDENCIES:
   - MZFormSheetPresentationController
   - pop
   - ReachabilitySwift
+  - RxGesture
   - RxSwift
   - SideMenu
   - SnapKit (~> 3.0.2)
@@ -119,6 +123,7 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 4edd39003fdccf281d418ee1b006571f70123250
   RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
+  RxGesture: 1f770b247c69e8133fb8f4ef263571efd0ae91a1
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
@@ -126,6 +131,6 @@ SPEC CHECKSUMS:
   StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: e091d841453cdb3f14364ccf28b72b67b226e48e
+PODFILE CHECKSUM: 72edb34ebcbe5d78258043107233b820c969f07c
 
 COCOAPODS: 1.2.1

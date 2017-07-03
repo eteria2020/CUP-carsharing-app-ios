@@ -28,6 +28,7 @@ def shared_pods
     pod 'Gifu'
     pod 'TPKeyboardAvoiding'
     pod 'SideMenu'
+    pod 'RxGesture'
 end
 
 target 'Sharengo' do

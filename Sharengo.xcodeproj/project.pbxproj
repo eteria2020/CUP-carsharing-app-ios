@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032D3A751F08D61900F260A5 /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A741F08D61900F260A5 /* OnBoardViewController.swift */; };
+		032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */; };
+		032D3A791F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A781F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif */; };
+		032D3A831F08E79000F260A5 /* Auto-A-ingresso.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7A1F08E79000F260A5 /* Auto-A-ingresso.gif */; };
+		032D3A841F08E79000F260A5 /* Auto-A-loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7B1F08E79000F260A5 /* Auto-A-loop.gif */; };
+		032D3A851F08E79000F260A5 /* Auto-A-uscita.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7C1F08E79000F260A5 /* Auto-A-uscita.gif */; };
+		032D3A861F08E79000F260A5 /* Auto-B-ingresso.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7D1F08E79000F260A5 /* Auto-B-ingresso.gif */; };
+		032D3A871F08E79000F260A5 /* Auto-B-loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7E1F08E79000F260A5 /* Auto-B-loop.gif */; };
+		032D3A881F08E79000F260A5 /* Auto-B-uscita.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7F1F08E79000F260A5 /* Auto-B-uscita.gif */; };
+		032D3A891F08E79000F260A5 /* Auto-C-ingresso.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A801F08E79000F260A5 /* Auto-C-ingresso.gif */; };
+		032D3A8A1F08E79000F260A5 /* Auto-C-Loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A811F08E79000F260A5 /* Auto-C-Loop.gif */; };
+		032D3A8B1F08E79000F260A5 /* Auto-C-Uscita.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A821F08E79000F260A5 /* Auto-C-Uscita.gif */; };
 		033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */; };
 		033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */; };
 		033A404C1F06351B00B05A89 /* CarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */; };
@@ -170,6 +182,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		032D3A741F08D61900F260A5 /* OnBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardViewController.swift; path = Classes/ViewControllers/OnBoardViewController.swift; sourceTree = "<group>"; };
+		032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardViewModel.swift; path = Classes/ViewModels/OnBoardViewModel.swift; sourceTree = "<group>"; };
+		032D3A781F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ONBOARD_sfondo_loop.gif; sourceTree = "<group>"; };
+		032D3A7A1F08E79000F260A5 /* Auto-A-ingresso.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-A-ingresso.gif"; sourceTree = "<group>"; };
+		032D3A7B1F08E79000F260A5 /* Auto-A-loop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-A-loop.gif"; sourceTree = "<group>"; };
+		032D3A7C1F08E79000F260A5 /* Auto-A-uscita.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-A-uscita.gif"; sourceTree = "<group>"; };
+		032D3A7D1F08E79000F260A5 /* Auto-B-ingresso.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-B-ingresso.gif"; sourceTree = "<group>"; };
+		032D3A7E1F08E79000F260A5 /* Auto-B-loop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-B-loop.gif"; sourceTree = "<group>"; };
+		032D3A7F1F08E79000F260A5 /* Auto-B-uscita.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-B-uscita.gif"; sourceTree = "<group>"; };
+		032D3A801F08E79000F260A5 /* Auto-C-ingresso.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-C-ingresso.gif"; sourceTree = "<group>"; };
+		032D3A811F08E79000F260A5 /* Auto-C-Loop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-C-Loop.gif"; sourceTree = "<group>"; };
+		032D3A821F08E79000F260A5 /* Auto-C-Uscita.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-C-Uscita.gif"; sourceTree = "<group>"; };
 		033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarTripItemCollectionViewCell.xib; path = Resources/Xibs/CarTripItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripItemViewModel.swift; path = Classes/ViewModels/CarTripItemViewModel.swift; sourceTree = "<group>"; };
 		033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripsViewModel.swift; path = Classes/ViewModels/CarTripsViewModel.swift; sourceTree = "<group>"; };
@@ -353,6 +377,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		032D3A731F08D5FB00F260A5 /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				032D3A741F08D61900F260A5 /* OnBoardViewController.swift */,
+				032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */,
+			);
+			name = OnBoard;
+			sourceTree = "<group>";
+		};
 		033A403C1F06334000B05A89 /* CarTripsList */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,6 +584,16 @@
 		4D2339991EE6CF4B00780384 /* Gifs */ = {
 			isa = PBXGroup;
 			children = (
+				032D3A7A1F08E79000F260A5 /* Auto-A-ingresso.gif */,
+				032D3A7B1F08E79000F260A5 /* Auto-A-loop.gif */,
+				032D3A7C1F08E79000F260A5 /* Auto-A-uscita.gif */,
+				032D3A7D1F08E79000F260A5 /* Auto-B-ingresso.gif */,
+				032D3A7E1F08E79000F260A5 /* Auto-B-loop.gif */,
+				032D3A7F1F08E79000F260A5 /* Auto-B-uscita.gif */,
+				032D3A801F08E79000F260A5 /* Auto-C-ingresso.gif */,
+				032D3A811F08E79000F260A5 /* Auto-C-Loop.gif */,
+				032D3A821F08E79000F260A5 /* Auto-C-Uscita.gif */,
+				032D3A781F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif */,
 				4D23399A1EE6CF4B00780384 /* INTRO BREVE.gif */,
 				4D23399E1EE72F3500780384 /* INTRO LUNGA FINE.gif */,
 				4D23399F1EE72F3500780384 /* INTRO LUNGA INIZIO.gif */,
@@ -786,6 +829,7 @@
 				4DC10E001EE9AC5800A74E26 /* Loading */,
 				03A86F921EF96F8E009C72F4 /* Menu */,
 				4D2339961EE6CD2A00780384 /* Intro */,
+				032D3A731F08D5FB00F260A5 /* OnBoard */,
 				4DFD98381ED471FC00880EA1 /* Home */,
 				03AF5D321EEE7B4000AC8826 /* Login */,
 				03C6322F1EEFC84B00BFEDA3 /* Signup */,
@@ -1030,11 +1074,14 @@
 			files = (
 				03AF5D6C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png in Resources */,
 				03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */,
+				032D3A871F08E79000F260A5 /* Auto-B-loop.gif in Resources */,
+				032D3A851F08E79000F260A5 /* Auto-A-uscita.gif in Resources */,
 				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
 				4D43DDE61F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib in Resources */,
 				03AF5D6A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png in Resources */,
 				4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */,
 				03AF5D6D1EEE83FC00AC8826 /* disclosure.png in Resources */,
+				032D3A841F08E79000F260A5 /* Auto-A-loop.gif in Resources */,
 				4D23399B1EE6CF4B00780384 /* INTRO BREVE.gif in Resources */,
 				4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */,
 				4D1AE8201ED1E1A800C8A1D3 /* Localizable.strings in Resources */,
@@ -1042,12 +1089,19 @@
 				4D1AE82A1ED1E40E00C8A1D3 /* Poppins-Bold.ttf in Resources */,
 				4D9351511EE03497008C65C3 /* SearchBarView.xib in Resources */,
 				4D1AE82B1ED1E40E00C8A1D3 /* Poppins-Light.ttf in Resources */,
+				032D3A861F08E79000F260A5 /* Auto-B-ingresso.gif in Resources */,
 				036D92261F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib in Resources */,
 				4DCD1AA31ECDC22900FC8BF5 /* Assets.xcassets in Resources */,
 				4D377AB81ECEDB6F005DF900 /* CircularMenuView.xib in Resources */,
+				032D3A881F08E79000F260A5 /* Auto-B-uscita.gif in Resources */,
+				032D3A831F08E79000F260A5 /* Auto-A-ingresso.gif in Resources */,
 				03AF5D6E1EEE83FC00AC8826 /* disclosure@2x.png in Resources */,
 				4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */,
+				032D3A791F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif in Resources */,
 				033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */,
+				032D3A891F08E79000F260A5 /* Auto-C-ingresso.gif in Resources */,
+				032D3A8B1F08E79000F260A5 /* Auto-C-Uscita.gif in Resources */,
+				032D3A8A1F08E79000F260A5 /* Auto-C-Loop.gif in Resources */,
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
 				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */,
@@ -1144,6 +1198,7 @@
 				033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */,
 				03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */,
 				4DA554481EE55284001627E7 /* FBAnnotationClusterView.swift in Sources */,
+				032D3A751F08D61900F260A5 /* OnBoardViewController.swift in Sources */,
 				03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */,
 				037BDFC11F03949A00C95962 /* City.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
@@ -1222,6 +1277,7 @@
 				03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				4DA5544D1EE55284001627E7 /* FBQuadTree.swift in Sources */,
+				032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */,
 				03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */,
