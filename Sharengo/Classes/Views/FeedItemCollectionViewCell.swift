@@ -13,9 +13,13 @@ import Action
 import RxCocoa
 
 class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
-    @IBOutlet fileprivate weak var lbl_title: UILabel!
-    @IBOutlet fileprivate weak var view_icon: UIView!
+    @IBOutlet fileprivate weak var view_containerBackgroundImage: UIView!
+    @IBOutlet fileprivate weak var img_background: UIImageView!
+    @IBOutlet fileprivate weak var view_containerClaim: UIView!
+    @IBOutlet fileprivate weak var view_bottomContainer: UIView!
+    @IBOutlet fileprivate weak var lbl_bottom: UILabel!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
+    @IBOutlet fileprivate weak var view_icon: UIView!
     
     var viewModel:ItemViewModelType?
     
