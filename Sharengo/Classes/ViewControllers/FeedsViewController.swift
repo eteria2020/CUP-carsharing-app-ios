@@ -82,6 +82,19 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 break
             }
         }).addDisposableTo(self.disposeBag)
+    
+        self.btn_feed.style(.roundedButton(Color.noCarTripsSearchCarsButton.value), title: "btn_searchCars".localized())
+
+        self.a = "lbl_settingsHeaderTitle".localized()
+
+    
+        //    // Feeds
+        //    "lbl_feedsHeaderFeed" = "FEED";
+        //    "lbl_feedsHeaderCategories" = "CATEGORIE";
+        //    "lbl_feedsAroundMe" = "INTORNO A ME";
+        //    "lbl_feedsItemBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>";
+        //    "lbl_feedsItemExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>";
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {

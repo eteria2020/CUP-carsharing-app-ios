@@ -24,7 +24,6 @@ enum FeedsSelectionOutput : SelectionOutput {
 final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
     var dataHolder: ListDataHolderType = ListDataHolder.empty
     var feeds = [Feed]()
-    var title = ""
     fileprivate var resultsDispose: DisposeBag?
     
     lazy var selection:Action<FeedsSelectionInput,FeedsSelectionOutput> = Action { input in
@@ -38,8 +37,9 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         return nil
     }
     
+    
     init() {
-        self.title = "lbl_settingsHeaderTitle".localized()
+
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):

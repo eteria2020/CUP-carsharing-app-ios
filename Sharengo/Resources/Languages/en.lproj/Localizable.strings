@@ -188,8 +188,8 @@
 "btn_onBoardSkip" = "Skip >>";
 
 // Feeds
-"lbl_feedsHeaderFeed" = "FEED";
-"lbl_feedsHeaderCategories" = "CATEGORIE";
-"lbl_feedsAroundMe" = "INTORNO A ME";
+"btn_feedsHeaderFeed" = "FEED";
+"btn_feedsHeaderCategories" = "CATEGORIE";
+"btn_feedsAroundMe" = "INTORNO A ME";
 "lbl_feedsItemBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>";
 "lbl_feedsItemExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>";
