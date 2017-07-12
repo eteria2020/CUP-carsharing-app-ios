@@ -13,8 +13,13 @@ import Boomerang
 
 
 class FeedsViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
+    @IBOutlet fileprivate weak var view_header: UIView!
+    @IBOutlet fileprivate weak var btn_feed: UIButton!
+    @IBOutlet fileprivate weak var btn_categories: UIButton!
+    @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    @IBOutlet fileprivate weak var btn_aroundMe: UIButton!
+
     var viewModel: FeedsViewModel?
     var flow:UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
