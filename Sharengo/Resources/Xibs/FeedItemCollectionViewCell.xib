@@ -121,6 +121,7 @@ Corsa!</string>
                 <outlet property="img_background" destination="wVQ-D7-xG0" id="KXn-m9-rto"/>
                 <outlet property="img_icon" destination="BOM-Mi-No1" id="2oY-bI-qJc"/>
                 <outlet property="lbl_bottom" destination="igh-3r-Mjd" id="yV0-g5-OVa"/>
+                <outlet property="lbl_claim" destination="FbW-Zp-qMu" id="zc9-FS-cVt"/>
                 <outlet property="view_bottomContainer" destination="ajt-2q-Pb8" id="qra-sl-ehs"/>
                 <outlet property="view_containerBackgroundImage" destination="zS4-36-F3L" id="isN-39-PNp"/>
                 <outlet property="view_containerClaim" destination="0JT-at-Hlv" id="weG-mG-jnF"/>

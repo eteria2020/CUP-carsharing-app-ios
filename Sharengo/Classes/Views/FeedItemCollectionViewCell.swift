@@ -16,6 +16,7 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var view_containerBackgroundImage: UIView!
     @IBOutlet fileprivate weak var img_background: UIImageView!
     @IBOutlet fileprivate weak var view_containerClaim: UIView!
+    @IBOutlet fileprivate weak var lbl_claim: UILabel!
     @IBOutlet fileprivate weak var view_bottomContainer: UIView!
     @IBOutlet fileprivate weak var lbl_bottom: UILabel!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
@@ -31,11 +32,26 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         }
         self.layoutIfNeeded()
         self.viewModel = viewModel
-        self.view_icon.backgroundColor = Color.settingIconBackground.value
+
+        if viewModel.claim != nil
+        {
+            self.view_containerClaim.isHidden = false
+            self.lbl_claim.styledText = viewModel.claim
+        }
+        else
+        {
+            self.view_containerClaim.isHidden = true
+        }
+        
+        self.lbl_bottom.styledText = viewModel.title
+        self.img_icon.image = viewModel.icon ?? UIImage()
+        self.img_background.image = viewModel.image ?? UIImage()
+
+        self.view_icon.backgroundColor = viewModel.color
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true
         self.view_icon.layer.borderWidth = 1
-        self.view_icon.layer.borderColor = Color.settingItemLabel.value.cgColor
+        self.view_icon.layer.borderColor = Color.feedsItemIconBorderBackground.value.cgColor
     }
     
     // MARK: - View methods

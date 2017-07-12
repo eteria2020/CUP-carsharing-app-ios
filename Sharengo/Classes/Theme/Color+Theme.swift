@@ -209,6 +209,7 @@ enum Color {
     case feedsHeaderBottomButtonOff
     case feedsAroundMeButtonLabel
     case feedsAroundMeButtonBackground
+    case feedsItemIconBorderBackground
 
     // Web
     case webBackground
