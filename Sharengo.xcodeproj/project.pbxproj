@@ -44,6 +44,7 @@
 		037689F71F1608D100523BAA /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689F51F1608D100523BAA /* FeedItemViewModel.swift */; };
 		037689F81F1608D100523BAA /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689F61F1608D100523BAA /* FeedsViewModel.swift */; };
 		037689FA1F1608D900523BAA /* FeedItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689F91F1608D900523BAA /* FeedItemCollectionViewCell.swift */; };
+		037689FC1F160C7A00523BAA /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689FB1F160C7A00523BAA /* Feed.swift */; };
 		037BDFB71F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037BDFB61F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib */; };
 		037BDFB91F03944700C95962 /* SettingsCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFB81F03944700C95962 /* SettingsCitiesViewController.swift */; };
 		037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBA1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift */; };
@@ -224,6 +225,7 @@
 		037689F51F1608D100523BAA /* FeedItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedItemViewModel.swift; path = Classes/ViewModels/FeedItemViewModel.swift; sourceTree = "<group>"; };
 		037689F61F1608D100523BAA /* FeedsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedsViewModel.swift; path = Classes/ViewModels/FeedsViewModel.swift; sourceTree = "<group>"; };
 		037689F91F1608D900523BAA /* FeedItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedItemCollectionViewCell.swift; path = Classes/Views/FeedItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		037689FB1F160C7A00523BAA /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Feed.swift; path = Classes/Model/Feed.swift; sourceTree = "<group>"; };
 		037BDFB61F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsCityItemCollectionViewCell.xib; path = Resources/Xibs/SettingsCityItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		037BDFB81F03944700C95962 /* SettingsCitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCitiesViewController.swift; path = Classes/ViewControllers/SettingsCitiesViewController.swift; sourceTree = "<group>"; };
 		037BDFBA1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsCityItemCollectionViewCell.swift; path = Classes/Views/SettingsCityItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -821,6 +823,7 @@
 				036D922F1F028EF30076D22D /* Language.swift */,
 				037BDFC01F03949A00C95962 /* City.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
+				037689FB1F160C7A00523BAA /* Feed.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 				4D43DDE21F078556001E41F8 /* FavouriteItemCollectionViewCell.swift in Sources */,
 				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
 				03C632381EEFD02C00BFEDA3 /* SignupStepViewModel.swift in Sources */,
+				037689FC1F160C7A00523BAA /* Feed.swift in Sources */,
 				4DA5544E1EE55284001627E7 /* FBQuadTreeNode.swift in Sources */,
 				037BDFC61F03B2EC00C95962 /* NoFavouritesViewController.swift in Sources */,
 				03AF5D731EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift in Sources */,

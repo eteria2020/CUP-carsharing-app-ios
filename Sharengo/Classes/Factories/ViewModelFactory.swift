@@ -54,7 +54,11 @@ struct ViewModelFactory {
     static func carPopup() -> ViewModelType {
         return CarPopupViewModel()
     }
-    
+
+    static func feeds() -> ViewModelType {
+        return FeedsViewModel()
+    }
+
     static func carBookingPopup() -> ViewModelType {
         return CarBookingPopupViewModel()
     }
@@ -111,6 +115,10 @@ struct ViewModelFactory {
         return NoCarTripsViewModel()
     }
     
+    static func feedItem(fromModel model:Feed) -> ItemViewModelType {
+        return FeedItemViewModel(model: model)
+    }
+
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }

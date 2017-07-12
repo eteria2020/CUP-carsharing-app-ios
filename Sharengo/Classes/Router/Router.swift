@@ -113,6 +113,10 @@ struct Router : RouterType {
             let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
             destination.bind(to: ViewModelFactory.carTrips(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is FeedsViewModel:
+            let destination: FeedsViewController = (Storyboard.main.scene(.feeds))
+            destination.bind(to: ViewModelFactory.feeds(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }
