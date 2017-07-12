@@ -1,9 +1,9 @@
 //
-//  CollectionViewCell.swift
-//  
+//  FeedItemCollectionViewCell.swift
+//  Sharengo
 //
-//  Created by Stefano Mondino on 07/03/17.
-//
+//  Created by Dedecube on 12/07/17.
+//  Copyright © 2017 Dedecube. All rights reserved.
 //
 
 import UIKit
@@ -13,17 +13,30 @@ import Action
 import RxCocoa
 
 class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+    @IBOutlet fileprivate weak var lbl_title: UILabel!
+    @IBOutlet fileprivate weak var view_icon: UIView!
+    @IBOutlet fileprivate weak var img_icon: UIImageView!
     
     var viewModel:ItemViewModelType?
-    var disposeBag = DisposeBag()
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    
+    // MARK: - ViewModel methods
+    
     func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FeedItemViewModel else {
             return
         }
+        self.layoutIfNeeded()
         self.viewModel = viewModel
+        self.view_icon.backgroundColor = Color.settingIconBackground.value
+        self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
+        self.view_icon.layer.masksToBounds = true
+        self.view_icon.layer.borderWidth = 1
+        self.view_icon.layer.borderColor = Color.settingItemLabel.value.cgColor
+    }
+    
+    // MARK: - View methods
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 }

@@ -2,7 +2,7 @@
 //  FeedsViewModel.swift
 //  Sharengo
 //
-//  Created by Fabrizio Infante on 12/07/17.
+//  Created by Dedecube on 12/07/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
@@ -10,37 +10,59 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
+import KeychainSwift
 
-enum FeedSelectionInput : SelectionInput {
+enum FeedsSelectionInput : SelectionInput {
     case item(IndexPath)
 }
-enum FeedSelectionOutput : SelectionOutput {
+
+enum FeedsSelectionOutput : SelectionOutput {
     case viewModel(ViewModelType)
+    case empty
 }
 
 final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder()
+    var dataHolder: ListDataHolderType = ListDataHolder.empty
+    var feeds = [Feed]()
+    var title = ""
+    fileprivate var resultsDispose: DisposeBag?
+    
+    lazy var selection:Action<FeedsSelectionInput,FeedsSelectionOutput> = Action { input in
+        return .empty()
+    }
     
     func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
-        guard let item = model as? Feed else {
-            return nil
+        if let item = model as? Feed {
+            return ViewModelFactory.feedItem(fromModel: item)
         }
-        return ViewModelFactory.__proper_factory_method_here()
+        return nil
     }
-    
-    lazy var selection:Action<FeedSelectionInput,FeedSelectionOutput> = Action { input in
-        switch input {
-        case .item(let indexPath):
-            guard let model = (self.model(atIndex:indexPath) as? Feed) else {
-                return .empty()
-            }
-            let destinationViewModel = __proper_factory_method_here__
-            return .just(.viewModel(destinationViewModel))
-        }
-    }
-    
     
     init() {
-        
+        self.title = "lbl_settingsHeaderTitle".localized()
+        self.selection = Action { input in
+            switch input {
+            case .item(let indexPath):
+                guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
+                if let viewModel = model.viewModel  {
+                    if viewModel is NoFavouritesViewModel {
+                        var favourites: Bool = false
+                        if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                if unarchivedArray.count > 0 {
+                                    favourites = true
+                                }
+                            }
+                        }
+                        
+                        if favourites {
+                            return .just(.viewModel(ViewModelFactory.favourites()))
+                        }
+                    }
+                    return .just(.viewModel(viewModel))
+                }
+                return .just(.empty)
+            }
+        }
     }
 }
