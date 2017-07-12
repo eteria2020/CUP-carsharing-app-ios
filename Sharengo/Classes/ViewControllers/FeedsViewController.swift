@@ -16,7 +16,9 @@ class FeedsViewController : UIViewController, ViewModelBindable, UICollectionVie
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var btn_feed: UIButton!
+    @IBOutlet fileprivate weak var view_bottomFeedButton: UIView!
     @IBOutlet fileprivate weak var btn_categories: UIButton!
+    @IBOutlet fileprivate weak var view_bottomCategoriesButton: UIView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var btn_aroundMe: UIButton!
 

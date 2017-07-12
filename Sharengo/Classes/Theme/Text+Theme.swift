@@ -100,6 +100,16 @@ enum TextStyle: String, TextStyleType {
     case onBoardDescription = "onBoardDescription"
     case onBoardSkip = "onBoardSkip"
     
+    // Feeds
+    case feedsHeader = "feedsHeader"
+    case feedsItemClaim = "feedsItemClaim"
+    case feedsItemTitle = "feedsItemTitle"
+    case feedsItemDate = "feedsItemDate"
+    case feedsItemSubtitle = "feedsItemSubtitle"
+    case feedsItemDescription = "feedsItemDescription"
+    case feedsAroundMe = "feedsAroundMe"
+
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -164,7 +174,15 @@ enum TextStyle: String, TextStyleType {
             .carTripsSearchCarsLabel,
             // OnBoard
             .onBoardDescription,
-            .onBoardSkip
+            .onBoardSkip,
+            // Feeds
+            .feedsHeader,
+            .feedsItemClaim,
+            .feedsItemTitle,
+            .feedsItemDate,
+            .feedsItemSubtitle,
+            .feedsItemDescription,
+            .feedsAroundMe
         ]
     }
     
@@ -294,6 +312,21 @@ enum TextStyle: String, TextStyleType {
             case .onBoardDescription:
                 return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
             case .onBoardSkip:
+                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            // Feeds
+            case .feedsHeader:
+                return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
+            case .feedsItemClaim:
+                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            case .feedsItemTitle:
+                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            case .feedsItemDate:
+                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            case .feedsItemSubtitle:
+                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            case .feedsItemDescription:
+                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            case .feedsAroundMe:
                 return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))

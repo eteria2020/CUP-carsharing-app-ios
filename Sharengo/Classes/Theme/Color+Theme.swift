@@ -202,6 +202,14 @@ enum Color {
     case onBoardPageControlEmpty
     case onBoardPageControlFilled
 
+    // Feeds
+    case feedsHeaderBackground
+    case feedsHeaderLabel
+    case feedsHeaderBottomButtonOn
+    case feedsHeaderBottomButtonOff
+    case feedsAroundMeButtonLabel
+    case feedsAroundMeButtonBackground
+
     // Web
     case webBackground
     
@@ -425,6 +433,19 @@ enum Color {
             case .onBoardPageControlEmpty:
                 return ColorBrand.white.value
             case .onBoardPageControlFilled:
+                return ColorBrand.green.value
+            // Feeds
+            case .feedsHeaderBackground:
+                return ColorBrand.green.value
+            case .feedsHeaderLabel:
+                return ColorBrand.green.value
+            case .feedsHeaderBottomButtonOn:
+                return ColorBrand.white.value
+            case .feedsHeaderBottomButtonOff:
+                return ColorBrand.green.value
+            case .feedsAroundMeButtonLabel:
+                return ColorBrand.green.value
+            case .feedsAroundMeButtonBackground:
                 return ColorBrand.green.value
             // Web
             case .webBackground:

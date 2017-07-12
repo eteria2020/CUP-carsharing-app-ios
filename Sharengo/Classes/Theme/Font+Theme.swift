@@ -129,6 +129,10 @@ enum Font {
     case onBoardDescription
     case onBoardSkipButton
     
+    // Feeds
+    case feedsHeader
+    case feedsAroundMeButton
+    
     var value: UIFont {
         get {
             switch self {
@@ -264,6 +268,11 @@ enum Font {
             case .onBoardDescription:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
             case .onBoardSkipButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Feeds
+            case .feedsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
+            case .feedsAroundMeButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }
