@@ -448,6 +448,8 @@ enum Color {
                 return ColorBrand.green.value
             case .feedsAroundMeButtonBackground:
                 return ColorBrand.green.value
+            case .feedsItemIconBorderBackground:
+                return ColorBrand.green.value                
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

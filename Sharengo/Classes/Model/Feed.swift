@@ -16,9 +16,9 @@ public class Feed: ModelType {
     var subtitle: String = ""
     var description: String = ""
     var icon: String = ""
-    var claim: String = ""
+    var claim: String?
     var date: String = ""
-    var advantage: String = ""
+    var advantage: String?
     var color: String = ""
     var image: String = ""
 }

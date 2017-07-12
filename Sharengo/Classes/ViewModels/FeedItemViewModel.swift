@@ -13,24 +13,26 @@ import Boomerang
 final class FeedItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
     var itemIdentifier:ListIdentifier = CollectionViewCell.feed
-    var title: String?
-    var subtitle: String?
-    var description: String?
-    var claim: String?
     var date: String?
-    var advantage: String?
+    var claim: String?
+    var bottomText: String?
     var icon: UIImage?
     var color: UIColor
     var image: UIImage?
-
+    
     init(model: Feed) {
         self.model = model
-        self.title = model.title
-        self.subtitle = model.subtitle
-        self.description = model.description
+        
+        if model.advantage != nil
+        {
+            self.bottomText = String(format: "lbl_feedsItemExtendedBottom".localized(), model.title.uppercased(), model.date, model.subtitle, model.description, model.advantage!)
+        }
+        else
+        {
+            self.bottomText = String(format: "lbl_feedsItemBottom".localized(), model.title.uppercased(), model.date, model.subtitle, model.description)
+        }
+        
         self.claim = model.claim
-        self.date = model.date
-        self.advantage = model.advantage
         self.icon = UIImage(named: model.icon)
         self.color = UIColor(hexString: model.color)
         self.image = UIImage(named: model.image)
