@@ -14,6 +14,7 @@ import KeychainSwift
 
 enum FeedsSelectionInput : SelectionInput {
     case item(IndexPath)
+    case aroundMe
 }
 
 enum FeedsSelectionOutput : SelectionOutput {
@@ -39,7 +40,6 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
     
     
     init() {
-
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
@@ -61,6 +61,8 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
                     }
                     return .just(.viewModel(viewModel))
                 }
+                return .just(.empty)
+            case .aroundMe:
                 return .just(.empty)
             }
         }

@@ -204,7 +204,8 @@ enum Color {
 
     // Feeds
     case feedsHeaderBackground
-    case feedsHeaderLabel
+    case feedsHeaderLabelOn
+    case feedsHeaderLabelOff
     case feedsHeaderBottomButtonOn
     case feedsHeaderBottomButtonOff
     case feedsAroundMeButtonLabel
@@ -437,19 +438,21 @@ enum Color {
                 return ColorBrand.green.value
             // Feeds
             case .feedsHeaderBackground:
-                return ColorBrand.green.value
-            case .feedsHeaderLabel:
-                return ColorBrand.green.value
+                return ColorBrand.black.value
+            case .feedsHeaderLabelOn:
+                return ColorBrand.yellow.value
+            case .feedsHeaderLabelOff:
+                return ColorBrand.grayDisabled.value
             case .feedsHeaderBottomButtonOn:
-                return ColorBrand.white.value
+                return ColorBrand.yellow.value
             case .feedsHeaderBottomButtonOff:
-                return ColorBrand.green.value
+                return ColorBrand.grayDisabled.value
             case .feedsAroundMeButtonLabel:
-                return ColorBrand.green.value
+                return ColorBrand.white.value
             case .feedsAroundMeButtonBackground:
                 return ColorBrand.green.value
             case .feedsItemIconBorderBackground:
-                return ColorBrand.green.value                
+                return ColorBrand.black.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

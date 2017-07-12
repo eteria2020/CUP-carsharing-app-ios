@@ -13,6 +13,11 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
+fileprivate enum HeaderButtons {
+    case feed
+    case categories
+}
+
 class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
@@ -22,6 +27,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     @IBOutlet fileprivate weak var view_bottomCategoriesButton: UIView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var btn_aroundMe: UIButton!
+    fileprivate var headerButtonSelected = HeaderButtons.feed
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
@@ -43,6 +49,9 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             self.dismiss(animated: true, completion: nil)
         }).addDisposableTo(self.disposeBag)
         self.viewModel = viewModel
+        
+        self.btn_aroundMe.rx.bind(to: viewModel.selection, input: .aroundMe)
+
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
         
@@ -54,8 +63,8 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
-        self.view_header.backgroundColor = Color.settingHeaderBackground.value
-        
+        // Views
+        self.view_header.backgroundColor = Color.feedsHeaderBackground.value
         switch Device().diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
@@ -83,18 +92,19 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             }
         }).addDisposableTo(self.disposeBag)
     
-        self.btn_feed.style(.roundedButton(Color.noCarTripsSearchCarsButton.value), title: "btn_searchCars".localized())
-
-        self.a = "lbl_settingsHeaderTitle".localized()
-
-    
-        //    // Feeds
-        //    "lbl_feedsHeaderFeed" = "FEED";
-        //    "lbl_feedsHeaderCategories" = "CATEGORIE";
-        //    "lbl_feedsAroundMe" = "INTORNO A ME";
-        //    "lbl_feedsItemBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>";
-        //    "lbl_feedsItemExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>";
-    
+        // Buttons
+        self.updateHeaderButtonsInterface()
+        self.btn_feed.rx.tap.asObservable()
+            .subscribe(onNext:{
+                self.headerButtonSelected = .feed
+                self.updateHeaderButtonsInterface()
+            }).addDisposableTo(disposeBag)
+        self.btn_categories.rx.tap.asObservable()
+            .subscribe(onNext:{
+                self.headerButtonSelected = .categories
+                self.updateHeaderButtonsInterface()
+            }).addDisposableTo(disposeBag)
+        self.btn_aroundMe.style(.squaredButton(Color.feedsAroundMeButtonBackground.value), title: "btn_feedsAroundMe".localized())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,11 +145,22 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         self.viewModel?.selection.execute(.item(indexPath))
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = Color.settingEvenCellBackground.value
-        } else {
-            cell.backgroundColor = Color.settingOddCellBackground.value
+    // MARK: - Header buttons methods
+    
+    func updateHeaderButtonsInterface()
+    {
+        switch headerButtonSelected {
+        case .feed:
+            self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderFeed".localized())
+            self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
+            self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderCategories".localized())
+            self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
+        case .categories:
+            self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderFeed".localized())
+            self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
+            self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderCategories".localized())
+            self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
+            break
         }
     }
 }
