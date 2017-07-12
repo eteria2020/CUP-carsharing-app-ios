@@ -38,8 +38,23 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         return nil
     }
     
-    
     init() {
+        
+        // Temp
+        let feed = Feed()
+        feed.claim = "claim"
+        feed.color = "#b4ada7"
+        feed.date = "date"
+        feed.description = "description"
+        feed.icon = "ic_assistenza"
+        feed.identifier = "aaa"
+        feed.image = "ic_assistenza"
+        feed.subtitle = "subttiel"
+        feed.title = "title"
+        feed.advantage = "advantage"
+        self.feeds = [feed, feed, feed]
+        self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
+
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):

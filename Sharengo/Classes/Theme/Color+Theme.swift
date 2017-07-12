@@ -211,6 +211,11 @@ enum Color {
     case feedsAroundMeButtonLabel
     case feedsAroundMeButtonBackground
     case feedsItemIconBorderBackground
+    case feedsItemTitle
+    case feedsItemDate
+    case feedsItemSubtitle
+    case feedsItemDescription
+    case feedsItemAdvantage
 
     // Web
     case webBackground
@@ -452,6 +457,16 @@ enum Color {
             case .feedsAroundMeButtonBackground:
                 return ColorBrand.green.value
             case .feedsItemIconBorderBackground:
+                return ColorBrand.black.value
+            case .feedsItemTitle:
+                return ColorBrand.black.value
+            case .feedsItemDate:
+                return ColorBrand.black.value
+            case .feedsItemSubtitle:
+                return ColorBrand.black.value
+            case .feedsItemDescription:
+                return ColorBrand.black.value
+            case .feedsItemAdvantage:
                 return ColorBrand.black.value
             // Web
             case .webBackground:

@@ -102,13 +102,8 @@ enum TextStyle: String, TextStyleType {
     
     // Feeds
     case feedsHeader = "feedsHeader"
-    case feedsItemClaim = "feedsItemClaim"
-    case feedsItemTitle = "feedsItemTitle"
-    case feedsItemDate = "feedsItemDate"
-    case feedsItemSubtitle = "feedsItemSubtitle"
-    case feedsItemDescription = "feedsItemDescription"
+    case feedsItemBottom = "feedsItemBottom"
     case feedsAroundMe = "feedsAroundMe"
-
 
     static var all:[TextStyle] {
         return [
@@ -177,11 +172,7 @@ enum TextStyle: String, TextStyleType {
             .onBoardSkip,
             // Feeds
             .feedsHeader,
-            .feedsItemClaim,
-            .feedsItemTitle,
-            .feedsItemDate,
-            .feedsItemSubtitle,
-            .feedsItemDescription,
+            .feedsItemBottom,
             .feedsAroundMe
         ]
     }
@@ -316,16 +307,13 @@ enum TextStyle: String, TextStyleType {
             // Feeds
             case .feedsHeader:
                 return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
-            case .feedsItemClaim:
-                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
-            case .feedsItemTitle:
-                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
-            case .feedsItemDate:
-                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
-            case .feedsItemSubtitle:
-                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
-            case .feedsItemDescription:
-                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            case .feedsItemBottom:
+                let titleStyle = StringStyle(.font(Font.feedsItemTitle.value), .color(Color.feedsItemTitle.value), .alignment(.left))
+                let dateStyle = StringStyle(.font(Font.feedsItemDate.value), .color(Color.feedsItemDate.value), .alignment(.left))
+                let subtitleStyle = StringStyle(.font(Font.feedsItemSubtitle.value), .color(Color.feedsItemSubtitle.value), .alignment(.left))
+                let descriptionStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.left))
+                let advantageStyle = StringStyle(.font(Font.feedsItemAdvantage.value), .color(Color.feedsItemAdvantage.value), .alignment(.left))
+                return StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle),  .style("advantage", advantageStyle)]))
             case .feedsAroundMe:
                 return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
             }

@@ -43,6 +43,7 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             self.view_containerClaim.isHidden = true
         }
         
+        self.lbl_bottom.bonMotStyleName = "feedsItemBottom"
         self.lbl_bottom.styledText = viewModel.bottomText
         self.img_icon.image = viewModel.icon ?? UIImage()
         self.img_background.image = viewModel.image ?? UIImage()

@@ -131,6 +131,11 @@ enum Font {
     
     // Feeds
     case feedsHeader
+    case feedsItemTitle
+    case feedsItemDate
+    case feedsItemSubtitle
+    case feedsItemDescription
+    case feedsItemAdvantage
     case feedsAroundMeButton
     
     var value: UIFont {
@@ -263,7 +268,6 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .carTripsSearchCarsLabel:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // OnBoard
             case .onBoardDescription:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
@@ -272,6 +276,16 @@ enum Font {
             // Feeds
             case .feedsHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
+            case .feedsItemTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .feedsItemDate:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .feedsItemSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .feedsItemDescription:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .feedsItemAdvantage:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .feedsAroundMeButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
