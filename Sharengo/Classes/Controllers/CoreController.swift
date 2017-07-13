@@ -72,6 +72,31 @@ class CoreController {
                     break
                 }
             }.addDisposableTo(self.disposeBag)
+        
+        self.publishersApiController.getMapEvents()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    break
+                case .error(_):
+                    break
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        self.publishersApiController.getMapOffers()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    break
+                case .error(_):
+                    break
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
     }
     
     fileprivate func updateUser() {

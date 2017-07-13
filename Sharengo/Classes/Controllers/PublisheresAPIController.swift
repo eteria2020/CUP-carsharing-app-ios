@@ -54,10 +54,150 @@ final class PublishersAPIController {
             }
         }
     }
+    
+    func getCategories() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.categories())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func getOffers() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.offers())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func getMapOffers() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.mapOffers())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func getEvents() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.events())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    func getMapEvents() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.mapEvents())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
 }
 
 fileprivate enum API {
     case cities()
+    case categories()
+    case offers()
+    case mapOffers()
+    case events()
+    case mapEvents()
 }
 
 extension API: TargetType {
@@ -65,8 +205,18 @@ extension API: TargetType {
     
     var path: String {
         switch self {
-        case .cities(_):
+        case .cities():
             return "cities/list"
+        case .categories():
+            return "categories/list"
+        case .offers():
+            return "category/1/city/5/offers"
+        case .mapOffers():
+            return "latitude/45.465454/longitude/9.1865153/radius/10000/offers"
+        case .events():
+            return "category/1/city/5/events"
+        case .mapEvents():
+            return "latitude/45.465454/longitude/9.1865153/radius/10000/events"
         }
     }
     
@@ -76,7 +226,7 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case .cities():
+        default:
             return [:]
         }
     }
