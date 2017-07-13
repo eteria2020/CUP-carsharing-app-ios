@@ -43,7 +43,9 @@ final class LoginViewModel: ViewModelType {
     
     fileprivate var apiController: ApiController = ApiController()
     var loginExecuted: Variable<Bool> = Variable(false)
-
+    var openProfile: Bool = false
+    var openFeeds: Bool = false
+    
     init() {
     }
     

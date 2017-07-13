@@ -27,8 +27,11 @@ struct ViewModelFactory {
         return SignupViewModel()
     }
 
-    static func login() -> ViewModelType {
-        return LoginViewModel()
+    static func login(openProfile: Bool = false, openFeeds: Bool = false) -> ViewModelType {
+        let loginViewModel = LoginViewModel()
+        loginViewModel.openProfile = openProfile
+        loginViewModel.openFeeds = openFeeds
+        return loginViewModel
     }
     
     static func profile() -> ViewModelType {

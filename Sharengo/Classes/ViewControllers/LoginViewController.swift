@@ -67,6 +67,7 @@ class LoginViewController : BaseViewController, ViewModelBindable {
     var viewModel: LoginViewModel?
     var goBackAfterLogin: Bool = false
     var goToProfileAfterLogin: Bool = false
+    var goToSettingsCitiesAfterLogin: Bool = false
     
     // MARK: - ViewModel methods
     

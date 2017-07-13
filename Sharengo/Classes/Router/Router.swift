@@ -62,60 +62,62 @@ struct Router : RouterType {
         switch viewModel {
         case is SearchCarsViewModel:
             let destination:SearchCarsViewController = (Storyboard.main.scene(.searchCars))
-            destination.bind(to: ViewModelFactory.searchCars(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is LoginViewModel:
             let destination: LoginViewController = (Storyboard.main.scene(.login))
-            destination.bind(to: ViewModelFactory.login(), afterLoad: true)
-            if source is SearchCarsViewController {
-                destination.goBackAfterLogin = true
-            } else {
+            destination.bind(to: viewModel, afterLoad: true)
+            if (viewModel as! LoginViewModel).openProfile {
                 destination.goToProfileAfterLogin = true
+            } else if (viewModel as! LoginViewModel).openFeeds {
+                destination.goToSettingsCitiesAfterLogin = true
+            } else {
+                destination.goBackAfterLogin = true
             }
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is SignupViewModel:
             let destination: SignupViewController = (Storyboard.main.scene(.signup))
-            destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is ProfileViewModel:
             let destination: ProfileViewController = (Storyboard.main.scene(.profile))
-            destination.bind(to: ViewModelFactory.profile(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is HomeViewModel:
             let destination: HomeViewController = (Storyboard.main.scene(.home))
-            destination.bind(to: ViewModelFactory.home(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is SettingsViewModel:
             let destination: SettingsViewController = (Storyboard.main.scene(.settings))
-            destination.bind(to: ViewModelFactory.settings(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is SettingsLanguagesViewModel:
             let destination: SettingsLanguagesViewController = (Storyboard.main.scene(.settingsLanguages))
-            destination.bind(to: ViewModelFactory.settingsLanguages(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is SettingsCitiesViewModel:
             let destination: SettingsCitiesViewController = (Storyboard.main.scene(.settingsCities))
-            destination.bind(to: ViewModelFactory.settingsCities(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is NoFavouritesViewModel:
             let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
-            destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is NewFavouriteViewModel:
             let destination: NewFavouriteViewController = (Storyboard.main.scene(.newFavourite))
-            destination.bind(to: ViewModelFactory.newFavourite(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is FavouritesViewModel:
             let destination: FavouritesViewController = (Storyboard.main.scene(.favourites))
-            destination.bind(to: ViewModelFactory.favourites(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is CarTripsViewModel:
             let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
-            destination.bind(to: ViewModelFactory.carTrips(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is FeedsViewModel:
             let destination: FeedsViewController = (Storyboard.main.scene(.feeds))
-            destination.bind(to: ViewModelFactory.feeds(), afterLoad: true)
+            destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()

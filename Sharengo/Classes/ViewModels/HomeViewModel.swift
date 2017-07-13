@@ -30,7 +30,7 @@ final class HomeViewModel: ViewModelTypeSelectable {
             return .just(.viewModel(ViewModelFactory.searchCars()))
         case .profile:
             if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                return .just(.viewModel(ViewModelFactory.login()))
+                return .just(.viewModel(ViewModelFactory.login(openProfile: true)))
             } else {
                 return .just(.viewModel(ViewModelFactory.profile()))
             }
