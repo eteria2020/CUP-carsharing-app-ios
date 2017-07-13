@@ -48,9 +48,15 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 }
             case .feeds:
                 if UserDefaults.standard.object(forKey: "city") == nil {
+                    let settingsCitiesViewModel = ViewModelFactory.settingsCities()
+                    (settingsCitiesViewModel as! SettingsCitiesViewModel).nextViewModel = ViewModelFactory.feeds()
                     if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                        Router.from(self,viewModel: ViewModelFactory.login(openFeeds: true)).execute()
+                        Router.from(self,viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel)).execute()
+                    } else {
+                        Router.from(self,viewModel: settingsCitiesViewModel).execute()
                     }
+                } else {
+                    Router.from(self,viewModel: ViewModelFactory.feeds()).execute()
                 }
             }
         }).addDisposableTo(self.disposeBag)

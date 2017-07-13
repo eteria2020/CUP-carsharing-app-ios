@@ -67,13 +67,6 @@ struct Router : RouterType {
         case is LoginViewModel:
             let destination: LoginViewController = (Storyboard.main.scene(.login))
             destination.bind(to: viewModel, afterLoad: true)
-            if (viewModel as! LoginViewModel).openProfile {
-                destination.goToProfileAfterLogin = true
-            } else if (viewModel as! LoginViewModel).openFeeds {
-                destination.goToSettingsCitiesAfterLogin = true
-            } else {
-                destination.goBackAfterLogin = true
-            }
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is SignupViewModel:
             let destination: SignupViewController = (Storyboard.main.scene(.signup))

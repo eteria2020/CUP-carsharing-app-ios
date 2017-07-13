@@ -15,8 +15,8 @@ import KeychainSwift
 class CoreController {
     static let shared = CoreController()
     var currentViewController: UIViewController?
-    var apiController: ApiController = ApiController()
-    var publishersApiController: PublishersAPIController = PublishersAPIController()
+    let apiController: ApiController = ApiController()
+    let publishersApiController: PublishersAPIController = PublishersAPIController()
     var updateTimer: Timer?
     var updateInProgress = false
     var allCarBookings: [CarBooking] = []
@@ -66,31 +66,6 @@ class CoreController {
                             self.cities = cities
                         }
                     }
-                case .error(_):
-                    break
-                default:
-                    break
-                }
-            }.addDisposableTo(self.disposeBag)
-        
-        self.publishersApiController.getMapEvents()
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    break
-                case .error(_):
-                    break
-                default:
-                    break
-                }
-            }.addDisposableTo(self.disposeBag)
-        self.publishersApiController.getMapOffers()
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    break
                 case .error(_):
                     break
                 default:

@@ -24,6 +24,7 @@ final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable
     var dataHolder: ListDataHolderType = ListDataHolder.empty
     var title = ""
     fileprivate var resultsDispose: DisposeBag?
+    var nextViewModel: ViewModelType?
     
     lazy var selection:Action<SettingsCitySelectionInput,SettingsCitySelectionOutput> = Action { input in
         return .empty()

@@ -278,7 +278,7 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // Feeds
             case .feedsHeader:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .feedsItemTitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .feedsItemDate:

@@ -47,7 +47,7 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.lbl_bottom.styledText = viewModel.bottomText
         self.img_icon.image = viewModel.icon ?? UIImage()
         self.img_background.image = viewModel.image ?? UIImage()
-
+        
         self.view_icon.backgroundColor = viewModel.color
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true

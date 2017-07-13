@@ -34,26 +34,41 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         
         if viewModel.published
         {
+            // TODOL quale colore usiamo di sfondo?
             self.view_icon.backgroundColor = Color.categoriesItemIconBackground.value
             self.lbl_title.textColor = Color.categoriesItemTitle.value
         }
         else
         {
+            // TODO: completare la visualizzazione della categoria non pubblicata
             self.view_icon.backgroundColor = Color.categoriesItemIconBackgroundDisabled.value
             self.lbl_title.textColor = Color.categoriesItemTitleDisabled.value
         }
         
+        self.backgroundView?.backgroundColor = Color.categoriesBackground.value
+        self.backgroundColor = Color.categoriesBackground.value
+        
         self.lbl_title.styledText = viewModel.title
-        self.img_icon.image = viewModel.icon ?? UIImage()
         
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true
-        self.view_icon.layer.borderWidth = 1
-        self.view_icon.layer.borderColor = Color.feedsItemIconBorderBackground.value.cgColor
         self.view_topBorder.backgroundColor = Color.categoriesItemBorderBackground.value
         self.view_bottomBorder.backgroundColor = Color.categoriesItemBorderBackground.value
         self.view_leftBorder.backgroundColor = Color.categoriesItemBorderBackground.value
         self.view_rightBorder.backgroundColor = Color.categoriesItemBorderBackground.value
+        
+        if let icon = viewModel.icon,
+            let url = URL(string: icon)
+        {
+            do {
+                let data = try Data(contentsOf: url)
+                if let image = UIImage(data: data) {
+                    // TODO: caricare la gif
+                    self.img_icon.image = image.tinted(ColorBrand.white.value)
+                }
+            } catch {
+            }
+        }
     }
     
     // MARK: - View methods

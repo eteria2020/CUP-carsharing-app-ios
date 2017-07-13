@@ -27,10 +27,9 @@ struct ViewModelFactory {
         return SignupViewModel()
     }
 
-    static func login(openProfile: Bool = false, openFeeds: Bool = false) -> ViewModelType {
+    static func login(nextViewModel: ViewModelType? = nil) -> ViewModelType {
         let loginViewModel = LoginViewModel()
-        loginViewModel.openProfile = openProfile
-        loginViewModel.openFeeds = openFeeds
+        loginViewModel.nextViewModel = nextViewModel
         return loginViewModel
     }
     
@@ -70,34 +69,18 @@ struct ViewModelFactory {
         return MenuViewModel()
     }
 
-    static func menuItem(fromModel model:MenuItem) -> ItemViewModelType {
-        return MenuItemViewModel(model: model)
-    }
-
     static func settings() -> ViewModelType {
         return SettingsViewModel()
     }
     
-    static func settingItem(fromModel model:Setting) -> ItemViewModelType {
-        return SettingItemViewModel(model: model)
-    }
-
     static func settingsLanguages() -> ViewModelType {
         return SettingsLanguagesViewModel()
     }
     
-    static func settingsLanguagesItem(fromModel model:Language) -> ItemViewModelType {
-        return SettingsLanguageItemViewModel(model: model)
-    }
-
     static func settingsCities() -> ViewModelType {
         return SettingsCitiesViewModel()
     }
     
-    static func settingsCitiesItem(fromModel model:City) -> ItemViewModelType {
-        return SettingsCityItemViewModel(model: model)
-    }
-
     static func noFavourites() -> ViewModelType {
         return NoFavouritesViewModel()
     }
@@ -116,6 +99,22 @@ struct ViewModelFactory {
     
     static func noCarTrips() -> ViewModelType {
         return NoCarTripsViewModel()
+    }
+    
+    static func menuItem(fromModel model:MenuItem) -> ItemViewModelType {
+        return MenuItemViewModel(model: model)
+    }
+    
+    static func settingItem(fromModel model:Setting) -> ItemViewModelType {
+        return SettingItemViewModel(model: model)
+    }
+    
+    static func settingsLanguagesItem(fromModel model:Language) -> ItemViewModelType {
+        return SettingsLanguageItemViewModel(model: model)
+    }
+    
+    static func settingsCitiesItem(fromModel model:City) -> ItemViewModelType {
+        return SettingsCityItemViewModel(model: model)
     }
     
     static func feedItem(fromModel model:Feed) -> ItemViewModelType {

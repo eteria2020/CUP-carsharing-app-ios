@@ -12,7 +12,33 @@ import Gloss
 
 public class City: ModelType, Decodable {
     /*
-    {"tid":"5","name":"Milano","media":{"images":{"icon":{"uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/icona_trasparente-milano.png"},"icon_svg":{"uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/icona_trasparente-milano.svg"}}},"informations":{"address":{"lat":"45.4628328","lng":"9.1076928"}}}
+    JSON response example:
+    {
+        "tid":"5",
+        "name":"Milano",
+        "media":
+        {
+            "images":
+            {
+                "icon":
+                {
+                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/icona_trasparente-milano.png"
+                },
+                "icon_svg":
+                {
+                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/icona_trasparente-milano.svg"
+                }
+            }
+        },
+        "informations":
+        {
+            "address":
+            {
+                "lat":"45.4628328",
+                "lng":"9.1076928"
+            }
+        }
+    }
     */
     
     var identifier: String = ""

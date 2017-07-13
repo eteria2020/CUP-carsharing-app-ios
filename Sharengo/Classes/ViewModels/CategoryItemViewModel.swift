@@ -13,18 +13,14 @@ import Boomerang
 final class CategoryItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
     var itemIdentifier:ListIdentifier = CollectionViewCell.category
-    var title: String
-    var icon: UIImage?
+    var title: String?
+    var icon: String?
     var published: Bool
     
     init(model: Category) {
         self.model = model
-        
         self.title = model.title
-        if let image = UIImage(named: model.icon)
-        {
-            self.icon = image
-        }
+        self.icon = model.icon
         self.published = model.published
     }
 }

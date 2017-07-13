@@ -19,7 +19,7 @@ final class SettingsCityItemViewModel : ItemViewModelType {
     
     init(model: City) {
         self.model = model
-        self.title = model.title.localized()
+        self.title = model.title
         self.selected = model.selected
         self.icon = model.icon
     }

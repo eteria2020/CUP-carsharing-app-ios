@@ -484,7 +484,7 @@ enum Color {
             case .categoriesItemIconBackground:
                 return ColorBrand.green.value
             case .categoriesItemBorderBackground:
-                return ColorBrand.gray.value
+                return UIColor(hexString: "#ececec")
             case .categoriesItemTitleDisabled:
                 return ColorBrand.lightGray.value
             case .categoriesItemIconBackgroundDisabled:

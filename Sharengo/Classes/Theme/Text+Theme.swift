@@ -311,7 +311,7 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
             // Feeds
             case .feedsHeader:
-                return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
+                return StringStyle(.font(Font.feedsHeader.value), .color(Color.onBoardDescription.value), .alignment(.center))
             case .feedsItemBottom:
                 let titleStyle = StringStyle(.font(Font.feedsItemTitle.value), .color(Color.feedsItemTitle.value), .alignment(.left))
                 let dateStyle = StringStyle(.font(Font.feedsItemDate.value), .color(Color.feedsItemDate.value), .alignment(.left))

@@ -49,30 +49,10 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
     }
     
     init() {
-        // Temp
-        let feed = Feed()
-        feed.claim = "claim"
-        feed.color = "#b4ada7"
-        feed.date = "date"
-        feed.description = "description"
-        feed.icon = "ic_assistenza"
-        feed.identifier = "aaa"
-        feed.image = "ic_assistenza"
-        feed.subtitle = "subttiel"
-        feed.title = "title"
-        feed.advantage = "advantage"
-        self.feeds = [feed, feed, feed]
-        let category = Category()
-        category.icon = "ic_assistenza"
-        category.published = true
-        category.identifier = "aaa"
-        category.title = "bbb"
-        self.categories = [category, category, category]
-        self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
-
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
+                // TODO: completare la selezione
                 return .just(.empty)
             case .aroundMe:
                 return .just(.empty)
@@ -80,8 +60,7 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         }
     }
     
-    func updateListDataHolder()
-    {
+    func updateListDataHolder() {
         switch sectionSelected {
         case .feed:
             self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
