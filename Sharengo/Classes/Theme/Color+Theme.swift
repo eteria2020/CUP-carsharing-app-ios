@@ -216,6 +216,14 @@ enum Color {
     case feedsItemSubtitle
     case feedsItemDescription
     case feedsItemAdvantage
+    
+    // Categories
+    case categoriesBackground
+    case categoriesItemTitle
+    case categoriesItemIconBackground
+    case categoriesItemBorderBackground
+    case categoriesItemTitleDisabled
+    case categoriesItemIconBackgroundDisabled
 
     // Web
     case webBackground
@@ -441,7 +449,7 @@ enum Color {
                 return ColorBrand.white.value
             case .onBoardPageControlFilled:
                 return ColorBrand.green.value
-            // Feeds
+            // Feeds - Categories
             case .feedsHeaderBackground:
                 return ColorBrand.black.value
             case .feedsHeaderLabelOn:
@@ -468,6 +476,19 @@ enum Color {
                 return ColorBrand.black.value
             case .feedsItemAdvantage:
                 return ColorBrand.black.value
+            // Categories
+            case .categoriesBackground:
+                return ColorBrand.lightGray.value
+            case .categoriesItemTitle:
+                return ColorBrand.black.value
+            case .categoriesItemIconBackground:
+                return ColorBrand.green.value
+            case .categoriesItemBorderBackground:
+                return ColorBrand.gray.value
+            case .categoriesItemTitleDisabled:
+                return ColorBrand.lightGray.value
+            case .categoriesItemIconBackgroundDisabled:
+                return ColorBrand.lightGray.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

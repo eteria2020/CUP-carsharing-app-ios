@@ -138,6 +138,9 @@ enum Font {
     case feedsItemAdvantage
     case feedsAroundMeButton
     
+    // Categories
+    case categoriesItemTitle
+
     var value: UIFont {
         get {
             switch self {
@@ -287,6 +290,9 @@ enum Font {
             case .feedsItemAdvantage:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .feedsAroundMeButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Categories
+            case .categoriesItemTitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }

@@ -13,11 +13,6 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-fileprivate enum HeaderButtons {
-    case feed
-    case categories
-}
-
 class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
@@ -27,7 +22,6 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     @IBOutlet fileprivate weak var view_bottomCategoriesButton: UIView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var btn_aroundMe: UIButton!
-    fileprivate var headerButtonSelected = HeaderButtons.feed
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
@@ -96,13 +90,19 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         self.updateHeaderButtonsInterface()
         self.btn_feed.rx.tap.asObservable()
             .subscribe(onNext:{
-                self.headerButtonSelected = .feed
+                self.viewModel?.sectionSelected = .feed
                 self.updateHeaderButtonsInterface()
+                self.viewModel?.updateListDataHolder()
+                self.viewModel?.reload()
+                self.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
         self.btn_categories.rx.tap.asObservable()
             .subscribe(onNext:{
-                self.headerButtonSelected = .categories
+                self.viewModel?.sectionSelected = .categories
                 self.updateHeaderButtonsInterface()
+                self.viewModel?.updateListDataHolder()
+                self.viewModel?.reload()
+                self.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
         self.btn_aroundMe.style(.squaredButton(Color.feedsAroundMeButtonBackground.value), title: "btn_feedsAroundMe".localized())
     }
@@ -137,6 +137,19 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let viewModel = self.viewModel
+        {
+            switch viewModel.sectionSelected {
+            case .feed:
+                let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+                return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
+            case .categories:
+                let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 2)
+                return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
+            }
+        }
+        
+        // Default size
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
     }
@@ -149,18 +162,20 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     
     func updateHeaderButtonsInterface()
     {
-        switch headerButtonSelected {
-        case .feed:
-            self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderFeed".localized())
-            self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
-            self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderCategories".localized())
-            self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
-        case .categories:
-            self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderFeed".localized())
-            self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
-            self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderCategories".localized())
-            self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
-            break
+        if let viewModel = self.viewModel
+        {
+            switch viewModel.sectionSelected {
+            case .feed:
+                self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderFeed".localized())
+                self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
+                self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderCategories".localized())
+                self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
+            case .categories:
+                self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderFeed".localized())
+                self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
+                self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderCategories".localized())
+                self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
+            }
         }
     }
 }

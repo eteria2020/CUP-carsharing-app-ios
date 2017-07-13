@@ -104,6 +104,9 @@ enum TextStyle: String, TextStyleType {
     case feedsHeader = "feedsHeader"
     case feedsItemBottom = "feedsItemBottom"
     case feedsAroundMe = "feedsAroundMe"
+    
+    // Categories
+    case categoriesItemTitle = "categoriesItemTitle"
 
     static var all:[TextStyle] {
         return [
@@ -173,7 +176,9 @@ enum TextStyle: String, TextStyleType {
             // Feeds
             .feedsHeader,
             .feedsItemBottom,
-            .feedsAroundMe
+            .feedsAroundMe,
+            // Categories
+            .categoriesItemTitle
         ]
     }
     
@@ -315,7 +320,10 @@ enum TextStyle: String, TextStyleType {
                 let advantageStyle = StringStyle(.font(Font.feedsItemAdvantage.value), .color(Color.feedsItemAdvantage.value), .alignment(.left))
                 return StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle),  .style("advantage", advantageStyle)]))
             case .feedsAroundMe:
-                return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+                return StringStyle(.font(Font.feedsAroundMeButton.value), .color(Color.feedsAroundMeButtonLabel.value), .alignment(.left))
+            // Categories
+            case .categoriesItemTitle:
+                return StringStyle(.font(Font.categoriesItemTitle.value), .color(Color.categoriesItemTitle.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

@@ -22,9 +22,16 @@ enum FeedsSelectionOutput : SelectionOutput {
     case empty
 }
 
+enum FeedSections {
+    case feed
+    case categories
+}
+
 final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
     var dataHolder: ListDataHolderType = ListDataHolder.empty
     var feeds = [Feed]()
+    var categories = [Category]()
+    var sectionSelected = FeedSections.feed
     fileprivate var resultsDispose: DisposeBag?
     
     lazy var selection:Action<FeedsSelectionInput,FeedsSelectionOutput> = Action { input in
@@ -35,11 +42,13 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         if let item = model as? Feed {
             return ViewModelFactory.feedItem(fromModel: item)
         }
+        else if let item = model as? Category {
+            return ViewModelFactory.categoryItem(fromModel: item)
+        }
         return nil
     }
     
     init() {
-        
         // Temp
         let feed = Feed()
         feed.claim = "claim"
@@ -53,6 +62,12 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         feed.title = "title"
         feed.advantage = "advantage"
         self.feeds = [feed, feed, feed]
+        let category = Category()
+        category.icon = "ic_assistenza"
+        category.published = true
+        category.identifier = "aaa"
+        category.title = "bbb"
+        self.categories = [category, category, category]
         self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
 
         self.selection = Action { input in
@@ -62,6 +77,16 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
             case .aroundMe:
                 return .just(.empty)
             }
+        }
+    }
+    
+    func updateListDataHolder()
+    {
+        switch sectionSelected {
+        case .feed:
+            self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
+        case .categories:
+            self.dataHolder = ListDataHolder(data:Observable.just(categories).structured())
         }
     }
 }

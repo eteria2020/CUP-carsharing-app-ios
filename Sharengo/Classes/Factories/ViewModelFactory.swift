@@ -142,4 +142,8 @@ struct ViewModelFactory {
     static func favouriteItem(fromModel model:Address) -> ItemViewModelType {
         return FavouriteItemViewModel(model: model)
     }
+    
+    static func categoryItem(fromModel model:Category) -> ItemViewModelType {
+        return CategoryItemViewModel(model: model)
+    }
 }

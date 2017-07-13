@@ -51,6 +51,7 @@ enum CollectionViewCell : String, ListIdentifier {
     case favourite = "FavouriteItemCollectionViewCell"
     case carTrip = "CarTripItemCollectionViewCell"
     case feed = "FeedItemCollectionViewCell"
+    case category = "CategoryItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [
@@ -61,7 +62,8 @@ enum CollectionViewCell : String, ListIdentifier {
             .settingsCity,
             .favourite,
             .carTrip,
-            .feed
+            .feed,
+            .category
         ]
     }
     static func headers() -> [CollectionViewCell] {
