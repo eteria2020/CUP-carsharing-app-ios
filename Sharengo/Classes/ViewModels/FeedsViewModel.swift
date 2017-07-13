@@ -58,24 +58,6 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
-                guard let model = self.model(atIndex: indexPath) as?  Setting else { return .empty() }
-                if let viewModel = model.viewModel  {
-                    if viewModel is NoFavouritesViewModel {
-                        var favourites: Bool = false
-                        if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
-                            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                                if unarchivedArray.count > 0 {
-                                    favourites = true
-                                }
-                            }
-                        }
-                        
-                        if favourites {
-                            return .just(.viewModel(ViewModelFactory.favourites()))
-                        }
-                    }
-                    return .just(.viewModel(viewModel))
-                }
                 return .just(.empty)
             case .aroundMe:
                 return .just(.empty)
