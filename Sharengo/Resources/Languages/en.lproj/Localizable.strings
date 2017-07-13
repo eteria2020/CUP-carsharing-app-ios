@@ -106,7 +106,7 @@
 "lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sare'ngo che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
@@ -179,7 +179,7 @@
 "lbl_noCarTripsDescription" = "Non hai ancora effettuato nessuna corsa con una Share'ngo!";
 "lbl_noCarTrips" = "Cosa aspetti a provarle?";
 "btn_searchCars" = "VAI ALLA MAPPA";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n<startAddress>%@</startAddress>\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n<endAddress>%@</endAddress>\n<minuteRate>Tariffa al minuto: € %@</minuteRate>\n<freeMinutes>MINUTI DI GUIDA GRATUITA UTILIZZATI: %@</freeMinutes>\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>";
+"lbl_carTripsItemDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n<startAddress>%@</startAddress>\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n<endAddress>%@</endAddress>\n<minuteRate>Tariffa al minuto: € %@</minuteRate>\n<freeMinutes>MINUTI DI GUIDA GRATUITA UTILIZZATI: %@</freeMinutes>\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>";
 
 // OnBoard
 "lbl_onBoardStep1Description" = "Facili e divertenti\nda guidare";

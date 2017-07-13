@@ -110,7 +110,7 @@
 "lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Saren'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sare'ngo che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
