@@ -46,14 +46,9 @@ public class CarTrip: ModelType, Decodable {
                 let start = timeStart
                 let enddt = Date()
                 let calendar = Calendar.current
-                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
-                if let seconds = datecomponenets.second {
-                    let hours = (Float(seconds) / 60 / 60).rounded(.towardZero)
-                    let min = (Float(seconds - Int(60*hours)) / 60).rounded(.towardZero)
-                    let sec = (Float(seconds - Int(60*min))).rounded(.towardZero)
-                    let h = (hours < 10) ? "0\(Int(hours))" : "\(Int(hours))"
-                    let m = (min < 10) ? "0\(Int(min))" : "\(Int(min))"
-                    let s = (sec < 10) ? "0\(Int(sec))" : "\(Int(sec))"
+                let datecomponents = calendar.dateComponents([Calendar.Component.second, Calendar.Component.minute, Calendar.Component.hour], from: start, to: enddt)
+                if let s = datecomponents.second, let m = datecomponents.minute, let h = datecomponents.hour
+                {
                     return "<bold>\(h):\(m):\(s)</bold>"
                 }
             }
@@ -66,9 +61,8 @@ public class CarTrip: ModelType, Decodable {
                 let start = timeStart
                 let enddt = Date()
                 let calendar = Calendar.current
-                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
-                if let seconds = datecomponenets.second {
-                    let min = (Float(seconds) / 60).rounded(.towardZero)
+                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
+                if let min = datecomponents.minute {
                     if min <= 0 {
                         return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
                     } else if min == 1 {
@@ -88,9 +82,8 @@ public class CarTrip: ModelType, Decodable {
                 let start = timeStart
                 let enddt = timeEnd
                 let calendar = Calendar.current
-                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
-                if let seconds = datecomponenets.second {
-                    let min = (Float(seconds) / 60).rounded(.towardZero)
+                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
+                if let min = datecomponents.minute {
                     if min <= 0 {
                         return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
                     } else if min == 1 {
@@ -109,9 +102,8 @@ public class CarTrip: ModelType, Decodable {
                 let start = timeStart
                 let enddt = Date()
                 let calendar = Calendar.current
-                let datecomponenets = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
-                if let seconds = datecomponenets.second {
-                    let min = (Float(seconds) / 60).rounded(.towardZero)
+                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
+                if let min = datecomponents.minute {
                     return Int(min)
                 }
             }
