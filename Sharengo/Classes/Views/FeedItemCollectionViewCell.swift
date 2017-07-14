@@ -46,7 +46,18 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.lbl_bottom.bonMotStyleName = "feedsItemBottom"
         self.lbl_bottom.styledText = viewModel.bottomText
         self.img_icon.image = viewModel.icon ?? UIImage()
-        self.img_background.image = viewModel.image ?? UIImage()
+        
+        if let image = viewModel.image,
+            let url = URL(string: image)
+        {
+            do {
+                let data = try Data(contentsOf: url)
+                if let image = UIImage(data: data) {
+                    self.img_background.image = image
+                }
+            } catch {
+            }
+        }
         
         self.view_icon.backgroundColor = viewModel.color
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
