@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,32 +29,51 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wVQ-D7-xG0">
                                         <rect key="frame" x="0.0" y="0.0" width="431" height="277"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eml-l5-Hl7">
+                                        <rect key="frame" x="0.0" y="0.0" width="431" height="277"/>
+                                        <color key="backgroundColor" red="0.3365019011406844" green="1" blue="1" alpha="0.41320754716981134" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="eml-l5-Hl7" firstAttribute="top" secondItem="zS4-36-F3L" secondAttribute="top" id="5ZQ-q4-gUn"/>
+                                    <constraint firstItem="eml-l5-Hl7" firstAttribute="leading" secondItem="zS4-36-F3L" secondAttribute="leading" id="5cC-bw-eSI"/>
                                     <constraint firstItem="wVQ-D7-xG0" firstAttribute="leading" secondItem="zS4-36-F3L" secondAttribute="leading" id="GKO-zC-Ol4"/>
+                                    <constraint firstAttribute="bottom" secondItem="eml-l5-Hl7" secondAttribute="bottom" id="KtA-ZL-qMZ"/>
                                     <constraint firstAttribute="bottom" secondItem="wVQ-D7-xG0" secondAttribute="bottom" id="Or6-yh-lnW"/>
                                     <constraint firstAttribute="trailing" secondItem="wVQ-D7-xG0" secondAttribute="trailing" id="Svs-1M-okp"/>
+                                    <constraint firstAttribute="trailing" secondItem="eml-l5-Hl7" secondAttribute="trailing" id="ocA-kg-NBL"/>
                                     <constraint firstItem="wVQ-D7-xG0" firstAttribute="top" secondItem="zS4-36-F3L" secondAttribute="top" id="vmE-j6-DdP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JT-at-Hlv">
-                                <rect key="frame" x="258" y="0.0" width="172.5" height="194"/>
+                                <rect key="frame" x="258" y="0.0" width="172.5" height="216.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-Zp-qMu">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_claim" translatesAutoresizingMaskIntoConstraints="NO" id="ssL-Ic-Tpf">
+                                        <rect key="frame" x="0.0" y="0.0" width="172.5" height="216.5"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-Zp-qMu">
                                         <rect key="frame" x="15" y="5" width="152.5" height="41"/>
                                         <string key="text">Buoni
 Corsa!</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="feedsClaim"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="FbW-Zp-qMu" firstAttribute="top" secondItem="0JT-at-Hlv" secondAttribute="top" constant="5" id="8Ik-u5-wW1"/>
+                                    <constraint firstAttribute="trailing" secondItem="ssL-Ic-Tpf" secondAttribute="trailing" id="9QK-Vg-ZqP"/>
                                     <constraint firstItem="FbW-Zp-qMu" firstAttribute="leading" secondItem="0JT-at-Hlv" secondAttribute="leading" constant="15" id="AHi-zN-pX8"/>
+                                    <constraint firstItem="ssL-Ic-Tpf" firstAttribute="leading" secondItem="0JT-at-Hlv" secondAttribute="leading" id="FWr-Pi-1mk"/>
+                                    <constraint firstItem="ssL-Ic-Tpf" firstAttribute="top" secondItem="0JT-at-Hlv" secondAttribute="top" id="axL-S3-DiB"/>
                                     <constraint firstAttribute="trailing" secondItem="FbW-Zp-qMu" secondAttribute="trailing" constant="5" id="mjZ-rP-RID"/>
+                                    <constraint firstAttribute="bottom" secondItem="ssL-Ic-Tpf" secondAttribute="bottom" id="o5h-gt-XXR"/>
+                                    <constraint firstAttribute="width" secondItem="0JT-at-Hlv" secondAttribute="height" multiplier="90:113" id="xQX-om-06Y"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajt-2q-Pb8">
@@ -94,7 +114,6 @@ Corsa!</string>
                             <constraint firstAttribute="trailing" secondItem="0JT-at-Hlv" secondAttribute="trailing" id="GVB-Us-utT"/>
                             <constraint firstItem="0JT-at-Hlv" firstAttribute="top" secondItem="eqk-R7-fly" secondAttribute="top" id="IUS-mO-n5l"/>
                             <constraint firstItem="BOM-Mi-No1" firstAttribute="bottom" secondItem="zDX-jb-cf9" secondAttribute="bottom" constant="-10" id="Mdw-QO-4au"/>
-                            <constraint firstItem="0JT-at-Hlv" firstAttribute="height" secondItem="eqk-R7-fly" secondAttribute="height" multiplier="0.7" id="UZO-6M-CTK"/>
                             <constraint firstItem="zS4-36-F3L" firstAttribute="leading" secondItem="eqk-R7-fly" secondAttribute="leading" id="Zyx-3v-a7D"/>
                             <constraint firstItem="ajt-2q-Pb8" firstAttribute="top" secondItem="BOM-Mi-No1" secondAttribute="centerY" constant="5" id="e1M-70-G2C"/>
                             <constraint firstItem="BOM-Mi-No1" firstAttribute="trailing" secondItem="zDX-jb-cf9" secondAttribute="trailing" constant="-10" id="gUh-9F-79O"/>
@@ -119,6 +138,7 @@ Corsa!</string>
             <size key="customSize" width="431" height="277"/>
             <connections>
                 <outlet property="img_background" destination="wVQ-D7-xG0" id="KXn-m9-rto"/>
+                <outlet property="img_claim" destination="ssL-Ic-Tpf" id="jc0-vu-61A"/>
                 <outlet property="img_icon" destination="BOM-Mi-No1" id="2oY-bI-qJc"/>
                 <outlet property="lbl_bottom" destination="igh-3r-Mjd" id="yV0-g5-OVa"/>
                 <outlet property="lbl_claim" destination="FbW-Zp-qMu" id="zc9-FS-cVt"/>
@@ -126,11 +146,13 @@ Corsa!</string>
                 <outlet property="view_containerBackgroundImage" destination="zS4-36-F3L" id="isN-39-PNp"/>
                 <outlet property="view_containerClaim" destination="0JT-at-Hlv" id="weG-mG-jnF"/>
                 <outlet property="view_icon" destination="zDX-jb-cf9" id="WaY-xk-EqE"/>
+                <outlet property="view_overlayBackgroundImage" destination="eml-l5-Hl7" id="w0k-3Q-yyU"/>
             </connections>
             <point key="canvasLocation" x="224.5" y="167.5"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="bg_claim" width="90" height="113"/>
         <image name="ic_login" width="12" height="15"/>
     </resources>
 </document>

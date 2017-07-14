@@ -34,18 +34,19 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         
         if viewModel.published
         {
-            // TODOL quale colore usiamo di sfondo?
             self.view_icon.backgroundColor = Color.categoriesItemIconBackground.value
-            self.lbl_title.textColor = Color.categoriesItemTitle.value
+            self.lbl_title.bonMotStyle?.color = Color.categoriesItemTitle.value
+            // TODO: quale colore usiamo di sfondo?
+            self.backgroundView?.backgroundColor = Color.categoriesBackground.value
         }
         else
         {
-            // TODO: completare la visualizzazione della categoria non pubblicata
             self.view_icon.backgroundColor = Color.categoriesItemIconBackgroundDisabled.value
-            self.lbl_title.textColor = Color.categoriesItemTitleDisabled.value
+            self.lbl_title.bonMotStyle?.color = Color.categoriesItemTitleDisabled.value
+            // TODO: controllare che lo sfondo grigio non arrivi dal web
+            self.backgroundView?.backgroundColor = UIColor(hexString: "#c1bab4")
         }
         
-        self.backgroundView?.backgroundColor = Color.categoriesBackground.value
         self.backgroundColor = Color.categoriesBackground.value
         
         self.lbl_title.styledText = viewModel.title
@@ -64,7 +65,11 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
                 let data = try Data(contentsOf: url)
                 if let image = UIImage(data: data) {
                     // TODO: caricare la gif
-                    self.img_icon.image = image.tinted(ColorBrand.white.value)
+                    if viewModel.published {
+                        self.img_icon.image = image//.tinted(ColorBrand.white.value)
+                    } else {
+                        self.img_icon.image = image//.tinted(UIColor(hexString: "#aca59d"))
+                    }
                 }
             } catch {
             }

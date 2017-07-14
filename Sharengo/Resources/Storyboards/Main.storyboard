@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -268,7 +268,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1471,12 +1471,27 @@
                                     <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="tS2-6d-esp"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aDC-vg-ZT0">
+                                <rect key="frame" x="0.0" y="78" width="375" height="589.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UjK-JV-bOy">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.49411764705882355" green="0.49411764705882355" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9iO-Na-7yl" firstAttribute="top" secondItem="o7o-Ze-eNd" secondAttribute="top" id="2SV-ay-TPE"/>
+                            <constraint firstItem="aDC-vg-ZT0" firstAttribute="top" secondItem="TjS-wr-R1m" secondAttribute="bottom" id="5Ck-if-lmt"/>
+                            <constraint firstAttribute="trailing" secondItem="aDC-vg-ZT0" secondAttribute="trailing" id="70L-Py-2jw"/>
                             <constraint firstAttribute="trailing" secondItem="TjS-wr-R1m" secondAttribute="trailing" id="E7L-gR-e18"/>
+                            <constraint firstAttribute="bottom" secondItem="aDC-vg-ZT0" secondAttribute="bottom" id="Flz-hI-IFG"/>
                             <constraint firstItem="TjS-wr-R1m" firstAttribute="leading" secondItem="o7o-Ze-eNd" secondAttribute="leading" id="KUl-6i-UnI"/>
+                            <constraint firstItem="aDC-vg-ZT0" firstAttribute="leading" secondItem="o7o-Ze-eNd" secondAttribute="leading" id="Lej-Sl-PNZ"/>
                             <constraint firstItem="TjS-wr-R1m" firstAttribute="leading" secondItem="o7o-Ze-eNd" secondAttribute="leading" id="ZlL-1z-McC"/>
                             <constraint firstAttribute="trailing" secondItem="9iO-Na-7yl" secondAttribute="trailing" id="fOF-32-pVL"/>
                             <constraint firstItem="TjS-wr-R1m" firstAttribute="top" secondItem="9iO-Na-7yl" secondAttribute="bottom" id="rzp-gj-pm3"/>
@@ -1488,6 +1503,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="btn_back" destination="FP3-24-6EJ" id="Gg8-4z-UJq"/>
+                        <outlet property="collectionView" destination="aDC-vg-ZT0" id="ZGc-sX-lk8"/>
                         <outlet property="lbl_title" destination="tH6-oj-Exb" id="xeY-GB-4Io"/>
                         <outlet property="view_header" destination="TjS-wr-R1m" id="sAr-Ti-3U0"/>
                         <outlet property="view_navigationBar" destination="9iO-Na-7yl" id="Ryu-hz-QEU"/>

@@ -30,7 +30,7 @@ final class PublishersAPIController {
     
     func getCities() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -82,7 +82,7 @@ final class PublishersAPIController {
         }
     }
     
-    func getOffers() -> Observable<Response> {
+    func getOffers(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -92,7 +92,7 @@ final class PublishersAPIController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.offers())
+            return provider.request(.offers(category: category))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -136,7 +136,7 @@ final class PublishersAPIController {
         }
     }
     
-    func getEvents() -> Observable<Response> {
+    func getEvents(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -146,7 +146,7 @@ final class PublishersAPIController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.events())
+            return provider.request(.events(category: category))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -194,9 +194,9 @@ final class PublishersAPIController {
 fileprivate enum API {
     case cities()
     case categories()
-    case offers()
+    case offers(category: Category?)
     case mapOffers()
-    case events()
+    case events(category: Category?)
     case mapEvents()
 }
 
@@ -209,12 +209,16 @@ extension API: TargetType {
             return "cities/list"
         case .categories():
             return "categories/list"
-        case .offers():
-            return "category/1/city/5/offers"
+        case .offers(let category):
+            let cid = category?.identifier ?? "0"
+            let cityid = UserDefaults.standard.object(forKey: "city") as? String ?? "0"
+            return "category/\(cid)/city/\(cityid)/offers"
         case .mapOffers():
             return "latitude/45.465454/longitude/9.1865153/radius/10000/offers"
-        case .events():
-            return "category/1/city/5/events"
+        case .events(let category):
+            let cid = category?.identifier ?? "0"
+            let cityid = UserDefaults.standard.object(forKey: "city") as? String ?? "0"
+            return "category/\(cid)/city/\(cityid)/events"
         case .mapEvents():
             return "latitude/45.465454/longitude/9.1865153/radius/10000/events"
         }

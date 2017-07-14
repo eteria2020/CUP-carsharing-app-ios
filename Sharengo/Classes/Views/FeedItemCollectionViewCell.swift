@@ -15,8 +15,10 @@ import RxCocoa
 class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var view_containerBackgroundImage: UIView!
     @IBOutlet fileprivate weak var img_background: UIImageView!
+    @IBOutlet fileprivate weak var view_overlayBackgroundImage: UIView!
     @IBOutlet fileprivate weak var view_containerClaim: UIView!
     @IBOutlet fileprivate weak var lbl_claim: UILabel!
+    @IBOutlet fileprivate weak var img_claim: UIImageView!
     @IBOutlet fileprivate weak var view_bottomContainer: UIView!
     @IBOutlet fileprivate weak var lbl_bottom: UILabel!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
@@ -33,10 +35,11 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.layoutIfNeeded()
         self.viewModel = viewModel
 
-        if viewModel.claim != nil
+        if viewModel.claim != nil && viewModel.claim?.isEmpty == false
         {
             self.view_containerClaim.isHidden = false
             self.lbl_claim.styledText = viewModel.claim
+            self.img_claim.image = self.img_claim.image?.tinted(viewModel.color)
         }
         else
         {
@@ -59,6 +62,8 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             }
         }
         
+        self.view_overlayBackgroundImage.backgroundColor = viewModel.color.withAlphaComponent(0.5)
+
         self.view_icon.backgroundColor = viewModel.color
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true

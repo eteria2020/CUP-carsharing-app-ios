@@ -218,6 +218,7 @@ enum Color {
     case feedsItemSubtitle
     case feedsItemDescription
     case feedsItemAdvantage
+    case feedsClaim
     
     // Categories
     case categoriesBackground
@@ -486,6 +487,8 @@ enum Color {
                 return ColorBrand.black.value
             case .feedsItemAdvantage:
                 return ColorBrand.black.value
+            case .feedsClaim:
+                return ColorBrand.white.value
             // Categories
             case .categoriesBackground:
                 return ColorBrand.lightGray.value
@@ -496,7 +499,7 @@ enum Color {
             case .categoriesItemBorderBackground:
                 return UIColor(hexString: "#ececec")
             case .categoriesItemTitleDisabled:
-                return ColorBrand.lightGray.value
+                return UIColor(hexString: "#a8a39f")
             case .categoriesItemIconBackgroundDisabled:
                 return ColorBrand.lightGray.value
             // Feed Detail
