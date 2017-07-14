@@ -109,6 +109,6 @@ public class Feed: ModelType, Decodable {
         self.advantage = "informations.advantage_bottom" <~~ json ?? ""
         self.icon = "category.media.images.image.uri" <~~ json ?? ""
         self.color = "category.appearance.color.rgb" <~~ json ?? ""
-        self.image = "media.images.image" <~~ json ?? ""
+        self.image = "media.images.image.uri" <~~ json ?? ""
     }
 }

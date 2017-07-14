@@ -18,7 +18,7 @@ final class FeedItemViewModel : ItemViewModelType {
     var bottomText: String?
     var icon: UIImage?
     var color: UIColor
-    var image: UIImage?
+    var image: String?
     
     init(model: Feed) {
         self.model = model
@@ -35,6 +35,6 @@ final class FeedItemViewModel : ItemViewModelType {
         self.claim = model.claim
         self.icon = UIImage(named: model.icon)
         self.color = UIColor(hexString: model.color)
-        self.image = UIImage(named: model.image)
+        self.image = model.image
     }
 }

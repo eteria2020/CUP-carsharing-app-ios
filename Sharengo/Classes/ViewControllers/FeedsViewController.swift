@@ -243,7 +243,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             switch viewModel.sectionSelected {
             case .feed:
                 let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-                return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
+                return size // CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
             case .categories:
                 let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 2)
                 return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
