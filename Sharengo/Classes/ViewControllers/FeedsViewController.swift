@@ -64,7 +64,47 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             if viewModel.category != nil
             {
-                // TODO: caricare eventi ed offerte solo della categoria
+                self.errorCategories = false
+                self.publishersApiController.getOffers(category: viewModel.category!)
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status_bool == true, let data = response.array_data {
+                                if let feeds = [Feed].from(jsonArray: data) {
+                                    let oldFeeds = self.viewModel?.feeds
+                                    self.viewModel?.feeds = feeds
+                                    self.viewModel?.feeds.append(contentsOf: oldFeeds ?? [])
+                                    self.errorOffers = false
+                                    self.checkData()
+                                }
+                            }
+                        case .error(_):
+                            self.errorOffers = true
+                            self.checkData()
+                        default:
+                            break
+                        }
+                    }.addDisposableTo(self.disposeBag)
+                self.publishersApiController.getEvents(category: viewModel.category!)
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status_bool == true, let data = response.array_data {
+                                if let feeds = [Feed].from(jsonArray: data) {
+                                    self.viewModel?.feeds.append(contentsOf: feeds)
+                                    self.errorEvents = false
+                                    self.checkData()
+                                }
+                            }
+                        case .error(_):
+                            self.errorEvents = true
+                            self.checkData()
+                        default:
+                            break
+                        }
+                    }.addDisposableTo(self.disposeBag)
             }
             else
             {
@@ -168,20 +208,24 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             self.view_headerCategory.isHidden = false
             self.view_header.isHidden = true
             self.btn_aroundMe.isHidden = true
-            self.lbl_titleCategory.styledText = self.viewModel?.category?.title
+            self.lbl_titleCategory.styledText = self.viewModel?.category?.title.uppercased()
             self.view_headerCategory.backgroundColor = Color.feedsHeaderCategoryBackground.value
+            var headerCategoryHeight: Int = 0
             switch Device().diagonal {
             case 3.5:
-                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 30
+                headerCategoryHeight = 30
             case 4:
-                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 30
+                headerCategoryHeight = 30
             case 4.7:
-                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 32
+                headerCategoryHeight = 32
             case 5.5:
-                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 32
+                headerCategoryHeight = 32
             default:
                 break
             }
+            self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
+            self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 0
         }
         else
         {
