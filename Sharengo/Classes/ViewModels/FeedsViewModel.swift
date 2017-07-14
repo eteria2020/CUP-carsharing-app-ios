@@ -56,9 +56,18 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
                 if let feed = self.model(atIndex: indexPath) as? Feed {
                     // TODO: aprire il dettaglio
                 } else if let category = self.model(atIndex: indexPath) as? Category {
-                    let feedsViewModel = ViewModelFactory.feeds()
-                    (feedsViewModel as! FeedsViewModel).category = category
-                    return .just(.viewModel(feedsViewModel))
+                    if category.published
+                    {
+                        let feedsViewModel = ViewModelFactory.feeds()
+                        (feedsViewModel as! FeedsViewModel).category = category
+                        return .just(.viewModel(feedsViewModel))
+                    }
+
+                    let dialog = ZAlertView(title: nil, message: "alert_categoryNotPublished".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
                 }
                 return .just(.empty)
             case .aroundMe:

@@ -193,3 +193,4 @@
 "btn_feedsAroundMe" = "INTORNO A ME";
 "lbl_feedsItemBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>";
 "lbl_feedsItemExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>";
+"alert_categoryNotPublished" = "Questa categoria sarà disponibile prossimamente.";
