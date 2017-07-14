@@ -38,9 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         */
         
-        // TODO: recuperare le città?
-        // TODO: che succede se le città non vengono scaricate neanche una volta?
-        
         return true
     }
 
