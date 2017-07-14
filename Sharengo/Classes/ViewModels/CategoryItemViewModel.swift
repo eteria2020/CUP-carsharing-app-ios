@@ -16,11 +16,13 @@ final class CategoryItemViewModel : ItemViewModelType {
     var title: String?
     var icon: String?
     var published: Bool
+    var color: UIColor
     
     init(model: Category) {
         self.model = model
         self.title = model.title
         self.icon = model.icon
         self.published = model.published
+        self.color = UIColor(hexString: model.color)
     }
 }

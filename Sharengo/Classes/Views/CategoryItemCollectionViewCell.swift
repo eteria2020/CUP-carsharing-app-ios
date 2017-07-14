@@ -34,13 +34,11 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         
         if viewModel.published
         {
-            // TODO: quale colore usiamo di sfondo?
-            self.view_icon.backgroundColor = Color.categoriesItemIconBackground.value
+            self.view_icon.backgroundColor = viewModel.color // Color.categoriesItemIconBackground.value
             self.lbl_title.bonMotStyle?.color = Color.categoriesItemTitle.value
         }
         else
         {
-            // TODO: controllare che lo sfondo grigio non arrivi dal web
             self.view_icon.backgroundColor = Color.categoriesItemIconBackgroundDisabled.value
             self.lbl_title.bonMotStyle?.color = Color.categoriesItemTitleDisabled.value
         }

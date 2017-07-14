@@ -11,6 +11,7 @@ import Boomerang
 import RxSwift
 import Action
 import RxCocoa
+import BonMot
 
 class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var view_containerBackgroundImage: UIView!
@@ -46,9 +47,17 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             self.view_containerClaim.isHidden = true
         }
         
-        self.lbl_bottom.bonMotStyleName = "feedsItemBottom"
-        self.lbl_bottom.styledText = viewModel.bottomText
-        self.img_icon.image = viewModel.icon ?? UIImage()
+        if let icon = viewModel.icon,
+            let url = URL(string: icon)
+        {
+            do {
+                let data = try Data(contentsOf: url)
+                if let image = UIImage(data: data) {
+                    self.img_icon.image = image.tinted(Color.feedsItemIconBorderBackground.value)
+                }
+            } catch {
+            }
+        }
         
         if let image = viewModel.image,
             let url = URL(string: image)
@@ -64,6 +73,15 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         
         self.view_overlayBackgroundImage.backgroundColor = viewModel.color.withAlphaComponent(0.5)
 
+        let titleStyle = StringStyle(.font(Font.feedsItemTitle.value), .color(viewModel.color), .alignment(.left))
+        let dateStyle = StringStyle(.font(Font.feedsItemDate.value), .color(Color.feedsItemDate.value), .alignment(.left))
+        let subtitleStyle = StringStyle(.font(Font.feedsItemSubtitle.value), .color(Color.feedsItemSubtitle.value), .alignment(.left))
+        let descriptionStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.left))
+        let advantageStyle = StringStyle(.font(Font.feedsItemAdvantage.value), .color(viewModel.advantageColor), .alignment(.left))
+    
+        self.lbl_bottom.bonMotStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle), .style("advantage", advantageStyle)]))
+        self.lbl_bottom.styledText = viewModel.bottomText
+        
         self.view_icon.backgroundColor = viewModel.color
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true

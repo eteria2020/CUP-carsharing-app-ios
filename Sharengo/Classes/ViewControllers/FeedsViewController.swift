@@ -118,7 +118,6 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                                     self.viewModel?.categories = categories
                                     self.errorCategories = false
                                     self.checkData()
-                                    // TODO: che succede se le categorie sono 0?
                                 }
                             }
                         case .error(_):
@@ -179,6 +178,11 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
                 self.hideLoader()
+                
+                if self.viewModel?.category == nil
+                {
+                    self.btn_aroundMe.isHidden = false
+                }
             }
         } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {
             var message = "alert_generalError".localized()
@@ -201,13 +205,13 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         // Views
-        self.view.backgroundColor = Color.categoriesBackground.value
+        self.view.backgroundColor = ColorBrand.white.value
+        self.btn_aroundMe.isHidden = true
         
         if self.viewModel?.category != nil
         {
             self.view_headerCategory.isHidden = false
             self.view_header.isHidden = true
-            self.btn_aroundMe.isHidden = true
             self.lbl_titleCategory.styledText = self.viewModel?.category?.title.uppercased()
             self.view_headerCategory.backgroundColor = Color.feedsHeaderCategoryBackground.value
             var headerCategoryHeight: Int = 0
@@ -231,7 +235,6 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         {
             self.view_headerCategory.isHidden = true
             self.view_header.isHidden = false
-            self.btn_aroundMe.isHidden = false
             self.view_header.backgroundColor = Color.feedsHeaderBackground.value
             switch Device().diagonal {
             case 3.5:
@@ -269,6 +272,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         self.updateHeaderButtonsInterface()
         self.btn_feed.rx.tap.asObservable()
             .subscribe(onNext:{
+                self.view.backgroundColor = ColorBrand.white.value
                 self.viewModel?.sectionSelected = .feed
                 self.updateHeaderButtonsInterface()
                 self.viewModel?.updateListDataHolder()
@@ -277,6 +281,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             }).addDisposableTo(disposeBag)
         self.btn_categories.rx.tap.asObservable()
             .subscribe(onNext:{
+                self.view.backgroundColor = Color.categoriesBackground.value
                 self.viewModel?.sectionSelected = .categories
                 self.updateHeaderButtonsInterface()
                 self.viewModel?.updateListDataHolder()

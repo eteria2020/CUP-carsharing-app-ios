@@ -16,25 +16,32 @@ final class FeedItemViewModel : ItemViewModelType {
     var date: String?
     var claim: String?
     var bottomText: String?
-    var icon: UIImage?
+    var icon: String?
     var color: UIColor
+    var advantageColor: UIColor
     var image: String?
     
     init(model: Feed) {
         self.model = model
         
-        if model.advantage != nil
+        if model.advantage != nil && model.advantage?.isEmpty == false
         {
-            self.bottomText = String(format: "lbl_feedsItemExtendedBottom".localized(), model.title.uppercased(), model.date, model.subtitle, model.description, model.advantage!)
+            self.bottomText = String(format: "lbl_feedsItemExtendedBottom".localized(), model.categoryTitle.uppercased(), model.date, model.title, model.subtitle, model.advantage!)
         }
         else
         {
-            self.bottomText = String(format: "lbl_feedsItemBottom".localized(), model.title.uppercased(), model.date, model.subtitle, model.description)
+            self.bottomText = String(format: "lbl_feedsItemBottom".localized(), model.categoryTitle.uppercased(), model.date, model.title, model.subtitle)
         }
         
         self.claim = model.claim
-        self.icon = UIImage(named: model.icon)
+        self.icon = model.icon
         self.color = UIColor(hexString: model.color)
         self.image = model.image
+        
+        if model.forceColor {
+            advantageColor = UIColor(hexString: model.color)
+        } else {
+            advantageColor = UIColor(hexString: "#888888")
+        }
     }
 }

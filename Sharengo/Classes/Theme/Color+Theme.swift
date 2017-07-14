@@ -480,7 +480,7 @@ enum Color {
             case .feedsItemTitle:
                 return ColorBrand.black.value
             case .feedsItemDate:
-                return ColorBrand.black.value
+                return UIColor(hexString: "#888888")
             case .feedsItemSubtitle:
                 return ColorBrand.black.value
             case .feedsItemDescription:
