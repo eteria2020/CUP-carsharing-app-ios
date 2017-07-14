@@ -85,8 +85,13 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                     switch event {
                     case .next(let response):
                         if response.status_bool == true, let data = response.array_data {
-                            self.errorOffers = false
-                            self.checkData()
+                            if let feeds = [Feed].from(jsonArray: data) {
+                                let oldFeeds = self.viewModel?.feeds
+                                self.viewModel?.feeds = feeds
+                                self.viewModel?.feeds.append(contentsOf: oldFeeds ?? [])
+                                self.errorOffers = false
+                                self.checkData()
+                            }
                         }
                     case .error(_):
                         self.errorOffers = true
@@ -101,8 +106,11 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                     switch event {
                     case .next(let response):
                         if response.status_bool == true, let data = response.array_data {
-                            self.errorEvents = false
-                            self.checkData()
+                            if let feeds = [Feed].from(jsonArray: data) {
+                                self.viewModel?.feeds.append(contentsOf: feeds)
+                                self.errorEvents = false
+                                self.checkData()
+                            }
                         }
                     case .error(_):
                         self.errorEvents = true
@@ -117,6 +125,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     func checkData() {
         if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
             DispatchQueue.main.async {
+                self.viewModel?.updateListDataHolder()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
                 self.hideLoader()

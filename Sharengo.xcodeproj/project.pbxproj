@@ -847,9 +847,9 @@
 				036D92181F0258540076D22D /* Setting.swift */,
 				036D922F1F028EF30076D22D /* Language.swift */,
 				037BDFC01F03949A00C95962 /* City.swift */,
-				4DFD982F1ED45CCE00880EA1 /* Annotations */,
-				037689FB1F160C7A00523BAA /* Feed.swift */,
 				038641FF1F1762FF003AF6B1 /* Category.swift */,
+				037689FB1F160C7A00523BAA /* Feed.swift */,
+				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
 			sourceTree = "<group>";
