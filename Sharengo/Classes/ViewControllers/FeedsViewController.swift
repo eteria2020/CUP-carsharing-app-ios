@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
+import ReachabilitySwift
 
 class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -28,6 +29,9 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     
     fileprivate let publishersApiController: PublishersAPIController = PublishersAPIController()
     var viewModel: FeedsViewModel?
+    var errorCategories: Bool?
+    var errorOffers: Bool?
+    var errorEvents: Bool?
     
     // MARK: - ViewModel methods
     
@@ -63,18 +67,14 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         if response.status_bool == true, let data = response.array_data {
                             if let categories = [Category].from(jsonArray: data) {
                                 self.viewModel?.categories = categories
-                                DispatchQueue.main.async {
-//                                    self.viewModel?.updateData(carTrips: self.allCarTrips)
-//                                    self.viewModel?.reload()
-//                                    self.collectionView?.reloadData()
-                                    self.hideLoader()
-                                }
-//                                return
+                                self.errorCategories = false
+                                self.checkData()
+                                // TODO: che succede se le categorie sono 0?
                             }
                         }
                     case .error(_):
-                        // TODO: gestire errore
-                        break
+                        self.errorCategories = true
+                        self.checkData()
                     default:
                         break
                     }
@@ -84,21 +84,13 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 .subscribe { event in
                     switch event {
                     case .next(let response):
-                        if response.status == 200, let data = response.array_data {
-//                            if let carTrips = [CarTrip].from(jsonArray: data) {
-//                                self.allCarTrips = carTrips
-//                                DispatchQueue.main.async {
-//                                    self.viewModel?.updateData(carTrips: self.allCarTrips)
-//                                    self.viewModel?.reload()
-//                                    self.collectionView?.reloadData()
-//                                    self.hideLoader()
-//                                }
-//                                return
-//                            }
+                        if response.status_bool == true, let data = response.array_data {
+                            self.errorOffers = false
+                            self.checkData()
                         }
                     case .error(_):
-                        // TODO: gestire errore
-                        break
+                        self.errorOffers = true
+                        self.checkData()
                     default:
                         break
                     }
@@ -108,25 +100,39 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 .subscribe { event in
                     switch event {
                     case .next(let response):
-                        if response.status == 200, let data = response.array_data {
-//                            if let carTrips = [CarTrip].from(jsonArray: data) {
-//                                self.allCarTrips = carTrips
-//                                DispatchQueue.main.async {
-//                                    self.viewModel?.updateData(carTrips: self.allCarTrips)
-//                                    self.viewModel?.reload()
-//                                    self.collectionView?.reloadData()
-//                                    self.hideLoader()
-//                                }
-//                                return
-//                            }
+                        if response.status_bool == true, let data = response.array_data {
+                            self.errorEvents = false
+                            self.checkData()
                         }
                     case .error(_):
-                        // TODO: gestire errore
-                        break
+                        self.errorEvents = true
+                        self.checkData()
                     default:
                         break
                     }
                 }.addDisposableTo(self.disposeBag)
+        }
+    }
+    
+    func checkData() {
+        if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
+            DispatchQueue.main.async {
+                self.viewModel?.reload()
+                self.collectionView?.reloadData()
+                self.hideLoader()
+            }
+        } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {
+            var message = "alert_generalError".localized()
+            if Reachability()?.isReachable == false {
+                message = "alert_connectionError".localized()
+            }
+            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                alertView.dismissAlertView()
+                Router.back(self)
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+            self.hideLoader()
         }
     }
     

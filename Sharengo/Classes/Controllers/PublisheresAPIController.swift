@@ -57,7 +57,7 @@ final class PublishersAPIController {
     
     func getCategories() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -84,7 +84,7 @@ final class PublishersAPIController {
     
     func getOffers() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
