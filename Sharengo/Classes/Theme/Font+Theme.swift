@@ -141,6 +141,9 @@ enum Font {
     // Categories
     case categoriesItemTitle
 
+    // Feed Detail
+    case feedDetailHeader
+    
     var value: UIFont {
         get {
             switch self {
@@ -294,6 +297,9 @@ enum Font {
             // Categories
             case .categoriesItemTitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Feed Detail
+            case .feedDetailHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
         }
     }

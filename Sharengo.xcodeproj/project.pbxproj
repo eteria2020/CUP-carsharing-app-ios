@@ -59,6 +59,8 @@
 		038641FE1F17629D003AF6B1 /* CategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */; };
 		038642001F1762FF003AF6B1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FF1F1762FF003AF6B1 /* Category.swift */; };
 		038642021F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */; };
+		039A36E21F18A9FA0068A026 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */; };
+		039A36E51F18AA220068A026 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -244,6 +246,8 @@
 		038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryItemViewModel.swift; path = Classes/ViewModels/CategoryItemViewModel.swift; sourceTree = "<group>"; };
 		038641FF1F1762FF003AF6B1 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Classes/Model/Category.swift; sourceTree = "<group>"; };
 		038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryItemCollectionViewCell.xib; path = Resources/Xibs/CategoryItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewController.swift; path = Classes/ViewControllers/FeedDetailViewController.swift; sourceTree = "<group>"; };
+		039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewModel.swift; path = Classes/ViewModels/FeedDetailViewModel.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -467,6 +471,7 @@
 				038641FB1F17628E003AF6B1 /* CategoryItemCollectionViewCell.swift */,
 				038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */,
 				038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */,
+				039A36E31F18AA080068A026 /* Feed Detail */,
 			);
 			name = Feeds;
 			sourceTree = "<group>";
@@ -497,6 +502,15 @@
 				4D43DDE51F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib */,
 			);
 			name = Favourites;
+			sourceTree = "<group>";
+		};
+		039A36E31F18AA080068A026 /* Feed Detail */ = {
+			isa = PBXGroup;
+			children = (
+				039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */,
+				039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */,
+			);
+			name = "Feed Detail";
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -1306,6 +1320,7 @@
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,
 				4D45BB2B1EE698A9004C7287 /* CarBookingPopupViewModel.swift in Sources */,
 				03A86FA81EF9726D009C72F4 /* MenuItem.swift in Sources */,
+				039A36E21F18A9FA0068A026 /* FeedDetailViewController.swift in Sources */,
 				4DA554461EE55284001627E7 /* FBAnnotationCluster.swift in Sources */,
 				03AF5D761EEE83FC00AC8826 /* UIViewExtensions.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
@@ -1316,6 +1331,7 @@
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
 				036D92301F028EF30076D22D /* Language.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
+				039A36E51F18AA220068A026 /* FeedDetailViewModel.swift in Sources */,
 				4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */,
 				03A86FA41EF97171009C72F4 /* MenuItemCollectionViewCell.swift in Sources */,
 				4DC10DFF1EE9AA3300A74E26 /* LoadingViewController.swift in Sources */,

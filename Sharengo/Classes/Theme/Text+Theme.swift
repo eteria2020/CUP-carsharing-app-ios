@@ -107,6 +107,9 @@ enum TextStyle: String, TextStyleType {
     
     // Categories
     case categoriesItemTitle = "categoriesItemTitle"
+    
+    // Feed Detail
+    case feedDetailHeader = "feedDetailHeader"
 
     static var all:[TextStyle] {
         return [
@@ -178,7 +181,9 @@ enum TextStyle: String, TextStyleType {
             .feedsItemBottom,
             .feedsAroundMe,
             // Categories
-            .categoriesItemTitle
+            .categoriesItemTitle,
+            // Feed Detail
+            .feedDetailHeader
         ]
     }
     
@@ -324,6 +329,9 @@ enum TextStyle: String, TextStyleType {
             // Categories
             case .categoriesItemTitle:
                 return StringStyle(.font(Font.categoriesItemTitle.value), .color(Color.categoriesItemTitle.value), .alignment(.center))
+            // Feed Detail
+            case .feedDetailHeader:
+                return StringStyle(.font(Font.feedDetailHeader.value), .color(Color.feedDetailHeaderLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

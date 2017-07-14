@@ -148,4 +148,8 @@ struct ViewModelFactory {
     static func categoryItem(fromModel model:Category) -> ItemViewModelType {
         return CategoryItemViewModel(model: model)
     }
+    
+    static func feedDetail() -> ViewModelType {
+        return FeedDetailViewModel()
+    }
 }
