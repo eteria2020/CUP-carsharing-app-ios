@@ -101,6 +101,7 @@ enum TextStyle: String, TextStyleType {
     case onBoardSkip = "onBoardSkip"
     
     // Feeds
+    case feedsHeaderCategory = "feedsHeaderCategory"
     case feedsHeader = "feedsHeader"
     case feedsItemBottom = "feedsItemBottom"
     case feedsAroundMe = "feedsAroundMe"
@@ -177,6 +178,7 @@ enum TextStyle: String, TextStyleType {
             .onBoardDescription,
             .onBoardSkip,
             // Feeds
+            .feedsHeaderCategory,
             .feedsHeader,
             .feedsItemBottom,
             .feedsAroundMe,
@@ -315,6 +317,8 @@ enum TextStyle: String, TextStyleType {
             case .onBoardSkip:
                 return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
             // Feeds
+            case .feedsHeaderCategory:
+                return StringStyle(.font(Font.feedsHeaderCategory.value), .color(Color.feedsHeaderCategoryLabel.value), .alignment(.center))
             case .feedsHeader:
                 return StringStyle(.font(Font.feedsHeader.value), .color(Color.onBoardDescription.value), .alignment(.center))
             case .feedsItemBottom:

@@ -131,6 +131,7 @@ enum Font {
     
     // Feeds
     case feedsHeader
+    case feedsHeaderCategory
     case feedsItemTitle
     case feedsItemDate
     case feedsItemSubtitle
@@ -280,6 +281,8 @@ enum Font {
             case .onBoardSkipButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // Feeds
+            case .feedsHeaderCategory:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .feedsHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .feedsItemTitle:

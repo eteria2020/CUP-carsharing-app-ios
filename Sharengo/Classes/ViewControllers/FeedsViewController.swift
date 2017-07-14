@@ -16,6 +16,9 @@ import ReachabilitySwift
 
 class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
+    @IBOutlet fileprivate weak var view_headerCategory: UIView!
+    @IBOutlet fileprivate weak var lbl_titleCategory: UILabel!
+    @IBOutlet fileprivate weak var btn_backCategory: UIButton!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var btn_feed: UIButton!
     @IBOutlet fileprivate weak var view_bottomFeedButton: UIView!

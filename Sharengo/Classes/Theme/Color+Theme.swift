@@ -203,6 +203,8 @@ enum Color {
     case onBoardPageControlFilled
 
     // Feeds
+    case feedsHeaderCategoryBackground
+    case feedsHeaderCategoryLabel
     case feedsHeaderBackground
     case feedsHeaderLabelOn
     case feedsHeaderLabelOff
@@ -454,6 +456,10 @@ enum Color {
             case .onBoardPageControlFilled:
                 return ColorBrand.green.value
             // Feeds
+            case .feedsHeaderCategoryBackground:
+                return ColorBrand.black.value
+            case .feedsHeaderCategoryLabel:
+                return ColorBrand.white.value
             case .feedsHeaderBackground:
                 return ColorBrand.black.value
             case .feedsHeaderLabelOn:

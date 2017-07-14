@@ -268,7 +268,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2208,6 +2208,38 @@
                                     <constraint firstAttribute="height" constant="56" id="ZFh-U4-nTl"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-Ga-i0W">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEv-di-4sm">
+                                        <rect key="frame" x="15" y="5" width="12" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="xEv-di-4sm" secondAttribute="height" multiplier="1:1" id="pYi-aB-aPs"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_left"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyC-X6-9SR">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="feedsHeaderCategory"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XyC-X6-9SR" secondAttribute="trailing" constant="15" id="8zq-tM-Rat"/>
+                                    <constraint firstAttribute="bottom" secondItem="xEv-di-4sm" secondAttribute="bottom" constant="5" id="EVS-YT-yE5"/>
+                                    <constraint firstItem="xEv-di-4sm" firstAttribute="top" secondItem="P4e-Ga-i0W" secondAttribute="top" constant="5" id="Eq2-7s-q3R"/>
+                                    <constraint firstItem="XyC-X6-9SR" firstAttribute="leading" secondItem="P4e-Ga-i0W" secondAttribute="leading" constant="15" id="Ix6-Z9-cag"/>
+                                    <constraint firstAttribute="bottom" secondItem="XyC-X6-9SR" secondAttribute="bottom" constant="5" id="hIL-DW-5CJ"/>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="ueL-NU-dgV"/>
+                                    <constraint firstItem="XyC-X6-9SR" firstAttribute="top" secondItem="P4e-Ga-i0W" secondAttribute="top" constant="5" id="xNh-5q-wJp"/>
+                                    <constraint firstItem="xEv-di-4sm" firstAttribute="leading" secondItem="P4e-Ga-i0W" secondAttribute="leading" constant="15" id="yLJ-4H-gn9"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWI-Jh-c9W">
                                 <rect key="frame" x="0.0" y="56" width="375" height="50"/>
                                 <subviews>
@@ -2283,6 +2315,7 @@
                             <constraint firstItem="1rC-z7-aaW" firstAttribute="top" secondItem="cxq-HF-3Vt" secondAttribute="bottom" id="4hP-UC-RFI"/>
                             <constraint firstItem="hqt-3X-rNa" firstAttribute="top" secondItem="zxy-FR-6uF" secondAttribute="top" id="53r-hs-lJk"/>
                             <constraint firstItem="cxq-HF-3Vt" firstAttribute="top" secondItem="gWI-Jh-c9W" secondAttribute="bottom" id="5Oh-Ww-QHZ"/>
+                            <constraint firstItem="P4e-Ga-i0W" firstAttribute="leading" secondItem="zxy-FR-6uF" secondAttribute="leading" id="5nY-2T-edt"/>
                             <constraint firstItem="hqt-3X-rNa" firstAttribute="leading" secondItem="zxy-FR-6uF" secondAttribute="leading" id="6tf-l1-ZDW"/>
                             <constraint firstItem="1rC-z7-aaW" firstAttribute="leading" secondItem="zxy-FR-6uF" secondAttribute="leading" id="H3F-Jf-BsQ"/>
                             <constraint firstAttribute="trailing" secondItem="hqt-3X-rNa" secondAttribute="trailing" id="L0i-wK-U0e"/>
@@ -2291,19 +2324,24 @@
                             <constraint firstItem="gWI-Jh-c9W" firstAttribute="top" secondItem="hqt-3X-rNa" secondAttribute="bottom" id="UsX-xl-tRS"/>
                             <constraint firstAttribute="trailing" secondItem="gWI-Jh-c9W" secondAttribute="trailing" id="Yva-Lz-KNe"/>
                             <constraint firstAttribute="trailing" secondItem="1rC-z7-aaW" secondAttribute="trailing" id="ZfU-21-65O"/>
+                            <constraint firstAttribute="trailing" secondItem="P4e-Ga-i0W" secondAttribute="trailing" id="q6e-4h-wgC"/>
                             <constraint firstItem="XgV-uU-fP3" firstAttribute="top" secondItem="1rC-z7-aaW" secondAttribute="bottom" id="wnc-lx-cMv"/>
+                            <constraint firstItem="P4e-Ga-i0W" firstAttribute="top" secondItem="hqt-3X-rNa" secondAttribute="bottom" id="xkN-CE-9DJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AbO-9T-xbQ"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="btn_aroundMe" destination="1rC-z7-aaW" id="hUP-fc-J8S"/>
+                        <outlet property="btn_backCategory" destination="xEv-di-4sm" id="4ZW-AV-3od"/>
                         <outlet property="btn_categories" destination="5Bu-V4-IFN" id="m9j-X6-2pY"/>
                         <outlet property="btn_feed" destination="JTg-fA-S3W" id="E6N-NF-PNg"/>
                         <outlet property="collectionView" destination="cxq-HF-3Vt" id="sK0-FF-1Kn"/>
+                        <outlet property="lbl_titleCategory" destination="XyC-X6-9SR" id="n6a-1h-rk4"/>
                         <outlet property="view_bottomCategoriesButton" destination="wES-nY-Hbh" id="wra-1n-Hwk"/>
                         <outlet property="view_bottomFeedButton" destination="W4V-2p-drk" id="Kcv-8V-yNm"/>
                         <outlet property="view_header" destination="gWI-Jh-c9W" id="kem-GJ-UCb"/>
+                        <outlet property="view_headerCategory" destination="P4e-Ga-i0W" id="Ggs-6M-GpI"/>
                         <outlet property="view_navigationBar" destination="hqt-3X-rNa" id="Gok-KT-Dxm"/>
                     </connections>
                 </viewController>

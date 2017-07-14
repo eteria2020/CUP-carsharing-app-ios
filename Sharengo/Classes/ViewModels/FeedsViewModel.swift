@@ -31,6 +31,7 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
     var dataHolder: ListDataHolderType = ListDataHolder.empty
     var feeds = [Feed]()
     var categories = [Category]()
+    var category: Category?
     var sectionSelected = FeedSections.feed
     fileprivate var resultsDispose: DisposeBag?
     
@@ -63,7 +64,14 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
     func updateListDataHolder() {
         switch sectionSelected {
         case .feed:
-            self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
+            if self.category != nil
+            {
+                self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
+            }
+            else
+            {
+                self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())
+            }
         case .categories:
             self.dataHolder = ListDataHolder(data:Observable.just(categories).structured())
         }
