@@ -501,7 +501,7 @@ enum Color {
             case .categoriesItemTitleDisabled:
                 return UIColor(hexString: "#a8a39f")
             case .categoriesItemIconBackgroundDisabled:
-                return ColorBrand.lightGray.value
+                return UIColor(hexString: "#c1bab4")
             // Feed Detail
             case .feedDetailHeaderBackground:
                 return ColorBrand.black.value

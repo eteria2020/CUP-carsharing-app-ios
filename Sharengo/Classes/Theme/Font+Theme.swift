@@ -299,7 +299,7 @@ enum Font {
             case .feedsAroundMeButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .feedsClaim:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // Categories
             case .categoriesItemTitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))

@@ -52,8 +52,8 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_claim" translatesAutoresizingMaskIntoConstraints="NO" id="ssL-Ic-Tpf">
                                         <rect key="frame" x="0.0" y="0.0" width="172.5" height="216.5"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-Zp-qMu">
-                                        <rect key="frame" x="15" y="5" width="152.5" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-Zp-qMu">
+                                        <rect key="frame" x="30" y="10" width="132.5" height="41"/>
                                         <string key="text">Buoni
 Corsa!</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -66,12 +66,12 @@ Corsa!</string>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="FbW-Zp-qMu" firstAttribute="top" secondItem="0JT-at-Hlv" secondAttribute="top" constant="5" id="8Ik-u5-wW1"/>
+                                    <constraint firstItem="FbW-Zp-qMu" firstAttribute="top" secondItem="0JT-at-Hlv" secondAttribute="top" constant="10" id="8Ik-u5-wW1"/>
                                     <constraint firstAttribute="trailing" secondItem="ssL-Ic-Tpf" secondAttribute="trailing" id="9QK-Vg-ZqP"/>
-                                    <constraint firstItem="FbW-Zp-qMu" firstAttribute="leading" secondItem="0JT-at-Hlv" secondAttribute="leading" constant="15" id="AHi-zN-pX8"/>
+                                    <constraint firstItem="FbW-Zp-qMu" firstAttribute="leading" secondItem="0JT-at-Hlv" secondAttribute="leading" constant="30" id="AHi-zN-pX8"/>
                                     <constraint firstItem="ssL-Ic-Tpf" firstAttribute="leading" secondItem="0JT-at-Hlv" secondAttribute="leading" id="FWr-Pi-1mk"/>
                                     <constraint firstItem="ssL-Ic-Tpf" firstAttribute="top" secondItem="0JT-at-Hlv" secondAttribute="top" id="axL-S3-DiB"/>
-                                    <constraint firstAttribute="trailing" secondItem="FbW-Zp-qMu" secondAttribute="trailing" constant="5" id="mjZ-rP-RID"/>
+                                    <constraint firstAttribute="trailing" secondItem="FbW-Zp-qMu" secondAttribute="trailing" constant="10" id="mjZ-rP-RID"/>
                                     <constraint firstAttribute="bottom" secondItem="ssL-Ic-Tpf" secondAttribute="bottom" id="o5h-gt-XXR"/>
                                     <constraint firstAttribute="width" secondItem="0JT-at-Hlv" secondAttribute="height" multiplier="90:113" id="xQX-om-06Y"/>
                                 </constraints>

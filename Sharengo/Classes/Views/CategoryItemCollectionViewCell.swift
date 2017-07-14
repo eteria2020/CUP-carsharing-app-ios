@@ -34,17 +34,15 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         
         if viewModel.published
         {
+            // TODO: quale colore usiamo di sfondo?
             self.view_icon.backgroundColor = Color.categoriesItemIconBackground.value
             self.lbl_title.bonMotStyle?.color = Color.categoriesItemTitle.value
-            // TODO: quale colore usiamo di sfondo?
-            self.backgroundView?.backgroundColor = Color.categoriesBackground.value
         }
         else
         {
+            // TODO: controllare che lo sfondo grigio non arrivi dal web
             self.view_icon.backgroundColor = Color.categoriesItemIconBackgroundDisabled.value
             self.lbl_title.bonMotStyle?.color = Color.categoriesItemTitleDisabled.value
-            // TODO: controllare che lo sfondo grigio non arrivi dal web
-            self.backgroundView?.backgroundColor = UIColor(hexString: "#c1bab4")
         }
         
         self.backgroundColor = Color.categoriesBackground.value
@@ -66,9 +64,9 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
                 if let image = UIImage(data: data) {
                     // TODO: caricare la gif
                     if viewModel.published {
-                        self.img_icon.image = image//.tinted(ColorBrand.white.value)
+                        self.img_icon.image = image.tinted(ColorBrand.white.value)
                     } else {
-                        self.img_icon.image = image//.tinted(UIColor(hexString: "#aca59d"))
+                        self.img_icon.image = image.tinted(UIColor(hexString: "#aca59d"))
                     }
                 }
             } catch {
