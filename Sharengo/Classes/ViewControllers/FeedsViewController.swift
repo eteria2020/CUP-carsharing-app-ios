@@ -62,66 +62,73 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         self.showLoader()
         let dispatchTime = DispatchTime.now() + 0.1
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.publishersApiController.getCategories()
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status_bool == true, let data = response.array_data {
-                            if let categories = [Category].from(jsonArray: data) {
-                                self.viewModel?.categories = categories
-                                self.errorCategories = false
-                                self.checkData()
-                                // TODO: che succede se le categorie sono 0?
+            if viewModel.category != nil
+            {
+                // TODO: caricare eventi ed offerte solo della categoria
+            }
+            else
+            {
+                self.publishersApiController.getCategories()
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status_bool == true, let data = response.array_data {
+                                if let categories = [Category].from(jsonArray: data) {
+                                    self.viewModel?.categories = categories
+                                    self.errorCategories = false
+                                    self.checkData()
+                                    // TODO: che succede se le categorie sono 0?
+                                }
                             }
+                        case .error(_):
+                            self.errorCategories = true
+                            self.checkData()
+                        default:
+                            break
                         }
-                    case .error(_):
-                        self.errorCategories = true
-                        self.checkData()
-                    default:
-                        break
-                    }
-                }.addDisposableTo(self.disposeBag)
-            self.publishersApiController.getOffers()
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status_bool == true, let data = response.array_data {
-                            if let feeds = [Feed].from(jsonArray: data) {
-                                let oldFeeds = self.viewModel?.feeds
-                                self.viewModel?.feeds = feeds
-                                self.viewModel?.feeds.append(contentsOf: oldFeeds ?? [])
-                                self.errorOffers = false
-                                self.checkData()
+                    }.addDisposableTo(self.disposeBag)
+                self.publishersApiController.getOffers()
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status_bool == true, let data = response.array_data {
+                                if let feeds = [Feed].from(jsonArray: data) {
+                                    let oldFeeds = self.viewModel?.feeds
+                                    self.viewModel?.feeds = feeds
+                                    self.viewModel?.feeds.append(contentsOf: oldFeeds ?? [])
+                                    self.errorOffers = false
+                                    self.checkData()
+                                }
                             }
+                        case .error(_):
+                            self.errorOffers = true
+                            self.checkData()
+                        default:
+                            break
                         }
-                    case .error(_):
-                        self.errorOffers = true
-                        self.checkData()
-                    default:
-                        break
-                    }
-                }.addDisposableTo(self.disposeBag)
-            self.publishersApiController.getEvents()
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status_bool == true, let data = response.array_data {
-                            if let feeds = [Feed].from(jsonArray: data) {
-                                self.viewModel?.feeds.append(contentsOf: feeds)
-                                self.errorEvents = false
-                                self.checkData()
+                    }.addDisposableTo(self.disposeBag)
+                self.publishersApiController.getEvents()
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status_bool == true, let data = response.array_data {
+                                if let feeds = [Feed].from(jsonArray: data) {
+                                    self.viewModel?.feeds.append(contentsOf: feeds)
+                                    self.errorEvents = false
+                                    self.checkData()
+                                }
                             }
+                        case .error(_):
+                            self.errorEvents = true
+                            self.checkData()
+                        default:
+                            break
                         }
-                    case .error(_):
-                        self.errorEvents = true
-                        self.checkData()
-                    default:
-                        break
-                    }
-                }.addDisposableTo(self.disposeBag)
+                    }.addDisposableTo(self.disposeBag)
+            }
         }
     }
     
@@ -154,23 +161,50 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         // Views
-        self.view_header.backgroundColor = Color.feedsHeaderBackground.value
         self.view.backgroundColor = Color.categoriesBackground.value
-        switch Device().diagonal {
-        case 3.5:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 43
-            self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
-        case 4:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 46
-            self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
-        case 4.7:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
-            self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        case 5.5:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
-            self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        default:
-            break
+        
+        if self.viewModel?.category != nil
+        {
+            self.view_headerCategory.isHidden = false
+            self.view_header.isHidden = true
+            self.btn_aroundMe.isHidden = true
+            self.lbl_titleCategory.styledText = self.viewModel?.category?.title
+            self.view_headerCategory.backgroundColor = Color.feedsHeaderCategoryBackground.value
+            switch Device().diagonal {
+            case 3.5:
+                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 30
+            case 4:
+                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 30
+            case 4.7:
+                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 32
+            case 5.5:
+                self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = 32
+            default:
+                break
+            }
+        }
+        else
+        {
+            self.view_headerCategory.isHidden = true
+            self.view_header.isHidden = false
+            self.btn_aroundMe.isHidden = false
+            self.view_header.backgroundColor = Color.feedsHeaderBackground.value
+            switch Device().diagonal {
+            case 3.5:
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 43
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
+            case 4:
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 46
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
+            case 4.7:
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            case 5.5:
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            default:
+                break
+            }
         }
         
         // NavigationBar
@@ -206,6 +240,14 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 self.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
         self.btn_aroundMe.style(.squaredButton(Color.feedsAroundMeButtonBackground.value), title: "btn_feedsAroundMe".localized())
+        self.btn_backCategory.setImage(self.btn_backCategory.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+        self.btn_backCategory.rx.tap.asObservable()
+            .subscribe(onNext:{
+                Router.back(self)
+            }).addDisposableTo(disposeBag)
+        
+        // Labels
+        self.lbl_titleCategory.textColor = Color.feedsHeaderCategoryLabel.value
     }
     
     override func viewWillAppear(_ animated: Bool) {
