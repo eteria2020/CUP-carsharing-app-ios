@@ -2251,7 +2251,7 @@
                                     <constraint firstItem="xEv-di-4sm" firstAttribute="top" secondItem="P4e-Ga-i0W" secondAttribute="top" constant="5" id="Eq2-7s-q3R"/>
                                     <constraint firstItem="XyC-X6-9SR" firstAttribute="leading" secondItem="P4e-Ga-i0W" secondAttribute="leading" constant="15" id="Ix6-Z9-cag"/>
                                     <constraint firstAttribute="bottom" secondItem="XyC-X6-9SR" secondAttribute="bottom" constant="5" id="hIL-DW-5CJ"/>
-                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="ueL-NU-dgV"/>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeightCategory" id="ueL-NU-dgV"/>
                                     <constraint firstItem="XyC-X6-9SR" firstAttribute="top" secondItem="P4e-Ga-i0W" secondAttribute="top" constant="5" id="xNh-5q-wJp"/>
                                     <constraint firstItem="xEv-di-4sm" firstAttribute="leading" secondItem="P4e-Ga-i0W" secondAttribute="leading" constant="15" id="yLJ-4H-gn9"/>
                                 </constraints>
