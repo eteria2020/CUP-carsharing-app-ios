@@ -112,6 +112,9 @@ enum TextStyle: String, TextStyleType {
     
     // Feed Detail
     case feedDetailHeader = "feedDetailHeader"
+    case feedClaim = "feedClaim"
+    case feedBottom = "feedBottom"
+    case feedFavourite = "feedFavourite"
 
     static var all:[TextStyle] {
         return [
@@ -187,7 +190,10 @@ enum TextStyle: String, TextStyleType {
             // Categories
             .categoriesItemTitle,
             // Feed Detail
-            .feedDetailHeader
+            .feedDetailHeader,
+            .feedClaim,
+            .feedBottom,
+            .feedFavourite
         ]
     }
     
@@ -340,6 +346,18 @@ enum TextStyle: String, TextStyleType {
             // Feed Detail
             case .feedDetailHeader:
                 return StringStyle(.font(Font.feedDetailHeader.value), .color(Color.feedDetailHeaderLabel.value), .alignment(.center))
+            case .feedClaim:
+                return StringStyle(.font(Font.feedClaim.value), .color(Color.feedClaim.value), .alignment(.right))
+            case .feedBottom:
+                let titleStyle = StringStyle(.font(Font.feedTitle.value), .color(Color.feedTitle.value), .alignment(.left))
+                let dateStyle = StringStyle(.font(Font.feedDate.value), .color(Color.feedDate.value), .alignment(.left))
+                let subtitleStyle = StringStyle(.font(Font.feedSubtitle.value), .color(Color.feedSubtitle.value), .alignment(.left))
+                let descriptionStyle = StringStyle(.font(Font.feedDescription.value), .color(Color.feedDescription.value), .alignment(.left))
+                let extendedDescriptionStyle = StringStyle(.font(Font.feedExtendedDescription.value), .color(Color.feedExtendedDescription.value), .alignment(.left))
+                let advantageStyle = StringStyle(.font(Font.feedAdvantage.value), .color(Color.feedAdvantage.value), .alignment(.left))
+                return StringStyle(.font(Font.feedDescription.value), .color(Color.feedDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle),  .style("advantage", advantageStyle), .style("extendedDescription", extendedDescriptionStyle)]))
+            case .feedFavourite:
+                return StringStyle(.font(Font.feedFavouriteButton.value), .color(Color.feedFavouriteButtonLabel.value), .alignment(.left))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

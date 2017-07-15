@@ -145,6 +145,14 @@ enum Font {
 
     // Feed Detail
     case feedDetailHeader
+    case feedTitle
+    case feedDate
+    case feedSubtitle
+    case feedDescription
+    case feedExtendedDescription
+    case feedAdvantage
+    case feedFavouriteButton
+    case feedClaim
     
     var value: UIFont {
         get {
@@ -306,6 +314,22 @@ enum Font {
             // Feed Detail
             case .feedDetailHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .feedTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedDate:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .feedExtendedDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .feedAdvantage:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedFavouriteButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .feedClaim:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }
     }

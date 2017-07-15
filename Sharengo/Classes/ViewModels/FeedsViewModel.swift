@@ -54,7 +54,8 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
             switch input {
             case .item(let indexPath):
                 if let feed = self.model(atIndex: indexPath) as? Feed {
-                    // TODO: aprire il dettaglio
+                    let feedDetailViewModel = ViewModelFactory.feedDetail(fromModel: feed)
+                    return .just(.viewModel(feedDetailViewModel))
                 } else if let category = self.model(atIndex: indexPath) as? Category {
                     if category.published
                     {

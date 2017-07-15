@@ -199,3 +199,9 @@
 "lbl_feedsItemBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>";
 "lbl_feedsItemExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>";
 "alert_categoryNotPublished" = "Questa categoria sarà disponibile prossimamente.";
+
+// Feed Detail
+"btn_feedDetailFavourite" = "MI INTERESSA";
+"btn_feedDetailNotFavourite" = "NON MI INTERESSA";
+"lbl_feedDetailBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description><extendedDescription>%@</extendedDescription>";
+"lbl_feedDetailExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>\n\n<extendedDescription>%@</extendedDescription>";

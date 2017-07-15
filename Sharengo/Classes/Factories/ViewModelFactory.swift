@@ -149,7 +149,7 @@ struct ViewModelFactory {
         return CategoryItemViewModel(model: model)
     }
     
-    static func feedDetail() -> ViewModelType {
-        return FeedDetailViewModel()
+    static func feedDetail(fromModel model:Feed) -> ViewModelType {
+        return FeedDetailViewModel(model: model)
     }
 }

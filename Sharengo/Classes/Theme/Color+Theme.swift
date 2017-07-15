@@ -231,7 +231,17 @@ enum Color {
     // Feed Detail
     case feedDetailHeaderBackground
     case feedDetailHeaderLabel
-    
+    case feedFavouriteButtonLabel
+    case feedFavouriteButtonBackground
+    case feedIconBorderBackground
+    case feedTitle
+    case feedDate
+    case feedSubtitle
+    case feedDescription
+    case feedAdvantage
+    case feedClaim
+    case feedExtendedDescription
+
     // Web
     case webBackground
     
@@ -506,6 +516,26 @@ enum Color {
             case .feedDetailHeaderBackground:
                 return ColorBrand.black.value
             case .feedDetailHeaderLabel:
+                return ColorBrand.white.value
+            case .feedFavouriteButtonLabel:
+                return ColorBrand.white.value
+            case .feedFavouriteButtonBackground:
+                return ColorBrand.green.value
+            case .feedIconBorderBackground:
+                return ColorBrand.black.value
+            case .feedTitle:
+                return ColorBrand.black.value
+            case .feedDate:
+                return UIColor(hexString: "#888888")
+            case .feedSubtitle:
+                return ColorBrand.black.value
+            case .feedDescription:
+                return ColorBrand.black.value
+            case .feedExtendedDescription:
+                return ColorBrand.black.value
+            case .feedAdvantage:
+                return ColorBrand.black.value
+            case .feedClaim:
                 return ColorBrand.white.value
             // Web
             case .webBackground:
