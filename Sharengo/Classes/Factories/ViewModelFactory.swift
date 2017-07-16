@@ -102,7 +102,7 @@ struct ViewModelFactory {
     }
     
     static func noFeeds(fromCategory category:Category?) -> ViewModelType {
-        return NoFeedsViewModel()
+        return NoFeedsViewModel(category: category)
     }
 
     static func menuItem(fromModel model:MenuItem) -> ItemViewModelType {

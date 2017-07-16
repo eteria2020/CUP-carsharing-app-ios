@@ -202,5 +202,5 @@
 "lbl_feedDetailExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>\n\n<extendedDescription>%@</extendedDescription>";
 
 // No feeds
-"lbl_noFeedsDescriptionWithCategory" = "Peccato!\nAl momento per la tua città non ci sono contenuti disponibili nella categoria selezionata. Ti invitiamo a riprovare nei prossimi giorni";
-"lbl_noFeedsDescriptionWithNoCategory" = "Peccato!\nAl momento per la tua città non ci sono contenuti disponibili. Ti invitiamo a riprovare nei prossimi giorni";
+"lbl_noFeedsDescriptionWithCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili nella categoria selezionata. Ti invitiamo a riprovare nei prossimi giorni</description>";
+"lbl_noFeedsDescriptionWithNoCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili. Ti invitiamo a riprovare nei prossimi giorni</description>";

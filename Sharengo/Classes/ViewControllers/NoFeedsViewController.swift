@@ -100,7 +100,7 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
         }).addDisposableTo(disposeBag)
         self.btn_categories.rx.tap.asObservable()
             .subscribe(onNext:{
-                print("Categories")
+            print("Categories")
         }).addDisposableTo(disposeBag)
     }
     
