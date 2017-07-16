@@ -116,6 +116,11 @@ enum TextStyle: String, TextStyleType {
     case feedBottom = "feedBottom"
     case feedFavourite = "feedFavourite"
 
+    // No Feeds
+    case noFeedsHeader = "noFeedsHeader"
+    case noFeedsDescription = "noFeedsDescription"
+    case noFeedsFeedsHeader = "noFeedsFeedsHeader"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -193,7 +198,11 @@ enum TextStyle: String, TextStyleType {
             .feedDetailHeader,
             .feedClaim,
             .feedBottom,
-            .feedFavourite
+            .feedFavourite,
+            // No Feeds
+            .noFeedsHeader,
+            .noFeedsDescription,
+            .noFeedsFeedsHeader
         ]
     }
     
@@ -358,6 +367,16 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.feedDescription.value), .color(Color.feedDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle),  .style("advantage", advantageStyle), .style("extendedDescription", extendedDescriptionStyle)]))
             case .feedFavourite:
                 return StringStyle(.font(Font.feedFavouriteButton.value), .color(Color.feedFavouriteButtonLabel.value), .alignment(.left))
+            // No Feeds
+            case .noFeedsHeader:
+                return StringStyle(.font(Font.noFeedsHeader.value), .color(Color.noFeedsHeaderLabel.value), .alignment(.center))
+            case .noFeedsDescription:
+                let titleStyle = StringStyle(.font(Font.noFeedsTitle.value), .color(Color.noFeedsTitle.value), .alignment(.center))
+                let descriptionStyle = StringStyle(.font(Font.noFeedsDescription.value), .color(Color.noFeedsDescription.value), .alignment(.center))
+                return StringStyle(.font(Font.noFeedsDescription.value), .color(Color.noFeedsDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("description", descriptionStyle)]))
+
+            case .noFeedsFeedsHeader:
+                return StringStyle(.font(Font.noFeedsFeedsHeader.value), .color(Color.noFeedsFeedsHeaderBackground.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

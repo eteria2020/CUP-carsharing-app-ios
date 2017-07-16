@@ -154,6 +154,12 @@ enum Font {
     case feedFavouriteButton
     case feedClaim
     
+    // No Feeds
+    case noFeedsHeader
+    case noFeedsTitle
+    case noFeedsDescription
+    case noFeedsFeedsHeader
+
     var value: UIFont {
         get {
             switch self {
@@ -330,6 +336,15 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .feedClaim:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // No Feeds
+            case .noFeedsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .noFeedsTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .noFeedsDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .noFeedsFeedsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

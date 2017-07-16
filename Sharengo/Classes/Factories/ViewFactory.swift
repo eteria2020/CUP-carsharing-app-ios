@@ -31,6 +31,8 @@ enum SceneIdentifier : String, ListIdentifier {
     case onBoard = "onBoard"
     case feeds = "feeds"
     case feedDetail = "feedDetail"
+    case noFeeds = "noFeeds"
+    
     var name: String {
         return self.rawValue
     }

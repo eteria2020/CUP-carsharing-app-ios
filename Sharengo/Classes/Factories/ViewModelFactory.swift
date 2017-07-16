@@ -101,6 +101,10 @@ struct ViewModelFactory {
         return NoCarTripsViewModel()
     }
     
+    static func noFeeds(fromCategory category:Category?) -> ViewModelType {
+        return NoFeedsViewModel()
+    }
+
     static func menuItem(fromModel model:MenuItem) -> ItemViewModelType {
         return MenuItemViewModel(model: model)
     }

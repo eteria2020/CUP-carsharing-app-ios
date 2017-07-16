@@ -84,6 +84,8 @@
 		03AF5D751EEE83FC00AC8826 /* AnimatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D671EEE83FC00AC8826 /* AnimatedTextView.swift */; };
 		03AF5D761EEE83FC00AC8826 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D681EEE83FC00AC8826 /* UIViewExtensions.swift */; };
 		03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D771EEEBED300AC8826 /* String+Extensions.swift */; };
+		03B5960F1F1B5AB000811A36 /* NoFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5960E1F1B5AB000811A36 /* NoFeedsViewController.swift */; };
+		03B596111F1B5AC000811A36 /* NoFeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B596101F1B5AC000811A36 /* NoFeedsViewModel.swift */; };
 		03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632301EEFC86100BFEDA3 /* SignupViewController.swift */; };
 		03C632331EEFC87600BFEDA3 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632321EEFC87600BFEDA3 /* SignupViewModel.swift */; };
 		03C632361EEFD01100BFEDA3 /* SignupStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632351EEFD01100BFEDA3 /* SignupStepView.swift */; };
@@ -271,6 +273,8 @@
 		03AF5D671EEE83FC00AC8826 /* AnimatedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTextView.swift; sourceTree = "<group>"; };
 		03AF5D681EEE83FC00AC8826 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		03AF5D771EEEBED300AC8826 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Extensions.swift"; path = "Classes/Utilities/String+Extensions.swift"; sourceTree = "<group>"; };
+		03B5960E1F1B5AB000811A36 /* NoFeedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoFeedsViewController.swift; path = Classes/ViewControllers/NoFeedsViewController.swift; sourceTree = "<group>"; };
+		03B596101F1B5AC000811A36 /* NoFeedsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoFeedsViewModel.swift; path = Classes/ViewModels/NoFeedsViewModel.swift; sourceTree = "<group>"; };
 		03C632301EEFC86100BFEDA3 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = Classes/ViewControllers/SignupViewController.swift; sourceTree = "<group>"; };
 		03C632321EEFC87600BFEDA3 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = Classes/ViewModels/SignupViewModel.swift; sourceTree = "<group>"; };
 		03C632351EEFD01100BFEDA3 /* SignupStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupStepView.swift; path = Classes/Views/SignupStepView.swift; sourceTree = "<group>"; };
@@ -472,6 +476,8 @@
 				038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */,
 				038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */,
 				039A36E31F18AA080068A026 /* Feed Detail */,
+				03B5960E1F1B5AB000811A36 /* NoFeedsViewController.swift */,
+				03B596101F1B5AC000811A36 /* NoFeedsViewModel.swift */,
 			);
 			name = Feeds;
 			sourceTree = "<group>";
@@ -1342,6 +1348,7 @@
 				032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */,
 				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */,
+				03B5960F1F1B5AB000811A36 /* NoFeedsViewController.swift in Sources */,
 				03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */,
 				4DA5544F1EE55284001627E7 /* FBZoomLevel.swift in Sources */,
 				036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */,
@@ -1378,6 +1385,7 @@
 				4D164BE01F091F5100D4EAB7 /* NoCarTripsViewController.swift in Sources */,
 				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
 				4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */,
+				03B596111F1B5AC000811A36 /* NoFeedsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

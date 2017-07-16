@@ -116,6 +116,10 @@ struct Router : RouterType {
             let destination: FeedDetailViewController = (Storyboard.main.scene(.feedDetail))
             destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is NoFeedsViewModel:
+            let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
+            destination.bind(to: viewModel, afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

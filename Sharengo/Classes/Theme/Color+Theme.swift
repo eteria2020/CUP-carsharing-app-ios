@@ -242,6 +242,18 @@ enum Color {
     case feedClaim
     case feedExtendedDescription
 
+    // No Feeds
+    case noFeedsHeaderBackground
+    case noFeedsHeaderLabel
+    case noFeedsBackground
+    case noFeedsTitle
+    case noFeedsDescription
+    case noFeedsFeedsHeaderBackground
+    case noFeedsFeedsLabelOn
+    case noFeedsFeedsLabelOff
+    case noFeedsFeedsBottomButtonOn
+    case noFeedsFeedsBottomButtonOff
+    
     // Web
     case webBackground
     
@@ -540,6 +552,27 @@ enum Color {
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value
+            // No Feeds
+            case .noFeedsHeaderBackground:
+                return ColorBrand.black.value
+            case .noFeedsHeaderLabel:
+                return ColorBrand.white.value
+            case .noFeedsBackground:
+                return ColorBrand.lightGray.value
+            case .noFeedsTitle:
+                return ColorBrand.green.value
+            case .noFeedsDescription:
+                return ColorBrand.black.value
+            case .noFeedsFeedsHeaderBackground:
+                return ColorBrand.black.value
+            case .noFeedsFeedsLabelOn:
+                return ColorBrand.yellow.value
+            case .noFeedsFeedsLabelOff:
+                return ColorBrand.grayDisabled.value
+            case .noFeedsFeedsBottomButtonOn:
+                return ColorBrand.yellow.value
+            case .noFeedsFeedsBottomButtonOff:
+                return ColorBrand.grayDisabled.value
             }
         }
     }
