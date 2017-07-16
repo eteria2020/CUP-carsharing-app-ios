@@ -27,8 +27,10 @@ final class NoFeedsViewModel: ViewModelType {
         }
     }
     var category: Category? = nil
+    var categoryTitle: String?
 
     init(category: Category?) {
         self.category = category
+        self.categoryTitle = category?.title
     }
 }

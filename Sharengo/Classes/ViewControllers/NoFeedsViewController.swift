@@ -41,7 +41,8 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         
         self.viewModel = viewModel
-        
+        self.lbl_title.styledText = self.viewModel?.category?.title
+
         if self.viewModel?.category != nil
         {
             self.lbl_description.styledText = "lbl_noFeedsDescriptionWithCategory".localized()
