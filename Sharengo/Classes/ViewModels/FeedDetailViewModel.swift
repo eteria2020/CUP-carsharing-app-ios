@@ -28,11 +28,11 @@ final class FeedDetailViewModel: ViewModelType {
         
         if model.advantage != nil && model.advantage?.isEmpty == false
         {
-            self.bottomText = String(format: "lbl_feedDetailExtendedBottom".localized(), model.categoryTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.advantage!, model.description ?? "")
+            self.bottomText = String(format: "lbl_feedDetailExtendedBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "", model.advantage!, model.description ?? "")
         }
         else
         {
-            self.bottomText = String(format: "lbl_feedDetailBottom".localized(), model.categoryTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.description ?? "")
+            self.bottomText = String(format: "lbl_feedDetailBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "",model.description ?? "")
         }
         
         self.title = model.categoryTitle?.uppercased()

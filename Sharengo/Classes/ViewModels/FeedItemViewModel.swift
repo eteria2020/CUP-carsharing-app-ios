@@ -27,11 +27,11 @@ final class FeedItemViewModel : ItemViewModelType {
         
         if model.advantage != nil && model.advantage?.isEmpty == false
         {
-            self.bottomText = String(format: "lbl_feedsItemExtendedBottom".localized(), model.categoryTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.advantage!)
+            self.bottomText = String(format: "lbl_feedsItemExtendedBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "", model.advantage!)
         }
         else
         {
-            self.bottomText = String(format: "lbl_feedsItemBottom".localized(), model.categoryTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "")
+            self.bottomText = String(format: "lbl_feedsItemBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "")
         }
         
         self.claim = model.claim
