@@ -22,6 +22,7 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_claim: UIImageView!
     @IBOutlet fileprivate weak var view_bottomContainer: UIView!
     @IBOutlet fileprivate weak var lbl_bottom: UILabel!
+    @IBOutlet fileprivate weak var img_favorite: UIImageView!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
     
@@ -87,6 +88,15 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.view_icon.layer.masksToBounds = true
         self.view_icon.layer.borderWidth = 1
         self.view_icon.layer.borderColor = Color.feedsItemIconBorderBackground.value.cgColor
+        
+        if viewModel.favourited
+        {
+            self.img_favorite.alpha = 1.0
+        }
+        else
+        {
+            self.img_favorite.alpha = 0.0
+        }
     }
     
     // MARK: - View methods

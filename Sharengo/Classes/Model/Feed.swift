@@ -10,6 +10,96 @@ import Boomerang
 import RxSwift
 import Gloss
 
+public class FavouriteFeed: NSObject, NSCoding {
+    var identifier: String?
+    var categoryTitle: String?
+    var title: String?
+    var subtitle: String?
+    var ddescription: String?
+    var icon: String?
+    var claim: String?
+    var date: String?
+    var advantage: String?
+    var color: String?
+    var image: String?
+    var forceColor: Bool = false
+    
+    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, ddescription: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?) {
+        self.identifier = identifier
+        self.categoryTitle = categoryTitle
+        self.title = title
+        self.subtitle = subtitle
+        self.ddescription = ddescription
+        self.icon = icon
+        self.claim = claim
+        self.date = date
+        self.advantage = advantage
+        self.color = color
+        self.forceColor = forceColor
+        self.image = image
+    }
+    
+    // MARK: - Coding methods
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.identifier, forKey: "identifier")
+        aCoder.encode(self.categoryTitle, forKey: "categoryTitle")
+        aCoder.encode(self.title, forKey: "title")
+        aCoder.encode(self.subtitle, forKey: "subtitle")
+        aCoder.encode(self.ddescription, forKey: "ddescription")
+        aCoder.encode(self.icon, forKey: "icon")
+        aCoder.encode(self.claim, forKey: "claim")
+        aCoder.encode(self.date, forKey: "date")
+        aCoder.encode(self.advantage, forKey: "advantage")
+        aCoder.encode(self.color, forKey: "color")
+        aCoder.encode(self.forceColor, forKey: "forceColor")
+        aCoder.encode(self.image, forKey: "image")
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        if let identifier = aDecoder.decodeObject(forKey: "identifier") as? String {
+            self.identifier = identifier
+        }
+        if let categoryTitle = aDecoder.decodeObject(forKey: "categoryTitle") as? String {
+            self.categoryTitle = categoryTitle
+        }
+        if let title = aDecoder.decodeObject(forKey: "title") as? String {
+            self.title = title
+        }
+        if let subtitle = aDecoder.decodeObject(forKey: "subtitle") as? String {
+            self.subtitle = subtitle
+        }
+        if let ddescription = aDecoder.decodeObject(forKey: "ddescription") as? String {
+            self.ddescription = ddescription
+        }
+        if let icon = aDecoder.decodeObject(forKey: "icon") as? String {
+            self.icon = icon
+        }
+        if let claim = aDecoder.decodeObject(forKey: "claim") as? String {
+            self.claim = claim
+        }
+        if let date = aDecoder.decodeObject(forKey: "date") as? String {
+            self.date = date
+        }
+        if let advantage = aDecoder.decodeObject(forKey: "advantage") as? String {
+            self.advantage = advantage
+        }
+        if let color = aDecoder.decodeObject(forKey: "color") as? String {
+            self.color = color
+        }
+        if let image = aDecoder.decodeObject(forKey: "image") as? String {
+            self.image = image
+        }
+        self.forceColor = aDecoder.decodeBool(forKey: "forceColor")
+    }
+    
+    // MARK: - Feed methods
+    
+    func getFeed() -> Feed {
+        return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image)
+    }
+}
+
 public class Feed: ModelType, Decodable {
     /*
     JSON response example:
@@ -89,21 +179,36 @@ public class Feed: ModelType, Decodable {
      }
     */
  
-    var identifier: String = ""
-    var categoryTitle: String = ""
-    var title: String = ""
-    var subtitle: String = ""
-    var description: String = ""
-    var icon: String = ""
+    var identifier: String?
+    var categoryTitle: String?
+    var title: String?
+    var subtitle: String?
+    var description: String?
+    var icon: String?
     var claim: String?
-    var date: String = ""
+    var date: String?
     var advantage: String?
-    var color: String = ""
+    var color: String?
+    var image: String?
     var forceColor: Bool = false
-    var image: String = ""
+    
+    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, description: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?) {
+        self.identifier = identifier
+        self.categoryTitle = categoryTitle
+        self.title = title
+        self.subtitle = subtitle
+        self.description = description
+        self.icon = icon
+        self.claim = claim
+        self.date = date
+        self.advantage = advantage
+        self.color = color
+        self.forceColor = forceColor
+        self.image = image
+    }
     
     required public init?(json: JSON) {
-        self.identifier = "tid" <~~ json ?? ""
+        self.identifier = "nid" <~~ json ?? ""
         self.title = "title" <~~ json ?? ""
         self.subtitle = "informations.abstract" <~~ json ?? ""
         self.date = "informations.date.friendly" <~~ json ?? ""
@@ -117,5 +222,11 @@ public class Feed: ModelType, Decodable {
         if let forceColor: String = "appearance.color.enforce" <~~ json {
             self.forceColor = forceColor.toBool() ?? false
         }
+    }
+    
+    // MARK: - History methods
+    
+    func getFavoriteFeed() -> FavouriteFeed {
+        return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image)
     }
 }

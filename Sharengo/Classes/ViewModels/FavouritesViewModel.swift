@@ -47,7 +47,7 @@ final class FavouritesViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     func updateData() {
         var historyAndFavorites: [ModelType] = [ModelType]()
-        if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+        if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                 for historyAddress in Array(unarchivedArray) {
                     historyAndFavorites.append(historyAddress.getAddress())

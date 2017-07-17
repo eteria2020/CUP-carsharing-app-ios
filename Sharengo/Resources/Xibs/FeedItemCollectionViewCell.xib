@@ -124,13 +124,22 @@ Corsa!</string>
                                     <constraint firstAttribute="height" constant="45" id="ifQ-I4-2wp"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_favorite" translatesAutoresizingMaskIntoConstraints="NO" id="VO4-sX-Sp0">
+                                <rect key="frame" x="40" y="117.5" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="0sB-c3-JoP"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="VO4-sX-Sp0" firstAttribute="width" secondItem="VO4-sX-Sp0" secondAttribute="height" multiplier="1:1" id="0DM-5K-Wmj"/>
                             <constraint firstItem="BOM-Mi-No1" firstAttribute="leading" secondItem="zDX-jb-cf9" secondAttribute="leading" id="0fm-vb-lNo"/>
+                            <constraint firstItem="VO4-sX-Sp0" firstAttribute="centerX" secondItem="BOM-Mi-No1" secondAttribute="trailing" constant="-5" id="4eI-6p-k8D"/>
                             <constraint firstAttribute="trailing" secondItem="0JT-at-Hlv" secondAttribute="trailing" id="GVB-Us-utT"/>
                             <constraint firstItem="0JT-at-Hlv" firstAttribute="top" secondItem="eqk-R7-fly" secondAttribute="top" id="IUS-mO-n5l"/>
                             <constraint firstItem="BOM-Mi-No1" firstAttribute="bottom" secondItem="zDX-jb-cf9" secondAttribute="bottom" id="Mdw-QO-4au"/>
+                            <constraint firstItem="VO4-sX-Sp0" firstAttribute="centerY" secondItem="BOM-Mi-No1" secondAttribute="top" constant="5" id="Rb8-px-r0b"/>
                             <constraint firstItem="zS4-36-F3L" firstAttribute="leading" secondItem="eqk-R7-fly" secondAttribute="leading" id="Zyx-3v-a7D"/>
                             <constraint firstItem="ajt-2q-Pb8" firstAttribute="top" secondItem="BOM-Mi-No1" secondAttribute="centerY" id="e1M-70-G2C"/>
                             <constraint firstItem="BOM-Mi-No1" firstAttribute="trailing" secondItem="zDX-jb-cf9" secondAttribute="trailing" id="gUh-9F-79O"/>
@@ -156,6 +165,7 @@ Corsa!</string>
             <connections>
                 <outlet property="img_background" destination="wVQ-D7-xG0" id="KXn-m9-rto"/>
                 <outlet property="img_claim" destination="ssL-Ic-Tpf" id="jc0-vu-61A"/>
+                <outlet property="img_favorite" destination="VO4-sX-Sp0" id="nIu-TO-fmm"/>
                 <outlet property="img_icon" destination="BOM-Mi-No1" id="2oY-bI-qJc"/>
                 <outlet property="lbl_bottom" destination="igh-3r-Mjd" id="yV0-g5-OVa"/>
                 <outlet property="lbl_claim" destination="FbW-Zp-qMu" id="zc9-FS-cVt"/>
@@ -171,6 +181,7 @@ Corsa!</string>
     <resources>
         <image name="bg_claim" width="90" height="113"/>
         <image name="bg_feed" width="213" height="35"/>
+        <image name="ic_favorite" width="53" height="53"/>
         <image name="ic_login" width="12" height="15"/>
     </resources>
 </document>
