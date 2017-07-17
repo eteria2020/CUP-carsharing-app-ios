@@ -174,6 +174,27 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     func checkData() {
         if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
             DispatchQueue.main.async {
+                if self.viewModel?.feeds.count == 0 {
+                    let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
+                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self.viewModel?.category), afterLoad: true)
+                    var array = self.navigationController?.viewControllers ?? []
+                    if self.viewModel?.category != nil {
+                        array.removeLast()
+                    }
+                    array.append(destination)
+                    self.navigationController?.viewControllers = array
+                    self.hideLoader()
+                    let dispatchTime = DispatchTime.now() + 0.3
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        self.view.backgroundColor = Color.categoriesBackground.value
+                        self.viewModel?.sectionSelected = .categories
+                        self.updateHeaderButtonsInterface()
+                        self.viewModel?.updateListDataHolder()
+                        self.viewModel?.reload()
+                        self.collectionView?.reloadData()
+                    }
+                    return
+                }
                 self.viewModel?.updateListDataHolder()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
@@ -275,6 +296,27 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 self.view.backgroundColor = ColorBrand.white.value
                 self.viewModel?.sectionSelected = .feed
                 self.updateHeaderButtonsInterface()
+                if self.viewModel?.feeds.count == 0 {
+                    let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
+                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self.viewModel?.category), afterLoad: true)
+                    var array = self.navigationController?.viewControllers ?? []
+                    if self.viewModel?.category != nil {
+                        array.removeLast()
+                    }
+                    array.append(destination)
+                    self.navigationController?.viewControllers = array
+                    self.hideLoader()
+                    let dispatchTime = DispatchTime.now() + 0.3
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        self.view.backgroundColor = Color.categoriesBackground.value
+                        self.viewModel?.sectionSelected = .categories
+                        self.updateHeaderButtonsInterface()
+                        self.viewModel?.updateListDataHolder()
+                        self.viewModel?.reload()
+                        self.collectionView?.reloadData()
+                    }
+                    return
+                }
                 self.viewModel?.updateListDataHolder()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()

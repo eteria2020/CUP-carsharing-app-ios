@@ -2726,14 +2726,14 @@ Corsa!</string>
                                     <constraint firstItem="ylk-fg-eaP" firstAttribute="leading" secondItem="Szl-px-7RL" secondAttribute="leading" id="te5-Zf-bef"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mizzie2" translatesAutoresizingMaskIntoConstraints="NO" id="JUT-VV-CLz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mizzie3" translatesAutoresizingMaskIntoConstraints="NO" id="JUT-VV-CLz">
                                 <rect key="frame" x="15" y="121" width="345" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" identifier="imageHeight" id="K8v-7T-ogo"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flf-GA-i30">
-                                <rect key="frame" x="15" y="346" width="345" height="306"/>
+                                <rect key="frame" x="15" y="346" width="345" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2746,7 +2746,7 @@ Corsa!</string>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Flf-GA-i30" secondAttribute="trailing" constant="15" id="2GI-Dl-f3y"/>
                             <constraint firstItem="DdV-7E-KNF" firstAttribute="top" secondItem="gX6-tv-dxE" secondAttribute="bottom" id="7EQ-Hv-Zkg"/>
-                            <constraint firstItem="LfN-Lx-t5g" firstAttribute="top" secondItem="Flf-GA-i30" secondAttribute="bottom" constant="15" id="Jx8-0c-fVR"/>
+                            <constraint firstItem="LfN-Lx-t5g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Flf-GA-i30" secondAttribute="bottom" constant="15" id="Jx8-0c-fVR"/>
                             <constraint firstItem="Szl-px-7RL" firstAttribute="top" secondItem="gX6-tv-dxE" secondAttribute="bottom" id="Lkj-N7-o2c"/>
                             <constraint firstItem="gX6-tv-dxE" firstAttribute="leading" secondItem="f18-lH-Cky" secondAttribute="leading" id="ShC-kb-gbf"/>
                             <constraint firstItem="JUT-VV-CLz" firstAttribute="height" secondItem="f18-lH-Cky" secondAttribute="height" multiplier="0.3" id="VuF-bP-W1t"/>
