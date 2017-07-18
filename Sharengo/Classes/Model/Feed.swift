@@ -212,6 +212,7 @@ public class Feed: ModelType, Decodable {
     var icon: String?
     var claim: String?
     var date: String?
+    var orderDate: Date = Date()
     var advantage: String?
     var color: String?
     var image: String?
@@ -256,6 +257,9 @@ public class Feed: ModelType, Decodable {
         self.address = "informations.address.friendly" <~~ json ?? ""
         self.city = "informations.city.name" <~~ json ?? ""
         self.launchTitle = "informations.launch_title" <~~ json ?? ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        self.orderDate = Decoder.decode(dateForKey: "informations.date.default", dateFormatter: dateFormatter)(json) ?? Date()
         if let forceColor: String = "appearance.color.enforce" <~~ json {
             self.forceColor = forceColor.toBool() ?? false
         }

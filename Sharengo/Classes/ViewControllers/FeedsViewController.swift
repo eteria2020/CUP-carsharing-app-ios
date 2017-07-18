@@ -14,6 +14,21 @@ import SideMenu
 import DeviceKit
 import ReachabilitySwift
 
+extension Date
+{
+    func isLessThanDate(_ dateToCompare: Date) -> Bool
+    {
+        var isLess = false
+        
+        if self.compare(dateToCompare) == ComparisonResult.orderedAscending
+        {
+            isLess = true
+        }
+        
+        return isLess
+    }
+}
+
 class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_headerCategory: UIView!
@@ -133,7 +148,10 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         switch event {
                         case .next(let response):
                             if response.status_bool == true, let data = response.array_data {
-                                if let feeds = [Feed].from(jsonArray: data) {
+                                if var feeds = [Feed].from(jsonArray: data) {
+                                    feeds = feeds.sorted(by: { (order1, order2) -> Bool in
+                                        return order1.orderDate.isLessThanDate(order2.orderDate)
+                                    })
                                     let oldFeeds = self.viewModel?.feeds
                                     self.viewModel?.feeds = feeds
                                     self.viewModel?.feeds.append(contentsOf: oldFeeds ?? [])
@@ -154,7 +172,10 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         switch event {
                         case .next(let response):
                             if response.status_bool == true, let data = response.array_data {
-                                if let feeds = [Feed].from(jsonArray: data) {
+                                if var feeds = [Feed].from(jsonArray: data) {
+                                    feeds = feeds.sorted(by: { (order1, order2) -> Bool in
+                                        return order1.orderDate.isLessThanDate(order2.orderDate)
+                                    })
                                     self.viewModel?.feeds.append(contentsOf: feeds)
                                     self.errorEvents = false
                                     self.checkData()
