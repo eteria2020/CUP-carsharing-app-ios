@@ -469,6 +469,8 @@
 		037689E61F16080D00523BAA /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
+				03B5960E1F1B5AB000811A36 /* NoFeedsViewController.swift */,
+				03B596101F1B5AC000811A36 /* NoFeedsViewModel.swift */,
 				037689F31F1608C700523BAA /* FeedsViewController.swift */,
 				037689F61F1608D100523BAA /* FeedsViewModel.swift */,
 				037689F91F1608D900523BAA /* FeedItemCollectionViewCell.swift */,
@@ -478,8 +480,6 @@
 				038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */,
 				038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */,
 				039A36E31F18AA080068A026 /* Feed Detail */,
-				03B5960E1F1B5AB000811A36 /* NoFeedsViewController.swift */,
-				03B596101F1B5AC000811A36 /* NoFeedsViewModel.swift */,
 			);
 			name = Feeds;
 			sourceTree = "<group>";

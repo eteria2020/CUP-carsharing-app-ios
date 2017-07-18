@@ -31,7 +31,7 @@ final class SearchBarItemViewModel : ItemViewModelType {
                 }
             }
         }
-        if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+        if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                 let index = unarchivedArray.index(where: { (address) -> Bool in
                     return address.identifier == model.identifier

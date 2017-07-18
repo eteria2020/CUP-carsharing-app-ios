@@ -13,6 +13,7 @@ import Boomerang
 import SideMenu
 import DeviceKit
 import BonMot
+import pop
 
 class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -30,11 +31,11 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_bottomContainer: UIView!
     @IBOutlet fileprivate weak var lbl_bottom: UILabel!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
+    @IBOutlet fileprivate weak var img_favorite: UIImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
     @IBOutlet fileprivate weak var btn_favourite: UIButton!
 
     var viewModel: FeedDetailViewModel?
-    var favourited = false
     
     // MARK: - ViewModel methods
     
@@ -96,6 +97,68 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
         self.lbl_bottom.styledText = viewModel.bottomText
         
         self.view_icon.backgroundColor = viewModel.color
+        
+        if viewModel.favourited
+        {
+            self.img_favorite.alpha = 1.0
+            self.btn_favourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_feedDetailNotFavourite".localized())
+        }
+        else
+        {
+            self.img_favorite.alpha = 0.0
+            self.btn_favourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_feedDetailFavourite".localized())
+        }
+        self.btn_favourite.rx.tap.asObservable()
+            .subscribe(onNext:{
+                if viewModel.favourited
+                {
+                    let popAnimation1: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+                    popAnimation1.fromValue = 1
+                    popAnimation1.toValue = 0
+                    popAnimation1.duration = 0.5
+                    self.img_favorite.pop_add(popAnimation1, forKey: "popAnimation1")
+                    
+                    viewModel.favourited = false
+                    self.btn_favourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_feedDetailFavourite".localized())
+                    
+                    if let array = UserDefaults.standard.object(forKey: "favouritesFeedArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
+                            let index = unarchivedArray.index(where: { (feed) -> Bool in
+                                return feed.identifier == (viewModel.model as! Feed).identifier
+                            })
+                            if index != nil {
+                                unarchivedArray.remove(at: index!)
+                            }
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesFeedArray")
+                        }
+                    }
+                }
+                else
+                {
+                    let popAnimation1: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+                    popAnimation1.fromValue = 0
+                    popAnimation1.toValue = 1
+                    popAnimation1.duration = 0.5
+                    let popAnimation2: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewScaleXY)
+                    popAnimation2.fromValue = NSValue(cgSize: CGSize(width: 0.5, height: 0.5))
+                    popAnimation2.toValue = NSValue(cgSize: CGSize(width: 1, height: 1))
+                    popAnimation2.duration = 0.5
+                    self.img_favorite.pop_add(popAnimation1, forKey: "popAnimation1")
+                    self.img_favorite.pop_add(popAnimation2, forKey: "popAnimation2")
+                    
+                    viewModel.favourited = true
+                    self.btn_favourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_feedDetailNotFavourite".localized())
+                
+                    if let array = UserDefaults.standard.object(forKey: "favouritesFeedArray") as? Data {
+                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
+                            unarchivedArray.insert((viewModel.model as! Feed).getFavoriteFeed(), at: 0)
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesFeedArray")
+                        }
+                    }
+                }
+            }).addDisposableTo(disposeBag)
     }
     
     // MARK: - View methods
@@ -126,20 +189,6 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
-            }).addDisposableTo(disposeBag)
-        self.btn_favourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_feedDetailFavourite".localized())
-        self.btn_favourite.rx.tap.asObservable()
-            .subscribe(onNext:{
-                if self.favourited
-                {
-                    self.favourited = false
-                    self.btn_favourite.styledText = "btn_feedDetailFavourite".localized()
-                }
-                else
-                {
-                    self.favourited = true
-                    self.btn_favourite.styledText = "btn_feedDetailNotFavourite".localized()
-                }
             }).addDisposableTo(disposeBag)
         
         // Labels

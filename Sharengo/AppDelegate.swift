@@ -85,9 +85,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     fileprivate func setupFavourites() {
-        if UserDefaults.standard.object(forKey: "favouritesArray") == nil {
+        if UserDefaults.standard.object(forKey: "favouritesAddressArray") == nil {
             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteAddress]() as Array)
-            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
+        }
+        
+        if UserDefaults.standard.object(forKey: "favouritesFeedArray") == nil {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteFeed]() as Array)
+            UserDefaults.standard.set(archivedArray, forKey: "favouritesFeedArray")
         }
     }
 }

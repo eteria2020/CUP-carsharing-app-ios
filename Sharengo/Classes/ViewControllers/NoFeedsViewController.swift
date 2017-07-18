@@ -41,16 +41,20 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         
         self.viewModel = viewModel
-        self.lbl_title.styledText = self.viewModel?.category?.title
+        self.lbl_title.styledText = self.viewModel?.category?.title.uppercased()
 
         if self.viewModel?.category != nil
         {
             self.lbl_description.styledText = "lbl_noFeedsDescriptionWithCategory".localized()
+            self.view_headerFeeds.isHidden = true
+            self.view_header.isHidden = false
         }
         else
         {
             self.lbl_description.styledText = "lbl_noFeedsDescriptionWithNoCategory".localized()
-        }
+            self.view_headerFeeds.isHidden = false
+            self.view_header.isHidden = true
+    }
     }
     
     // MARK: - View methods
@@ -95,17 +99,50 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         
+        // Buttons
+        self.updateHeaderButtonsInterface()
         self.btn_feed.rx.tap.asObservable()
             .subscribe(onNext:{
-            print("Feed")
-        }).addDisposableTo(disposeBag)
+                self.viewModel?.sectionSelected = .feed
+                self.updateHeaderButtonsInterface()
+            }).addDisposableTo(disposeBag)
         self.btn_categories.rx.tap.asObservable()
             .subscribe(onNext:{
-            print("Categories")
-        }).addDisposableTo(disposeBag)
+                self.viewModel?.sectionSelected = .categories
+                self.updateHeaderButtonsInterface()
+                var array = self.navigationController?.viewControllers ?? []
+                array.removeLast()
+                self.navigationController?.viewControllers = array
+            }).addDisposableTo(disposeBag)
+        self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+        self.btn_back.rx.tap.asObservable()
+            .subscribe(onNext:{
+                Router.back(self)
+            }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    // MARK: - Header buttons methods
+    
+    func updateHeaderButtonsInterface()
+    {
+        if let viewModel = self.viewModel
+        {
+            switch viewModel.sectionSelected {
+            case .feed:
+                self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderFeed".localized())
+                self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
+                self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderCategories".localized())
+                self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
+            case .categories:
+                self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOff.value), title: "btn_feedsHeaderFeed".localized())
+                self.view_bottomFeedButton.backgroundColor = Color.feedsHeaderBottomButtonOff.value
+                self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderCategories".localized())
+                self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
+            }
+        }
     }
 }
