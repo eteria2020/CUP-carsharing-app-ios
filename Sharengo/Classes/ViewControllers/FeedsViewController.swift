@@ -157,8 +157,12 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                                     self.viewModel?.feeds.append(contentsOf: oldFeeds ?? [])
                                     self.errorOffers = false
                                     self.checkData()
+                                    return
                                 }
                             }
+                            self.errorOffers = false
+                            self.checkData()
+                            return
                         case .error(_):
                             self.errorOffers = true
                             self.checkData()
@@ -179,8 +183,12 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                                     self.viewModel?.feeds.append(contentsOf: feeds)
                                     self.errorEvents = false
                                     self.checkData()
+                                    return
                                 }
                             }
+                            self.errorOffers = false
+                            self.checkData()
+                            return
                         case .error(_):
                             self.errorEvents = true
                             self.checkData()

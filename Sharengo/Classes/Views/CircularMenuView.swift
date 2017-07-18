@@ -145,49 +145,55 @@ class CircularMenuView: UIView {
     // MARK: - Touches methods
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let location = touch.location(in: self)
-        
-        let dx = location.x - self.center.x
-        let dy = location.y - self.center.y
-        
-        deltaAngle = atan2(Float(dy), Float(dx))
-        
-        startTransform = self.transform
+        if self.viewModel?.type.getItems().count ?? 0 > 3 {
+            let touch = touches.first!
+            let location = touch.location(in: self)
+            
+            let dx = location.x - self.center.x
+            let dy = location.y - self.center.y
+            
+            deltaAngle = atan2(Float(dy), Float(dx))
+            
+            startTransform = self.transform
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let location = touch.location(in: self)
-        let dx = location.x - self.center.x
-        let dy = location.y - self.center.y
-        let ang = atan2(dy, dx)
-        let angleDifference = deltaAngle - Float(ang)
-        
-        startTransform = self.transform.rotated(by: -(CGFloat)(angleDifference))
-        
-        let radians = atan2f(Float(startTransform.b), Float(startTransform.a))
-        let degrees = radians * Float(180 / Double.pi)
-        
-        if degrees < 0 && degrees > -33
-        {
-            self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+        if self.viewModel?.type.getItems().count ?? 0 > 3 {
+            let touch = touches.first!
+            let location = touch.location(in: self)
+            let dx = location.x - self.center.x
+            let dy = location.y - self.center.y
+            let ang = atan2(dy, dx)
+            let angleDifference = deltaAngle - Float(ang)
+            
+            startTransform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+            
+            let radians = atan2f(Float(startTransform.b), Float(startTransform.a))
+            let degrees = radians * Float(180 / Double.pi)
+            
+            if degrees < 0 && degrees > -33
+            {
+                self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+            }
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let radians = atan2f(Float(self.transform.b), Float(self.transform.a))
-        var newVal: CGFloat = 0.0
-        
-        for section in array_buttons_sections {
-            if (radians > Float(section.minValue) && radians < Float(section.maxValue))
-            {
-                newVal = CGFloat(radians) - section.midValue
+        if self.viewModel?.type.getItems().count ?? 0 > 3 {
+            let radians = atan2f(Float(self.transform.b), Float(self.transform.a))
+            var newVal: CGFloat = 0.0
+            
+            for section in array_buttons_sections {
+                if (radians > Float(section.minValue) && radians < Float(section.maxValue))
+                {
+                    newVal = CGFloat(radians) - section.midValue
+                }
             }
-        }
-        
-        UIView.animate(withDuration: 0.2) { 
-            self.transform = self.transform.rotated(by: -(CGFloat)(newVal))
+            
+            UIView.animate(withDuration: 0.2) {
+                self.transform = self.transform.rotated(by: -(CGFloat)(newVal))
+            }
         }
     }
     

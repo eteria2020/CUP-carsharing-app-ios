@@ -13,26 +13,18 @@ import Action
 
 enum CircularMenuType {
     case searchCars
+    case feeds
     
     func getBackgroundBorderColor() -> UIColor {
-        switch self {
-        case .searchCars:
-            return Color.circularMenuBackgroundBorder.value
-        }
+        return Color.circularMenuBackgroundBorder.value
     }
     
     func getBackgroundBorderSize() -> CGFloat {
-        switch self {
-        case .searchCars:
-            return UIScreen.main.bounds.height*0.08
-        }
+        return UIScreen.main.bounds.height*0.08
     }
     
     func getBackgroundViewColor() -> UIColor {
-        switch self {
-        case .searchCars:
-            return Color.circularMenuBackground.value
-        }
+        return Color.circularMenuBackground.value
     }
     
     func getItems() -> [CircularMenuItem] {
@@ -40,8 +32,13 @@ enum CircularMenuType {
         case .searchCars:
             return [CircularMenuItem(icon: "ic_referesh", input: .refresh),
                     CircularMenuItem(icon: "ic_center", input: .center),
-                    CircularMenuItem(icon: "ic_compass", input: .compass),
-                    CircularMenuItem(icon: "ic_referesh", input: .refresh)
+                    CircularMenuItem(icon: "ic_compass", input: .compass)
+            ]
+        case .feeds:
+            return [CircularMenuItem(icon: "ic_cars", input: .cars),
+                    CircularMenuItem(icon: "ic_referesh", input: .refresh),
+                    CircularMenuItem(icon: "ic_center", input: .center),
+                    CircularMenuItem(icon: "ic_compass", input: .compass)
             ]
         }
     }
@@ -56,6 +53,7 @@ public enum CircularMenuInput: SelectionInput {
     case refresh
     case center
     case compass
+    case cars
 }
 
 public enum CircularMenuOutput: SelectionInput {
@@ -63,6 +61,7 @@ public enum CircularMenuOutput: SelectionInput {
     case refresh
     case center
     case compass
+    case cars
 }
 
 final class CircularMenuViewModel: ViewModelTypeSelectable {    
@@ -81,6 +80,8 @@ final class CircularMenuViewModel: ViewModelTypeSelectable {
                 return .just(.center)
             case .compass:
                 return .just(.compass)
+            case .cars:
+                return .just(.cars)
             }
         }
     }

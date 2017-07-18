@@ -87,6 +87,30 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 self.closeCarPopup()
             }).addDisposableTo(disposeBag)
         self.clusteringManager.delegate = self
+        // CircularMenu
+        self.view_circularMenu.bind(to: ViewModelFactory.circularMenu(type: viewModel.type.getCircularMenuType()))
+        self.view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            case .refresh:
+                self?.updateResults()
+            case .center:
+                self?.centerMap()
+            case .compass:
+                self?.turnMap()
+            case .cars:
+                if viewModel.showCars {
+                    viewModel.showCars = false
+                    self?.setCarsButtonVisible(false)
+                    self?.updateResults()
+                } else {
+                    viewModel.showCars = true
+                    self?.setCarsButtonVisible(true)
+                    self?.updateResults()
+                }
+            default: break
+            }
+        }).addDisposableTo(self.disposeBag)
     }
     
     // MARK: - View methods
@@ -111,20 +135,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 self?.closeCarPopup()
             default:
                 break
-            }
-        }).addDisposableTo(self.disposeBag)
-        // CircularMenu
-        self.view_circularMenu.bind(to: ViewModelFactory.circularMenu(type: .searchCars))
-        self.view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
-            if (self == nil) { return }
-            switch output {
-            case .refresh:
-                self?.updateResults()
-            case .center:
-                self?.centerMap()
-            case .compass:
-                self?.turnMap()
-            default: break
             }
         }).addDisposableTo(self.disposeBag)
         // CarPopup
@@ -302,6 +312,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
+        self.setCarsButtonVisible(false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -654,12 +665,28 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                     if menuItem.input == .center {
                         if visible {
                             button.alpha = 1
-                            //button.isUserInteractionEnabled = true
-                            //button.isEnabled = true
                         } else {
                             button.alpha = 0.5
-                            //button.isUserInteractionEnabled = false
-                            //button.isEnabled = false
+                        }
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func setCarsButtonVisible(_ visible: Bool) {
+        let arrayOfButtons = self.view_circularMenu.array_buttons
+        if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
+            for i in 0..<arrayOfButtons.count {
+                if arrayOfItems.count > i {
+                    let menuItem = arrayOfItems[i]
+                    let button = arrayOfButtons[i]
+                    if menuItem.input == .cars {
+                        if visible {
+                            button.alpha = 1
+                        } else {
+                            button.alpha = 0.5
                         }
                         return
                     }
@@ -966,6 +993,9 @@ extension SearchCarsViewController: MKMapViewDelegate {
                             }
                         }
                     }
+                } else if let feedAnnotation = annotationView.annotation as? FeedAnnotation {
+                    annotationView.image = UIImage(named: "ic_user")
+                    // TODO: ???
                 } else if let cityAnnotation = annotationView.annotation as? CityAnnotation {
                     annotationView.image = cityAnnotation.image
                 } else if annotationView.annotation is MKUserLocation {
@@ -1016,6 +1046,38 @@ extension SearchCarsViewController: MKMapViewDelegate {
                     self.view.layoutIfNeeded()
                     self.selectedCar = car
                 })
+            }
+        } else if let feedAnnotation = view.annotation as? FeedAnnotation {
+            if let feed = feedAnnotation.feed {
+                // TODO: ???
+//                if let bookedCar = self.viewModel?.carBooked {
+//                    if car.plate != bookedCar.plate {
+//                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+//                            alertView.dismissAlertView()
+//                        })
+//                        dialog.allowTouchOutsideToDismiss = false
+//                        dialog.show()
+//                    }
+//                    return
+//                }
+//                if let location = car.location {
+//                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+//                    let span = MKCoordinateSpanMake(0.001, 0.001)
+//                    self.centerMap(on: newLocation, span: span)
+//                }
+//                self.view_carPopup.updateWithCar(car: car)
+//                self.view.layoutIfNeeded()
+//                UIView .animate(withDuration: 0.2, animations: {
+//                    if car.type.isEmpty {
+//                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+//                    } else {
+//                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
+//                    }
+//                    self.view_carPopup.alpha = 1.0
+//                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+//                    self.view.layoutIfNeeded()
+//                    self.selectedCar = car
+//                })
             }
         }
     }

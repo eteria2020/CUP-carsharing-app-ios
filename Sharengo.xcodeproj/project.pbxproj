@@ -193,6 +193,7 @@
 		4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98341ED471B800880EA1 /* HomeViewController.swift */; };
 		4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98361ED471F500880EA1 /* HomeViewModel.swift */; };
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
+		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
 /* End PBXBuildFile section */
 
@@ -391,6 +392,7 @@
 		4DFD98341ED471B800880EA1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Classes/ViewControllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
+		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
 		D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1039,6 +1041,7 @@
 			isa = PBXGroup;
 			children = (
 				4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */,
+				4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */,
 				4DA554501EE56337001627E7 /* CityAnnotation.swift */,
 			);
 			name = Annotations;
@@ -1325,6 +1328,7 @@
 				038641FE1F17629D003AF6B1 /* CategoryItemViewModel.swift in Sources */,
 				03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */,
 				036D92101F0256CB0076D22D /* SettingItemViewModel.swift in Sources */,
+				4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */,
 				03AF5D721EEE83FC00AC8826 /* AnimatedTextInput.swift in Sources */,
 				033A404E1F06353500B05A89 /* CarTripsViewController.swift in Sources */,
 				4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */,

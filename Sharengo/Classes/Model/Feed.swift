@@ -27,8 +27,10 @@ public class FavouriteFeed: NSObject, NSCoding {
     var city: String?
     var launchTitle: String?
     var forceColor: Bool = false
+    var orderDate: Date = Date()
+    var feedLocation: CLLocation?
     
-    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, ddescription: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?) {
+    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, ddescription: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?) {
         self.identifier = identifier
         self.categoryTitle = categoryTitle
         self.title = title
@@ -45,6 +47,8 @@ public class FavouriteFeed: NSObject, NSCoding {
         self.address = address
         self.city = city
         self.launchTitle = launchTitle
+        self.orderDate = orderDate
+        self.feedLocation = feedLocation
     }
     
     // MARK: - Coding methods
@@ -66,6 +70,8 @@ public class FavouriteFeed: NSObject, NSCoding {
         aCoder.encode(self.address, forKey: "address")
         aCoder.encode(self.city, forKey: "city")
         aCoder.encode(self.launchTitle, forKey: "launchTitle")
+        aCoder.encode(self.orderDate, forKey: "orderDate")
+        aCoder.encode(self.feedLocation, forKey: "feedLocation")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -114,13 +120,17 @@ public class FavouriteFeed: NSObject, NSCoding {
         if let launchTitle = aDecoder.decodeObject(forKey: "launchTitle") as? String {
             self.launchTitle = launchTitle
         }
+        if let feedLocation = aDecoder.decodeObject(forKey: "feedLocation") as? CLLocation {
+            self.feedLocation = feedLocation
+        }
+        self.orderDate = aDecoder.decodeObject(forKey: "orderDate") as? Date ?? Date()
         self.forceColor = aDecoder.decodeBool(forKey: "forceColor")
     }
     
     // MARK: - Feed methods
     
     func getFeed() -> Feed {
-        return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle)
+        return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation)
     }
 }
 
@@ -221,8 +231,9 @@ public class Feed: ModelType, Decodable {
     var city: String?
     var launchTitle: String?
     var forceColor: Bool = false
+    var feedLocation: CLLocation?
     
-    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, description: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?) {
+    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, description: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?) {
         self.identifier = identifier
         self.categoryTitle = categoryTitle
         self.title = title
@@ -239,6 +250,8 @@ public class Feed: ModelType, Decodable {
         self.address = address
         self.city = city
         self.launchTitle = launchTitle
+        self.orderDate = orderDate
+        self.feedLocation = feedLocation
     }
     
     required public init?(json: JSON) {
@@ -260,6 +273,11 @@ public class Feed: ModelType, Decodable {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         self.orderDate = Decoder.decode(dateForKey: "informations.date.default", dateFormatter: dateFormatter)(json) ?? Date()
+        if let latitude: String = "informations.address.lat" <~~ json, let longitude: String = "informations.address.lng" <~~ json {
+            if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
+                self.feedLocation = CLLocation(latitude: lat, longitude: lon)
+            }
+        }
         if let forceColor: String = "appearance.color.enforce" <~~ json {
             self.forceColor = forceColor.toBool() ?? false
         }
@@ -268,6 +286,6 @@ public class Feed: ModelType, Decodable {
     // MARK: - History methods
     
     func getFavoriteFeed() -> FavouriteFeed {
-        return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle)
+        return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation)
     }
 }

@@ -109,7 +109,7 @@ final class PublishersAPIController {
         }
     }
     
-    func getMapOffers() -> Observable<Response> {
+    func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -119,7 +119,7 @@ final class PublishersAPIController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.mapOffers())
+            return provider.request(.mapOffers(latitude: latitude, longitude: longitude, radius: radius))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -163,7 +163,7 @@ final class PublishersAPIController {
         }
     }
     
-    func getMapEvents() -> Observable<Response> {
+    func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -173,7 +173,7 @@ final class PublishersAPIController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.mapEvents())
+            return provider.request(.mapEvents(latitude: latitude, longitude: longitude, radius: radius))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -195,9 +195,9 @@ fileprivate enum API {
     case cities()
     case categories()
     case offers(category: Category?)
-    case mapOffers()
+    case mapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
     case events(category: Category?)
-    case mapEvents()
+    case mapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
 }
 
 extension API: TargetType {
@@ -213,13 +213,17 @@ extension API: TargetType {
             let cid = category?.identifier ?? "0"
             let cityid = UserDefaults.standard.object(forKey: "city") as? String ?? "0"
             return "category/\(cid)/city/\(cityid)/offers"
-        case .mapOffers():
+        case .mapOffers(let latitude, let longitude, let radius):
+       //     return "latitude/\(latitude)/longitude/\(longitude)/radius/\(radius)/offers"
+            // TODO: ???
             return "latitude/45.465454/longitude/9.1865153/radius/10000/offers"
         case .events(let category):
             let cid = category?.identifier ?? "0"
             let cityid = UserDefaults.standard.object(forKey: "city") as? String ?? "0"
             return "category/\(cid)/city/\(cityid)/events"
-        case .mapEvents():
+        case .mapEvents(let latitude, let longitude, let radius):
+        //    return "latitude/\(latitude)/longitude/\(longitude)/radius/\(radius)/events"
+             // TODO: ???
             return "latitude/45.465454/longitude/9.1865153/radius/10000/events"
         }
     }
