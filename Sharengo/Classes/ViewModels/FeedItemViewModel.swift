@@ -15,7 +15,7 @@ final class FeedItemViewModel : ItemViewModelType {
     var itemIdentifier:ListIdentifier = CollectionViewCell.feed
     var date: String?
     var claim: String?
-    var bottomText: String?
+    var bottomText: String = ""
     var icon: String?
     var color: UIColor
     var advantageColor: UIColor
@@ -25,13 +25,28 @@ final class FeedItemViewModel : ItemViewModelType {
     init(model: Feed) {
         self.model = model
         
-        if model.advantage != nil && model.advantage?.isEmpty == false
-        {
-            self.bottomText = String(format: "lbl_feedsItemExtendedBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "", model.advantage!)
+        if model.launchTitle != nil && model.launchTitle?.isEmpty == false {
+            self.bottomText.append("<title>\(model.launchTitle!.uppercased())</title>\n")
         }
-        else
-        {
-            self.bottomText = String(format: "lbl_feedsItemBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "")
+       
+        if model.date != nil && model.date?.isEmpty == false {
+            self.bottomText.append("<date>\(model.date!)</date>\n")
+        }
+        
+        if model.title != nil && model.title?.isEmpty == false {
+            self.bottomText.append("<subtitle>\(model.title!)</subtitle>\n")
+        }
+        
+        if model.subtitle != nil && model.subtitle?.isEmpty == false {
+            self.bottomText.append("<description>\(model.subtitle!)</description>\n")
+        }
+        
+        if model.location != nil && model.location?.isEmpty == false && model.address != nil && model.address?.isEmpty == false && model.city != nil && model.city?.isEmpty == false {
+            self.bottomText.append("\n<description>\(model.location!), \(model.address!), \(model.city!)</description>")
+        }
+        
+        if model.advantage != nil && model.advantage?.isEmpty == false {
+            self.bottomText.append("\n<advantage>\(model.advantage!)</advantage>")
         }
         
         self.claim = model.claim

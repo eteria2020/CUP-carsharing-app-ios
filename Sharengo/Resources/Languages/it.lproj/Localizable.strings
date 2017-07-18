@@ -196,15 +196,11 @@
 "btn_feedsHeaderFeed" = "FEED";
 "btn_feedsHeaderCategories" = "CATEGORIE";
 "btn_feedsAroundMe" = "INTORNO A ME";
-"lbl_feedsItemBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>";
-"lbl_feedsItemExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>";
 "alert_categoryNotPublished" = "Questa categoria sarà disponibile prossimamente.";
 
 // Feed Detail
 "btn_feedDetailFavourite" = "MI INTERESSA";
 "btn_feedDetailNotFavourite" = "NON MI INTERESSA";
-"lbl_feedDetailBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description><extendedDescription>%@</extendedDescription>";
-"lbl_feedDetailExtendedBottom" = "<title>%@</title>\n<date>%@</date>\n<subtitle>%@</subtitle>\n<description>%@</description>\n<advantage>%@</advantage>\n\n<extendedDescription>%@</extendedDescription>";
 
 // No feeds
 "lbl_noFeedsDescriptionWithCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili nella categoria selezionata. Ti invitiamo a riprovare nei prossimi giorni</description>";

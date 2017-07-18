@@ -16,7 +16,7 @@ final class FeedDetailViewModel: ViewModelType {
     var title: String?
     var date: String?
     var claim: String?
-    var bottomText: String?
+    var bottomText: String = ""
     var icon: String?
     var color: UIColor
     var advantageColor: UIColor
@@ -26,13 +26,32 @@ final class FeedDetailViewModel: ViewModelType {
     init(model: Feed) {
         self.model = model
         
-        if model.advantage != nil && model.advantage?.isEmpty == false
-        {
-            self.bottomText = String(format: "lbl_feedDetailExtendedBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "", model.advantage!, model.description ?? "")
+        if model.launchTitle != nil && model.launchTitle?.isEmpty == false {
+            self.bottomText.append("<title>\(model.launchTitle!.uppercased())</title>\n")
         }
-        else
-        {
-            self.bottomText = String(format: "lbl_feedDetailBottom".localized(), model.launchTitle?.uppercased() ?? "", model.date ?? "", model.title ?? "", model.subtitle ?? "", model.location ?? "", model.address ?? "", model.city ?? "",model.description ?? "")
+        
+        if model.date != nil && model.date?.isEmpty == false {
+            self.bottomText.append("<date>\(model.date!)</date>\n")
+        }
+        
+        if model.title != nil && model.title?.isEmpty == false {
+            self.bottomText.append("<subtitle>\(model.title!)</subtitle>\n")
+        }
+        
+        if model.subtitle != nil && model.subtitle?.isEmpty == false {
+            self.bottomText.append("<description>\(model.subtitle!)</description>\n")
+        }
+        
+        if model.location != nil && model.location?.isEmpty == false && model.address != nil && model.address?.isEmpty == false && model.city != nil && model.city?.isEmpty == false {
+            self.bottomText.append("\n<description>\(model.location!), \(model.address!), \(model.city!)</description>")
+        }
+        
+        if model.advantage != nil && model.advantage?.isEmpty == false {
+            self.bottomText.append("\n<advantage>\(model.advantage!)</advantage>")
+        }
+        
+        if model.description != nil && model.description?.isEmpty == false {
+            self.bottomText.append("\n\n<extendedDescription>\(model.description!)</extendedDescription>")
         }
         
         self.title = model.categoryTitle?.uppercased()
