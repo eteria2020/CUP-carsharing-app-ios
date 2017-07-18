@@ -67,6 +67,7 @@
 		03A86FA41EF97171009C72F4 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */; };
 		03A86FA61EF971D9009C72F4 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */; };
 		03A86FA81EF9726D009C72F4 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA71EF9726D009C72F4 /* MenuItem.swift */; };
+		03ADD29C1F1CFDAC00AEB504 /* CircularMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD29B1F1CFDAC00AEB504 /* CircularMenuButton.swift */; };
 		03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */; };
 		03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */; };
 		03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */; };
@@ -256,6 +257,7 @@
 		03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemCollectionViewCell.swift; path = Classes/Views/MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuItemCollectionViewCell.xib; path = Resources/Xibs/MenuItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		03A86FA71EF9726D009C72F4 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItem.swift; path = Classes/Model/MenuItem.swift; sourceTree = "<group>"; };
+		03ADD29B1F1CFDAC00AEB504 /* CircularMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularMenuButton.swift; path = Classes/Views/CircularMenuButton.swift; sourceTree = "<group>"; };
 		03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Classes/ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = Classes/ViewModels/LoginViewModel.swift; sourceTree = "<group>"; };
 		03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_icon_input_eye_normal@2x.png"; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 				4D377AB51ECEDAB0005DF900 /* CircularMenuView.swift */,
 				4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */,
 				4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */,
+				03ADD29B1F1CFDAC00AEB504 /* CircularMenuButton.swift */,
 			);
 			name = CircularMenu;
 			sourceTree = "<group>";
@@ -1292,6 +1295,7 @@
 				4DCD1A5D1ECDBF7400FC8BF5 /* AppDelegate.swift in Sources */,
 				4D377ABA1ECEE01A005DF900 /* View+Theme.swift in Sources */,
 				4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */,
+				03ADD29C1F1CFDAC00AEB504 /* CircularMenuButton.swift in Sources */,
 				036D92191F0258540076D22D /* Setting.swift in Sources */,
 				4DA554491EE55284001627E7 /* FBAnnotationClusterViewConfiguration.swift in Sources */,
 				4D3BF1251ED76EAF00E595E7 /* UIView+Extensions.swift in Sources */,

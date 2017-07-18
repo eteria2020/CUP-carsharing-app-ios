@@ -11,14 +11,24 @@ import RxSwift
 import Boomerang
 import Action
 
+struct ButtonSection {
+    var midValue: CGFloat = 0.0
+    var minValue: CGFloat = 0.0
+    var maxValue: CGFloat = 0.0
+    var sector = 0
+}
+
 class CircularMenuView: UIView {
     @IBOutlet fileprivate weak var view_main: UIView!
     @IBOutlet fileprivate weak var view_background: UIView!
     fileprivate var view: UIView!
     
-    var array_buttons: [UIButton] = []
+    var array_buttons: [CircularMenuButton] = []
+    var array_buttons_sections: [ButtonSection] = []
     var viewModel: CircularMenuViewModel?
-    
+    var startTransform: CGAffineTransform = CGAffineTransform()
+    var deltaAngle: Float = 0.0
+
     // MARK: - ViewModel methods
     
     func bind(to viewModel: ViewModelType?) {
@@ -87,10 +97,14 @@ class CircularMenuView: UIView {
         let incAngle: CGFloat = (360.0/CGFloat(numberOfButtons))*CGFloat.pi/180
         let circleCenter: CGPoint = self.view_main.center
         let circleRadius: CGFloat = (self.view_main.bounds.size.width/2)-(viewModel.type.getBackgroundBorderSize()/2)
+        
+        let fanWidth = (Double.pi * 2) / Double(numberOfButtons)
+        var mid: CGFloat = 0.0
+        
         for i in 0..<numberOfButtons {
             if viewModel.type.getItems().count > i {
                 let menuItem = viewModel.type.getItems()[i]
-                let button = UIButton(type: .custom)
+                let button = CircularMenuButton(type: .custom)
                 button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height*0.065, height: UIScreen.main.bounds.height*0.065)
                 button.layer.cornerRadius = button.frame.size.width/2
                 button.layer.masksToBounds = true
@@ -101,9 +115,75 @@ class CircularMenuView: UIView {
                 button.rx.bind(to: viewModel.selection, input: menuItem.input)
                 view_main.addSubview(button)
                 array_buttons.append(button)
+
+                var buttonSection = ButtonSection()
+                buttonSection.midValue = mid
+                buttonSection.minValue = mid - CGFloat(fanWidth / 2)
+                buttonSection.maxValue = mid + CGFloat(fanWidth / 2)
+                buttonSection.sector = i
+
+                if (buttonSection.maxValue - CGFloat(fanWidth) < -CGFloat(Double.pi)) {
+                    mid = CGFloat(Double.pi)
+                    buttonSection.midValue = mid
+                    buttonSection.minValue = CGFloat(fabsf(Float(buttonSection.maxValue)))
+                    
+                }
+                mid -= CGFloat(fanWidth);
+
+                array_buttons_sections.append(buttonSection)
+
                 curAngle += incAngle
             }
         }
     }
     
+    // MARK: - Touches methods
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: self)
+        
+        let dx = location.x - self.center.x
+        let dy = location.y - self.center.y
+        
+        deltaAngle = atan2(Float(dy), Float(dx))
+        
+        startTransform = self.transform
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: self)
+        let dx = location.x - self.center.x
+        let dy = location.y - self.center.y
+        let ang = atan2(dy, dx)
+        let angleDifference = deltaAngle - Float(ang)
+        
+        self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let radians = atan2f(Float(self.transform.b), Float(self.transform.a))
+        var newVal: CGFloat = 0.0
+        
+        for section in array_buttons_sections {
+            if (radians > Float(section.minValue) && radians < Float(section.maxValue))
+            {
+                newVal = CGFloat(radians) - section.midValue
+            }
+        }
+        
+        UIView.animate(withDuration: 0.2) { 
+            self.transform = self.transform.rotated(by: -(CGFloat)(newVal))
+        }
+    }
+    
+    func calculateDistanceFromCenter(point: CGPoint) -> Float
+    {
+        let center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
+        let dx = point.x - center.x
+        let dy = point.y - center.y
+        return sqrt(Float(dx*dx + dy*dy))
+    }
+
 }

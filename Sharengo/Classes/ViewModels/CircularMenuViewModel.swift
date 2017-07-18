@@ -41,6 +41,7 @@ enum CircularMenuType {
             return [CircularMenuItem(icon: "ic_referesh", input: .refresh),
                     CircularMenuItem(icon: "ic_center", input: .center),
                     CircularMenuItem(icon: "ic_compass", input: .compass),
+                    CircularMenuItem(icon: "ic_referesh", input: .refresh)
             ]
         }
     }
