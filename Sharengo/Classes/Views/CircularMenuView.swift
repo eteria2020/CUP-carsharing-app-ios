@@ -18,6 +18,9 @@ struct ButtonSection {
     var sector = 0
 }
 
+// TODO: gestire il movimento che chiama l'esecuzione dell'azione
+// TODO: capire come ruotare l'icone
+
 class CircularMenuView: UIView {
     @IBOutlet fileprivate weak var view_main: UIView!
     @IBOutlet fileprivate weak var view_background: UIView!
@@ -105,6 +108,7 @@ class CircularMenuView: UIView {
             if viewModel.type.getItems().count > i {
                 let menuItem = viewModel.type.getItems()[i]
                 let button = CircularMenuButton(type: .custom)
+                button.circularMenuView = self
                 button.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.height*0.065, height: UIScreen.main.bounds.height*0.065)
                 button.layer.cornerRadius = button.frame.size.width/2
                 button.layer.masksToBounds = true
@@ -115,20 +119,21 @@ class CircularMenuView: UIView {
                 button.rx.bind(to: viewModel.selection, input: menuItem.input)
                 view_main.addSubview(button)
                 array_buttons.append(button)
-
+     
                 var buttonSection = ButtonSection()
                 buttonSection.midValue = mid
                 buttonSection.minValue = mid - CGFloat(fanWidth / 2)
                 buttonSection.maxValue = mid + CGFloat(fanWidth / 2)
                 buttonSection.sector = i
-
+                
                 if (buttonSection.maxValue - CGFloat(fanWidth) < -CGFloat(Double.pi)) {
                     mid = CGFloat(Double.pi)
                     buttonSection.midValue = mid
                     buttonSection.minValue = CGFloat(fabsf(Float(buttonSection.maxValue)))
                     
                 }
-                mid -= CGFloat(fanWidth);
+               
+                mid -= CGFloat(fanWidth)
 
                 array_buttons_sections.append(buttonSection)
 
@@ -159,7 +164,15 @@ class CircularMenuView: UIView {
         let ang = atan2(dy, dx)
         let angleDifference = deltaAngle - Float(ang)
         
-        self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+        startTransform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+        
+        let radians = atan2f(Float(startTransform.b), Float(startTransform.a))
+        let degrees = radians * Float(180 / Double.pi)
+        
+        if degrees < 0 && degrees > -33
+        {
+            self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
