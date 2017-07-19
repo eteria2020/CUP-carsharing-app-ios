@@ -10,4 +10,32 @@ import MapKit
 
 class FeedAnnotation: FBAnnotation {
     var feed:Feed?
+    lazy var image: UIImage = self.getImage()
+    
+    // MARK: - Lazy methods
+    
+    func getImage() -> UIImage {
+        if let icon = self.feed?.marker,
+            let url = URL(string: icon)
+        {
+            do {
+                let data = try Data(contentsOf: url)
+                if let image = UIImage(data: data) {
+                    // TODO: misura corretta?
+                    let size = CGSize(width: 46, height: 46)
+                    UIGraphicsBeginImageContext(size)
+                    
+                    let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+                    image.draw(in: areaSize)
+                    
+                    let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+                    UIGraphicsEndImageContext()
+                    return newImage
+                }
+            } catch {
+            }
+        }
+        // TODO: immagine generica
+        return UIImage(named: "ic_cluster")!
+    }
 }

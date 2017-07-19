@@ -18,6 +18,8 @@ import ReachabilitySwift
 import KeychainSwift
 import SideMenu
 
+// TODO: verificare alcuni eventi che non si vedono quando si zooma
+
 class SearchCarsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_carBookingPopup: CarBookingPopupView!
@@ -994,8 +996,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
                         }
                     }
                 } else if let feedAnnotation = annotationView.annotation as? FeedAnnotation {
-                    annotationView.image = UIImage(named: "ic_user")
-                    // TODO: ???
+                    annotationView.image = feedAnnotation.image
                 } else if let cityAnnotation = annotationView.annotation as? CityAnnotation {
                     annotationView.image = cityAnnotation.image
                 } else if annotationView.annotation is MKUserLocation {

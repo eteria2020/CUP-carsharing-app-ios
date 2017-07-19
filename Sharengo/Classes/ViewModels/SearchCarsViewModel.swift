@@ -202,6 +202,7 @@ final class SearchCarsViewModel: ViewModelType {
     }
     
     func manageAnnotations() {
+        // TODO: spariscono i feeds troppo spesso e troppo a lungo
         var annotations: [FBAnnotation] = []
         if type == .searchCars || showCars == true {
             var carBookedFounded: Bool = false
