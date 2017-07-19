@@ -210,7 +210,6 @@ enum Color {
     case supportSubtitle
     case supportCallBackgroundArea
     case supportCallBackgroundButton
-    case supportCallTextButton
 
     // Web
     case webBackground
@@ -451,8 +450,6 @@ enum Color {
                 return ColorBrand.white.value
             case .supportCallBackgroundButton:
                 return ColorBrand.yellow.value
-            case .supportCallTextButton:
-                return ColorBrand.black.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

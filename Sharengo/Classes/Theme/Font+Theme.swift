@@ -133,7 +133,6 @@ enum Font {
     case supportHeader
     case supportTitle
     case supportSubtitle
-    case supportCallButton
     
     var value: UIFont {
         get {
@@ -277,8 +276,6 @@ enum Font {
             case .supportTitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .supportSubtitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
-            case .supportCallButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }

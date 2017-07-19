@@ -63,12 +63,13 @@ class SupportViewController : BaseViewController, ViewModelBindable {
         }
         
         self.lbl_headerTitle.textColor = Color.supportHeaderLabel.value
-        self.lbl_headerTitle.styledText = "lbl_supportHeaderTitle".localized()
+        self.lbl_headerTitle.styledText = "lbl_supportHeaderTitle".localized().uppercased()
         self.lbl_title.textColor = Color.supportTitle.value
         self.lbl_title.styledText = "lbl_supportTitle".localized()
         self.lbl_subtitle.textColor = Color.supportSubtitle.value
         self.lbl_subtitle.styledText = "lbl_supportSubtitle".localized()
 
+        
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
@@ -83,9 +84,30 @@ class SupportViewController : BaseViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         
         // Buttons
+        self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
         self.btn_call.rx.tap.asObservable()
             .subscribe(onNext:{
-                print("Chiamare")
+                let message = "alert_supportCall".localized()
+                
+                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_supportAlertCall".localized(), cancelButtonText: "btn_cancel".localized(),
+                                        okButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                                            guard let phoneCallURL = URL(string: "tel://" + "supportTelephoneNumber".localized()) else { return }
+                                            if (UIApplication.shared.canOpenURL(phoneCallURL)) {
+                                                if #available(iOS 10.0, *) {
+                                                    UIApplication.shared.open(phoneCallURL)
+                                                }
+                                                else
+                                                {
+                                                    UIApplication.shared.openURL(phoneCallURL)
+                                                }
+                                            }
+                },
+                                        cancelButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
             }).addDisposableTo(disposeBag)
     }
     

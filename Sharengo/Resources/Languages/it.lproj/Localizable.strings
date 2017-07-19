@@ -196,4 +196,7 @@
 "lbl_supportHeaderTitle" = "RICHIEDI ASSISTENZA";
 "lbl_supportTitle" = "Siamo qui per aiutarti!";
 "lbl_supportSubtitle" = "Vuoi parlare con un operatore?";
-"btn_call" = "CHIAMA ORA";
+"btn_supportCall" = "CHIAMA ORA";
+"alert_supportCall" = "+39 0586 1975772";
+"supportTelephoneNumber" = "+3905861975772";
+"btn_supportAlertCall" = "Chiama";
