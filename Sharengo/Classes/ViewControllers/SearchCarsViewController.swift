@@ -18,9 +18,6 @@ import ReachabilitySwift
 import KeychainSwift
 import SideMenu
 
-// TODO: verificare alcuni eventi che non si vedono quando si zooma
-// TODO: se non ho abilitato la visualizzazione delle auto vedo il popup? Zoomo sulla macchina???
-
 class SearchCarsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_carBookingPopup: CarBookingPopupView!
@@ -102,6 +99,14 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             case .compass:
                 self?.turnMap()
             case .cars:
+                if self?.viewModel?.carBooked != nil {
+                    let dialog = ZAlertView(title: nil, message: "alert_showCarsDisabledMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                    return
+                }
                 if viewModel.showCars {
                     viewModel.showCars = false
                     self?.setCarsButtonVisible(false)
@@ -355,6 +360,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                     let span = MKCoordinateSpanMake(0.001, 0.001)
                                     self?.centerMap(on: newLocation, span: span)
                                 }
+                                if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
+                                    DispatchQueue.main.async {
+                                        self?.setCarsButtonVisible(true)
+                                        self?.viewModel?.showCars = true
+                                        self?.updateResults()
+                                    }
+                                }
                             } else {
                                 // Update
                                 car.booked = true
@@ -363,6 +375,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                 self?.viewModel?.carBooked = car
                                 self?.viewModel?.carTrip = carTrip
                                 self?.getResultsWithoutLoading()
+                                if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
+                                    DispatchQueue.main.async {
+                                        self?.setCarsButtonVisible(true)
+                                        self?.viewModel?.showCars = true
+                                        self?.updateResults()
+                                    }
+                                }
                             }
                         }
                     }
@@ -405,6 +424,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                         let span = MKCoordinateSpanMake(0.001, 0.001)
                                         self?.centerMap(on: newLocation, span: span)
                                     }
+                                    if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
+                                        DispatchQueue.main.async {
+                                            self?.setCarsButtonVisible(true)
+                                            self?.viewModel?.showCars = true
+                                            self?.updateResults()
+                                        }
+                                    }
                                 }
                             } else {
                                 // Update
@@ -413,6 +439,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                                 self?.viewModel?.carBooked = car
                                 self?.viewModel?.carBooking = carBooking
                                 self?.getResultsWithoutLoading()
+                                if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
+                                    DispatchQueue.main.async {
+                                        self?.setCarsButtonVisible(true)
+                                        self?.viewModel?.showCars = true
+                                        self?.updateResults()
+                                    }
+                                }
                             }
                         }
                     }
@@ -426,7 +459,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 self.view.layoutIfNeeded()
             }
         }
-        self.getResultsWithoutLoading()
+        if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
+            DispatchQueue.main.async {
+                self.setCarsButtonVisible(true)
+                self.viewModel?.showCars = true
+                self.updateResults()
+            }
+        }
     }
     
     @objc func closeCarBookingPopupView() {
@@ -1062,35 +1101,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
             }
         } else if let feedAnnotation = view.annotation as? FeedAnnotation {
             if let feed = feedAnnotation.feed {
-                // TODO: ???
-//                if let bookedCar = self.viewModel?.carBooked {
-//                    if car.plate != bookedCar.plate {
-//                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-//                            alertView.dismissAlertView()
-//                        })
-//                        dialog.allowTouchOutsideToDismiss = false
-//                        dialog.show()
-//                    }
-//                    return
-//                }
-//                if let location = car.location {
-//                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
-//                    let span = MKCoordinateSpanMake(0.001, 0.001)
-//                    self.centerMap(on: newLocation, span: span)
-//                }
-//                self.view_carPopup.updateWithCar(car: car)
-//                self.view.layoutIfNeeded()
-//                UIView .animate(withDuration: 0.2, animations: {
-//                    if car.type.isEmpty {
-//                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
-//                    } else {
-//                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
-//                    }
-//                    self.view_carPopup.alpha = 1.0
-//                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
-//                    self.view.layoutIfNeeded()
-//                    self.selectedCar = car
-//                })
+                // TODO: popup
             }
         }
     }

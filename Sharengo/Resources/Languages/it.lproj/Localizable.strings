@@ -98,6 +98,7 @@
 
 // SearchCars
 "alert_centerMapMessage" = "Share'ngo ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_showCarsDisabledMessage" = "Attenzione! Potrai utilizzare questa funzione solo dopo aver concluso la corsa o la prenotazione attiva";
 
 // CarPopup
 "lbl_carPopupType" = "Auto più vicina";

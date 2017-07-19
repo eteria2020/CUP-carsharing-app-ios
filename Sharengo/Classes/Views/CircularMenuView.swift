@@ -18,9 +18,6 @@ struct ButtonSection {
     var sector = 0
 }
 
-// TODO: gestire il movimento che chiama l'esecuzione dell'azione
-// TODO: capire come ruotare l'icone
-
 class CircularMenuView: UIView {
     @IBOutlet fileprivate weak var view_main: UIView!
     @IBOutlet fileprivate weak var view_background: UIView!

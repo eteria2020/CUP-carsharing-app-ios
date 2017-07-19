@@ -21,9 +21,10 @@ class FeedAnnotation: FBAnnotation {
             do {
                 let data = try Data(contentsOf: url)
                 if let image = UIImage(data: data) {
-                    // TODO: misura corretta per big
-                    // let size = CGSize(width: 46, height: 55)
-                    let size = CGSize(width:38, height: 46)
+                    var size = CGSize(width:38, height: 46)
+                    if self.feed?.sponsored ?? false {
+                        size = CGSize(width: 46, height: 55)
+                    }
                     UIGraphicsBeginImageContext(size)
                     
                     let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
@@ -36,9 +37,10 @@ class FeedAnnotation: FBAnnotation {
             } catch {
             }
         }
-        // TODO: misura corretta per big
-        // let size = CGSize(width: 46, height: 55)
-        let size = CGSize(width:38, height: 46)
+        var size = CGSize(width:38, height: 46)
+        if self.feed?.sponsored ?? false {
+            size = CGSize(width: 46, height: 55)
+        }
         UIGraphicsBeginImageContext(size)
         
         let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)

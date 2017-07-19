@@ -30,8 +30,9 @@ public class FavouriteFeed: NSObject, NSCoding {
     var orderDate: Date = Date()
     var feedLocation: CLLocation?
     var marker: String?
+    var sponsored: Bool = false
     
-    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, ddescription: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?, marker: String?) {
+    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, ddescription: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?, marker: String?, sponsored: Bool) {
         self.identifier = identifier
         self.categoryTitle = categoryTitle
         self.title = title
@@ -51,6 +52,7 @@ public class FavouriteFeed: NSObject, NSCoding {
         self.orderDate = orderDate
         self.feedLocation = feedLocation
         self.marker = marker
+        self.sponsored = sponsored
     }
     
     // MARK: - Coding methods
@@ -75,6 +77,7 @@ public class FavouriteFeed: NSObject, NSCoding {
         aCoder.encode(self.orderDate, forKey: "orderDate")
         aCoder.encode(self.feedLocation, forKey: "feedLocation")
         aCoder.encode(self.marker, forKey: "marker")
+        aCoder.encode(self.sponsored, forKey: "sponsored")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -131,12 +134,13 @@ public class FavouriteFeed: NSObject, NSCoding {
         }
         self.orderDate = aDecoder.decodeObject(forKey: "orderDate") as? Date ?? Date()
         self.forceColor = aDecoder.decodeBool(forKey: "forceColor")
+        self.sponsored = aDecoder.decodeBool(forKey: "sponsored")
     }
     
     // MARK: - Feed methods
     
     func getFeed() -> Feed {
-        return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker)
+        return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }
 }
 
@@ -194,6 +198,7 @@ public class Feed: ModelType, Decodable {
         },
         "informations":
         {
+            "sponsored":"false"
             "launch_title":"",
             "date":
             {
@@ -239,8 +244,9 @@ public class Feed: ModelType, Decodable {
     var forceColor: Bool = false
     var feedLocation: CLLocation?
     var marker: String?
+    var sponsored: Bool = false
     
-    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, description: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?, marker: String?) {
+    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, description: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?, marker: String?, sponsored: Bool) {
         self.identifier = identifier
         self.categoryTitle = categoryTitle
         self.title = title
@@ -260,6 +266,7 @@ public class Feed: ModelType, Decodable {
         self.orderDate = orderDate
         self.feedLocation = feedLocation
         self.marker = marker
+        self.sponsored = sponsored
     }
     
     required public init?(json: JSON) {
@@ -290,11 +297,14 @@ public class Feed: ModelType, Decodable {
         if let forceColor: String = "appearance.color.enforce" <~~ json {
             self.forceColor = forceColor.toBool() ?? false
         }
+        if let sponsored: String = "informations.sponsored" <~~ json {
+            self.sponsored = sponsored.toBool() ?? false
+        }
     }
     
     // MARK: - History methods
     
     func getFavoriteFeed() -> FavouriteFeed {
-        return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker)
+        return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }
 }

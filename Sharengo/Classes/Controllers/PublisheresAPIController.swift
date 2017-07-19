@@ -214,13 +214,13 @@ extension API: TargetType {
             let cityid = UserDefaults.standard.object(forKey: "city") as? String ?? "0"
             return "category/\(cid)/city/\(cityid)/offers"
         case .mapOffers(let latitude, let longitude, let radius):
-            return String(format: "latitude/%0.6f/longitude/%0.6f/radius/%f/offers", latitude, longitude, radius)
+            return String(format: "latitude/%0.6f/longitude/%0.6f/radius/%0.f/offers", latitude, longitude, radius)
         case .events(let category):
             let cid = category?.identifier ?? "0"
             let cityid = UserDefaults.standard.object(forKey: "city") as? String ?? "0"
             return "category/\(cid)/city/\(cityid)/events"
         case .mapEvents(let latitude, let longitude, let radius):
-            return String(format: "latitude/%0.6f/longitude/%0.6f/radius/%f/events", latitude, longitude, radius)
+            return String(format: "latitude/%0.6f/longitude/%0.6f/radius/%0.f/events", latitude, longitude, radius)
         }
     }
     
