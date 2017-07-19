@@ -71,13 +71,14 @@ public class Category: ModelType, Decodable {
     var identifier: String = ""
     var title: String = ""
     var icon: String = ""
+    var gif: String = ""
     var published: Bool = false
     var color: String = ""
     
     required public init?(json: JSON) {
-        // TODO: caricare la gif invece dell'immagine
         self.identifier = "tid" <~~ json ?? ""
         self.title = "name" <~~ json ?? ""
+        self.gif = "media.videos.default.uri" <~~ json ?? ""
         self.icon = "media.images.image.uri" <~~ json ?? ""
         self.color = "appearance.color.rgb" <~~ json ?? ""
         if let published: String = "status.published" <~~ json {

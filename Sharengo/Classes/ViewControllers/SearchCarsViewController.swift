@@ -19,6 +19,7 @@ import KeychainSwift
 import SideMenu
 
 // TODO: verificare alcuni eventi che non si vedono quando si zooma
+// TODO: se non ho abilitato la visualizzazione delle auto vedo il popup? Zoomo sulla macchina???
 
 class SearchCarsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
@@ -842,6 +843,10 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     fileprivate func getRadius() -> CLLocationDistance? {
         if let mapView = self.mapView {
             let distanceMeters = mapView.radiusBaseOnViewHeight
+            /*
+            mapView.removeOverlays(mapView.overlays)
+            mapView.add(MKCircle(center: mapView.centerCoordinate, radius: mapView.radiusBaseOnViewHeight))
+            */
             return distanceMeters
         }
         return nil
@@ -917,6 +922,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
 
 extension SearchCarsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        /*
+        if let overlay = overlay as? MKCircle {
+            let circleRenderer = MKCircleRenderer(circle: overlay)
+            circleRenderer.fillColor = UIColor.blue.withAlphaComponent(0.5)
+            return circleRenderer
+        }
+        */
         guard let tileOverlay = overlay as? MKTileOverlay else {
             return MKOverlayRenderer()
         }

@@ -35,8 +35,6 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
         }
 
         self.viewModel = viewModel
-
-        // TODO: evitare che si ri-vedano le corse caricate precedentemente
         
         self.lbl_title.styledText = "lbl_carTripsHeaderTitle".localized()
         self.collectionView?.bind(to: viewModel)

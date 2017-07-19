@@ -110,6 +110,8 @@ final class SearchCarsViewModel: ViewModelType {
     }
     
     func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
+        self.errorEvents = nil
+        self.errorOffers = nil
         if type == .searchCars || showCars == true {
             self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -202,7 +204,6 @@ final class SearchCarsViewModel: ViewModelType {
     }
     
     func manageAnnotations() {
-        // TODO: spariscono i feeds troppo spesso e troppo a lungo
         var annotations: [FBAnnotation] = []
         if type == .searchCars || showCars == true {
             var carBookedFounded: Bool = false
@@ -270,7 +271,19 @@ final class SearchCarsViewModel: ViewModelType {
                 }
                 self.array_annotations.value = annotations
             } else if self.errorEvents == true || self.errorOffers == true {
-                // TODO: errore
+                let dispatchTime = DispatchTime.now() + 0.5
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    var message = "alert_generalError".localized()
+                    if Reachability()?.isReachable == false {
+                        message = "alert_connectionError".localized()
+                    }
+                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                    self.array_annotations.value = annotations
+                }
             }
         }
     }

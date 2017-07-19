@@ -15,6 +15,7 @@ final class CategoryItemViewModel : ItemViewModelType {
     var itemIdentifier:ListIdentifier = CollectionViewCell.category
     var title: String?
     var icon: String?
+    var gif: String?
     var published: Bool
     var color: UIColor
     
@@ -22,6 +23,7 @@ final class CategoryItemViewModel : ItemViewModelType {
         self.model = model
         self.title = model.title
         self.icon = model.icon
+        self.gif = model.gif
         self.published = model.published
         self.color = UIColor(hexString: model.color)
     }

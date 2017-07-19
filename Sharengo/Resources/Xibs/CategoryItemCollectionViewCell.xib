@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -51,13 +51,22 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDX-jb-cf9">
-                                <rect key="frame" x="84" y="68.5" width="135.5" height="135.5"/>
+                                <rect key="frame" x="84" y="68" width="135.5" height="136"/>
                                 <color key="backgroundColor" red="1" green="0.46942816840000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zDX-jb-cf9" secondAttribute="height" multiplier="1:1" id="wTr-L3-ErC"/>
+                                </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_login" translatesAutoresizingMaskIntoConstraints="NO" id="BOM-Mi-No1">
                                 <rect key="frame" x="84" y="68.5" width="135.5" height="135.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BOM-Mi-No1" secondAttribute="height" multiplier="1:1" id="Bp2-Th-fqP"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_login" translatesAutoresizingMaskIntoConstraints="NO" id="ygF-SD-UEn" customClass="GIFImageView" customModule="Gifu">
+                                <rect key="frame" x="38" y="31" width="226.5" height="226.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ygF-SD-UEn" secondAttribute="height" multiplier="1:1" id="4ik-e3-o9p"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZC-Uh-jai">
@@ -72,6 +81,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ygF-SD-UEn" firstAttribute="centerX" secondItem="eqk-R7-fly" secondAttribute="centerX" id="0K8-G7-kiJ"/>
                             <constraint firstItem="vzC-DX-xvb" firstAttribute="top" secondItem="eqk-R7-fly" secondAttribute="top" id="29z-1R-qWa"/>
                             <constraint firstAttribute="trailing" secondItem="XnU-fr-knP" secondAttribute="trailing" id="3qZ-am-FqD"/>
                             <constraint firstAttribute="bottom" secondItem="4xR-ct-v4Y" secondAttribute="bottom" id="4Mi-7q-2W5"/>
@@ -80,11 +90,11 @@
                             <constraint firstItem="4xR-ct-v4Y" firstAttribute="leading" secondItem="eqk-R7-fly" secondAttribute="leading" constant="-1" id="KmN-HX-NkY"/>
                             <constraint firstAttribute="trailing" secondItem="vzC-DX-xvb" secondAttribute="trailing" constant="-1" id="LXV-Es-RIx"/>
                             <constraint firstItem="QxF-fc-Vxe" firstAttribute="top" secondItem="eqk-R7-fly" secondAttribute="top" constant="-1" id="MJU-4B-7yf"/>
-                            <constraint firstItem="zDX-jb-cf9" firstAttribute="leading" secondItem="BOM-Mi-No1" secondAttribute="leading" id="NIh-Wp-2KM"/>
                             <constraint firstItem="vzC-DX-xvb" firstAttribute="leading" secondItem="QxF-fc-Vxe" secondAttribute="trailing" id="OC9-hO-MkW"/>
+                            <constraint firstItem="ygF-SD-UEn" firstAttribute="height" secondItem="eqk-R7-fly" secondAttribute="height" multiplier="0.75" id="Ouk-Vl-gmg"/>
                             <constraint firstItem="bZC-Uh-jai" firstAttribute="leading" secondItem="eqk-R7-fly" secondAttribute="leading" constant="15" id="PpX-Fs-CsE"/>
-                            <constraint firstItem="zDX-jb-cf9" firstAttribute="top" secondItem="BOM-Mi-No1" secondAttribute="top" id="Y2e-oW-jLU"/>
-                            <constraint firstItem="zDX-jb-cf9" firstAttribute="bottom" secondItem="BOM-Mi-No1" secondAttribute="bottom" id="cBO-XK-gYi"/>
+                            <constraint firstItem="zDX-jb-cf9" firstAttribute="height" secondItem="eqk-R7-fly" secondAttribute="height" multiplier="0.45" id="Vsy-Hf-9d9"/>
+                            <constraint firstItem="ygF-SD-UEn" firstAttribute="centerY" secondItem="eqk-R7-fly" secondAttribute="centerY" constant="-7" id="cPl-ao-8UL"/>
                             <constraint firstItem="BOM-Mi-No1" firstAttribute="height" secondItem="eqk-R7-fly" secondAttribute="height" multiplier="0.45" id="jWv-q6-RQI"/>
                             <constraint firstItem="bZC-Uh-jai" firstAttribute="top" secondItem="zDX-jb-cf9" secondAttribute="bottom" constant="15" id="kFf-mm-hPd"/>
                             <constraint firstItem="4xR-ct-v4Y" firstAttribute="top" secondItem="eqk-R7-fly" secondAttribute="top" id="kPP-AF-CZv"/>
@@ -92,8 +102,9 @@
                             <constraint firstAttribute="trailing" secondItem="bZC-Uh-jai" secondAttribute="trailing" constant="15" id="mQy-vL-tmk"/>
                             <constraint firstItem="BOM-Mi-No1" firstAttribute="centerX" secondItem="eqk-R7-fly" secondAttribute="centerX" id="osR-e3-Ipr"/>
                             <constraint firstItem="XnU-fr-knP" firstAttribute="leading" secondItem="eqk-R7-fly" secondAttribute="leading" id="rIX-ZM-UXk"/>
+                            <constraint firstItem="zDX-jb-cf9" firstAttribute="centerX" secondItem="eqk-R7-fly" secondAttribute="centerX" id="rov-QU-IPA"/>
                             <constraint firstItem="XnU-fr-knP" firstAttribute="top" secondItem="bZC-Uh-jai" secondAttribute="bottom" constant="15" id="sPT-9e-53H"/>
-                            <constraint firstItem="zDX-jb-cf9" firstAttribute="trailing" secondItem="BOM-Mi-No1" secondAttribute="trailing" id="vYX-ft-U7M"/>
+                            <constraint firstItem="zDX-jb-cf9" firstAttribute="centerY" secondItem="eqk-R7-fly" secondAttribute="centerY" constant="-15" id="vEa-sf-vvc"/>
                             <constraint firstAttribute="bottom" secondItem="vzC-DX-xvb" secondAttribute="bottom" id="wbl-U6-d4d"/>
                         </constraints>
                     </view>
@@ -107,6 +118,7 @@
             </constraints>
             <size key="customSize" width="303" height="302"/>
             <connections>
+                <outlet property="gif_icon" destination="ygF-SD-UEn" id="PM7-ER-rTw"/>
                 <outlet property="img_icon" destination="BOM-Mi-No1" id="2oY-bI-qJc"/>
                 <outlet property="lbl_title" destination="bZC-Uh-jai" id="Wkz-NR-wHb"/>
                 <outlet property="view_bottomBorder" destination="XnU-fr-knP" id="lKl-1k-brz"/>

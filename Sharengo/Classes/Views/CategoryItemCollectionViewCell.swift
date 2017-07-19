@@ -11,9 +11,11 @@ import Boomerang
 import RxSwift
 import Action
 import RxCocoa
+import Gifu
 
 class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_icon: UIImageView!
+    @IBOutlet fileprivate weak var gif_icon: GIFImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var view_topBorder: UIView!
@@ -53,21 +55,46 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.view_bottomBorder.backgroundColor = Color.categoriesItemBorderBackground.value
         self.view_leftBorder.backgroundColor = Color.categoriesItemBorderBackground.value
         self.view_rightBorder.backgroundColor = Color.categoriesItemBorderBackground.value
+
+        self.img_icon.image = nil
+        self.gif_icon.image = nil
+        self.img_icon.alpha = 0.0
+        self.gif_icon.alpha = 0.0
+        self.gif_icon.stopAnimatingGIF()
         
-        if let icon = viewModel.icon,
-            let url = URL(string: icon)
-        {
-            do {
-                let data = try Data(contentsOf: url)
-                if let image = UIImage(data: data) {
-                    // TODO: caricare la gif
-                    if viewModel.published {
-                        self.img_icon.image = image.tinted(ColorBrand.white.value)
-                    } else {
-                        self.img_icon.image = image.tinted(UIColor(hexString: "#aca59d"))
+        DispatchQueue.global(qos: .background).async {
+            if viewModel.published {
+                if let icon = viewModel.gif,
+                    let url = URL(string: icon)
+                {
+                    do {
+                        let data = try Data(contentsOf: url)
+                        DispatchQueue.main.async {
+                            self.gif_icon.animate(withGIFData: data)
+                            UIView.animate(withDuration: 0.25, animations: {
+                                self.gif_icon.alpha = 1.0
+                            })
+                        }
+                    } catch {
                     }
                 }
-            } catch {
+            } else {
+                if let icon = viewModel.icon,
+                    let url = URL(string: icon)
+                {
+                    do {
+                        let data = try Data(contentsOf: url)
+                        if let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                self.img_icon.image = image.tinted(UIColor(hexString: "#aca59d"))
+                                UIView.animate(withDuration: 0.25, animations: {
+                                    self.img_icon.alpha = 1.0
+                                })
+                            }
+                        }
+                    } catch {
+                    }
+                }
             }
         }
     }

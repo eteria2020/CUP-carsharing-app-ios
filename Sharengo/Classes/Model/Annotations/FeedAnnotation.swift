@@ -21,8 +21,9 @@ class FeedAnnotation: FBAnnotation {
             do {
                 let data = try Data(contentsOf: url)
                 if let image = UIImage(data: data) {
-                    // TODO: misura corretta?
-                    let size = CGSize(width: 46, height: 46)
+                    // TODO: misura corretta per big
+                    // let size = CGSize(width: 46, height: 55)
+                    let size = CGSize(width:38, height: 46)
                     UIGraphicsBeginImageContext(size)
                     
                     let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
@@ -35,7 +36,16 @@ class FeedAnnotation: FBAnnotation {
             } catch {
             }
         }
-        // TODO: immagine generica
-        return UIImage(named: "ic_cluster")!
+        // TODO: misura corretta per big
+        // let size = CGSize(width: 46, height: 55)
+        let size = CGSize(width:38, height: 46)
+        UIGraphicsBeginImageContext(size)
+        
+        let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIImage(named: "ic_puntatore-generico")!.draw(in: areaSize)
+        
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }
