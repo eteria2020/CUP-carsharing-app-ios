@@ -262,11 +262,13 @@ final class SearchCarsViewModel: ViewModelType {
         if type == .feeds {
             if self.errorEvents == false && self.errorOffers == false {
                 for feed in self.feeds {
-                    if let coordinate = feed.feedLocation?.coordinate {
-                        let annotation = FeedAnnotation()
-                        annotation.coordinate = coordinate
-                        annotation.feed = feed
-                        annotations.append(annotation)
+                    if feed.identifier != nil {
+                        if let coordinate = feed.feedLocation?.coordinate {
+                            let annotation = FeedAnnotation()
+                            annotation.coordinate = coordinate
+                            annotation.feed = feed
+                            annotations.append(annotation)
+                        }
                     }
                 }
                 self.array_annotations.value = annotations
