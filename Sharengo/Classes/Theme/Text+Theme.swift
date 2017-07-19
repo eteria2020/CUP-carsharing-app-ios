@@ -100,6 +100,11 @@ enum TextStyle: String, TextStyleType {
     case onBoardDescription = "onBoardDescription"
     case onBoardSkip = "onBoardSkip"
     
+    // Support
+    case supportHeader = "supportHeader"
+    case supportTitle = "supportTitle"
+    case supportSubtitle = "supportSubtitle"
+    
     static var all:[TextStyle] {
         return [
             // Intro
@@ -164,7 +169,11 @@ enum TextStyle: String, TextStyleType {
             .carTripsSearchCarsLabel,
             // OnBoard
             .onBoardDescription,
-            .onBoardSkip
+            .onBoardSkip,
+            // Support
+            .supportHeader,
+            .supportTitle,
+            .supportSubtitle
         ]
     }
     
@@ -295,6 +304,13 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
             case .onBoardSkip:
                 return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            // Support
+            case .supportHeader:
+                return StringStyle(.font(Font.supportHeader.value), .color(Color.supportHeaderLabel.value), .alignment(.center))
+            case .supportTitle:
+                return StringStyle(.font(Font.supportTitle.value), .color(Color.supportTitle.value), .alignment(.center))
+            case .supportSubtitle:
+                return StringStyle(.font(Font.supportSubtitle.value), .color(Color.supportSubtitle.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

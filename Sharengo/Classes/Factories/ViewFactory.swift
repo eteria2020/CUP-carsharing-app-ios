@@ -29,6 +29,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case newFavourite = "newFavourite"
     case favourites = "favourites"
     case onBoard = "onBoard"
+    case support = "support"
     var name: String {
         return self.rawValue
     }

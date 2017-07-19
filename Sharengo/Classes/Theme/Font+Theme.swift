@@ -129,6 +129,12 @@ enum Font {
     case onBoardDescription
     case onBoardSkipButton
     
+    // Support
+    case supportHeader
+    case supportTitle
+    case supportSubtitle
+    case supportCallButton
+    
     var value: UIFont {
         get {
             switch self {
@@ -264,6 +270,15 @@ enum Font {
             case .onBoardDescription:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
             case .onBoardSkipButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Support
+            case .supportHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .supportTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .supportSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .supportCallButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }

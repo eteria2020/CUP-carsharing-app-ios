@@ -202,6 +202,16 @@ enum Color {
     case onBoardPageControlEmpty
     case onBoardPageControlFilled
 
+    // Support
+    case supportHeaderBackground
+    case supportHeaderLabel
+    case supportBackground
+    case supportTitle
+    case supportSubtitle
+    case supportCallBackgroundArea
+    case supportCallBackgroundButton
+    case supportCallTextButton
+
     // Web
     case webBackground
     
@@ -426,6 +436,23 @@ enum Color {
                 return ColorBrand.white.value
             case .onBoardPageControlFilled:
                 return ColorBrand.green.value
+            // Support
+            case .supportHeaderBackground:
+                return ColorBrand.black.value
+            case .supportHeaderLabel:
+                return ColorBrand.white.value
+            case .supportBackground:
+                return ColorBrand.lightGray.value
+            case .supportTitle:
+                return ColorBrand.green.value
+            case .supportSubtitle:
+                return ColorBrand.gray.value
+            case .supportCallBackgroundArea:
+                return ColorBrand.white.value
+            case .supportCallBackgroundButton:
+                return ColorBrand.yellow.value
+            case .supportCallTextButton:
+                return ColorBrand.black.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

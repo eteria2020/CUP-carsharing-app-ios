@@ -191,3 +191,9 @@
 "lbl_onBoardStep2Description" = "Più ne hai bisogno\ne meno costa";
 "lbl_onBoardStep3Description" = "Ogni corsa una sorpresa\ne una scoperta";
 "btn_onBoardSkip" = "Skip >>";
+
+// Support
+"lbl_supportHeaderTitle" = "RICHIEDI ASSISTENZA";
+"lbl_supportTitle" = "Siamo qui per aiutarti!";
+"lbl_supportSubtitle" = "Vuoi parlare con un operatore?";
+"btn_call" = "CHIAMA ORA";

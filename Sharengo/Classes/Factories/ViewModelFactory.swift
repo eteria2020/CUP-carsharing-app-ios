@@ -111,6 +111,10 @@ struct ViewModelFactory {
         return NoCarTripsViewModel()
     }
     
+    static func support() -> ViewModelType {
+        return SupportViewModel()
+    }
+
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }
@@ -134,4 +138,5 @@ struct ViewModelFactory {
     static func favouriteItem(fromModel model:Address) -> ItemViewModelType {
         return FavouriteItemViewModel(model: model)
     }
+    
 }

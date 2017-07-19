@@ -119,8 +119,8 @@ struct Router : RouterType {
     }
 
     public static func root() -> UIViewController {
-        let destination: HomeViewController = (Storyboard.main.scene(.home))
-        destination.bind(to: ViewModelFactory.home(), afterLoad: true)
+        let destination: SupportViewController = (Storyboard.main.scene(.support))
+        destination.bind(to: ViewModelFactory.support(), afterLoad: true)
         return destination.withNavigation()
     }
     
