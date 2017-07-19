@@ -202,6 +202,19 @@ enum Color {
     case onBoardPageControlEmpty
     case onBoardPageControlFilled
 
+    // Invite Friend
+    case inviteFriendHeaderBackground
+    case inviteFriendHeaderLabel
+    case inviteFriendBackground
+    case inviteFriendDescriptionFirstPartTitle
+    case inviteFriendDescriptionFirstPartSubtitle
+    case inviteFriendDescriptionSecondPartLabel
+    case inviteFriendDescriptionThirdPartTitle
+    case inviteFriendDescriptionThirdPartSubtitle
+    case inviteFriendDescriptionFourthPartLabel
+    case inviteFriendSeparatorBackground
+    case inviteFriendInviteBackgroundButton
+
     // Web
     case webBackground
     
@@ -426,6 +439,29 @@ enum Color {
                 return ColorBrand.white.value
             case .onBoardPageControlFilled:
                 return ColorBrand.green.value
+            // Invite Friend
+            case .inviteFriendHeaderBackground:
+                return ColorBrand.black.value
+            case .inviteFriendHeaderLabel:
+                return ColorBrand.white.value
+            case .inviteFriendBackground:
+                return ColorBrand.lightGray.value
+            case .inviteFriendDescriptionFirstPartTitle:
+                return ColorBrand.green.value
+            case .inviteFriendDescriptionFirstPartSubtitle:
+                return ColorBrand.black.value
+            case .inviteFriendDescriptionSecondPartLabel:
+                return ColorBrand.black.value
+            case .inviteFriendDescriptionThirdPartTitle:
+                return ColorBrand.black.value
+            case .inviteFriendDescriptionThirdPartSubtitle:
+                return ColorBrand.green.value
+            case .inviteFriendDescriptionFourthPartLabel:
+                return ColorBrand.black.value
+            case .inviteFriendSeparatorBackground:
+                return ColorBrand.gray.value
+            case .inviteFriendInviteBackgroundButton:
+                return ColorBrand.yellow.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

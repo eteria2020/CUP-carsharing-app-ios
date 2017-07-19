@@ -100,6 +100,13 @@ enum TextStyle: String, TextStyleType {
     case onBoardDescription = "onBoardDescription"
     case onBoardSkip = "onBoardSkip"
     
+    // Invite Friend
+    case inviteFriendHeader = "inviteFriendHeader"
+    case inviteFriendDescriptionFirstPart = "inviteFriendDescriptionFirstPart"
+    case inviteFriendDescriptionSecondPart = "inviteFriendDescriptionSecondPart"
+    case inviteFriendDescriptionThirdPart = "inviteFriendDescriptionThirdPart"
+    case inviteFriendDescriptionFourthPart = "inviteFriendDescriptionFourthPart"
+    
     static var all:[TextStyle] {
         return [
             // Intro
@@ -164,7 +171,13 @@ enum TextStyle: String, TextStyleType {
             .carTripsSearchCarsLabel,
             // OnBoard
             .onBoardDescription,
-            .onBoardSkip
+            .onBoardSkip,
+            // Invite Friend
+            .inviteFriendHeader,
+            .inviteFriendDescriptionFirstPart,
+            .inviteFriendDescriptionSecondPart,
+            .inviteFriendDescriptionThirdPart,
+            .inviteFriendDescriptionFourthPart
         ]
     }
     
@@ -295,6 +308,21 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
             case .onBoardSkip:
                 return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            // Invite Friend
+            case .inviteFriendHeader:
+                return StringStyle(.font(Font.inviteFriendHeader.value), .color(Color.inviteFriendHeaderLabel.value), .alignment(.center))
+            case .inviteFriendDescriptionFirstPart:
+                let titleStyle = StringStyle(.font(Font.inviteFriendDescriptionFirstPartTitle.value), .color(Color.inviteFriendDescriptionFirstPartTitle.value), .alignment(.center))
+                let subtitleStyle = StringStyle(.font(Font.inviteFriendDescriptionFirstPartSubtitle.value), .color(Color.inviteFriendDescriptionFirstPartSubtitle.value), .alignment(.center))
+                return StringStyle(.font(Font.inviteFriendDescriptionFirstPartTitle.value), .color(Color.inviteFriendDescriptionFirstPartTitle.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("subtitle", subtitleStyle)]))
+            case .inviteFriendDescriptionSecondPart:
+                return StringStyle(.font(Font.inviteFriendDescriptionSecondPart.value), .color(Color.inviteFriendDescriptionSecondPartLabel.value), .alignment(.center))
+            case .inviteFriendDescriptionThirdPart:
+                let firstPartStyle = StringStyle(.font(Font.inviteFriendDescriptionThirdPartTitle.value), .color(Color.inviteFriendDescriptionThirdPartTitle.value), .alignment(.center))
+                let secondPartStyle = StringStyle(.font(Font.inviteFriendDescriptionThirdPartSubtitle.value), .color(Color.inviteFriendDescriptionThirdPartSubtitle.value), .alignment(.center))
+                return StringStyle(.font(Font.inviteFriendDescriptionFirstPartTitle.value), .color(Color.inviteFriendDescriptionFirstPartTitle.value), .alignment(.center),.xmlRules([.style("firstPart", firstPartStyle), .style("secondPart", secondPartStyle)]))
+            case .inviteFriendDescriptionFourthPart:
+                return StringStyle(.font(Font.inviteFriendDescriptionFourthPart.value), .color(Color.inviteFriendDescriptionFourthPartLabel.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

@@ -129,6 +129,15 @@ enum Font {
     case onBoardDescription
     case onBoardSkipButton
     
+    // Invite Friend
+    case inviteFriendHeader
+    case inviteFriendDescriptionFirstPartTitle
+    case inviteFriendDescriptionFirstPartSubtitle
+    case inviteFriendDescriptionSecondPart
+    case inviteFriendDescriptionThirdPartTitle
+    case inviteFriendDescriptionThirdPartSubtitle
+    case inviteFriendDescriptionFourthPart
+
     var value: UIFont {
         get {
             switch self {
@@ -265,6 +274,21 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
             case .onBoardSkipButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Invite Friend
+            case .inviteFriendHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .inviteFriendDescriptionFirstPartTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .inviteFriendDescriptionFirstPartSubtitle:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .inviteFriendDescriptionSecondPart:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .inviteFriendDescriptionThirdPartTitle:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
+            case .inviteFriendDescriptionThirdPartSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .inviteFriendDescriptionFourthPart:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
         }
     }

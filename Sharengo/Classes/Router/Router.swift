@@ -113,6 +113,10 @@ struct Router : RouterType {
             let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
             destination.bind(to: ViewModelFactory.carTrips(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is InviteFriendViewModel:
+            let destination: InviteFriendViewController = (Storyboard.main.scene(.inviteFriend))
+            destination.bind(to: ViewModelFactory.inviteFriend(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

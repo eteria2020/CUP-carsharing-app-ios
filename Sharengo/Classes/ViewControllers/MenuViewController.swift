@@ -62,6 +62,10 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                     let destination: SettingsViewController = (Storyboard.main.scene(.settings))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is InviteFriendViewModel:
+                    let destination: InviteFriendViewController = (Storyboard.main.scene(.inviteFriend))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 default:
                     break
                 }
