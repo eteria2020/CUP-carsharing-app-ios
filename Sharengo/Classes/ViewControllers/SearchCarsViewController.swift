@@ -34,6 +34,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     fileprivate let clusteringRadius: Double = 35000
     fileprivate var clusteringInProgress: Bool = false
     fileprivate var selectedCar: Car?
+    fileprivate var selectedFeed: Feed?
     fileprivate var apiController: ApiController = ApiController()
     var viewModel: SearchCarsViewModel?
     var carTripTimeStart: Date?
@@ -146,7 +147,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         // CarPopup
-        self.view_carPopup.bind(to: ViewModelFactory.carPopup())
+        self.view_carPopup.bind(to: ViewModelFactory.carPopup(type: .car))
         self.view_carPopup.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
@@ -166,6 +167,18 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 }
             case .book(let car):
                 self?.bookCar(car: car)
+            case .car:
+                if let location = self?.viewModel?.nearestCar?.location {
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+                    let span = MKCoordinateSpanMake(0.001, 0.001)
+                    self?.centerMap(on: newLocation, span: span)
+                } else {
+                    let locationController = LocationController.shared
+                    if locationController.isAuthorized == true && locationController.currentLocation != nil {
+                    } else {
+                        self?.showLocalizationAlert(message: "alert_centerMapMessage".localized())
+                    }
+                }
             default: break
             }
         }).addDisposableTo(self.disposeBag)
@@ -335,6 +348,9 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateCarData()
+        if let feed = self.selectedFeed {
+            self.view_carPopup.updateWithFeed(feed: feed)
+        }
     }
     
     // MARK: - Update methods
@@ -1086,6 +1102,7 @@ extension SearchCarsViewController: MKMapViewDelegate {
                     self.centerMap(on: newLocation, span: span)
                 }
                 self.view_carPopup.updateWithCar(car: car)
+                self.view_carPopup.viewModel?.type.value = .car
                 self.view.layoutIfNeeded()
                 UIView .animate(withDuration: 0.2, animations: {
                     if car.type.isEmpty {
@@ -1101,7 +1118,21 @@ extension SearchCarsViewController: MKMapViewDelegate {
             }
         } else if let feedAnnotation = view.annotation as? FeedAnnotation {
             if let feed = feedAnnotation.feed {
-                // TODO: popup
+                if let location = feed.feedLocation {
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+                    let span = MKCoordinateSpanMake(0.001, 0.001)
+                    self.centerMap(on: newLocation, span: span)
+                }
+                self.view_carPopup.updateWithFeed(feed: feed)
+                self.view_carPopup.viewModel?.type.value = .feed
+                self.view.layoutIfNeeded()
+                UIView .animate(withDuration: 0.2, animations: {
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 90
+                    self.view_carPopup.alpha = 1.0
+                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                    self.view.layoutIfNeeded()
+                    self.selectedFeed = feed
+                })
             }
         }
     }

@@ -113,6 +113,7 @@ enum TextStyle: String, TextStyleType {
     // Feed Detail
     case feedDetailHeader = "feedDetailHeader"
     case feedClaim = "feedClaim"
+    case feedsClaimMirrored = "feedsClaimMirrored"
     case feedBottom = "feedBottom"
     case feedFavourite = "feedFavourite"
 
@@ -190,6 +191,7 @@ enum TextStyle: String, TextStyleType {
             .feedsHeaderCategory,
             .feedsHeader,
             .feedsClaim,
+            .feedsClaimMirrored,
             .feedsItemBottom,
             .feedsAroundMe,
             // Categories
@@ -340,6 +342,8 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.feedsHeader.value), .color(Color.feedsHeaderBackground.value), .alignment(.center))
             case .feedsClaim:
                 return StringStyle(.font(Font.feedsClaim.value), .color(Color.feedsClaim.value), .alignment(.right))
+            case .feedsClaimMirrored:
+                return StringStyle(.font(Font.feedsClaim.value), .color(Color.feedsClaim.value), .alignment(.left))
             case .feedsItemBottom:
                 let titleStyle = StringStyle(.font(Font.feedsItemTitle.value), .color(Color.feedsItemTitle.value), .alignment(.left))
                 let dateStyle = StringStyle(.font(Font.feedsItemDate.value), .color(Color.feedsItemDate.value), .alignment(.left))

@@ -53,8 +53,8 @@ struct ViewModelFactory {
         return SearchBarViewModel()
     }
     
-    static func carPopup() -> ViewModelType {
-        return CarPopupViewModel()
+    static func carPopup(type: CarPopupType) -> ViewModelType {
+        return CarPopupViewModel(type: type)
     }
 
     static func feeds() -> ViewModelType {

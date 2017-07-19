@@ -34,9 +34,9 @@ final class SearchCarsViewModel: ViewModelType {
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var oldNearestCar: Car?
-    fileprivate var nearestCar: Car?
     fileprivate var timerCars: Timer?
     fileprivate var cars: [Car] = []
+    var nearestCar: Car?
     var allCars: [Car] = []
     var carBooked: Car?
     var carBooking: CarBooking?
@@ -262,13 +262,11 @@ final class SearchCarsViewModel: ViewModelType {
         if type == .feeds {
             if self.errorEvents == false && self.errorOffers == false {
                 for feed in self.feeds {
-                    if feed.identifier != nil {
-                        if let coordinate = feed.feedLocation?.coordinate {
-                            let annotation = FeedAnnotation()
-                            annotation.coordinate = coordinate
-                            annotation.feed = feed
-                            annotations.append(annotation)
-                        }
+                    if let coordinate = feed.feedLocation?.coordinate {
+                        let annotation = FeedAnnotation()
+                        annotation.coordinate = coordinate
+                        annotation.feed = feed
+                        annotations.append(annotation)
                     }
                 }
                 self.array_annotations.value = annotations
