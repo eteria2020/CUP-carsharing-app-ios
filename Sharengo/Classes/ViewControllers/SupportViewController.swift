@@ -87,27 +87,26 @@ class SupportViewController : BaseViewController, ViewModelBindable {
         self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
         self.btn_call.rx.tap.asObservable()
             .subscribe(onNext:{
-                let message = "alert_supportCall".localized()
-                
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_supportAlertCall".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                            guard let phoneCallURL = URL(string: "tel://" + "supportTelephoneNumber".localized()) else { return }
-                                            if (UIApplication.shared.canOpenURL(phoneCallURL)) {
-                                                if #available(iOS 10.0, *) {
-                                                    UIApplication.shared.open(phoneCallURL)
-                                                }
-                                                else
-                                                {
+                guard let phoneCallURL = URL(string: "tel://" + "supportTelephoneNumber".localized()) else { return }
+                if (UIApplication.shared.canOpenURL(phoneCallURL)) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(phoneCallURL)
+                    }
+                    else
+                    {
+                        let message = "alert_supportCall".localized()
+                        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_supportAlertCall".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                okButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
                                                     UIApplication.shared.openURL(phoneCallURL)
-                                                }
-                                            }
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
+                        },
+                                                cancelButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                }
             }).addDisposableTo(disposeBag)
     }
     
