@@ -53,10 +53,8 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                     self.openSearchCars(viewModel: viewModel)
                 case is SearchCarsViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .searchCar)
-                    //Router.from(self,viewModel: viewModel).execute()
                 case is ProfileViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .profile)
-                    //Router.from(self,viewModel: viewModel).execute()
                 default:
                     break
                 }
@@ -66,14 +64,11 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                     (settingsCitiesViewModel as! SettingsCitiesViewModel).nextViewModel = ViewModelFactory.feeds()
                     if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
                         self.openSection(viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel), homeItem: .feeds)
-                        //Router.from(self,viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel)).execute()
                     } else {
                         self.openSection(viewModel: settingsCitiesViewModel, homeItem: .feeds)
-                        //Router.from(self,viewModel: settingsCitiesViewModel).execute()
-                    }
+                   }
                 } else {
                     self.openSection(viewModel: ViewModelFactory.feeds(), homeItem: .feeds)
-                    //Router.from(self,viewModel: ViewModelFactory.feeds()).execute()
                 }
             }
         }).addDisposableTo(self.disposeBag)
@@ -143,6 +138,10 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view_searchCar.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+        self.view_profile.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+        self.view_feeds.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+        self.view.layoutIfNeeded()
         if !self.loginIsShowed {
             self.loginIsShowed = true
             if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
@@ -242,7 +241,6 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     fileprivate func openSearchCars(viewModel: ViewModelType) {
         if !CoreController.shared.updateInProgress {
             self.openSection(viewModel: viewModel, homeItem: .searchCar)
-            //Router.from(self,viewModel: viewModel).execute()
         } else {
             let dispatchTime = DispatchTime.now() + 0.5
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -251,11 +249,18 @@ class HomeViewController : BaseViewController, ViewModelBindable {
         }
     }
     
-    fileprivate func openSection(viewModel: ViewModelType, homeItem: HomeItem)
-    {
-        UIView.animate(withDuration: 1.0,
+    fileprivate func openSection(viewModel: ViewModelType, homeItem: HomeItem) {
+        let popAnimation2: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewScaleXY)
+        popAnimation2.fromValue = NSValue(cgSize: CGSize(width: 1, height: 1))
+        popAnimation2.toValue = NSValue(cgSize: CGSize(width: 0.5, height: 0.5))
+        popAnimation2.duration = 0.5
+        let popAnimation1: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+        popAnimation1.fromValue = 1
+        popAnimation1.toValue = 0
+        popAnimation1.duration = 0.5
+        UIView.animate(withDuration: 0.3,
                        delay: 0.1,
-                       options: UIViewAnimationOptions.curveEaseIn,
+                       options: UIViewAnimationOptions.curveEaseInOut,
                        animations: { () -> Void in
                         switch homeItem {
                         case .searchCar:
@@ -266,7 +271,26 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                             self.view_feeds?.center = self.view.center
                         }
         }, completion: { (finished) -> Void in
-            Router.from(self,viewModel: viewModel).execute()
+            switch homeItem {
+            case .searchCar:
+                self.view_searchCar.pop_add(popAnimation1, forKey: "popAnimation1")
+                self.view_searchCar.pop_add(popAnimation2, forKey: "popAnimation2")
+            case .profile:
+                self.view_profile.pop_add(popAnimation1, forKey: "popAnimation1")
+                self.view_profile.pop_add(popAnimation2, forKey: "popAnimation2")
+            case .feeds:
+                self.view_feeds.pop_add(popAnimation1, forKey: "popAnimation1")
+                self.view_feeds.pop_add(popAnimation2, forKey: "popAnimation2")
+            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                Router.from(self,viewModel: viewModel).execute()
+            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.view_searchCar.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                self.view_profile.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                self.view_feeds.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                self.view.layoutIfNeeded()
+            }
         })
     }
 }
