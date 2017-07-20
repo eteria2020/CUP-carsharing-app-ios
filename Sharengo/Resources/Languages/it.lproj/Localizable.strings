@@ -22,7 +22,7 @@
 "bnt_delete" = "ELIMINA";
 "btn_carRides" = "STORICO CORSE";
 "btn_detail" = "SCOPRI DI PIÙ";
-"btn_carRides" = "STORICO CORSE";
+"btn_car" = "PRENOTA AUTO";
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
 "city_milano" = "Milano";
