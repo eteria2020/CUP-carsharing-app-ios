@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupAlert()
         self.setupHistory()
         self.setupFavourites()
+        self.setupSettings()
         #if ISDEBUG
         #elseif ISRELEASE
             Fabric.with([Crashlytics.self])
@@ -25,17 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreController.shared.updateData()
         
         self.setupSideMenu()
-        
-        if UserDefaults.standard.object(forKey: "language") == nil {
-            UserDefaults.standard.setValue("language".localized(), forKey: "language")
-        }
-        
-        /*
-        if UserDefaults.standard.object(forKey: "city") == nil {
-            UserDefaults.standard.setValue("milano", forKey: "city")
-        }
-        */
-        
         return true
     }
 
@@ -76,21 +66,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     fileprivate func setupHistory() {
-        if UserDefaults.standard.object(forKey: "historyArray") == nil {
-            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [HistoryAddress]() as Array)
-            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
+        if UserDefaults.standard.object(forKey: "historyDic") == nil {
+            UserDefaults.standard.set([String: Data](), forKey: "historyDic")
         }
     }
     
     fileprivate func setupFavourites() {
-        if UserDefaults.standard.object(forKey: "favouritesAddressArray") == nil {
-            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteAddress]() as Array)
-            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
+        if UserDefaults.standard.object(forKey: "favouritesAddressDic") == nil {
+            UserDefaults.standard.set([String: Data](), forKey: "favouritesAddressDic")
         }
         
-        if UserDefaults.standard.object(forKey: "favouritesFeedArray") == nil {
-            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteFeed]() as Array)
-            UserDefaults.standard.set(archivedArray, forKey: "favouritesFeedArray")
+        if UserDefaults.standard.object(forKey: "favouritesFeedDic") == nil {
+            UserDefaults.standard.set([String: Data](), forKey: "favouritesFeedDic")
+        }
+    }
+    
+    fileprivate func setupSettings() {
+        if UserDefaults.standard.object(forKey: "cityDic") == nil {
+            UserDefaults.standard.set([String: String](), forKey: "cityDic")
+        }
+        
+        if UserDefaults.standard.object(forKey: "languageDic") == nil {
+            UserDefaults.standard.set([String: String](), forKey: "languageDic")
         }
     }
 }

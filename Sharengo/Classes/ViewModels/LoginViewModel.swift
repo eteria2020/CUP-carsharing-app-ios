@@ -86,6 +86,9 @@ final class LoginViewModel: ViewModelType {
                         }
                         KeychainSwift().set(modifiedUsername, forKey: "Username")
                         KeychainSwift().set(modifiedPassword, forKey: "Password")
+                        self.setupHistory()
+                        self.setupFavourites()
+                        self.setupSettings()
                         self.loginExecuted.value = true
                         CoreController.shared.updateData()
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
@@ -147,5 +150,49 @@ final class LoginViewModel: ViewModelType {
                     break
                 }
             }.addDisposableTo(self.disposeBag)
+    }
+    
+    fileprivate func setupHistory() {
+        if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [HistoryAddress]() as Array)
+            if let username = KeychainSwift().get("Username") {
+                dictionary[username] = archivedArray
+                UserDefaults.standard.set(dictionary, forKey: "historyDic")
+            }
+        }
+    }
+    
+    fileprivate func setupFavourites() {
+        if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteAddress]() as Array)
+            if let username = KeychainSwift().get("Username") {
+                dictionary[username] = archivedArray
+                UserDefaults.standard.set(dictionary, forKey: "favouritesAddressDic")
+            }
+        }
+        if var dictionary = UserDefaults.standard.object(forKey: "favouritesFeedDic") as? [String: Data] {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteFeed]() as Array)
+            if let username = KeychainSwift().get("Username") {
+                dictionary[username] = archivedArray
+                UserDefaults.standard.set(dictionary, forKey: "favouritesFeedDic")
+            }
+        }
+    }
+    
+    fileprivate func setupSettings() {
+        var languageid = "0"
+        if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+            if let username = KeychainSwift().get("Username") {
+                languageid = dictionary[username] ?? "0"
+            }
+        }
+        if languageid == "0" {
+            if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+                if let username = KeychainSwift().get("Username") {
+                    dictionary[username] = "language".localized()
+                    UserDefaults.standard.set(dictionary, forKey: "languageDic")
+                }
+            }
+        }
     }
 }

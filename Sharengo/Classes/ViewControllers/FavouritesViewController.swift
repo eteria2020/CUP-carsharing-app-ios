@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
+import KeychainSwift
 
 class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -134,29 +135,39 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
             .subscribe(onNext:{
                 self.view.endEditing(true)
                 if self.lbl_popupTitle.text == "lbl_favouritesDeleteFav".localized() {
-                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                            let index = unarchivedArray.index(where: { (address) -> Bool in
-                                return address.identifier == self.selectedAddress?.identifier
-                            })
-                            if index != nil {
-                                unarchivedArray.remove(at: index!)
+                    if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                    let index = unarchivedArray.index(where: { (address) -> Bool in
+                                        return address.identifier == self.selectedAddress?.identifier
+                                    })
+                                    if index != nil {
+                                        unarchivedArray.remove(at: index!)
+                                    }
+                                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                    dictionary[username] = archivedArray
+                                    UserDefaults.standard.set(dictionary, forKey: "favouritesAddressDic")
+                                }
                             }
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
                         }
                     }
                 } else if self.lbl_popupTitle.text == "lbl_favouritesDeleteHis".localized() {
-                    if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                            let index = unarchivedArray.index(where: { (address) -> Bool in
-                                return address.identifier == self.selectedAddress?.identifier
-                            })
-                            if index != nil {
-                                unarchivedArray.remove(at: index!)
+                    if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                                    let index = unarchivedArray.index(where: { (address) -> Bool in
+                                        return address.identifier == self.selectedAddress?.identifier
+                                    })
+                                    if index != nil {
+                                        unarchivedArray.remove(at: index!)
+                                    }
+                                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                    dictionary[username] = archivedArray
+                                    UserDefaults.standard.set(dictionary, forKey: "historyDic")
+                                }
                             }
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
                         }
                     }
                 } else if self.lbl_popupTitle.text == "lbl_favouritesModify".localized() {
@@ -169,17 +180,22 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                         dialog.show()
                         return
                     }
-                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                            let index = unarchivedArray.index(where: { (address) -> Bool in
-                                return address.identifier == self.selectedAddress?.identifier
-                            })
-                            if index != nil {
-                                unarchivedArray[index!].name = self.txt_name.text!
-                                unarchivedArray[index!].address = self.txt_address.text!
+                    if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                    let index = unarchivedArray.index(where: { (address) -> Bool in
+                                        return address.identifier == self.selectedAddress?.identifier
+                                    })
+                                    if index != nil {
+                                        unarchivedArray[index!].name = self.txt_name.text!
+                                        unarchivedArray[index!].address = self.txt_address.text!
+                                    }
+                                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                    dictionary[username] = archivedArray
+                                    UserDefaults.standard.set(dictionary, forKey: "favouritesAddressDic")
+                                }
                             }
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
                         }
                     }
                 } else if self.lbl_popupTitle.text == "lbl_favouritesAdd".localized() {
@@ -192,25 +208,35 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                         dialog.show()
                         return
                     }
-                    if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                            let index = unarchivedArray.index(where: { (address) -> Bool in
-                                return address.identifier == self.selectedAddress?.identifier
-                            })
-                            if index != nil {
-                                unarchivedArray.remove(at: index!)
+                    if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                                    let index = unarchivedArray.index(where: { (address) -> Bool in
+                                        return address.identifier == self.selectedAddress?.identifier
+                                    })
+                                    if index != nil {
+                                        unarchivedArray.remove(at: index!)
+                                    }
+                                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                    dictionary[username] = archivedArray
+                                    UserDefaults.standard.set(dictionary, forKey: "historyDic")
+                                }
                             }
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "historyArray")
                         }
                     }
-                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                            let uuid = NSUUID().uuidString.lowercased()
-                            let addres = FavouriteAddress(identifier: uuid, name: self.txt_name.text!, location: self.selectedAddress?.location, address: self.txt_address.text!)
-                            unarchivedArray.insert(addres, at: 0)
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
+                    if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                    let uuid = NSUUID().uuidString.lowercased()
+                                    let addres = FavouriteAddress(identifier: uuid, name: self.txt_name.text!, location: self.selectedAddress?.location, address: self.txt_address.text!)
+                                    unarchivedArray.insert(addres, at: 0)
+                                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                    dictionary[username] = archivedArray
+                                    UserDefaults.standard.set(dictionary, forKey: "favouritesAddressDic")
+                                }
+                            }
                         }
                     }
                 }
@@ -218,15 +244,19 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 self.viewModel?.updateData()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
-                if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                        if unarchivedArray.count == 0 {
-                            let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
-                            destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
-                            var array = self.navigationController?.viewControllers ?? []
-                            array.removeLast()
-                            array.append(destination)
-                            self.navigationController?.viewControllers = array
+                if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                    if let username = KeychainSwift().get("Username") {
+                        if let array = dictionary[username] {
+                            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                if unarchivedArray.count == 0 {
+                                    let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))
+                                    destination.bind(to: ViewModelFactory.noFavourites(), afterLoad: true)
+                                    var array = self.navigationController?.viewControllers ?? []
+                                    array.removeLast()
+                                    array.append(destination)
+                                    self.navigationController?.viewControllers = array
+                                }
+                            }
                         }
                     }
                 }

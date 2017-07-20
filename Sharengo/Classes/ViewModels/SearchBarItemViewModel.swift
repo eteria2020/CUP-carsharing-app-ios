@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import Boomerang
+import KeychainSwift
 
 final class SearchBarItemViewModel : ItemViewModelType {
     var model: ItemViewModelType.Model
@@ -21,23 +22,33 @@ final class SearchBarItemViewModel : ItemViewModelType {
         self.model = model
         self.name = model.name
         self.image = "ic_location_search"
-        if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                let index = unarchivedArray.index(where: { (address) -> Bool in
-                    return address.identifier == model.identifier
-                })
-                if index != nil {
-                    self.image = "ic_clock"
+        
+        if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                        let index = unarchivedArray.index(where: { (address) -> Bool in
+                            return address.identifier == model.identifier
+                        })
+                        if index != nil {
+                            self.image = "ic_clock"
+                        }
+                    }
                 }
             }
         }
-        if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                let index = unarchivedArray.index(where: { (address) -> Bool in
-                    return address.identifier == model.identifier
-                })
-                if index != nil {
-                    self.image = "ic_favourites"
+        
+        if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                        let index = unarchivedArray.index(where: { (address) -> Bool in
+                            return address.identifier == model.identifier
+                        })
+                        if index != nil {
+                            self.image = "ic_favourites"
+                        }
+                    }
                 }
             }
         }

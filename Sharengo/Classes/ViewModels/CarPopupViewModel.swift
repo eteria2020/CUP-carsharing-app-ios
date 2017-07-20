@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
+import KeychainSwift
 
 public enum CarPopupInput: SelectionInput {
     case open
@@ -154,13 +155,17 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         
         self.favourited = false
         
-        if let array = UserDefaults.standard.object(forKey: "favouritesFeedArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
-                let index = unarchivedArray.index(where: { (f) -> Bool in
-                    return feed.identifier == f.identifier
-                })
-                if index != nil {
-                    self.favourited = true
+        if var dictionary = UserDefaults.standard.object(forKey: "favouritesFeedDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
+                        let index = unarchivedArray.index(where: { (f) -> Bool in
+                            return feed.identifier == f.identifier
+                        })
+                        if index != nil {
+                            self.favourited = true
+                        }
+                    }
                 }
             }
         }

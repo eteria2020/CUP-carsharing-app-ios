@@ -146,7 +146,7 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                             }
                         case 2:
                             self.gestureInProgress = true
-                            self.pgc_steps.currentPage = 1
+                            self.pgc_steps.currentPage = 2
                             UIView.animate(withDuration: 0.3, animations: {
                                 self.lbl_description.alpha = 0.0
                             })

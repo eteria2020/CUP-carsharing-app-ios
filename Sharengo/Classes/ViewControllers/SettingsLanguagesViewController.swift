@@ -13,6 +13,7 @@ import Boomerang
 import SideMenu
 import DeviceKit
 import Localize_Swift
+import KeychainSwift
 
 class SettingsLanguagesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -35,11 +36,21 @@ class SettingsLanguagesViewController : BaseViewController, ViewModelBindable, U
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
             case .italian:
-                UserDefaults.standard.setValue("it", forKey: "language")
+                if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+                    if let username = KeychainSwift().get("Username") {
+                        dictionary[username] = "it"
+                        UserDefaults.standard.set(dictionary, forKey: "languageDic")
+                    }
+                }
                 Localize.setCurrentLanguage("it")
                 self.updateLanguages()
             case .english:
-                UserDefaults.standard.setValue("en", forKey: "language")
+                if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+                    if let username = KeychainSwift().get("Username") {
+                        dictionary[username] = "en"
+                        UserDefaults.standard.set(dictionary, forKey: "languageDic")
+                    }
+                }
                 Localize.setCurrentLanguage("en")
                 self.updateLanguages()
             default: break

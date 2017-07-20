@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import KeychainSwift
 import SideMenu
+import Localize_Swift
 
 class MenuViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_header: UIView!
@@ -66,6 +67,11 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                     break
                 }
                 case .logout:
+                var languageid = "en"
+                if Locale.preferredLanguages[0] == "it" {
+                    languageid = "it"
+                }
+                Localize.setCurrentLanguage(languageid)
                 KeychainSwift().clear()
                 CoreController.shared.allCarBookings = []
                 CoreController.shared.allCarTrips = []

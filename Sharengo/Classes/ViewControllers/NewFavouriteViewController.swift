@@ -13,6 +13,7 @@ import Boomerang
 import SideMenu
 import DeviceKit
 import TPKeyboardAvoiding
+import KeychainSwift
 
 class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -56,13 +57,18 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
                     dialog.show()
                     return
                 }
-                if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                    if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                        let uuid = NSUUID().uuidString.lowercased()
-                        let addres = FavouriteAddress(identifier: uuid, name: self.txt_name.text!, location: self.selectedAddress?.location, address: self.selectedAddress?.name)
-                        unarchivedArray.insert(addres, at: 0)
-                        let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                        UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
+                if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                    if let username = KeychainSwift().get("Username") {
+                        if let array = dictionary[username] {
+                            if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                let uuid = NSUUID().uuidString.lowercased()
+                                let addres = FavouriteAddress(identifier: uuid, name: self.txt_name.text!, location: self.selectedAddress?.location, address: self.selectedAddress?.name)
+                                unarchivedArray.insert(addres, at: 0)
+                                let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                dictionary[username] = archivedArray
+                                UserDefaults.standard.set(dictionary, forKey: "favouritesAddressDic")
+                            }
+                        }
                     }
                 }
                 if self.fromFavourites {

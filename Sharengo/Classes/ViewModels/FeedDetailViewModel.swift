@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
+import KeychainSwift
 
 final class FeedDetailViewModel: ViewModelType {
     var model:ItemViewModelType.Model
@@ -66,13 +67,17 @@ final class FeedDetailViewModel: ViewModelType {
             advantageColor = UIColor(hexString: "#888888")
         }
         
-        if let array = UserDefaults.standard.object(forKey: "favouritesFeedArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
-                let index = unarchivedArray.index(where: { (feed) -> Bool in
-                    return feed.identifier == model.identifier
-                })
-                if index != nil {
-                    self.favourited = true
+        if var dictionary = UserDefaults.standard.object(forKey: "favouritesFeedDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
+                        let index = unarchivedArray.index(where: { (feed) -> Bool in
+                            return feed.identifier == model.identifier
+                        })
+                        if index != nil {
+                            self.favourited = true
+                        }
+                    }
                 }
             }
         }

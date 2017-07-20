@@ -57,11 +57,17 @@ final class SettingsLanguagesViewModel : ListViewModelType, ViewModelTypeSelecta
         var italian: Bool = false
         var english: Bool = false
         
-        if UserDefaults.standard.object(forKey: "language") as? String == "it"
+        var languageid = "0"
+        if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+            if let username = KeychainSwift().get("Username") {
+                languageid = dictionary[username] ?? "0"
+            }
+        }
+        if languageid == "it"
         {
             italian = true
         }
-        else if UserDefaults.standard.object(forKey: "language") as? String == "en"
+        else if languageid == "en"
         {
             english = true
         }

@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
+import KeychainSwift
 
 class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -34,7 +35,12 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
             case .model(let city):
-                UserDefaults.standard.setValue(city.identifier, forKey: "city")
+               if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
+                    if let username = KeychainSwift().get("Username") {
+                        dictionary[username] = city.identifier
+                        UserDefaults.standard.set(dictionary, forKey: "cityDic")
+                    }
+                }
                 self.updateCities()
                 if let viewModel = viewModel.nextViewModel {
                     Router.from(self, viewModel: viewModel).execute()

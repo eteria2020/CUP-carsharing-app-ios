@@ -285,7 +285,14 @@ public class Feed: ModelType, Decodable {
         self.address = "informations.address.friendly" <~~ json ?? ""
         self.city = "informations.city.name" <~~ json ?? ""
         self.launchTitle = "informations.launch_title" <~~ json ?? ""
-        self.marker = "category.media.images.marker.uri" <~~ json ?? ""
+        if let sponsored: String = "informations.sponsored" <~~ json {
+            self.sponsored = sponsored.toBool() ?? false
+        }
+        if sponsored {
+            self.marker = "media.images.icon.uri" <~~ json ?? ""
+        } else {
+            self.marker = "category.media.images.marker.uri" <~~ json ?? ""
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         self.orderDate = Decoder.decode(dateForKey: "informations.date.default", dateFormatter: dateFormatter)(json) ?? Date()
@@ -296,9 +303,6 @@ public class Feed: ModelType, Decodable {
         }
         if let forceColor: String = "appearance.color.enforce" <~~ json {
             self.forceColor = forceColor.toBool() ?? false
-        }
-        if let sponsored: String = "informations.sponsored" <~~ json {
-            self.sponsored = sponsored.toBool() ?? false
         }
     }
     

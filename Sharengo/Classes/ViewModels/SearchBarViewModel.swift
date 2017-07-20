@@ -12,6 +12,7 @@ import Boomerang
 import Action
 import ReachabilitySwift
 import CoreLocation
+import KeychainSwift
 
 enum SearchBarSelectionInput: SelectionInput {
     case item(IndexPath)
@@ -66,29 +67,38 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                 if let model = self.model(atIndex: indexPath) as? Address {
                     self.itemSelected = true
                     var favourite: Bool = false
-                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                        if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                            let index = unarchivedArray.index(where: { (address) -> Bool in
-                                return address.identifier == model.identifier
-                            })
-                            if index != nil {
-                               favourite = true
+                    if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                    let index = unarchivedArray.index(where: { (address) -> Bool in
+                                        return address.identifier == model.identifier
+                                    })
+                                    if index != nil {
+                                        favourite = true
+                                    }
+                                }
                             }
                         }
                     }
                     if !favourite && !self.favourites {
-                        if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-                            if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                                let historyAddress = model.getHistoryAddress()
-                                let index = unarchivedArray.index(where: { (address) -> Bool in
-                                    return address.identifier == model.identifier
-                                })
-                                if index != nil {
-                                    unarchivedArray.remove(at: index!)
+                        if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+                            if let username = KeychainSwift().get("Username") {
+                                if let array = dictionary[username] {
+                                    if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                                        let historyAddress = model.getHistoryAddress()
+                                        let index = unarchivedArray.index(where: { (address) -> Bool in
+                                            return address.identifier == model.identifier
+                                        })
+                                        if index != nil {
+                                            unarchivedArray.remove(at: index!)
+                                        }
+                                        unarchivedArray.insert(historyAddress, at: 0)
+                                        let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                        dictionary[username] = archivedArray
+                                        UserDefaults.standard.set(dictionary, forKey: "historyDic")
+                                    }
                                 }
-                                unarchivedArray.insert(historyAddress, at: 0)
-                                let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                                UserDefaults.standard.set(archivedArray, forKey: "historyArray")
                             }
                         }
                     }
@@ -233,13 +243,17 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         var favourites: Bool = false
         var numberOfResults: Int = self.numberOfResults
         if !self.favourites {
-            if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                    if unarchivedArray.count > 0 {
-                        for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {
-                            historyAndFavorites.append(historyAddress.getAddress())
+            if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                if let username = KeychainSwift().get("Username") {
+                    if let array = dictionary[username] {
+                        if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                            if unarchivedArray.count > 0 {
+                                for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {
+                                    historyAndFavorites.append(historyAddress.getAddress())
+                                }
+                                favourites = true
+                            }
                         }
-                        favourites = true
                     }
                 }
             }
@@ -250,14 +264,18 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
             historyAndFavorites.append(Favorite.empty2)
         }
         numberOfResults = numberOfResults-historyAndFavorites.count
-        if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                if unarchivedArray.count > 0 && self.favourites {
-                    historyAndFavorites.removeFirst()
-                    numberOfResults -= 1
-                }
-                for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {
-                    historyAndFavorites.append(historyAddress.getAddress())
+        if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                        if unarchivedArray.count > 0 && self.favourites {
+                            historyAndFavorites.removeFirst()
+                            numberOfResults -= 1
+                        }
+                        for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {
+                            historyAndFavorites.append(historyAddress.getAddress())
+                        }
+                    }
                 }
             }
         }

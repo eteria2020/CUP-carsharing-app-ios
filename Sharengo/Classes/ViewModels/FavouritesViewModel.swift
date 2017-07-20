@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
+import KeychainSwift
 
 enum FavouritesSelectionInput: SelectionInput {
     case newFavourite
@@ -47,17 +48,25 @@ final class FavouritesViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     func updateData() {
         var historyAndFavorites: [ModelType] = [ModelType]()
-        if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                for historyAddress in Array(unarchivedArray) {
-                    historyAndFavorites.append(historyAddress.getAddress())
+        if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                        for historyAddress in Array(unarchivedArray) {
+                            historyAndFavorites.append(historyAddress.getAddress())
+                        }
+                    }
                 }
             }
         }
-        if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                for historyAddress in Array(unarchivedArray) {
-                    historyAndFavorites.append(historyAddress.getAddress())
+        if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                        for historyAddress in Array(unarchivedArray) {
+                            historyAndFavorites.append(historyAddress.getAddress())
+                        }
+                    }
                 }
             }
         }

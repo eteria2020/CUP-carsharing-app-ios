@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import Boomerang
+import KeychainSwift
 
 final class FavouriteItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model
@@ -23,29 +24,36 @@ final class FavouriteItemViewModel : ItemViewModelType {
         self.image = "ic_location_search"
         self.favourite = false
         
-        if let array = UserDefaults.standard.object(forKey: "historyArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
-                let index = unarchivedArray.index(where: { (address) -> Bool in
-                    return address.identifier == model.identifier
-                })
-                if index != nil {
-                    self.title = String(format: "lbl_favouritesItemTitle2".localized(), model.name ?? "")
-                    self.image = "ic_clock"
+        if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [HistoryAddress] {
+                        let index = unarchivedArray.index(where: { (address) -> Bool in
+                            return address.identifier == model.identifier
+                        })
+                        if index != nil {
+                            self.title = String(format: "lbl_favouritesItemTitle2".localized(), model.name ?? "")
+                            self.image = "ic_clock"
+                        }
+                    }
                 }
             }
         }
-        if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                let index = unarchivedArray.index(where: { (address) -> Bool in
-                    return address.identifier == model.identifier
-                })
-                if index != nil {
-                    self.title = String(format: "lbl_favouritesItemTitle1".localized(), model.name ?? "", model.address ?? "")
-                    self.image = "ic_favourites"
-                    self.favourite = true
+        if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+            if let username = KeychainSwift().get("Username") {
+                if let array = dictionary[username] {
+                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                        let index = unarchivedArray.index(where: { (address) -> Bool in
+                            return address.identifier == model.identifier
+                        })
+                        if index != nil {
+                            self.title = String(format: "lbl_favouritesItemTitle1".localized(), model.name ?? "", model.address ?? "")
+                            self.image = "ic_favourites"
+                            self.favourite = true
+                        }
+                    }
                 }
             }
         }
-        
     }
 }

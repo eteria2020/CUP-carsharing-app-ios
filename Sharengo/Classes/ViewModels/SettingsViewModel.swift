@@ -48,14 +48,17 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
                 if let viewModel = model.viewModel  {
                     if viewModel is NoFavouritesViewModel {
                         var favourites: Bool = false
-                        if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
-                            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
-                                if unarchivedArray.count > 0 {
-                                    favourites = true
+                        if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
+                            if let username = KeychainSwift().get("Username") {
+                                if let array = dictionary[username] {
+                                    if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
+                                        if unarchivedArray.count > 0 {
+                                            favourites = true
+                                        }
+                                    }
                                 }
                             }
                         }
-                        
                         if favourites {
                             return .just(.viewModel(ViewModelFactory.favourites()))
                         }

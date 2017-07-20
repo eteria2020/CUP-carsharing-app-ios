@@ -59,7 +59,13 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                     break
                 }
             case .feeds:
-                if UserDefaults.standard.object(forKey: "city") == nil {
+                var cityid = "0"
+                if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
+                    if let username = KeychainSwift().get("Username") {
+                        cityid = dictionary[username] ?? "0"
+                    }
+                }
+                if cityid == "0" {
                     let settingsCitiesViewModel = ViewModelFactory.settingsCities()
                     (settingsCitiesViewModel as! SettingsCitiesViewModel).nextViewModel = ViewModelFactory.feeds()
                     if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -184,12 +190,16 @@ class HomeViewController : BaseViewController, ViewModelBindable {
             } else {
                 self.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
             }
-            
-            let selectedIdentifier = UserDefaults.standard.object(forKey: "city") as? String
+            var cityid = "0"
+            if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
+                if let username = KeychainSwift().get("Username") {
+                    cityid = dictionary[username] ?? "0"
+                }
+            }
             var cityFounded: Bool = false
             let cities = CoreController.shared.cities
             for city in cities {
-                if city.identifier == selectedIdentifier {
+                if city.identifier == cityid {
                     if let url = URL(string: city.icon)
                     {
                         do {

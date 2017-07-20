@@ -53,10 +53,15 @@ final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable
     
     func updateData()
     {
-        let selectedIdentifier = UserDefaults.standard.object(forKey: "city") as? String
+        var cityid = "0"
+        if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
+            if let username = KeychainSwift().get("Username") {
+                cityid = dictionary[username] ?? "0"
+            }
+        }
         let cities = CoreController.shared.cities
         for city in cities {
-            if city.identifier == selectedIdentifier {
+            if city.identifier == cityid {
                 city.selected = true
             } else {
                 city.selected = false

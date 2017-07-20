@@ -14,6 +14,7 @@ import SideMenu
 import DeviceKit
 import BonMot
 import pop
+import KeychainSwift
 
 class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -121,16 +122,21 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
                     viewModel.favourited = false
                     self.btn_favourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_feedDetailFavourite".localized())
                     
-                    if let array = UserDefaults.standard.object(forKey: "favouritesFeedArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
-                            let index = unarchivedArray.index(where: { (feed) -> Bool in
-                                return feed.identifier == (viewModel.model as! Feed).identifier
-                            })
-                            if index != nil {
-                                unarchivedArray.remove(at: index!)
+                    if var dictionary = UserDefaults.standard.object(forKey: "favouritesFeedDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
+                                    let index = unarchivedArray.index(where: { (feed) -> Bool in
+                                        return feed.identifier == (viewModel.model as! Feed).identifier
+                                    })
+                                    if index != nil {
+                                        unarchivedArray.remove(at: index!)
+                                    }
+                                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                    dictionary[username] = archivedArray
+                                    UserDefaults.standard.set(dictionary, forKey: "favouritesFeedDic")
+                                }
                             }
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesFeedArray")
                         }
                     }
                 }
@@ -150,11 +156,16 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
                     viewModel.favourited = true
                     self.btn_favourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_feedDetailNotFavourite".localized())
                 
-                    if let array = UserDefaults.standard.object(forKey: "favouritesFeedArray") as? Data {
-                        if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
-                            unarchivedArray.insert((viewModel.model as! Feed).getFavoriteFeed(), at: 0)
-                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesFeedArray")
+                    if var dictionary = UserDefaults.standard.object(forKey: "favouritesFeedDic") as? [String: Data] {
+                        if let username = KeychainSwift().get("Username") {
+                            if let array = dictionary[username] {
+                                if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteFeed] {
+                                    unarchivedArray.insert((viewModel.model as! Feed).getFavoriteFeed(), at: 0)
+                                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
+                                    dictionary[username] = archivedArray
+                                    UserDefaults.standard.set(dictionary, forKey: "favouritesFeedDic")
+                                }
+                            }
                         }
                     }
                 }
