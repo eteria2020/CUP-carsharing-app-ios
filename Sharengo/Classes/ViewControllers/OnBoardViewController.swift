@@ -104,12 +104,12 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                     self.lbl_description.alpha = 1.0
                 })
                 
-                // Gesture recognizer
+                // Gesture recognizers
                 self.view.rx.swipeGesture(.left).when(.recognized).subscribe(onNext: {_ in
                     if !self.gestureInProgress {
-                        self.gestureInProgress = true
                         switch self.pgc_steps.currentPage {
                         case 0:
+                            self.gestureInProgress = true
                             self.pgc_steps.currentPage = 1
                             UIView.animate(withDuration: 0.3, animations: {
                                 self.lbl_description.alpha = 0.0
@@ -127,6 +127,7 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                                 }
                             }
                         case 1:
+                            self.gestureInProgress = true
                             self.pgc_steps.currentPage = 2
                             UIView.animate(withDuration: 0.3, animations: {
                                 self.lbl_description.alpha = 0.0
@@ -141,17 +142,64 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                                     UIView.animate(withDuration: 0.3, animations: {
                                         self.lbl_description.alpha = 1.0
                                     })
-                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-                                        UIView.animate(withDuration: 0.5, animations: {
-                                            self.view_white.alpha = 1.0
-                                        })
-                                    }
-                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-                                        let destination: LoginViewController = (Storyboard.main.scene(.login))
-                                        destination.bind(to: ViewModelFactory.login(), afterLoad: true)
-                                        destination.introIsShowed = true
-                                        self.navigationController?.pushViewController(destination, animated: false)
-                                    }
+                                }
+                            }
+                        case 2:
+                            self.gestureInProgress = true
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                                UIView.animate(withDuration: 0.5, animations: {
+                                    self.view_white.alpha = 1.0
+                                })
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                                let destination: LoginViewController = (Storyboard.main.scene(.login))
+                                destination.bind(to: ViewModelFactory.login(), afterLoad: true)
+                                destination.introIsShowed = true
+                                self.navigationController?.pushViewController(destination, animated: false)
+                            }
+                        default:
+                            break
+                        }
+                    }
+                }).addDisposableTo(self.disposeBag)
+                
+                self.view.rx.swipeGesture(.right).when(.recognized).subscribe(onNext: {_ in
+                    if !self.gestureInProgress {
+                        switch self.pgc_steps.currentPage {
+                        case 1:
+                            self.gestureInProgress = true
+                            self.pgc_steps.currentPage = 0
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.lbl_description.alpha = 0.0
+                            })
+                            self.img_step.animate(withGIFNamed: "Auto-B-uscita.gif", loopCount: 1)
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.72) {
+                                self.img_step.animate(withGIFNamed: "Auto-A-ingresso.gif", loopCount: 1)
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.26) {
+                                    self.gestureInProgress = false
+                                    self.img_step.animate(withGIFNamed: "Auto-A-loop.gif", loopCount: 1)
+                                    self.lbl_description.styledText = "lbl_onBoardStep1Description".localized()
+                                    UIView.animate(withDuration: 0.3, animations: {
+                                        self.lbl_description.alpha = 1.0
+                                    })
+                                }
+                            }
+                        case 2:
+                            self.gestureInProgress = true
+                            self.pgc_steps.currentPage = 1
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.lbl_description.alpha = 0.0
+                            })
+                            self.img_step.animate(withGIFNamed: "Auto-C-uscita.gif", loopCount: 1)
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
+                                self.img_step.animate(withGIFNamed: "Auto-B-ingresso.gif", loopCount: 1)
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {
+                                    self.gestureInProgress = false
+                                    self.img_step.animate(withGIFNamed: "Auto-B-loop.gif", loopCount: 1)
+                                    self.lbl_description.styledText = "lbl_onBoardStep2Description".localized()
+                                    UIView.animate(withDuration: 0.3, animations: {
+                                        self.lbl_description.alpha = 1.0
+                                    })
                                 }
                             }
                         default:
@@ -159,11 +207,8 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                         }
                     }
                 }).addDisposableTo(self.disposeBag)
-
             }
         }
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
