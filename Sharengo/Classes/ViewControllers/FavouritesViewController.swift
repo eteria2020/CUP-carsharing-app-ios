@@ -134,7 +134,7 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
             .subscribe(onNext:{
                 self.view.endEditing(true)
                 if self.lbl_popupTitle.text == "lbl_favouritesDeleteFav".localized() {
-                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
                         if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                             let index = unarchivedArray.index(where: { (address) -> Bool in
                                 return address.identifier == self.selectedAddress?.identifier
@@ -143,7 +143,7 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                                 unarchivedArray.remove(at: index!)
                             }
                             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
                         }
                     }
                 } else if self.lbl_popupTitle.text == "lbl_favouritesDeleteHis".localized() {
@@ -169,7 +169,7 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                         dialog.show()
                         return
                     }
-                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
                         if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                             let index = unarchivedArray.index(where: { (address) -> Bool in
                                 return address.identifier == self.selectedAddress?.identifier
@@ -179,7 +179,7 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                                 unarchivedArray[index!].address = self.txt_address.text!
                             }
                             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
                         }
                     }
                 } else if self.lbl_popupTitle.text == "lbl_favouritesAdd".localized() {
@@ -204,13 +204,13 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                             UserDefaults.standard.set(archivedArray, forKey: "historyArray")
                         }
                     }
-                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
                         if var unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                             let uuid = NSUUID().uuidString.lowercased()
                             let addres = FavouriteAddress(identifier: uuid, name: self.txt_name.text!, location: self.selectedAddress?.location, address: self.txt_address.text!)
                             unarchivedArray.insert(addres, at: 0)
                             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: unarchivedArray as Array)
-                            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+                            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
                         }
                     }
                 }
@@ -218,7 +218,7 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 self.viewModel?.updateData()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
-                if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
                     if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                         if unarchivedArray.count == 0 {
                             let destination: NoFavouritesViewController = (Storyboard.main.scene(.noFavourites))

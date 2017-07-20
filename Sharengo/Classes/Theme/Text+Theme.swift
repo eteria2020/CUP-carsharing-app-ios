@@ -100,6 +100,28 @@ enum TextStyle: String, TextStyleType {
     case onBoardDescription = "onBoardDescription"
     case onBoardSkip = "onBoardSkip"
     
+    // Feeds
+    case feedsHeaderCategory = "feedsHeaderCategory"
+    case feedsHeader = "feedsHeader"
+    case feedsClaim = "feedsClaim"
+    case feedsItemBottom = "feedsItemBottom"
+    case feedsAroundMe = "feedsAroundMe"
+    
+    // Categories
+    case categoriesItemTitle = "categoriesItemTitle"
+    
+    // Feed Detail
+    case feedDetailHeader = "feedDetailHeader"
+    case feedClaim = "feedClaim"
+    case feedsClaimMirrored = "feedsClaimMirrored"
+    case feedBottom = "feedBottom"
+    case feedFavourite = "feedFavourite"
+
+    // No Feeds
+    case noFeedsHeader = "noFeedsHeader"
+    case noFeedsDescription = "noFeedsDescription"
+    case noFeedsFeedsHeader = "noFeedsFeedsHeader"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -164,7 +186,25 @@ enum TextStyle: String, TextStyleType {
             .carTripsSearchCarsLabel,
             // OnBoard
             .onBoardDescription,
-            .onBoardSkip
+            .onBoardSkip,
+            // Feeds
+            .feedsHeaderCategory,
+            .feedsHeader,
+            .feedsClaim,
+            .feedsClaimMirrored,
+            .feedsItemBottom,
+            .feedsAroundMe,
+            // Categories
+            .categoriesItemTitle,
+            // Feed Detail
+            .feedDetailHeader,
+            .feedClaim,
+            .feedBottom,
+            .feedFavourite,
+            // No Feeds
+            .noFeedsHeader,
+            .noFeedsDescription,
+            .noFeedsFeedsHeader
         ]
     }
     
@@ -295,6 +335,52 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.onBoardDescription.value), .color(Color.onBoardDescription.value), .alignment(.center))
             case .onBoardSkip:
                 return StringStyle(.font(Font.onBoardSkipButton.value), .color(Color.onBoardSkipTextButton.value), .alignment(.left))
+            // Feeds
+            case .feedsHeaderCategory:
+                return StringStyle(.font(Font.feedsHeaderCategory.value), .color(Color.feedsHeaderCategoryLabel.value), .alignment(.center))
+            case .feedsHeader:
+                return StringStyle(.font(Font.feedsHeader.value), .color(Color.feedsHeaderBackground.value), .alignment(.center))
+            case .feedsClaim:
+                return StringStyle(.font(Font.feedsClaim.value), .color(Color.feedsClaim.value), .alignment(.right))
+            case .feedsClaimMirrored:
+                return StringStyle(.font(Font.feedsClaim.value), .color(Color.feedsClaim.value), .alignment(.left))
+            case .feedsItemBottom:
+                let titleStyle = StringStyle(.font(Font.feedsItemTitle.value), .color(Color.feedsItemTitle.value), .alignment(.left))
+                let dateStyle = StringStyle(.font(Font.feedsItemDate.value), .color(Color.feedsItemDate.value), .alignment(.left))
+                let subtitleStyle = StringStyle(.font(Font.feedsItemSubtitle.value), .color(Color.feedsItemSubtitle.value), .alignment(.left))
+                let descriptionStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.left))
+                let advantageStyle = StringStyle(.font(Font.feedsItemAdvantage.value), .color(Color.feedsItemAdvantage.value), .alignment(.left))
+                return StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle),  .style("advantage", advantageStyle)]))
+            case .feedsAroundMe:
+                return StringStyle(.font(Font.feedsAroundMeButton.value), .color(Color.feedsAroundMeButtonLabel.value), .alignment(.left))
+            // Categories
+            case .categoriesItemTitle:
+                return StringStyle(.font(Font.categoriesItemTitle.value), .color(Color.categoriesItemTitle.value), .alignment(.center))
+            // Feed Detail
+            case .feedDetailHeader:
+                return StringStyle(.font(Font.feedDetailHeader.value), .color(Color.feedDetailHeaderLabel.value), .alignment(.center))
+            case .feedClaim:
+                return StringStyle(.font(Font.feedClaim.value), .color(Color.feedClaim.value), .alignment(.right))
+            case .feedBottom:
+                let titleStyle = StringStyle(.font(Font.feedTitle.value), .color(Color.feedTitle.value), .alignment(.left))
+                let dateStyle = StringStyle(.font(Font.feedDate.value), .color(Color.feedDate.value), .alignment(.left))
+                let subtitleStyle = StringStyle(.font(Font.feedSubtitle.value), .color(Color.feedSubtitle.value), .alignment(.left))
+                let descriptionStyle = StringStyle(.font(Font.feedDescription.value), .color(Color.feedDescription.value), .alignment(.left))
+                let extendedDescriptionStyle = StringStyle(.font(Font.feedExtendedDescription.value), .color(Color.feedExtendedDescription.value), .alignment(.left))
+                let advantageStyle = StringStyle(.font(Font.feedAdvantage.value), .color(Color.feedAdvantage.value), .alignment(.left))
+                return StringStyle(.font(Font.feedDescription.value), .color(Color.feedDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle),  .style("advantage", advantageStyle), .style("extendedDescription", extendedDescriptionStyle)]))
+            case .feedFavourite:
+                return StringStyle(.font(Font.feedFavouriteButton.value), .color(Color.feedFavouriteButtonLabel.value), .alignment(.left))
+            // No Feeds
+            case .noFeedsHeader:
+                return StringStyle(.font(Font.noFeedsHeader.value), .color(Color.noFeedsHeaderLabel.value), .alignment(.center))
+            case .noFeedsDescription:
+                let titleStyle = StringStyle(.font(Font.noFeedsTitle.value), .color(Color.noFeedsTitle.value), .alignment(.center))
+                let descriptionStyle = StringStyle(.font(Font.noFeedsDescription.value), .color(Color.noFeedsDescription.value), .alignment(.center))
+                return StringStyle(.font(Font.noFeedsDescription.value), .color(Color.noFeedsDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("description", descriptionStyle)]))
+
+            case .noFeedsFeedsHeader:
+                return StringStyle(.font(Font.noFeedsFeedsHeader.value), .color(Color.noFeedsFeedsHeaderBackground.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

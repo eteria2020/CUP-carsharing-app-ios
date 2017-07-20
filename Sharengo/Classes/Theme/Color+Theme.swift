@@ -202,6 +202,58 @@ enum Color {
     case onBoardPageControlEmpty
     case onBoardPageControlFilled
 
+    // Feeds
+    case feedsHeaderCategoryBackground
+    case feedsHeaderCategoryLabel
+    case feedsHeaderBackground
+    case feedsHeaderLabelOn
+    case feedsHeaderLabelOff
+    case feedsHeaderBottomButtonOn
+    case feedsHeaderBottomButtonOff
+    case feedsAroundMeButtonLabel
+    case feedsAroundMeButtonBackground
+    case feedsItemIconBorderBackground
+    case feedsItemTitle
+    case feedsItemDate
+    case feedsItemSubtitle
+    case feedsItemDescription
+    case feedsItemAdvantage
+    case feedsClaim
+    
+    // Categories
+    case categoriesBackground
+    case categoriesItemTitle
+    case categoriesItemIconBackground
+    case categoriesItemBorderBackground
+    case categoriesItemTitleDisabled
+    case categoriesItemIconBackgroundDisabled
+
+    // Feed Detail
+    case feedDetailHeaderBackground
+    case feedDetailHeaderLabel
+    case feedFavouriteButtonLabel
+    case feedFavouriteButtonBackground
+    case feedIconBorderBackground
+    case feedTitle
+    case feedDate
+    case feedSubtitle
+    case feedDescription
+    case feedAdvantage
+    case feedClaim
+    case feedExtendedDescription
+
+    // No Feeds
+    case noFeedsHeaderBackground
+    case noFeedsHeaderLabel
+    case noFeedsBackground
+    case noFeedsTitle
+    case noFeedsDescription
+    case noFeedsFeedsHeaderBackground
+    case noFeedsFeedsLabelOn
+    case noFeedsFeedsLabelOff
+    case noFeedsFeedsBottomButtonOn
+    case noFeedsFeedsBottomButtonOff
+    
     // Web
     case webBackground
     
@@ -426,9 +478,101 @@ enum Color {
                 return ColorBrand.white.value
             case .onBoardPageControlFilled:
                 return ColorBrand.green.value
+            // Feeds
+            case .feedsHeaderCategoryBackground:
+                return ColorBrand.black.value
+            case .feedsHeaderCategoryLabel:
+                return ColorBrand.white.value
+            case .feedsHeaderBackground:
+                return ColorBrand.black.value
+            case .feedsHeaderLabelOn:
+                return ColorBrand.yellow.value
+            case .feedsHeaderLabelOff:
+                return ColorBrand.grayDisabled.value
+            case .feedsHeaderBottomButtonOn:
+                return ColorBrand.yellow.value
+            case .feedsHeaderBottomButtonOff:
+                return ColorBrand.grayDisabled.value
+            case .feedsAroundMeButtonLabel:
+                return ColorBrand.white.value
+            case .feedsAroundMeButtonBackground:
+                return ColorBrand.green.value
+            case .feedsItemIconBorderBackground:
+                return ColorBrand.black.value
+            case .feedsItemTitle:
+                return ColorBrand.black.value
+            case .feedsItemDate:
+                return UIColor(hexString: "#888888")
+            case .feedsItemSubtitle:
+                return ColorBrand.black.value
+            case .feedsItemDescription:
+                return ColorBrand.black.value
+            case .feedsItemAdvantage:
+                return ColorBrand.black.value
+            case .feedsClaim:
+                return ColorBrand.white.value
+            // Categories
+            case .categoriesBackground:
+                return ColorBrand.lightGray.value
+            case .categoriesItemTitle:
+                return ColorBrand.black.value
+            case .categoriesItemIconBackground:
+                return ColorBrand.green.value
+            case .categoriesItemBorderBackground:
+                return UIColor(hexString: "#ececec")
+            case .categoriesItemTitleDisabled:
+                return UIColor(hexString: "#a8a39f")
+            case .categoriesItemIconBackgroundDisabled:
+                return UIColor(hexString: "#c1bab4")
+            // Feed Detail
+            case .feedDetailHeaderBackground:
+                return ColorBrand.black.value
+            case .feedDetailHeaderLabel:
+                return ColorBrand.white.value
+            case .feedFavouriteButtonLabel:
+                return ColorBrand.white.value
+            case .feedFavouriteButtonBackground:
+                return ColorBrand.green.value
+            case .feedIconBorderBackground:
+                return ColorBrand.black.value
+            case .feedTitle:
+                return ColorBrand.black.value
+            case .feedDate:
+                return UIColor(hexString: "#888888")
+            case .feedSubtitle:
+                return ColorBrand.black.value
+            case .feedDescription:
+                return ColorBrand.black.value
+            case .feedExtendedDescription:
+                return ColorBrand.black.value
+            case .feedAdvantage:
+                return ColorBrand.black.value
+            case .feedClaim:
+                return ColorBrand.white.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value
+            // No Feeds
+            case .noFeedsHeaderBackground:
+                return ColorBrand.black.value
+            case .noFeedsHeaderLabel:
+                return ColorBrand.white.value
+            case .noFeedsBackground:
+                return ColorBrand.lightGray.value
+            case .noFeedsTitle:
+                return ColorBrand.green.value
+            case .noFeedsDescription:
+                return ColorBrand.black.value
+            case .noFeedsFeedsHeaderBackground:
+                return ColorBrand.black.value
+            case .noFeedsFeedsLabelOn:
+                return ColorBrand.yellow.value
+            case .noFeedsFeedsLabelOff:
+                return ColorBrand.grayDisabled.value
+            case .noFeedsFeedsBottomButtonOn:
+                return ColorBrand.yellow.value
+            case .noFeedsFeedsBottomButtonOff:
+                return ColorBrand.grayDisabled.value
             }
         }
     }

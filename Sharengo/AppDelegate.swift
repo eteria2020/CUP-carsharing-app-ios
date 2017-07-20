@@ -7,8 +7,6 @@ import Gloss
 import SideMenu
 import Localize_Swift
 
-// TODO: se faccio swipe sul menù (dall'alto in basso ad esempio) appare e scompare il verde sottostante?
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -37,9 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.setValue("milano", forKey: "city")
         }
         */
-        
-        // TODO: recuperare le città?
-        // TODO: che succede se le città non vengono scaricate neanche una volta?
         
         return true
     }
@@ -88,9 +83,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     fileprivate func setupFavourites() {
-        if UserDefaults.standard.object(forKey: "favouritesArray") == nil {
+        if UserDefaults.standard.object(forKey: "favouritesAddressArray") == nil {
             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteAddress]() as Array)
-            UserDefaults.standard.set(archivedArray, forKey: "favouritesArray")
+            UserDefaults.standard.set(archivedArray, forKey: "favouritesAddressArray")
+        }
+        
+        if UserDefaults.standard.object(forKey: "favouritesFeedArray") == nil {
+            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteFeed]() as Array)
+            UserDefaults.standard.set(archivedArray, forKey: "favouritesFeedArray")
         }
     }
 }

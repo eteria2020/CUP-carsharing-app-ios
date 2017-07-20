@@ -27,10 +27,10 @@ final class HomeViewModel: ViewModelTypeSelectable {
     lazy var selection:Action<HomeSelectionInput,HomeSelectionOutput> = Action { input in
         switch input {
         case .searchCars:
-            return .just(.viewModel(ViewModelFactory.searchCars()))
+            return .just(.viewModel(ViewModelFactory.searchCars(type: .searchCars)))
         case .profile:
             if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                return .just(.viewModel(ViewModelFactory.login()))
+                return .just(.viewModel(ViewModelFactory.login(nextViewModel: ViewModelFactory.profile())))
             } else {
                 return .just(.viewModel(ViewModelFactory.profile()))
             }

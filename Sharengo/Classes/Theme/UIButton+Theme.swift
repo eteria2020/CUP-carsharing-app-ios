@@ -12,6 +12,7 @@ public enum ButtonStyle {
     case clearButton(UIFont, UIColor)
     case roundedButton(UIColor)
     case squaredButton(UIColor)
+    case headerButton(UIFont, UIColor, UIColor)
 }
 
 public extension UIButton {
@@ -37,6 +38,12 @@ public extension UIButton {
             self.setTitle(title, for: UIControlState())
             self.titleLabel?.font = Font.roundedButton.value
             self.setTitleColor(Color.alertLightButton.value, for: .normal)
+        case .headerButton(let font, let backgroundColor, let textColor):
+            self.backgroundColor = .clear
+            self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
+            self.setTitle(title, for: UIControlState())
+            self.titleLabel?.font = font
+            self.setTitleColor(textColor, for: .normal)
         }
     }
 }

@@ -15,8 +15,8 @@ import KeychainSwift
 class CoreController {
     static let shared = CoreController()
     var currentViewController: UIViewController?
-    var apiController: ApiController = ApiController()
-    var publishersApiController: PublishersAPIController = PublishersAPIController()
+    let apiController: ApiController = ApiController()
+    let publishersApiController: PublishersAPIController = PublishersAPIController()
     var updateTimer: Timer?
     var updateInProgress = false
     var allCarBookings: [CarBooking] = []

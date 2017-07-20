@@ -29,6 +29,10 @@ enum SceneIdentifier : String, ListIdentifier {
     case newFavourite = "newFavourite"
     case favourites = "favourites"
     case onBoard = "onBoard"
+    case feeds = "feeds"
+    case feedDetail = "feedDetail"
+    case noFeeds = "noFeeds"
+    
     var name: String {
         return self.rawValue
     }
@@ -49,6 +53,8 @@ enum CollectionViewCell : String, ListIdentifier {
     case settingsCity = "SettingsCityItemCollectionViewCell"
     case favourite = "FavouriteItemCollectionViewCell"
     case carTrip = "CarTripItemCollectionViewCell"
+    case feed = "FeedItemCollectionViewCell"
+    case category = "CategoryItemCollectionViewCell"
 
     static func all() -> [CollectionViewCell] {
         return [
@@ -58,7 +64,9 @@ enum CollectionViewCell : String, ListIdentifier {
             .settingsLanguage,
             .settingsCity,
             .favourite,
-            .carTrip
+            .carTrip,
+            .feed,
+            .category
         ]
     }
     static func headers() -> [CollectionViewCell] {

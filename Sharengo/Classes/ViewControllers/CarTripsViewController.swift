@@ -35,7 +35,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
         }
 
         self.viewModel = viewModel
-
+        
         self.lbl_title.styledText = "lbl_carTripsHeaderTitle".localized()
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self

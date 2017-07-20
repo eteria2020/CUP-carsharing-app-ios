@@ -47,11 +47,17 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                     Router.from(self,viewModel: viewModel).execute()
                 }
             case .feeds:
-                let dialog = ZAlertView(title: nil, message: "alert_homeNotAvailable".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
+                if UserDefaults.standard.object(forKey: "city") == nil {
+                    let settingsCitiesViewModel = ViewModelFactory.settingsCities()
+                    (settingsCitiesViewModel as! SettingsCitiesViewModel).nextViewModel = ViewModelFactory.feeds()
+                    if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+                        Router.from(self,viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel)).execute()
+                    } else {
+                        Router.from(self,viewModel: settingsCitiesViewModel).execute()
+                    }
+                } else {
+                    Router.from(self,viewModel: ViewModelFactory.feeds()).execute()
+                }
             }
         }).addDisposableTo(self.disposeBag)
         self.btn_searchCar.rx.bind(to: viewModel.selection, input: .searchCars)
@@ -76,12 +82,12 @@ class HomeViewController : BaseViewController, ViewModelBindable {
         self.view_profile.alpha = 0.0
         self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
-        self.view_feeds.backgroundColor = Color.homeDisabledBackground.value
+        self.view_feeds.backgroundColor = Color.homeEnabledBackground.value
         self.view_feeds.layer.cornerRadius = self.view_feeds.frame.size.width/2
         self.view_feeds.layer.masksToBounds = true
         self.view_feeds.alpha = 0.0
-        self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(Color.homeDisabledIcon.value), for: .normal)
-        self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(Color.homeDisabledIcon.value.withAlphaComponent(0.5)), for: .highlighted)
+        self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+        self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
         self.view_dotted.backgroundColor = UIColor.clear
         let strokeColor = UIColor.black.cgColor
         let shapeLayer: CAShapeLayer = CAShapeLayer()
@@ -169,8 +175,8 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                             let data = try Data(contentsOf: url)
                             if let image = UIImage(data: data) {
                                 cityFounded = true
-                                self.btn_feeds.setImage(image.tinted(Color.homeDisabledIcon.value), for: .normal)
-                                self.btn_feeds.setImage(image.tinted(Color.homeDisabledIcon.value.withAlphaComponent(0.5)), for: .highlighted)
+                                self.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
+                                self.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
                             }
                         } catch {
                         }
@@ -178,8 +184,8 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 }
             }
             if !cityFounded {
-                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(Color.homeDisabledIcon.value), for: .normal)
-                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(Color.homeDisabledIcon.value.withAlphaComponent(0.5)), for: .highlighted)
+                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white), for: .normal)
+                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
             }
         }
     }

@@ -43,7 +43,8 @@ final class LoginViewModel: ViewModelType {
     
     fileprivate var apiController: ApiController = ApiController()
     var loginExecuted: Variable<Bool> = Variable(false)
-
+    var nextViewModel: ViewModelType?
+    
     init() {
     }
     

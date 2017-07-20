@@ -65,8 +65,6 @@ class LoginViewController : BaseViewController, ViewModelBindable {
     var introIsShowed: Bool = false
     
     var viewModel: LoginViewModel?
-    var goBackAfterLogin: Bool = false
-    var goToProfileAfterLogin: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -84,16 +82,12 @@ class LoginViewController : BaseViewController, ViewModelBindable {
                 DispatchQueue.main.async {
                     self?.hideLoader()
                     if loginExecuted {
-                        if self?.goBackAfterLogin == true && self != nil {
-                            Router.back(self!)
-                            return
-                        } else if self?.goToProfileAfterLogin == true && self != nil {
-                            let destination: ProfileViewController = (Storyboard.main.scene(.profile))
-                            destination.bind(to: ViewModelFactory.profile(), afterLoad: true)
-                            self?.navigationController?.pushViewController(destination, animated: true)
-                            return
-                        } else if self != nil {
-                            Router.exit(self!)
+                        if self != nil {
+                            if let viewModel = viewModel.nextViewModel {
+                                Router.from(self!, viewModel: viewModel).execute()
+                            } else {
+                                Router.back(self!)
+                            }
                         }
                     } else {
                         self?.hideLoader()

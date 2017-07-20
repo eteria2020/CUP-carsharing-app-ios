@@ -66,7 +66,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                 if let model = self.model(atIndex: indexPath) as? Address {
                     self.itemSelected = true
                     var favourite: Bool = false
-                    if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+                    if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
                         if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                             let index = unarchivedArray.index(where: { (address) -> Bool in
                                 return address.identifier == model.identifier
@@ -233,7 +233,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         var favourites: Bool = false
         var numberOfResults: Int = self.numberOfResults
         if !self.favourites {
-            if let array = UserDefaults.standard.object(forKey: "favouritesArray") as? Data {
+            if let array = UserDefaults.standard.object(forKey: "favouritesAddressArray") as? Data {
                 if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: array) as? [FavouriteAddress] {
                     if unarchivedArray.count > 0 {
                         for historyAddress in Array(unarchivedArray.prefix(numberOfResults)) {

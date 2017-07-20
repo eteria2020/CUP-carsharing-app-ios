@@ -129,6 +129,37 @@ enum Font {
     case onBoardDescription
     case onBoardSkipButton
     
+    // Feeds
+    case feedsHeader
+    case feedsHeaderCategory
+    case feedsItemTitle
+    case feedsItemDate
+    case feedsItemSubtitle
+    case feedsItemDescription
+    case feedsItemAdvantage
+    case feedsAroundMeButton
+    case feedsClaim
+    
+    // Categories
+    case categoriesItemTitle
+
+    // Feed Detail
+    case feedDetailHeader
+    case feedTitle
+    case feedDate
+    case feedSubtitle
+    case feedDescription
+    case feedExtendedDescription
+    case feedAdvantage
+    case feedFavouriteButton
+    case feedClaim
+    
+    // No Feeds
+    case noFeedsHeader
+    case noFeedsTitle
+    case noFeedsDescription
+    case noFeedsFeedsHeader
+
     var value: UIFont {
         get {
             switch self {
@@ -259,12 +290,61 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .carTripsSearchCarsLabel:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // OnBoard
             case .onBoardDescription:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
             case .onBoardSkipButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Feeds
+            case .feedsHeaderCategory:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .feedsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemDate:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemAdvantage:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsAroundMeButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .feedsClaim:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Categories
+            case .categoriesItemTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // Feed Detail
+            case .feedDetailHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .feedTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedDate:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .feedExtendedDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .feedAdvantage:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedFavouriteButton:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .feedClaim:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            // No Feeds
+            case .noFeedsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .noFeedsTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .noFeedsDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .noFeedsFeedsHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

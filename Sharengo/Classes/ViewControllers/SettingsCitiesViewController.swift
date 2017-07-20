@@ -36,6 +36,9 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
             case .model(let city):
                 UserDefaults.standard.setValue(city.identifier, forKey: "city")
                 self.updateCities()
+                if let viewModel = viewModel.nextViewModel {
+                    Router.from(self, viewModel: viewModel).execute()
+                }
             default: break
             }
             self.dismiss(animated: true, completion: nil)
@@ -88,6 +91,10 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
             .subscribe(onNext:{
                 Router.back(self)
         }).addDisposableTo(disposeBag)
+        
+        if viewModel?.nextViewModel != nil {
+            self.btn_back.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -21,6 +21,8 @@
 "btn_book" = "PRENOTA AUTO";
 "bnt_delete" = "ELIMINA";
 "btn_carRides" = "STORICO CORSE";
+"btn_detail" = "SCOPRI DI PIÙ";
+"btn_car" = "PRENOTA AUTO";
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
 
@@ -94,6 +96,7 @@
 
 // SearchCars
 "alert_centerMapMessage" = "Share'ngo ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_showCarsDisabledMessage" = "Attenzione! Potrai utilizzare questa funzione solo dopo aver concluso la corsa o la prenotazione attiva";
 
 // CarPopup
 "lbl_carPopupType" = "Auto più vicina";
@@ -186,3 +189,17 @@
 "lbl_onBoardStep2Description" = "Più ne hai bisogno\ne meno costa";
 "lbl_onBoardStep3Description" = "Ogni corsa una sorpresa\ne una scoperta";
 "btn_onBoardSkip" = "Skip >>";
+
+// Feeds
+"btn_feedsHeaderFeed" = "FEED";
+"btn_feedsHeaderCategories" = "CATEGORIE";
+"btn_feedsAroundMe" = "INTORNO A ME";
+"alert_categoryNotPublished" = "Questa categoria sarà disponibile prossimamente.";
+
+// Feed Detail
+"btn_feedDetailFavourite" = "MI INTERESSA";
+"btn_feedDetailNotFavourite" = "NON MI INTERESSA";
+
+// No feeds
+"lbl_noFeedsDescriptionWithCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili nella categoria selezionata. Ti invitiamo a riprovare nei prossimi giorni</description>";
+"lbl_noFeedsDescriptionWithNoCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili. Ti invitiamo a riprovare nei prossimi giorni</description>";

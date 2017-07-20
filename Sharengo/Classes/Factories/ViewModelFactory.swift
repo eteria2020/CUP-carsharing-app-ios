@@ -27,8 +27,10 @@ struct ViewModelFactory {
         return SignupViewModel()
     }
 
-    static func login() -> ViewModelType {
-        return LoginViewModel()
+    static func login(nextViewModel: ViewModelType? = nil) -> ViewModelType {
+        let loginViewModel = LoginViewModel()
+        loginViewModel.nextViewModel = nextViewModel
+        return loginViewModel
     }
     
     static func profile() -> ViewModelType {
@@ -43,18 +45,22 @@ struct ViewModelFactory {
         return OnBoardViewModel()
     }
 
-    static func searchCars() -> ViewModelType {
-        return SearchCarsViewModel()
+    static func searchCars(type: SearchCarsType) -> ViewModelType {
+        return SearchCarsViewModel(type: type)
     }
     
     static func searchBar() -> ViewModelType {
         return SearchBarViewModel()
     }
     
-    static func carPopup() -> ViewModelType {
-        return CarPopupViewModel()
+    static func carPopup(type: CarPopupType) -> ViewModelType {
+        return CarPopupViewModel(type: type)
     }
-    
+
+    static func feeds() -> ViewModelType {
+        return FeedsViewModel()
+    }
+
     static func carBookingPopup() -> ViewModelType {
         return CarBookingPopupViewModel()
     }
@@ -63,34 +69,18 @@ struct ViewModelFactory {
         return MenuViewModel()
     }
 
-    static func menuItem(fromModel model:MenuItem) -> ItemViewModelType {
-        return MenuItemViewModel(model: model)
-    }
-
     static func settings() -> ViewModelType {
         return SettingsViewModel()
     }
     
-    static func settingItem(fromModel model:Setting) -> ItemViewModelType {
-        return SettingItemViewModel(model: model)
-    }
-
     static func settingsLanguages() -> ViewModelType {
         return SettingsLanguagesViewModel()
     }
     
-    static func settingsLanguagesItem(fromModel model:Language) -> ItemViewModelType {
-        return SettingsLanguageItemViewModel(model: model)
-    }
-
     static func settingsCities() -> ViewModelType {
         return SettingsCitiesViewModel()
     }
     
-    static func settingsCitiesItem(fromModel model:City) -> ItemViewModelType {
-        return SettingsCityItemViewModel(model: model)
-    }
-
     static func noFavourites() -> ViewModelType {
         return NoFavouritesViewModel()
     }
@@ -111,6 +101,30 @@ struct ViewModelFactory {
         return NoCarTripsViewModel()
     }
     
+    static func noFeeds(fromCategory category:Category?) -> ViewModelType {
+        return NoFeedsViewModel(category: category)
+    }
+
+    static func menuItem(fromModel model:MenuItem) -> ItemViewModelType {
+        return MenuItemViewModel(model: model)
+    }
+    
+    static func settingItem(fromModel model:Setting) -> ItemViewModelType {
+        return SettingItemViewModel(model: model)
+    }
+    
+    static func settingsLanguagesItem(fromModel model:Language) -> ItemViewModelType {
+        return SettingsLanguageItemViewModel(model: model)
+    }
+    
+    static func settingsCitiesItem(fromModel model:City) -> ItemViewModelType {
+        return SettingsCityItemViewModel(model: model)
+    }
+    
+    static func feedItem(fromModel model:Feed) -> ItemViewModelType {
+        return FeedItemViewModel(model: model)
+    }
+
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }
@@ -133,5 +147,13 @@ struct ViewModelFactory {
     
     static func favouriteItem(fromModel model:Address) -> ItemViewModelType {
         return FavouriteItemViewModel(model: model)
+    }
+    
+    static func categoryItem(fromModel model:Category) -> ItemViewModelType {
+        return CategoryItemViewModel(model: model)
+    }
+    
+    static func feedDetail(fromModel model:Feed) -> ViewModelType {
+        return FeedDetailViewModel(model: model)
     }
 }

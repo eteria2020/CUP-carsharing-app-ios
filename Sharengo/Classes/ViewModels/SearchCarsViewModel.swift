@@ -15,21 +15,42 @@ import Moya
 import Gloss
 import ReachabilitySwift
 
+enum SearchCarsType {
+    case searchCars
+    case feeds
+    
+    func getCircularMenuType() -> CircularMenuType {
+        switch self {
+        case .searchCars:
+            return .searchCars
+        case .feeds:
+            return .feeds
+        }
+    }
+}
+
 final class SearchCarsViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
+    fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var oldNearestCar: Car?
-    fileprivate var nearestCar: Car?
     fileprivate var timerCars: Timer?
     fileprivate var cars: [Car] = []
+    var nearestCar: Car?
     var allCars: [Car] = []
     var carBooked: Car?
     var carBooking: CarBooking?
     var carTrip: CarTrip?
+    let type: SearchCarsType
+    var showCars: Bool = false
+    var errorOffers: Bool?
+    var errorEvents: Bool?
+    var feeds = [Feed]()
     
-    var array_annotations: Variable<[CarAnnotation]> = Variable([])
+    var array_annotations: Variable<[FBAnnotation]> = Variable([])
 
-    init() {
+    init(type: SearchCarsType) {
+        self.type = type
         self.getAllCars()
         self.timerCars = Timer.scheduledTimer(timeInterval: 60*5, target: self, selector: #selector(self.getAllCars), userInfo: nil, repeats: true)
     }
@@ -80,7 +101,6 @@ final class SearchCarsViewModel: ViewModelType {
     
     func resetCars() {
         self.cars.removeAll()
-        self.array_annotations.value = []
         self.manageAnnotations()
     }
     
@@ -90,93 +110,182 @@ final class SearchCarsViewModel: ViewModelType {
     }
     
     func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
-        self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    if response.status == 200, let data = response.array_data {
-                        if let cars = [Car].from(jsonArray: data) {
-                            self.cars = cars.filter({ (car) -> Bool in
-                                return car.status == .operative
-                            })
-                            self.manageAnnotations()
-                            return
+        self.errorEvents = nil
+        self.errorOffers = nil
+        if type == .searchCars || showCars == true {
+            self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.array_data {
+                            if let cars = [Car].from(jsonArray: data) {
+                                self.cars = cars.filter({ (car) -> Bool in
+                                    return car.status == .operative
+                                })
+                                self.manageAnnotations()
+                                return
+                            }
                         }
-                    }
-                    self.resetCars()
-                case .error(_):
-                    let dispatchTime = DispatchTime.now() + 0.5
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        var message = "alert_generalError".localized()
-                        if Reachability()?.isReachable == false {
-                            message = "alert_connectionError".localized()
-                        }
-                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
                         self.resetCars()
+                    case .error(_):
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            var message = "alert_generalError".localized()
+                            if Reachability()?.isReachable == false {
+                                message = "alert_connectionError".localized()
+                            }
+                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                alertView.dismissAlertView()
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                            self.resetCars()
+                        }
+                    default:
+                        break
                     }
-                default:
-                    break
-                }
-            }.addDisposableTo(resultsDispose!)
+                }.addDisposableTo(resultsDispose!)
+        } else {
+            self.resetCars()
+        }
+        self.feeds.removeAll()
+        if type == .feeds {
+            self.publishersApiController.getMapOffers(latitude: latitude, longitude: longitude, radius: radius)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status_bool == true, let data = response.array_data {
+                            if let feeds = [Feed].from(jsonArray: data) {
+                                self.feeds.append(contentsOf: feeds)
+                                self.errorOffers = false
+                                self.manageAnnotations()
+                                return
+                            }
+                        }
+                        self.errorOffers = false
+                        self.manageAnnotations()
+                        return
+                    case .error(_):
+                        self.errorOffers = true
+                        self.manageAnnotations()
+                    default:
+                        break
+                    }
+                }.addDisposableTo(resultsDispose!)
+            
+            self.publishersApiController.getMapEvents(latitude: latitude, longitude: longitude, radius: radius)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status_bool == true, let data = response.array_data {
+                            if let feeds = [Feed].from(jsonArray: data) {
+                                self.feeds.append(contentsOf: feeds)
+                                self.errorEvents = false
+                                self.manageAnnotations()
+                                return
+                            }
+                        }
+                        self.errorEvents = false
+                        self.manageAnnotations()
+                        return
+                    case .error(_):
+                        self.errorEvents = true
+                        self.manageAnnotations()
+                    default:
+                        break
+                    }
+                }.addDisposableTo(resultsDispose!)
+        } else {
+            self.manageAnnotations()
+        }
     }
     
     func manageAnnotations() {
-        var carBookedFounded: Bool = false
-        if let car = self.carBooked {
-            let locationController = LocationController.shared
-            if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-                if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                    car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                    let index = self.cars.index(where: { (singleCar) -> Bool in
-                        return car.plate == singleCar.plate
-                    })
-                    if let index = index {
-                        self.cars[index].distance = car.distance
+        var annotations: [FBAnnotation] = []
+        if type == .searchCars || showCars == true {
+            var carBookedFounded: Bool = false
+            if let car = self.carBooked {
+                let locationController = LocationController.shared
+                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
+                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                        let index = self.cars.index(where: { (singleCar) -> Bool in
+                            return car.plate == singleCar.plate
+                        })
+                        if let index = index {
+                            self.cars[index].distance = car.distance
+                        }
                     }
                 }
             }
-        }
-        for car in self.cars {
-            let locationController = LocationController.shared
-            if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-                if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                    car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                    let index = self.allCars.index(where: { (allCar) -> Bool in
-                        return car.plate == allCar.plate
-                    })
-                    if let index = index {
-                        self.allCars[index].distance = car.distance
+            for car in self.cars {
+                let locationController = LocationController.shared
+                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
+                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                        let index = self.allCars.index(where: { (allCar) -> Bool in
+                            return car.plate == allCar.plate
+                        })
+                        if let index = index {
+                            self.allCars[index].distance = car.distance
+                        }
                     }
                 }
+                if car.plate == self.carBooked?.plate {
+                    carBookedFounded = true
+                }
             }
-            if car.plate == self.carBooked?.plate {
-                carBookedFounded = true
+            self.updateCarProperties()
+            for car in self.cars {
+                if let coordinate = car.location?.coordinate {
+                    let annotation = CarAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.car = car
+                    annotations.append(annotation)
+                }
+            }
+            if carBookedFounded == false && self.carBooked != nil {
+                if let coordinate = self.carBooked!.location?.coordinate {
+                    let annotation = CarAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.car = self.carBooked!
+                    annotations.append(annotation)
+                }
+            }
+            if type == .searchCars {
+                self.array_annotations.value = annotations
             }
         }
-        self.updateCarProperties()
-        var annotations: [CarAnnotation] = []
-        for car in self.cars {
-            if let coordinate = car.location?.coordinate {
-                let annotation = CarAnnotation()
-                annotation.coordinate = coordinate
-                annotation.car = car
-                annotations.append(annotation)
+        if type == .feeds {
+            if self.errorEvents == false && self.errorOffers == false {
+                for feed in self.feeds {
+                    if let coordinate = feed.feedLocation?.coordinate {
+                        let annotation = FeedAnnotation()
+                        annotation.coordinate = coordinate
+                        annotation.feed = feed
+                        annotations.append(annotation)
+                    }
+                }
+                self.array_annotations.value = annotations
+            } else if self.errorEvents == true || self.errorOffers == true {
+                let dispatchTime = DispatchTime.now() + 0.5
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    var message = "alert_generalError".localized()
+                    if Reachability()?.isReachable == false {
+                        message = "alert_connectionError".localized()
+                    }
+                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                    self.array_annotations.value = annotations
+                }
             }
         }
-        if carBookedFounded == false && self.carBooked != nil {
-            if let coordinate = self.carBooked!.location?.coordinate {
-                let annotation = CarAnnotation()
-                annotation.coordinate = coordinate
-                annotation.car = self.carBooked!
-                annotations.append(annotation)
-            }
-        }
-        self.array_annotations.value = annotations
     }
     
     fileprivate func updateCarProperties () {
