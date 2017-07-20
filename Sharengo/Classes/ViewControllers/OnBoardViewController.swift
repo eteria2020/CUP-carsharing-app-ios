@@ -167,7 +167,6 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                         }
                     }
                 }).addDisposableTo(self.disposeBag)
-                
                 self.view.rx.swipeGesture(.right).when(.recognized).subscribe(onNext: {_ in
                     if !self.gestureInProgress {
                         switch self.pgc_steps.currentPage {
