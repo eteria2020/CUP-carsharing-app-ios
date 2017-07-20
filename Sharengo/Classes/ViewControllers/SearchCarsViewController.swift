@@ -32,7 +32,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     fileprivate let carPopupDistanceOpenDoors: Int = 50
     fileprivate let clusteringManager = FBClusteringManager()
     fileprivate let clusteringRadius: Double = 35000
-    fileprivate var clusteringInProgress: Bool = false
+    fileprivate var clusteringInProgress: Bool = true
     fileprivate var selectedCar: Car?
     fileprivate var selectedFeed: Feed?
     fileprivate var apiController: ApiController = ApiController()
@@ -49,38 +49,38 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {
-                    if self?.clusteringInProgress == true {
-                        self?.clusteringManager.removeAll()
-                        self?.clusteringManager.add(annotations: array)
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            if let radius = self?.getRadius() {
-                                if radius > 150 {
-                                    let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
-                                    let mapRectWidth = self?.mapView?.visibleMapRect.size.width
-                                    let scale = mapBoundsWidth / mapRectWidth!
-                                    let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
-                                    DispatchQueue.main.async {
-                                        self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
-                                    }
-                                } else {
-                                    DispatchQueue.main.async {
-                                        self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
+                            if self?.clusteringInProgress == true {
+                                self?.clusteringManager.removeAll()
+                                self?.clusteringManager.add(annotations: array)
+                                DispatchQueue.global(qos: .userInitiated).async {
+                                    if let radius = self?.getRadius() {
+                                        if radius > 150 {
+                                            let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
+                                            let mapRectWidth = self?.mapView?.visibleMapRect.size.width
+                                            let scale = mapBoundsWidth / mapRectWidth!
+                                            let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
+                                            DispatchQueue.main.async {
+                                                self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
+                                            }
+                                        } else {
+                                            DispatchQueue.main.async {
+                                                self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
+                                            }
+                                        }
+                                    } else {
+                                        DispatchQueue.main.async {
+                                            self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
+                                        }
                                     }
                                 }
-                            } else {
-                                DispatchQueue.main.async {
-                                    self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
-                                }
+                                self?.setUpdateButtonAnimated(false)
                             }
-                        }
-                        self?.setUpdateButtonAnimated(false)
-                    }
-                    if let car = self?.selectedCar {
-                        self?.view_carPopup.updateWithCar(car: car)
-                    }
-                    if let allCars = self?.viewModel?.allCars {
-                        self?.view_searchBar.viewModel?.allCars = allCars
-                    }
+                            if let car = self?.selectedCar {
+                                self?.view_carPopup.updateWithCar(car: car)
+                            }
+                            if let allCars = self?.viewModel?.allCars {
+                                self?.view_searchBar.viewModel?.allCars = allCars
+                            }
                 }
             }).addDisposableTo(disposeBag)
         self.btn_closeCarPopup.rx.tap.asObservable()
@@ -176,6 +176,9 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
                     let span = MKCoordinateSpanMake(0.001, 0.001)
                     self?.centerMap(on: newLocation, span: span)
+                    self?.viewModel?.showCars = true
+                    self?.setCarsButtonVisible(true)
+                    self?.updateResults()
                 } else {
                     let locationController = LocationController.shared
                     if locationController.isAuthorized == true && locationController.currentLocation != nil {
@@ -328,16 +331,16 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(forName:
         NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
-                self.view_searchBar.updateInterface()
-                let locationController = LocationController.shared
-                if locationController.isAuthorized && locationController.currentLocation != nil {
-                    self.mapView?.showsUserLocation = true
-                    self.setUserPositionButtonVisible(true)
-                } else {
-                    self.mapView?.showsUserLocation = false
-                    self.setUserPositionButtonVisible(false)
-                }
-                self.getResults()
+            self.view_searchBar.updateInterface()
+            let locationController = LocationController.shared
+            if locationController.isAuthorized && locationController.currentLocation != nil {
+                self.mapView?.showsUserLocation = true
+                self.setUserPositionButtonVisible(true)
+            } else {
+                self.mapView?.showsUserLocation = false
+                self.setUserPositionButtonVisible(false)
+            }
+            self.getResults()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
@@ -821,8 +824,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                     return
                 }
             } else {
-                self.clusteringInProgress = false
                 self.addCityAnnotations()
+                self.clusteringInProgress = false
             }
         }
         self.viewModel?.resetCars()
@@ -837,38 +840,40 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     }
     
     fileprivate func addCityAnnotations() {
-        self.clusteringManager.removeAll()
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        var annotationsArray: [CityAnnotation] = []
-        for city in CoreController.shared.cities {
-            if let location = city.location {
-                let annotation = CityAnnotation()
-                annotation.city = city
-                annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                annotationsArray.append(annotation)
+        if clusteringInProgress == true {
+            self.clusteringManager.removeAll()
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            var annotationsArray: [CityAnnotation] = []
+            for city in CoreController.shared.cities {
+                if let location = city.location {
+                    let annotation = CityAnnotation()
+                    annotation.city = city
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    annotationsArray.append(annotation)
+                }
             }
+            self.mapView.addAnnotations(annotationsArray)
         }
-        self.mapView.addAnnotations(annotationsArray)
         /*
-        var annotationsArray: [CityAnnotation] = []
-        let milanAnnotation = CityAnnotation()
-        milanAnnotation.coordinate = CLLocationCoordinate2D(latitude: 45.465454, longitude: 9.186515)
-        milanAnnotation.city = .milan
-        annotationsArray.append(milanAnnotation)
-        let romeAnnotation = CityAnnotation()
-        romeAnnotation.coordinate = CLLocationCoordinate2D(latitude: 41.902783, longitude: 12.496365)
-        romeAnnotation.city = .rome
-        annotationsArray.append(romeAnnotation)
-        let modenaAnnotation = CityAnnotation()
-        modenaAnnotation.coordinate = CLLocationCoordinate2D(latitude: 44.647128, longitude: 10.925226)
-        modenaAnnotation.city = .modena
-        annotationsArray.append(modenaAnnotation)
-        let firenceAnnotation = CityAnnotation()
-        firenceAnnotation.coordinate = CLLocationCoordinate2D(latitude: 43.769560, longitude: 11.255813)
-        firenceAnnotation.city = .firence
-        annotationsArray.append(firenceAnnotation)
-        self.mapView.addAnnotations(annotationsArray)
-        */
+         var annotationsArray: [CityAnnotation] = []
+         let milanAnnotation = CityAnnotation()
+         milanAnnotation.coordinate = CLLocationCoordinate2D(latitude: 45.465454, longitude: 9.186515)
+         milanAnnotation.city = .milan
+         annotationsArray.append(milanAnnotation)
+         let romeAnnotation = CityAnnotation()
+         romeAnnotation.coordinate = CLLocationCoordinate2D(latitude: 41.902783, longitude: 12.496365)
+         romeAnnotation.city = .rome
+         annotationsArray.append(romeAnnotation)
+         let modenaAnnotation = CityAnnotation()
+         modenaAnnotation.coordinate = CLLocationCoordinate2D(latitude: 44.647128, longitude: 10.925226)
+         modenaAnnotation.city = .modena
+         annotationsArray.append(modenaAnnotation)
+         let firenceAnnotation = CityAnnotation()
+         firenceAnnotation.coordinate = CLLocationCoordinate2D(latitude: 43.769560, longitude: 11.255813)
+         firenceAnnotation.city = .firence
+         annotationsArray.append(firenceAnnotation)
+         self.mapView.addAnnotations(annotationsArray)
+         */
         
     }
     
@@ -907,9 +912,9 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         if let mapView = self.mapView {
             let distanceMeters = mapView.radiusBaseOnViewHeight
             /*
-            mapView.removeOverlays(mapView.overlays)
-            mapView.add(MKCircle(center: mapView.centerCoordinate, radius: mapView.radiusBaseOnViewHeight))
-            */
+             mapView.removeOverlays(mapView.overlays)
+             mapView.add(MKCircle(center: mapView.centerCoordinate, radius: mapView.radiusBaseOnViewHeight))
+             */
             return distanceMeters
         }
         return nil
@@ -986,12 +991,12 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
 extension SearchCarsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         /*
-        if let overlay = overlay as? MKCircle {
-            let circleRenderer = MKCircleRenderer(circle: overlay)
-            circleRenderer.fillColor = UIColor.blue.withAlphaComponent(0.5)
-            return circleRenderer
-        }
-        */
+         if let overlay = overlay as? MKCircle {
+         let circleRenderer = MKCircleRenderer(circle: overlay)
+         circleRenderer.fillColor = UIColor.blue.withAlphaComponent(0.5)
+         return circleRenderer
+         }
+         */
         guard let tileOverlay = overlay as? MKTileOverlay else {
             return MKOverlayRenderer()
         }
