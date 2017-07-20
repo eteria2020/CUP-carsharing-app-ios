@@ -146,23 +146,27 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                             }
                         case 2:
                             self.gestureInProgress = true
-                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                            self.pgc_steps.currentPage = 1
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.lbl_description.alpha = 0.0
+                            })
+                            self.img_step.animate(withGIFNamed: "Auto-C-Uscita.gif", loopCount: 1)
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
                                 UIView.animate(withDuration: 0.5, animations: {
                                     self.view_white.alpha = 1.0
                                 })
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-                                let destination: LoginViewController = (Storyboard.main.scene(.login))
-                                destination.bind(to: ViewModelFactory.login(), afterLoad: true)
-                                destination.introIsShowed = true
-                                self.navigationController?.pushViewController(destination, animated: false)
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                                    let destination: LoginViewController = (Storyboard.main.scene(.login))
+                                    destination.bind(to: ViewModelFactory.login(), afterLoad: true)
+                                    destination.introIsShowed = true
+                                    self.navigationController?.pushViewController(destination, animated: false)
+                                }
                             }
                         default:
                             break
                         }
                     }
                 }).addDisposableTo(self.disposeBag)
-                
                 self.view.rx.swipeGesture(.right).when(.recognized).subscribe(onNext: {_ in
                     if !self.gestureInProgress {
                         switch self.pgc_steps.currentPage {
@@ -190,7 +194,7 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                             UIView.animate(withDuration: 0.3, animations: {
                                 self.lbl_description.alpha = 0.0
                             })
-                            self.img_step.animate(withGIFNamed: "Auto-C-uscita.gif", loopCount: 1)
+                            self.img_step.animate(withGIFNamed: "Auto-C-Uscita.gif", loopCount: 1)
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
                                 self.img_step.animate(withGIFNamed: "Auto-B-ingresso.gif", loopCount: 1)
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {

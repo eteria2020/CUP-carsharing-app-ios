@@ -85,6 +85,8 @@ class LoginViewController : BaseViewController, ViewModelBindable {
                         if self != nil {
                             if let viewModel = viewModel.nextViewModel {
                                 Router.from(self!, viewModel: viewModel).execute()
+                            } else if self?.introIsShowed == true {
+                                Router.exit(self!)
                             } else {
                                 Router.back(self!)
                             }
