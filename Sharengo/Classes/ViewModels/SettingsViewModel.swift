@@ -68,6 +68,8 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     }
     
     func updateData() {
+        settings.removeAll()
+        
         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_imposta_citta", viewModel: ViewModelFactory.settingsCities())
         settings.append(settingItem1)
         
