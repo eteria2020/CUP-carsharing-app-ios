@@ -187,7 +187,6 @@
 "lbl_noCarTripsDescription" = "Non hai ancora effettuato nessuna corsa con una Share'ngo!";
 "lbl_noCarTrips" = "Cosa aspetti a provarle?";
 "btn_searchCars" = "VAI ALLA MAPPA";
-"lbl_carTripsItemSubtitle" = "%@ - € %@";
 
 // OnBoard
 "lbl_onBoardStep1Description" = "Facili e divertenti\nda guidare";
