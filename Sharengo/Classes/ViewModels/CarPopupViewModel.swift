@@ -170,10 +170,20 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
     
     func getDistanceFromMeters(inputedMeters: Int) -> (kilometers: Float, meters: Int)
     {
-        let kilometers = (Float(inputedMeters) / 1000)
-        let meters = Float(inputedMeters).truncatingRemainder(dividingBy: 1000)
-        
-        return (Float(kilometers), Int(meters))
+        if (Int(inputedMeters) / 1000) == 0
+        {
+            let kilometers = 0
+            let meters = Float(inputedMeters).truncatingRemainder(dividingBy: 1000)
+            
+            return (Float(kilometers), Int(meters))
+        }
+        else
+        {
+            let kilometers = (Float(inputedMeters) / 1000)
+            let meters = Float(inputedMeters).truncatingRemainder(dividingBy: 1000)
+            
+            return (Float(kilometers), Int(meters))
+        }
     }
     
     func getTimeFromMinutes(inputedMinutes: Int) -> (hours: Int, minutes: Int)
