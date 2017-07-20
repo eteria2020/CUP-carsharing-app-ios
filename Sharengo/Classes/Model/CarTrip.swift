@@ -49,7 +49,19 @@ public class CarTrip: ModelType, Decodable {
                 let datecomponents = calendar.dateComponents([Calendar.Component.second, Calendar.Component.minute, Calendar.Component.hour], from: start, to: enddt)
                 if let s = datecomponents.second, let m = datecomponents.minute, let h = datecomponents.hour
                 {
-                    return "<bold>\(h):\(m):\(s)</bold>"
+                    var min = "\(m)"
+                    if m < 10 {
+                        min = "0\(m)"
+                    }
+                    var sec = "\(s)"
+                    if s < 10 {
+                        sec = "0\(s)"
+                    }
+                    var hrs = "\(h)"
+                    if h < 10 {
+                        hrs = "0\(h)"
+                    }
+                    return "<bold>\(hrs):\(min):\(sec)</bold>"
                 }
             }
             return nil

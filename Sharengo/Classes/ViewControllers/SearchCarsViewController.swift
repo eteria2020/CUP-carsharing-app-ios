@@ -416,20 +416,22 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carTrip != nil {
             let dispatchTime = DispatchTime.now() + 1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                let carTrip = self.view_carBookingPopup!.viewModel!.carTrip!
-                carTrip.timeStart = self.carTripTimeStart
-                // Close
-                if let car = self.view_carBookingPopup?.viewModel?.carTrip?.car.value {
-                    car.booked = false
-                    car.opened = false
+                if self.view_carBookingPopup?.viewModel?.carTrip != nil {
+                    let carTrip = self.view_carBookingPopup!.viewModel!.carTrip!
+                    carTrip.timeStart = self.carTripTimeStart
+                    // Close
+                    if let car = self.view_carBookingPopup?.viewModel?.carTrip?.car.value {
+                        car.booked = false
+                        car.opened = false
+                    }
+                    self.view_carBookingPopup.alpha = 0.0
+                    self.view_carBookingPopup?.viewModel?.carTrip = nil
+                    self.view_carBookingPopup?.viewModel?.carBooking = nil
+                    self.viewModel?.carBooked = nil
+                    self.viewModel?.carTrip = nil
+                    self.viewModel?.carBooking = nil
+                    self.getResultsWithoutLoading()
                 }
-                self.view_carBookingPopup.alpha = 0.0
-                self.view_carBookingPopup?.viewModel?.carTrip = nil
-                self.view_carBookingPopup?.viewModel?.carBooking = nil
-                self.viewModel?.carBooked = nil
-                self.viewModel?.carTrip = nil
-                self.viewModel?.carBooking = nil
-                self.getResultsWithoutLoading()
             }
         }
         if let carBooking = CoreController.shared.allCarBookings.first {
