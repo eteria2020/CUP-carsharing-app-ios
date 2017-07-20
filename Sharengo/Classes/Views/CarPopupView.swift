@@ -169,10 +169,10 @@ class CarPopupView: UIView {
         self.lbl_category.bonMotStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle)]))
         self.lbl_category.styledText = viewModel.category
         
-        let dateStyle = StringStyle(.font(Font.feedsItemDate.value), .color(Color.feedsItemDate.value), .alignment(.left))
-        let subtitleStyle = StringStyle(.font(Font.feedsItemSubtitle.value), .color(Color.feedsItemSubtitle.value), .alignment(.left))
-        let descriptionStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.left))
-        let advantageStyle = StringStyle(.font(Font.feedsItemAdvantage.value), .color(viewModel.advantageColor ?? UIColor()), .alignment(.left))
+        let dateStyle = StringStyle(.font(Font.feedsItemDate2.value), .color(Color.feedsItemDate.value), .alignment(.left))
+        let subtitleStyle = StringStyle(.font(Font.feedsItemSubtitle2.value), .color(Color.feedsItemSubtitle.value), .alignment(.left))
+        let descriptionStyle = StringStyle(.font(Font.feedsItemDescription2.value), .color(Color.feedsItemDescription.value), .alignment(.left))
+        let advantageStyle = StringStyle(.font(Font.feedsItemAdvantage2.value), .color(viewModel.advantageColor ?? UIColor()), .alignment(.left))
         
         self.lbl_bottom.bonMotStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle), .style("date", dateStyle), .style("subtitle", subtitleStyle), .style("description", descriptionStyle), .style("advantage", advantageStyle)]))
         self.lbl_bottom.styledText = viewModel.bottomText
@@ -218,16 +218,16 @@ class CarPopupView: UIView {
         switch Device().diagonal {
         case 3.5:
             self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 35
-            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 30
-            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 30
+            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 28
+            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 28
         case 4:
             self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 38
-            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 33
-            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 33
+            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 31
+            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 31
         default:
             self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 40
-            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 35
-            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 35
+            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 33
+            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 33
         }
     }
     
