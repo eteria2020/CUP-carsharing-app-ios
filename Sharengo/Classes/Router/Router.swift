@@ -106,7 +106,7 @@ struct Router : RouterType {
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is CarTripsViewModel:
             let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
-            destination.bind(to: viewModel, afterLoad: true)
+            destination.bind(to: CarTripsViewModel(), afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is FeedsViewModel:
             let destination: FeedsViewController = (Storyboard.main.scene(.feeds))

@@ -65,6 +65,19 @@ final class LoginViewModel: ViewModelType {
                 switch event {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
+                        if data["enabled"] as? Bool == false {
+                            self.loginExecuted.value = false
+                            let dispatchTime = DispatchTime.now() + 0.5
+                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                let message = "alert_loginUserNotEnabled".localized()
+                                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
+                            }
+                            return
+                        }
                         if let pin = data["pin"] {
                             KeychainSwift().set("\(String(describing: pin))", forKey: "UserPin")
                         }

@@ -152,6 +152,10 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
+                if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+                    self?.showLoginAlert()
+                    return
+                }
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
                         self?.openCar(car: car)
@@ -202,6 +206,10 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
+                if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+                    self?.showLoginAlert()
+                    return
+                }
                 if let distance = car.distance, let distanceOpenDoors = self?.carPopupDistanceOpenDoors {
                     if Int(distance.rounded()) <= distanceOpenDoors {
                         self?.openCar(car: car)
