@@ -15,6 +15,13 @@ import pop
 import SideMenu
 import DeviceKit
 
+fileprivate enum HomeItem
+{
+    case searchCar
+    case profile
+    case feeds
+}
+
 class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var btn_searchCar: UIButton!
@@ -41,25 +48,40 @@ class HomeViewController : BaseViewController, ViewModelBindable {
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
             case .viewModel(let viewModel):
-                if viewModel is SearchBarViewModel {
+                switch viewModel {
+                case is SearchBarViewModel:
                     self.openSearchCars(viewModel: viewModel)
-                } else {
-                    Router.from(self,viewModel: viewModel).execute()
+                case is SearchCarsViewModel:
+                    self.openSection(viewModel: viewModel, homeItem: .searchCar)
+                    //Router.from(self,viewModel: viewModel).execute()
+                case is ProfileViewModel:
+                    self.openSection(viewModel: viewModel, homeItem: .profile)
+                    //Router.from(self,viewModel: viewModel).execute()
+                default:
+                    break
                 }
             case .feeds:
                 if UserDefaults.standard.object(forKey: "city") == nil {
                     let settingsCitiesViewModel = ViewModelFactory.settingsCities()
                     (settingsCitiesViewModel as! SettingsCitiesViewModel).nextViewModel = ViewModelFactory.feeds()
                     if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                        Router.from(self,viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel)).execute()
+                        self.openSection(viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel), homeItem: .feeds)
+                        //Router.from(self,viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel)).execute()
                     } else {
-                        Router.from(self,viewModel: settingsCitiesViewModel).execute()
+                        self.openSection(viewModel: settingsCitiesViewModel, homeItem: .feeds)
+                        //Router.from(self,viewModel: settingsCitiesViewModel).execute()
                     }
                 } else {
-                    Router.from(self,viewModel: ViewModelFactory.feeds()).execute()
+                    self.openSection(viewModel: ViewModelFactory.feeds(), homeItem: .feeds)
+                    //Router.from(self,viewModel: ViewModelFactory.feeds()).execute()
                 }
             }
         }).addDisposableTo(self.disposeBag)
+
+        self.btn_searchCar.rx.tap.asObservable()
+            .subscribe(onNext:{
+        }).addDisposableTo(disposeBag)
+
         self.btn_searchCar.rx.bind(to: viewModel.selection, input: .searchCars)
         self.btn_profile.rx.bind(to: viewModel.selection, input: .profile)
         self.btn_feeds.rx.bind(to: viewModel.selection, input: .feeds)
@@ -219,12 +241,32 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     
     fileprivate func openSearchCars(viewModel: ViewModelType) {
         if !CoreController.shared.updateInProgress {
-            Router.from(self,viewModel: viewModel).execute()
+            self.openSection(viewModel: viewModel, homeItem: .searchCar)
+            //Router.from(self,viewModel: viewModel).execute()
         } else {
             let dispatchTime = DispatchTime.now() + 0.5
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.openSearchCars(viewModel: viewModel)
             }
         }
+    }
+    
+    fileprivate func openSection(viewModel: ViewModelType, homeItem: HomeItem)
+    {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0.1,
+                       options: UIViewAnimationOptions.curveEaseIn,
+                       animations: { () -> Void in
+                        switch homeItem {
+                        case .searchCar:
+                            self.view_searchCar?.center = self.view.center
+                        case .profile:
+                            self.view_profile?.center = self.view.center
+                        case .feeds:
+                            self.view_feeds?.center = self.view.center
+                        }
+        }, completion: { (finished) -> Void in
+            Router.from(self,viewModel: viewModel).execute()
+        })
     }
 }
