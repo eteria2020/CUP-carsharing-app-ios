@@ -71,15 +71,25 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
             }
         }
         
-        if let image = viewModel.image,
-            let url = URL(string: image)
-        {
-            do {
-                let data = try Data(contentsOf: url)
-                if let image = UIImage(data: data) {
-                    self.img_background.image = image
+        self.view_containerBackgroundImage.backgroundColor = viewModel.color
+        
+        self.img_background.alpha = 0.0
+        DispatchQueue.global(qos: .background).async {
+            if let image = viewModel.image,
+                let url = URL(string: image)
+            {
+                do {
+                    let data = try Data(contentsOf: url)
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.img_background.image = image
+                            UIView.animate(withDuration: 0.25, animations: {
+                                self.img_background.alpha = 1.0
+                           })
+                        }
+                    }
+                } catch {
                 }
-            } catch {
             }
         }
         

@@ -134,9 +134,13 @@ enum Font {
     case feedsHeaderCategory
     case feedsItemTitle
     case feedsItemDate
+    case feedsItemDate2
     case feedsItemSubtitle
+    case feedsItemSubtitle2
     case feedsItemDescription
+    case feedsItemDescription2
     case feedsItemAdvantage
+    case feedsItemAdvantage2
     case feedsAroundMeButton
     case feedsClaim
     
@@ -304,12 +308,20 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .feedsItemDate:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemDate2:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .feedsItemSubtitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemSubtitle2:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .feedsItemDescription:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemDescription2:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             case .feedsItemAdvantage:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .feedsItemAdvantage2:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .feedsAroundMeButton:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .feedsClaim:

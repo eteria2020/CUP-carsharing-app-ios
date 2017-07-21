@@ -26,6 +26,8 @@ final class FeedItemViewModel : ItemViewModelType {
     init(model: Feed) {
         self.model = model
         
+        self.bottomText = ""
+        
         if model.launchTitle != nil && model.launchTitle?.isEmpty == false {
             self.bottomText.append("<title>\(model.launchTitle!.uppercased())</title>\n")
         }

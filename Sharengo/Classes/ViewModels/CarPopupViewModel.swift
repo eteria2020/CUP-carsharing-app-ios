@@ -122,6 +122,9 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
     func updateWithFeed(feed: Feed) {
         self.feed = feed
         
+        self.category = ""
+        self.bottomText = ""
+        
         if feed.launchTitle != nil && feed.launchTitle?.isEmpty == false {
             self.category.append("<title>\(feed.launchTitle!.uppercased())</title>\n")
         }
