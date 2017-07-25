@@ -106,6 +106,14 @@ class SupportViewController : BaseViewController, ViewModelBindable {
                         dialog.allowTouchOutsideToDismiss = false
                         dialog.show()
                     }
+                } else {
+                    let message = "alert_noSupportCall".localized()
+                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                        Router.back(self)
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
                 }
             }).addDisposableTo(disposeBag)
     }

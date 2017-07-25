@@ -198,5 +198,6 @@
 "lbl_supportSubtitle" = "Vuoi parlare con un operatore?";
 "btn_supportCall" = "CHIAMA ORA";
 "alert_supportCall" = "+39 0586 1975772";
+"alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
 "supportTelephoneNumber" = "+3905861975772";
 "btn_supportAlertCall" = "Chiama";
