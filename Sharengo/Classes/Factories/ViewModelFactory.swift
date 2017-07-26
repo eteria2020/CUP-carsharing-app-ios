@@ -97,6 +97,10 @@ struct ViewModelFactory {
         return CarTripsViewModel()
     }
     
+    static func faq() -> ViewModelType {
+        return FaqViewModel()
+    }
+
     static func noCarTrips() -> ViewModelType {
         return NoCarTripsViewModel()
     }

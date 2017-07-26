@@ -3103,6 +3103,92 @@ grazie al tuo invito</string>
             </objects>
             <point key="canvasLocation" x="-769" y="768"/>
         </scene>
+        <!--Faq View Controller-->
+        <scene sceneID="yvz-u7-hsl">
+            <objects>
+                <viewController storyboardIdentifier="faq" id="1RQ-yh-8p9" customClass="FaqViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k0D-wM-JMh"/>
+                        <viewControllerLayoutGuide type="bottom" id="qOY-R1-dNB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cud-2P-48g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqM-QM-bWh" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="vmB-Jo-G1h"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hv-Th-TTX">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTc-io-W5e">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="faqHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="JGq-cd-K1n"/>
+                                    <constraint firstAttribute="trailing" secondItem="hTc-io-W5e" secondAttribute="trailing" constant="15" id="frY-ig-M6S"/>
+                                    <constraint firstAttribute="bottom" secondItem="hTc-io-W5e" secondAttribute="bottom" constant="5" id="gGi-hD-dog"/>
+                                    <constraint firstItem="hTc-io-W5e" firstAttribute="top" secondItem="9hv-Th-TTX" secondAttribute="top" constant="5" id="jZ6-sH-YYe"/>
+                                    <constraint firstItem="hTc-io-W5e" firstAttribute="leading" secondItem="9hv-Th-TTX" secondAttribute="leading" constant="15" id="yLc-zp-l1q"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GD5-RX-oNK">
+                                <rect key="frame" x="0.0" y="78" width="375" height="549"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1RQ-yh-8p9" id="fdM-Kx-2Ht"/>
+                                </connections>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-1R-dkw">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" identifier="buttonHeight" id="NFa-iS-J2u"/>
+                                </constraints>
+                                <state key="normal" title="APP TUTORIAL"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9hv-Th-TTX" secondAttribute="trailing" id="3FI-Xo-ebU"/>
+                            <constraint firstItem="9hv-Th-TTX" firstAttribute="leading" secondItem="cud-2P-48g" secondAttribute="leading" id="5ld-zB-NlH"/>
+                            <constraint firstItem="dmB-1R-dkw" firstAttribute="leading" secondItem="cud-2P-48g" secondAttribute="leading" id="A0R-7D-KuO"/>
+                            <constraint firstAttribute="trailing" secondItem="dmB-1R-dkw" secondAttribute="trailing" id="Ghz-Jh-7zl"/>
+                            <constraint firstItem="dmB-1R-dkw" firstAttribute="top" secondItem="GD5-RX-oNK" secondAttribute="bottom" id="KpG-q8-V3F"/>
+                            <constraint firstAttribute="trailing" secondItem="GD5-RX-oNK" secondAttribute="trailing" id="Vtp-gf-37r"/>
+                            <constraint firstItem="GD5-RX-oNK" firstAttribute="leading" secondItem="cud-2P-48g" secondAttribute="leading" id="Xn4-lI-8FE"/>
+                            <constraint firstItem="vqM-QM-bWh" firstAttribute="leading" secondItem="cud-2P-48g" secondAttribute="leading" id="ZKo-Jk-PJI"/>
+                            <constraint firstItem="vqM-QM-bWh" firstAttribute="top" secondItem="cud-2P-48g" secondAttribute="top" id="oLv-JA-jNZ"/>
+                            <constraint firstItem="GD5-RX-oNK" firstAttribute="top" secondItem="9hv-Th-TTX" secondAttribute="bottom" id="rJA-QK-bCF"/>
+                            <constraint firstItem="qOY-R1-dNB" firstAttribute="top" secondItem="dmB-1R-dkw" secondAttribute="bottom" id="sTK-7h-Otg"/>
+                            <constraint firstAttribute="trailing" secondItem="vqM-QM-bWh" secondAttribute="trailing" id="xzH-ne-qY5"/>
+                            <constraint firstItem="9hv-Th-TTX" firstAttribute="top" secondItem="vqM-QM-bWh" secondAttribute="bottom" id="zAe-ot-kCM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btn_appTutorial" destination="dmB-1R-dkw" id="4d3-8K-5ra"/>
+                        <outlet property="lbl_headerTitle" destination="hTc-io-W5e" id="0nN-2g-ukG"/>
+                        <outlet property="view_header" destination="9hv-Th-TTX" id="ZM5-g9-yZC"/>
+                        <outlet property="view_navigationBar" destination="vqM-QM-bWh" id="Jvi-W8-O10"/>
+                        <outlet property="webview_main" destination="GD5-RX-oNK" id="Bdr-ye-Gfy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nW6-BH-SiY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769" y="1649"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bg_claim" width="90" height="113"/>

@@ -134,6 +134,9 @@ enum TextStyle: String, TextStyleType {
     case inviteFriendDescriptionThirdPart = "inviteFriendDescriptionThirdPart"
     case inviteFriendDescriptionFourthPart = "inviteFriendDescriptionFourthPart"
     
+    // Faq
+    case faqHeader = "faqHeader"
+
     static var all:[TextStyle] {
         return [
             // Intro
@@ -226,7 +229,9 @@ enum TextStyle: String, TextStyleType {
             .inviteFriendDescriptionFirstPart,
             .inviteFriendDescriptionSecondPart,
             .inviteFriendDescriptionThirdPart,
-            .inviteFriendDescriptionFourthPart
+            .inviteFriendDescriptionFourthPart,
+            // Faq
+            .faqHeader
         ]
     }
     
@@ -426,6 +431,9 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.inviteFriendDescriptionFirstPartTitle.value), .color(Color.inviteFriendDescriptionFirstPartTitle.value), .alignment(.center),.xmlRules([.style("firstPart", firstPartStyle), .style("secondPart", secondPartStyle)]))
             case .inviteFriendDescriptionFourthPart:
                 return StringStyle(.font(Font.inviteFriendDescriptionFourthPart.value), .color(Color.inviteFriendDescriptionFourthPartLabel.value), .alignment(.center))
+            // Faq
+            case .faqHeader:
+                return StringStyle(.font(Font.faqHeader.value), .color(Color.faqHeaderTitle.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

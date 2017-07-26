@@ -178,6 +178,9 @@ enum Font {
     case inviteFriendDescriptionThirdPartSubtitle
     case inviteFriendDescriptionFourthPart
 
+    // Faq
+    case faqHeader
+
     var value: UIFont {
         get {
             switch self {
@@ -392,6 +395,9 @@ enum Font {
             case .inviteFriendDescriptionThirdPartSubtitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             case .inviteFriendDescriptionFourthPart:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            // Faq
+            case .faqHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
             }
         }

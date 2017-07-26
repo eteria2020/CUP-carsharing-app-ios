@@ -226,3 +226,7 @@
 "lbl_inviteFriendDescriptionFourthPart" = "riceverai 20 minuti di guida gratuita!";
 "btn_inviteFriendInvite" = "INVITA SUBITO";
 "lbl_inviteFriendInviteDescription" = "Hey! Ti ho invitato";
+
+// Faq
+"lbl_faqHeader" = "FAQ";
+"btn_faqAppTutorial" = "APP TUTORIAL";

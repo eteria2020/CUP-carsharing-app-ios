@@ -279,6 +279,12 @@ enum Color {
     // Web
     case webBackground
     
+    // Faq
+    case faqBackground
+    case faqHeaderBackground
+    case faqHeaderTitle
+    case faqAppTutorialButton
+    
     var value: UIColor {
         get {
             switch self {
@@ -633,6 +639,15 @@ enum Color {
                 return ColorBrand.yellow.value
             case .noFeedsFeedsBottomButtonOff:
                 return ColorBrand.grayDisabled.value
+            // Faq
+            case .faqBackground:
+                return ColorBrand.lightGray.value
+            case .faqHeaderBackground:
+                return ColorBrand.black.value
+            case .faqHeaderTitle:
+                return ColorBrand.white.value
+            case .faqAppTutorialButton:
+                return ColorBrand.green.value
             }
         }
     }

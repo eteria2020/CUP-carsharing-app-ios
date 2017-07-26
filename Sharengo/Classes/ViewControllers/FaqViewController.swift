@@ -21,7 +21,6 @@ class FaqViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_appTutorial: UIButton!
     
     var viewModel: FaqViewModel?
-    var firstCall: Bool = true
     
     // MARK: - ViewModel methods
     
@@ -33,6 +32,8 @@ class FaqViewController : BaseViewController, ViewModelBindable {
         if let request = viewModel.urlRequest {
             self.webview_main.loadRequest(request)
         }
+        
+//        self.btn_appTutorial.rx.bind(to: viewModel.selection, input: .newFavourite)
     }
     
     // MARK: - View methods
@@ -40,7 +41,24 @@ class FaqViewController : BaseViewController, ViewModelBindable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        self.view.backgroundColor = Color.webBackground.value
+        
+        // Views
+        self.view.backgroundColor = Color.faqBackground.value
+        self.webview_main.isOpaque = false
+        self.webview_main.backgroundColor = UIColor.clear
+        self.webview_main.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.webview_main.scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.webview_main.scrollView.showsHorizontalScrollIndicator = false
+        self.webview_main.scrollView.showsVerticalScrollIndicator = false
+        self.view_header.backgroundColor = Color.faqHeaderBackground.value
+        
+        // Buttons
+        self.btn_appTutorial.style(.squaredButton(Color.faqAppTutorialButton.value), title: "btn_faqAppTutorial".localized())
+        
+        // Labels
+        self.lbl_headerTitle.textColor = Color.faqHeaderTitle.value
+        self.lbl_headerTitle.styledText = "lbl_faqHeader".localized().uppercased()
+        
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -54,47 +72,29 @@ class FaqViewController : BaseViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
-        self.webview_main.isOpaque = false
-        self.webview_main.backgroundColor = UIColor.clear
-        self.webview_main.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.webview_main.scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.webview_main.scrollView.showsHorizontalScrollIndicator = false
-        self.webview_main.scrollView.showsVerticalScrollIndicator = false
+        
+        // Other
+        switch Device().diagonal {
+        case 3.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+            self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
+        case 4:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
+            self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
+        case 4.7:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+        case 5.5:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+        default:
+            break
+        }
     }
 }
 
 extension FaqViewController: UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-//        if let type = viewModel?.type {
-//            switch type {
-//            case .forgotPassword:
-//                if request.httpBody != nil {
-//                    if let returnData = String(data: request.httpBody!, encoding: .utf8) {
-//                        if returnData.contains("email=") {
-//                            let dispatchTime = DispatchTime.now() + 3
-//                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-//                                Router.back(self)
-//                            }
-//                        }
-//                    }
-//                }
-//            case .signup:
-//                if request.url?.absoluteString == "http://www.sharengo.it/signup-3/mobile" {
-//                    let dispatchTime = DispatchTime.now() + 3
-//                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-//                        if let viewControllers = self.navigationController?.viewControllers {
-//                            if let currentIndex = viewControllers.index(of: self)  {
-//                                if currentIndex-2 >= 0 {
-//                                    self.navigationController?.popToViewController(viewControllers[currentIndex-2], animated: true)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            default:
-//                break
-//            }
-//        }
         return true
     }
     
