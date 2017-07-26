@@ -69,6 +69,10 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
                         if !(CoreController.shared.currentViewController is CarTripsViewController) {
                             return .just(.viewModel(viewModel))
                         }
+                    case is InviteFriendViewModel:
+                        if !(CoreController.shared.currentViewController is InviteFriendViewController) {
+                            return .just(.viewModel(viewModel))
+                        }
                     default:
                         return .just(.viewModel(viewModel))
                     }
@@ -106,7 +110,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             let menuItem4 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: nil)
             let menuItem5 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: nil)
             let menuItem6 = MenuItem(title: "lbl_menuBuyMinutes", icon: "ic_acquistaminuti", viewModel: nil)
-            let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: nil)
+            let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: ViewModelFactory.inviteFriend())
             let menuItem8 = MenuItem(title: "lbl_menuSettings", icon: "ic_impostazioni", viewModel: ViewModelFactory.settings())
             let menuItem9 = MenuItem(title: "lbl_menuLogout", icon: "ic_logout", viewModel: ViewModelFactory.home())
             menuItems.append(menuItem1)

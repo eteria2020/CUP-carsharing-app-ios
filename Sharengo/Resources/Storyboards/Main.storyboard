@@ -2912,6 +2912,197 @@ Corsa!</string>
             </objects>
             <point key="canvasLocation" x="-769" y="768"/>
         </scene>
+        <!--Invite Friend View Controller-->
+        <scene sceneID="3U3-UU-26s">
+            <objects>
+                <viewController storyboardIdentifier="inviteFriend" id="3gS-Sl-eic" customClass="InviteFriendViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RhG-Tw-ZM0"/>
+                        <viewControllerLayoutGuide type="bottom" id="iER-4O-t5w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TAc-KM-TNw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90S-bP-s3x" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="4cs-LC-NPW"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dob-Pu-sV8">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pN5-rH-7Nn">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="inviteFriendHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="44p-TF-Nxk"/>
+                                    <constraint firstAttribute="trailing" secondItem="pN5-rH-7Nn" secondAttribute="trailing" constant="15" id="NFC-er-ImE"/>
+                                    <constraint firstItem="pN5-rH-7Nn" firstAttribute="top" secondItem="dob-Pu-sV8" secondAttribute="top" constant="5" id="QQ5-9i-W42"/>
+                                    <constraint firstAttribute="bottom" secondItem="pN5-rH-7Nn" secondAttribute="bottom" constant="5" id="RDT-6Y-JBo"/>
+                                    <constraint firstItem="pN5-rH-7Nn" firstAttribute="leading" secondItem="dob-Pu-sV8" secondAttribute="leading" constant="15" id="gsv-zX-7hr"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mizzie" translatesAutoresizingMaskIntoConstraints="NO" id="N4A-d6-kLJ">
+                                <rect key="frame" x="15" y="93" width="345" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" identifier="imageHeight" id="sNd-Rg-f2N"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tS-G2-llJ">
+                                <rect key="frame" x="15" y="318" width="345" height="41"/>
+                                <string key="text">Invita un amico e guadagna minuti!
+Al momento dell'iscrizione</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="inviteFriendDescriptionFirstPart"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yjh-QS-D8w">
+                                <rect key="frame" x="41" y="364" width="293" height="2"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="y5V-V8-HB1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="riceverà 10 minuti di guida gratuita" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5e-yZ-Ehd">
+                                <rect key="frame" x="15" y="371" width="345" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="inviteFriendDescriptionSecondPart"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCv-B7-s6w">
+                                <rect key="frame" x="41" y="396.5" width="293" height="2"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="h8I-Ue-pUJ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h42-SY-Zno">
+                                <rect key="frame" x="15" y="403.5" width="345" height="81.5"/>
+                                <string key="text">come omaggio di benvenuto
+
+Per ogni amico che si iscriverà
+grazie al tuo invito</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="inviteFriendDescriptionThirdPart"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-XA-Sms">
+                                <rect key="frame" x="41" y="490" width="293" height="2"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="37v-Bs-y0e"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="riceverai 20 minuti di guida gratuita!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaV-PR-Zw1">
+                                <rect key="frame" x="15" y="497" width="345" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="inviteFriendDescriptionFourthPart"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flT-KV-eoS">
+                                <rect key="frame" x="41" y="522.5" width="293" height="2"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="eRa-gE-JCs"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1Y-PZ-jqR">
+                                <rect key="frame" x="15" y="612" width="345" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" identifier="buttonHeight" id="kpc-dx-zER"/>
+                                </constraints>
+                                <state key="normal" title="INVITA SUBITO">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GCv-B7-s6w" firstAttribute="trailing" secondItem="Yjh-QS-D8w" secondAttribute="trailing" id="27x-HQ-zpL"/>
+                            <constraint firstItem="dob-Pu-sV8" firstAttribute="top" secondItem="90S-bP-s3x" secondAttribute="bottom" id="3gJ-3X-HNb"/>
+                            <constraint firstItem="N4A-d6-kLJ" firstAttribute="top" secondItem="dob-Pu-sV8" secondAttribute="bottom" constant="15" id="92Q-kB-APr"/>
+                            <constraint firstItem="cCp-XA-Sms" firstAttribute="leading" secondItem="Yjh-QS-D8w" secondAttribute="leading" id="DKn-Eq-x0a"/>
+                            <constraint firstAttribute="trailing" secondItem="5tS-G2-llJ" secondAttribute="trailing" constant="15" id="Dld-Ip-Ga8"/>
+                            <constraint firstItem="dob-Pu-sV8" firstAttribute="leading" secondItem="TAc-KM-TNw" secondAttribute="leading" id="GY3-yq-2B6"/>
+                            <constraint firstItem="xaV-PR-Zw1" firstAttribute="leading" secondItem="5tS-G2-llJ" secondAttribute="leading" id="JD2-Ol-Xi7"/>
+                            <constraint firstItem="GCv-B7-s6w" firstAttribute="leading" secondItem="Yjh-QS-D8w" secondAttribute="leading" id="K0T-JJ-aMs"/>
+                            <constraint firstItem="flT-KV-eoS" firstAttribute="trailing" secondItem="Yjh-QS-D8w" secondAttribute="trailing" id="KnY-5H-LWg"/>
+                            <constraint firstAttribute="trailing" secondItem="dob-Pu-sV8" secondAttribute="trailing" id="MGd-cy-q2e"/>
+                            <constraint firstItem="h42-SY-Zno" firstAttribute="leading" secondItem="5tS-G2-llJ" secondAttribute="leading" id="OFw-3o-0Md"/>
+                            <constraint firstItem="N4A-d6-kLJ" firstAttribute="height" secondItem="TAc-KM-TNw" secondAttribute="height" multiplier="0.3" id="PPd-ZN-BRb"/>
+                            <constraint firstAttribute="trailing" secondItem="N4A-d6-kLJ" secondAttribute="trailing" constant="15" id="Ptf-Xp-cI2"/>
+                            <constraint firstItem="g5e-yZ-Ehd" firstAttribute="leading" secondItem="5tS-G2-llJ" secondAttribute="leading" id="S73-5C-cPB"/>
+                            <constraint firstItem="g5e-yZ-Ehd" firstAttribute="top" secondItem="Yjh-QS-D8w" secondAttribute="bottom" constant="5" id="Sc3-Ts-lVj"/>
+                            <constraint firstItem="B1Y-PZ-jqR" firstAttribute="leading" secondItem="TAc-KM-TNw" secondAttribute="leading" constant="15" id="SnF-2s-bdr"/>
+                            <constraint firstItem="Yjh-QS-D8w" firstAttribute="leading" secondItem="TAc-KM-TNw" secondAttribute="leadingMargin" constant="25" id="Svn-F4-BCa"/>
+                            <constraint firstItem="h42-SY-Zno" firstAttribute="top" secondItem="GCv-B7-s6w" secondAttribute="bottom" constant="5" id="TQB-85-caU"/>
+                            <constraint firstItem="N4A-d6-kLJ" firstAttribute="leading" secondItem="TAc-KM-TNw" secondAttribute="leading" constant="15" id="VDa-pR-xIs"/>
+                            <constraint firstItem="g5e-yZ-Ehd" firstAttribute="trailing" secondItem="5tS-G2-llJ" secondAttribute="trailing" id="VfK-H8-5Pr"/>
+                            <constraint firstItem="GCv-B7-s6w" firstAttribute="top" secondItem="g5e-yZ-Ehd" secondAttribute="bottom" constant="5" id="aMF-LH-pUC"/>
+                            <constraint firstItem="90S-bP-s3x" firstAttribute="leading" secondItem="TAc-KM-TNw" secondAttribute="leading" id="bP4-Sr-dGE"/>
+                            <constraint firstItem="h42-SY-Zno" firstAttribute="trailing" secondItem="5tS-G2-llJ" secondAttribute="trailing" id="cS9-fi-aKh"/>
+                            <constraint firstItem="5tS-G2-llJ" firstAttribute="top" secondItem="N4A-d6-kLJ" secondAttribute="bottom" constant="25" id="cdo-Pt-xbf"/>
+                            <constraint firstItem="xaV-PR-Zw1" firstAttribute="trailing" secondItem="5tS-G2-llJ" secondAttribute="trailing" id="cnX-9k-drP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yjh-QS-D8w" secondAttribute="trailing" constant="25" id="fU4-9d-Sra"/>
+                            <constraint firstItem="flT-KV-eoS" firstAttribute="leading" secondItem="Yjh-QS-D8w" secondAttribute="leading" id="fty-2O-div"/>
+                            <constraint firstAttribute="trailing" secondItem="B1Y-PZ-jqR" secondAttribute="trailing" constant="15" id="gC8-2K-31c"/>
+                            <constraint firstItem="iER-4O-t5w" firstAttribute="top" secondItem="B1Y-PZ-jqR" secondAttribute="bottom" constant="15" id="gx5-Ha-JVN"/>
+                            <constraint firstItem="Yjh-QS-D8w" firstAttribute="top" secondItem="5tS-G2-llJ" secondAttribute="bottom" constant="5" id="lgy-nM-PEz"/>
+                            <constraint firstItem="cCp-XA-Sms" firstAttribute="trailing" secondItem="Yjh-QS-D8w" secondAttribute="trailing" id="q26-IK-EUN"/>
+                            <constraint firstItem="5tS-G2-llJ" firstAttribute="leading" secondItem="TAc-KM-TNw" secondAttribute="leading" constant="15" id="qtZ-3v-x0O"/>
+                            <constraint firstItem="cCp-XA-Sms" firstAttribute="top" secondItem="h42-SY-Zno" secondAttribute="bottom" constant="5" id="rXM-R1-BB4"/>
+                            <constraint firstItem="90S-bP-s3x" firstAttribute="top" secondItem="TAc-KM-TNw" secondAttribute="top" id="ty8-Hc-WuN"/>
+                            <constraint firstAttribute="trailing" secondItem="90S-bP-s3x" secondAttribute="trailing" id="uMQ-wj-jXt"/>
+                            <constraint firstItem="flT-KV-eoS" firstAttribute="top" secondItem="xaV-PR-Zw1" secondAttribute="bottom" constant="5" id="x30-bt-lTS"/>
+                            <constraint firstItem="xaV-PR-Zw1" firstAttribute="top" secondItem="cCp-XA-Sms" secondAttribute="bottom" constant="5" id="xgA-g4-FyH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HjE-Ly-Thf"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="btn_invite" destination="B1Y-PZ-jqR" id="tDc-v7-gCg"/>
+                        <outlet property="img_top" destination="N4A-d6-kLJ" id="Zdb-QA-vTk"/>
+                        <outlet property="lbl_descriptionFirstPart" destination="5tS-G2-llJ" id="Dsp-KG-EBD"/>
+                        <outlet property="lbl_descriptionFourthPart" destination="xaV-PR-Zw1" id="g4n-1b-grE"/>
+                        <outlet property="lbl_descriptionSecondPart" destination="g5e-yZ-Ehd" id="Qnu-SX-FwE"/>
+                        <outlet property="lbl_descriptionThirdPart" destination="h42-SY-Zno" id="C2m-95-dzp"/>
+                        <outlet property="lbl_headerTitle" destination="pN5-rH-7Nn" id="yPA-2w-JHm"/>
+                        <outlet property="view_firstSeparator" destination="Yjh-QS-D8w" id="tYU-bU-qcj"/>
+                        <outlet property="view_fourthSeparator" destination="flT-KV-eoS" id="br8-SQ-Xba"/>
+                        <outlet property="view_header" destination="dob-Pu-sV8" id="0zg-cL-kdn"/>
+                        <outlet property="view_navigationBar" destination="90S-bP-s3x" id="ldc-Im-sxH"/>
+                        <outlet property="view_secondSeparator" destination="GCv-B7-s6w" id="Feq-e7-X3b"/>
+                        <outlet property="view_thirdSeparator" destination="cCp-XA-Sms" id="zhk-n2-I05"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cjv-xB-z9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-769" y="768"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bg_claim" width="90" height="113"/>

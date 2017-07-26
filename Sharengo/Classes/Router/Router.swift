@@ -120,6 +120,10 @@ struct Router : RouterType {
             let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
             destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is InviteFriendViewModel:
+            let destination: InviteFriendViewController = (Storyboard.main.scene(.inviteFriend))
+            destination.bind(to: ViewModelFactory.inviteFriend(), afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

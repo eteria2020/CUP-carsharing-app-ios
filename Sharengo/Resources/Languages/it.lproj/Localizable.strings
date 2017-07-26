@@ -217,3 +217,12 @@
 "alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
 "supportTelephoneNumber" = "+3905861975772";
 "btn_supportAlertCall" = "Chiama";
+
+// Invite Friend
+"lbl_inviteFriendHeader" = "INVITA UN AMICO";
+"lbl_inviteFriendDescriptionFirstPart" = "<title>Invita un amico e guadagna minuti!</title>\n<subtitle>Al momento dell'iscrizione</subtitle>";
+"lbl_inviteFriendDescriptionSecondPart" = "riceverà 10 minuti di guida gratuita";
+"lbl_inviteFriendDescriptionThirdPart" = "<firstPart>come omaggio di benvenuto</firstPart>\n\n<secondPart>Per ogni amico che si iscriverà\ngrazie al tuo invito</secondPart>";
+"lbl_inviteFriendDescriptionFourthPart" = "riceverai 20 minuti di guida gratuita!";
+"btn_inviteFriendInvite" = "INVITA SUBITO";
+"lbl_inviteFriendInviteDescription" = "Hey! Ti ho invitato";

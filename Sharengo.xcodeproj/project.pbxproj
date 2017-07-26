@@ -63,6 +63,8 @@
 		038642021F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */; };
 		039A36E21F18A9FA0068A026 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */; };
 		039A36E51F18AA220068A026 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */; };
+		038A07971F1F6306007A4F46 /* InviteFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A07961F1F6306007A4F46 /* InviteFriendViewController.swift */; };
+		038A07991F1F6326007A4F46 /* InviteFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A07981F1F6326007A4F46 /* InviteFriendViewModel.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -256,6 +258,8 @@
 		038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryItemCollectionViewCell.xib; path = Resources/Xibs/CategoryItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewController.swift; path = Classes/ViewControllers/FeedDetailViewController.swift; sourceTree = "<group>"; };
 		039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewModel.swift; path = Classes/ViewModels/FeedDetailViewModel.swift; sourceTree = "<group>"; };
+		038A07961F1F6306007A4F46 /* InviteFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendViewController.swift; path = Classes/ViewControllers/InviteFriendViewController.swift; sourceTree = "<group>"; };
+		038A07981F1F6326007A4F46 /* InviteFriendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendViewModel.swift; path = Classes/ViewModels/InviteFriendViewModel.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -534,6 +538,15 @@
 				039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */,
 			);
 			name = "Feed Detail";
+			sourceTree = "<group>";
+		};
+		038A07951F1F62DE007A4F46 /* Invite Friend */ = {
+			isa = PBXGroup;
+			children = (
+				038A07961F1F6306007A4F46 /* InviteFriendViewController.swift */,
+				038A07981F1F6326007A4F46 /* InviteFriendViewModel.swift */,
+			);
+			name = "Invite Friend";
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -915,6 +928,7 @@
 				033A403C1F06334000B05A89 /* CarTripsList */,
 				037689E61F16080D00523BAA /* Feeds */,
 				0366DD951F1F4726006657D9 /* Support */,
+				038A07951F1F62DE007A4F46 /* Invite Friend */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
@@ -1269,6 +1283,7 @@
 			files = (
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4D164BE21F091F6500D4EAB7 /* NoCarTripsViewModel.swift in Sources */,
+				038A07971F1F6306007A4F46 /* InviteFriendViewController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
@@ -1321,6 +1336,7 @@
 				036D922A1F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
+				038A07991F1F6326007A4F46 /* InviteFriendViewModel.swift in Sources */,
 				036D92151F0256E00076D22D /* SettingsViewController.swift in Sources */,
 				03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */,
 				0366DD971F1F473E006657D9 /* SupportViewController.swift in Sources */,
