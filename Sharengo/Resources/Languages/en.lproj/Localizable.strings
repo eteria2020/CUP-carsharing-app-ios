@@ -203,3 +203,13 @@
 // No feeds
 "lbl_noFeedsDescriptionWithCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili nella categoria selezionata. Ti invitiamo a riprovare nei prossimi giorni</description>";
 "lbl_noFeedsDescriptionWithNoCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili. Ti invitiamo a riprovare nei prossimi giorni</description>";
+
+// Support
+"lbl_supportHeaderTitle" = "RICHIEDI ASSISTENZA";
+"lbl_supportTitle" = "Siamo qui per aiutarti!";
+"lbl_supportSubtitle" = "Vuoi parlare con un operatore?";
+"btn_supportCall" = "CHIAMA ORA";
+"alert_supportCall" = "+39 0586 1975772";
+"alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
+"supportTelephoneNumber" = "+3905861975772";
+"btn_supportAlertCall" = "Chiama";

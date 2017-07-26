@@ -254,6 +254,15 @@ enum Color {
     case noFeedsFeedsBottomButtonOn
     case noFeedsFeedsBottomButtonOff
     
+    // Support
+    case supportHeaderBackground
+    case supportHeaderLabel
+    case supportBackground
+    case supportTitle
+    case supportSubtitle
+    case supportCallBackgroundArea
+    case supportCallBackgroundButton
+
     // Web
     case webBackground
     
@@ -549,6 +558,21 @@ enum Color {
                 return ColorBrand.black.value
             case .feedClaim:
                 return ColorBrand.white.value
+            // Support
+            case .supportHeaderBackground:
+                return ColorBrand.black.value
+            case .supportHeaderLabel:
+                return ColorBrand.white.value
+            case .supportBackground:
+                return ColorBrand.lightGray.value
+            case .supportTitle:
+                return ColorBrand.green.value
+            case .supportSubtitle:
+                return ColorBrand.gray.value
+            case .supportCallBackgroundArea:
+                return ColorBrand.white.value
+            case .supportCallBackgroundButton:
+                return ColorBrand.yellow.value
             // Web
             case .webBackground:
                 return ColorBrand.lightGray.value

@@ -164,6 +164,11 @@ enum Font {
     case noFeedsDescription
     case noFeedsFeedsHeader
 
+    // Support
+    case supportHeader
+    case supportTitle
+    case supportSubtitle
+    
     var value: UIFont {
         get {
             switch self {
@@ -357,6 +362,13 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             case .noFeedsFeedsHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            // Support
+            case .supportHeader:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .supportTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .supportSubtitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             }
         }
     }

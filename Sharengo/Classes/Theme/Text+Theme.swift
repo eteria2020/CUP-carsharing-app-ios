@@ -122,6 +122,11 @@ enum TextStyle: String, TextStyleType {
     case noFeedsDescription = "noFeedsDescription"
     case noFeedsFeedsHeader = "noFeedsFeedsHeader"
 
+    // Support
+    case supportHeader = "supportHeader"
+    case supportTitle = "supportTitle"
+    case supportSubtitle = "supportSubtitle"
+    
     static var all:[TextStyle] {
         return [
             // Intro
@@ -204,7 +209,11 @@ enum TextStyle: String, TextStyleType {
             // No Feeds
             .noFeedsHeader,
             .noFeedsDescription,
-            .noFeedsFeedsHeader
+            .noFeedsFeedsHeader,
+            // Support
+            .supportHeader,
+            .supportTitle,
+            .supportSubtitle
         ]
     }
     
@@ -382,6 +391,13 @@ enum TextStyle: String, TextStyleType {
 
             case .noFeedsFeedsHeader:
                 return StringStyle(.font(Font.noFeedsFeedsHeader.value), .color(Color.noFeedsFeedsHeaderBackground.value), .alignment(.center))
+            // Support
+            case .supportHeader:
+                return StringStyle(.font(Font.supportHeader.value), .color(Color.supportHeaderLabel.value), .alignment(.center))
+            case .supportTitle:
+                return StringStyle(.font(Font.supportTitle.value), .color(Color.supportTitle.value), .alignment(.center))
+            case .supportSubtitle:
+                return StringStyle(.font(Font.supportSubtitle.value), .color(Color.supportSubtitle.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

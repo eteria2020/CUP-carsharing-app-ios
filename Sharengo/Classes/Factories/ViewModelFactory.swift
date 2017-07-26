@@ -125,6 +125,10 @@ struct ViewModelFactory {
         return FeedItemViewModel(model: model)
     }
 
+    static func support() -> ViewModelType {
+        return SupportViewModel()
+    }
+
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }
@@ -156,4 +160,5 @@ struct ViewModelFactory {
     static func feedDetail(fromModel model:Feed) -> ViewModelType {
         return FeedDetailViewModel(model: model)
     }
+    
 }

@@ -27,6 +27,8 @@
 		03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
 		03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
 		03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
+		0366DD971F1F473E006657D9 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366DD961F1F473E006657D9 /* SupportViewController.swift */; };
+		0366DD991F1F474C006657D9 /* SupportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366DD981F1F474C006657D9 /* SupportViewModel.swift */; };
 		036D92101F0256CB0076D22D /* SettingItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */; };
 		036D92111F0256CB0076D22D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D920F1F0256CB0076D22D /* SettingsViewModel.swift */; };
 		036D92131F0256D60076D22D /* SettingItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */; };
@@ -218,6 +220,8 @@
 		03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewController.swift; path = Classes/ViewControllers/CarBookingCompletedViewController.swift; sourceTree = "<group>"; };
 		03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarBookingCompletedViewModel.swift; path = Classes/ViewModels/CarBookingCompletedViewModel.swift; sourceTree = "<group>"; };
 		03653E221EEADA4800AC7A93 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		0366DD961F1F473E006657D9 /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportViewController.swift; path = Classes/ViewControllers/SupportViewController.swift; sourceTree = "<group>"; };
+		0366DD981F1F474C006657D9 /* SupportViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportViewModel.swift; path = Classes/ViewModels/SupportViewModel.swift; sourceTree = "<group>"; };
 		036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingItemViewModel.swift; path = Classes/ViewModels/SettingItemViewModel.swift; sourceTree = "<group>"; };
 		036D920F1F0256CB0076D22D /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewModel.swift; path = Classes/ViewModels/SettingsViewModel.swift; sourceTree = "<group>"; };
 		036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingItemCollectionViewCell.swift; path = Classes/Views/SettingItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -439,6 +443,15 @@
 				03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */,
 			);
 			name = CarBookingCompleted;
+			sourceTree = "<group>";
+		};
+		0366DD951F1F4726006657D9 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				0366DD961F1F473E006657D9 /* SupportViewController.swift */,
+				0366DD981F1F474C006657D9 /* SupportViewModel.swift */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 		036D92031F0256330076D22D /* Settings */ = {
@@ -901,6 +914,7 @@
 				036D92031F0256330076D22D /* Settings */,
 				033A403C1F06334000B05A89 /* CarTripsList */,
 				037689E61F16080D00523BAA /* Feeds */,
+				0366DD951F1F4726006657D9 /* Support */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
@@ -1309,6 +1323,7 @@
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
 				036D92151F0256E00076D22D /* SettingsViewController.swift in Sources */,
 				03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */,
+				0366DD971F1F473E006657D9 /* SupportViewController.swift in Sources */,
 				036D92131F0256D60076D22D /* SettingItemCollectionViewCell.swift in Sources */,
 				4DF0EC701F077AF00003D502 /* FavouritesViewModel.swift in Sources */,
 				4DC4D4A71EF46F7100330F23 /* WebViewController.swift in Sources */,
@@ -1388,6 +1403,7 @@
 				4DA5544B1EE55284001627E7 /* FBBoundingBox.swift in Sources */,
 				037BDFBF1F03947F00C95962 /* SettingsCityItemViewModel.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
+				0366DD991F1F474C006657D9 /* SupportViewModel.swift in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,
 				038642001F1762FF003AF6B1 /* Category.swift in Sources */,
 				4D164BE01F091F5100D4EAB7 /* NoCarTripsViewController.swift in Sources */,
