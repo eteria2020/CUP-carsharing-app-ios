@@ -33,6 +33,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case feedDetail = "feedDetail"
     case noFeeds = "noFeeds"
     case faq = "faq"
+    case tutorial = "tutorial"
     case support = "support"
     case inviteFriend = "inviteFriend"
     var name: String {

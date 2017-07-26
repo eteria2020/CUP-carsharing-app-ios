@@ -285,6 +285,9 @@ enum Color {
     case faqHeaderTitle
     case faqAppTutorialButton
     
+    // Tutorial
+    case tutorialBackground
+    
     var value: UIColor {
         get {
             switch self {
@@ -648,6 +651,9 @@ enum Color {
                 return ColorBrand.white.value
             case .faqAppTutorialButton:
                 return ColorBrand.green.value
+            // Tutorial
+            case .tutorialBackground:
+                return ColorBrand.lightGray.value
             }
         }
     }

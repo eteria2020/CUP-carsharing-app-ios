@@ -19,6 +19,8 @@
 		032D3A891F08E79000F260A5 /* Auto-C-ingresso.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A801F08E79000F260A5 /* Auto-C-ingresso.gif */; };
 		032D3A8A1F08E79000F260A5 /* Auto-C-Loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A811F08E79000F260A5 /* Auto-C-Loop.gif */; };
 		032D3A8B1F08E79000F260A5 /* Auto-C-Uscita.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A821F08E79000F260A5 /* Auto-C-Uscita.gif */; };
+		033328791F28BBF300CD3AD8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033328781F28BBF300CD3AD8 /* TutorialViewController.swift */; };
+		0333287B1F28BC2100CD3AD8 /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333287A1F28BC2100CD3AD8 /* TutorialViewModel.swift */; };
 		033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */; };
 		033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */; };
 		033A404C1F06351B00B05A89 /* CarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */; };
@@ -216,6 +218,8 @@
 		032D3A801F08E79000F260A5 /* Auto-C-ingresso.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-C-ingresso.gif"; sourceTree = "<group>"; };
 		032D3A811F08E79000F260A5 /* Auto-C-Loop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-C-Loop.gif"; sourceTree = "<group>"; };
 		032D3A821F08E79000F260A5 /* Auto-C-Uscita.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Auto-C-Uscita.gif"; sourceTree = "<group>"; };
+		033328781F28BBF300CD3AD8 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialViewController.swift; path = Classes/ViewControllers/TutorialViewController.swift; sourceTree = "<group>"; };
+		0333287A1F28BC2100CD3AD8 /* TutorialViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialViewModel.swift; path = Classes/ViewModels/TutorialViewModel.swift; sourceTree = "<group>"; };
 		033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarTripItemCollectionViewCell.xib; path = Resources/Xibs/CarTripItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripItemViewModel.swift; path = Classes/ViewModels/CarTripItemViewModel.swift; sourceTree = "<group>"; };
 		033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTripsViewModel.swift; path = Classes/ViewModels/CarTripsViewModel.swift; sourceTree = "<group>"; };
@@ -428,6 +432,15 @@
 				032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */,
 			);
 			name = OnBoard;
+			sourceTree = "<group>";
+		};
+		033328771F28BBBA00CD3AD8 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				033328781F28BBF300CD3AD8 /* TutorialViewController.swift */,
+				0333287A1F28BC2100CD3AD8 /* TutorialViewModel.swift */,
+			);
+			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		033A403C1F06334000B05A89 /* CarTripsList */ = {
@@ -943,6 +956,7 @@
 				0366DD951F1F4726006657D9 /* Support */,
 				038A07951F1F62DE007A4F46 /* Invite Friend */,
 				03856C731F28802400DCE48D /* Faq */,
+				033328771F28BBBA00CD3AD8 /* Tutorial */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
@@ -1323,6 +1337,7 @@
 				03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */,
 				03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */,
 				037689FA1F1608D900523BAA /* FeedItemCollectionViewCell.swift in Sources */,
+				0333287B1F28BC2100CD3AD8 /* TutorialViewModel.swift in Sources */,
 				036D92111F0256CB0076D22D /* SettingsViewModel.swift in Sources */,
 				037689F41F1608C700523BAA /* FeedsViewController.swift in Sources */,
 				037689F81F1608D100523BAA /* FeedsViewModel.swift in Sources */,
@@ -1417,6 +1432,7 @@
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,
 				033A404C1F06351B00B05A89 /* CarTripsViewModel.swift in Sources */,
+				033328791F28BBF300CD3AD8 /* TutorialViewController.swift in Sources */,
 				4DC4D4A91EF46F9000330F23 /* WebViewModel.swift in Sources */,
 				03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */,
 				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,

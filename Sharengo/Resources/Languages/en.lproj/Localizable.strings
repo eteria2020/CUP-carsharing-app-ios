@@ -226,3 +226,11 @@
 // Faq
 "lbl_faqHeader" = "FAQ";
 "btn_faqAppTutorial" = "APP TUTORIAL";
+
+// Tutorial
+"img_tutorialStep1" = "img_mizzie";
+"img_tutorialStep2" = "img_mizzie2";
+"img_tutorialStep3" = "img_mizzie3";
+"alert_closeTutorial" = "Vuoi uscire dal tutorial?\nPotrai rivederlo quando vuoi alla sezione del menù\n\"Faq e tutorial\".";
+"btn_tutorialAlertStay" = "RIMANI";
+"btn_tutorialAlertClose" = "ESCI";

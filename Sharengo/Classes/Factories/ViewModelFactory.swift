@@ -137,6 +137,10 @@ struct ViewModelFactory {
         return InviteFriendViewModel()
     }
 
+    static func tutorial() -> ViewModelType {
+        return TutorialViewModel()
+    }
+
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }
