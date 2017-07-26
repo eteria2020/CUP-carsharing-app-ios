@@ -57,14 +57,16 @@
 		037BDFC81F03B30500C95962 /* NoFavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */; };
 		037BDFCA1F03E47D00C95962 /* NewFavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC91F03E47D00C95962 /* NewFavouriteViewController.swift */; };
 		037BDFCC1F03E4D700C95962 /* NewFavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFCB1F03E4D700C95962 /* NewFavouriteViewModel.swift */; };
+		03856C751F28804C00DCE48D /* FaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03856C741F28804C00DCE48D /* FaqViewController.swift */; };
+		03856C771F28805C00DCE48D /* FaqViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03856C761F28805C00DCE48D /* FaqViewModel.swift */; };
 		038641FC1F17628E003AF6B1 /* CategoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FB1F17628E003AF6B1 /* CategoryItemCollectionViewCell.swift */; };
 		038641FE1F17629D003AF6B1 /* CategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */; };
 		038642001F1762FF003AF6B1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FF1F1762FF003AF6B1 /* Category.swift */; };
 		038642021F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */; };
-		039A36E21F18A9FA0068A026 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */; };
-		039A36E51F18AA220068A026 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */; };
 		038A07971F1F6306007A4F46 /* InviteFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A07961F1F6306007A4F46 /* InviteFriendViewController.swift */; };
 		038A07991F1F6326007A4F46 /* InviteFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A07981F1F6326007A4F46 /* InviteFriendViewModel.swift */; };
+		039A36E21F18A9FA0068A026 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */; };
+		039A36E51F18AA220068A026 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */; };
 		03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
 		03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
 		03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
@@ -252,14 +254,16 @@
 		037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoFavouritesViewModel.swift; path = Classes/ViewModels/NoFavouritesViewModel.swift; sourceTree = "<group>"; };
 		037BDFC91F03E47D00C95962 /* NewFavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewFavouriteViewController.swift; path = Classes/ViewControllers/NewFavouriteViewController.swift; sourceTree = "<group>"; };
 		037BDFCB1F03E4D700C95962 /* NewFavouriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewFavouriteViewModel.swift; path = Classes/ViewModels/NewFavouriteViewModel.swift; sourceTree = "<group>"; };
+		03856C741F28804C00DCE48D /* FaqViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FaqViewController.swift; path = Classes/ViewControllers/FaqViewController.swift; sourceTree = "<group>"; };
+		03856C761F28805C00DCE48D /* FaqViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FaqViewModel.swift; path = Classes/ViewModels/FaqViewModel.swift; sourceTree = "<group>"; };
 		038641FB1F17628E003AF6B1 /* CategoryItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryItemCollectionViewCell.swift; path = Classes/Views/CategoryItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryItemViewModel.swift; path = Classes/ViewModels/CategoryItemViewModel.swift; sourceTree = "<group>"; };
 		038641FF1F1762FF003AF6B1 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Classes/Model/Category.swift; sourceTree = "<group>"; };
 		038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryItemCollectionViewCell.xib; path = Resources/Xibs/CategoryItemCollectionViewCell.xib; sourceTree = "<group>"; };
-		039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewController.swift; path = Classes/ViewControllers/FeedDetailViewController.swift; sourceTree = "<group>"; };
-		039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewModel.swift; path = Classes/ViewModels/FeedDetailViewModel.swift; sourceTree = "<group>"; };
 		038A07961F1F6306007A4F46 /* InviteFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendViewController.swift; path = Classes/ViewControllers/InviteFriendViewController.swift; sourceTree = "<group>"; };
 		038A07981F1F6326007A4F46 /* InviteFriendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendViewModel.swift; path = Classes/ViewModels/InviteFriendViewModel.swift; sourceTree = "<group>"; };
+		039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewController.swift; path = Classes/ViewControllers/FeedDetailViewController.swift; sourceTree = "<group>"; };
+		039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedDetailViewModel.swift; path = Classes/ViewModels/FeedDetailViewModel.swift; sourceTree = "<group>"; };
 		03A86F931EF96FAD009C72F4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/MenuViewController.swift; sourceTree = "<group>"; };
 		03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewModel.swift; path = Classes/ViewModels/MenuViewModel.swift; sourceTree = "<group>"; };
 		03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewModel.swift; path = Classes/ViewModels/MenuItemViewModel.swift; sourceTree = "<group>"; };
@@ -531,13 +535,13 @@
 			name = Favourites;
 			sourceTree = "<group>";
 		};
-		039A36E31F18AA080068A026 /* Feed Detail */ = {
+		03856C731F28802400DCE48D /* Faq */ = {
 			isa = PBXGroup;
 			children = (
-				039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */,
-				039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */,
+				03856C741F28804C00DCE48D /* FaqViewController.swift */,
+				03856C761F28805C00DCE48D /* FaqViewModel.swift */,
 			);
-			name = "Feed Detail";
+			name = Faq;
 			sourceTree = "<group>";
 		};
 		038A07951F1F62DE007A4F46 /* Invite Friend */ = {
@@ -547,6 +551,15 @@
 				038A07981F1F6326007A4F46 /* InviteFriendViewModel.swift */,
 			);
 			name = "Invite Friend";
+			sourceTree = "<group>";
+		};
+		039A36E31F18AA080068A026 /* Feed Detail */ = {
+			isa = PBXGroup;
+			children = (
+				039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */,
+				039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */,
+			);
+			name = "Feed Detail";
 			sourceTree = "<group>";
 		};
 		03A86F921EF96F8E009C72F4 /* Menu */ = {
@@ -929,6 +942,7 @@
 				037689E61F16080D00523BAA /* Feeds */,
 				0366DD951F1F4726006657D9 /* Support */,
 				038A07951F1F62DE007A4F46 /* Invite Friend */,
+				03856C731F28802400DCE48D /* Faq */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
 			name = ViewControllers;
@@ -1342,6 +1356,7 @@
 				0366DD971F1F473E006657D9 /* SupportViewController.swift in Sources */,
 				036D92131F0256D60076D22D /* SettingItemCollectionViewCell.swift in Sources */,
 				4DF0EC701F077AF00003D502 /* FavouritesViewModel.swift in Sources */,
+				03856C771F28805C00DCE48D /* FaqViewModel.swift in Sources */,
 				4DC4D4A71EF46F7100330F23 /* WebViewController.swift in Sources */,
 				4DEBEE711EED373800AEF617 /* Banner.swift in Sources */,
 				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
@@ -1394,6 +1409,7 @@
 				4D2339981EE6CDFC00780384 /* IntroViewModel.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
 				4DA5544A1EE55284001627E7 /* FBBoundingBox+MapKit.swift in Sources */,
+				03856C751F28804C00DCE48D /* FaqViewController.swift in Sources */,
 				4DC59F991EDADC6200DD658A /* Response.swift in Sources */,
 				4D43DDE41F078564001E41F8 /* FavouriteItemViewModel.swift in Sources */,
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,

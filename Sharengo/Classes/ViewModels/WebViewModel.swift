@@ -25,7 +25,7 @@ final class WebViewModel: ViewModelType {
         self.type = type
         self.clearCacheCookie()
         let url = URL(string: type.rawValue)
-        self.urlRequest = URLRequest(url: url!);
+        self.urlRequest = URLRequest(url: url!)
     }
 
     func clearCacheCookie() {
