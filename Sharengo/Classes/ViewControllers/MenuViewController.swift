@@ -67,6 +67,14 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                     let destination: InviteFriendViewController = (Storyboard.main.scene(.inviteFriend))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is SupportViewModel:
+                    let destination: SupportViewController = (Storyboard.main.scene(.support))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is FaqViewModel:
+                    let destination: FaqViewController = (Storyboard.main.scene(.faq))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 default:
                     break
                 }

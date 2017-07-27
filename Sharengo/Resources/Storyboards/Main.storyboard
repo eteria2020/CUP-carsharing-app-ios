@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2824,14 +2824,14 @@ Corsa!</string>
                                     <constraint firstAttribute="bottom" secondItem="80F-DB-MZm" secondAttribute="bottom" constant="5" id="noF-85-DhE"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mizzie3" translatesAutoresizingMaskIntoConstraints="NO" id="HcG-NR-tNs">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mizzie_06_pianificazione" translatesAutoresizingMaskIntoConstraints="NO" id="HcG-NR-tNs">
                                 <rect key="frame" x="15" y="93" width="345" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" identifier="imageHeight" id="9Z0-8V-hSw"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siamo qui per aiutarti!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-Tb-EjZ">
-                                <rect key="frame" x="15" y="318" width="345" height="132.5"/>
+                                <rect key="frame" x="15" y="308" width="345" height="142.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2881,7 +2881,7 @@ Corsa!</string>
                             <constraint firstItem="DYS-HS-hLR" firstAttribute="leading" secondItem="EBL-XL-ApY" secondAttribute="leading" constant="10" id="E0b-qD-3Sy"/>
                             <constraint firstItem="jL3-Tb-EjZ" firstAttribute="leading" secondItem="EBL-XL-ApY" secondAttribute="leading" constant="15" id="Fqh-hA-pO9"/>
                             <constraint firstItem="HcG-NR-tNs" firstAttribute="leading" secondItem="EBL-XL-ApY" secondAttribute="leading" constant="15" id="Hlt-rx-3Vr"/>
-                            <constraint firstItem="jL3-Tb-EjZ" firstAttribute="top" secondItem="HcG-NR-tNs" secondAttribute="bottom" constant="25" id="IUO-bc-yh4"/>
+                            <constraint firstItem="jL3-Tb-EjZ" firstAttribute="top" secondItem="HcG-NR-tNs" secondAttribute="bottom" constant="15" id="IUO-bc-yh4"/>
                             <constraint firstItem="bEr-z1-a6u" firstAttribute="top" secondItem="EBL-XL-ApY" secondAttribute="top" id="KdL-sS-C5U"/>
                             <constraint firstAttribute="trailing" secondItem="jL3-Tb-EjZ" secondAttribute="trailing" constant="15" id="Kj5-0b-Khq"/>
                             <constraint firstItem="2uE-EH-lzd" firstAttribute="top" secondItem="DYS-HS-hLR" secondAttribute="bottom" constant="25" id="VwF-GC-9l7"/>
@@ -3204,7 +3204,7 @@ grazie al tuo invito</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMp-AU-5hE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spU-Em-uU8">
+                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="spU-Em-uU8">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -3224,51 +3224,45 @@ grazie al tuo invito</string>
                                     <outlet property="delegate" destination="tTw-1y-chG" id="HLq-Bo-kfT"/>
                                 </connections>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_left" translatesAutoresizingMaskIntoConstraints="NO" id="vqt-gs-Tju">
-                                <rect key="frame" x="15" y="318.5" width="30" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_prev_tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="vqt-gs-Tju">
+                                <rect key="frame" x="15" y="458.5" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="BIq-bE-lEQ"/>
                                     <constraint firstAttribute="width" constant="30" id="Khe-L3-L6I"/>
+                                    <constraint firstAttribute="width" secondItem="vqt-gs-Tju" secondAttribute="height" multiplier="1:1" id="UHh-IE-AzR"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxg-TQ-u8m">
-                                <rect key="frame" x="15" y="318.5" width="30" height="30"/>
+                                <rect key="frame" x="15" y="458.5" width="30" height="30"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_right" translatesAutoresizingMaskIntoConstraints="NO" id="1bB-hR-FQi">
-                                <rect key="frame" x="330" y="318.5" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9Lq-60-gEy"/>
-                                    <constraint firstAttribute="width" constant="30" id="r5N-dA-xr7"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next_tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="1bB-hR-FQi">
+                                <rect key="frame" x="330" y="458.5" width="30" height="30"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-BG-5O0">
-                                <rect key="frame" x="330" y="318.5" width="30" height="30"/>
+                                <rect key="frame" x="330" y="458.5" width="30" height="30"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_left" translatesAutoresizingMaskIntoConstraints="NO" id="rRV-nq-atH">
-                                <rect key="frame" x="299" y="30" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="4T3-8g-eKn"/>
-                                    <constraint firstAttribute="height" constant="30" id="ODo-tf-6lT"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_close_tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="rRV-nq-atH">
+                                <rect key="frame" x="330" y="60" width="30" height="30"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fk9-0g-f9k">
-                                <rect key="frame" x="299" y="30" width="30" height="30"/>
+                                <rect key="frame" x="330" y="60" width="30" height="30"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="1bB-hR-FQi" firstAttribute="width" secondItem="vqt-gs-Tju" secondAttribute="width" id="0kF-fv-ol0"/>
                             <constraint firstAttribute="bottom" secondItem="LMp-AU-5hE" secondAttribute="bottom" id="36F-s1-u8B"/>
                             <constraint firstItem="LMp-AU-5hE" firstAttribute="leading" secondItem="QPH-ME-O3F" secondAttribute="leading" id="36q-K6-X1O"/>
+                            <constraint firstItem="1bB-hR-FQi" firstAttribute="height" secondItem="vqt-gs-Tju" secondAttribute="height" id="46w-d9-5cp"/>
                             <constraint firstItem="Fk9-0g-f9k" firstAttribute="top" secondItem="rRV-nq-atH" secondAttribute="top" id="6jp-RZ-x48"/>
                             <constraint firstItem="Fk9-0g-f9k" firstAttribute="trailing" secondItem="rRV-nq-atH" secondAttribute="trailing" id="7Ig-QD-9Tf"/>
                             <constraint firstItem="1bB-hR-FQi" firstAttribute="leading" secondItem="Zyt-BG-5O0" secondAttribute="leading" id="BXr-TJ-R40"/>
                             <constraint firstItem="dxg-TQ-u8m" firstAttribute="bottom" secondItem="vqt-gs-Tju" secondAttribute="bottom" id="DIF-tz-caO"/>
                             <constraint firstItem="Fk9-0g-f9k" firstAttribute="leading" secondItem="rRV-nq-atH" secondAttribute="leading" id="KGp-hV-4wa"/>
+                            <constraint firstAttribute="trailing" secondItem="rRV-nq-atH" secondAttribute="trailing" constant="15" id="KMz-tw-4i3"/>
                             <constraint firstItem="dxg-TQ-u8m" firstAttribute="top" secondItem="vqt-gs-Tju" secondAttribute="top" id="LMB-eN-UZ2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rRV-nq-atH" secondAttribute="trailing" constant="30" id="MhA-tc-8nV"/>
                             <constraint firstItem="1bB-hR-FQi" firstAttribute="bottom" secondItem="Zyt-BG-5O0" secondAttribute="bottom" id="SlD-ym-3XJ"/>
-                            <constraint firstItem="vqt-gs-Tju" firstAttribute="centerY" secondItem="LMp-AU-5hE" secondAttribute="centerY" id="VfG-E7-uWL"/>
-                            <constraint firstItem="rRV-nq-atH" firstAttribute="top" secondItem="QPH-ME-O3F" secondAttribute="topMargin" constant="30" id="Zhj-Yi-KZv"/>
+                            <constraint firstItem="vqt-gs-Tju" firstAttribute="centerY" secondItem="LMp-AU-5hE" secondAttribute="centerY" constant="140" id="VfG-E7-uWL"/>
+                            <constraint firstItem="rRV-nq-atH" firstAttribute="top" secondItem="QPH-ME-O3F" secondAttribute="topMargin" constant="60" id="Zhj-Yi-KZv"/>
                             <constraint firstItem="1bB-hR-FQi" firstAttribute="trailing" secondItem="Zyt-BG-5O0" secondAttribute="trailing" id="a85-QP-zgU"/>
                             <constraint firstItem="vqt-gs-Tju" firstAttribute="leading" secondItem="QPH-ME-O3F" secondAttribute="leading" constant="15" id="bfH-SF-fzr"/>
                             <constraint firstAttribute="trailing" secondItem="LMp-AU-5hE" secondAttribute="trailing" id="dgz-Nq-17l"/>
@@ -3276,15 +3270,20 @@ grazie al tuo invito</string>
                             <constraint firstItem="dxg-TQ-u8m" firstAttribute="trailing" secondItem="vqt-gs-Tju" secondAttribute="trailing" id="mgK-SM-FI0"/>
                             <constraint firstItem="1bB-hR-FQi" firstAttribute="top" secondItem="Zyt-BG-5O0" secondAttribute="top" id="ozy-ce-qvw"/>
                             <constraint firstAttribute="trailing" secondItem="1bB-hR-FQi" secondAttribute="trailing" constant="15" id="q5M-a5-4nl"/>
+                            <constraint firstItem="rRV-nq-atH" firstAttribute="width" secondItem="vqt-gs-Tju" secondAttribute="width" id="sKo-v7-1Nk"/>
                             <constraint firstItem="dxg-TQ-u8m" firstAttribute="leading" secondItem="vqt-gs-Tju" secondAttribute="leading" id="ugS-Dd-ibB"/>
                             <constraint firstItem="1bB-hR-FQi" firstAttribute="centerY" secondItem="vqt-gs-Tju" secondAttribute="centerY" id="v09-w7-Sss"/>
                             <constraint firstItem="LMp-AU-5hE" firstAttribute="top" secondItem="QPH-ME-O3F" secondAttribute="top" id="wvs-8F-JQr"/>
+                            <constraint firstItem="rRV-nq-atH" firstAttribute="height" secondItem="vqt-gs-Tju" secondAttribute="height" id="xRx-r4-4Nd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btn_close" destination="Fk9-0g-f9k" id="14n-ma-fs4"/>
                         <outlet property="btn_nextStep" destination="Zyt-BG-5O0" id="nQJ-l0-Cev"/>
                         <outlet property="btn_previousStep" destination="dxg-TQ-u8m" id="XKt-hP-iCp"/>
+                        <outlet property="constraint_buttons" destination="VfG-E7-uWL" id="vWg-Ul-Bd3"/>
+                        <outlet property="constraint_close" destination="Zhj-Yi-KZv" id="L6n-VF-BuF"/>
+                        <outlet property="constraint_width" destination="Khe-L3-L6I" id="jRN-45-BnU"/>
                         <outlet property="img_close" destination="rRV-nq-atH" id="PdJ-rb-IaE"/>
                         <outlet property="img_leftArrow" destination="vqt-gs-Tju" id="AW8-e9-H4l"/>
                         <outlet property="img_rightArrow" destination="1bB-hR-FQi" id="Vx7-jX-gWP"/>
@@ -3305,10 +3304,13 @@ grazie al tuo invito</string>
         <image name="btn_close_popup" width="44" height="14"/>
         <image name="ic_cat_home" width="46" height="28"/>
         <image name="ic_close" width="13" height="13"/>
+        <image name="ic_close_tutorial" width="40" height="40"/>
         <image name="ic_favorite" width="53" height="53"/>
         <image name="ic_imposta_citta_big" width="36" height="40"/>
         <image name="ic_left" width="30" height="30"/>
         <image name="ic_login" width="12" height="15"/>
+        <image name="ic_next_tutorial" width="40" height="40"/>
+        <image name="ic_prev_tutorial" width="40" height="40"/>
         <image name="ic_right" width="30" height="30"/>
         <image name="ic_utente_home" width="32" height="36"/>
         <image name="img_border_popup" width="4" height="14"/>
@@ -3318,5 +3320,6 @@ grazie al tuo invito</string>
         <image name="img_sfondo" width="320" height="568"/>
         <image name="img_user" width="15" height="16"/>
         <image name="mizzie_05_finecorsa" width="300" height="190"/>
+        <image name="mizzie_06_pianificazione" width="300" height="190"/>
     </resources>
 </document>

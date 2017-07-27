@@ -32,8 +32,17 @@ class FaqViewController : BaseViewController, ViewModelBindable {
         if let request = viewModel.urlRequest {
             self.webview_main.loadRequest(request)
         }
-        
-//        self.btn_appTutorial.rx.bind(to: viewModel.selection, input: .newFavourite)
+        self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
+            if (self == nil) { return }
+            switch output {
+            case .tutorial:
+                let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+                let viewModel = ViewModelFactory.tutorial()
+                destination.bind(to: viewModel, afterLoad: true)
+                self?.present(destination, animated: true, completion: nil)
+            }
+        }).addDisposableTo(self.disposeBag)
+        self.btn_appTutorial.rx.bind(to: viewModel.selection, input: .tutorial)
     }
     
     // MARK: - View methods

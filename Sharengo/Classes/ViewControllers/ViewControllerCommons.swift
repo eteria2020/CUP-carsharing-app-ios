@@ -116,6 +116,10 @@ extension Collectionable where Self : UIViewController {
 }
 
 class BaseViewController: UIViewController {
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         CoreController.shared.currentViewController = self

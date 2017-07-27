@@ -28,9 +28,14 @@ final class TutorialViewModel: ViewModelTypeSelectable {
     public var selection: Action<TutorialInput, TutorialOutput> = Action { _ in
         return .just(.empty)
     }
-    let steps = [TutorialStep(stepNumber: 0, image: "img_tutorialStep1".localized()),
-                 TutorialStep(stepNumber: 1, image: "img_tutorialStep2".localized()),
-                 TutorialStep(stepNumber: 2, image: "img_tutorialStep3".localized())]
+    let steps = [TutorialStep(stepNumber: 0, image: "tutorial_1".localized()),
+                 TutorialStep(stepNumber: 1, image: "tutorial_2".localized()),
+                 TutorialStep(stepNumber: 2, image: "tutorial_3".localized()),
+                 TutorialStep(stepNumber: 3, image: "tutorial_4".localized()),
+                 TutorialStep(stepNumber: 4, image: "tutorial_5".localized()),
+                 TutorialStep(stepNumber: 5, image: "tutorial_6".localized()),
+                 TutorialStep(stepNumber: 6, image: "tutorial_7".localized()),
+                 TutorialStep(stepNumber: 7, image: "tutorial_8".localized())]
     
     init()
     {

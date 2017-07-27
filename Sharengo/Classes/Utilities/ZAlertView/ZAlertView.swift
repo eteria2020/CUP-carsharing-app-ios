@@ -453,6 +453,10 @@ import UIKit
         return UIApplication.shared.statusBarStyle
     }
     
+    open override var prefersStatusBarHidden: Bool {
+        return CoreController.shared.currentViewController?.prefersStatusBarHidden ?? true
+    }
+    
     // MARK: - Convenient helpers
     
     open func addTextField(_ identifier: String, placeHolder: String) {

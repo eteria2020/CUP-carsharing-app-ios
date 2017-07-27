@@ -35,6 +35,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var loginIsShowed: Bool = false
     var introIsShowed: Bool = false
+    var tutorialIsShowed: Bool = false
     
     var viewModel: HomeViewModel?
     
@@ -54,6 +55,8 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 case is SearchCarsViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .searchCar)
                 case is ProfileViewModel:
+                    self.openSection(viewModel: viewModel, homeItem: .profile)
+                case is LoginViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .profile)
                 default:
                     break
@@ -169,6 +172,18 @@ class HomeViewController : BaseViewController, ViewModelBindable {
             let dispatchTime = DispatchTime.now() + 2.0
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.animateButtons()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    if !self.tutorialIsShowed {
+                        self.tutorialIsShowed = true
+                        if UserDefaults.standard.bool(forKey: "TutorialShowed") == false {
+                            let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+                            let viewModel = ViewModelFactory.tutorial()
+                            destination.bind(to: viewModel, afterLoad: true)
+                            self.present(destination, animated: true, completion: nil)
+                            UserDefaults.standard.set(true, forKey: "TutorialShowed")
+                        }
+                    }
+                }
             }
         } else {
             self.view_searchCar.alpha = 1.0

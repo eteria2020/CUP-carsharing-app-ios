@@ -70,5 +70,7 @@
 	<string></string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string></string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 </dict>
 </plist>

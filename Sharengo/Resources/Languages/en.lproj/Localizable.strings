@@ -221,7 +221,7 @@
 "lbl_inviteFriendDescriptionThirdPart" = "<firstPart>come omaggio di benvenuto</firstPart>\n\n<secondPart>Per ogni amico che si iscriverà\ngrazie al tuo invito</secondPart>";
 "lbl_inviteFriendDescriptionFourthPart" = "riceverai 20 minuti di guida gratuita!";
 "btn_inviteFriendInvite" = "INVITA SUBITO";
-"lbl_inviteFriendInviteDescription" = "Hey! Ti ho invitato";
+"lbl_inviteFriendInviteDescription" = "Hey! Utilizza anche tu l'applicazione Share'ngo";
 
 // Faq
 "lbl_faqHeader" = "FAQ";
@@ -231,6 +231,6 @@
 "img_tutorialStep1" = "img_mizzie";
 "img_tutorialStep2" = "img_mizzie2";
 "img_tutorialStep3" = "img_mizzie3";
-"alert_closeTutorial" = "Vuoi uscire dal tutorial?\nPotrai rivederlo quando vuoi alla sezione del menù\n\"Faq e tutorial\".";
+"alert_closeTutorial" = "Vuoi uscire dal tutorial?\nPotrai rivederlo quando vuoi alla sezione del menù \"Faq e tutorial\".";
 "btn_tutorialAlertStay" = "RIMANI";
 "btn_tutorialAlertClose" = "ESCI";

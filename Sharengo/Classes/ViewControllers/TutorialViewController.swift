@@ -24,10 +24,14 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_nextStep: UIButton!
     @IBOutlet fileprivate weak var img_close: UIImageView!
     @IBOutlet fileprivate weak var btn_close: UIButton!
+    @IBOutlet fileprivate weak var constraint_close: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var constraint_buttons: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var constraint_width: NSLayoutConstraint!
     
     var viewModel: TutorialViewModel?
     fileprivate var stepX: CGFloat = 0.0
-    fileprivate var currentStep = 0
+    fileprivate var currentStep: Int = 0
+    fileprivate var pageWidth: CGFloat = 0
 
     // MARK: - ViewModel methods
     
@@ -40,25 +44,52 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.signupBackground.value
-
+        switch Device().diagonal {
+        case 3.5:
+            self.constraint_close.constant = 43
+            self.constraint_buttons.constant = 100
+            self.pageWidth = 320
+            self.constraint_width.constant = 25
+        case 4:
+            self.constraint_close.constant = 50
+            self.constraint_buttons.constant = 120
+            self.pageWidth = 320
+            self.constraint_width.constant = 25
+        case 4.7:
+            self.constraint_close.constant = 60
+            self.constraint_buttons.constant = 140
+            self.pageWidth = 375
+            self.constraint_width.constant = 30
+        case 5.5:
+            self.constraint_close.constant = 65
+            self.constraint_buttons.constant = 155
+            self.pageWidth = 414
+            self.constraint_width.constant = 35
+        default:
+            break
+        }
+        self.view.layoutIfNeeded()
         // Steps
         if let steps = viewModel?.steps {
             for step in steps {
                 let image = UIImage(named: step.image)
-                let imageView = UIImageView(frame: CGRect(x: stepX, y: view_scrollViewContainer.frame.origin.y, width: view_scrollViewContainer.frame.width, height: view_scrollViewContainer.frame.height))
+                let imageView = UIImageView(frame: CGRect(x: stepX, y: view_scrollViewContainer.frame.origin.y, width: pageWidth, height: view_scrollViewContainer.frame.height))
                 imageView.image = image
                 view_scrollViewContainer.addSubview(imageView)
                 imageView.snp.makeConstraints { (make) -> Void in
-                    make.width.equalTo(view_scrollViewContainer.frame.width)
+                    make.width.equalTo(pageWidth)
                     make.left.equalTo(stepX)
                     make.top.equalTo(0)
                     make.bottom.equalTo(0)
                 }
-                stepX = stepX + view_scrollViewContainer.frame.width
+                stepX = stepX + pageWidth
             }
             scrollView_main.contentSize = CGSize(width: scrollView_main.frame.width * CGFloat(steps.count), height: scrollView_main.frame.height)
             view_scrollViewContainerWidthConstraint.constant = scrollView_main.contentSize.width
@@ -79,7 +110,7 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
             },
                 cancelButtonHandler: { alertView in
                     alertView.dismissAlertView()
-                    Router.back(self)
+                    self.dismiss(animated: true, completion: nil)
             })
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
@@ -101,7 +132,7 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     {
         if self.currentStep != 0 {
             var frame = self.scrollView_main.frame
-            frame.origin.x = (frame.size.width * CGFloat(self.currentStep - 1))
+            frame.origin.x = (pageWidth * CGFloat(self.currentStep - 1))
             self.scrollView_main.scrollRectToVisible(frame, animated: true)
             
             self.currentStep = self.currentStep - 1
@@ -114,9 +145,8 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
         {
             if self.currentStep != viewModel.steps.count {
                 var frame = self.scrollView_main.frame
-                frame.origin.x = (frame.size.width * CGFloat(self.currentStep + 1))
+                frame.origin.x = (pageWidth * CGFloat(self.currentStep + 1))
                 self.scrollView_main.scrollRectToVisible(frame, animated: true)
-                
                 self.currentStep = self.currentStep + 1
             }
         }
@@ -127,8 +157,7 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
 
 extension TutorialViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if viewModel != nil {
-            let pageWidth: CGFloat = scrollView.frame.size.width
+         if viewModel != nil {
             let page: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth))
             self.currentStep = page + 1
             if self.currentStep == 0 {
@@ -141,6 +170,15 @@ extension TutorialViewController: UIScrollViewDelegate {
                 btn_previousStep.isUserInteractionEnabled = true
                 btn_nextStep.isUserInteractionEnabled = true
             }
+        }
+        if scrollView.contentOffset.x < 0 {
+            scrollView.isScrollEnabled = false
+            scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
+            scrollView.isScrollEnabled = true
+        } else if scrollView.contentOffset.x > pageWidth*CGFloat(viewModel!.steps.count-1) {
+            scrollView.isScrollEnabled = false
+            scrollView.contentOffset = CGPoint(x: pageWidth*CGFloat(viewModel!.steps.count-1), y: scrollView.contentOffset.y)
+            scrollView.isScrollEnabled = true
         }
     }
 }

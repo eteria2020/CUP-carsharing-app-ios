@@ -156,7 +156,7 @@ class LoginViewController : BaseViewController, ViewModelBindable {
             switch output {
             case .forgotPassword:
                 let destination: WebViewController = (Storyboard.main.scene(.web))
-              let viewModel = ViewModelFactory.web(with: WebType.forgotPassword)
+                let viewModel = ViewModelFactory.web(with: WebType.forgotPassword)
                 destination.bind(to: viewModel, afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
             case .login:

@@ -128,6 +128,14 @@ struct Router : RouterType {
             let destination: FaqViewController = (Storyboard.main.scene(.faq))
             destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SupportViewModel:
+            let destination: SupportViewController = (Storyboard.main.scene(.support))
+            destination.bind(to: viewModel, afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is TutorialViewModel:
+            let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+            destination.bind(to: viewModel, afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }
