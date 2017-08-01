@@ -108,9 +108,17 @@ extension FaqViewController: UIWebViewDelegate {
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
-        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-            alertView.dismissAlertView()
-            Router.back(self)
+        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
+                                okButtonHandler: { alertView in
+                                    let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+                                    let viewModel = ViewModelFactory.tutorial()
+                                    destination.bind(to: viewModel, afterLoad: true)
+                                    self.present(destination, animated: true, completion: nil)
+                                    alertView.dismissAlertView()
+        },
+                                cancelButtonHandler: { alertView in
+                                    Router.back(self)
+                                    alertView.dismissAlertView()
         })
         dialog.allowTouchOutsideToDismiss = false
         dialog.show()

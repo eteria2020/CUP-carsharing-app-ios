@@ -10,6 +10,8 @@
 // General
 "btn_ok" = "OK";
 "btn_cancel" = "ANNULLA";
+"btn_back" = "INDIETRO";
+"btn_tutorial" = "TUTORIAL";
 "btn_yes" = "SÌ";
 "btn_no" = "NO";
 "alert_connectionError" = "Non sei connesso ad internet, per favore riprova";

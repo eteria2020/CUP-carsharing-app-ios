@@ -50,11 +50,13 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        btn_previousStep.isHidden = true
+        img_leftArrow.isHidden = true
         self.view.backgroundColor = Color.signupBackground.value
         switch Device().diagonal {
         case 3.5:
-            self.constraint_close.constant = 43
-            self.constraint_buttons.constant = 100
+            self.constraint_close.constant = 50
+            self.constraint_buttons.constant = -10
             self.pageWidth = 320
             self.constraint_width.constant = 25
         case 4:
@@ -115,8 +117,7 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
         }).addDisposableTo(self.disposeBag)
-        self.btn_previousStep.isUserInteractionEnabled = false
-
+      
         // Gesture recognizers
         self.view.rx.swipeGesture(.left).when(.recognized).subscribe(onNext: {_ in
             self.nextStep()
@@ -143,11 +144,13 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     {
         if let viewModel = self.viewModel
         {
-            if self.currentStep != viewModel.steps.count {
+            if self.currentStep != viewModel.steps.count-1 {
                 var frame = self.scrollView_main.frame
                 frame.origin.x = (pageWidth * CGFloat(self.currentStep + 1))
                 self.scrollView_main.scrollRectToVisible(frame, animated: true)
                 self.currentStep = self.currentStep + 1
+            } else {
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -161,14 +164,14 @@ extension TutorialViewController: UIScrollViewDelegate {
             let page: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth))
             self.currentStep = page + 1
             if self.currentStep == 0 {
-                btn_previousStep.isUserInteractionEnabled = false
-                btn_nextStep.isUserInteractionEnabled = true
+                btn_previousStep.isHidden = true
+                img_leftArrow.isHidden = true
             } else if self.currentStep == viewModel!.steps.count-1 {
-                btn_previousStep.isUserInteractionEnabled = true
-                btn_nextStep.isUserInteractionEnabled = false
+                btn_previousStep.isHidden = false
+                img_leftArrow.isHidden = false
             } else {
-                btn_previousStep.isUserInteractionEnabled = true
-                btn_nextStep.isUserInteractionEnabled = true
+                btn_previousStep.isHidden = false
+                img_leftArrow.isHidden = false
             }
         }
         if scrollView.contentOffset.x < 0 {
