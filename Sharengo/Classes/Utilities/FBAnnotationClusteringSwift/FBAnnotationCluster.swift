@@ -7,15 +7,12 @@
 //
 
 import Foundation
-import MapKit
+import GoogleMaps
 
-open class FBAnnotationCluster: NSObject {
+open class FBAnnotationCluster: GMSMarker {
     
     open var coordinate = CLLocationCoordinate2D()
-    open var title: String?
     open var subtitle: String?
     
-    open var annotations: [MKAnnotation] = []
+    open var annotations: [GMSMarker] = []
 }
-
-extension FBAnnotationCluster : MKAnnotation { }

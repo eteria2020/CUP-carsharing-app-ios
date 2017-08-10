@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MapKit
+import GoogleMaps
 
 open class FBQuadTree {
     
@@ -15,22 +15,22 @@ open class FBQuadTree {
 
 	// MARK: Internal functions
     
-    func insert(annotation: MKAnnotation) -> Bool {
+    func insert(annotation: GMSMarker) -> Bool {
         return insert(annotation: annotation, toNode:rootNode)
     }
 
-    func enumerateAnnotations(inBox box: FBBoundingBox, callback: (MKAnnotation) -> Void) {
+    func enumerateAnnotations(inBox box: FBBoundingBox, callback: (GMSMarker) -> Void) {
 		enumerateAnnotations(inBox: box, withNode:rootNode, callback: callback)
     }
     
-    func enumerateAnnotationsUsingBlock(_ callback: (MKAnnotation) -> Void) {
+    func enumerateAnnotationsUsingBlock(_ callback: (GMSMarker) -> Void) {
 		enumerateAnnotations(inBox: FBBoundingBox(mapRect: MKMapRectWorld), withNode:rootNode, callback:callback)
     }
 
 	// MARK: Private functions
 
-	private func insert(annotation: MKAnnotation, toNode node: FBQuadTreeNode) -> Bool {
-		if !node.boundingBox.contains(coordinate: annotation.coordinate) {
+	private func insert(annotation: GMSMarker, toNode node: FBQuadTreeNode) -> Bool {
+		if !node.boundingBox.contains(coordinate: annotation.position) {
 			return false
 		}
 
@@ -59,13 +59,13 @@ open class FBQuadTree {
 		return false
 	}
 
-    private func enumerateAnnotations(inBox box: FBBoundingBox, withNode node: FBQuadTreeNode, callback: (MKAnnotation) -> Void) {
+    private func enumerateAnnotations(inBox box: FBBoundingBox, withNode node: FBQuadTreeNode, callback: (GMSMarker) -> Void) {
         if !node.boundingBox.intersects(box2: box) {
             return
         }
 
         for annotation in node.annotations {
-            if box.contains(coordinate: annotation.coordinate) {
+            if box.contains(coordinate: annotation.position) {
                 callback(annotation)
             }
         }

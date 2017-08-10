@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import GoogleMaps
 
 public protocol FBClusteringManagerDelegate: NSObjectProtocol {
     func cellSizeFactor(forCoordinator coordinator: FBClusteringManager) -> CGFloat
@@ -33,11 +34,11 @@ public class FBClusteringManager {
 
 	public init() { }
 
-    public init(annotations: [MKAnnotation]) {
+    public init(annotations: [GMSMarker]) {
         add(annotations: annotations)
     }
 
-	public func add(annotations:[MKAnnotation]){
+	public func add(annotations:[GMSMarker]){
         lock.lock()
         for annotation in annotations {
 			_ = tree?.insert(annotation: annotation)
@@ -49,13 +50,13 @@ public class FBClusteringManager {
 		tree = nil
 	}
 
-	public func replace(annotations:[MKAnnotation]){
+	public func replace(annotations:[GMSMarker]){
 		removeAll()
 		add(annotations: annotations)
 	}
 
-	public func allAnnotations() -> [MKAnnotation] {
-		var annotations = [MKAnnotation]()
+	public func allAnnotations() -> [GMSMarker] {
+		var annotations = [GMSMarker]()
 		lock.lock()
 		tree?.enumerateAnnotationsUsingBlock(){ obj in
 			annotations.append(obj)
@@ -64,9 +65,11 @@ public class FBClusteringManager {
 		return annotations
 	}
 
-    public func clusteredAnnotations(withinMapRect rect:MKMapRect, zoomScale: Double) -> [MKAnnotation] {
+    public func clusteredAnnotations(withinMapRect rect:GMSCoordinateBounds, zoomScale: Double) -> [GMSMarker] {
         guard !zoomScale.isInfinite else { return [] }
         
+        // TODO GOOGLE
+        /*
         var cellSize = ZoomLevel(MKZoomScale(zoomScale)).cellSize()
 		if let size = delegate?.cellSizeFactor(forCoordinator: self)
 		{
@@ -80,7 +83,7 @@ public class FBClusteringManager {
         let minY = Int(floor(MKMapRectGetMinY(rect) * scaleFactor))
         let maxY = Int(floor(MKMapRectGetMaxY(rect) * scaleFactor))
         
-        var clusteredAnnotations = [MKAnnotation]()
+        var clusteredAnnotations = [GMSMarker]()
         
         lock.lock()
         
@@ -95,11 +98,11 @@ public class FBClusteringManager {
                 var totalLatitude: Double = 0
                 var totalLongitude: Double = 0
                 
-                var annotations = [MKAnnotation]()
+                var annotations = [GMSMarker]()
                 
 				tree?.enumerateAnnotations(inBox: mapBox) { obj in
-                    totalLatitude += obj.coordinate.latitude
-                    totalLongitude += obj.coordinate.longitude
+                    totalLatitude += obj.position.latitude
+                    totalLongitude += obj.position.longitude
                     annotations.append(obj)
                 }
 
@@ -123,31 +126,34 @@ public class FBClusteringManager {
         }
         
         lock.unlock()
+        */
         
+        var clusteredAnnotations = [GMSMarker]()
         return clusteredAnnotations
     }
     
-    public func display(annotations: [MKAnnotation], onMapView mapView:MKMapView){
-		let before = NSMutableSet(array: mapView.annotations)
-		before.remove(mapView.userLocation)
-
-		let after = NSSet(array: annotations)
-
-		let toKeep = NSMutableSet(set: before)
-		toKeep.intersect(after as Set<NSObject>)
-
-		let toAdd = NSMutableSet(set: after)
-		toAdd.minus(toKeep as Set<NSObject>)
-
-		let toRemove = NSMutableSet(set: before)
-		toRemove.minus(after as Set<NSObject>)
-		
-		if let toAddAnnotations = toAdd.allObjects as? [MKAnnotation] {
-			mapView.addAnnotations(toAddAnnotations)
-		}
-		
-		if let removeAnnotations = toRemove.allObjects as? [MKAnnotation] {
-			mapView.removeAnnotations(removeAnnotations)
-		}
+    public func display(annotations: [GMSMarker], onMapView mapView:GMSMapView){
+        // TODO GOOGLE
+//		let before = NSMutableSet(array: mapView.annotations)
+//		before.remove(mapView.userLocation)
+//
+//		let after = NSSet(array: annotations)
+//
+//		let toKeep = NSMutableSet(set: before)
+//		toKeep.intersect(after as Set<NSObject>)
+//
+//		let toAdd = NSMutableSet(set: after)
+//		toAdd.minus(toKeep as Set<NSObject>)
+//
+//		let toRemove = NSMutableSet(set: before)
+//		toRemove.minus(after as Set<NSObject>)
+//		
+//		if let toAddAnnotations = toAdd.allObjects as? [GMSMarker] {
+//			mapView.addAnnotations(toAddAnnotations)
+//		}
+//		
+//		if let removeAnnotations = toRemove.allObjects as? [GMSMarker] {
+//			mapView.removeAnnotations(removeAnnotations)
+//		}
     }
 }

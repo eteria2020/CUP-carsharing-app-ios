@@ -17,6 +17,7 @@ import DeviceKit
 import ReachabilitySwift
 import KeychainSwift
 import SideMenu
+import GoogleMaps
 
 class SearchCarsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
@@ -24,7 +25,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
-    @IBOutlet fileprivate weak var mapView: MKMapView!
+    @IBOutlet fileprivate weak var mapView: GMSMapView!
     @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
     fileprivate var closeCarPopupHeight: CGFloat = 0.0
     
@@ -49,38 +50,38 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {
-                            if self?.clusteringInProgress == true {
-                                self?.clusteringManager.removeAll()
-                                self?.clusteringManager.add(annotations: array)
-                                DispatchQueue.global(qos: .userInitiated).async {
-                                    if let radius = self?.getRadius() {
-                                        if radius > 150 {
-                                            let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
-                                            let mapRectWidth = self?.mapView?.visibleMapRect.size.width
-                                            let scale = mapBoundsWidth / mapRectWidth!
-                                            let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: (self?.mapView?.visibleMapRect)!, zoomScale:scale)
-                                            DispatchQueue.main.async {
-                                                self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
-                                            }
-                                        } else {
-                                            DispatchQueue.main.async {
-                                                self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
-                                            }
-                                        }
-                                    } else {
-                                        DispatchQueue.main.async {
-                                            self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
-                                        }
-                                    }
+                    if self?.clusteringInProgress == true {
+                        self?.clusteringManager.removeAll()
+                        self?.clusteringManager.add(annotations: array)
+                        
+                        if let radius = self?.getRadius() {
+                            if radius > 150 {
+                                //                                            let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
+                                let visibleMapRect = GMSCoordinateBounds(region: (self?.mapView.projection.visibleRegion())!)
+                                //                                            let mapRectWidth = self?.mapView?.visibleMapRect.size.width
+                                //                                            let scale = mapBoundsWidth / mapRectWidth!
+                                let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: visibleMapRect, zoomScale: 1.0)
+                                DispatchQueue.main.async {
+                                    self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
                                 }
-                                self?.setUpdateButtonAnimated(false)
+                            } else {
+                                DispatchQueue.main.async {
+                                    self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
+                                }
                             }
-                            if let car = self?.selectedCar {
-                                self?.view_carPopup.updateWithCar(car: car)
+                        } else {
+                            DispatchQueue.main.async {
+                                self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
                             }
-                            if let allCars = self?.viewModel?.allCars {
-                                self?.view_searchBar.viewModel?.allCars = allCars
-                            }
+                        }
+                        self?.setUpdateButtonAnimated(false)
+                    }
+                    if let car = self?.selectedCar {
+                        self?.view_carPopup.updateWithCar(car: car)
+                    }
+                    if let allCars = self?.viewModel?.allCars {
+                        self?.view_searchBar.viewModel?.allCars = allCars
+                    }
                 }
             }).addDisposableTo(disposeBag)
         self.btn_closeCarPopup.rx.tap.asObservable()
@@ -306,7 +307,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.didAuthorized) { [weak self] _ in
             let locationController = LocationController.shared
             if locationController.isAuthorized, let userLocation = locationController.currentLocation {
-                self?.mapView?.showsUserLocation = true
+                self?.mapView?.isMyLocationEnabled = true
                 self?.setUserPositionButtonVisible(true)
                 let span = MKCoordinateSpanMake(0.01, 0.01)
                 self?.centerMap(on: userLocation, span: span)
@@ -315,13 +316,13 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.didUnAuthorized) { [weak self] _ in
             let locationController = LocationController.shared
             if !locationController.isAuthorized && UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
-                self?.mapView?.showsUserLocation = false
+                self?.mapView?.isMyLocationEnabled = false
                 self?.setUserPositionButtonVisible(false)
             }
         }
         NotificationCenter.observe(notificationWithName: LocationControllerNotification.locationDidUpdate) { [weak self] _ in
             self?.viewModel?.manageAnnotations()
-            if let carAnnotation = self?.mapView.selectedAnnotations.first as? CarAnnotation {
+            if let carAnnotation = self?.mapView.selectedMarker as? CarAnnotation {
                 if let car = carAnnotation.car {
                     self?.view_carPopup.updateWithCar(car: car)
                     self?.view.layoutIfNeeded()
@@ -334,10 +335,10 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             self.view_searchBar.updateInterface()
             let locationController = LocationController.shared
             if locationController.isAuthorized && locationController.currentLocation != nil {
-                self.mapView?.showsUserLocation = true
+                self.mapView?.isMyLocationEnabled = true
                 self.setUserPositionButtonVisible(true)
             } else {
-                self.mapView?.showsUserLocation = false
+                self.mapView?.isMyLocationEnabled = false
                 self.setUserPositionButtonVisible(false)
             }
             self.getResults()
@@ -482,12 +483,17 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carBooking != nil {
             self.closeCarBookingPopupView()
         }
-        if let carAnnotation = self.mapView.selectedAnnotations.first as? CarAnnotation {
-            if let car = carAnnotation.car {
-                self.view_carPopup.updateWithCar(car: car)
-                self.view.layoutIfNeeded()
+        
+        if let selectedMarker = self.mapView.selectedMarker
+        {
+            if let carAnnotation = selectedMarker as? CarAnnotation {
+                if let car = carAnnotation.car {
+                    self.view_carPopup.updateWithCar(car: car)
+                    self.view.layoutIfNeeded()
+                }
             }
         }
+        
         if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
             DispatchQueue.main.async {
                 self.setCarsButtonVisible(true)
@@ -822,7 +828,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 self.clusteringInProgress = true
                 if let mapView = self.mapView {
                     self.setUpdateButtonAnimated(true)
-                    self.viewModel?.reloadResults(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude, radius: radius)
+                    self.viewModel?.reloadResults(latitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, radius: radius)
                     return
                 }
             } else {
@@ -836,7 +842,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     fileprivate func getResultsWithoutLoading() {
         if let radius = self.getRadius() {
             if radius < self.clusteringRadius {
-                self.viewModel?.reloadResults(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude, radius: radius)
+                self.viewModel?.reloadResults(latitude: self.mapView.camera.target.latitude, longitude: self.mapView.camera.target.longitude, radius: radius)
             }
         }
     }
@@ -844,7 +850,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     fileprivate func addCityAnnotations() {
         if clusteringInProgress == true {
             self.clusteringManager.removeAll()
-            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.clear()
             var annotationsArray: [CityAnnotation] = []
             for city in CoreController.shared.cities {
                 if let location = city.location {
@@ -854,7 +860,10 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                     annotationsArray.append(annotation)
                 }
             }
-            self.mapView.addAnnotations(annotationsArray)
+            
+            for marker in annotationsArray {
+                marker.map = mapView
+            }
         }
         /*
          var annotationsArray: [CityAnnotation] = []
@@ -883,19 +892,15 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     
     fileprivate func setupMap() {
         if UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
-            self.mapView.showsUserLocation = false
+            self.mapView.isMyLocationEnabled = false
             self.setUserPositionButtonVisible(false)
         }
-        let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        let overlay = MKTileOverlay(urlTemplate: template)
-        overlay.canReplaceMapContent = true
-        self.mapView.add(overlay, level: .aboveLabels)
     }
     
     fileprivate func checkUserPosition() {
         let locationController = LocationController.shared
         if locationController.isAuthorized, let userLocation = locationController.currentLocation {
-            self.mapView?.showsUserLocation = true
+            self.mapView?.isMyLocationEnabled = true
             self.setUserPositionButtonVisible(true)
             self.checkedUserPosition = true
             if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
@@ -910,16 +915,27 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         }
     }
     
+    fileprivate func getCenterCoordinate() -> CLLocationCoordinate2D {
+        let centerPoint = self.mapView.center
+        let centerCoordinate = self.mapView.projection.coordinate(for: centerPoint)
+        return centerCoordinate
+    }
+    
+    fileprivate func getTopCenterCoordinate() -> CLLocationCoordinate2D {
+        let topCenterCoor = self.mapView.convert(CGPoint(x: self.mapView.frame.size.width / 2.0, y: 0), from: self.mapView)
+        let point = self.mapView.projection.coordinate(for: topCenterCoor)
+        return point
+    }
+
     fileprivate func getRadius() -> CLLocationDistance? {
-        if let mapView = self.mapView {
-            let distanceMeters = mapView.radiusBaseOnViewHeight
-            /*
-             mapView.removeOverlays(mapView.overlays)
-             mapView.add(MKCircle(center: mapView.centerCoordinate, radius: mapView.radiusBaseOnViewHeight))
-             */
-            return distanceMeters
-        }
-        return nil
+        let centerCoordinate = getCenterCoordinate()
+        let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
+        let topCenterCoordinate = self.getTopCenterCoordinate()
+        let topCenterLocation = CLLocation(latitude: topCenterCoordinate.latitude, longitude: topCenterCoordinate.longitude)
+            
+        let radius = CLLocationDistance(centerLocation.distance(from: topCenterLocation))
+            
+        return round(radius)
     }
     
     fileprivate func centerMap() {
@@ -933,18 +949,20 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     }
     
     fileprivate func centerMap(on position: CLLocation, span: MKCoordinateSpan) {
+        // TODO GOOGLE: manca lo span!
         let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
-        let region = MKCoordinateRegionMake(location, span)
-        self.mapView?.setRegion(region, animated: true)
+        let bounds = GMSCoordinateBounds(coordinate: location, coordinate: location)
+        let update = GMSCameraUpdate.fit(bounds)
+        self.mapView?.moveCamera(update)
     }
     
     fileprivate func turnMap() {
-        let newCamera: MKMapCamera = MKMapCamera()
-        newCamera.pitch = self.mapView.camera.pitch
-        newCamera.centerCoordinate = self.mapView.camera.centerCoordinate
-        newCamera.altitude = self.mapView.camera.altitude
-        newCamera.heading = 0
-        self.mapView.setCamera(newCamera, animated: true)
+        let newCamera = GMSCameraPosition.camera(withLatitude: self.mapView.camera.target.latitude,
+                                             longitude: self.mapView.camera.target.longitude,
+                                             zoom: self.mapView.camera.zoom,
+                                             bearing: 0,
+                                             viewingAngle: self.mapView.camera.viewingAngle)
+        self.mapView.animate(to: newCamera)
     }
     
     // MARK: - Alert methods
@@ -990,42 +1008,31 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
 
 // MARK: - Map delegate
 
-extension SearchCarsViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        /*
-         if let overlay = overlay as? MKCircle {
-         let circleRenderer = MKCircleRenderer(circle: overlay)
-         circleRenderer.fillColor = UIColor.blue.withAlphaComponent(0.5)
-         return circleRenderer
-         }
-         */
-        guard let tileOverlay = overlay as? MKTileOverlay else {
-            return MKOverlayRenderer()
-        }
-        return MKTileOverlayRenderer(tileOverlay: tileOverlay)
-    }
+extension SearchCarsViewController: GMSMapViewDelegate {
     
-    
-    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.stopRequest()
         self.view_searchBar.stopSearchBar()
     }
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        self.setTurnButtonDegrees(CGFloat(self.mapView.camera.heading))
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.getResults()
         if self.clusteringInProgress {
             DispatchQueue.global(qos: .userInitiated).async {
                 if let radius = self.getRadius() {
                     if radius > 150 {
-                        let mapBoundsWidth = Double(self.mapView.bounds.size.width)
-                        let mapRectWidth = self.mapView.visibleMapRect.size.width
-                        let scale = mapBoundsWidth / mapRectWidth
-                        let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
-                        DispatchQueue.main.async {
-                            self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
-                        }
+                        // TODO GOOGLE: visible rect
+                        //                        let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+                        //
+                        //
+                        //                        let mapRectWidth = self.mapView.projection.visibleRegion().size.width
+                        //                        let scale = mapBoundsWidth / mapRectWidth
+                        //                        let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
+                        //                        DispatchQueue.main.async {
+                        //                            self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
+                        //                        }
                     } else {
                         DispatchQueue.main.async {
                             self.clusteringManager.display(annotations: self.viewModel?.array_annotations.value ?? [], onMapView:self.mapView!)
@@ -1089,67 +1096,72 @@ extension SearchCarsViewController: MKMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard !(view.annotation is MKUserLocation) else { return }
-        if let cluster = view.annotation as? FBAnnotationCluster {
-            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.2, mapView.region.span.longitudeDelta * 0.2)
-            let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
-            mapView.setRegion(region, animated: true)
-        } else if let cityAnnotation = view.annotation as? CityAnnotation {
-            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.03, mapView.region.span.longitudeDelta * 0.03)
-            let region = MKCoordinateRegion(center: cityAnnotation.coordinate, span: span)
-            mapView.setRegion(region, animated: true)
-        } else if let carAnnotation = view.annotation as? CarAnnotation {
-            if let car = carAnnotation.car {
-                if let bookedCar = self.viewModel?.carBooked {
-                    if car.plate != bookedCar.plate {
-                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
-                    }
-                    return
-                }
-                if let location = car.location {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
-                    let span = MKCoordinateSpanMake(0.001, 0.001)
-                    self.centerMap(on: newLocation, span: span)
-                }
-                self.view_carPopup.updateWithCar(car: car)
-                self.view_carPopup.viewModel?.type.value = .car
-                self.view.layoutIfNeeded()
-                UIView .animate(withDuration: 0.2, animations: {
-                    if car.type.isEmpty {
-                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
-                    } else {
-                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
-                    }
-                    self.view_carPopup.alpha = 1.0
-                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
-                    self.view.layoutIfNeeded()
-                    self.selectedCar = car
-                })
-            }
-        } else if let feedAnnotation = view.annotation as? FeedAnnotation {
-            if let feed = feedAnnotation.feed {
-                if let location = feed.feedLocation {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
-                    let span = MKCoordinateSpanMake(0.001, 0.001)
-                    self.centerMap(on: newLocation, span: span)
-                }
-                self.view_carPopup.updateWithFeed(feed: feed)
-                self.view_carPopup.viewModel?.type.value = .feed
-                self.view.layoutIfNeeded()
-                UIView .animate(withDuration: 0.2, animations: {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 90
-                    self.view_carPopup.alpha = 1.0
-                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
-                    self.view.layoutIfNeeded()
-                    self.selectedFeed = feed
-                })
-            }
-        }
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        // TODO GOOGLE
+        return true
+        
+//        guard !(view.annotation is MKUserLocation) else { return }
+//        if let cluster = view.annotation as? FBAnnotationCluster {
+//            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.2, mapView.region.span.longitudeDelta * 0.2)
+//            let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
+//            mapView.setRegion(region, animated: true)
+//        } else if let cityAnnotation = view.annotation as? CityAnnotation {
+//            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.03, mapView.region.span.longitudeDelta * 0.03)
+//            let region = MKCoordinateRegion(center: cityAnnotation.coordinate, span: span)
+//            mapView.setRegion(region, animated: true)
+//        } else if let carAnnotation = view.annotation as? CarAnnotation {
+//            if let car = carAnnotation.car {
+//                if let bookedCar = self.viewModel?.carBooked {
+//                    if car.plate != bookedCar.plate {
+//                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+//                            alertView.dismissAlertView()
+//                        })
+//                        dialog.allowTouchOutsideToDismiss = false
+//                        dialog.show()
+//                    }
+//                    return
+//                }
+//                if let location = car.location {
+//                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+//                    let span = MKCoordinateSpanMake(0.001, 0.001)
+//                    self.centerMap(on: newLocation, span: span)
+//                }
+//                self.view_carPopup.updateWithCar(car: car)
+//                self.view_carPopup.viewModel?.type.value = .car
+//                self.view.layoutIfNeeded()
+//                UIView .animate(withDuration: 0.2, animations: {
+//                    if car.type.isEmpty {
+//                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+//                    } else {
+//                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
+//                    }
+//                    self.view_carPopup.alpha = 1.0
+//                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+//                    self.view.layoutIfNeeded()
+//                    self.selectedCar = car
+//                })
+//            }
+//        } else if let feedAnnotation = view.annotation as? FeedAnnotation {
+//            if let feed = feedAnnotation.feed {
+//                if let location = feed.feedLocation {
+//                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+//                    let span = MKCoordinateSpanMake(0.001, 0.001)
+//                    self.centerMap(on: newLocation, span: span)
+//                }
+//                self.view_carPopup.updateWithFeed(feed: feed)
+//                self.view_carPopup.viewModel?.type.value = .feed
+//                self.view.layoutIfNeeded()
+//                UIView .animate(withDuration: 0.2, animations: {
+//                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 90
+//                    self.view_carPopup.alpha = 1.0
+//                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+//                    self.view.layoutIfNeeded()
+//                    self.selectedFeed = feed
+//                })
+//            }
+//        }
+//        
+//        return true
     }
 }
 

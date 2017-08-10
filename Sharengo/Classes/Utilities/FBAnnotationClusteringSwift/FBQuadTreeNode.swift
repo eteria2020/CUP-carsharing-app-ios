@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import MapKit
+import GoogleMaps
 
 open class FBQuadTreeNode {
 
 	static let NodeCapacity = 8
     
     let boundingBox: FBBoundingBox
-	private(set) var annotations: [MKAnnotation] = []
+	private(set) var annotations: [GMSMarker] = []
 
     private(set) var northEast: FBQuadTreeNode?
     private(set) var northWest: FBQuadTreeNode?
@@ -33,7 +33,7 @@ open class FBQuadTreeNode {
 		return annotations.count < FBQuadTreeNode.NodeCapacity
 	}
 
-	func append(annotation: MKAnnotation) -> Bool {
+	func append(annotation: GMSMarker) -> Bool {
 		if canAppendAnnotation() {
 			annotations.append(annotation)
 			return true

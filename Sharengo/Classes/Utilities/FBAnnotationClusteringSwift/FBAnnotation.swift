@@ -8,12 +8,8 @@
 
 import Foundation
 import CoreLocation
-import MapKit
+import GoogleMaps
 
-open class FBAnnotation: NSObject {
-    
+open class FBAnnotation: GMSMarker {
     open var coordinate = CLLocationCoordinate2D()
-    open var title: String?
 }
-
-extension FBAnnotation : MKAnnotation { }
