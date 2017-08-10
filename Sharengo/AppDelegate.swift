@@ -6,6 +6,7 @@ import RxSwift
 import Gloss
 import SideMenu
 import Localize_Swift
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,10 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupHistory()
         self.setupFavourites()
         self.setupSettings()
-        #if ISDEBUG
-        #elseif ISRELEASE
-            Fabric.with([Crashlytics.self])
-        #endif
+        self.setupGoogleMaps()
+        self.setupFabric()
+        
         TextStyle.setup()
         Router.start(self)
         CoreController.shared.updateData()
@@ -69,6 +69,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.object(forKey: "historyDic") == nil {
             UserDefaults.standard.set([String: Data](), forKey: "historyDic")
         }
+    }
+
+    fileprivate func setupFabric() {
+        #if ISDEBUG
+        #elseif ISRELEASE
+            Fabric.with([Crashlytics.self])
+        #endif
+    }
+
+    fileprivate func setupGoogleMaps() {
+        #if ISDEBUG
+            GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
+        #elseif ISRELEASE
+            GMSServices.provideAPIKey("AIzaSyCnHV6khPUikgREjDIaOfSOOOM8SoI6RlM")
+        #endif
     }
     
     fileprivate func setupFavourites() {

@@ -29,6 +29,7 @@ def shared_pods
     pod 'TPKeyboardAvoiding'
     pod 'SideMenu'
     pod 'RxGesture'
+    pod 'GoogleMaps'
 end
 
 target 'Sharengo' do

@@ -17,6 +17,11 @@ PODS:
   - Fabric (1.6.11)
   - Gifu (2.0.0)
   - Gloss (1.2.4)
+  - GoogleMaps (2.3.1):
+    - GoogleMaps/Maps (= 2.3.1)
+  - GoogleMaps/Base (2.3.1)
+  - GoogleMaps/Maps (2.3.1):
+    - GoogleMaps/Base
   - Hero (0.3.6)
   - KeychainSwift (8.0.2)
   - Localize-Swift (1.7.1)
@@ -66,6 +71,7 @@ DEPENDENCIES:
   - Fabric
   - Gifu
   - Gloss
+  - GoogleMaps
   - Hero
   - KeychainSwift
   - Localize-Swift
@@ -111,6 +117,7 @@ SPEC CHECKSUMS:
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Gifu: 56a4d8f1092399159fa32662aa2232158b48d8ac
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   KeychainSwift: 213db04dfe7244988e61f77c72a2afb2f775954a
   Localize-Swift: 6cabc1087c0e910e77bfa87c2ed3f65c80c0b2df
@@ -131,6 +138,6 @@ SPEC CHECKSUMS:
   StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: 72edb34ebcbe5d78258043107233b820c969f07c
+PODFILE CHECKSUM: 2cd7f43b612f35ed7621fb9a96507e372b1b1c5c
 
 COCOAPODS: 1.2.1

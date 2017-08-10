@@ -224,6 +224,10 @@ SOFTWARE.
 
 
 
+## GoogleMaps
+
+Copyright 2017 Google
+
 ## Hero
 
 The MIT License (MIT)
