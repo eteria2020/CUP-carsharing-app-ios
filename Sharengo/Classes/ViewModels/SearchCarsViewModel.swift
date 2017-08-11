@@ -239,37 +239,42 @@ final class SearchCarsViewModel: ViewModelType {
                 }
             }
             self.updateCarProperties()
-            for car in self.cars {
-                if let coordinate = car.location?.coordinate {
-                    let annotation = CarAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.car = car
-                    annotations.append(annotation)
+            // TODO GOOGLE
+            DispatchQueue.main.async {
+                for car in self.cars {
+                    if let coordinate = car.location?.coordinate {
+                        let annotation = CarAnnotation(position: coordinate)
+                        annotation.icon = annotation.getImage()
+                        annotation.car = car
+                        annotations.append(annotation)
+                    }
                 }
-            }
-            if carBookedFounded == false && self.carBooked != nil {
-                if let coordinate = self.carBooked!.location?.coordinate {
-                    let annotation = CarAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.car = self.carBooked!
-                    annotations.append(annotation)
+                if carBookedFounded == false && self.carBooked != nil {
+                    if let coordinate = self.carBooked!.location?.coordinate {
+                        let annotation = CarAnnotation(position: coordinate)
+                        annotation.icon = annotation.getImage()
+                        annotation.car = self.carBooked!
+                        annotations.append(annotation)
+                    }
                 }
-            }
-            if type == .searchCars {
-                self.array_annotations.value = annotations
+                if self.type == .searchCars {
+                    self.array_annotations.value = annotations
+                }
             }
         }
         if type == .feeds {
             if self.errorEvents == false && self.errorOffers == false {
-                for feed in self.feeds {
-                    if let coordinate = feed.feedLocation?.coordinate {
-                        let annotation = FeedAnnotation()
-                        annotation.coordinate = coordinate
-                        annotation.feed = feed
-                        annotations.append(annotation)
+                DispatchQueue.main.async {
+                    for feed in self.feeds {
+                        if let coordinate = feed.feedLocation?.coordinate {
+                            let annotation = FeedAnnotation(position: coordinate)
+                            annotation.icon = annotation.getImage()
+                            annotation.feed = feed
+                            annotations.append(annotation)
+                        }
                     }
+                    self.array_annotations.value = annotations
                 }
-                self.array_annotations.value = annotations
             } else if self.errorEvents == true || self.errorOffers == true {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
