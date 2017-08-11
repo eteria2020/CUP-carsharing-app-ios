@@ -169,19 +169,19 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
     return icon;
   }
 
-  UIFont *font = [UIFont boldSystemFontOfSize:14];
+  UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
   NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
   paragraphStyle.alignment = NSTextAlignmentCenter;
   NSDictionary *attributes = @{
     NSFontAttributeName : font,
     NSParagraphStyleAttributeName : paragraphStyle,
-    NSForegroundColorAttributeName : [UIColor whiteColor]
+    NSForegroundColorAttributeName : UIColorFromHEX(0x61b15e)
   };
   CGSize textSize = [text sizeWithAttributes:attributes];
 
   // Create an image context with a square shape to contain the text (with more padding for
   // larger buckets).
-  CGFloat rectDimension = MAX(20, MAX(textSize.width, textSize.height)) + 3 * bucketIndex + 6;
+  CGFloat rectDimension = 55;
   CGRect rect = CGRectMake(0.f, 0.f, rectDimension, rectDimension);
   UIGraphicsBeginImageContext(rect.size);
 
@@ -190,13 +190,18 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
   CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGContextSaveGState(ctx);
   bucketIndex = MIN(bucketIndex, kGMUBucketBackgroundColors.count - 1);
-  UIColor *backColor = kGMUBucketBackgroundColors[bucketIndex];
+  UIColor *backColor = UIColorFromHEX(0xffe84f);
   CGContextSetFillColorWithColor(ctx, backColor.CGColor);
-  CGContextFillEllipseInRect(ctx, rect);
-  CGContextRestoreGState(ctx);
+    CGContextSetStrokeColorWithColor(ctx, UIColorFromHEX(0x61b15e).CGColor);
+    CGContextSetLineWidth(ctx, 5.0);
+    CGRect rect1 = CGRectMake(5.f, 5.f, rectDimension-10, rectDimension-10);
+    CGContextStrokeEllipseInRect(ctx, rect1);
+    CGRect rect2 = CGRectMake(5.f, 5.f, rectDimension-10, rectDimension-10);
+    CGContextFillEllipseInRect(ctx, rect2);
+    CGContextRestoreGState(ctx);
 
   // Draw text.
-  [[UIColor whiteColor] set];
+  [UIColorFromHEX(0x61b15e) set];
   CGRect textRect = CGRectInset(rect, (rect.size.width - textSize.width) / 2,
                                 (rect.size.height - textSize.height) / 2);
   [text drawInRect:CGRectIntegral(textRect) withAttributes:attributes];

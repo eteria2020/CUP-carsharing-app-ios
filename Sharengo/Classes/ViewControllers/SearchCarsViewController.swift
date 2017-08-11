@@ -32,7 +32,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     
     fileprivate var checkedUserPosition: Bool = false
     fileprivate let carPopupDistanceOpenDoors: Int = 50
-    fileprivate let clusteringManager = FBClusteringManager()
     fileprivate let clusteringRadius: Double = 35000
     fileprivate var clusteringInProgress: Bool = false
     fileprivate var selectedCar: Car?
@@ -100,7 +99,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             .subscribe(onNext:{
                 self.closeCarPopup()
             }).addDisposableTo(disposeBag)
-        self.clusteringManager.delegate = self
         // CircularMenu
         self.view_circularMenu.bind(to: ViewModelFactory.circularMenu(type: viewModel.type.getCircularMenuType()))
         self.view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -865,7 +863,6 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     
     fileprivate func addCityAnnotations() {
         if clusteringInProgress == false {
-            self.clusteringManager.removeAll()
             self.mapView.clear()
             self.clusterManager.clearItems()
             var annotationsArray: [CityAnnotation] = []
@@ -945,12 +942,17 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
 //        let bounds = GMSCoordinateBounds(coordinate: location, coordinate: location)
 //        let update = GMSCameraUpdate.fit(bounds)
         
-        self.mapView.animate(toLocation: location)
-        let dispatchTime = DispatchTime.now() + 0.2
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.mapView?.animate(toZoom: zoom)
-        }
+//        self.mapView.animate(toLocation: location)
+//        let dispatchTime = DispatchTime.now() + 0.2
+//        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+//            self.mapView?.animate(toZoom: zoom)
+//        }
         //self.mapView?.moveCamera(update)
+        
+        let newCamera = GMSCameraPosition.camera(withTarget: location,
+                                                           zoom: zoom)
+        let update = GMSCameraUpdate.setCamera(newCamera)
+        mapView.moveCamera(update)
     }
     
     fileprivate func turnMap() {
@@ -1168,42 +1170,5 @@ extension SearchCarsViewController: GMSMapViewDelegate {
         }
         
         return true
-        
-//        guard !(view.annotation is MKUserLocation) else { return }
-//        if let cluster = view.annotation as? FBAnnotationCluster {
-//            let span = MKCoordinateSpanMake(mapView.region.span.latitudeDelta * 0.2, mapView.region.span.longitudeDelta * 0.2)
-//            let region = MKCoordinateRegion(center: cluster.coordinate, span: span)
-//            mapView.setRegion(region, animated: true)
-        //
-//        return true
-    }
-}
-
-extension SearchCarsViewController: FBClusteringManagerDelegate {
-    func cellSizeFactor(forCoordinator coordinator: FBClusteringManager) -> CGFloat {
-        return 1.0
-    }
-}
-
-//	MARK: - FBAnnotationClusterViewConfiguration
-
-extension FBAnnotationClusterViewConfiguration {
-    public static func custom() -> FBAnnotationClusterViewConfiguration {
-        var smallTemplate = FBAnnotationClusterTemplate(range: Range(uncheckedBounds: (lower: 0, upper: 6)), displayMode: .Image(imageName: "ic_cluster"))
-        smallTemplate.borderWidth = 0
-        smallTemplate.fontName = Font.searchCarsClusterLabel.value.fontName
-        smallTemplate.fontSize = Font.searchCarsClusterLabel.value.pointSize
-        smallTemplate.labelColor = Color.searchCarsClusterLabel.value
-        var mediumTemplate = FBAnnotationClusterTemplate(range: Range(uncheckedBounds: (lower: 6, upper: 15)), displayMode: .Image(imageName: "ic_cluster"))
-        mediumTemplate.borderWidth = 0
-        mediumTemplate.fontName = Font.searchCarsClusterLabel.value.fontName
-        mediumTemplate.fontSize = Font.searchCarsClusterLabel.value.pointSize
-        mediumTemplate.labelColor = Color.searchCarsClusterLabel.value
-        var largeTemplate = FBAnnotationClusterTemplate(range: nil, displayMode: .Image(imageName: "ic_cluster"))
-        largeTemplate.borderWidth = 0
-        largeTemplate.fontName = Font.searchCarsClusterLabel.value.fontName
-        largeTemplate.fontSize = Font.searchCarsClusterLabel.value.pointSize
-        largeTemplate.labelColor = Color.searchCarsClusterLabel.value
-        return FBAnnotationClusterViewConfiguration(templates: [smallTemplate, mediumTemplate], defaultTemplate: largeTemplate)
     }
 }
