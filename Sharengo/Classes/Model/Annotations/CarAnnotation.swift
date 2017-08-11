@@ -6,11 +6,21 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
 
-class CarAnnotation: FBAnnotation {
+class CarAnnotation: NSObject, GMUClusterItem {
+    /**
+     * Returns the position of the item.
+     */
+    var position: CLLocationCoordinate2D
+
     var car:Car?
     lazy var image: UIImage = self.getImage()
+    
+    
+    init(position: CLLocationCoordinate2D) {
+        self.position = position
+    }
     
     // MARK: - Lazy methods
     

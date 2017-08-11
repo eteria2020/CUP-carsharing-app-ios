@@ -7,8 +7,9 @@
 
 import UIKit
 import MapKit
+import GoogleMaps
 
-class FeedAnnotation: FBAnnotation {
+class FeedAnnotation: GMSMarker {
     var feed:Feed?
     lazy var image: UIImage = self.getImage()
     

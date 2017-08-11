@@ -26,6 +26,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
     @IBOutlet fileprivate weak var mapView: GMSMapView!
+    var clusterManager: GMUClusterManager!
     @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
     fileprivate var closeCarPopupHeight: CGFloat = 0.0
     
@@ -52,9 +53,14 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                 DispatchQueue.main.async {
                     if self?.clusteringInProgress == true {
                         self?.mapView.clear()
+                        self?.clusterManager.clearItems()
                         for annotation in array {
-                            annotation.map = self?.mapView
+                            self?.clusterManager.add(annotation)
                         }
+                        self?.clusterManager.cluster()
+//                        for annotation in array {
+//                            annotation.map = self?.mapView
+//                        }
                     }
 //                    if self?.clusteringInProgress == true {
 //                        self?.clusteringManager.removeAll()
@@ -132,6 +138,14 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     // MARK: - View methods
     
     override func viewDidLoad() {
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView,
+                                                 clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: self.mapView, algorithm: algorithm,
+                                           renderer: renderer)
+        
+        
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         // NavigationBar
@@ -853,6 +867,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
         if clusteringInProgress == false {
             self.clusteringManager.removeAll()
             self.mapView.clear()
+            self.clusterManager.clearItems()
             var annotationsArray: [CityAnnotation] = []
             for city in CoreController.shared.cities {
                 if let location = city.location {
@@ -1096,7 +1111,7 @@ extension SearchCarsViewController: GMSMapViewDelegate {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.centerMap(on: newLocation, zoom: zoom)
             }
-        } else if let carAnnotation = marker as? CarAnnotation {
+        } else if let carAnnotation = marker.userData as? CarAnnotation {
             if let car = carAnnotation.car {
                 if let bookedCar = self.viewModel?.carBooked {
                     if car.plate != bookedCar.plate {
@@ -1127,7 +1142,7 @@ extension SearchCarsViewController: GMSMapViewDelegate {
                     self.selectedCar = car
                 })
             }
-        } else if let feedAnnotation = marker as? FeedAnnotation {
+        } else if let feedAnnotation = marker.userData as? FeedAnnotation {
             if let feed = feedAnnotation.feed {
                 if let location = feed.feedLocation {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -1144,6 +1159,12 @@ extension SearchCarsViewController: GMSMapViewDelegate {
                     self.selectedFeed = feed
                 })
             }
+        } else {
+            let location = marker.position
+                var zoom = self.mapView.camera.zoom
+                zoom += 2
+                let newLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                self.centerMap(on: newLocation, zoom: zoom)
         }
         
         return true

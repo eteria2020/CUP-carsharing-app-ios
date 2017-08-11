@@ -7,3 +7,8 @@
 
 #import "SVPulsingAnnotationView.h"
 #import <CommonCrypto/CommonCrypto.h>
+#import "GMUCluster.h"
+#import "GMUClusterManager.h"
+#import "GMUDefaultClusterIconGenerator.h"
+#import "GMUNonHierarchicalDistanceBasedAlgorithm.h"
+#import "GMUDefaultClusterRenderer.h"

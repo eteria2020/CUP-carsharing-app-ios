@@ -14,6 +14,7 @@ import MapKit
 import Moya
 import Gloss
 import ReachabilitySwift
+import GoogleMaps
 
 enum SearchCarsType {
     case searchCars
@@ -47,7 +48,7 @@ final class SearchCarsViewModel: ViewModelType {
     var errorEvents: Bool?
     var feeds = [Feed]()
     
-    var array_annotations: Variable<[FBAnnotation]> = Variable([])
+    var array_annotations: Variable<[GMUClusterItem]> = Variable([])
 
     init(type: SearchCarsType) {
         self.type = type
@@ -204,7 +205,7 @@ final class SearchCarsViewModel: ViewModelType {
     }
     
     func manageAnnotations() {
-        var annotations: [FBAnnotation] = []
+        var annotations: [GMUClusterItem] = []
         if type == .searchCars || showCars == true {
             var carBookedFounded: Bool = false
             if let car = self.carBooked {
@@ -244,7 +245,7 @@ final class SearchCarsViewModel: ViewModelType {
                 for car in self.cars {
                     if let coordinate = car.location?.coordinate {
                         let annotation = CarAnnotation(position: coordinate)
-                        annotation.icon = annotation.getImage()
+                       // annotation.icon = annotation.getImage()
                         annotation.car = car
                         annotations.append(annotation)
                     }
@@ -252,7 +253,7 @@ final class SearchCarsViewModel: ViewModelType {
                 if carBookedFounded == false && self.carBooked != nil {
                     if let coordinate = self.carBooked!.location?.coordinate {
                         let annotation = CarAnnotation(position: coordinate)
-                        annotation.icon = annotation.getImage()
+                      //  annotation.icon = annotation.getImage()
                         annotation.car = self.carBooked!
                         annotations.append(annotation)
                     }
@@ -270,7 +271,8 @@ final class SearchCarsViewModel: ViewModelType {
                             let annotation = FeedAnnotation(position: coordinate)
                             annotation.icon = annotation.getImage()
                             annotation.feed = feed
-                            annotations.append(annotation)
+                        // TODO GOOGLE
+                            //    annotations.append(annotation)
                         }
                     }
                     self.array_annotations.value = annotations

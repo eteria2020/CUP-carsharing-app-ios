@@ -7,8 +7,9 @@
 
 import UIKit
 import MapKit
+import GoogleMaps
 
-class CityAnnotation: FBAnnotation {
+class CityAnnotation: GMSMarker {
     var city: City?
     lazy var image: UIImage = self.getImage()
     
