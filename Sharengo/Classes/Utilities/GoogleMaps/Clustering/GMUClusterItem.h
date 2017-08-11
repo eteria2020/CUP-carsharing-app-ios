@@ -14,6 +14,7 @@
  */
 
 #import <CoreLocation/CoreLocation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * This protocol defines the contract for a cluster item.
@@ -24,6 +25,7 @@
  * Returns the position of the item.
  */
 @property(nonatomic, readonly) CLLocationCoordinate2D position;
+@property(nonatomic) UIImage *marker;
 
 @end
 

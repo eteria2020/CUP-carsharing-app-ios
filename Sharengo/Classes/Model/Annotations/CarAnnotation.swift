@@ -9,27 +9,18 @@ import UIKit
 import GoogleMaps
 
 class CarAnnotation: NSObject, GMUClusterItem {
-    /**
-     * Returns the position of the item.
-     */
     var position: CLLocationCoordinate2D
-
+    var marker: UIImage
     var car:Car?
-    lazy var image: UIImage = self.getImage()
-    
     
     init(position: CLLocationCoordinate2D) {
         self.position = position
-    }
-    
-    // MARK: - Lazy methods
-    
-    func getImage() -> UIImage {
         if let car = self.car {
             if car.nearest || car.booked || car.opened {
-                return UIImage(named: "ic_auto_big")!
+                self.marker = UIImage(named: "ic_auto_big")!
+                return
             }
         }
-        return UIImage(named: "ic_auto")!
+        self.marker = UIImage(named: "ic_auto")!
     }
 }

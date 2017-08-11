@@ -10,6 +10,7 @@ import MapKit
 import GoogleMaps
 
 class FeedAnnotation: GMSMarker {
+    // TODO GOOGLE (GMUClusterItem)
     var feed:Feed?
     lazy var image: UIImage = self.getImage()
     
