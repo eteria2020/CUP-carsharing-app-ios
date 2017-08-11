@@ -60,8 +60,8 @@ struct Router : RouterType {
     
     public static func from<Source> (_ source:Source, viewModel:ViewModelType) -> RouterAction where Source: UIViewController {
         switch viewModel {
-        case is SearchCarsViewModel:
-            let destination:SearchCarsViewController = (Storyboard.main.scene(.searchCars))
+        case is MapViewModel:
+            let destination:MapViewController = (Storyboard.main.scene(.map))
             destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
         case is LoginViewModel:

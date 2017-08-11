@@ -15,8 +15,7 @@ import pop
 import SideMenu
 import DeviceKit
 
-fileprivate enum HomeItem
-{
+fileprivate enum HomeItem {
     case searchCar
     case profile
     case feeds
@@ -52,7 +51,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 switch viewModel {
                 case is SearchBarViewModel:
                     self.openSearchCars(viewModel: viewModel)
-                case is SearchCarsViewModel:
+                case is MapViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .searchCar)
                 case is ProfileViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .profile)

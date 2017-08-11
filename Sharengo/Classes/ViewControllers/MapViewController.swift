@@ -1,5 +1,5 @@
 //
-//  SearchCarsViewController.swift
+//  MapViewController.swift
 //  Sharengo
 //
 //  Created by Dedecube on 18/05/17.
@@ -19,17 +19,20 @@ import KeychainSwift
 import SideMenu
 import GoogleMaps
 
-class SearchCarsViewController : BaseViewController, ViewModelBindable {
+/** The Map class provides features related to display content on a map. These includes:
+ - show cars
+ - show feeds
+ */
+
+public class MapViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_carBookingPopup: CarBookingPopupView!
     @IBOutlet fileprivate weak var view_circularMenu: CircularMenuView!
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
     @IBOutlet fileprivate weak var mapView: GMSMapView!
-    var clusterManager: GMUClusterManager!
     @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
     fileprivate var closeCarPopupHeight: CGFloat = 0.0
-    
     fileprivate var checkedUserPosition: Bool = false
     fileprivate let carPopupDistanceOpenDoors: Int = 50
     fileprivate let clusteringRadius: Double = 35000
@@ -37,13 +40,21 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
     fileprivate var selectedCar: Car?
     fileprivate var selectedFeed: Feed?
     fileprivate var apiController: ApiController = ApiController()
-    var viewModel: SearchCarsViewModel?
+    fileprivate var clusterManager: GMUClusterManager!
+    var viewModel: MapViewModel?
     var carTripTimeStart: Date?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? SearchCarsViewModel else {
+    /**
+     Lorem ipsum dolor sit amet.
+     
+     @param bar Consectetur adipisicing elit.
+     
+     @return Sed do eiusmod tempor.
+    */
+    public func bind(to viewModel: ViewModelType?) {
+        guard let viewModel = viewModel as? MapViewModel else {
             return
         }
         self.viewModel = viewModel
@@ -57,36 +68,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
                             self?.clusterManager.add(annotation)
                         }
                         self?.clusterManager.cluster()
-//                        for annotation in array {
-//                            annotation.map = self?.mapView
-//                        }
                     }
-//                    if self?.clusteringInProgress == true {
-//                        self?.clusteringManager.removeAll()
-//                        self?.clusteringManager.add(annotations: array)
-//                        if let radius = self?.getRadius() {
-//                            if radius > 150 {
-//                                //                                            let mapBoundsWidth = Double((self?.mapView?.bounds.size.width)!)
-//                                let visibleMapRect = GMSCoordinateBounds(region: (self?.mapView.projection.visibleRegion())!)
-//                                //                                            let mapRectWidth = self?.mapView?.visibleMapRect.size.width
-//                                //                                            let scale = mapBoundsWidth / mapRectWidth!
-//                                let annotationArray = self?.clusteringManager.clusteredAnnotations(withinMapRect: visibleMapRect, zoomScale: 1.0)
-//                                DispatchQueue.main.async {
-//                                    self?.clusteringManager.display(annotations: annotationArray!, onMapView:self!.mapView!)
-//                                }
-//                            } else {
-//                                DispatchQueue.main.async {
-//                                    self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
-//                                }
-//                            }
-//                        } else {
-//                            DispatchQueue.main.async {
-//                                self?.clusteringManager.display(annotations: array, onMapView:self!.mapView!)
-//                            }
-//                        }
-                    
-                        self?.setUpdateButtonAnimated(false)
-//                    }
+                    self?.setUpdateButtonAnimated(false)
                     if let car = self?.selectedCar {
                         self?.view_carPopup.updateWithCar(car: car)
                     }
@@ -357,8 +340,8 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
             }
             self.getResults()
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(SearchCarsViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
         self.setCarsButtonVisible(false)
     }
     
@@ -1007,7 +990,7 @@ class SearchCarsViewController : BaseViewController, ViewModelBindable {
 
 // MARK: - Map delegate
 
-extension SearchCarsViewController: GMSMapViewDelegate {
+extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
@@ -1018,35 +1001,6 @@ extension SearchCarsViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.getResults()
-        // TODO GOOGLE
-        /*
-        if self.clusteringInProgress {
-            DispatchQueue.global(qos: .userInitiated).async {
-                if let radius = self.getRadius() {
-                    if radius > 150 {
-                        // TODO GOOGLE: visible rect
-                        //                        let mapBoundsWidth = Double(self.mapView.bounds.size.width)
-                        //
-                        //
-                        //                        let mapRectWidth = self.mapView.projection.visibleRegion().size.width
-                        //                        let scale = mapBoundsWidth / mapRectWidth
-                        //                        let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
-                        //                        DispatchQueue.main.async {
-                        //                            self.clusteringManager.display(annotations: annotationArray, onMapView: self.mapView)
-                        //                        }
-                    } else {
-                       DispatchQueue.main.async {
-                            self.clusteringManager.display(annotations: self.viewModel?.array_annotations.value ?? [], onMapView:self.mapView!)
-                        }
-                    }
-                } else {
-                   DispatchQueue.main.async {
-                        self.clusteringManager.display(annotations: self.viewModel?.array_annotations.value ?? [], onMapView:self.mapView!)
-                   }
-                }
-            }
-        }
-        */
     }
     
     // TODO GOOGLE (cambiare grafica utente)

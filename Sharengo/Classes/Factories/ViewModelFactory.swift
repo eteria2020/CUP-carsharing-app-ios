@@ -45,8 +45,8 @@ struct ViewModelFactory {
         return OnBoardViewModel()
     }
 
-    static func searchCars(type: SearchCarsType) -> ViewModelType {
-        return SearchCarsViewModel(type: type)
+    static func map(type: MapType) -> ViewModelType {
+        return MapViewModel(type: type)
     }
     
     static func searchBar() -> ViewModelType {

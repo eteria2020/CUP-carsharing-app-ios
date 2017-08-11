@@ -41,7 +41,7 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
         
         self.btn_searchCars.rx.tap.asObservable()
             .subscribe(onNext:{
-                Router.from(self,viewModel: ViewModelFactory.searchCars(type: .searchCars)).execute()
+                Router.from(self,viewModel: ViewModelFactory.map(type: .searchCars)).execute()
             }).addDisposableTo(disposeBag)
     }
     

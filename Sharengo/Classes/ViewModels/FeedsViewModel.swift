@@ -72,7 +72,7 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
                 }
                 return .just(.empty)
             case .aroundMe:
-                return .just(.viewModel(ViewModelFactory.searchCars(type: .feeds)))
+                return .just(.viewModel(ViewModelFactory.map(type: .feeds)))
             }
         }
     }

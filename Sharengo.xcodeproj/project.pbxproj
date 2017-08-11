@@ -200,8 +200,8 @@
 		4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */; };
 		4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */; };
 		4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */; };
-		4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */; };
-		4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */; };
+		4DD9C7E31ECDC48B00BE4218 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */; };
+		4DD9C7EC1ECDC50500BE4218 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */; };
 		4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */; };
 		4DEBEE711EED373800AEF617 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBEE701EED373800AEF617 /* Banner.swift */; };
 		4DF0EC6E1F077AE00003D502 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0EC6D1F077AE00003D502 /* FavouritesViewController.swift */; };
@@ -451,8 +451,8 @@
 		4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarCollectionViewCell.swift; path = Classes/Views/SearchBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarItemViewModel.swift; path = Classes/ViewModels/SearchBarItemViewModel.swift; sourceTree = "<group>"; };
 		4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Favorite.swift; path = Classes/Model/Favorite.swift; sourceTree = "<group>"; };
-		4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewController.swift; path = Classes/ViewControllers/SearchCarsViewController.swift; sourceTree = "<group>"; };
-		4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchCarsViewModel.swift; path = Classes/ViewModels/SearchCarsViewModel.swift; sourceTree = "<group>"; };
+		4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Classes/ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
+		4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewModel.swift; path = Classes/ViewModels/MapViewModel.swift; sourceTree = "<group>"; };
 		4DE361651EE801F9007DC92C /* SVPulsingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPulsingAnnotationView.h; sourceTree = "<group>"; };
 		4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPulsingAnnotationView.m; sourceTree = "<group>"; };
 		4DEBEE701EED373800AEF617 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
@@ -1098,7 +1098,7 @@
 				03AF5D321EEE7B4000AC8826 /* Login */,
 				03C6322F1EEFC84B00BFEDA3 /* Signup */,
 				03C6323B1EF0165700BFEDA3 /* Profile */,
-				4DD9C7ED1ECDC52900BE4218 /* SearchCars */,
+				4DD9C7ED1ECDC52900BE4218 /* Map */,
 				03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */,
 				036D92031F0256330076D22D /* Settings */,
 				033A403C1F06334000B05A89 /* CarTripsList */,
@@ -1215,13 +1215,13 @@
 			name = Theme;
 			sourceTree = "<group>";
 		};
-		4DD9C7ED1ECDC52900BE4218 /* SearchCars */ = {
+		4DD9C7ED1ECDC52900BE4218 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				4DD9C7DE1ECDC48B00BE4218 /* SearchCarsViewController.swift */,
-				4DD9C7EA1ECDC50500BE4218 /* SearchCarsViewModel.swift */,
+				4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */,
+				4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */,
 			);
-			name = SearchCars;
+			name = Map;
 			sourceTree = "<group>";
 		};
 		4DE361641EE801F9007DC92C /* SVPulsingAnnotation */ = {
@@ -1483,7 +1483,7 @@
 				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
 				4D2EE30B1F05328E00EB2273 /* PublisheresAPIController.swift in Sources */,
 				037BDFBE1F03947F00C95962 /* SettingsCitiesViewModel.swift in Sources */,
-				4DD9C7E31ECDC48B00BE4218 /* SearchCarsViewController.swift in Sources */,
+				4DD9C7E31ECDC48B00BE4218 /* MapViewController.swift in Sources */,
 				03AF5D781EEEBED300AC8826 /* String+Extensions.swift in Sources */,
 				03A86FA01EF9700A009C72F4 /* MenuViewModel.swift in Sources */,
 				037689FA1F1608D900523BAA /* FeedItemCollectionViewCell.swift in Sources */,
@@ -1609,7 +1609,7 @@
 				4D60EA861F3E037E0085BFE3 /* GMUWrappingDictionaryKey.m in Sources */,
 				4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */,
 				037BDFBF1F03947F00C95962 /* SettingsCityItemViewModel.swift in Sources */,
-				4DD9C7EC1ECDC50500BE4218 /* SearchCarsViewModel.swift in Sources */,
+				4DD9C7EC1ECDC50500BE4218 /* MapViewModel.swift in Sources */,
 				0366DD991F1F474C006657D9 /* SupportViewModel.swift in Sources */,
 				4D60EA8F1F3E037E0085BFE3 /* GMUGeometryCollection.m in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,

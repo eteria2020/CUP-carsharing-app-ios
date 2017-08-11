@@ -47,8 +47,8 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
                     let destination: SignupViewController = (Storyboard.main.scene(.signup))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
-                case is SearchCarsViewModel:
-                    let destination: SearchCarsViewController = (Storyboard.main.scene(.searchCars))
+                case is MapViewModel:
+                    let destination: MapViewController = (Storyboard.main.scene(.map))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 case is ProfileViewModel:

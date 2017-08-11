@@ -57,8 +57,8 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
                         if !(CoreController.shared.currentViewController is SignupViewController) {
                             return .just(.viewModel(viewModel))
                         }
-                    case is SearchCarsViewModel:
-                        if !(CoreController.shared.currentViewController is SearchCarsViewController) {
+                    case is MapViewModel:
+                        if !(CoreController.shared.currentViewController is MapViewController) {
                             return .just(.viewModel(viewModel))
                         }
                     case is SettingsViewModel:
@@ -113,7 +113,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), KeychainSwift().get("UserFirstname")!)
             self.userIconIsHidden = false
             let menuItem1 = MenuItem(title: "lbl_menuProfile", icon: "ic_profilo", viewModel: nil)
-            let menuItem2 = MenuItem(title: "lbl_menuSearchCars", icon: "ic_prenota", viewModel: ViewModelFactory.searchCars(type: .searchCars))
+            let menuItem2 = MenuItem(title: "lbl_menuSearchCars", icon: "ic_prenota", viewModel: ViewModelFactory.map(type: .searchCars))
             let menuItem3 = MenuItem(title: "lbl_menuRaces", icon: "ic_cron_corse", viewModel: ViewModelFactory.carTrips())
             let menuItem4 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: ViewModelFactory.support())
             let menuItem5 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: ViewModelFactory.faq())

@@ -1,5 +1,5 @@
 //
-//  SearchCarsViewModel.swift
+//  MapViewModel.swift
 //  Sharengo
 //
 //  Created by Dedecube on 18/05/17.
@@ -16,7 +16,7 @@ import Gloss
 import ReachabilitySwift
 import GoogleMaps
 
-enum SearchCarsType {
+enum MapType {
     case searchCars
     case feeds
     
@@ -30,7 +30,7 @@ enum SearchCarsType {
     }
 }
 
-final class SearchCarsViewModel: ViewModelType {
+final class MapViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
     fileprivate var resultsDispose: DisposeBag?
@@ -42,7 +42,7 @@ final class SearchCarsViewModel: ViewModelType {
     var carBooked: Car?
     var carBooking: CarBooking?
     var carTrip: CarTrip?
-    let type: SearchCarsType
+    let type: MapType
     var showCars: Bool = false
     var errorOffers: Bool?
     var errorEvents: Bool?
@@ -50,7 +50,7 @@ final class SearchCarsViewModel: ViewModelType {
     
     var array_annotations: Variable<[GMUClusterItem]> = Variable([])
 
-    init(type: SearchCarsType) {
+    init(type: MapType) {
         self.type = type
         self.getAllCars()
         self.timerCars = Timer.scheduledTimer(timeInterval: 60*5, target: self, selector: #selector(self.getAllCars), userInfo: nil, repeats: true)
@@ -245,7 +245,6 @@ final class SearchCarsViewModel: ViewModelType {
                 for car in self.cars {
                     if let coordinate = car.location?.coordinate {
                         let annotation = CarAnnotation(position: coordinate)
-                       // annotation.icon = annotation.getImage()
                         annotation.car = car
                         annotations.append(annotation)
                     }
@@ -253,7 +252,6 @@ final class SearchCarsViewModel: ViewModelType {
                 if carBookedFounded == false && self.carBooked != nil {
                     if let coordinate = self.carBooked!.location?.coordinate {
                         let annotation = CarAnnotation(position: coordinate)
-                      //  annotation.icon = annotation.getImage()
                         annotation.car = self.carBooked!
                         annotations.append(annotation)
                     }

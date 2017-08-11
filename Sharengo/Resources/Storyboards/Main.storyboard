@@ -489,10 +489,10 @@
             </objects>
             <point key="canvasLocation" x="-1407.2" y="115.59220389805098"/>
         </scene>
-        <!--Search Cars View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="Tzm-Tm-dDi">
             <objects>
-                <viewController storyboardIdentifier="searchCars" id="ofI-yf-dPQ" customClass="SearchCarsViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" id="ofI-yf-dPQ" customClass="MapViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dAJ-Xi-3Ci"/>
                         <viewControllerLayoutGuide type="bottom" id="0Fx-JV-hDM"/>
