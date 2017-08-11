@@ -30,7 +30,7 @@ enum MapType {
     }
 }
 
-final class MapViewModel: ViewModelType {
+public final class MapViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
     fileprivate var resultsDispose: DisposeBag?

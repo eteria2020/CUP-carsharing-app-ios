@@ -1,3 +1,4 @@
+
 import Foundation
 import RxCocoa
 import RxSwift
@@ -115,17 +116,17 @@ extension Collectionable where Self : UIViewController {
     }
 }
 
-class BaseViewController: UIViewController {
-    override var prefersStatusBarHidden: Bool {
+public class BaseViewController: UIViewController {
+    override public var prefersStatusBarHidden: Bool {
         return false
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         CoreController.shared.currentViewController = self
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(BaseViewController.updateData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
