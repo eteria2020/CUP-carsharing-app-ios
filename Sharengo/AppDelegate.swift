@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupHistory()
         self.setupFavourites()
         self.setupSettings()
+        self.setupCities()
         self.setupGoogleMaps()
         self.setupFabric()
         
@@ -103,6 +104,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.object(forKey: "languageDic") == nil {
             UserDefaults.standard.set([String: String](), forKey: "languageDic")
+        }
+    }
+    
+    fileprivate func setupCities() {
+        if var cache = UserDefaults.standard.object(forKey: "cacheCities") as? Data {
+            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: cache) as? [CityCache] {
+                var cities: [City] = [City]()
+                for city in Array(unarchivedArray) {
+                    cities.append(city.getCity())
+                }
+                CoreController.shared.cities = cities
+            }
         }
     }
 }

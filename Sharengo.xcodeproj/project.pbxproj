@@ -1249,9 +1249,9 @@
 			isa = PBXGroup;
 			children = (
 				4D0471B21F3F05B500C454A2 /* UserAnnotation.swift */,
+				4DA554501EE56337001627E7 /* CityAnnotation.swift */,
 				4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */,
 				4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */,
-				4DA554501EE56337001627E7 /* CityAnnotation.swift */,
 			);
 			name = Annotations;
 			path = Classes/Model/Annotations;

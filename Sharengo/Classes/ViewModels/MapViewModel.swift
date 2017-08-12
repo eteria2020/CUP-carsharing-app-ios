@@ -249,15 +249,13 @@ public final class MapViewModel: ViewModelType {
             DispatchQueue.main.async {
                 for car in self.cars {
                     if let coordinate = car.location?.coordinate {
-                        let annotation = CarAnnotation(position: coordinate)
-                        annotation.car = car
+                        let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked)
                         annotations.append(annotation)
                     }
                 }
                 if carBookedFounded == false && self.carBooked != nil {
                     if let coordinate = self.carBooked!.location?.coordinate {
-                        let annotation = CarAnnotation(position: coordinate)
-                        annotation.car = self.carBooked!
+                        let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked)
                         annotations.append(annotation)
                     }
                 }
@@ -308,12 +306,14 @@ public final class MapViewModel: ViewModelType {
                     car.opened = carBooked.opened
                 }
             }
-            if self.nearestCar == nil {
-                self.nearestCar = car
-            } else if let nearestCar = nearestCar {
-                if let nearestCarDistance = nearestCar.distance, let carDistance = car.distance {
-                    if nearestCarDistance > carDistance {
-                        self.nearestCar = car
+            if car.distance ?? 0 > 0 {
+                if self.nearestCar == nil {
+                    self.nearestCar = car
+                } else if let nearestCar = nearestCar {
+                    if let nearestCarDistance = nearestCar.distance, let carDistance = car.distance {
+                        if nearestCarDistance > carDistance {
+                            self.nearestCar = car
+                        }
                     }
                 }
             }
@@ -321,7 +321,9 @@ public final class MapViewModel: ViewModelType {
                 return car.plate == singleCar.plate
             })
             if let index = index {
-                self.cars[index] = car
+                if self.cars.count > index {
+                    self.cars[index] = car
+                }
             }
         }
         self.nearestCar?.nearest = true

@@ -24,7 +24,7 @@ class CoreController {
     var currentCarBooking: CarBooking?
     var currentCarTrip: CarTrip?
     var notificationIsShowed: Bool = false
-    var cities: [City] = [] // TODO: devono essere memorizzate sul dispositivo per evitare che aprendo l'applicazione senza connessione non siano disponibili
+    var cities: [City] = []
     
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -64,6 +64,12 @@ class CoreController {
                     if response.status_bool == true, let data = response.array_data {
                         if let cities = [City].from(jsonArray: data) {
                             self.cities = cities
+                            var cache: [CityCache] = [CityCache]()
+                            for city in self.cities {
+                                cache.append(city.getCityCache())
+                            }
+                            let archivedArray = NSKeyedArchiver.archivedData(withRootObject: cache as Array)
+                            UserDefaults.standard.set(archivedArray, forKey: "cacheCities")
                         }
                     }
                 case .error(_):

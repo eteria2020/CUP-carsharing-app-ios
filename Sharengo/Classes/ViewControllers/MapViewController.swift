@@ -19,7 +19,8 @@ import KeychainSwift
 import SideMenu
 import GoogleMaps
 
-/** The Map class provides features related to display content on a map. These include:
+/**
+ The Map class provides features related to display content on a map. These include:
  - show cars
  - show feeds
  */
@@ -209,13 +210,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.view_searchBar.updateCollectionView(show: true)
             case .address(let address):
                 if let location = address.location {
-                    self?.centerMap(on: location, zoom: 17)
+                    self?.centerMap(on: location, zoom: 17, animated: true)
                 }
                 self?.updateSpeechSearchBar()
             case .car(let car):
                 if let location = car.location {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
-                    self?.centerMap(on: newLocation, zoom: 17)
+                    self?.centerMap(on: newLocation, zoom: 17, animated: true)
                 }
                 self?.view_carPopup.updateWithCar(car: car)
                 self?.view.layoutIfNeeded()
@@ -290,7 +291,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self?.getResultsWithoutLoading()
                                 if let location = car.location {
                                     let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                    self?.centerMap(on: newLocation, zoom: 18.5)
+                                    self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                 }
                                 if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                     DispatchQueue.main.async {
@@ -355,7 +356,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                     self?.getResultsWithoutLoading()
                                     if let location = car.location {
                                         let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                        self?.centerMap(on: newLocation, zoom: 18.5)
+                                        self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                     }
                                     if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                         DispatchQueue.main.async {
@@ -402,7 +403,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method updates search bar speech controller
-    */
+     */
     public func updateSpeechSearchBar() {
         self.view_searchBar.updateCollectionView(show: false)
         if self.view_searchBar.viewModel?.speechInProgress.value == true {
@@ -415,7 +416,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method hides popup and reset variables
-    */
+     */
     @objc public func closeCarBookingPopupView() {
         if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carBooking != nil {
             let dispatchTime = DispatchTime.now() + 1
@@ -439,7 +440,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method hides popup
-    */
+     */
     public func closeCarPopup() {
         self.view_searchBar.endEditing(true)
         UIView.animate(withDuration: 0.2, animations: {
@@ -452,11 +453,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method shows nearest car
-    */
+     */
     public func showNearestCar() {
         if let location = self.viewModel?.nearestCar?.location {
             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            self.centerMap(on: newLocation, zoom: 17)
+            self.centerMap(on: newLocation, zoom: 17, animated: true)
             self.viewModel?.showCars = true
             self.setCarsButtonVisible(true)
             self.updateResults()
@@ -473,7 +474,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /**
      This method open car after checked if the user is logged in and if the distance between him and the car is less than carPopupDistanceOpenDoors
      - Parameter car: The car that has to be opened
-    */
+     */
     public func openCar(car: Car) {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
@@ -535,7 +536,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /**
      This method book car after checked if the user is logged in
      - Parameter car: The car that has to be booked
-    */
+     */
     public func bookCar(car: Car) {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
@@ -620,7 +621,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method delete car booking
-    */
+     */
     public func deleteBookCar() {
         let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupDeleteMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(),
                                 okButtonHandler: { alertView in
@@ -711,7 +712,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /**
      This method enables or disables cars button in circular menu
      - Parameter visible: Visible determinates if car button is enabled or disabled
-    */
+     */
     public func setCarsButtonVisible(_ visible: Bool) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
         if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
@@ -735,7 +736,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /**
      This method starts or stops update button animation in circular menu
      - Parameter animated: Animated determinates if update button is animated or not
-    */
+     */
     public func setUpdateButtonAnimated(_ animated: Bool) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
         if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
@@ -759,7 +760,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /**
      This method update turn button rotation in circular menu
      - Parameter degrees: Degrees of rotation
-    */
+     */
     public func setTurnButtonDegrees(_ degrees: CGFloat) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
         if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
@@ -782,14 +783,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method updates results
-    */
+     */
     public func updateResults() {
         self.getResults()
     }
     
     /**
      This method stops update results
-    */
+     */
     public func stopRequest() {
         self.setUpdateButtonAnimated(false)
         self.viewModel?.stopRequest()
@@ -797,7 +798,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method checks radius with animation. If radius is less than clusteringRadius application asks new results from server, if radius is over application shows cities
-    */
+     */
     public func getResults() {
         self.stopRequest()
         if let radius = self.getRadius() {
@@ -818,7 +819,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method checks radius without animation.
-    */
+     */
     public func getResultsWithoutLoading() {
         if let radius = self.getRadius() {
             if radius < self.clusteringRadius {
@@ -830,7 +831,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method adds city annotations.
-    */
+     */
     public func addCityAnnotations() {
         if clusteringInProgress == false {
             self.mapView.clear()
@@ -857,7 +858,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method setups map and cluster manager
-    */
+     */
     public func setupMap() {
         let iconGenerator = GMUDefaultClusterIconGenerator()
         let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
@@ -878,7 +879,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.showUserPositionVisible(false)
                     }
                 }
-        })
+            })
         // Italy
         let coordinateNorthEast = CLLocationCoordinate2DMake(35.4897, 6.62672)
         let coordinateSouthWest = CLLocationCoordinate2DMake(47.092, 18.7976)
@@ -899,7 +900,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.setUserPositionButtonVisible(true)
                 self.checkedUserPosition = true
                 if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
-                    self.centerMap(on: userLocation, zoom: 16.5)
+                    self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                 }
                 return
             }
@@ -910,7 +911,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
                 if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
-                    self.centerMap()
+                    self.centerMap(on: location!, zoom: 16.5, animated: false)
                 }
             }
         })
@@ -918,7 +919,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method checks user position when user opens the app from foreground
-    */
+     */
     public func checkUserPositionFromForeground() {
         self.view_searchBar.updateInterface()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -933,7 +934,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method gets map center coordinate
-    */
+     */
     public func getCenterCoordinate() -> CLLocationCoordinate2D {
         let centerPoint = self.mapView.center
         let centerCoordinate = self.mapView.projection.coordinate(for: centerPoint)
@@ -942,7 +943,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method gets map top center coordinate
-    */
+     */
     public func getTopCenterCoordinate() -> CLLocationCoordinate2D {
         let topCenterCoor = self.mapView.convert(CGPoint(x: self.mapView.frame.size.width / 2.0, y: 0), from: self.mapView)
         let point = self.mapView.projection.coordinate(for: topCenterCoor)
@@ -951,7 +952,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method gets map radius
-    */
+     */
     public func getRadius() -> CLLocationDistance? {
         let centerCoordinate = self.getCenterCoordinate()
         let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
@@ -963,12 +964,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method centers map on user position or shows an error message
-    */
+     */
     public func centerMap() {
         let locationManager = LocationManager.sharedInstance
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             if let userLocation = locationManager.lastLocationCopy.value {
-                self.centerMap(on: userLocation, zoom: 16.5)
+                self.centerMap(on: userLocation, zoom: 16.5, animated: true)
                 return
             }}
         self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
@@ -978,17 +979,22 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      This method centers map on position with zoom
      - Parameter position: Location in which the map has to be centered
      - Parameter zoom: Zoom level of the map
+     - Parameter animated: Animated determinates if the action is animated or not
      */
-    public func centerMap(on position: CLLocation, zoom: Float) {
+    public func centerMap(on position: CLLocation, zoom: Float, animated: Bool) {
         let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
         let newCamera = GMSCameraPosition.camera(withTarget: location, zoom: zoom)
         let update = GMSCameraUpdate.setCamera(newCamera)
-        mapView.moveCamera(update)
+        if animated {
+            self.mapView.animate(with: update)
+        } else {
+            self.mapView.moveCamera(update)
+        }
     }
     
     /**
      This method turns map toward the north
-    */
+     */
     public func turnMap() {
         let newCamera = GMSCameraPosition.camera(withLatitude: self.mapView.camera.target.latitude,
                                                  longitude: self.mapView.camera.target.longitude,
@@ -1019,7 +1025,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method shows a general error message
-    */
+     */
     public func showGeneralAlert() {
         let dialog = ZAlertView(title: nil, message: "alert_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
             alertView.dismissAlertView()
@@ -1030,7 +1036,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method shows a localization alert message (user can open settings from it)
-    */
+     */
     public func showLocalizationAlert(message: String) {
         let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                 okButtonHandler: { alertView in
@@ -1050,7 +1056,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method shows a login alert message (user can open login from it)
-    */
+     */
     public func showLoginAlert() {
         let dialog = ZAlertView(title: nil, message: "alert_loginError".localized(), isOkButtonLeft: false, okButtonText: "btn_login".localized(), cancelButtonText: "btn_cancel".localized(),
                                 okButtonHandler: { alertView in
@@ -1070,7 +1076,7 @@ extension MapViewController: GMSMapViewDelegate {
     
     /**
      This method is called when map is moved: it updates turn button in circular menu and stop request and research
-    */
+     */
     public func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.stopRequest()
@@ -1079,7 +1085,7 @@ extension MapViewController: GMSMapViewDelegate {
     
     /**
      This method is called when map ended moving: it updates turn button in circular menu and get results
-    */
+     */
     public func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.getResults()
@@ -1087,51 +1093,48 @@ extension MapViewController: GMSMapViewDelegate {
     
     /**
      This method is called when user taps marker: depending on the type of marker zoom actions or popup displays are performed
-    */
+     */
     public func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let cityAnnotation = marker as? CityAnnotation {
             if let location = cityAnnotation.city?.location {
-                var zoom = self.mapView.camera.zoom
-                zoom += 2
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                self.centerMap(on: newLocation, zoom: zoom)
+                self.centerMap(on: newLocation, zoom: 11.5, animated: true)
             }
         } else if let carAnnotation = marker.userData as? CarAnnotation {
-            if let car = carAnnotation.car {
-                if let bookedCar = self.viewModel?.carBooked {
-                    if car.plate != bookedCar.plate {
-                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
-                    }
-                    return true
+            let car = carAnnotation.car
+            if let bookedCar = self.viewModel?.carBooked {
+                if car.plate != bookedCar.plate {
+                    let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
                 }
-                if let location = car.location {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                    self.centerMap(on: newLocation, zoom: 17)
-                }
-                self.view_carPopup.updateWithCar(car: car)
-                self.view_carPopup.viewModel?.type.value = .car
-                self.view.layoutIfNeeded()
-                UIView .animate(withDuration: 0.2, animations: {
-                    if car.type.isEmpty {
-                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
-                    } else {
-                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
-                    }
-                    self.view_carPopup.alpha = 1.0
-                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
-                    self.view.layoutIfNeeded()
-                    self.selectedCar = car
-                })
+                return true
             }
+            if let location = car.location {
+                let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                self.centerMap(on: newLocation, zoom: 17, animated: true)
+            }
+            self.view_carPopup.updateWithCar(car: car)
+            self.view_carPopup.viewModel?.type.value = .car
+            self.view.layoutIfNeeded()
+            UIView .animate(withDuration: 0.2, animations: {
+                if car.type.isEmpty {
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+                } else {
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
+                }
+                self.view_carPopup.alpha = 1.0
+                self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                self.view.layoutIfNeeded()
+                self.selectedCar = car
+            })
         } else if let feedAnnotation = marker.userData as? FeedAnnotation {
             if let feed = feedAnnotation.feed {
                 if let location = feed.feedLocation {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                    self.centerMap(on: newLocation, zoom: 17)
+                    self.centerMap(on: newLocation, zoom: 17, animated: true)
                 }
                 self.view_carPopup.updateWithFeed(feed: feed)
                 self.view_carPopup.viewModel?.type.value = .feed
@@ -1149,7 +1152,7 @@ extension MapViewController: GMSMapViewDelegate {
             var zoom = self.mapView.camera.zoom
             zoom += 2
             let newLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-            self.centerMap(on: newLocation, zoom: zoom)
+            self.centerMap(on: newLocation, zoom: zoom, animated: true)
         }
         return true
     }
