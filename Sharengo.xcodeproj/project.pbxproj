@@ -103,6 +103,7 @@
 		03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C6325E1EF02E8400BFEDA3 /* ProfileViewController.swift */; };
 		03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */; };
 		4D0471B11F3EF61E00C454A2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0471B01F3EF61E00C454A2 /* LocationManager.swift */; };
+		4D0471B31F3F05B500C454A2 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0471B21F3F05B500C454A2 /* UserAnnotation.swift */; };
 		4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */; };
 		4D164BE01F091F5100D4EAB7 /* NoCarTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */; };
 		4D164BE21F091F6500D4EAB7 /* NoCarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */; };
@@ -313,6 +314,7 @@
 		03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Classes/ViewModels/ProfileViewModel.swift; sourceTree = "<group>"; };
 		21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0471B01F3EF61E00C454A2 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4D0471B21F3F05B500C454A2 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Theme.swift"; path = "Classes/Theme/UIButton+Theme.swift"; sourceTree = "<group>"; };
 		4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoCarTripsViewController.swift; path = Classes/ViewControllers/NoCarTripsViewController.swift; sourceTree = "<group>"; };
 		4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoCarTripsViewModel.swift; path = Classes/ViewModels/NoCarTripsViewModel.swift; sourceTree = "<group>"; };
@@ -1246,6 +1248,7 @@
 		4DFD982F1ED45CCE00880EA1 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
+				4D0471B21F3F05B500C454A2 /* UserAnnotation.swift */,
 				4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */,
 				4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */,
 				4DA554501EE56337001627E7 /* CityAnnotation.swift */,
@@ -1596,6 +1599,7 @@
 				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,
 				03AF5D751EEE83FC00AC8826 /* AnimatedTextView.swift in Sources */,
 				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,
+				4D0471B31F3F05B500C454A2 /* UserAnnotation.swift in Sources */,
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D60EA8C1F3E037E0085BFE3 /* GMUGeometryRenderer.m in Sources */,

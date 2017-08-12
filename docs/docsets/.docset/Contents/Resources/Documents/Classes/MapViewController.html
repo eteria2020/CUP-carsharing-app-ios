@@ -14,7 +14,7 @@
     <a title="MapViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (16% documented)</p>
+        <p><a href="../index.html"> Docs</a> (17% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -92,6 +92,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes.html#/s:C8Sharengo7Setting">Setting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:C8Sharengo14UserAnnotation">UserAnnotation</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ZAlertView.html">ZAlertView</a>
@@ -537,6 +540,33 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">carTripTimeStart</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC8Sharengo17MapViewController14userAnnotationCS_14UserAnnotation"></a>
+                    <a name="//apple_ref/swift/Property/userAnnotation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8Sharengo17MapViewController14userAnnotationCS_14UserAnnotation">userAnnotation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Variable used to save user annotation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">userAnnotation</span><span class="p">:</span> <span class="kt"><a href="../Classes.html#/s:C8Sharengo14UserAnnotation">UserAnnotation</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes.html#/s:C8Sharengo14UserAnnotation">UserAnnotation</a></span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -1321,7 +1351,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This method setups map and cluster manager. If it&rsquo;s the first time that user opens the map the application doesn&rsquo;t show his position</p>
+                        <p>This method setups map and cluster manager</p>
 
                       </div>
                       <div class="declaration">
@@ -1356,6 +1386,33 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">checkUserPosition</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8Sharengo17MapViewController31checkUserPositionFromForegroundFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/checkUserPositionFromForeground()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8Sharengo17MapViewController31checkUserPositionFromForegroundFT_T_">checkUserPositionFromForeground()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This method checks user position when user opens the app from foreground</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">checkUserPositionFromForeground</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -1551,6 +1608,52 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">turnMap</span><span class="p">()</span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8Sharengo17MapViewController23showUserPositionVisibleFSbT_"></a>
+                    <a name="//apple_ref/swift/Method/showUserPositionVisible(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8Sharengo17MapViewController23showUserPositionVisibleFSbT_">showUserPositionVisible(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This method shows or hide user position</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">showUserPositionVisible</span><span class="p">(</span><span class="n">_</span> <span class="nv">visible</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>visible</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Visible determinates if user position is shown or not</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

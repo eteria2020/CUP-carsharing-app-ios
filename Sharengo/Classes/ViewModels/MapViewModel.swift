@@ -49,7 +49,7 @@ public final class MapViewModel: ViewModelType {
     var feeds = [Feed]()
     
     var array_annotations: Variable<[GMUClusterItem]> = Variable([])
-
+    
     init(type: MapType) {
         self.type = type
         self.getAllCars()
@@ -76,19 +76,20 @@ public final class MapViewModel: ViewModelType {
                             })
                             // Distance
                             for car in self.allCars {
-                                // TODO LOCATION
-//                                let locationController = LocationController.shared
-//                                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-//                                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-//                                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-//                                        let index = self.cars.index(where: { (singleCar) -> Bool in
-//                                            return car.plate == singleCar.plate
-//                                        })
-//                                        if let index = index {
-//                                            self.cars[index].distance = car.distance
-//                                        }
-//                                    }
-//                                }
+                                let locationManager = LocationManager.sharedInstance
+                                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                                    if let userLocation = locationManager.lastLocationCopy.value {
+                                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                                            let index = self.cars.index(where: { (singleCar) -> Bool in
+                                                return car.plate == singleCar.plate
+                                            })
+                                            if let index = index {
+                                                self.cars[index].distance = car.distance
+                                            }
+                                        }
+                                    }
+                                }
                             }
                             self.manageAnnotations()
                             return
@@ -210,40 +211,41 @@ public final class MapViewModel: ViewModelType {
         if type == .searchCars || showCars == true {
             var carBookedFounded: Bool = false
             if let car = self.carBooked {
-                // TODO LOCATION
-//                let locationController = LocationController.shared
-//                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-//                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-//                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-//                        let index = self.cars.index(where: { (singleCar) -> Bool in
-//                            return car.plate == singleCar.plate
-//                        })
-//                        if let index = index {
-//                            self.cars[index].distance = car.distance
-//                        }
-//                    }
-//                }
+                let locationManager = LocationManager.sharedInstance
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                            let index = self.cars.index(where: { (singleCar) -> Bool in
+                                return car.plate == singleCar.plate
+                            })
+                            if let index = index {
+                                self.cars[index].distance = car.distance
+                            }
+                        }
+                    }
+                }
             }
             for car in self.cars {
-                // TODO LOCATION
-//                let locationController = LocationController.shared
-//                if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-//                    if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-//                        car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-//                        let index = self.allCars.index(where: { (allCar) -> Bool in
-//                            return car.plate == allCar.plate
-//                        })
-//                        if let index = index {
-//                            self.allCars[index].distance = car.distance
-//                        }
-//                    }
-//                }
+                let locationManager = LocationManager.sharedInstance
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                            let index = self.allCars.index(where: { (allCar) -> Bool in
+                                return car.plate == allCar.plate
+                            })
+                            if let index = index {
+                                self.allCars[index].distance = car.distance
+                            }
+                        }
+                    }
+                }
                 if car.plate == self.carBooked?.plate {
                     carBookedFounded = true
                 }
             }
             self.updateCarProperties()
-            // TODO GOOGLE
             DispatchQueue.main.async {
                 for car in self.cars {
                     if let coordinate = car.location?.coordinate {
@@ -272,7 +274,6 @@ public final class MapViewModel: ViewModelType {
                             let annotation = FeedAnnotation(position: coordinate)
                             annotation.icon = annotation.getImage()
                             annotation.feed = feed
-                        // TODO GOOGLE
                             //    annotations.append(annotation)
                         }
                     }

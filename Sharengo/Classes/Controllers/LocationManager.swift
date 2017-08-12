@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import RxSwift
 
 class LocationManager: NSObject,CLLocationManagerDelegate {
     
@@ -33,7 +34,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     var locationAccuracy = kCLLocationAccuracyBest
     
     var lastLocation:CLLocation?
-    var lastLocationCopy:CLLocation?
+    var lastLocationCopy: Variable<CLLocation?> = Variable(nil)
     private var reverseGeocoding = false
     
     //Singleton Instance
@@ -269,7 +270,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     //MARK:- CLLocationManager Delegates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastLocation = locations.last
-        lastLocationCopy = lastLocation
+        lastLocationCopy.value = lastLocation
         
         //Manager is stopped as per the timer given
     }
@@ -328,11 +329,11 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     
     //MARK:- Final closure/callback
     private func didComplete(location: CLLocation?,error: NSError?) {
-        lastLocationCopy = location
-        locationManager?.stopUpdatingLocation()
+        lastLocationCopy.value = location
+        //locationManager?.stopUpdatingLocation()
         locationCompletionHandler?(location,error)
-        locationManager?.delegate = nil
-        locationManager = nil
+        //locationManager?.delegate = nil
+        //locationManager = nil
     }
     
     private func didCompleteGeocoding(location:CLLocation?,placemark: CLPlacemark?,error: NSError?) {

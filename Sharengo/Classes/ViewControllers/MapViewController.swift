@@ -51,6 +51,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var viewModel: MapViewModel?
     /// Variable used to save time start of a car trip
     public var carTripTimeStart: Date?
+    /// Variable used to save user annotation
+    public var userAnnotation: UserAnnotation = UserAnnotation()
     
     // MARK: - ViewModel methods
     
@@ -70,6 +72,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             self?.clusterManager.add(annotation)
                         }
                         self?.clusterManager.cluster()
+                        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                            self?.showUserPositionVisible(true)
+                        } else {
+                            self?.showUserPositionVisible(false)
+                        }
                     }
                     self?.setUpdateButtonAnimated(false)
                     if let car = self?.selectedCar {
@@ -838,6 +845,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     annotationsArray.append(annotation)
                 }
             }
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                self.showUserPositionVisible(true)
+            } else {
+                self.showUserPositionVisible(false)
+            }
         }
     }
     
@@ -852,8 +864,21 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         let renderer = GMUDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
         self.clusterManager = GMUClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
         self.mapView.delegate = self
-        self.mapView.isMyLocationEnabled = false
+        self.showUserPositionVisible(false)
         self.setUserPositionButtonVisible(false)
+        // User
+        self.userAnnotation.icon = userAnnotation.getImage()
+        let locationManager = LocationManager.sharedInstance
+        locationManager.lastLocationCopy.asObservable()
+            .subscribe(onNext: {[weak self] (_) in
+                DispatchQueue.main.async {
+                    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                        self?.showUserPositionVisible(true)
+                    } else {
+                        self?.showUserPositionVisible(false)
+                    }
+                }
+        })
         // Italy
         let coordinateNorthEast = CLLocationCoordinate2DMake(35.4897, 6.62672)
         let coordinateSouthWest = CLLocationCoordinate2DMake(47.092, 18.7976)
@@ -869,8 +894,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func checkUserPosition() {
         let locationManager = LocationManager.sharedInstance
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            if let userLocation = locationManager.lastLocationCopy {
-                self.mapView?.isMyLocationEnabled = true
+            if let userLocation = locationManager.lastLocationCopy.value {
+                self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
                 self.checkedUserPosition = true
                 if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
@@ -882,7 +907,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.checkedUserPosition = true
         locationManager.getLocation(completionHandler: { (location, error) in
             if location != nil {
-                self.mapView.isMyLocationEnabled = true
+                self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
                 if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
                     self.centerMap()
@@ -897,10 +922,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func checkUserPositionFromForeground() {
         self.view_searchBar.updateInterface()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            self.mapView?.isMyLocationEnabled = true
+            self.showUserPositionVisible(true)
             self.setUserPositionButtonVisible(true)
         } else {
-            self.mapView?.isMyLocationEnabled = false
+            self.showUserPositionVisible(false)
             self.setUserPositionButtonVisible(false)
         }
         self.getResults()
@@ -942,7 +967,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func centerMap() {
         let locationManager = LocationManager.sharedInstance
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            if let userLocation = locationManager.lastLocationCopy {
+            if let userLocation = locationManager.lastLocationCopy.value {
                 self.centerMap(on: userLocation, zoom: 16.5)
                 return
             }}
@@ -971,6 +996,23 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                  bearing: 0,
                                                  viewingAngle: self.mapView.camera.viewingAngle)
         self.mapView.animate(to: newCamera)
+    }
+    
+    /**
+     This method shows or hide user position
+     - Parameter visible: Visible determinates if user position is shown or not
+     */
+    public func showUserPositionVisible(_ visible: Bool) {
+        if visible {
+            let locationManager = LocationManager.sharedInstance
+            if let userLocation = locationManager.lastLocationCopy.value {
+                self.userAnnotation.position = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+                self.userAnnotation.map = self.mapView
+                return
+            }
+        }
+        
+        self.userAnnotation.map = nil
     }
     
     // MARK: - Alert methods
