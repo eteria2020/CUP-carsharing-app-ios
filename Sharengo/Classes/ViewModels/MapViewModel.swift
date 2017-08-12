@@ -322,4 +322,82 @@ public final class MapViewModel: ViewModelType {
         }
         self.nearestCar?.nearest = true
     }
+    
+    // MARK: - Action methods
+    
+    func openCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
+        self.apiController.openCar(car: car)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200 {
+                        completionClosure(true, nil)
+                    } else {
+                        completionClosure(false, nil)
+                    }
+                case .error(let error):
+                    completionClosure(false, error)
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
+    
+    func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: JSON?) ->()) {
+        self.apiController.bookCar(car: car)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.dic_data {
+                        completionClosure(true, nil, data)
+                    } else {
+                        completionClosure(false, nil, nil)
+                    }
+                case .error(let error):
+                    completionClosure(false, error, nil)
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
+    
+    func getCarBooking(id: Int, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: [JSON]?) ->()) {
+        self.apiController.getCarBooking(id: id)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.array_data {
+                        completionClosure(true, nil, data)
+                    } else {
+                        completionClosure(false, nil, nil)
+                    }
+                case .error(let error):
+                    completionClosure(false, error, nil)
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
+    
+    func deleteCarBooking(carBooking: CarBooking, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
+        self.apiController.deleteCarBooking(carBooking: carBooking)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200 {
+                        completionClosure(true, nil)
+                    } else {
+                        completionClosure(false, nil)
+                    }
+                case .error(let error):
+                    completionClosure(false, error)
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
 }

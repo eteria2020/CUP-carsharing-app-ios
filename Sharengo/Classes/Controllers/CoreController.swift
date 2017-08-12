@@ -24,7 +24,7 @@ class CoreController {
     var currentCarBooking: CarBooking?
     var currentCarTrip: CarTrip?
     var notificationIsShowed: Bool = false
-    var cities: [City] = []
+    var cities: [City] = [] // TODO: devono essere memorizzate sul dispositivo per evitare che aprendo l'applicazione senza connessione non siano disponibili
     
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
