@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        LocationController.shared.locationManager.stopUpdatingLocation()
-        LocationController.shared.locationManager.startUpdatingLocation()
+        LocationManager.sharedInstance.locationManager?.stopUpdatingLocation()
+        LocationManager.sharedInstance.locationManager?.startUpdatingLocation()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

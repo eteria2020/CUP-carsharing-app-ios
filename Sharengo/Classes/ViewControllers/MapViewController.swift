@@ -23,7 +23,6 @@ import GoogleMaps
  - show cars
  - show feeds
  */
-
 public class MapViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_carBookingPopup: CarBookingPopupView!
@@ -209,7 +208,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             case .car(let car):
                 if let location = car.location {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
-                    self?.centerMap(on: newLocation, zoom: 20)
+                    self?.centerMap(on: newLocation, zoom: 17)
                 }
                 self?.view_carPopup.updateWithCar(car: car)
                 self?.view.layoutIfNeeded()
@@ -230,40 +229,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         // Map
         self.setupMap()
         // NotificationCenter
-        NotificationCenter.observe(notificationWithName: LocationControllerNotification.didAuthorized) { [weak self] _ in
-            let locationController = LocationController.shared
-            if locationController.isAuthorized, let userLocation = locationController.currentLocation {
-                self?.mapView?.isMyLocationEnabled = true
-                self?.setUserPositionButtonVisible(true)
-                self?.centerMap(on: userLocation, zoom: 20)
-            }
-        }
-        NotificationCenter.observe(notificationWithName: LocationControllerNotification.didUnAuthorized) { [weak self] _ in
-            let locationController = LocationController.shared
-            if !locationController.isAuthorized && UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
-                self?.mapView?.isMyLocationEnabled = false
-                self?.setUserPositionButtonVisible(false)
-            }
-        }
-        NotificationCenter.observe(notificationWithName: LocationControllerNotification.locationDidUpdate) { [weak self] _ in
-            self?.viewModel?.manageAnnotations()
-            if let car = self?.selectedCar {
-                self?.view_carPopup.updateWithCar(car: car)
-                self?.view.layoutIfNeeded()
-            }
-        }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
-            self.view_searchBar.updateInterface()
-            let locationController = LocationController.shared
-            if locationController.isAuthorized && locationController.currentLocation != nil {
-                self.mapView?.isMyLocationEnabled = true
-                self.setUserPositionButtonVisible(true)
-            } else {
-                self.mapView?.isMyLocationEnabled = false
-                self.setUserPositionButtonVisible(false)
-            }
-            self.getResults()
+            self.checkUserPositionFromForeground()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
@@ -315,7 +283,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self?.getResultsWithoutLoading()
                                 if let location = car.location {
                                     let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                    self?.centerMap(on: newLocation, zoom: 20)
+                                    self?.centerMap(on: newLocation, zoom: 18.5)
                                 }
                                 if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                     DispatchQueue.main.async {
@@ -380,7 +348,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                     self?.getResultsWithoutLoading()
                                     if let location = car.location {
                                         let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                        self?.centerMap(on: newLocation, zoom: 20)
+                                        self?.centerMap(on: newLocation, zoom: 18.5)
                                     }
                                     if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                         DispatchQueue.main.async {
@@ -481,16 +449,17 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func showNearestCar() {
         if let location = self.viewModel?.nearestCar?.location {
             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            self.centerMap(on: newLocation, zoom: 20)
+            self.centerMap(on: newLocation, zoom: 17)
             self.viewModel?.showCars = true
             self.setCarsButtonVisible(true)
             self.updateResults()
         } else {
-            let locationController = LocationController.shared
-            if locationController.isAuthorized == true && locationController.currentLocation != nil {
-            } else {
-                self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
-            }
+            let locationManager = LocationManager.sharedInstance
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                if locationManager.lastLocationCopy != nil {
+                    return
+                }}
+            self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
         }
     }
     
@@ -710,7 +679,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method enables or disables user position button in circular menu
-    */
+     - Parameter visible: Visible determinates if user position button is enabled or disabled
+     */
     public func setUserPositionButtonVisible(_ visible: Bool) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
         if let arrayOfItems = self.view_circularMenu.viewModel?.type.getItems() {
@@ -733,6 +703,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method enables or disables cars button in circular menu
+     - Parameter visible: Visible determinates if car button is enabled or disabled
     */
     public func setCarsButtonVisible(_ visible: Bool) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
@@ -756,6 +727,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method starts or stops update button animation in circular menu
+     - Parameter animated: Animated determinates if update button is animated or not
     */
     public func setUpdateButtonAnimated(_ animated: Bool) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
@@ -779,6 +751,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     /**
      This method update turn button rotation in circular menu
+     - Parameter degrees: Degrees of rotation
     */
     public func setTurnButtonDegrees(_ degrees: CGFloat) {
         let arrayOfButtons = self.view_circularMenu.array_buttons
@@ -871,7 +844,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     // MARK: - Map methods
     
     /**
-     This method setups map and cluster manager. If it's the first time that user opens the map the application doesn't show his position
+     This method setups map and cluster manager
     */
     public func setupMap() {
         let iconGenerator = GMUDefaultClusterIconGenerator()
@@ -879,30 +852,58 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         let renderer = GMUDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
         self.clusterManager = GMUClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
         self.mapView.delegate = self
-        if UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
-            self.mapView.isMyLocationEnabled = false
-            self.setUserPositionButtonVisible(false)
-        }
+        self.mapView.isMyLocationEnabled = false
+        self.setUserPositionButtonVisible(false)
+        // Italy
+        let coordinateNorthEast = CLLocationCoordinate2DMake(35.4897, 6.62672)
+        let coordinateSouthWest = CLLocationCoordinate2DMake(47.092, 18.7976)
+        let bounds = GMSCoordinateBounds(coordinate: coordinateNorthEast, coordinate: coordinateSouthWest)
+        let cameraUpdate = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+        self.mapView.moveCamera(cameraUpdate)
+        self.getResults()
     }
     
     /**
      This method checks user position. The application shows his position if user has already authorized the application and he hasn't a car trip or a car booking
-    */
+     */
     public func checkUserPosition() {
-        let locationController = LocationController.shared
-        if locationController.isAuthorized, let userLocation = locationController.currentLocation {
+        let locationManager = LocationManager.sharedInstance
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if let userLocation = locationManager.lastLocationCopy {
+                self.mapView?.isMyLocationEnabled = true
+                self.setUserPositionButtonVisible(true)
+                self.checkedUserPosition = true
+                if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
+                    self.centerMap(on: userLocation, zoom: 16.5)
+                }
+                return
+            }
+        }
+        self.checkedUserPosition = true
+        locationManager.getLocation(completionHandler: { (location, error) in
+            if location != nil {
+                self.mapView.isMyLocationEnabled = true
+                self.setUserPositionButtonVisible(true)
+                if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
+                    self.centerMap()
+                }
+            }
+        })
+    }
+    
+    /**
+     This method checks user position when user opens the app from foreground
+    */
+    public func checkUserPositionFromForeground() {
+        self.view_searchBar.updateInterface()
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             self.mapView?.isMyLocationEnabled = true
             self.setUserPositionButtonVisible(true)
-            self.checkedUserPosition = true
-            if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
-                self.centerMap(on: userLocation, zoom: 20)
-            }
-        } else if !UserDefaults.standard.bool(forKey: "FirstCheckUserPosition") {
-            locationController.requestLocationAuthorization(handler: { (status) in
-                UserDefaults.standard.set(true, forKey: "FirstCheckUserPosition")
-                self.checkedUserPosition = true
-            })
+        } else {
+            self.mapView?.isMyLocationEnabled = false
+            self.setUserPositionButtonVisible(false)
         }
+        self.getResults()
     }
     
     /**
@@ -939,17 +940,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      This method centers map on user position or shows an error message
     */
     public func centerMap() {
-        let locationController = LocationController.shared
-        if locationController.isAuthorized == true, let userLocation = locationController.currentLocation {
-            self.centerMap(on: userLocation, zoom: 20)
-        } else {
-            self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
-        }
+        let locationManager = LocationManager.sharedInstance
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if let userLocation = locationManager.lastLocationCopy {
+                self.centerMap(on: userLocation, zoom: 16.5)
+                return
+            }}
+        self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
     }
     
     /**
      This method centers map on position with zoom
-    */
+     - Parameter position: Location in which the map has to be centered
+     - Parameter zoom: Zoom level of the map
+     */
     public func centerMap(on position: CLLocation, zoom: Float) {
         let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
         let newCamera = GMSCameraPosition.camera(withTarget: location, zoom: zoom)
@@ -1019,9 +1023,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     }
 }
 
-// MARK: - Map delegate
-
 extension MapViewController: GMSMapViewDelegate {
+    // MARK: - Map delegate
+    
     /**
      This method is called when map is moved: it updates turn button in circular menu and stop request and research
     */
@@ -1064,7 +1068,7 @@ extension MapViewController: GMSMapViewDelegate {
                 }
                 if let location = car.location {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                    self.centerMap(on: newLocation, zoom: 20)
+                    self.centerMap(on: newLocation, zoom: 17)
                 }
                 self.view_carPopup.updateWithCar(car: car)
                 self.view_carPopup.viewModel?.type.value = .car
@@ -1085,7 +1089,7 @@ extension MapViewController: GMSMapViewDelegate {
             if let feed = feedAnnotation.feed {
                 if let location = feed.feedLocation {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                    self.centerMap(on: newLocation, zoom: 20)
+                    self.centerMap(on: newLocation, zoom: 17)
                 }
                 self.view_carPopup.updateWithFeed(feed: feed)
                 self.view_carPopup.viewModel?.type.value = .feed

@@ -102,6 +102,7 @@
 		03C6323A1EEFD04000BFEDA3 /* SignupStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C632391EEFD04000BFEDA3 /* SignupStepView.xib */; };
 		03C6325F1EF02E8400BFEDA3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C6325E1EF02E8400BFEDA3 /* ProfileViewController.swift */; };
 		03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */; };
+		4D0471B11F3EF61E00C454A2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0471B01F3EF61E00C454A2 /* LocationManager.swift */; };
 		4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */; };
 		4D164BE01F091F5100D4EAB7 /* NoCarTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */; };
 		4D164BE21F091F6500D4EAB7 /* NoCarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */; };
@@ -122,7 +123,6 @@
 		4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 4D2628F11ED57CCD001C4E38 /* client.p12 */; };
 		4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2628F31ED57D7B001C4E38 /* PKCS12.swift */; };
 		4D2EE30B1F05328E00EB2273 /* PublisheresAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */; };
-		4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */; };
 		4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D36D7BF1ED2F279005FAEB8 /* InfoPlist.strings */; };
 		4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */; };
 		4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7C41ED2F604005FAEB8 /* MKMapKit+Extensions.swift */; };
@@ -312,6 +312,7 @@
 		03C6325E1EF02E8400BFEDA3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Classes/ViewControllers/ProfileViewController.swift; sourceTree = "<group>"; };
 		03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Classes/ViewModels/ProfileViewModel.swift; sourceTree = "<group>"; };
 		21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
+		4D0471B01F3EF61E00C454A2 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Theme.swift"; path = "Classes/Theme/UIButton+Theme.swift"; sourceTree = "<group>"; };
 		4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoCarTripsViewController.swift; path = Classes/ViewControllers/NoCarTripsViewController.swift; sourceTree = "<group>"; };
 		4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoCarTripsViewModel.swift; path = Classes/ViewModels/NoCarTripsViewModel.swift; sourceTree = "<group>"; };
@@ -334,7 +335,6 @@
 		4D26396C1F002E6700B95585 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4D26396D1F002E6700B95585 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublisheresAPIController.swift; sourceTree = "<group>"; };
-		4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		4D36D7C01ED2F279005FAEB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NotificationCenter+Extensions.swift"; path = "Classes/Utilities/NotificationCenter+Extensions.swift"; sourceTree = "<group>"; };
 		4D36D7C41ED2F604005FAEB8 /* MKMapKit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapKit+Extensions.swift"; path = "Classes/Utilities/MKMapKit+Extensions.swift"; sourceTree = "<group>"; };
@@ -781,11 +781,11 @@
 		4D36D7BC1ED2EF86005FAEB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D0471B01F3EF61E00C454A2 /* LocationManager.swift */,
 				4DC10E011EE9D6F000A74E26 /* CoreController.swift */,
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
 				4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */,
 				4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */,
-				4D36D7BD1ED2EF86005FAEB8 /* LocationController.swift */,
 				4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */,
 				03653E221EEADA4800AC7A93 /* NotificationsController.swift */,
 			);
@@ -1574,7 +1574,6 @@
 				03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */,
-				4D36D7BE1ED2EF86005FAEB8 /* LocationController.swift in Sources */,
 				4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */,
 				03B5960F1F1B5AB000811A36 /* NoFeedsViewController.swift in Sources */,
 				03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */,
@@ -1600,6 +1599,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D60EA8C1F3E037E0085BFE3 /* GMUGeometryRenderer.m in Sources */,
+				4D0471B11F3EF61E00C454A2 /* LocationManager.swift in Sources */,
 				03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */,
 				038641FC1F17628E003AF6B1 /* CategoryItemCollectionViewCell.swift in Sources */,
 				037BDFCC1F03E4D700C95962 /* NewFavouriteViewModel.swift in Sources */,
