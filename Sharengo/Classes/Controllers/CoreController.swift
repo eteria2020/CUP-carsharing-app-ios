@@ -27,6 +27,8 @@ class CoreController {
     var notificationIsShowed: Bool = false
     var cities: [City] = []
     var polygons: [Polygon] = []
+    public lazy var pulseYellow: UIImage = CoreController.shared.getPulseYellow()
+    public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
 
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -202,5 +204,37 @@ class CoreController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
         self.currentCarBooking = self.allCarBookings.first
         self.currentCarTrip = self.allCarTrips.first
+    }
+    
+    // MARK: - Pulse methods
+    
+    func getPulseYellow() -> UIImage {
+        var frames: [UIImage] = [UIImage]()
+        for i in 0...40 {
+            let image = self.resizeImageForPulse(image: UIImage(named: "Auto PULSE_500px_yellow00\(i)")!, newSize: CGSize(width: 120, height: 120))
+            frames.append(image)
+        }
+        return UIImage.animatedImage(with: frames, duration: 3)!
+    }
+    
+    func getPulseGreen() -> UIImage {
+        var frames: [UIImage] = [UIImage]()
+        for i in 0...40 {
+            let image = self.resizeImageForPulse(image: UIImage(named: "auto pulse_500px_green00\(i)")!, newSize: CGSize(width: 120, height: 120))
+            frames.append(image)
+        }
+        return UIImage.animatedImage(with: frames, duration: 3)!
+    }
+    
+    fileprivate func resizeImageForPulse(image: UIImage, newSize: CGSize) -> (UIImage) {
+        let scale = min(image.size.width/newSize.width, image.size.height/newSize.height)
+        let newSize = CGSize(width: image.size.width/scale, height: image.size.height/scale)
+        let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
+        let thumbRect = CGRect(origin: newOrigin, size: newSize).integral
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+        image.draw(in: thumbRect)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result!
     }
 }

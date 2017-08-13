@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupGoogleMaps()
         self.setupFabric()
         
+        _ = CoreController.shared.pulseYellow
+        _ = CoreController.shared.pulseGreen
+        
         TextStyle.setup()
         Router.start(self)
         CoreController.shared.updateData()

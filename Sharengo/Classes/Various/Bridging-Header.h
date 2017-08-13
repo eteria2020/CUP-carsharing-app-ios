@@ -5,7 +5,6 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
-#import "SVPulsingAnnotationView.h"
 #import <CommonCrypto/CommonCrypto.h>
 #import "GMUCluster.h"
 #import "GMUClusterManager.h"

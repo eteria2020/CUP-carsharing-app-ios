@@ -12,13 +12,13 @@ import GoogleMaps
 /**
  FeedAnnotation class is the GMUClusterItem that application uses to show feed location (single pin or cluster)
  */
-class FeedAnnotation: NSObject, GMUClusterItem {
+public class FeedAnnotation: NSObject, GMUClusterItem {
     /// Variable used to save the position of the marker
-    var position: CLLocationCoordinate2D
+    public var position: CLLocationCoordinate2D
     /// Variable used to save the image to show in the marker
-    var marker: UIImage
+    public var marker: UIImage
     /// Variable used to save the feed
-    var feed: Feed
+    public var feed: Feed
     
     // MARK: - Init methods
     
@@ -26,6 +26,7 @@ class FeedAnnotation: NSObject, GMUClusterItem {
         self.position = position
         self.feed = feed
         self.marker = UIImage(named: "ic_puntatore-generico")!
+        super.init()
         if let icon = feed.marker, let url = URL(string: icon) {
             do {
                 let data = try Data(contentsOf: url)
@@ -34,15 +35,23 @@ class FeedAnnotation: NSObject, GMUClusterItem {
                     if feed.sponsored {
                         size = CGSize(width: 46, height: 55)
                     }
-                    UIGraphicsBeginImageContext(size)
-                    let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-                    image.draw(in: areaSize)
-                    let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-                    UIGraphicsEndImageContext()
-                    self.marker = newImage
+                    let markerImage = self.resizeImageForAnnotation(image: image, newSize: size)
+                    self.marker = markerImage
                 }
             } catch {
             }
         }
+    }
+    
+    fileprivate func resizeImageForAnnotation(image: UIImage, newSize: CGSize) -> (UIImage) {
+        let scale = min(image.size.width/newSize.width, image.size.height/newSize.height)
+        let newSize = CGSize(width: image.size.width/scale, height: image.size.height/scale)
+        let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
+        let thumbRect = CGRect(origin: newOrigin, size: newSize).integral
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+        image.draw(in: thumbRect)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result!
     }
 }

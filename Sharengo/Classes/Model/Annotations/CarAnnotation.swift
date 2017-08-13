@@ -24,10 +24,12 @@ public class CarAnnotation: NSObject, GMUClusterItem {
     public init(position: CLLocationCoordinate2D, car: Car, carBooked: Car?) {
         self.position = position
         self.car = car
+        self.marker = UIImage(named: "ic_auto")!
+        super.init()
         if car.booked || car.opened {
-            self.marker = UIImage(named: "ic_auto_big")!
+            self.marker = CoreController.shared.pulseYellow
         } else if car.nearest && carBooked == nil {
-            self.marker = UIImage(named: "ic_auto_big")!
+            self.marker = CoreController.shared.pulseGreen
         } else {
             self.marker = UIImage(named: "ic_auto")!
         }

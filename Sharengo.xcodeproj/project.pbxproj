@@ -205,7 +205,6 @@
 		4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */; };
 		4DD9C7E31ECDC48B00BE4218 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */; };
-		4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */; };
 		4DEBEE711EED373800AEF617 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBEE701EED373800AEF617 /* Banner.swift */; };
 		4DF0EC6E1F077AE00003D502 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0EC6D1F077AE00003D502 /* FavouritesViewController.swift */; };
 		4DF0EC701F077AF00003D502 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0EC6F1F077AF00003D502 /* FavouritesViewModel.swift */; };
@@ -459,8 +458,6 @@
 		4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Favorite.swift; path = Classes/Model/Favorite.swift; sourceTree = "<group>"; };
 		4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Classes/ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewModel.swift; path = Classes/ViewModels/MapViewModel.swift; sourceTree = "<group>"; };
-		4DE361651EE801F9007DC92C /* SVPulsingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPulsingAnnotationView.h; sourceTree = "<group>"; };
-		4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPulsingAnnotationView.m; sourceTree = "<group>"; };
 		4DEBEE701EED373800AEF617 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		4DF0EC6D1F077AE00003D502 /* FavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesViewController.swift; path = Classes/ViewControllers/FavouritesViewController.swift; sourceTree = "<group>"; };
 		4DF0EC6F1F077AF00003D502 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesViewModel.swift; path = Classes/ViewModels/FavouritesViewModel.swift; sourceTree = "<group>"; };
@@ -787,8 +784,8 @@
 		4D36D7BC1ED2EF86005FAEB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D0471B01F3EF61E00C454A2 /* LocationManager.swift */,
 				4DC10E011EE9D6F000A74E26 /* CoreController.swift */,
+				4D0471B01F3EF61E00C454A2 /* LocationManager.swift */,
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
 				03140E0D1F40437600F67160 /* SharengoApiController.swift */,
 				4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */,
@@ -1047,7 +1044,6 @@
 				03AF5D771EEEBED300AC8826 /* String+Extensions.swift */,
 				03AF5D581EEE83FC00AC8826 /* AnimatedTextInput */,
 				4DEBEE6F1EED373800AEF617 /* BRYXBanner */,
-				4DE361641EE801F9007DC92C /* SVPulsingAnnotation */,
 				4DA178631ED63C4D00EBD32B /* ZAlertView */,
 				4D60EA431F3E037E0085BFE3 /* GoogleMaps */,
 			);
@@ -1230,16 +1226,6 @@
 				4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */,
 			);
 			name = Map;
-			sourceTree = "<group>";
-		};
-		4DE361641EE801F9007DC92C /* SVPulsingAnnotation */ = {
-			isa = PBXGroup;
-			children = (
-				4DE361651EE801F9007DC92C /* SVPulsingAnnotationView.h */,
-				4DE361661EE801F9007DC92C /* SVPulsingAnnotationView.m */,
-			);
-			name = SVPulsingAnnotation;
-			path = Classes/Utilities/SVPulsingAnnotation;
 			sourceTree = "<group>";
 		};
 		4DEBEE6F1EED373800AEF617 /* BRYXBanner */ = {
@@ -1584,7 +1570,6 @@
 				03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */,
-				4DE361671EE801F9007DC92C /* SVPulsingAnnotationView.m in Sources */,
 				03B5960F1F1B5AB000811A36 /* NoFeedsViewController.swift in Sources */,
 				03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */,
 				036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */,

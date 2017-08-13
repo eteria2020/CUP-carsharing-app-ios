@@ -10,8 +10,6 @@ import Boomerang
 import RxSwift
 import Gloss
 
-// TODO: sistemare encode
-
 public class PolygonCache: NSObject, NSCoding {
     var type: String = ""
     var coordinates: [CLLocationCoordinate2D] = []
