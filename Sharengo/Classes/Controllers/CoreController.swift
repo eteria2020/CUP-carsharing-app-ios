@@ -17,6 +17,7 @@ class CoreController {
     var currentViewController: UIViewController?
     let apiController: ApiController = ApiController()
     let publishersApiController: PublishersAPIController = PublishersAPIController()
+    let sharengoApiController: SharengoApiController = SharengoApiController()
     var updateTimer: Timer?
     var updateInProgress = false
     var allCarBookings: [CarBooking] = []
@@ -25,7 +26,8 @@ class CoreController {
     var currentCarTrip: CarTrip?
     var notificationIsShowed: Bool = false
     var cities: [City] = []
-    
+    var polygons: [Polygon] = []
+
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
     }
@@ -47,6 +49,7 @@ class CoreController {
     
     @objc func updateData() {
         self.updateCities()
+        self.updatePolygons()
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
@@ -55,6 +58,27 @@ class CoreController {
         self.updateUser()
     }
     
+    fileprivate func updatePolygons() {
+        self.sharengoApiController.getPolygons()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let polygons):
+                    self.polygons = polygons
+                    var cache: [PolygonCache] = [PolygonCache]()
+                    for polygon in self.polygons {
+                        cache.append(polygon.getPolygonCache())
+                    }
+                    let archivedArray = NSKeyedArchiver.archivedData(withRootObject: cache as Array)
+                    UserDefaults.standard.set(archivedArray, forKey: "cachePolygons")
+                case .error(_):
+                    break
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
+
     fileprivate func updateCities() {
         self.publishersApiController.getCities()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))

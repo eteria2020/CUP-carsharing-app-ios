@@ -78,6 +78,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         } else {
                             self?.showUserPositionVisible(false)
                         }
+                        self?.addPolygons()
                     }
                     self?.setUpdateButtonAnimated(false)
                     if let car = self?.selectedCar {
@@ -132,6 +133,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
+        
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -804,6 +806,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if let radius = self.getRadius() {
             if radius < clusteringRadius {
                 self.clusteringInProgress = true
+                //self.addPolygons()
                 if let mapView = self.mapView {
                     self.setUpdateButtonAnimated(true)
                     self.viewModel?.reloadResults(latitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, radius: radius)
@@ -853,6 +856,31 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             }
         }
     }
+    
+    /**
+     This method adds city polygons.
+     */
+    public func addPolygons()
+    {
+        if clusteringInProgress == true
+        {
+            for polygon in CoreController.shared.polygons {
+                let rect = GMSMutablePath()
+
+                for coordinate in polygon.coordinates
+                {
+                    rect.add(coordinate)
+                }
+
+                let polygon = GMSPolygon(path: rect)
+                polygon.fillColor = ColorBrand.green.value.withAlphaComponent(0.1)
+                polygon.strokeColor = ColorBrand.green.value
+                polygon.strokeWidth = 2
+                polygon.map = self.mapView
+            }
+        }
+    }
+    
     
     // MARK: - Map methods
     

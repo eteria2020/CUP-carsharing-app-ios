@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03140E0E1F40437600F67160 /* SharengoApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03140E0D1F40437600F67160 /* SharengoApiController.swift */; };
+		03140E101F4043BB00F67160 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03140E0F1F4043BB00F67160 /* Polygon.swift */; };
 		032D3A751F08D61900F260A5 /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A741F08D61900F260A5 /* OnBoardViewController.swift */; };
 		032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */; };
 		032D3A791F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A781F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif */; };
@@ -217,6 +219,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03140E0D1F40437600F67160 /* SharengoApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharengoApiController.swift; sourceTree = "<group>"; };
+		03140E0F1F4043BB00F67160 /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Polygon.swift; path = Classes/Model/Polygon.swift; sourceTree = "<group>"; };
 		032D3A741F08D61900F260A5 /* OnBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardViewController.swift; path = Classes/ViewControllers/OnBoardViewController.swift; sourceTree = "<group>"; };
 		032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnBoardViewModel.swift; path = Classes/ViewModels/OnBoardViewModel.swift; sourceTree = "<group>"; };
 		032D3A781F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ONBOARD_sfondo_loop.gif; sourceTree = "<group>"; };
@@ -786,6 +790,7 @@
 				4D0471B01F3EF61E00C454A2 /* LocationManager.swift */,
 				4DC10E011EE9D6F000A74E26 /* CoreController.swift */,
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
+				03140E0D1F40437600F67160 /* SharengoApiController.swift */,
 				4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */,
 				4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */,
 				4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */,
@@ -1062,6 +1067,7 @@
 				036D92181F0258540076D22D /* Setting.swift */,
 				036D922F1F028EF30076D22D /* Language.swift */,
 				037BDFC01F03949A00C95962 /* City.swift */,
+				03140E0F1F4043BB00F67160 /* Polygon.swift */,
 				038641FF1F1762FF003AF6B1 /* Category.swift */,
 				037689FB1F160C7A00523BAA /* Feed.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
@@ -1464,6 +1470,7 @@
 			files = (
 				4DCC70A11ED3106200906DA0 /* APIController.swift in Sources */,
 				4D164BE21F091F6500D4EAB7 /* NoCarTripsViewModel.swift in Sources */,
+				03140E0E1F40437600F67160 /* SharengoApiController.swift in Sources */,
 				038A07971F1F6306007A4F46 /* InviteFriendViewController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
 				037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */,
@@ -1583,6 +1590,7 @@
 				036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */,
 				4D2339981EE6CDFC00780384 /* IntroViewModel.swift in Sources */,
 				4DCD1A851ECDC16400FC8BF5 /* SeparatorLayout.swift in Sources */,
+				03140E101F4043BB00F67160 /* Polygon.swift in Sources */,
 				03856C751F28804C00DCE48D /* FaqViewController.swift in Sources */,
 				4D60EA961F3E037E0085BFE3 /* GQTPointQuadTree.m in Sources */,
 				4DC59F991EDADC6200DD658A /* Response.swift in Sources */,
