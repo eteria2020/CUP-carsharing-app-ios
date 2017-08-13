@@ -16,7 +16,11 @@ import Gloss
 import ReachabilitySwift
 import GoogleMaps
 
-enum MapType {
+/**
+ Enum that specifies map type and features related to it. These are:
+  - circular menu
+*/
+public enum MapType {
     case searchCars
     case feeds
     
@@ -30,27 +34,42 @@ enum MapType {
     }
 }
 
+/**
+ The Map model provides data related to display content on a map
+*/
 public final class MapViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
     fileprivate var resultsDispose: DisposeBag?
-    fileprivate var oldNearestCar: Car?
     fileprivate var timerCars: Timer?
-    fileprivate var cars: [Car] = []
-    var nearestCar: Car?
-    var allCars: [Car] = []
-    var carBooked: Car?
-    var carBooking: CarBooking?
-    var carTrip: CarTrip?
-    let type: MapType
-    var showCars: Bool = false
-    var errorOffers: Bool?
-    var errorEvents: Bool?
-    var feeds = [Feed]()
-    
+    /// Type of the map
+    public let type: MapType
+    /// Variable used to know if map has to show cars or not with map type feeds
+    public var showCars: Bool = false
+    /// Support variable to store error with offers for feeds
+    public var errorOffers: Bool?
+    /// Support variable to store error with events for feeds
+    public var errorEvents: Bool?
+    /// Variable used to save feeds
+    public var feeds = [Feed]()
+    /// Variable used to save cars
+    public var cars: [Car] = []
+    /// Variable used to save all cars in share'ngo system
+    public var allCars: [Car] = []
+    /// Variable used to save nearest car
+    public var nearestCar: Car?
+    /// Variable used to save car booked
+    public var carBooked: Car?
+    /// Variable used to save car booking
+    public var carBooking: CarBooking?
+    /// Variable used to save car trip
+    public var carTrip: CarTrip?
+    /// Array of annotations
     var array_annotations: Variable<[GMUClusterItem]> = Variable([])
     
-    init(type: MapType) {
+    // MARK: - Init methods
+    
+    public init(type: MapType) {
         self.type = type
         self.getAllCars()
         self.timerCars = Timer.scheduledTimer(timeInterval: 60*5, target: self, selector: #selector(self.getAllCars), userInfo: nil, repeats: true)
@@ -63,7 +82,10 @@ public final class MapViewModel: ViewModelType {
     
     // MARK: - Cars methods
     
-    @objc func getAllCars() {
+    /**
+     This method gets all cars in share'ngo system and updates distance
+     */
+    @objc public func getAllCars() {
         self.apiController.searchCars()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -102,17 +124,29 @@ public final class MapViewModel: ViewModelType {
             }.addDisposableTo(self.disposeBag)
     }
     
-    func resetCars() {
+    /**
+     This method resets cars variable
+     */
+    public func resetCars() {
         self.cars.removeAll()
         self.manageAnnotations()
     }
     
-    func stopRequest() {
+    /**
+     This method stops cars and feeds request
+     */
+    public func stopRequest() {
         self.resultsDispose = nil
         self.resultsDispose = DisposeBag()
     }
     
-    func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
+    /**
+     This method starts cars request
+     - Parameter latitude: The latitude is one of the coordinate that determines the center of the map
+     - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
+     - Parameter radius: The radius is the distance from the center of the map to the edge of the map
+     */
+    public func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
         self.errorEvents = nil
         self.errorOffers = nil
         if type == .searchCars || showCars == true {
@@ -206,10 +240,14 @@ public final class MapViewModel: ViewModelType {
         }
     }
     
-    func manageAnnotations() {
+    /**
+     This method updates distance and manages cars and feeds in array of annotations
+     */
+    public func manageAnnotations() {
         var annotations: [GMUClusterItem] = []
         if type == .searchCars || showCars == true {
             var carBookedFounded: Bool = false
+            // Distance
             if let car = self.carBooked {
                 let locationManager = LocationManager.sharedInstance
                 if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -245,23 +283,21 @@ public final class MapViewModel: ViewModelType {
                     carBookedFounded = true
                 }
             }
-            self.updateCarProperties()
-            DispatchQueue.main.async {
-                for car in self.cars {
-                    if let coordinate = car.location?.coordinate {
-                        let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked)
-                        annotations.append(annotation)
-                    }
+            self.updateCarsProperties()
+            for car in self.cars {
+                if let coordinate = car.location?.coordinate {
+                    let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked)
+                    annotations.append(annotation)
                 }
-                if carBookedFounded == false && self.carBooked != nil {
-                    if let coordinate = self.carBooked!.location?.coordinate {
-                        let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked)
-                        annotations.append(annotation)
-                    }
+            }
+            if carBookedFounded == false && self.carBooked != nil {
+                if let coordinate = self.carBooked!.location?.coordinate {
+                    let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked)
+                    annotations.append(annotation)
                 }
-                if self.type == .searchCars {
-                    self.array_annotations.value = annotations
-                }
+            }
+            if self.type == .searchCars {
+                self.array_annotations.value = annotations
             }
         }
         if type == .feeds {
@@ -269,10 +305,8 @@ public final class MapViewModel: ViewModelType {
                 DispatchQueue.main.async {
                     for feed in self.feeds {
                         if let coordinate = feed.feedLocation?.coordinate {
-                            let annotation = FeedAnnotation(position: coordinate)
-                            annotation.icon = annotation.getImage()
-                            annotation.feed = feed
-                            //    annotations.append(annotation)
+                            let annotation = FeedAnnotation(position: coordinate, feed: feed)
+                            annotations.append(annotation)
                         }
                     }
                     self.array_annotations.value = annotations
@@ -295,7 +329,13 @@ public final class MapViewModel: ViewModelType {
         }
     }
     
-    fileprivate func updateCarProperties () {
+    /**
+     This method updates cars proprerties:
+     - nearest
+     - booked
+     - opened
+     */
+    public func updateCarsProperties () {
         self.nearestCar = nil
         for car in self.allCars {
             car.booked = false
@@ -331,7 +371,11 @@ public final class MapViewModel: ViewModelType {
     
     // MARK: - Action methods
     
-    func openCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
+    /**
+     This method open car
+     - Parameter car: The car that has to be opened
+     */
+    public func openCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
         self.apiController.openCar(car: car)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -350,7 +394,11 @@ public final class MapViewModel: ViewModelType {
             }.addDisposableTo(self.disposeBag)
     }
     
-    func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: JSON?) ->()) {
+    /**
+     This method book car
+     - Parameter car: The car that has to be booked
+     */
+    public func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: JSON?) ->()) {
         self.apiController.bookCar(car: car)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -369,7 +417,11 @@ public final class MapViewModel: ViewModelType {
             }.addDisposableTo(self.disposeBag)
     }
     
-    func getCarBooking(id: Int, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: [JSON]?) ->()) {
+    /**
+     This method get car booking
+     - Parameter id: The id of car booking used to get informations
+    */
+    public func getCarBooking(id: Int, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: [JSON]?) ->()) {
         self.apiController.getCarBooking(id: id)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -388,7 +440,11 @@ public final class MapViewModel: ViewModelType {
             }.addDisposableTo(self.disposeBag)
     }
     
-    func deleteCarBooking(carBooking: CarBooking, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
+    /**
+     This method delete car booking
+     - Parameter carBooking: The car booking that has to be deleted
+     */
+    public func deleteCarBooking(carBooking: CarBooking, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
         self.apiController.deleteCarBooking(carBooking: carBooking)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in

@@ -23,7 +23,7 @@ import GoogleMaps
  The Map class provides features related to display content on a map. These include:
  - show cars
  - show feeds
- */
+*/
 public class MapViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_carPopup: CarPopupView!
     @IBOutlet fileprivate weak var view_carBookingPopup: CarBookingPopupView!
@@ -466,7 +466,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         } else {
             let locationManager = LocationManager.sharedInstance
             if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                if locationManager.lastLocationCopy != nil {
+                if locationManager.lastLocationCopy.value != nil {
                     return
                 }}
             self.showLocalizationAlert(message: "alert_centerMapMessage".localized())
@@ -821,7 +821,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     }
     
     /**
-     This method checks radius without animation.
+     This method checks radius without animation
      */
     public func getResultsWithoutLoading() {
         if let radius = self.getRadius() {
@@ -833,7 +833,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     }
     
     /**
-     This method adds city annotations.
+     This method adds city annotations
      */
     public func addCityAnnotations() {
         if clusteringInProgress == false {
@@ -858,7 +858,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     }
     
     /**
-     This method adds city polygons.
+     This method adds city polygons
      */
     public func addPolygons()
     {
@@ -1159,22 +1159,21 @@ extension MapViewController: GMSMapViewDelegate {
                 self.selectedCar = car
             })
         } else if let feedAnnotation = marker.userData as? FeedAnnotation {
-            if let feed = feedAnnotation.feed {
-                if let location = feed.feedLocation {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                    self.centerMap(on: newLocation, zoom: 17, animated: true)
-                }
-                self.view_carPopup.updateWithFeed(feed: feed)
-                self.view_carPopup.viewModel?.type.value = .feed
-                self.view.layoutIfNeeded()
-                UIView .animate(withDuration: 0.2, animations: {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 90
-                    self.view_carPopup.alpha = 1.0
-                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
-                    self.view.layoutIfNeeded()
-                    self.selectedFeed = feed
-                })
+            let feed = feedAnnotation.feed
+            if let location = feed.feedLocation {
+                let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                self.centerMap(on: newLocation, zoom: 17, animated: true)
             }
+            self.view_carPopup.updateWithFeed(feed: feed)
+            self.view_carPopup.viewModel?.type.value = .feed
+            self.view.layoutIfNeeded()
+            UIView .animate(withDuration: 0.2, animations: {
+                self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 90
+                self.view_carPopup.alpha = 1.0
+                self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                self.view.layoutIfNeeded()
+                self.selectedFeed = feed
+            })
         } else {
             let location = marker.position
             var zoom = self.mapView.camera.zoom

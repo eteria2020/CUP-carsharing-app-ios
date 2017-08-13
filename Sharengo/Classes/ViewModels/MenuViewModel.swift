@@ -118,7 +118,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             let menuItem4 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: ViewModelFactory.support())
             let menuItem5 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: ViewModelFactory.faq())
             let menuItem6 = MenuItem(title: "lbl_menuBuyMinutes", icon: "ic_acquistaminuti", viewModel: nil)
-            let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: ViewModelFactory.inviteFriend())
+            //let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: ViewModelFactory.inviteFriend())
             let menuItem8 = MenuItem(title: "lbl_menuSettings", icon: "ic_impostazioni", viewModel: ViewModelFactory.settings())
             let menuItem9 = MenuItem(title: "lbl_menuLogout", icon: "ic_logout", viewModel: ViewModelFactory.home())
             menuItems.append(menuItem1)
@@ -127,7 +127,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
             menuItems.append(menuItem6)
-            menuItems.append(menuItem7)
+            //menuItems.append(menuItem7)
             menuItems.append(menuItem8)
             menuItems.append(menuItem9)
         }

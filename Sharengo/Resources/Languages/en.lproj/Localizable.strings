@@ -195,7 +195,7 @@
 // Feeds
 "btn_feedsHeaderFeed" = "FEED";
 "btn_feedsHeaderCategories" = "CATEGORIE";
-"btn_feedsAroundMe" = "INTORNO A ME";
+"btn_feedsAroundMe" = "VEDI IN MAPPA";
 "alert_categoryNotPublished" = "Questa categoria sarà disponibile prossimamente.";
 
 // Feed Detail

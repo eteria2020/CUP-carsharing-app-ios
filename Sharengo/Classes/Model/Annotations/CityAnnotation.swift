@@ -13,7 +13,8 @@ import GoogleMaps
  CityAnnotation class is the GMSMarker that application uses to show city location
  */
 public class CityAnnotation: GMSMarker {
-    var city: City?
+    /// Variable used to save the city
+    public var city: City?
     /// Variable used to get the image to show in the marker
     public lazy var image: UIImage = self.getImage()
     
@@ -41,7 +42,7 @@ public class CityAnnotation: GMSMarker {
         return UIImage(named: "ic_cluster")!
     }
     
-    func resizeImageForCluster(image: UIImage, newSize: CGSize) -> (UIImage) {
+    fileprivate func resizeImageForCluster(image: UIImage, newSize: CGSize) -> (UIImage) {
         let scale = min(image.size.width/newSize.width, image.size.height/newSize.height)
         let newSize = CGSize(width: image.size.width/scale, height: image.size.height/scale)
         let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
