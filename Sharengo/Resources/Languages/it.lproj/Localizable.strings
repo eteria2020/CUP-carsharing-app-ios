@@ -230,9 +230,22 @@
 "btn_faqAppTutorial" = "APP TUTORIAL";
 
 // Tutorial
-"img_tutorialStep1" = "img_mizzie";
-"img_tutorialStep2" = "img_mizzie2";
-"img_tutorialStep3" = "img_mizzie3";
+"img_tutorial01" = "tutorial_01";
+"img_tutorial02" = "tutorial_02";
+"img_tutorial03" = "tutorial_03";
+"img_tutorial04" = "tutorial_04";
+"img_tutorial05" = "tutorial_05";
+"img_tutorial06" = "tutorial_06";
+"img_tutorial07" = "tutorial_07";
+"img_tutorial08" = "tutorial_08";
+"img_tutorial640x960_01" = "tutorial_640x960_01";
+"img_tutorial640x960_02" = "tutorial_640x960_02";
+"img_tutorial640x960_03" = "tutorial_640x960_03";
+"img_tutorial640x960_04" = "tutorial_640x960_04";
+"img_tutorial640x960_05" = "tutorial_640x960_05";
+"img_tutorial640x960_06" = "tutorial_640x960_06";
+"img_tutorial640x960_07" = "tutorial_640x960_07";
+"img_tutorial640x960_08" = "tutorial_640x960_08";
 "alert_closeTutorial" = "Vuoi uscire dal tutorial?\nPotrai rivederlo quando vuoi alla sezione del menù \"Faq e tutorial\".";
 "btn_tutorialAlertStay" = "RIMANI";
 "btn_tutorialAlertClose" = "ESCI";
