@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupFavourites()
         self.setupSettings()
         self.setupCities()
+        self.setupPolygons()
         self.setupGoogleMaps()
         self.setupFabric()
         
@@ -112,13 +113,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     fileprivate func setupCities() {
-        if var cache = UserDefaults.standard.object(forKey: "cacheCities") as? Data {
+        if let cache = UserDefaults.standard.object(forKey: "cacheCities") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: cache) as? [CityCache] {
                 var cities: [City] = [City]()
                 for city in Array(unarchivedArray) {
                     cities.append(city.getCity())
                 }
                 CoreController.shared.cities = cities
+            }
+        }
+    }
+    
+    fileprivate func setupPolygons() {
+        if let cache = UserDefaults.standard.object(forKey: "cachePolygons") as? Data {
+            if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: cache) as? [PolygonCache] {
+                var polygons: [Polygon] = [Polygon]()
+                for polygon in Array(unarchivedArray) {
+                    polygons.append(polygon.getPolygon())
+                }
+                CoreController.shared.polygons = polygons
             }
         }
     }
