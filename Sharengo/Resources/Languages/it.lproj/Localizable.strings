@@ -105,7 +105,7 @@
 "lbl_carPopupType" = "Auto più vicina";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
 "lbl_carPopupCapacity" = "autonomia: <bold>%@</bold>";
-"lbl_carPopupDistance_km" = "%.2f km di distanza"";
+"lbl_carPopupDistance_km" = "%.2f km di distanza";
 "lbl_carPopupDistance_mt" = "%.3d mt di distanza";
 "lbl_carPopupWalkingDistance_h" = "%d ore a piedi";
 "lbl_carPopupWalkingDistance_m" = "%d minuti a piedi";

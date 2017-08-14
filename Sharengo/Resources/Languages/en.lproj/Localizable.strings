@@ -56,7 +56,7 @@
 "btn_loginContinueAsNotLogged" = "CONTINUE WITHOUT LOGGING";
 
 // Menu
-"lbl_menuHeaderTitleLogged" = "Hi %s, welcome back!";
+"lbl_menuHeaderTitleLogged" = "Hi %@, welcome back!";
 "lbl_menuHeaderTitleGuest" = "Hi, welcome!";
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Signup";
@@ -105,8 +105,8 @@
 "lbl_carPopupType" = "Nearest car";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
 "lbl_carPopupCapacity" = "autonomy : <bold>%@</bold>";
-"lbl_carPopupDistance_km" = "%.2f km away"";
-"lbl_carPopupDistance_mt" = "%.3d m away"";
+"lbl_carPopupDistance_km" = "%.2f km away";
+"lbl_carPopupDistance_mt" = "%.3d m away";
 "lbl_carPopupWalkingDistance_h" = "%d hours on foot";
 "lbl_carPopupWalkingDistance_m" = "%d minutes on foot";
 "lbl_carPopupWalkingDistance_h_m" = "%d hours e %@ minutes on foot";

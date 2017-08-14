@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreController.shared.updateData()
         
         self.setupSideMenu()
+        
         return true
     }
 
