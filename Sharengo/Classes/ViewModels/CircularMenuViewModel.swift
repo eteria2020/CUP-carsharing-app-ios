@@ -11,23 +11,30 @@ import RxSwift
 import Boomerang
 import Action
 
-enum CircularMenuType {
+/**
+ Enum that specifies circular menu type and features related to it. These are:
+ - background border color
+ - background border size
+ - background color
+ - items
+ */
+public enum CircularMenuType {
     case searchCars
     case feeds
     
-    func getBackgroundBorderColor() -> UIColor {
+    public func getBackgroundBorderColor() -> UIColor {
         return Color.circularMenuBackgroundBorder.value
     }
     
-    func getBackgroundBorderSize() -> CGFloat {
+    public func getBackgroundBorderSize() -> CGFloat {
         return UIScreen.main.bounds.height*0.08
     }
     
-    func getBackgroundViewColor() -> UIColor {
+    public func getBackgroundViewColor() -> UIColor {
         return Color.circularMenuBackground.value
     }
     
-    func getItems() -> [CircularMenuItem] {
+    public func getItems() -> [CircularMenuItem] {
         switch self {
         case .searchCars:
             return [CircularMenuItem(icon: "ic_referesh", input: .refresh),
@@ -44,11 +51,17 @@ enum CircularMenuType {
     }
 }
 
-struct CircularMenuItem {
+/**
+ Struct used for items
+ */
+public struct CircularMenuItem {
     let icon: String
     let input: CircularMenuInput
 }
 
+/**
+ Enum that specifies selection input
+ */
 public enum CircularMenuInput: SelectionInput {
     case refresh
     case center
@@ -56,6 +69,9 @@ public enum CircularMenuInput: SelectionInput {
     case cars
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum CircularMenuOutput: SelectionInput {
     case empty
     case refresh
@@ -64,13 +80,20 @@ public enum CircularMenuOutput: SelectionInput {
     case cars
 }
 
-final class CircularMenuViewModel: ViewModelTypeSelectable {    
-    let type: CircularMenuType
+/**
+ The Circular menu model provides data related to display content on the circular menu
+ */
+public final class CircularMenuViewModel: ViewModelTypeSelectable {
+    /// Type of the circular menu
+    public let type: CircularMenuType
+    /// Selection variable
     public var selection: Action<CircularMenuInput, CircularMenuOutput> = Action { _ in
         return .just(.empty)
     }
     
-    init(type: CircularMenuType) {
+    // MARK: - Init methods
+    
+    public init(type: CircularMenuType) {
         self.type = type
         self.selection = Action { input in
             switch input {

@@ -11,28 +11,40 @@ import RxSwift
 import Boomerang
 import Action
 
-struct ButtonSection {
+/**
+ Struct used to store info about buttons
+ */
+public struct ButtonSection {
     var midValue: CGFloat = 0.0
     var minValue: CGFloat = 0.0
     var maxValue: CGFloat = 0.0
     var sector = 0
 }
 
-class CircularMenuView: UIView {
+/**
+ The Circular menu class is a view that adds a circular menu on the screen with typology-dependent buttons
+ */
+public class CircularMenuView: UIView {
     @IBOutlet fileprivate weak var view_main: UIView!
     @IBOutlet fileprivate weak var view_background: UIView!
-    fileprivate var view: UIView!
-    
-    var array_buttons: [CircularMenuButton] = []
-    var array_buttons_sections: [ButtonSection] = []
-    var viewModel: CircularMenuViewModel?
-    var startTransform: CGAffineTransform = CGAffineTransform()
-    var deltaAngle: Float = 0.0
-    var rotationAngle: Float = 0.0
+    /// Main view of the circular menu
+    public var view: UIView!
+    /// Variable used to save buttons
+    public var array_buttons: [CircularMenuButton] = []
+    /// Variable used to save buttons section
+    public var array_buttons_sections: [ButtonSection] = []
+    /// ViewModel variable used to represents the data
+    public var viewModel: CircularMenuViewModel?
+    /// Variable used to save start transform for rotation
+    public var startTransform: CGAffineTransform = CGAffineTransform()
+    /// Variable used to save delta angle for rotation
+    public var deltaAngle: Float = 0.0
+    /// Variable used to save rotation for rotation
+    public var rotationAngle: Float = 0.0
 
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? CircularMenuViewModel else {
             return
         }
@@ -42,11 +54,11 @@ class CircularMenuView: UIView {
     
     // MARK: - View methods
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     
@@ -73,7 +85,72 @@ class CircularMenuView: UIView {
         return view
     }
     
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    // MARK: - Touches methods
+    
+    /**
+     This method is called when a touch begans on circular menu
+     */
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.viewModel?.type.getItems().count ?? 0 > 3 {
+            let touch = touches.first!
+            let location = touch.location(in: self)
+            let dx = location.x - self.center.x
+            let dy = location.y - self.center.y
+            deltaAngle = atan2(Float(dy), Float(dx))
+            startTransform = self.transform
+        }
+    }
+    
+    /**
+     This method is called when a touch moves on circular menu
+     */
+    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.viewModel?.type.getItems().count ?? 0 > 3 {
+            let touch = touches.first!
+            let location = touch.location(in: self)
+            let dx = location.x - self.center.x
+            let dy = location.y - self.center.y
+            let ang = atan2(dy, dx)
+            let angleDifference = deltaAngle - Float(ang)
+            startTransform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+            let radians = atan2f(Float(startTransform.b), Float(startTransform.a))
+            let degrees = radians * Float(180 / Double.pi)
+            if degrees < 0 && degrees > -33 {
+                self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+                for button in self.array_buttons {
+                    button.transform = button.transform.rotated(by: (CGFloat)(angleDifference))
+                }
+                self.rotationAngle = radians
+            }
+        }
+    }
+    
+    /**
+     This method is called when a touch ends on circular menu
+     */
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.viewModel?.type.getItems().count ?? 0 > 3 {
+            let radians = atan2f(Float(self.transform.b), Float(self.transform.a))
+            var newVal: CGFloat = 0.0
+            for section in array_buttons_sections {
+                if (radians > Float(section.minValue) && radians < Float(section.maxValue)) {
+                    newVal = CGFloat(radians) - section.midValue
+                }
+            }
+            UIView.animate(withDuration: 0.2) {
+                self.transform = self.transform.rotated(by: -(CGFloat)(newVal))
+                for button in self.array_buttons {
+                    button.transform = button.transform.rotated(by: (CGFloat)(newVal))
+                }
+                self.rotationAngle = radians
+            }
+        }
+    }
+    
+    /**
+     This method is used to enable touch in specific points of the circular menu
+     */
+    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for subview in view_main.subviews {
             if subview.point(inside: convert(point, to: subview), with: event) {
                 return true
@@ -89,7 +166,10 @@ class CircularMenuView: UIView {
     
     // MARK: - Buttons methods
     
-    fileprivate func generateButtons() {
+    /**
+     This method is called to initialize buttons and buttons sections in circular menu
+     */
+    public func generateButtons() {
         guard let viewModel = viewModel else {
             return
         }
@@ -117,93 +197,30 @@ class CircularMenuView: UIView {
                 button.rx.bind(to: viewModel.selection, input: menuItem.input)
                 view_main.addSubview(button)
                 array_buttons.append(button)
-     
                 var buttonSection = ButtonSection()
                 buttonSection.midValue = mid
                 buttonSection.minValue = mid - CGFloat(fanWidth / 2)
                 buttonSection.maxValue = mid + CGFloat(fanWidth / 2)
                 buttonSection.sector = i
-                
                 if (buttonSection.maxValue - CGFloat(fanWidth) < -CGFloat(Double.pi)) {
                     mid = CGFloat(Double.pi)
                     buttonSection.midValue = mid
                     buttonSection.minValue = CGFloat(fabsf(Float(buttonSection.maxValue)))
                     
                 }
-               
                 mid -= CGFloat(fanWidth)
-
                 array_buttons_sections.append(buttonSection)
-
                 curAngle += incAngle
             }
         }
     }
     
-    // MARK: - Touches methods
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.viewModel?.type.getItems().count ?? 0 > 3 {
-            let touch = touches.first!
-            let location = touch.location(in: self)
-            
-            let dx = location.x - self.center.x
-            let dy = location.y - self.center.y
-            
-            deltaAngle = atan2(Float(dy), Float(dx))
-            
-            startTransform = self.transform
-        }
-    }
+    // MARK: - Utility methods
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.viewModel?.type.getItems().count ?? 0 > 3 {
-            let touch = touches.first!
-            let location = touch.location(in: self)
-            let dx = location.x - self.center.x
-            let dy = location.y - self.center.y
-            let ang = atan2(dy, dx)
-            let angleDifference = deltaAngle - Float(ang)
-            
-            startTransform = self.transform.rotated(by: -(CGFloat)(angleDifference))
-            
-            let radians = atan2f(Float(startTransform.b), Float(startTransform.a))
-            let degrees = radians * Float(180 / Double.pi)
-            
-            if degrees < 0 && degrees > -33
-            {
-                self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
-                for button in self.array_buttons {
-                    button.transform = button.transform.rotated(by: (CGFloat)(angleDifference))
-                }
-                self.rotationAngle = radians
-            }
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.viewModel?.type.getItems().count ?? 0 > 3 {
-            let radians = atan2f(Float(self.transform.b), Float(self.transform.a))
-            var newVal: CGFloat = 0.0
-            
-            for section in array_buttons_sections {
-                if (radians > Float(section.minValue) && radians < Float(section.maxValue))
-                {
-                    newVal = CGFloat(radians) - section.midValue
-                }
-            }
-            
-            UIView.animate(withDuration: 0.2) {
-                self.transform = self.transform.rotated(by: -(CGFloat)(newVal))
-                
-                for button in self.array_buttons {
-                    button.transform = button.transform.rotated(by: (CGFloat)(newVal))
-                }
-                self.rotationAngle = radians
-            }
-        }
-    }
-    
+    /**
+     This method is used to calculate distance from one point to the center of the view
+     - Parameter point: Point to calculate
+     */
     func calculateDistanceFromCenter(point: CGPoint) -> Float
     {
         let center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
@@ -211,5 +228,4 @@ class CircularMenuView: UIView {
         let dy = point.y - center.y
         return sqrt(Float(dx*dx + dy*dy))
     }
-
 }

@@ -779,7 +779,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     let button = arrayOfButtons[i]
                     if menuItem.input == .compass {
                         UIView.animate(withDuration: 0.2, animations: {
-                            print(self.view_circularMenu.rotationAngle)
                             button.transform = CGAffineTransform(rotationAngle: -(degrees.degreesToRadians+CGFloat(self.view_circularMenu.rotationAngle)))
                         })
                         return

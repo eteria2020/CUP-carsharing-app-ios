@@ -24,7 +24,7 @@ public enum MapType {
     case searchCars
     case feeds
     
-    func getCircularMenuType() -> CircularMenuType {
+    public func getCircularMenuType() -> CircularMenuType {
         switch self {
         case .searchCars:
             return .searchCars

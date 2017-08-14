@@ -192,6 +192,7 @@ public class Feed: ModelType, Decodable {
         {
             "color":
             {
+                "rgb_default":"#954bb5",
                 "rgb":"#954bb5",
                 "enforce":"false"
             }
@@ -279,7 +280,6 @@ public class Feed: ModelType, Decodable {
         self.description = "informations.description" <~~ json ?? ""
         self.categoryTitle = "category.name" <~~ json ?? ""
         self.icon = "category.media.images.icon.uri" <~~ json ?? ""
-        self.color = "appearance.color.rgb" <~~ json ?? ""
         self.image = "media.images.image.uri" <~~ json ?? ""
         self.location = "informations.location" <~~ json ?? ""
         self.address = "informations.address.friendly" <~~ json ?? ""
@@ -290,8 +290,10 @@ public class Feed: ModelType, Decodable {
         }
         if sponsored {
             self.marker = "media.images.icon.uri" <~~ json ?? ""
+            self.color = "appearance.color.rgb" <~~ json ?? ""
         } else {
             self.marker = "category.media.images.marker.uri" <~~ json ?? ""
+            self.color = "appearance.color.rgb_default" <~~ json ?? ""
         }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
