@@ -12,6 +12,8 @@ import GoogleMaps
  CarAnnotation class is the GMUClusterItem that application uses to show car location (single pin or cluster)
  */
 public class CarAnnotation: NSObject, GMUClusterItem {
+    /// Variable used to identifier cars cluster
+    public var identifier: Int32
     /// Variable used to save the position of the marker
     public var position: CLLocationCoordinate2D
     /// Variable used to save the image to show in the marker
@@ -24,6 +26,7 @@ public class CarAnnotation: NSObject, GMUClusterItem {
     public init(position: CLLocationCoordinate2D, car: Car, carBooked: Car?) {
         self.position = position
         self.car = car
+        self.identifier = 1
         self.marker = UIImage(named: "ic_auto")!
         super.init()
         if car.booked || car.opened {

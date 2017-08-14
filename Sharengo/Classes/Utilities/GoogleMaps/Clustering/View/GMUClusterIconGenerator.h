@@ -24,6 +24,6 @@
 /**
  * Generates an icon with the given size.
  */
-- (UIImage *)iconForSize:(NSUInteger)size;
+- (UIImage *)iconForSize:(NSUInteger)size identifier:(int)identifier;
 
 @end

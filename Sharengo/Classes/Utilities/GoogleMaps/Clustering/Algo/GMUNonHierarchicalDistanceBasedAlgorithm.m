@@ -130,41 +130,83 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
       [[NSMutableDictionary alloc] init];
   NSMutableSet<id<GMUClusterItem>> *processedItems = [[NSMutableSet alloc] init];
 
-  for (id<GMUClusterItem> item in _items) {
-    if ([processedItems containsObject:item]) continue;
-
-    GMUStaticCluster *cluster = [[GMUStaticCluster alloc] initWithPosition:item.position];
-
-    GMSMapPoint point = GMSProject(item.position);
-
-    // Query for items within a fixed point distance from the current item to make up a cluster
-    // around it.
-    double radius = kGMUClusterDistancePoints * kGMUMapPointWidth / pow(2.0, zoom + 8.0);
-    GQTBounds bounds = {point.x - radius, point.y - radius, point.x + radius, point.y + radius};
-    NSArray *nearbyItems = [_quadTree searchWithBounds:bounds];
-    for (GMUClusterItemQuadItem *quadItem in nearbyItems) {
-      id<GMUClusterItem> nearbyItem = quadItem.clusterItem;
-      [processedItems addObject:nearbyItem];
-      GMSMapPoint nearbyItemPoint = GMSProject(nearbyItem.position);
-      GMUWrappingDictionaryKey *key = [[GMUWrappingDictionaryKey alloc] initWithObject:nearbyItem];
-
-      NSNumber *existingDistance = [itemToClusterDistanceMap objectForKey:key];
-      double distanceSquared = [self distanceSquaredBetweenPointA:point andPointB:nearbyItemPoint];
-      if (existingDistance != nil) {
-        if ([existingDistance doubleValue] < distanceSquared) {
-          // Already belongs to a closer cluster.
-          continue;
+    for (id<GMUClusterItem> item in _items) {
+        if (item.identifier == 1) {
+            if ([processedItems containsObject:item]) continue;
+            
+            GMUStaticCluster *cluster = [[GMUStaticCluster alloc] initWithPosition:item.position];
+            cluster.identifier = 1;
+            
+            GMSMapPoint point = GMSProject(item.position);
+            
+            // Query for items within a fixed point distance from the current item to make up a cluster
+            // around it.
+            double radius = kGMUClusterDistancePoints * kGMUMapPointWidth / pow(2.0, zoom + 8.0);
+            GQTBounds bounds = {point.x - radius, point.y - radius, point.x + radius, point.y + radius};
+            NSArray *nearbyItems = [_quadTree searchWithBounds:bounds];
+            for (GMUClusterItemQuadItem *quadItem in nearbyItems) {
+                id<GMUClusterItem> nearbyItem = quadItem.clusterItem;
+                if (nearbyItem.identifier == 1) {
+                    [processedItems addObject:nearbyItem];
+                    GMSMapPoint nearbyItemPoint = GMSProject(nearbyItem.position);
+                    GMUWrappingDictionaryKey *key = [[GMUWrappingDictionaryKey alloc] initWithObject:nearbyItem];
+                    
+                    NSNumber *existingDistance = [itemToClusterDistanceMap objectForKey:key];
+                    double distanceSquared = [self distanceSquaredBetweenPointA:point andPointB:nearbyItemPoint];
+                    if (existingDistance != nil) {
+                        if ([existingDistance doubleValue] < distanceSquared) {
+                            // Already belongs to a closer cluster.
+                            continue;
+                        }
+                        GMUStaticCluster *existingCluster = [itemToClusterMap objectForKey:key];
+                        [existingCluster removeItem:nearbyItem];
+                    }
+                    NSNumber *number = [NSNumber numberWithDouble:distanceSquared];
+                    [itemToClusterDistanceMap setObject:number forKey:key];
+                    [itemToClusterMap setObject:cluster forKey:key];
+                    [cluster addItem:nearbyItem];
+                }
+            }
+            [clusters addObject:cluster];
+        } else if (item.identifier == 2) {
+            if ([processedItems containsObject:item]) continue;
+            
+            GMUStaticCluster *cluster = [[GMUStaticCluster alloc] initWithPosition:item.position];
+            cluster.identifier = 2;
+            
+            GMSMapPoint point = GMSProject(item.position);
+            
+            // Query for items within a fixed point distance from the current item to make up a cluster
+            // around it.
+            double radius = kGMUClusterDistancePoints * kGMUMapPointWidth / pow(2.0, zoom + 8.0);
+            GQTBounds bounds = {point.x - radius, point.y - radius, point.x + radius, point.y + radius};
+            NSArray *nearbyItems = [_quadTree searchWithBounds:bounds];
+            for (GMUClusterItemQuadItem *quadItem in nearbyItems) {
+                id<GMUClusterItem> nearbyItem = quadItem.clusterItem;
+                if (nearbyItem.identifier == 2) {
+                    [processedItems addObject:nearbyItem];
+                    GMSMapPoint nearbyItemPoint = GMSProject(nearbyItem.position);
+                    GMUWrappingDictionaryKey *key = [[GMUWrappingDictionaryKey alloc] initWithObject:nearbyItem];
+                    
+                    NSNumber *existingDistance = [itemToClusterDistanceMap objectForKey:key];
+                    double distanceSquared = [self distanceSquaredBetweenPointA:point andPointB:nearbyItemPoint];
+                    if (existingDistance != nil) {
+                        if ([existingDistance doubleValue] < distanceSquared) {
+                            // Already belongs to a closer cluster.
+                            continue;
+                        }
+                        GMUStaticCluster *existingCluster = [itemToClusterMap objectForKey:key];
+                        [existingCluster removeItem:nearbyItem];
+                    }
+                    NSNumber *number = [NSNumber numberWithDouble:distanceSquared];
+                    [itemToClusterDistanceMap setObject:number forKey:key];
+                    [itemToClusterMap setObject:cluster forKey:key];
+                    [cluster addItem:nearbyItem];
+                }
+            }
+            [clusters addObject:cluster];
         }
-        GMUStaticCluster *existingCluster = [itemToClusterMap objectForKey:key];
-        [existingCluster removeItem:nearbyItem];
-      }
-      NSNumber *number = [NSNumber numberWithDouble:distanceSquared];
-      [itemToClusterDistanceMap setObject:number forKey:key];
-      [itemToClusterMap setObject:cluster forKey:key];
-      [cluster addItem:nearbyItem];
     }
-    [clusters addObject:cluster];
-  }
   NSAssert(itemToClusterDistanceMap.count == _items.count,
            @"All items should be mapped to a distance");
   NSAssert(itemToClusterMap.count == _items.count,

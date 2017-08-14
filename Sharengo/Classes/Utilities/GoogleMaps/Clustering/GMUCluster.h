@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, readonly) NSArray<id<GMUClusterItem>> *items;
 
+@property(nonatomic) int identifier;
+
 @end
 
 NS_ASSUME_NONNULL_END
