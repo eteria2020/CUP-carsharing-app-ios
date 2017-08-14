@@ -211,7 +211,7 @@ class CoreController {
     func getPulseYellow() -> UIImage {
         var frames: [UIImage] = [UIImage]()
         for i in 1...47 {
-            let image = self.resizeImageForPulse(image: UIImage(named: "Giallo_loop_000\(i)")!, newSize: CGSize(width: 120, height: 120))
+            let image = self.resizeImageForPulse(image: UIImage(named: "Giallo_loop_000\(i)")!, newSize: CGSize(width: 200, height: 200))
             frames.append(image)
         }
         return UIImage.animatedImage(with: frames, duration: 3)!
@@ -220,7 +220,7 @@ class CoreController {
     func getPulseGreen() -> UIImage {
         var frames: [UIImage] = [UIImage]()
         for i in 1...47 {
-            let image = self.resizeImageForPulse(image: UIImage(named: "Verde_loop_000\(i)")!, newSize: CGSize(width: 120, height: 120))
+            let image = self.resizeImageForPulse(image: UIImage(named: "Verde_loop_000\(i)")!, newSize: CGSize(width: 200, height: 200))
             frames.append(image)
         }
         return UIImage.animatedImage(with: frames, duration: 3)!

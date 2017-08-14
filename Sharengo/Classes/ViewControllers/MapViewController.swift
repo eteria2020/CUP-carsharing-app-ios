@@ -80,7 +80,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                         self?.addPolygons()
                     }
-                    self?.setUpdateButtonAnimated(false)
+                    if viewModel.type == .feeds {
+                        self?.setUpdateButtonAnimated(false)
+                    } else {
+                        let dispatchTime = DispatchTime.now() + 0.3
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self?.setUpdateButtonAnimated(false)
+                        }
+                    }
                     if let car = self?.selectedCar {
                         self?.view_carPopup.updateWithCar(car: car)
                     }
@@ -806,7 +813,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if let radius = self.getRadius() {
             if radius < clusteringRadius {
                 self.clusteringInProgress = true
-                //self.addPolygons()
                 if let mapView = self.mapView {
                     self.setUpdateButtonAnimated(true)
                     self.viewModel?.reloadResults(latitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, radius: radius)
@@ -1107,14 +1113,21 @@ extension MapViewController: GMSMapViewDelegate {
      */
     public func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
-        self.stopRequest()
+        self.view_searchBar.stopSearchBar()
+    }
+    
+    /**
+     This method is called when map is moved: it updates turn button in circular menu and stop request and research
+     */
+    public func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.view_searchBar.stopSearchBar()
     }
     
     /**
      This method is called when map ended moving: it updates turn button in circular menu and get results
      */
-    public func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+    public func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.getResults()
     }
