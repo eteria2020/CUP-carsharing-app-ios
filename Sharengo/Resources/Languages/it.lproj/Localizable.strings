@@ -10,25 +10,23 @@
 // General
 "btn_ok" = "OK";
 "btn_cancel" = "ANNULLA";
+"btn_back" = "INDIETRO";
+"btn_tutorial" = "TUTORIAL";
 "btn_yes" = "SÌ";
 "btn_no" = "NO";
 "alert_connectionError" = "Non sei connesso ad internet, per favore riprova";
 "alert_generalError" = "Si è verificato un errore, per favore riprova";
-"alert_loginError" = "Devi effettuare l'accesso per utilizzare questa funzionalità";
+"alert_loginError" = "Devi effettuare l’accesso per utilizzare questa funzionalità";
 "alert_webViewError" = "Si è verificato un errore, per favore controlla la tua connessione ad internet o riprova più tardi";
 "btn_login" = "LOGIN";
 "btn_open" = "APRI PORTIERE";
 "btn_book" = "PRENOTA AUTO";
-"bnt_delete" = "ELIMINA";
+"btn_delete" = "ELIMINA";
 "btn_carRides" = "STORICO CORSE";
 "btn_detail" = "SCOPRI DI PIÙ";
 "btn_car" = "PRENOTA AUTO";
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
-"city_milano" = "Milano";
-"city_firenze" = "Firenze";
-"city_roma" = "Roma";
-"city_modema" = "Modena";
 
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
@@ -67,7 +65,7 @@
 "lbl_menuHelp" = "Richiedi assistenza";
 "lbl_menuProfile" = "Profilo";
 "lbl_menuSearchCars" = "Prenota un'auto";
-"lbl_menuRaces" = "Cronologia corse";
+"lbl_menuRaces" = "Cronologie corse";
 "lbl_menuBuyMinutes" = "Acquista minuti";
 "lbl_menuInvite" = "Invita un amico";
 "lbl_menuSettings" = "Impostazioni";
@@ -100,7 +98,7 @@
 "lcl_searchBarSpeechRecognizer" = "it-IT";
 
 // SearchCars
-"alert_centerMapMessage" = "Share'ngo ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 "alert_showCarsDisabledMessage" = "Attenzione! Potrai utilizzare questa funzione solo dopo aver concluso la corsa o la prenotazione attiva";
 
 // CarPopup
@@ -114,7 +112,7 @@
 "lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sare'ngo che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sharen'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
@@ -206,7 +204,7 @@
 
 // No feeds
 "lbl_noFeedsDescriptionWithCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili nella categoria selezionata. Ti invitiamo a riprovare nei prossimi giorni</description>";
-"lbl_noFeedsDescriptionWithNoCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili. Ti invitiamo a riprovare nei prossimi giorni</description>";
+"btn_feed lbl_noFeedsDescriptionWithNoCategoryDetailNotFavourite" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili. Ti invitiamo a riprovare nei prossimi giorni</description>";
 
 // Support
 "lbl_supportHeaderTitle" = "RICHIEDI ASSISTENZA";
@@ -232,9 +230,22 @@
 "btn_faqAppTutorial" = "APP TUTORIAL";
 
 // Tutorial
-"img_tutorialStep1" = "img_mizzie";
-"img_tutorialStep2" = "img_mizzie2";
-"img_tutorialStep3" = "img_mizzie3";
+"img_tutorial01" = "tutorial_01";
+"img_tutorial02" = "tutorial_02";
+"img_tutorial03" = "tutorial_03";
+"img_tutorial04" = "tutorial_04";
+"img_tutorial05" = "tutorial_05";
+"img_tutorial06" = "tutorial_06";
+"img_tutorial07" = "tutorial_07";
+"img_tutorial08" = "tutorial_08";
+"img_tutorial640x960_01" = "tutorial_640x960_01";
+"img_tutorial640x960_02" = "tutorial_640x960_02";
+"img_tutorial640x960_03" = "tutorial_640x960_03";
+"img_tutorial640x960_04" = "tutorial_640x960_04";
+"img_tutorial640x960_05" = "tutorial_640x960_05";
+"img_tutorial640x960_06" = "tutorial_640x960_06";
+"img_tutorial640x960_07" = "tutorial_640x960_07";
+"img_tutorial640x960_08" = "tutorial_640x960_08";
 "alert_closeTutorial" = "Vuoi uscire dal tutorial?\nPotrai rivederlo quando vuoi alla sezione del menù \"Faq e tutorial\".";
 "btn_tutorialAlertStay" = "RIMANI";
 "btn_tutorialAlertClose" = "ESCI";

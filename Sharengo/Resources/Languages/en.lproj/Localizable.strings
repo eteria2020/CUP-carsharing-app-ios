@@ -9,230 +9,243 @@
 
 // General
 "btn_ok" = "OK";
-"btn_cancel" = "ANNULLA";
-"btn_back" = "INDIETRO";
+"btn_cancel" = "CANCEL";
+"btn_back" = "BACK";
 "btn_tutorial" = "TUTORIAL";
-"btn_yes" = "SÌ";
+"btn_yes" = "YES";
 "btn_no" = "NO";
-"alert_connectionError" = "Non sei connesso ad internet, per favore riprova";
-"alert_generalError" = "Si è verificato un errore, per favore riprova";
-"alert_loginError" = "Devi effettuare l'accesso per utilizzare questa funzionalità";
-"alert_webViewError" = "Si è verificato un errore, per favore controlla la tua connessione ad internet o riprova più tardi";
+"alert_connectionError" = "You are offline, please try again";
+"alert_generalError" = "An error occurred, please try again";
+"alert_loginError" = "You need to log in to use this feature";
+"alert_webViewError" = "An error occurred, please check your internet connection and try again later";
 "btn_login" = "LOGIN";
-"btn_open" = "APRI PORTIERE";
-"btn_book" = "PRENOTA AUTO";
-"bnt_delete" = "ELIMINA";
-"btn_carRides" = "STORICO CORSE";
-"btn_detail" = "SCOPRI DI PIÙ";
-"btn_car" = "PRENOTA AUTO";
-"language_italian" = "Italiano";
-"language_english" = "Inglese";
+"btn_open" = "OPEN DOORS";
+"btn_book" = "BOOK CAR";
+"btn_delete" = "DELETE";
+"btn_carRides" = "DRIVES HISTORY";
+"btn_detail" = "FIND OUT MORE";
+"btn_car" = "BOOK CAR";
+"language_italian" = "Italian";
+"language_english" = "English";
 
 // Signup
-"lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
-"btn_signupSignup" = "ISCRIVITI";
-"lbl_signupStepTitle1" = "Per iscriverti devi avere\na portata di mano:";
-"lbl_signupStepDescription1" = "CARTA DI IDENTITÀ";
-"lbl_signupStepTitle2" = "Per iscriverti devi avere\na portata di mano:";
-"lbl_signupStepDescription2" = "CODICE FISCALE";
-"lbl_signupStepTitle3" = "Per iscriverti devi avere\na portata di mano:";
-"lbl_signupStepDescription3" = "PATENTE";
-"lbl_signupStepTitle4" = "Per iscriverti devi avere\na portata di mano:";
-"lbl_signupStepDescription4" = "CARTA DI CREDITO";
+"lbl_signupHeader" = "<title>Sign up to Share'ngo</title>\nThe subscription to the service costs 10 € per 30 minutes (standard conditions, unless promotions). If your need help in the sign-up process please use the chat button!";
+"btn_signupSignup" = "SIGN UP";
+"lbl_signupStepTitle1" = "To sign up you need to have at hand:";
+"lbl_signupStepDescription1" = "PERSONAL I.D.";
+"lbl_signupStepTitle2" = "To sign up you need to have at hand:";
+"lbl_signupStepDescription2" = "FISCAL CODE";
+"lbl_signupStepTitle3" = "To sign up you need to have at hand:";
+"lbl_signupStepDescription3" = "DRIVING LICENSE";
+"lbl_signupStepTitle4" = "To sign up you need to have at hand:";
+"lbl_signupStepDescription4" = "CREDIT CARD";
 
 // Login
-"alert_loginMissingFields" = "Uno o più campi non sono compilati.";
-"alert_loginWrongEmail" = "Attenzione! L'indirizzo email che hai inserito non è presente nel nostro database.";
-"alert_loginWrongPassword" = "Attenzione! Password errata.";
-"alert_loginUserDisabled" = "Attenzione! L'utente non è abilitato per l'accesso.";
-"alert_loginUserNotEnabled" = "Attenzione! Non puoi utilizzare il servizio Share'ngo. Verifica i tuoi dati o contatta l'assistenza clienti. Grazie.";
-"lbl_loginFormHeader" = "Compila i campi per effettuare il login";
+"alert_loginMissingFields" = "One or more fields are not completed";
+"alert_loginWrongEmail" = "Careful! The email address you input does not match up in our database.";
+"alert_loginWrongPassword" = "Careful! Wrong password";
+"alert_loginUserDisabled" = "Careful! The user is not enabled to access";
+"alert_loginUserNotEnabled" = "Careful! You cannot use the Share\'ngo service. Please verify your data or contact our customer service. Thank you.";
+"lbl_loginFormHeader" = "Please fill out the fields to log in";
 "txt_loginEmailPlaceholder" = "email";
 "txt_loginPasswordPlaceholder" = "password";
-"btn_loginForgotPassword" = "Ho dimenticato la password";
+"btn_loginForgotPassword" = "Forgot my password";
 "btn_loginLogin" = "LOGIN";
-"lbl_loginNotYetRegistered" = "Non sei ancora iscritto?";
-"btn_loginRegister" = "REGISTRATI";
-"btn_loginContinueAsNotLogged" = "CONTINUA SENZA LOGGARTI";
+"lbl_loginNotYetRegistered" = "Haven’t signed up yet?";
+"btn_loginRegister" = "SUBSCRIBE";
+"btn_loginContinueAsNotLogged" = "CONTINUE WITHOUT LOGGING";
 
 // Menu
-"lbl_menuHeaderTitleLogged" = "Ciao %@, bentornato!";
-"lbl_menuHeaderTitleGuest" = "Ciao, benvenuto!";
+"lbl_menuHeaderTitleLogged" = "Hi %@, welcome back!";
+"lbl_menuHeaderTitleGuest" = "Hi, welcome!";
 "lbl_menuLogin" = "Login";
-"lbl_menuSignUp" = "Iscrizione";
-"lbl_menuFaq" = "Faq e tutorial";
-"lbl_menuRates" = "Tariffe";
-"lbl_menuHelp" = "Richiedi assistenza";
-"lbl_menuProfile" = "Profilo";
-"lbl_menuSearchCars" = "Prenota un'auto";
-"lbl_menuRaces" = "Cronologia corse";
-"lbl_menuBuyMinutes" = "Acquista minuti";
-"lbl_menuInvite" = "Invita un amico";
-"lbl_menuSettings" = "Impostazioni";
+"lbl_menuSignUp" = "Signup";
+"lbl_menuFaq" = "Faq and tutorial";
+"lbl_menuRates" = "Rates";
+"lbl_menuHelp" = "Request assistance";
+"lbl_menuProfile" = "Profile";
+"lbl_menuSearchCars" = "Book a car";
+"lbl_menuRaces" = "Trip history";
+"lbl_menuBuyMinutes" = "Buy minutes";
+"lbl_menuInvite" = "Invite a friend";
+"lbl_menuSettings" = "Settings";
 "lbl_menuLogout" = "Logout";
 
 // Profilo
-"lbl_profileEcoStatus" = "Profilo\nEco Status";
+"lbl_profileEcoStatus" = "Profile\nEco Status";
 
 // Home
-"alert_homeNotAvailable" = "Questa funzione sarà disponibile prossimamente.";
-"lbl_homeDescriptionLogged" = "<bold>Bentornato %@!</bold>";
-"lbl_homeDescriptionNotLogged" = "<bold>Benvenuto!</bold>";
+"alert_homeNotAvailable" = "This feature will be released soon";
+"lbl_homeDescriptionLogged" = "<bold>Welcome back! %@!</bold>";
+"lbl_homeDescriptionNotLogged" = "<bold>Welcome!</bold>";
 
 // Intro
-"lbl_introTitle1" = "Elettrica";
-"lbl_introTitle2" = "Condivisa";
-"lbl_introTitle3" = "Sotto\ncasa";
+"lbl_introTitle1" = "Electric";
+"lbl_introTitle2" = "Shared";
+"lbl_introTitle3" = "Outside your place";
 
 // SearchBar
-"lbl_searchBarTextField" = "Cerca indirizzo o targa";
-"alert_searchBarAuthSpeechAuthorizationDenied" = "Hai negato l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
-"alert_searchBarAuthSpeechAuthorizationRestricted" = "Il riconoscimento vocale non può funzionare causa limiti del dispositivo";
-"alert_searchBarAuthSpeechAuthorizationNotDetermined" = "Non è stato possibile determinare l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
-"alert_searchBarAuthMicrophoneDenied" = "Hai negato l'accesso al microfono. Vuoi aprire le impostazioni per abilitare il servizio?";
-"alert_searchBarAuthMicrophoneUndetermined" = "Non è stato possibile determinare l'accesso al microfono. Vuoi aprire le impostazioni per abilitare il servizio?";
-"alert_searchBarNotSetted" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
-"alert_searchBarNotAvailable" = "È avvenuto un errore nell'utilizzo del riconoscimento vocale";
-"lbl_searchBarNoFavorites" = "Nessun preferito\nmemorizzali nella sezione impostazioni";
-"lbl_searchBarPlate" = "%@\nTarga Share'ngo";
-"lcl_searchBarSpeechRecognizer" = "it-IT";
+"lbl_searchBarTextField" = "Search for address or plate";
+"alert_searchBarAuthSpeechAuthorizationDenied" = "You denied accessing to voice recognition. Would you like to open settings and enable the service?";
+"alert_searchBarAuthSpeechAuthorizationRestricted" = "Voice recognition cannot be used due to the device limitations";
+"alert_searchBarAuthSpeechAuthorizationNotDetermined" = "It was impossible to authorize access to voice recognition. Would you like to open settings and enable the service?";
+"alert_searchBarAuthMicrophoneDenied" = "You denied access to the microphone. Would you like to open settings and enable the service?";
+"alert_searchBarAuthMicrophoneUndetermined" = "It was impossible to authorize access to the microphone. Would you like to open settings and enable the service?";
+"alert_searchBarNotSetted" = "An error occurred while processing voice recognition";
+"alert_searchBarNotAvailable" = "An error occurred while processing voice recognition";
+"lbl_searchBarNoFavorites" = "No favorite\notmemorize in the settings section";
+"lbl_searchBarPlate" = "%@\nPlate Share'ngo";
+"lcl_searchBarSpeechRecognizer" = "en-EN";
 
 // SearchCars
-"alert_centerMapMessage" = "Share'ngo ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_showCarsDisabledMessage" = "Attenzione! Potrai utilizzare questa funzione solo dopo aver concluso la corsa o la prenotazione attiva";
+"alert_centerMapMessage" = "Share\’ngo needs permissions to access your position. Would you like to open settings and enable geolocation?";
+"alert_showCarsDisabledMessage" = "Careful! You will only be able to use this feature after ending your trip or the active booking.";
 
 // CarPopup
-"lbl_carPopupType" = "Auto più vicina";
+"lbl_carPopupType" = "Nearest car";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
-"lbl_carPopupCapacity" = "autonomia: <bold>%@</bold>";
-"lbl_carPopupDistance_km" = "%.2f km di distanza";
-"lbl_carPopupDistance_mt" = "%.3d mt di distanza";
-"lbl_carPopupWalkingDistance_h" = "%d ore a piedi";
-"lbl_carPopupWalkingDistance_m" = "%d minuti a piedi";
-"lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
-"lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
-"alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sare'ngo che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"lbl_carPopupCapacity" = "autonomy : <bold>%@</bold>";
+"lbl_carPopupDistance_km" = "%.2f km away";
+"lbl_carPopupDistance_mt" = "%.3d m away";
+"lbl_carPopupWalkingDistance_h" = "%d hours on foot";
+"lbl_carPopupWalkingDistance_m" = "%d minutes on foot";
+"lbl_carPopupWalkingDistance_h_m" = "%d hours e %@ minutes on foot";
+"lbl_carPopupAddressPlaceholder" = "Charging";
+"alert_carPopupLocalizationMessage" = "Share\’ngo needs to know your position to open the doors. Would you like to open settings and enable geolocation?";
+"alert_carPopupDistanceMessage" = "You are too far from Saren\'go you selected. You will be able to open it as you get closer to it.";
 
 // CarBookingPopup
-"lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
-"lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
-"lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
-"lbl_carTripPopupInfo" = "<status>CORSA ATTIVA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
-"lbl_carBookingPopupTime" = "Scade tra\n%@";
-"lbl_carBookingPopupTimeMinute" = "minuto";
-"lbl_carBookingPopupTimeMinutes" = "minuti";
-"alert_carBookingPopupDeleteMessage" = "Eliminando questa prenotazione, non potrai più prenotare la stessa auto nelle prossime 4 ore. Confermi di voler cancellare la prenotazione?";
-"alert_carBookingPopupConfirmDeleteMessage" = "La tua prenotazione è stata annullata correttamente.";
-"alert_carBookingPopupBookedMessage" = "Hai già una prenotazione attiva";
-"alert_carBookingPopupAlreadyBooked" = "Non puoi prenotare questa auto fino a che non saranno passate 4 ore da quando hai annullato la prenotazione";
+"lbl_carBookingPopupPin" = "YOUR PIN number: %@";
+"lbl_carBookingPopupInfo" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n%@";
+"lbl_carBookingPopupInfoPlaceholder" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n<placeholder>Charging</placeholder>";
+"lbl_carTripPopupInfo" = "<status>ACTIVE BOOKING</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
+"lbl_carBookingPopupTime" = "Expires in\n%@";
+"lbl_carBookingPopupTimeMinute" = "minute";
+"lbl_carBookingPopupTimeMinutes" = "minutes";
+"alert_carBookingPopupDeleteMessage" = "By canceling this booking, you will not be able to book the same car in the next 4 hours. Do you confirm the booking cancelation?";
+"alert_carBookingPopupConfirmDeleteMessage" = "Your booking has been canceled correctly";
+"alert_carBookingPopupBookedMessage" = "You already have an active booking";
+"alert_carBookingPopupAlreadyBooked" = "You cannot book this car until 4 hours have passed since your last canceled your booking";
 
 // CarBookingCompleted
-"lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nAttendi la chiusura delle portiere fuori dall'auto.\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
-"lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
+"lbl_carBookingCompletedDescription" = "<bold>You ended your trip<bold>\n\nPlease wait doors closing outside the car.\n\nYou will be notified via mail the transaction confirmation within 24h.";
+"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %1f CO2 BY THIS TRIP!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
-"banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
+"banner_carBookingCompletedDescription" = "Trip ended. The trip lasted %@ minutes and terminated correctly. Thank you for using Share'ngo";
 "banner_carBookingDeletedTitle" = "Share'ngo";
-"banner_carBookingDeletedDescription" = "Il tempo di prenotazione è scaduto, la tua prenotazione è stata annullata. Prenota un’altra auto in mappa.";
+"banner_carBookingDeletedDescription" = "Booking time expired, your booking has been canceled. Book another car on the map.";
 
 // Settings
-"lbl_settingsHeaderTitle" = "IMPOSTAZIONI";
-"lbl_settingsCities" = "Imposta città";
-"lbl_settingsFavourites" = "Imposta i tuoi indirizzi preferiti";
-"lbl_settingsLanguages" = "Imposta lingua";
+"lbl_settingsHeaderTitle" = "Settings";
+"lbl_settingsCities" = "Set up city";
+"lbl_settingsFavourites" = "Set up favorite addresses";
+"lbl_settingsLanguages" = "Set up language";
 
 // Settings Languages
-"lbl_settingsLanguagesHeaderTitle" = "IMPOSTA LINGUA";
+"lbl_settingsLanguagesHeaderTitle" = "SET UP LANGUAGE";
 
 // Settings Cities
-"lbl_settingsCitiesHeaderTitle" = "IMPOSTA CITTÀ";
+"lbl_settingsCitiesHeaderTitle" = "SET UP CITY";
 
 // Settings Favourites
-"lbl_noFavouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
-"lbl_noFavouritesTitle" = "Peccato!";
-"lbl_noFavouritesDescription" = "Non hai ancora nessun indirizzo preferito o recente! Imposta le tue destinazioni più frequenti e risparmia tempo quando scegli dove andare.";
-"btn_noFavouritesNewFavourite" = "IMPOSTA NUOVO INDIRIZZO";
-"lbl_newFavouriteHeaderTitle" = "NUOVO INDIRIZZO PREFERITO";
-"lbl_newFavouriteTitle" = "Imposta un nuovo indirizzo";
-"lbl_newFavouriteDescription" = "per aggiungerlo ai tuoi preferiti";
-"txt_newFavouriteAddressPlaceholder" = "imposta indirizzo";
-"txt_newFavouriteNamePlaceholder" = "nome preferito";
-"btn_newFavouriteSaveFavourite" = "SALVA PREFERITO";
-"btn_newFavouriteUndo" = "Annulla";
-"alert_newFavouriteMissingFields" = "Uno o più campi non sono compilati.";
-"lbl_favouritesHeaderTitle" = "IMPOSTA INDIRIZZI PREFERITI";
-"lbl_favouritesTitle" = "<bold>Imposta i tuoi indirizzi preferiti</bold>\nper rendere più veloci le tue ricerche";
+"lbl_noFavouritesHeaderTitle" = "SET UP YOUR FAVORITE ADDRESSES";
+"lbl_noFavouritesTitle" = "Too bad!";
+"lbl_noFavouritesDescription" = "You haven’t set up any favorite o recent address yet! Set up your most frequent destinations and save time as you choose where to go.";
+"btn_noFavouritesNewFavourite" = "SET UP A NEW ADDRESS";
+"lbl_newFavouriteHeaderTitle" = "SET UP A FAVORITE ADDRESS";
+"lbl_newFavouriteTitle" = "Set up a new address";
+"lbl_newFavouriteDescription" = "and add it to your favorites";
+"txt_newFavouriteAddressPlaceholder" = "Set up address";
+"txt_newFavouriteNamePlaceholder" = "favorite name";
+"btn_newFavouriteSaveFavourite" = "SAVE FAVORITE";
+"btn_newFavouriteUndo" = "Cancel";
+"alert_newFavouriteMissingFields" = "One or more fields are not completed";
+"lbl_favouritesHeaderTitle" = "SET UP YOUR FAVORITE ADDRESSES";
+"lbl_favouritesTitle" = "<bold>Set up your favorite addresses</bold>\nand make your searches quicker";
 "lbl_favouritesItemTitle1" = "<bold>%@</bold>\n%@";
 "lbl_favouritesItemTitle2" = "%@";
-"btn_favouritesUndo" = "Annulla";
-"btn_favouritesDelete" = "ELIMINA";
-"lbl_favouritesDeleteFav" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi preferiti?";
-"lbl_favouritesDeleteHis" = "Vuoi eliminare questo indirizzo dall’elenco degli indirizzi recenti?";
-"lbl_favouritesModify" = "Vuoi modificare questo indirizzo preferito?";
-"lbl_favouritesAdd" = "Vuoi aggiungere questo indirizzo recente alla lista dei tuoi indirizzi preferiti?";
-"lbl_favouritesNoFavorites" = "Digita l'indirizzo che vorresti\naggiungere ai tuoi preferiti";
+"btn_favouritesUndo" = "Cancel";
+"btn_favouritesDelete" = "DELETE";
+"lbl_favouritesDeleteFav" = "Would you like to delete this address from your favorite address list?";
+"lbl_favouritesDeleteHis" = "Would you like to delete this address from your recent address list?";
+"lbl_favouritesModify" = "Would you like to change your favorite address?";
+"lbl_favouritesAdd" = "Would you like to add this address to your recent address list?";
+"lbl_favouritesNoFavorites" = "Input the address you’d like to add to your favorites";
 
 // CarTrips
-"lbl_carTripsHeaderTitle" = "CRONOLOGIA CORSE";
-"lbl_carTripsItemTitle" = "Prenotazione n. %@";
+"lbl_carTripsHeaderTitle" = "TRIP HISTORY";
+"lbl_carTripsItemTitle" = "Booking n. %@";
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm";
-"lbl_carTripsItemDescription" = "%@ - ORE %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n%@\n<kmTraveled>Chilometri percorsi: %@</kmTraveled>\nSHARE'NGO %@";
-"lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Caricamento in corso</placeholder>";
-"lbl_noCarTripsTitle" = "Peccato!";
-"lbl_noCarTripsDescription" = "Non hai ancora effettuato nessuna corsa con una Share'ngo!";
-"lbl_noCarTrips" = "Cosa aspetti a provarle?";
-"btn_searchCars" = "VAI ALLA MAPPA";
+"lbl_carTripsItemDescription" = "%@ - hours %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - HOURS %@</startDateAndTime>\n%@\n<endDateAndTime>END: %@ - HOURS %@</endDateAndTime>\n%@\n<kmTraveled> Traveled Kilometers: %@</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Charging</placeholder>";
+"lbl_noCarTripsTitle" = "Too bad!";
+"lbl_noCarTripsDescription" = "You haven’t made any trip with a Share\’ngo yet!";
+"lbl_noCarTrips" = "Why not giving it a try?";
+"btn_searchCars" = "Go to the map";
 
 // OnBoard
-"lbl_onBoardStep1Description" = "Facili e divertenti\nda guidare";
-"lbl_onBoardStep2Description" = "Più ne hai bisogno\ne meno costa";
-"lbl_onBoardStep3Description" = "Ogni corsa una sorpresa\ne una scoperta";
+"lbl_onBoardStep1Description" = "Easy and fun to drive";
+"lbl_onBoardStep2Description" = "The more you need them, the less they cost you";
+"lbl_onBoardStep3Description" = "Every trip a surprise and a discovery";
 "btn_onBoardSkip" = "Skip >>";
 
 // Feeds
 "btn_feedsHeaderFeed" = "FEED";
-"btn_feedsHeaderCategories" = "CATEGORIE";
-"btn_feedsAroundMe" = "VEDI IN MAPPA";
-"alert_categoryNotPublished" = "Questa categoria sarà disponibile prossimamente.";
+"btn_feedsHeaderCategories" = "CATEGORIES";
+"btn_feedsAroundMe" = "AROUND ME";
+"alert_categoryNotPublished" = "This category will be available soon";
 
 // Feed Detail
-"btn_feedDetailFavourite" = "MI INTERESSA";
-"btn_feedDetailNotFavourite" = "NON MI INTERESSA";
+"btn_feedDetailFavourite" = "INTERESTED";
+"btn_feedDetailNotFavourite" = "NOT INTERESTED";
 
 // No feeds
-"lbl_noFeedsDescriptionWithCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili nella categoria selezionata. Ti invitiamo a riprovare nei prossimi giorni</description>";
-"lbl_noFeedsDescriptionWithNoCategory" = "<title>Peccato!</title>\n\n<description>Al momento per la tua città non ci sono contenuti disponibili. Ti invitiamo a riprovare nei prossimi giorni</description>";
+"lbl_noFeedsDescriptionWithCategory" = "<title>Too bad!</title>\n\n<description>At the moment no content for the category you entered is available in your city. Please come back in the next few days</description>";
+"btn_feed lbl_noFeedsDescriptionWithNoCategory DetailNotFavourite" = "<title>Too bad!</title>\n\n<description>At the moment no content is available in your city. Please come back in the next few days</description>";
 
 // Support
-"lbl_supportHeaderTitle" = "RICHIEDI ASSISTENZA";
-"lbl_supportTitle" = "Siamo qui per aiutarti!";
-"lbl_supportSubtitle" = "Vuoi parlare con un operatore?";
-"btn_supportCall" = "CHIAMA ORA";
+"lbl_supportHeaderTitle" = "REQUEST ASSISTANCE";
+"lbl_supportTitle" = "We are here to help!";
+"lbl_supportSubtitle" = "Talk to an operator?";
+"btn_supportCall" = "Call now";
 "alert_supportCall" = "+39 0586 1975772";
-"alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
+"alert_noSupportCall" = "Your device is not enabled to calling";
 "supportTelephoneNumber" = "+3905861975772";
-"btn_supportAlertCall" = "Chiama";
+"btn_supportAlertCall" = "Call";
 
 // Invite Friend
-"lbl_inviteFriendHeader" = "INVITA UN AMICO";
-"lbl_inviteFriendDescriptionFirstPart" = "<title>Invita un amico e guadagna minuti!</title>\n<subtitle>Al momento dell'iscrizione</subtitle>";
-"lbl_inviteFriendDescriptionSecondPart" = "riceverà 10 minuti di guida gratuita";
-"lbl_inviteFriendDescriptionThirdPart" = "<firstPart>come omaggio di benvenuto</firstPart>\n\n<secondPart>Per ogni amico che si iscriverà\ngrazie al tuo invito</secondPart>";
-"lbl_inviteFriendDescriptionFourthPart" = "riceverai 20 minuti di guida gratuita!";
-"btn_inviteFriendInvite" = "INVITA SUBITO";
-"lbl_inviteFriendInviteDescription" = "Hey! Utilizza anche tu l'applicazione Share'ngo";
+"lbl_inviteFriendHeader" = "INVITE A FRIEND";
+"lbl_inviteFriendDescriptionFirstPart" = "<title>Invite a friend and earn minute!</title>\n<subtitle>Upon subscription</subtitle>";
+"lbl_inviteFriendDescriptionSecondPart" = "they will receive 10 minutes of free driving";
+"lbl_inviteFriendDescriptionThirdPart" = "<firstPart>as a welcome gift</firstPart>\n\n<secondPart> For every friend signing up from your invitation</secondPart>";
+"lbl_inviteFriendDescriptionFourthPart" = "you will receive 20 minutes of free driving";
+"btn_inviteFriendInvite" = "INVITE NOW";
+"lbl_inviteFriendInviteDescription" = "Hey! Use the Share\'ngo app";
 
 // Faq
 "lbl_faqHeader" = "FAQ";
 "btn_faqAppTutorial" = "APP TUTORIAL";
 
 // Tutorial
-"img_tutorialStep1" = "img_mizzie";
-"img_tutorialStep2" = "img_mizzie2";
-"img_tutorialStep3" = "img_mizzie3";
-"alert_closeTutorial" = "Vuoi uscire dal tutorial?\nPotrai rivederlo quando vuoi alla sezione del menù \"Faq e tutorial\".";
-"btn_tutorialAlertStay" = "RIMANI";
-"btn_tutorialAlertClose" = "ESCI";
+"img_tutorial01" = "tutorial_01-ENG";
+"img_tutorial02" = "tutorial_02-ENG";
+"img_tutorial03" = "tutorial_03-ENG";
+"img_tutorial04" = "tutorial_04-ENG";
+"img_tutorial05" = "tutorial_05-ENG";
+"img_tutorial06" = "tutorial_06-ENG";
+"img_tutorial07" = "tutorial_07-ENG";
+"img_tutorial08" = "tutorial_08-ENG";
+"img_tutorial640x960_01" = "tutorial_640x960_01-ENG";
+"img_tutorial640x960_02" = "tutorial_640x960_02-ENG";
+"img_tutorial640x960_03" = "tutorial_640x960_03-ENG";
+"img_tutorial640x960_04" = "tutorial_640x960_04-ENG";
+"img_tutorial640x960_05" = "tutorial_640x960_05-ENG";
+"img_tutorial640x960_06" = "tutorial_640x960_06-ENG";
+"img_tutorial640x960_07" = "tutorial_640x960_07-ENG";
+"img_tutorial640x960_08" = "tutorial_640x960_08-ENG";
+"alert_closeTutorial" = "Want to exit the tutorial? You will be able to watch it again any time from the \“Faq & tutorial”\ section in the menu";
+"btn_tutorialAlertStay" = "STAY";
+"btn_tutorialAlertClose" = "EXIT";
