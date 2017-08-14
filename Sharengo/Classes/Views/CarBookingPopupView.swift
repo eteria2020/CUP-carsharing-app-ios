@@ -114,7 +114,7 @@ class CarBookingPopupView: UIView {
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carBookingPopupBackground.value
         self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
-        self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "bnt_delete".localized())
+        self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
     }
     
     fileprivate func loadViewFromNib() -> UIView {

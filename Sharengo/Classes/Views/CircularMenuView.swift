@@ -28,6 +28,7 @@ class CircularMenuView: UIView {
     var viewModel: CircularMenuViewModel?
     var startTransform: CGAffineTransform = CGAffineTransform()
     var deltaAngle: Float = 0.0
+    var rotationAngle: Float = 0.0
 
     // MARK: - ViewModel methods
     
@@ -172,6 +173,10 @@ class CircularMenuView: UIView {
             if degrees < 0 && degrees > -33
             {
                 self.transform = self.transform.rotated(by: -(CGFloat)(angleDifference))
+                for button in self.array_buttons {
+                    button.transform = button.transform.rotated(by: (CGFloat)(angleDifference))
+                }
+                self.rotationAngle = radians
             }
         }
     }
@@ -190,6 +195,11 @@ class CircularMenuView: UIView {
             
             UIView.animate(withDuration: 0.2) {
                 self.transform = self.transform.rotated(by: -(CGFloat)(newVal))
+                
+                for button in self.array_buttons {
+                    button.transform = button.transform.rotated(by: (CGFloat)(newVal))
+                }
+                self.rotationAngle = radians
             }
         }
     }
