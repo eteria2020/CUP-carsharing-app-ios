@@ -150,7 +150,16 @@ public final class MapViewModel: ViewModelType {
         self.errorEvents = nil
         self.errorOffers = nil
         if type == .searchCars || showCars == true {
-            self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius)
+            var userLatitude: CLLocationDegrees = 0
+            var userLongitude: CLLocationDegrees = 0
+            let locationManager = LocationManager.sharedInstance
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                if let userLocation = locationManager.lastLocationCopy.value {
+                    userLatitude = userLocation.coordinate.latitude
+                    userLongitude = userLocation.coordinate.longitude
+                }
+            }
+            self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
                     switch event {
@@ -400,7 +409,16 @@ public final class MapViewModel: ViewModelType {
      - Parameter car: The car that has to be booked
      */
     public func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: JSON?) ->()) {
-        self.apiController.bookCar(car: car)
+        var userLatitude: CLLocationDegrees = 0
+        var userLongitude: CLLocationDegrees = 0
+        let locationManager = LocationManager.sharedInstance
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if let userLocation = locationManager.lastLocationCopy.value {
+                userLatitude = userLocation.coordinate.latitude
+                userLongitude = userLocation.coordinate.longitude
+            }
+        }
+        self.apiController.bookCar(car: car, userLatitude: userLatitude, userLongitude: userLongitude)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {

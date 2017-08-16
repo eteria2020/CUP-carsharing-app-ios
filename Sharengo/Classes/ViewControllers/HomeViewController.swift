@@ -171,7 +171,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
             let dispatchTime = DispatchTime.now() + 2.0
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.animateButtons()
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
                     if !self.tutorialIsShowed {
                         self.tutorialIsShowed = true
                         if UserDefaults.standard.bool(forKey: "TutorialShowed") == false {

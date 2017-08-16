@@ -24,6 +24,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
+    fileprivate var objectsLoaded: Bool = false
     
     var viewModel: CarTripsViewModel?
     
@@ -58,18 +59,24 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                                     self.viewModel?.reload()
                                     self.collectionView?.reloadData()
                                     self.hideLoader()
+                                    let dispatchTime = DispatchTime.now() + 1
+                                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                        self.objectsLoaded = true
+                                    }
                                 }
                                 return
                             }
                         }
-                        let destination: NoCarTripsViewController = (Storyboard.main.scene(.noCarTrips))
-                        destination.bind(to: ViewModelFactory.noCarTrips(), afterLoad: true)
-                        var array = self.navigationController?.viewControllers ?? []
-                        array.removeLast()
-                        array.append(destination)
-                        self.navigationController?.viewControllers = array
-                        self.hideLoader()
-                        self.allCarTrips = []
+                        DispatchQueue.main.async {
+                            let destination: NoCarTripsViewController = (Storyboard.main.scene(.noCarTrips))
+                            destination.bind(to: ViewModelFactory.noCarTrips(), afterLoad: true)
+                            var array = self.navigationController?.viewControllers ?? []
+                            array.removeLast()
+                            array.append(destination)
+                            self.navigationController?.viewControllers = array
+                            self.hideLoader()
+                            self.allCarTrips = []
+                        }
                     case .error(_):
                         var message = "alert_generalError".localized()
                         if Reachability()?.isReachable == false {
@@ -179,7 +186,9 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel?.selection.execute(.item(indexPath))
+        if self.objectsLoaded {
+            self.viewModel?.selection.execute(.item(indexPath))
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

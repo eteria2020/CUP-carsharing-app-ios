@@ -306,6 +306,17 @@ public class Feed: ModelType, Decodable {
         if let forceColor: String = "appearance.color.enforce" <~~ json {
             self.forceColor = forceColor.toBool() ?? false
         }
+    
+        self.title = self.title?.htmlDecoded()
+        self.subtitle = self.subtitle?.htmlDecoded()
+        self.claim = self.claim?.htmlDecoded()
+        self.advantage = self.advantage?.htmlDecoded()
+        self.description = self.description?.htmlDecoded()
+        self.categoryTitle = self.categoryTitle?.htmlDecoded()
+        self.location = self.location?.htmlDecoded()
+        self.address = self.address?.htmlDecoded()
+        self.city = self.city?.htmlDecoded()
+        self.launchTitle = self.launchTitle?.htmlDecoded()
     }
     
     // MARK: - History methods

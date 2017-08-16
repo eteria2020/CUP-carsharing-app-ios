@@ -97,7 +97,7 @@ final class ApiController {
         }
     }
     
-    func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
+    func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -107,7 +107,7 @@ final class ApiController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius))
+            return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -232,7 +232,7 @@ final class ApiController {
         }
     }
     
-    func bookCar(car: Car) -> Observable<Response> {
+    func bookCar(car: Car, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -242,7 +242,7 @@ final class ApiController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.bookCar(car: car))
+            return provider.request(.bookCar(car: car, userLatitude: userLatitude, userLongitude: userLongitude))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -371,10 +371,10 @@ final class ApiController {
 fileprivate enum API {
     case getUserWith(username: String, password: String)
     case searchAllCars()
-    case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
+    case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case searchCar(plate: String)
     case bookingList()
-    case bookCar(car: Car)
+    case bookCar(car: Car, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case deleteCarBooking(carBooking: CarBooking)
     case getCarBooking(id: Int)
     case openCar(car: Car)
@@ -401,7 +401,7 @@ extension API: TargetType {
         switch self {
         case .getUserWith(_, _):
             return "user"
-        case .searchAllCars(), .searchCars(_, _, _), .searchCar(_):
+        case .searchAllCars(), .searchCars(_, _, _, _, _), .searchCar(_):
             return "cars"
         case .bookingList(), .bookCar(_), .getCarBooking(_):
             return "reservations"
@@ -431,12 +431,12 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case .searchCars(let latitude, let longitude, let radius):
-            return ["lat": latitude, "lon": longitude, "radius": Int(radius)]
+        case .searchCars(let latitude, let longitude, let radius, let userLatitude, let userLongitude):
+            return ["lat": latitude, "lon": longitude, "radius": Int(radius), "user_lat": userLatitude, "user_lon": userLongitude]
         case .searchCar(let plate):
             return ["plate": plate]
-        case .bookCar(let car):
-            return ["plate": car.plate ?? ""]
+        case .bookCar(let car, let userLatitude, let userLongitude):
+            return ["plate": car.plate ?? "", "user_lat": userLatitude, "user_lon": userLongitude]
         case .getCarBooking(let id):
             return ["reservation_id": id]
         case .openCar(_):

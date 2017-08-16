@@ -1126,6 +1126,9 @@ extension MapViewController: GMSMapViewDelegate {
     public func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.view_searchBar.stopSearchBar()
+        if clusteringInProgress == true {
+            self.setUpdateButtonAnimated(true)
+        }
     }
     
     /**
@@ -1191,7 +1194,7 @@ extension MapViewController: GMSMapViewDelegate {
         } else if let feedAnnotation = marker.userData as? FeedAnnotation {
             let feed = feedAnnotation.feed
             if let location = feed.feedLocation {
-                let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.0002, longitude: location.coordinate.longitude)
                 self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             }
             self.view_carPopup.updateWithFeed(feed: feed)

@@ -22,4 +22,26 @@ extension String
         
         return (0..<length).map { String(format: "%02x", hash[$0]) }.joined()
     }
+    
+    func htmlDecoded()->String {
+        
+        guard (self != "") else { return self }
+        
+        var newStr = self
+        // from https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
+        let entities = [ //a dictionary of HTM/XML entities.
+            "&quot;"    : "\"",
+            "&amp;"     : "&",
+            "&apos;"    : "'",
+            "&lt;"      : "<",
+            "&gt;"      : ">",
+            "&deg;"     : "º",
+            "&nbsp;"    : " ",
+            ]
+        
+        for (name,value) in entities {
+            newStr = newStr.replacingOccurrences(of: name, with: value)
+        }
+        return newStr
+    }
 }

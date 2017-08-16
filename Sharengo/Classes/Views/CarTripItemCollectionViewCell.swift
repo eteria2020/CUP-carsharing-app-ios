@@ -33,9 +33,6 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.layoutIfNeeded()
         self.viewModel = viewModel
         
-        self.lbl_title.styledText = viewModel.title
-        self.lbl_subtitle.styledText = viewModel.subtitle
-        
         if !viewModel.selected
         {
             self.lbl_description.bonMotStyleName = "carTripsItemDescription"
@@ -46,6 +43,10 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             self.lbl_description.bonMotStyleName = "carTripsItemExtendedDescription"
             self.img_collapsed.image = UIImage(named: "ic_close_collapsed")
         }
+        
+        self.lbl_title.styledText = viewModel.title
+        self.lbl_subtitle.styledText = viewModel.subtitle
+        
         viewModel.description.asObservable()
             .subscribe(onNext: {[weak self] (description) in
                 DispatchQueue.main.async {
