@@ -65,7 +65,7 @@ public final class MapViewModel: ViewModelType {
     /// Variable used to save car trip
     public var carTrip: CarTrip?
     /// Array of annotations
-    var array_annotations: Variable<[GMUClusterItem]> = Variable([])
+    public var array_annotations: Variable<[GMUClusterItem]> = Variable([])
     
     // MARK: - Init methods
     
@@ -301,6 +301,7 @@ public final class MapViewModel: ViewModelType {
             }
         }
         if type == .feeds {
+            self.updateCarsProperties()
             if self.errorEvents == false && self.errorOffers == false {
                 DispatchQueue.main.async {
                     for feed in self.feeds {

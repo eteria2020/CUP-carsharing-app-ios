@@ -166,6 +166,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             case .book(let car):
                 self?.bookCar(car: car)
             case .car:
+                if self?.viewModel?.carBooked != nil {
+                    let dialog = ZAlertView(title: nil, message: "alert_showCarsDisabledMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                    return
+                }
                 self?.showNearestCar()
             default: break
             }
@@ -441,6 +449,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.viewModel?.carTrip = nil
                 self.viewModel?.carBooking = nil
                 self.getResultsWithoutLoading()
+                DispatchQueue.main.async {
+                    self.updateResults()
+                }
             }
         }
     }
@@ -467,6 +478,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if let location = self.viewModel?.nearestCar?.location {
             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+            self.view_carPopup.updateWithCar(car: self.viewModel!.nearestCar!)
+            self.view_carPopup.viewModel?.type.value = .car
             self.viewModel?.showCars = true
             self.setCarsButtonVisible(true)
             self.updateResults()
@@ -532,7 +545,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self.viewModel?.carBooked = car
                         self.viewModel?.carTrip = carTrip
                         self.getResultsWithoutLoading()
-                        CoreController.shared.updateData()
+                        let dispatchTime = DispatchTime.now() + 1
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            CoreController.shared.updateData()
+                        }
                     }
                 } else {
                     self.hideLoader()
