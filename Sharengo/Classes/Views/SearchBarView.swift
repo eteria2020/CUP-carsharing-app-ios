@@ -68,7 +68,6 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         self.btn_microphone.layer.cornerRadius = self.btn_microphone.frame.size.width/2
         self.btn_microphone.layer.masksToBounds = true
         self.txt_search.attributedPlaceholder = NSAttributedString(string:"lbl_searchBarTextField".localized(), attributes:[NSForegroundColorAttributeName: Color.searchBarTextFieldPlaceholder.value, NSFontAttributeName: Font.searchBarTextFieldPlaceholder.value])
-        self.updateInterface()
         guard let viewModel = viewModel else {
             return
         }
@@ -118,6 +117,10 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 299
         default:
             break
+        }
+        let dispatchTime = DispatchTime.now() + 0.3
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            self.updateInterface()
         }
     }
     

@@ -140,13 +140,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
             case .home:
+                self?.view_searchBar.stopSearchBar()
                 Router.exit(self!)
                 self?.closeCarPopup()
             case .menu:
@@ -219,13 +219,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.view_searchBar.updateCollectionView(show: true)
             case .address(let address):
                 if let location = address.location {
-                    self?.centerMap(on: location, zoom: 17, animated: true)
+                    self?.centerMap(on: location, zoom: 16.5, animated: true)
                 }
                 self?.updateSpeechSearchBar()
             case .car(let car):
                 if let location = car.location {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
-                    self?.centerMap(on: newLocation, zoom: 17, animated: true)
+                    self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
                 }
                 self?.view_carPopup.updateWithCar(car: car)
                 self?.view.layoutIfNeeded()
@@ -466,7 +466,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func showNearestCar() {
         if let location = self.viewModel?.nearestCar?.location {
             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            self.centerMap(on: newLocation, zoom: 17, animated: true)
+            self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             self.viewModel?.showCars = true
             self.setCarsButtonVisible(true)
             self.updateResults()
@@ -1156,7 +1156,7 @@ extension MapViewController: GMSMapViewDelegate {
             }
             if let location = car.location {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                self.centerMap(on: newLocation, zoom: 17, animated: true)
+                self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             }
             self.view_carPopup.updateWithCar(car: car)
             self.view_carPopup.viewModel?.type.value = .car
@@ -1176,7 +1176,7 @@ extension MapViewController: GMSMapViewDelegate {
             let feed = feedAnnotation.feed
             if let location = feed.feedLocation {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                self.centerMap(on: newLocation, zoom: 17, animated: true)
+                self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             }
             self.view_carPopup.updateWithFeed(feed: feed)
             self.view_carPopup.viewModel?.type.value = .feed
