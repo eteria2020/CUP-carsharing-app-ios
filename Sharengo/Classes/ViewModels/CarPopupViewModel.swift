@@ -104,6 +104,9 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
                 self.walkingDistance = String(format: "lbl_carPopupWalkingDistance_m".localized(), restultWalkingDistance.minutes)
             }
         }
+    }
+    
+    func getAddress(car: Car) {
         if let address = car.address.value {
             self.address.value = address
         } else {
@@ -115,7 +118,7 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
                             self?.address.value = address
                         }
                     }
-            }).addDisposableTo(disposeBag)
+                }).addDisposableTo(disposeBag)
         }
     }
     

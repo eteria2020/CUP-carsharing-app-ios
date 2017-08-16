@@ -55,19 +55,23 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.carBooking = carBooking
         self.updateData()
         if let car = self.carBooking?.car.value {
-            self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
-            if let address = car.address.value {
-                self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
-            } else {
-                car.getAddress()
-                car.address.asObservable()
-                    .subscribe(onNext: {[weak self] (address) in
-                        DispatchQueue.main.async {
-                            if address != nil {
-                                self?.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address!)
+            if let location = car.location {
+                let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
+                if let address = UserDefaults.standard.object(forKey: key) as? String {
+                    self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
+                } else {
+                    self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
+                    car.getAddress()
+                    car.address.asObservable()
+                        .subscribe(onNext: {[weak self] (address) in
+                            DispatchQueue.main.async {
+                                if address != nil {
+                                    self?.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address!)
+                                    UserDefaults.standard.set(address!, forKey: key)
+                                }
                             }
-                        }
-                    }).addDisposableTo(disposeBag)
+                        }).addDisposableTo(disposeBag)
+                }
             }
             if car.opened {
                 self.hideButtons = true

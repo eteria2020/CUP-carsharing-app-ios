@@ -635,10 +635,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupDeleteMessage".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(),
                                 okButtonHandler: { alertView in
                                     alertView.dismissAlertView()
-                                    if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                                        self.showLoginAlert()
-                                        return
-                                    }
                                     if let carBooking = self.viewModel?.carBooking {
                                         self.showLoader()
                                         self.viewModel?.deleteCarBooking(carBooking: carBooking, completionClosure: { (success, error) in
@@ -1150,6 +1146,11 @@ extension MapViewController: GMSMapViewDelegate {
                     })
                     dialog.allowTouchOutsideToDismiss = false
                     dialog.show()
+                } else {
+                    if let location = car.location {
+                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                    }
                 }
                 return true
             }

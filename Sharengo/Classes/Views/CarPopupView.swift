@@ -108,17 +108,27 @@ class CarPopupView: UIView {
             self.icn_distance.isHidden = false
             self.lbl_distance.isHidden = false
         }
-        self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
-        self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
-        viewModel.address.asObservable()
-            .subscribe(onNext: {[weak self] (address) in
-                DispatchQueue.main.async {
-                    if address != nil {
-                        self?.lbl_address.bonMotStyleName = "carPopupAddress"
-                        self?.lbl_address.styledText = address
-                    }
-                }
-        }).addDisposableTo(disposeBag)
+        if let location = car.location {
+            let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
+            if let address = UserDefaults.standard.object(forKey: key) as? String {
+                self.lbl_address.bonMotStyleName = "carPopupAddress"
+                self.lbl_address.styledText = address
+            } else {
+                self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
+                self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
+                viewModel.getAddress(car: car)
+                viewModel.address.asObservable()
+                    .subscribe(onNext: {[weak self] (address) in
+                        DispatchQueue.main.async {
+                            if address != nil {
+                                self?.lbl_address.bonMotStyleName = "carPopupAddress"
+                                self?.lbl_address.styledText = address!
+                                UserDefaults.standard.set(address!, forKey: key)
+                            }
+                        }
+                    }).addDisposableTo(disposeBag)
+            }
+        }
     }
     
     func updateWithFeed(feed: Feed) {
