@@ -58,8 +58,15 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Annotations/CarAnnotation.swift",
-      "line": 24,
+      "line": 26,
       "symbol": "CarAnnotation.init(position:car:carBooked:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Annotations/FeedAnnotation.swift",
+      "line": 27,
+      "symbol": "FeedAnnotation.init(position:feed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -191,7 +198,7 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Feed.swift",
-      "line": 272,
+      "line": 273,
       "symbol": "Feed.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -212,42 +219,42 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 15,
+      "line": 13,
       "symbol": "PolygonCache",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 26,
+      "line": 24,
       "symbol": "PolygonCache.encode(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 36,
+      "line": 34,
       "symbol": "PolygonCache.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 59,
+      "line": 57,
       "symbol": "JSONPolygons",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 61,
+      "line": 59,
       "symbol": "JSONPolygons.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 121,
+      "line": 119,
       "symbol": "Polygon",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
@@ -1955,21 +1962,21 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 133,
+      "line": 140,
       "symbol": "MapViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 251,
+      "line": 258,
       "symbol": "MapViewController.viewDidAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 260,
+      "line": 267,
       "symbol": "MapViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2172,79 +2179,114 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 52,
-      "symbol": "CircularMenuInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "line": 22,
+      "symbol": "CircularMenuType.searchCars",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 53,
+      "line": 23,
+      "symbol": "CircularMenuType.feeds",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
+      "line": 25,
+      "symbol": "CircularMenuType.getBackgroundBorderColor()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
+      "line": 29,
+      "symbol": "CircularMenuType.getBackgroundBorderSize()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
+      "line": 33,
+      "symbol": "CircularMenuType.getBackgroundViewColor()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
+      "line": 37,
+      "symbol": "CircularMenuType.getItems()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
+      "line": 66,
       "symbol": "CircularMenuInput.refresh",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 54,
+      "line": 67,
       "symbol": "CircularMenuInput.center",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 55,
+      "line": 68,
       "symbol": "CircularMenuInput.compass",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 56,
+      "line": 69,
       "symbol": "CircularMenuInput.cars",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 59,
-      "symbol": "CircularMenuOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 60,
+      "line": 76,
       "symbol": "CircularMenuOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 61,
+      "line": 77,
       "symbol": "CircularMenuOutput.refresh",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 62,
+      "line": 78,
       "symbol": "CircularMenuOutput.center",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 63,
+      "line": 79,
       "symbol": "CircularMenuOutput.compass",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 64,
+      "line": 80,
       "symbol": "CircularMenuOutput.cars",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
+      "line": 96,
+      "symbol": "CircularMenuViewModel.init(type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2315,6 +2357,13 @@
       "line": 25,
       "symbol": "MapType.feeds",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MapViewModel.swift",
+      "line": 27,
+      "symbol": "MapType.getCircularMenuType()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2427,6 +2476,27 @@
       "line": 20,
       "symbol": "TutorialOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CircularMenuView.swift",
+      "line": 47,
+      "symbol": "CircularMenuView.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CircularMenuView.swift",
+      "line": 57,
+      "symbol": "CircularMenuView.init(frame:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CircularMenuView.swift",
+      "line": 61,
+      "symbol": "CircularMenuView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],

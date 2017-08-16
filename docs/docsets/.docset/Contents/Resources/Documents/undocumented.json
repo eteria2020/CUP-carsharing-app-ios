@@ -57,6 +57,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Annotations/CarAnnotation.swift",
+      "line": 24,
+      "symbol": "CarAnnotation.init(position:car:carBooked:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Car.swift",
       "line": 19,
       "symbol": "Car",
