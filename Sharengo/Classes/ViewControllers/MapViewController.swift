@@ -539,16 +539,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         car.booked = true
                         car.opened = true
                         carTrip.car.value = car
+                        carTrip.timeStart = Date()
                         self.closeCarPopup()
                         self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
                         self.view_carBookingPopup.alpha = 1.0
                         self.viewModel?.carBooked = car
                         self.viewModel?.carTrip = carTrip
                         self.getResultsWithoutLoading()
-                        let dispatchTime = DispatchTime.now() + 1
-                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            CoreController.shared.updateData()
-                        }
                     }
                 } else {
                     self.hideLoader()
@@ -615,7 +612,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 self.viewModel?.carBooked = car
                                                 self.viewModel?.carBooking = carBooking
                                                 self.getResultsWithoutLoading()
-                                                CoreController.shared.updateData()
                                             }
                                         }
                                     } else {
@@ -677,7 +673,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                             alertView.dismissAlertView()
                                                             self.closeCarBookingPopupView()
                                                             CoreController.shared.currentCarBooking = nil
-                                                            CoreController.shared.updateData()
                                                         })
                                                         confirmDialog.allowTouchOutsideToDismiss = false
                                                         confirmDialog.show()
