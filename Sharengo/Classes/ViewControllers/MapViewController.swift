@@ -882,8 +882,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     {
         if clusteringInProgress == true
         {
-            print("-----------------------------------------")
-            print(CoreController.shared.polygons.count)
             for polygon in CoreController.shared.polygons {
                 let rect = GMSMutablePath()
 

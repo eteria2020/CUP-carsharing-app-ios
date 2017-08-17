@@ -353,7 +353,7 @@ enum TextStyle: String, TextStyleType {
                 let endAddressStyle = StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carTripsItemExtendedDescription.value), .alignment(.center))
                 let minuteRateStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
                 let freeMinutesStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
-                let kmTraveledStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
+                let kmTraveledStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carTripsItemDescriptionTitle.value), .alignment(.center))
                 let placeholderStyle = StringStyle(.font(Font.carTripsItemExtendedDescription.value), .color(Color.carTripsItemExtendedDescription.value), .alignment(.center))
                 return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.center),.xmlRules([.style("startDateAndTime", startDateAndTimeStyle), .style("startAddress", startAddressStyle), .style("endDateAndTime", endDateAndTimeStyle), .style("endAddress", endAddressStyle),  .style("minuteRate", minuteRateStyle), .style("placeholder", placeholderStyle), .style("freeMinutes", freeMinutesStyle), .style("kmTraveled", kmTraveledStyle)]))
             case .carTripsSearchCarsLabel:
