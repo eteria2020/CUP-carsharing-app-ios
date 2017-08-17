@@ -348,6 +348,7 @@ public final class MapViewModel: ViewModelType {
     public func updateCarsProperties () {
         self.nearestCar = nil
         for car in self.allCars {
+            car.nearest = false
             car.booked = false
             car.opened = false
             if let carBooked = self.carBooked {
