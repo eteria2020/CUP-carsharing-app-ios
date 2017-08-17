@@ -108,8 +108,10 @@ public class JSONPolygons: ModelType, Decodable {
                         }
                     }
                 }
-                index += 1
-            } else {
+            }
+            index += 1
+            
+            if index == 1000 {
                 exit = true
             }
         }

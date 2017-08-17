@@ -50,6 +50,14 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         viewModel.description.asObservable()
             .subscribe(onNext: {[weak self] (description) in
                 DispatchQueue.main.async {
+                    if !viewModel.selected
+                    {
+                        self?.lbl_description.bonMotStyleName = "carTripsItemDescription"
+                    }
+                    else
+                    {
+                        self?.lbl_description.bonMotStyleName = "carTripsItemExtendedDescription"
+                    }
                     self?.lbl_description.styledText = description
                 }
             }).addDisposableTo(disposeBag)
