@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Boomerang
 import KeychainSwift
+import Localize_Swift
 
 class CoreController {
     static let shared = CoreController()
@@ -124,14 +125,14 @@ class CoreController {
                     }
                     else if response.status == 404, let code = response.code {
                         if code == "not_found" {
-                            // TODO: logout
+                            self.executeLogout()
                         }
                     }
                     else if let msg = response.msg {
                         if msg == "invalid_credentials" {
-                            // TODO: logout
+                            self.executeLogout()
                         } else if msg == "user_disabled" {
-                            // TODO: logout
+                            self.executeLogout()
                         }
                     }
                 case .error(_):
@@ -140,6 +141,35 @@ class CoreController {
                     break
                 }
             }.addDisposableTo(self.disposeBag)
+        }
+    }
+    
+    func executeLogout() {
+        var languageid = "en"
+        if Locale.preferredLanguages[0] == "it" {
+            languageid = "it"
+        }
+        Localize.setCurrentLanguage(languageid)
+        KeychainSwift().clear()
+        CoreController.shared.allCarBookings = []
+        CoreController.shared.allCarTrips = []
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
+        Router.exit(CoreController.shared.currentViewController ?? UIViewController())
+        let dispatchTime = DispatchTime.now() + 0.5
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+        let dialog = ZAlertView(title: nil, message: "alert_logoutError".localized(), isOkButtonLeft: false, okButtonText: "btn_login".localized(), cancelButtonText: "btn_back".localized(),
+                                okButtonHandler: { alertView in
+                                    let destination: LoginViewController = (Storyboard.main.scene(.login))
+                                    let viewModel = ViewModelFactory.login()
+                                    destination.bind(to: viewModel, afterLoad: true)
+                                    (CoreController.shared.currentViewController ?? UIViewController()).navigationController?.pushViewController(destination, animated: true)
+                                    alertView.dismissAlertView()
+        },
+                                cancelButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+        })
+        dialog.allowTouchOutsideToDismiss = false
+        dialog.show()
         }
     }
     

@@ -249,3 +249,7 @@
 "alert_closeTutorial" = "Vuoi uscire dal tutorial?\nPotrai rivederlo quando vuoi alla sezione del menù \"Faq e tutorial\".";
 "btn_tutorialAlertStay" = "RIMANI";
 "btn_tutorialAlertClose" = "ESCI";
+
+// NEXT:
+"alert_logoutError" = "È avvenuto un errore con la tua email e password";
+"btn_login" = "ACCEDI";

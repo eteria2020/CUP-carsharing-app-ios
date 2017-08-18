@@ -249,3 +249,7 @@
 "alert_closeTutorial" = "Want to exit the tutorial? You will be able to watch it again any time from the \“Faq & tutorial”\ section in the menu";
 "btn_tutorialAlertStay" = "STAY";
 "btn_tutorialAlertClose" = "EXIT";
+
+// NEXT:
+"alert_logoutError" = "An error occurred with your email and password";
+"btn_login" = "LOGIN";
