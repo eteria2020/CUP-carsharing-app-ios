@@ -306,9 +306,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self?.viewModel?.carBooked = car
                                 self?.viewModel?.carTrip = carTrip
                                 self?.getResultsWithoutLoading()
-                                if let location = car.location {
-                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                    self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                                let locationManager = LocationManager.sharedInstance
+                                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                                    if let userLocation = locationManager.lastLocationCopy.value {
+                                        self?.centerMap(on: userLocation, zoom: 18.5, animated: false)
+                                    }
                                 }
                                 if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                     DispatchQueue.main.async {
@@ -503,14 +505,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }
         if let distance = car.distance {
-            if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
-                let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-                return
-            }
+//            if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
+//                let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+//                    alertView.dismissAlertView()
+//                })
+//                dialog.allowTouchOutsideToDismiss = false
+//                dialog.show()
+//                return
+//            }
         } else {
             self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
             return
@@ -909,7 +911,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.showUserPositionVisible(false)
         self.setUserPositionButtonVisible(false)
         // User
-        self.userAnnotation.icon = userAnnotation.getImage()
+        self.userAnnotation.icon = userAnnotation.image
         let locationManager = LocationManager.sharedInstance
         locationManager.lastLocationCopy.asObservable()
             .subscribe(onNext: {[weak self] (_) in
@@ -940,7 +942,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
                 self.checkedUserPosition = true
-                if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
+                if self.viewModel?.carBooking == nil {
                     self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                 }
                 return
@@ -951,7 +953,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if location != nil {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
-                if self.viewModel?.carTrip == nil && self.viewModel?.carBooking == nil {
+                if self.viewModel?.carBooking == nil {
                     self.centerMap(on: location!, zoom: 16.5, animated: false)
                 }
             }
@@ -1054,6 +1056,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             let locationManager = LocationManager.sharedInstance
             if let userLocation = locationManager.lastLocationCopy.value {
                 self.userAnnotation.position = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+                self.userAnnotation.updateImage(carTrip: self.viewModel?.carTrip)
+                self.userAnnotation.icon = userAnnotation.image
                 self.userAnnotation.map = self.mapView
                 return
             }
