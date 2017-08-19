@@ -58,7 +58,8 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                                     self.viewModel?.updateData(carTrips: self.allCarTrips)
                                     self.viewModel?.reload()
                                     self.collectionView?.reloadData()
-                                    self.hideLoader()
+                                    self.hideLoader(completionClosure: { () in
+                                    })
                                     let dispatchTime = DispatchTime.now() + 1
                                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                                         self.objectsLoaded = true
@@ -74,21 +75,24 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                             array.removeLast()
                             array.append(destination)
                             self.navigationController?.viewControllers = array
-                            self.hideLoader()
+                            self.hideLoader(completionClosure: { () in
+                            })
                             self.allCarTrips = []
                         }
                     case .error(_):
-                        var message = "alert_generalError".localized()
-                        if Reachability()?.isReachable == false {
-                            message = "alert_connectionError".localized()
-                        }
-                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                            Router.back(self)
+                        self.hideLoader(completionClosure: { () in
+                            var message = "alert_generalError".localized()
+                            if Reachability()?.isReachable == false {
+                                message = "alert_connectionError".localized()
+                            }
+                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                alertView.dismissAlertView()
+                                Router.back(self)
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                            
                         })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
-                        self.hideLoader()
                         self.allCarTrips = []
                     default:
                         break

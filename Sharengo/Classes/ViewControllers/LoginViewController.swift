@@ -80,20 +80,19 @@ class LoginViewController : BaseViewController, ViewModelBindable {
         viewModel.loginExecuted.asObservable()
             .subscribe(onNext: {[weak self] (loginExecuted) in
                 DispatchQueue.main.async {
-                    self?.hideLoader()
-                    if loginExecuted {
-                        if self != nil {
-                            if let viewModel = viewModel.nextViewModel {
-                                Router.from(self!, viewModel: viewModel).execute()
-                            } else if self?.introIsShowed == true {
-                                Router.exit(self!)
-                            } else {
-                                Router.back(self!)
+                    self?.hideLoader(completionClosure: { () in
+                        if loginExecuted {
+                            if self != nil {
+                                if let viewModel = viewModel.nextViewModel {
+                                    Router.from(self!, viewModel: viewModel).execute()
+                                } else if self?.introIsShowed == true {
+                                    Router.exit(self!)
+                                } else {
+                                    Router.back(self!)
+                                }
                             }
                         }
-                    } else {
-                        self?.hideLoader()
-                    }
+                    })
                 }
             }).addDisposableTo(disposeBag)
     }

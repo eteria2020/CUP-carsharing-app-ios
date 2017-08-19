@@ -212,40 +212,42 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                     }
                     array.append(destination)
                     self.navigationController?.viewControllers = array
-                    self.hideLoader()
-                    let dispatchTime = DispatchTime.now() + 0.3
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        self.view.backgroundColor = Color.categoriesBackground.value
-                        self.viewModel?.sectionSelected = .categories
-                        self.updateHeaderButtonsInterface()
-                        self.viewModel?.updateListDataHolder()
-                        self.viewModel?.reload()
-                        self.collectionView?.reloadData()
-                    }
+                    self.hideLoader(completionClosure: { () in
+                       // let dispatchTime = DispatchTime.now() + 0.3
+                       // DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.view.backgroundColor = Color.categoriesBackground.value
+                            self.viewModel?.sectionSelected = .categories
+                            self.updateHeaderButtonsInterface()
+                            self.viewModel?.updateListDataHolder()
+                            self.viewModel?.reload()
+                            self.collectionView?.reloadData()
+                       // }
+                    })
                     return
                 }
                 self.viewModel?.updateListDataHolder()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
-                self.hideLoader()
-                
-                if self.viewModel?.category == nil
-                {
+                self.hideLoader(completionClosure: { () in
+                })
+                if self.viewModel?.category == nil {
                     self.btn_aroundMe.isHidden = false
                 }
             }
         } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {
-            var message = "alert_generalError".localized()
-            if Reachability()?.isReachable == false {
-                message = "alert_connectionError".localized()
-            }
-            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                alertView.dismissAlertView()
-                Router.back(self)
+            self.hideLoader(completionClosure: { () in
+                var message = "alert_generalError".localized()
+                if Reachability()?.isReachable == false {
+                    message = "alert_connectionError".localized()
+                }
+                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                    Router.back(self)
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+                
             })
-            dialog.allowTouchOutsideToDismiss = false
-            dialog.show()
-            self.hideLoader()
         }
     }
     
@@ -334,16 +336,17 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                     }
                     array.append(destination)
                     self.navigationController?.viewControllers = array
-                    self.hideLoader()
-                    let dispatchTime = DispatchTime.now() + 0.3
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    self.hideLoader(completionClosure: { () in
+                    //let dispatchTime = DispatchTime.now() + 0.3
+                    //DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                         self.view.backgroundColor = Color.categoriesBackground.value
                         self.viewModel?.sectionSelected = .categories
                         self.updateHeaderButtonsInterface()
                         self.viewModel?.updateListDataHolder()
                         self.viewModel?.reload()
                         self.collectionView?.reloadData()
-                    }
+                    //}
+                    })
                     return
                 }
                 self.viewModel?.updateListDataHolder()

@@ -163,6 +163,7 @@ extension UIViewController {
         static var loaderCount = "loaderCount"
         static var disposeBag = "vc_disposeBag"
         static var loadingViewController = "loadingViewController"
+        static var loadingStartDate = "loadingStartDate"
         static var menuBackgroundView = "menuBackgroundView"
     }
     
@@ -220,6 +221,11 @@ extension UIViewController {
         set { objc_setAssociatedObject(self, &AssociatedKeys.menuBackgroundView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
     }
     
+    private var loadingStartDate:Date? {
+        get { return objc_getAssociatedObject(self, &AssociatedKeys.loadingStartDate) as? Date ?? nil}
+        set { objc_setAssociatedObject(self, &AssociatedKeys.loadingStartDate, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
+    }
+    
     func loaderView() -> UIView {
         return RTSpinKitView(style: .stylePulse, color: UIColor.red, spinnerSize: 44)
     }
@@ -248,12 +254,13 @@ extension UIViewController {
                 UIView.animate(withDuration: 0.2, animations: {
                     self.loadingViewController!.view.alpha = 1.0
                 })
+                self.loadingStartDate = Date()
             }
         }
         self.loaderCount += 1
     }
     
-    func hideLoader() {
+    func hideLoader(completionClosure: @escaping () ->()) {
         DispatchQueue.main.async {[weak self]  in
             if (self == nil) {
                 return
@@ -261,8 +268,23 @@ extension UIViewController {
             self!.loaderCount = max(0, (self!.loaderCount ) - 1)
             if (self!.loaderCount == 0) {
                 if self?.loadingViewController != nil {
-                    self?.loadingViewController!.view.removeFromSuperview()
-                    self?.loadingViewController!.removeFromParentViewController()
+                    let start = self?.loadingStartDate
+                    let enddt = Date()
+                    let calendar = Calendar.current
+                    let datecomponents = calendar.dateComponents([Calendar.Component.second], from: start ?? Date(), to: enddt)
+                    if let s = datecomponents.second
+                    {
+                        if s > 10 {
+                            self?.loadingViewController!.view.removeFromSuperview()
+                            self?.loadingViewController!.removeFromParentViewController()
+                            completionClosure()
+                        } else {
+                            let dispatchTime = DispatchTime.now() + 1
+                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                self!.hideLoader(completionClosure: completionClosure)
+                            }
+                        }
+                    }
                 }
             }
         }
