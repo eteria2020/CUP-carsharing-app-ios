@@ -14,9 +14,13 @@ import GoogleMaps
  */
 public class UserAnnotation: GMSMarker {
     /// Variable used to get the image to show in the marker
-    public lazy var image: UIImage = self.getImage()
+    public var image: UIImage = UIImage(named: "ic_user")!
     
-    func getImage() -> UIImage {
-        return UIImage(named: "ic_user")!
+    func updateImage(carTrip: CarTrip?) {
+        if carTrip != nil {
+            self.image = CoreController.shared.pulseYellow
+        } else {
+            self.image = UIImage(named: "ic_user")!
+        }
     }
 }
