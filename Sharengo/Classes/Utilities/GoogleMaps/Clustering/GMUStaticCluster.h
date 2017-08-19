@@ -50,6 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSArray<id<GMUClusterItem>> *items;
 
 @property(nonatomic) int identifier;
+@property(nonatomic) int type;
+
 
 /**
  * Adds an item to the cluster.

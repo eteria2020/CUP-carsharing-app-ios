@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -717,15 +717,27 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_loader" translatesAutoresizingMaskIntoConstraints="NO" id="SjE-K5-IWO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aKo-uD-eG2">
+                                <rect key="frame" x="0.0" y="23.5" width="375" height="619"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aKo-uD-eG2" secondAttribute="height" multiplier="640:1056" id="Ues-WT-N5P"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="aKo-uD-eG2" firstAttribute="centerY" secondItem="tRQ-aH-6bh" secondAttribute="centerY" id="4P5-bM-bbv"/>
                             <constraint firstItem="ApK-iE-fF2" firstAttribute="top" secondItem="SjE-K5-IWO" secondAttribute="bottom" id="Cb0-Ee-1gu"/>
                             <constraint firstItem="SjE-K5-IWO" firstAttribute="top" secondItem="tRQ-aH-6bh" secondAttribute="top" id="S7G-dU-qRf"/>
                             <constraint firstAttribute="trailing" secondItem="SjE-K5-IWO" secondAttribute="trailing" id="TB8-ue-63z"/>
                             <constraint firstItem="SjE-K5-IWO" firstAttribute="leading" secondItem="tRQ-aH-6bh" secondAttribute="leading" id="VcG-N3-1jz"/>
+                            <constraint firstItem="aKo-uD-eG2" firstAttribute="leading" secondItem="tRQ-aH-6bh" secondAttribute="leading" id="ZOs-lq-ms5"/>
+                            <constraint firstAttribute="trailing" secondItem="aKo-uD-eG2" secondAttribute="trailing" id="dvj-wF-O2u"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="img_loader" destination="aKo-uD-eG2" id="S2j-eO-DEy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fY-Qf-rmF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

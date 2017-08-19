@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Generates an icon with the given size.
  */
-- (UIImage *)iconForSize:(NSUInteger)size identifier:(int)identifier;
+- (UIImage *)iconForSize:(NSUInteger)size identifier:(int)identifier type:(int)type;
 
 @end
 

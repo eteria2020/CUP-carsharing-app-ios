@@ -27,6 +27,7 @@
 @property(nonatomic, readonly) CLLocationCoordinate2D position;
 @property(nonatomic) UIImage *marker;
 @property(nonatomic) int identifier;
+@property(nonatomic) int type;
 
 @end
 

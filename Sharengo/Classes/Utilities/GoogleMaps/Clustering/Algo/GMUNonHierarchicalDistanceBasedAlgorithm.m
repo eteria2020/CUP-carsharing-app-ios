@@ -136,6 +136,7 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
             
             GMUStaticCluster *cluster = [[GMUStaticCluster alloc] initWithPosition:item.position];
             cluster.identifier = 1;
+            cluster.type = 1; // Cluster semplice
             
             GMSMapPoint point = GMSProject(item.position);
             
@@ -164,6 +165,12 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
                     NSNumber *number = [NSNumber numberWithDouble:distanceSquared];
                     [itemToClusterDistanceMap setObject:number forKey:key];
                     [itemToClusterMap setObject:cluster forKey:key];
+                    
+                    if (nearbyItem.type == 2 || nearbyItem.type == 3)
+                    {
+                        cluster.type = nearbyItem.type;
+                    }
+                    
                     [cluster addItem:nearbyItem];
                 }
             }

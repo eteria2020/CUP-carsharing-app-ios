@@ -102,7 +102,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
   return self;
 }
 
-- (UIImage *)iconForSize:(NSUInteger)size identifier:(int)identifier {
+- (UIImage *)iconForSize:(NSUInteger)size identifier:(int)identifier type:(int)type {
   NSUInteger bucketIndex = [self bucketIndexForSize:size];
   NSString *text;
 
@@ -117,7 +117,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
     UIImage *image = _backgroundImages[bucketIndex];
     return [self iconForText:text withBaseImage:image];
   }
-    return [self iconForText:text withBucketIndex:bucketIndex identifier:identifier];
+    return [self iconForText:text withBucketIndex:bucketIndex identifier:identifier type:type];
 }
 
 #pragma mark Private
@@ -163,11 +163,59 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
   return newImage;
 }
 
-- (UIImage *)iconForText:(NSString *)text withBucketIndex:(NSUInteger)bucketIndex identifier:(int)identifier {
-  UIImage *icon = [_iconCache objectForKey:[NSString stringWithFormat:@"%@-%d", text, identifier]];
-  if (icon != nil) {
-    return icon;
-  }
+- (UIImage *)iconForText:(NSString *)text withBucketIndex:(NSUInteger)bucketIndex identifier:(int)identifier type:(int)type {
+//    if (type == 2) {
+//        
+//    } else if (type == 3) {
+//        
+//    }
+    
+    if (type == 2 || type == 3) {
+        UIImage *icon = [_iconCache objectForKey:[NSString stringWithFormat:@"%@-%d-%d", text, identifier, type]];
+        if (icon != nil) {
+            return icon;
+        }
+        NSMutableArray *frames = [[NSMutableArray alloc] init];
+        for (int i = 1; i < 48; i++) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Pulse_Giallo_00%d", i] ofType:@"png"];
+            UIImage *image = [UIImage imageWithContentsOfFile:path]; //[UIImage imageNamed:[NSString stringWithFormat:@"Pulse_Giallo_00%d", i]];
+            UIColor *mainColor = UIColorFromHEX(0x61b15e);
+            UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+            paragraphStyle.alignment = NSTextAlignmentCenter;
+            NSDictionary *attributes = @{
+                                         NSFontAttributeName : font,
+                                         NSParagraphStyleAttributeName : paragraphStyle,
+                                         NSForegroundColorAttributeName : mainColor
+                                         };
+            CGSize textSize = [text sizeWithAttributes:attributes];
+            
+            CGFloat rectDimension = image.size.width;
+            CGRect rect = CGRectMake(0.f, 0.f, rectDimension, rectDimension);
+            UIGraphicsBeginImageContext(rect.size);
+            
+            UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0f);
+            CGContextRef ctx = UIGraphicsGetCurrentContext();
+            CGContextSaveGState(ctx);
+            
+            CGRect textRect = CGRectInset(rect, (rect.size.width - textSize.width) / 2,
+                                          (rect.size.height - textSize.height) / 2);
+            [image drawInRect:rect];
+            [text drawInRect:CGRectIntegral(textRect) withAttributes:attributes];
+            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            [frames addObject:newImage];
+        }
+        UIImage *animatedImage = [UIImage animatedImageWithImages:frames duration:3];
+        [_iconCache setObject:animatedImage forKey:[NSString stringWithFormat:@"%@-%d-%d", text, identifier, type]];
+        return animatedImage;
+    }
+    
+    UIImage *icon = [_iconCache objectForKey:[NSString stringWithFormat:@"%@-%d", text, identifier]];
+    if (icon != nil) {
+        return icon;
+    }
     
     UIColor *mainColor;
     UIColor *secondaryColor;
@@ -179,30 +227,30 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
         mainColor = UIColorFromHEX(0xffe84f);
         secondaryColor = UIColorFromHEX(0x61b15e);
     }
-
-  UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
-  NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-  paragraphStyle.alignment = NSTextAlignmentCenter;
-  NSDictionary *attributes = @{
-    NSFontAttributeName : font,
-    NSParagraphStyleAttributeName : paragraphStyle,
-    NSForegroundColorAttributeName : mainColor
-  };
-  CGSize textSize = [text sizeWithAttributes:attributes];
-
-  // Create an image context with a square shape to contain the text (with more padding for
-  // larger buckets).
-  CGFloat rectDimension = 55;
-  CGRect rect = CGRectMake(0.f, 0.f, rectDimension, rectDimension);
-  UIGraphicsBeginImageContext(rect.size);
-
-  // Draw background circle.
-  UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0f);
-  CGContextRef ctx = UIGraphicsGetCurrentContext();
-  CGContextSaveGState(ctx);
-  bucketIndex = MIN(bucketIndex, kGMUBucketBackgroundColors.count - 1);
-  UIColor *backColor = secondaryColor;
-  CGContextSetFillColorWithColor(ctx, backColor.CGColor);
+    
+    UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName : font,
+                                 NSParagraphStyleAttributeName : paragraphStyle,
+                                 NSForegroundColorAttributeName : mainColor
+                                 };
+    CGSize textSize = [text sizeWithAttributes:attributes];
+    
+    // Create an image context with a square shape to contain the text (with more padding for
+    // larger buckets).
+    CGFloat rectDimension = 55;
+    CGRect rect = CGRectMake(0.f, 0.f, rectDimension, rectDimension);
+    UIGraphicsBeginImageContext(rect.size);
+    
+    // Draw background circle.
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0f);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    bucketIndex = MIN(bucketIndex, kGMUBucketBackgroundColors.count - 1);
+    UIColor *backColor = secondaryColor;
+    CGContextSetFillColorWithColor(ctx, backColor.CGColor);
     CGContextSetStrokeColorWithColor(ctx, mainColor.CGColor);
     CGContextSetLineWidth(ctx, 5.0);
     CGRect rect1 = CGRectMake(5.f, 5.f, rectDimension-10, rectDimension-10);
@@ -210,17 +258,17 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
     CGRect rect2 = CGRectMake(5.f, 5.f, rectDimension-10, rectDimension-10);
     CGContextFillEllipseInRect(ctx, rect2);
     CGContextRestoreGState(ctx);
-
-  // Draw text.
-  [mainColor set];
-  CGRect textRect = CGRectInset(rect, (rect.size.width - textSize.width) / 2,
-                                (rect.size.height - textSize.height) / 2);
-  [text drawInRect:CGRectIntegral(textRect) withAttributes:attributes];
-  UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-
-  [_iconCache setObject:newImage forKey:[NSString stringWithFormat:@"%@-%d", text, identifier]];
-  return newImage;
+    
+    // Draw text.
+    [mainColor set];
+    CGRect textRect = CGRectInset(rect, (rect.size.width - textSize.width) / 2,
+                                  (rect.size.height - textSize.height) / 2);
+    [text drawInRect:CGRectIntegral(textRect) withAttributes:attributes];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [_iconCache setObject:newImage forKey:[NSString stringWithFormat:@"%@-%d", text, identifier]];
+    return newImage;
 }
 
 @end

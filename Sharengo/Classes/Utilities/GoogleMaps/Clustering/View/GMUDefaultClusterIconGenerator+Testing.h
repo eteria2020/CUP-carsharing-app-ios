@@ -25,6 +25,6 @@
  * Draws |text| on top of a circle whose background color is determined by |bucketIndex|
  * and returns the resultant image.
  */
-- (UIImage *)iconForText:(NSString *)text withBucketIndex:(NSUInteger)bucketIndex;
+- (UIImage *)iconForText:(NSString *)text withBucketIndex:(NSUInteger)bucketIndex type:(int)type;
 
 @end

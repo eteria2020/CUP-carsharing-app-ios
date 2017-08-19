@@ -256,7 +256,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
       fromPosition = fromCluster.position;
     }
 
-      UIImage *icon = [_clusterIconGenerator iconForSize:cluster.count identifier:cluster.identifier];
+      UIImage *icon = [_clusterIconGenerator iconForSize:cluster.count identifier:cluster.identifier type:cluster.type];
     GMSMarker *marker = [self markerWithPosition:cluster.position
                                             from:fromPosition
                                         userData:cluster

@@ -251,9 +251,7 @@ extension UIViewController {
                     make.top.equalTo(self.loaderContentView().snp.top)
                     make.bottom.equalTo(self.loaderContentView().snp.bottom)
                 }
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.loadingViewController!.view.alpha = 1.0
-                })
+                self.loadingViewController!.view.alpha = 1.0
                 self.loadingStartDate = Date()
             }
         }
@@ -272,12 +270,15 @@ extension UIViewController {
                     let enddt = Date()
                     let calendar = Calendar.current
                     let datecomponents = calendar.dateComponents([Calendar.Component.second], from: start ?? Date(), to: enddt)
-                    if let s = datecomponents.second
-                    {
-                        if s > 10 {
-                            self?.loadingViewController!.view.removeFromSuperview()
-                            self?.loadingViewController!.removeFromParentViewController()
-                            completionClosure()
+                    if let s = datecomponents.second {
+                        if s > 3 {
+                            UIView.animate(withDuration: 0.4, animations: {
+                                self?.loadingViewController!.view.alpha = 0
+                            }, completion: { (success) in
+                                self?.loadingViewController!.view.removeFromSuperview()
+                                self?.loadingViewController!.removeFromParentViewController()
+                                completionClosure()
+                            })
                         } else {
                             let dispatchTime = DispatchTime.now() + 1
                             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
