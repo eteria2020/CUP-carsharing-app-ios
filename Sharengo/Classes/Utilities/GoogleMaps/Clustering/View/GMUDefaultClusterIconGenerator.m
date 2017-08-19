@@ -164,31 +164,65 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
 }
 
 - (UIImage *)iconForText:(NSString *)text withBucketIndex:(NSUInteger)bucketIndex identifier:(int)identifier type:(int)type {
-//    if (type == 2) {
-//        
-//    } else if (type == 3) {
-//        
-//    }
-    
-    if (type == 2 || type == 3) {
+    if (type == 2) {
         UIImage *icon = [_iconCache objectForKey:[NSString stringWithFormat:@"%@-%d-%d", text, identifier, type]];
         if (icon != nil) {
             return icon;
         }
+        UIColor *mainColor = UIColorFromHEX(0x61b15e);
+        UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSDictionary *attributes = @{
+                                     NSFontAttributeName : font,
+                                     NSParagraphStyleAttributeName : paragraphStyle,
+                                     NSForegroundColorAttributeName : mainColor
+                                     };
+        CGSize textSize = [text sizeWithAttributes:attributes];
+        NSMutableArray *frames = [[NSMutableArray alloc] init];
+        for (int i = 1; i < 48; i++) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Pulse_Verde_00%d", i] ofType:@"png"];
+            UIImage *image = [UIImage imageWithContentsOfFile:path];
+            
+            CGFloat rectDimension = image.size.width;
+            CGRect rect = CGRectMake(0.f, 0.f, rectDimension, rectDimension);
+            UIGraphicsBeginImageContext(rect.size);
+            
+            UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0f);
+            CGContextRef ctx = UIGraphicsGetCurrentContext();
+            CGContextSaveGState(ctx);
+            
+            CGRect textRect = CGRectInset(rect, (rect.size.width - textSize.width) / 2,
+                                          (rect.size.height - textSize.height) / 2);
+            [image drawInRect:rect];
+            [text drawInRect:CGRectIntegral(textRect) withAttributes:attributes];
+            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            [frames addObject:newImage];
+        }
+        UIImage *animatedImage = [UIImage animatedImageWithImages:frames duration:3];
+        [_iconCache setObject:animatedImage forKey:[NSString stringWithFormat:@"%@-%d-%d", text, identifier, type]];
+        return animatedImage;
+    } else if (type == 3) {
+        UIImage *icon = [_iconCache objectForKey:[NSString stringWithFormat:@"%@-%d-%d", text, identifier, type]];
+        if (icon != nil) {
+            return icon;
+        }
+        UIColor *mainColor = UIColorFromHEX(0x61b15e);
+        UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSDictionary *attributes = @{
+                                     NSFontAttributeName : font,
+                                     NSParagraphStyleAttributeName : paragraphStyle,
+                                     NSForegroundColorAttributeName : mainColor
+                                     };
+        CGSize textSize = [text sizeWithAttributes:attributes];
         NSMutableArray *frames = [[NSMutableArray alloc] init];
         for (int i = 1; i < 48; i++) {
             NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Pulse_Giallo_00%d", i] ofType:@"png"];
-            UIImage *image = [UIImage imageWithContentsOfFile:path]; //[UIImage imageNamed:[NSString stringWithFormat:@"Pulse_Giallo_00%d", i]];
-            UIColor *mainColor = UIColorFromHEX(0x61b15e);
-            UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
-            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-            paragraphStyle.alignment = NSTextAlignmentCenter;
-            NSDictionary *attributes = @{
-                                         NSFontAttributeName : font,
-                                         NSParagraphStyleAttributeName : paragraphStyle,
-                                         NSForegroundColorAttributeName : mainColor
-                                         };
-            CGSize textSize = [text sizeWithAttributes:attributes];
+            UIImage *image = [UIImage imageWithContentsOfFile:path];
             
             CGFloat rectDimension = image.size.width;
             CGRect rect = CGRectMake(0.f, 0.f, rectDimension, rectDimension);

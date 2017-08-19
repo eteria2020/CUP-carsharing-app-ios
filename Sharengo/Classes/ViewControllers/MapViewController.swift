@@ -867,11 +867,48 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.mapView.clear()
             self.clusterManager.clearItems()
             var annotationsArray: [CityAnnotation] = []
+            var bookedCity: City?
+            if let carBooked = self.viewModel?.carBooked {
+                var bookedDistance: CLLocationDistance?
+                for city in CoreController.shared.cities {
+                    if let location = city.location, let location2 = carBooked.location {
+                        let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                        if bookedDistance == nil {
+                            bookedDistance = distance
+                            bookedCity = city
+                        } else {
+                            if bookedDistance ?? 0 > distance {
+                                bookedDistance = distance
+                                bookedCity = city
+                            }
+                        }
+                    }
+                }
+            }
+            var nearestCity: City?
+            if let nearestCar = self.viewModel?.nearestCar {
+                var nearestDistance: CLLocationDistance?
+                for city in CoreController.shared.cities {
+                    if let location = city.location, let location2 = nearestCar.location {
+                        let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                        if nearestDistance == nil {
+                            nearestDistance = distance
+                            nearestCity = city
+                        } else {
+                            if nearestDistance ?? 0 > distance {
+                                nearestDistance = distance
+                                nearestCity = city
+                            }
+                        }
+                    }
+                }
+            }
             for city in CoreController.shared.cities {
                 if let location = city.location {
                     let annotation = CityAnnotation(position: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+                    annotation.groundAnchor = CGPoint(x: 0.5, y: 0.5)
                     annotation.city = city
-                    annotation.icon = annotation.getImage()
+                    annotation.icon = annotation.getImage(bookedCity: bookedCity?.identifier == city.identifier ? true : false, nearestCity: nearestCity?.identifier == city.identifier ? true : false)
                     annotation.map = mapView
                     annotationsArray.append(annotation)
                 }
@@ -1068,6 +1105,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             let locationManager = LocationManager.sharedInstance
             if let userLocation = locationManager.lastLocationCopy.value {
                 self.userAnnotation.position = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+                self.userAnnotation.groundAnchor = CGPoint(x: 0.5, y: 0.5)
                 self.userAnnotation.updateImage(carTrip: self.viewModel?.carTrip)
                 self.userAnnotation.icon = userAnnotation.image
                 self.userAnnotation.map = self.mapView
