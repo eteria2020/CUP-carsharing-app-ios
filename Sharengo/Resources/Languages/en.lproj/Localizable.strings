@@ -76,7 +76,7 @@
 
 // Home
 "alert_homeNotAvailable" = "This feature will be released soon";
-"lbl_homeDescriptionLogged" = "<bold>Welcome back! %@!</bold>";
+"lbl_homeDescriptionLogged" = "<bold>Welcome back %@!</bold>";
 "lbl_homeDescriptionNotLogged" = "<bold>Welcome!</bold>";
 
 // Intro

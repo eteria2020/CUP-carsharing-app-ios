@@ -63,6 +63,8 @@ class LoginViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_continueAsNotLogged: UIButton!
     @IBOutlet fileprivate weak var view_white: UIView!
     var introIsShowed: Bool = false
+    /// User can open profile eco status
+    public var profileEcoStatusAvailable: Bool = true
     
     var viewModel: LoginViewModel?
     
@@ -84,7 +86,11 @@ class LoginViewController : BaseViewController, ViewModelBindable {
                         if loginExecuted {
                             if self != nil {
                                 if let viewModel = viewModel.nextViewModel {
-                                    Router.from(self!, viewModel: viewModel).execute()
+                                    if viewModel is ProfileViewModel && self?.profileEcoStatusAvailable == false {
+                                        Router.exit(self!)
+                                    } else {
+                                        Router.from(self!, viewModel: viewModel).execute()
+                                    }
                                 } else if self?.introIsShowed == true {
                                     Router.exit(self!)
                                 } else {

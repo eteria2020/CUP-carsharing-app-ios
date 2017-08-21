@@ -57,7 +57,6 @@ class CoreController {
             return
         }
         self.notificationIsShowed = false
-        self.updateInProgress = true
         self.updateUser()
     }
     
@@ -230,7 +229,6 @@ class CoreController {
     }
     
     fileprivate func stopUpdateData() {
-        self.updateInProgress = false
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
         self.currentCarBooking = self.allCarBookings.first
         self.currentCarTrip = self.allCarTrips.first

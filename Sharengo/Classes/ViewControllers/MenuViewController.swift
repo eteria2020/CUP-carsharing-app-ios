@@ -29,6 +29,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
     public var viewModel: MenuViewModel?
     /// Variable used to save if the intro is already showed
     public var introIsShowed: Bool = false
+    /// Variable used to save if the animation is already executed
     public var executeAnimation: Bool = true
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
@@ -153,7 +154,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
     /**
      This method is linked to a notification with name "updateData". When other methods calls this "updateData" the menu updates its options
      */
-    @objc fileprivate func updateData() {
+    @objc public func updateData() {
         DispatchQueue.main.async {
             self.viewModel?.updateData()
             self.viewModel?.reload()

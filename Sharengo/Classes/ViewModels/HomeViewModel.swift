@@ -12,19 +12,38 @@ import Boomerang
 import Action
 import KeychainSwift
 
-enum HomeSelectionInput: SelectionInput {
+/**
+ Enum that specifies home item type
+ */
+public enum HomeItem {
+    case searchCar
+    case profile
+    case feeds
+}
+
+/**
+ Enum that specifies selection input
+ */
+public enum HomeSelectionInput: SelectionInput {
     case searchCars
     case profile
     case feeds
 }
 
-enum HomeSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum HomeSelectionOutput: SelectionOutput {
     case viewModel(ViewModelType)
     case feeds
 }
 
-final class HomeViewModel: ViewModelTypeSelectable {
-    lazy var selection:Action<HomeSelectionInput,HomeSelectionOutput> = Action { input in
+/**
+ The Home model provides data related to display content on the
+ */
+public final class HomeViewModel: ViewModelTypeSelectable {
+    /// Selection variable
+    public lazy var selection:Action<HomeSelectionInput,HomeSelectionOutput> = Action { input in
         switch input {
         case .searchCars:
             return .just(.viewModel(ViewModelFactory.map(type: .searchCars)))
@@ -39,6 +58,8 @@ final class HomeViewModel: ViewModelTypeSelectable {
         }
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
     }
 }

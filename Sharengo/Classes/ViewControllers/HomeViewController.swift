@@ -15,13 +15,10 @@ import pop
 import SideMenu
 import DeviceKit
 
-fileprivate enum HomeItem {
-    case searchCar
-    case profile
-    case feeds
-}
-
-class HomeViewController : BaseViewController, ViewModelBindable {
+/**
+ The Home class is the main screen and user can use it to navigate through the application
+ */
+public class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var btn_searchCar: UIButton!
     @IBOutlet fileprivate weak var view_searchCar: UIView!
@@ -31,16 +28,22 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_feeds: UIView!
     @IBOutlet fileprivate weak var view_dotted: UIView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
-    fileprivate var apiController: ApiController = ApiController()
-    fileprivate var loginIsShowed: Bool = false
-    var introIsShowed: Bool = false
-    var tutorialIsShowed: Bool = false
-    
-    var viewModel: HomeViewModel?
+    /// Variable used to save if the login is already showed
+    public var loginIsShowed: Bool = false
+    /// Variable used to save if the intro is already showed
+    public var introIsShowed: Bool = false
+    /// Variable used to save if the tutorial is already showed
+    public var tutorialIsShowed: Bool = false
+    /// ViewModel variable used to represents the data
+    public var viewModel: HomeViewModel?
+    /// User can open profile eco status
+    public var profileEcoStatusAvailable: Bool = true
+    /// User can open feeds
+    public var feedsAvailable: Bool = true
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? HomeViewModel else {
             return
         }
@@ -49,42 +52,42 @@ class HomeViewController : BaseViewController, ViewModelBindable {
             switch selection {
             case .viewModel(let viewModel):
                 switch viewModel {
-                case is SearchBarViewModel:
-                    self.openSearchCars(viewModel: viewModel)
                 case is MapViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .searchCar)
                 case is ProfileViewModel:
-                    self.openSection(viewModel: viewModel, homeItem: .profile)
+                    if self.profileEcoStatusAvailable {
+                        self.openSection(viewModel: viewModel, homeItem: .profile)
+                    }
                 case is LoginViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .profile)
                 default:
                     break
                 }
             case .feeds:
-                var cityid = "0"
-                if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
-                    if let username = KeychainSwift().get("Username") {
-                        cityid = dictionary[username] ?? "0"
+                if self.feedsAvailable {
+                    var cityid = "0"
+                    if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
+                        if let username = KeychainSwift().get("Username") {
+                            cityid = dictionary[username] ?? "0"
+                        }
                     }
-                }
-                if cityid == "0" {
-                    let settingsCitiesViewModel = ViewModelFactory.settingsCities()
-                    (settingsCitiesViewModel as! SettingsCitiesViewModel).nextViewModel = ViewModelFactory.feeds()
-                    if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                        self.openSection(viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel), homeItem: .feeds)
+                    if cityid == "0" {
+                        let settingsCitiesViewModel = ViewModelFactory.settingsCities()
+                        (settingsCitiesViewModel as! SettingsCitiesViewModel).nextViewModel = ViewModelFactory.feeds()
+                        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+                            self.openSection(viewModel: ViewModelFactory.login(nextViewModel: settingsCitiesViewModel), homeItem: .feeds)
+                        } else {
+                            self.openSection(viewModel: settingsCitiesViewModel, homeItem: .feeds)
+                        }
                     } else {
-                        self.openSection(viewModel: settingsCitiesViewModel, homeItem: .feeds)
-                   }
-                } else {
-                    self.openSection(viewModel: ViewModelFactory.feeds(), homeItem: .feeds)
+                        self.openSection(viewModel: ViewModelFactory.feeds(), homeItem: .feeds)
+                    }
                 }
             }
         }).addDisposableTo(self.disposeBag)
-
         self.btn_searchCar.rx.tap.asObservable()
             .subscribe(onNext:{
         }).addDisposableTo(disposeBag)
-
         self.btn_searchCar.rx.bind(to: viewModel.selection, input: .searchCars)
         self.btn_profile.rx.bind(to: viewModel.selection, input: .profile)
         self.btn_feeds.rx.bind(to: viewModel.selection, input: .feeds)
@@ -92,7 +95,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view_searchCar.backgroundColor = Color.homeEnabledBackground.value
@@ -101,18 +104,36 @@ class HomeViewController : BaseViewController, ViewModelBindable {
         self.view_searchCar.alpha = 0.0
         self.btn_searchCar.setImage(self.btn_searchCar.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_searchCar.setImage(self.btn_searchCar.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
-        self.view_profile.backgroundColor = Color.homeEnabledBackground.value
+        if self.profileEcoStatusAvailable {
+            self.view_profile.backgroundColor = Color.homeEnabledBackground.value
+            self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+            self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+        } else {
+            if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+                self.view_profile.backgroundColor = Color.homeEnabledBackground.value
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+            } else {
+                self.view_profile.backgroundColor = Color.homeDisabledBackground.value
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+            }
+        }
         self.view_profile.layer.cornerRadius = self.view_profile.frame.size.width/2
         self.view_profile.layer.masksToBounds = true
         self.view_profile.alpha = 0.0
-        self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
-        self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
-        self.view_feeds.backgroundColor = Color.homeEnabledBackground.value
+        if self.feedsAvailable {
+            self.view_feeds.backgroundColor = Color.homeEnabledBackground.value
+            self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+            self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+        } else {
+            self.view_feeds.backgroundColor = Color.homeDisabledBackground.value
+            self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+            self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+        }
         self.view_feeds.layer.cornerRadius = self.view_feeds.frame.size.width/2
         self.view_feeds.layer.masksToBounds = true
         self.view_feeds.alpha = 0.0
-        self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor.white), for: .normal)
-        self.btn_feeds.setImage(self.btn_feeds.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
         self.view_dotted.backgroundColor = UIColor.clear
         let strokeColor = UIColor.black.cgColor
         let shapeLayer: CAShapeLayer = CAShapeLayer()
@@ -144,7 +165,7 @@ class HomeViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateUserData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view_searchCar.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
         self.view_profile.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
@@ -197,6 +218,11 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - Update methods
     
+    /**
+     This method is linked to a notification with name "updateData". When other methods calls this "updateData" the home updates its interface:
+     - user's firstname in the bottom message
+     - user's city showed in the feed button
+     */
     @objc fileprivate func updateUserData() {
         DispatchQueue.main.async {
             if let firstname = KeychainSwift().get("UserFirstname") {
@@ -220,8 +246,13 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                             let data = try Data(contentsOf: url)
                             if let image = UIImage(data: data) {
                                 cityFounded = true
-                                self.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
-                                self.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                                if self.feedsAvailable {
+                                    self.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
+                                    self.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                                } else {
+                                    self.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                                    self.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                                }
                             }
                         } catch {
                         }
@@ -229,15 +260,38 @@ class HomeViewController : BaseViewController, ViewModelBindable {
                 }
             }
             if !cityFounded {
-                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white), for: .normal)
-                self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                if self.feedsAvailable {
+                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white), for: .normal)
+                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                } else {
+                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                }
+            }
+            if self.profileEcoStatusAvailable {
+                self.view_profile.backgroundColor = Color.homeEnabledBackground.value
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+            } else {
+                if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+                    self.view_profile.backgroundColor = Color.homeEnabledBackground.value
+                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                } else {
+                    self.view_profile.backgroundColor = Color.homeDisabledBackground.value
+                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                }
             }
         }
     }
     
     // MARK: - Animation methods
     
-    fileprivate func animateButtons() {
+    /**
+     This method executes dotted circle and buttons animation (scale and alpha)
+     */
+    public func animateButtons() {
         let popAnimation1: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
         popAnimation1.fromValue = 0
         popAnimation1.toValue = 1
@@ -262,18 +316,10 @@ class HomeViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - Utilities methods
     
-    fileprivate func openSearchCars(viewModel: ViewModelType) {
-        if !CoreController.shared.updateInProgress {
-            self.openSection(viewModel: viewModel, homeItem: .searchCar)
-        } else {
-            let dispatchTime = DispatchTime.now() + 0.5
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.openSearchCars(viewModel: viewModel)
-            }
-        }
-    }
-    
-    fileprivate func openSection(viewModel: ViewModelType, homeItem: HomeItem) {
+    /**
+     This method opens selected screen after button animation
+     */
+    public func openSection(viewModel: ViewModelType, homeItem: HomeItem) {
         let popAnimation2: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewScaleXY)
         popAnimation2.fromValue = NSValue(cgSize: CGSize(width: 1, height: 1))
         popAnimation2.toValue = NSValue(cgSize: CGSize(width: 0.5, height: 0.5))
