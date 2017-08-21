@@ -14,7 +14,10 @@ import KeychainSwift
 import SideMenu
 import Localize_Swift
 
-class MenuViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+/**
+ The Menu class shows a panel that displays the app's main navigation options. If the user logs in, this class shows different options and different header message
+ */
+public class MenuViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_welcome: UILabel!
     @IBOutlet fileprivate weak var view_userIcon: UIView!
@@ -22,16 +25,18 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     @IBOutlet fileprivate weak var view_separator: UIView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var btn_profileEco: UIButton!
-    fileprivate var executeAnimation: Bool = true
+    /// ViewModel variable used to represents the data
+    public var viewModel: MenuViewModel?
+    /// Variable used to save if the intro is already showed
+    public var introIsShowed: Bool = false
+    public var executeAnimation: Bool = true
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
 
-    var viewModel: MenuViewModel?
-
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? MenuViewModel else {
             return
         }
@@ -114,7 +119,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.menuBackBackground.value
@@ -124,7 +129,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
         self.btn_profileEco.isHidden = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.executeAnimation = true
         if animated {
@@ -132,7 +137,7 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if animated && self.executeAnimation {
             CoreController.shared.currentViewController?.hideMenuBackground()
@@ -145,6 +150,9 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     // MARK: - Update methods
     
+    /**
+     This method is linked to a notification with name "updateData". When other methods calls this "updateData" the menu updates its options
+     */
     @objc fileprivate func updateData() {
         DispatchQueue.main.async {
             self.viewModel?.updateData()
@@ -160,25 +168,25 @@ class MenuViewController : UIViewController, ViewModelBindable, UICollectionView
     
     // MARK: - Collection methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let height = max(54, (UIScreen.main.bounds.height-76)/9)
         return CGSize(width: size.width, height: height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel?.selection.execute(.item(indexPath))
     }
 }

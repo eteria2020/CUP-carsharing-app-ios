@@ -43,7 +43,7 @@ enum SceneIdentifier : String, ListIdentifier {
 }
 
 extension ListViewModelType {
-    var listIdentifiers:[ListIdentifier] {
+    public var listIdentifiers:[ListIdentifier] {
         return CollectionViewCell.all()
     }
 }

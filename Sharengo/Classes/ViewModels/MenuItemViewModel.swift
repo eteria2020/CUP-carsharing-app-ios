@@ -10,13 +10,22 @@ import Foundation
 import RxSwift
 import Boomerang
 
-final class MenuItemViewModel : ItemViewModelType {
-    var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier = CollectionViewCell.menu
-    var title: String?
-    var icon: UIImage?
+/**
+ The Menu Item model provides data related to display content on the menu item
+ */
+public final class MenuItemViewModel : ItemViewModelType {
+    /// ViewModel variable used to save data
+    public var model:ItemViewModelType.Model
+    /// ViewModel variable used to identify menu item cell
+    public var itemIdentifier:ListIdentifier = CollectionViewCell.menu
+    /// Title of the menu item
+    public var title: String?
+    /// Icon of the menu item
+    public var icon: UIImage?
 
-    init(model: MenuItem) {
+    // MARK: - Init methods
+    
+    public init(model: MenuItem) {
         self.model = model
         self.title = model.title.localized()
         self.icon = UIImage(named: model.icon)

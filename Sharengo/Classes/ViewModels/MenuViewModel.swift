@@ -12,34 +12,51 @@ import Boomerang
 import Action
 import KeychainSwift
 
-enum MenuSelectionInput : SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum MenuSelectionInput : SelectionInput {
     case item(IndexPath)
     case profileEco
 }
-enum MenuSelectionOutput : SelectionOutput {
+
+/**
+ Enum that specifies selection output
+ */
+public enum MenuSelectionOutput : SelectionOutput {
     case viewModel(ViewModelType)
     case logout
     case empty
 }
 
-final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
-    var welcome = ""
-    var userIconIsHidden = true
+/**
+ The Menu model provides data related to display content on the menu
+ */
+public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
-    
-    lazy var selection:Action<MenuSelectionInput,MenuSelectionOutput> = Action { input in
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// Variable used to save header message
+    public var welcome = ""
+    /// Variable used to save is user icon has to be shown or not
+    public var userIconIsHidden = true
+    /// Selection variable
+    public lazy var selection:Action<MenuSelectionInput,MenuSelectionOutput> = Action { input in
         return .empty()
     }
     
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    // MARK: - ViewModel methods
+    
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? MenuItem {
             return ViewModelFactory.menuItem(fromModel: item)
         }
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         self.updateData()
         self.selection = Action { input in
             switch input {
@@ -94,7 +111,10 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
         }
     }
     
-    func updateData() {
+    /**
+     This method updates menu options if the user logs in or not
+     */
+    public func updateData() {
         var menuItems = [MenuItem]()
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.welcome = "lbl_menuHeaderTitleGuest".localized()
@@ -118,7 +138,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             let menuItem4 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: ViewModelFactory.support())
             let menuItem5 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: ViewModelFactory.faq())
             let menuItem6 = MenuItem(title: "lbl_menuBuyMinutes", icon: "ic_acquistaminuti", viewModel: nil)
-//            let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: ViewModelFactory.inviteFriend())
+            // let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: ViewModelFactory.inviteFriend())
             let menuItem8 = MenuItem(title: "lbl_menuSettings", icon: "ic_impostazioni", viewModel: ViewModelFactory.settings())
             let menuItem9 = MenuItem(title: "lbl_menuLogout", icon: "ic_logout", viewModel: ViewModelFactory.home())
             menuItems.append(menuItem1)
@@ -127,7 +147,7 @@ final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
             menuItems.append(menuItem6)
-//            menuItems.append(menuItem7)
+            // menuItems.append(menuItem7)
             menuItems.append(menuItem8)
             menuItems.append(menuItem9)
         }

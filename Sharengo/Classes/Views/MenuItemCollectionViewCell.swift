@@ -12,16 +12,19 @@ import RxSwift
 import Action
 import RxCocoa
 
-class MenuItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+/**
+ The Menu Item class is the visual representation of a menu's option
+ */
+public class MenuItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var view_icon: UIView!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
-
-    var viewModel:ItemViewModelType?
+    /// ViewModel variable used to represents the data
+    public var viewModel:ItemViewModelType?
     
     // MARK: - ViewModel methods
 
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? MenuItemViewModel else {
             return
         }
@@ -38,7 +41,7 @@ class MenuItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
 
     // MARK: - View methods
 
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = Color.menuTopBackground.value
     }
