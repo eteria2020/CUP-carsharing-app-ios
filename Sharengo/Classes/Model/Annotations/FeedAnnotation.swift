@@ -13,6 +13,8 @@ import GoogleMaps
  FeedAnnotation class is the GMUClusterItem that application uses to show feed location (single pin or cluster)
  */
 public class FeedAnnotation: NSObject, GMUClusterItem {
+    /// Variable used to give cluster unique identifier
+    public var uniqueIdentifier: String
     /// Variable used to check feeds cluster identifier
     public var identifier: Int32
     /// Variable used to check feeds cluster type
@@ -32,6 +34,7 @@ public class FeedAnnotation: NSObject, GMUClusterItem {
         self.identifier = 2
         self.type = 1
         self.marker = UIImage(named: "ic_puntatore-generico")!
+        self.uniqueIdentifier = "0"
         super.init()
         if let icon = feed.marker, let url = URL(string: icon) {
             do {

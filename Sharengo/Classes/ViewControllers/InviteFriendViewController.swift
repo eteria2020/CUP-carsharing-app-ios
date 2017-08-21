@@ -98,8 +98,4 @@ class InviteFriendViewController : BaseViewController, ViewModelBindable {
                 self.present(activityViewController, animated: true, completion: nil)
             }).addDisposableTo(disposeBag)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 }

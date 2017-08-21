@@ -13,22 +13,33 @@ import Action
 import ReachabilitySwift
 import KeychainSwift
 
-enum LoginSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum LoginSelectionInput: SelectionInput {
     case login
     case forgotPassword
     case register
     case continueAsNotLogged
 }
 
-enum LoginSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum LoginSelectionOutput: SelectionOutput {
     case login
     case forgotPassword
     case register
     case continueAsNotLogged
 }
 
-final class LoginViewModel: ViewModelType {
-    lazy var selection:Action<LoginSelectionInput,LoginSelectionOutput> = Action { input in
+/**
+ The Login model provides data related to display content on login
+ */
+public final class LoginViewModel: ViewModelType {
+    fileprivate var apiController: ApiController = ApiController()
+    /// Selection variable
+    public lazy var selection:Action<LoginSelectionInput,LoginSelectionOutput> = Action { input in
         switch input {
         case .login:
             return .just(.login)
@@ -40,15 +51,27 @@ final class LoginViewModel: ViewModelType {
             return .just(.continueAsNotLogged)
         }
     }
+    /// Variable used to save if login is executed or not
+    public var loginExecuted: Variable<Bool> = Variable(false)
+    /// Variable used to save next screen that has to be opened after login
+    public var nextViewModel: ViewModelType?
     
-    fileprivate var apiController: ApiController = ApiController()
-    var loginExecuted: Variable<Bool> = Variable(false)
-    var nextViewModel: ViewModelType?
+    // MARK: - Init methods
     
-    init() {
+    public init() {
     }
     
-    func login(username: String, password: String) {
+    // MARK: - Login methods
+    
+    /**
+     This method checks if username and password are defined, than asks to server info about this user. If the status code is 200 the user il logged in and next screen can be loaded. Errors are:
+     - status 404, code "not_found"
+     - msg "invalid_credentials"
+     - msg "user_disabled"
+     - Parameter username: The username inserted by the user
+     - Parameter passowrd: The password inserted by the user
+     */
+    public func login(username: String, password: String) {
         if (username.isEmpty || password.isEmpty) {
             let message = "alert_loginMissingFields".localized()
             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
@@ -152,7 +175,12 @@ final class LoginViewModel: ViewModelType {
             }.addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func setupHistory() {
+    // MARK: - Setup methods
+    
+    /**
+     This method setups default history array (address) in cache for user
+     */
+    public func setupHistory() {
         if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [HistoryAddress]() as Array)
             if let username = KeychainSwift().get("Username") {
@@ -162,7 +190,10 @@ final class LoginViewModel: ViewModelType {
         }
     }
     
-    fileprivate func setupFavourites() {
+    /**
+    This method setups favorites empty array (address and feeds) in cache for user
+    */
+    public func setupFavourites() {
         if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
             let archivedArray = NSKeyedArchiver.archivedData(withRootObject: [FavouriteAddress]() as Array)
             if let username = KeychainSwift().get("Username") {
@@ -179,7 +210,10 @@ final class LoginViewModel: ViewModelType {
         }
     }
     
-    fileprivate func setupSettings() {
+    /**
+     This method setups default settings (language) in cache for user
+     */
+    public func setupSettings() {
         var languageid = "0"
         if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
             if let username = KeychainSwift().get("Username") {

@@ -94,8 +94,4 @@ class NoFavouritesViewController : BaseViewController, ViewModelBindable {
                 Router.back(self)
             }).addDisposableTo(disposeBag)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 }

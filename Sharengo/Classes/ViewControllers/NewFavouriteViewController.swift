@@ -190,10 +190,6 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
             self.view_searchBar.updateInterface()
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 }
 
 // MARK: - TextField delegate

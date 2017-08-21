@@ -355,6 +355,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self.viewModel?.carBooked = nil
                     self.viewModel?.carTrip = nil
                     self.viewModel?.carBooking = nil
+                    CoreController.shared.allCarTrips = []
+                    CoreController.shared.currentCarTrip = nil
                     self.getResultsWithoutLoading()
                 }
             }
@@ -450,6 +452,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.viewModel?.carBooked = nil
                 self.viewModel?.carTrip = nil
                 self.viewModel?.carBooking = nil
+                CoreController.shared.allCarBookings = []
+                CoreController.shared.currentCarBooking = nil
                 self.getResultsWithoutLoading()
                 DispatchQueue.main.async {
                     self.updateResults()

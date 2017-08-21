@@ -129,6 +129,7 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
   NSMutableDictionary<GMUWrappingDictionaryKey *, NSNumber *> *itemToClusterDistanceMap =
       [[NSMutableDictionary alloc] init];
   NSMutableSet<id<GMUClusterItem>> *processedItems = [[NSMutableSet alloc] init];
+  NSMutableSet<NSString*> *processedPlates = [[NSMutableSet alloc] init];
 
     for (id<GMUClusterItem> item in _items) {
         if (item.identifier == 1) {
@@ -148,6 +149,7 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
             for (GMUClusterItemQuadItem *quadItem in nearbyItems) {
                 id<GMUClusterItem> nearbyItem = quadItem.clusterItem;
                 if (nearbyItem.identifier == 1) {
+                    if ([processedPlates containsObject:nearbyItem.uniqueIdentifier]) continue;
                     [processedItems addObject:nearbyItem];
                     GMSMapPoint nearbyItemPoint = GMSProject(nearbyItem.position);
                     GMUWrappingDictionaryKey *key = [[GMUWrappingDictionaryKey alloc] initWithObject:nearbyItem];
@@ -171,6 +173,7 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
                         cluster.type = nearbyItem.type;
                     }
                     
+                    [processedPlates addObject:nearbyItem.uniqueIdentifier];
                     [cluster addItem:nearbyItem];
                 }
             }
@@ -180,6 +183,7 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
             
             GMUStaticCluster *cluster = [[GMUStaticCluster alloc] initWithPosition:item.position];
             cluster.identifier = 2;
+            cluster.type = 1; // Cluster semplice
             
             GMSMapPoint point = GMSProject(item.position);
             

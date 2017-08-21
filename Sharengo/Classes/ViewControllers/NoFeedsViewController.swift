@@ -121,10 +121,6 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
             }).addDisposableTo(disposeBag)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     // MARK: - Header buttons methods
     
     func updateHeaderButtonsInterface()

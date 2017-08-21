@@ -1,6 +1,13 @@
 {
   "warnings": [
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Factories/ViewFactory.swift",
+      "line": 46,
+      "symbol": "ListViewModelType.listIdentifiers",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
       "line": 14,
       "symbol": "FavouriteAddress",
@@ -58,14 +65,14 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Annotations/CarAnnotation.swift",
-      "line": 26,
+      "line": 30,
       "symbol": "CarAnnotation.init(position:car:carBooked:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Annotations/FeedAnnotation.swift",
-      "line": 27,
+      "line": 31,
       "symbol": "FeedAnnotation.init(position:feed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -93,7 +100,7 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/CarBooking.swift",
-      "line": 65,
+      "line": 73,
       "symbol": "CarBooking.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -254,7 +261,7 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 119,
+      "line": 121,
       "symbol": "Polygon",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
@@ -1248,28 +1255,28 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/Utilities.swift",
-      "line": 5,
+      "line": 39,
       "symbol": "OptionalType",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/Utilities.swift",
-      "line": 8,
+      "line": 42,
       "symbol": "OptionalType.optional",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/Utilities.swift",
-      "line": 12,
+      "line": 46,
       "symbol": "Optional.optional",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/Utilities.swift",
-      "line": 28,
+      "line": 62,
       "symbol": "UIView.disposeBag",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -1954,6 +1961,69 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/HomeViewController.swift",
+      "line": 46,
+      "symbol": "HomeViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/HomeViewController.swift",
+      "line": 98,
+      "symbol": "HomeViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/HomeViewController.swift",
+      "line": 168,
+      "symbol": "HomeViewController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/IntroViewController.swift",
+      "line": 29,
+      "symbol": "IntroViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/IntroViewController.swift",
+      "line": 38,
+      "symbol": "IntroViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/LoadingViewController.swift",
+      "line": 21,
+      "symbol": "LoadingViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/LoadingViewController.swift",
+      "line": 31,
+      "symbol": "LoadingViewController.viewDidAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/LoginViewController.swift",
+      "line": 43,
+      "symbol": "LoginViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/LoginViewController.swift",
+      "line": 78,
+      "symbol": "LoginViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
       "line": 60,
       "symbol": "MapViewController.bind(to:)",
@@ -1969,15 +2039,64 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 258,
+      "line": 266,
       "symbol": "MapViewController.viewDidAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 267,
+      "line": 275,
       "symbol": "MapViewController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
+      "line": 40,
+      "symbol": "MenuViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
+      "line": 123,
+      "symbol": "MenuViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
+      "line": 133,
+      "symbol": "MenuViewController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
+      "line": 141,
+      "symbol": "MenuViewController.viewWillDisappear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/OnBoardViewController.swift",
+      "line": 39,
+      "symbol": "OnBoardViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/OnBoardViewController.swift",
+      "line": 48,
+      "symbol": "OnBoardViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/OnBoardViewController.swift",
+      "line": 215,
+      "symbol": "OnBoardViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2011,7 +2130,7 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ViewControllerCommons.swift",
-      "line": 169,
+      "line": 176,
       "symbol": "UIViewController.disposeBag",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -2221,70 +2340,70 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 66,
+      "line": 68,
       "symbol": "CircularMenuInput.refresh",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 67,
+      "line": 69,
       "symbol": "CircularMenuInput.center",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 68,
+      "line": 70,
       "symbol": "CircularMenuInput.compass",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 69,
+      "line": 71,
       "symbol": "CircularMenuInput.cars",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 76,
+      "line": 78,
       "symbol": "CircularMenuOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 77,
+      "line": 79,
       "symbol": "CircularMenuOutput.refresh",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 78,
+      "line": 80,
       "symbol": "CircularMenuOutput.center",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 79,
+      "line": 81,
       "symbol": "CircularMenuOutput.compass",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 80,
+      "line": 82,
       "symbol": "CircularMenuOutput.cars",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CircularMenuViewModel.swift",
-      "line": 96,
+      "line": 98,
       "symbol": "CircularMenuViewModel.init(type:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2318,6 +2437,76 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 19,
+      "symbol": "HomeItem.searchCar",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 20,
+      "symbol": "HomeItem.profile",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 21,
+      "symbol": "HomeItem.feeds",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 28,
+      "symbol": "HomeSelectionInput.searchCars",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 29,
+      "symbol": "HomeSelectionInput.profile",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 30,
+      "symbol": "HomeSelectionInput.feeds",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 37,
+      "symbol": "HomeSelectionOutput.viewModel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 38,
+      "symbol": "HomeSelectionOutput.feeds",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/HomeViewModel.swift",
+      "line": 63,
+      "symbol": "HomeViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/IntroViewModel.swift",
+      "line": 21,
+      "symbol": "IntroViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/InviteFriendViewModel.swift",
       "line": 14,
       "symbol": "InviteFriendInput",
@@ -2343,6 +2532,69 @@
       "line": 19,
       "symbol": "InviteFriendOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 20,
+      "symbol": "LoginSelectionInput.login",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 21,
+      "symbol": "LoginSelectionInput.forgotPassword",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 22,
+      "symbol": "LoginSelectionInput.register",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 23,
+      "symbol": "LoginSelectionInput.continueAsNotLogged",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 30,
+      "symbol": "LoginSelectionOutput.login",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 31,
+      "symbol": "LoginSelectionOutput.forgotPassword",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 32,
+      "symbol": "LoginSelectionOutput.register",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 33,
+      "symbol": "LoginSelectionOutput.continueAsNotLogged",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
+      "line": 61,
+      "symbol": "LoginViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2374,52 +2626,129 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
-      "line": 33,
-      "symbol": "NavigationBarInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuItemViewModel.swift",
+      "line": 28,
+      "symbol": "MenuItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuViewModel.swift",
+      "line": 19,
+      "symbol": "MenuSelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuViewModel.swift",
+      "line": 20,
+      "symbol": "MenuSelectionInput.profileEco",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuViewModel.swift",
+      "line": 27,
+      "symbol": "MenuSelectionOutput.viewModel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuViewModel.swift",
+      "line": 28,
+      "symbol": "MenuSelectionOutput.logout",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuViewModel.swift",
+      "line": 29,
+      "symbol": "MenuSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuViewModel.swift",
+      "line": 50,
+      "symbol": "MenuViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MenuViewModel.swift",
+      "line": 59,
+      "symbol": "MenuViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
-      "line": 34,
+      "line": 19,
+      "symbol": "NavigationBarItemType.home",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
+      "line": 20,
+      "symbol": "NavigationBarItemType.menu",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
+      "line": 22,
+      "symbol": "NavigationBarItemType.getItem()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
+      "line": 46,
       "symbol": "NavigationBarInput.home",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
-      "line": 35,
+      "line": 47,
       "symbol": "NavigationBarInput.menu",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
-      "line": 38,
-      "symbol": "NavigationBarOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
-      "line": 39,
+      "line": 54,
       "symbol": "NavigationBarOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
-      "line": 40,
+      "line": 55,
       "symbol": "NavigationBarOutput.home",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
-      "line": 41,
+      "line": 56,
       "symbol": "NavigationBarOutput.menu",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NavigationBarViewModel.swift",
+      "line": 74,
+      "symbol": "NavigationBarViewModel.init(leftItem:rightItem:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/OnBoardViewModel.swift",
+      "line": 21,
+      "symbol": "OnBoardViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2496,6 +2825,41 @@
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CircularMenuView.swift",
       "line": 61,
       "symbol": "CircularMenuView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/MenuItemCollectionViewCell.swift",
+      "line": 27,
+      "symbol": "MenuItemCollectionViewCell.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/MenuItemCollectionViewCell.swift",
+      "line": 44,
+      "symbol": "MenuItemCollectionViewCell.awakeFromNib()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/NavigationBarView.swift",
+      "line": 28,
+      "symbol": "NavigationBarView.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/NavigationBarView.swift",
+      "line": 40,
+      "symbol": "NavigationBarView.init(frame:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/NavigationBarView.swift",
+      "line": 44,
+      "symbol": "NavigationBarView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }

@@ -14,41 +14,10 @@ import DeviceKit
 import TPKeyboardAvoiding
 import SideMenu
 
-struct CustomTextInputStyle1: AnimatedTextInputStyle {
-    let activeColor = ColorBrand.black.value
-    let inactiveColor = ColorBrand.gray.value
-    let lineInactiveColor = ColorBrand.gray.value
-    let errorColor = ColorBrand.black.value
-    let textInputFont = Font.loginTextField.value
-    let textInputFontColor = ColorBrand.black.value
-    let placeholderMinFontSize: CGFloat = 9
-    let counterLabelFont: UIFont? = Font.loginTextFieldPlaceholder.value
-    let leftMargin: CGFloat = 20
-    let topMargin: CGFloat = 25
-    let rightMargin: CGFloat = 20
-    let bottomMargin: CGFloat = 10
-    let yHintPositionOffset: CGFloat = 7
-    let yPlaceholderPositionOffset: CGFloat = 0
-}
-
-struct CustomTextInputStyle2: AnimatedTextInputStyle {
-    let activeColor = ColorBrand.white.value
-    let inactiveColor = ColorBrand.white.value
-    let lineInactiveColor = ColorBrand.white.value
-    let errorColor = ColorBrand.white.value
-    let textInputFont = Font.loginTextField.value
-    let textInputFontColor = ColorBrand.white.value
-    let placeholderMinFontSize: CGFloat = 9
-    let counterLabelFont: UIFont? = Font.loginTextFieldPlaceholder.value
-    let leftMargin: CGFloat = 20
-    let topMargin: CGFloat = 25
-    let rightMargin: CGFloat = 20
-    let bottomMargin: CGFloat = 10
-    let yHintPositionOffset: CGFloat = 7
-    let yPlaceholderPositionOffset: CGFloat = 0
-}
-
-class LoginViewController : BaseViewController, ViewModelBindable {
+/**
+ The Login class is used by user to authenticate himself to enjoy more features
+ */
+public class LoginViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var scrollView_main: TPKeyboardAvoidingScrollView!
     @IBOutlet fileprivate weak var view_scrollViewContainer: UIView!
@@ -62,15 +31,16 @@ class LoginViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_register: UIButton!
     @IBOutlet fileprivate weak var btn_continueAsNotLogged: UIButton!
     @IBOutlet fileprivate weak var view_white: UIView!
-    var introIsShowed: Bool = false
+    /// Variable used to save if the intro is already showed
+    public var introIsShowed: Bool = false
     /// User can open profile eco status
     public var profileEcoStatusAvailable: Bool = true
-    
-    var viewModel: LoginViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: LoginViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? LoginViewModel else {
             return
         }
@@ -105,7 +75,7 @@ class LoginViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.loginBackground.value
@@ -123,7 +93,6 @@ class LoginViewController : BaseViewController, ViewModelBindable {
             txt_password.text = "AppTest2017"
         #elseif ISRELEASE
         #endif
-        
         if self.introIsShowed {
             UIView.animate(withDuration: 0.5, animations: {
                 self.view_white.alpha = 0.0
@@ -131,7 +100,6 @@ class LoginViewController : BaseViewController, ViewModelBindable {
         } else {
             self.view_white.alpha = 0.0
         }
-        
         // Buttons
         switch Device().diagonal {
             case 3.5:
@@ -195,20 +163,16 @@ class LoginViewController : BaseViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 }
 
-// MARK: - TextField delegate
-
-extension LoginViewController: AnimatedTextInputDelegate
-{
-    func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool
-    {
+extension LoginViewController: AnimatedTextInputDelegate {
+    // MARK: - TextField delegate
+    
+    /**
+     This method is called when user try to close keyboard
+     */
+    public func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool {
         _ = animatedTextInput.resignFirstResponder()
-        
         return true
     }
 }

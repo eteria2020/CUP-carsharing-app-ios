@@ -147,11 +147,17 @@ public class BaseViewController: UIViewController {
                 } else if let carTrip = carTrip {
                     CoreController.shared.notificationIsShowed = true
                     NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescription".localized(), carTrip.time), carTrip: carTrip, source: self)
+                    CoreController.shared.currentCarTrip = nil
+                    CoreController.shared.allCarTrips = []
                 }
                 if CoreController.shared.allCarBookings.first != nil {
                 } else if carBooking != nil {
-                    CoreController.shared.notificationIsShowed = true
-                    NotificationsController.showNotification(title: "banner_carBookingDeletedTitle".localized(), description: "banner_carBookingDeletedDescription".localized(), carTrip: nil, source: self)
+                    if CoreController.shared.currentCarTrip == nil {
+                        CoreController.shared.notificationIsShowed = true
+                        NotificationsController.showNotification(title: "banner_carBookingDeletedTitle".localized(), description: "banner_carBookingDeletedDescription".localized(), carTrip: nil, source: self)
+                        CoreController.shared.currentCarBooking = nil
+                        CoreController.shared.allCarBookings = []
+                    }
                 }
             }
         }
@@ -271,7 +277,7 @@ extension UIViewController {
                     let calendar = Calendar.current
                     let datecomponents = calendar.dateComponents([Calendar.Component.second], from: start ?? Date(), to: enddt)
                     if let s = datecomponents.second {
-                        if s > 3 {
+                        if s > 2 {
                             UIView.animate(withDuration: 0.4, animations: {
                                 self?.loadingViewController!.view.alpha = 0
                             }, completion: { (success) in

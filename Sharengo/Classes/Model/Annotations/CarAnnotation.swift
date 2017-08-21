@@ -14,6 +14,8 @@ import GoogleMaps
 public class CarAnnotation: NSObject, GMUClusterItem {
     /// Variable used to check cars cluster identifier
     public var identifier: Int32
+    /// Variable used to give cluster unique identifier
+    public var uniqueIdentifier: String
     /// Variable used to check cars cluster type
     public var type: Int32
     /// Variable used to save the position of the marker
@@ -30,6 +32,7 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         self.car = car
         self.identifier = 1
         self.type = 1
+        self.uniqueIdentifier = car.plate ?? "0"
         self.marker = UIImage(named: "ic_auto")!
         super.init()
         if car.booked || car.opened {
