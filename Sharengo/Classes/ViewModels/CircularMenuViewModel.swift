@@ -55,8 +55,10 @@ public enum CircularMenuType {
  Struct used for items
  */
 public struct CircularMenuItem {
-    let icon: String
-    let input: CircularMenuInput
+    /// Icon of the circular menu item
+    public let icon: String
+    /// Selection input of the circular menu item
+    public let input: CircularMenuInput
 }
 
 /**

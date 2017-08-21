@@ -11,6 +11,12 @@ import RxSwift
 import Boomerang
 import Action
 
-final class OnBoardViewModel: ViewModelType {
-    init() { }
+/**
+ The OnBoard model provides data related to display content on the onboard
+ */
+public final class OnBoardViewModel: ViewModelType {
+    
+    // MARK: - Init methods
+    
+    public init() { }
 }

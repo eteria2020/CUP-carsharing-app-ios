@@ -505,14 +505,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }
         if let distance = car.distance {
-//            if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
-//                let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-//                    alertView.dismissAlertView()
-//                })
-//                dialog.allowTouchOutsideToDismiss = false
-//                dialog.show()
-//                return
-//            }
+            if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
+                let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+                return
+            }
         } else {
             self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
             return

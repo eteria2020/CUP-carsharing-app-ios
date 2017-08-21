@@ -11,11 +11,15 @@ import RxSwift
 import Boomerang
 import Action
 
-enum NavigationBarItemType {
+/**
+ Enum that specifies navigation bar type and features related to it. These are:
+ - items
+ */
+public enum NavigationBarItemType {
     case home
     case menu
     
-    func getItem() -> NavigationBarItem {
+    public func getItem() -> NavigationBarItem {
         switch self {
         case .home:
             return NavigationBarItem(icon: "ic_menu", input: .home)
@@ -25,30 +29,49 @@ enum NavigationBarItemType {
     }
 }
 
-struct NavigationBarItem {
-    let icon: String
-    let input: NavigationBarInput
+/**
+ Struct used for items
+ */
+public struct NavigationBarItem {
+    /// Icon of the navigation bar item
+    public let icon: String
+    /// Selection input of the circular menu item
+    public let input: NavigationBarInput
 }
 
+/**
+ Enum that specifies selection input
+ */
 public enum NavigationBarInput: SelectionInput {
     case home
     case menu
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum NavigationBarOutput: SelectionInput {
     case empty
     case home
     case menu
 }
 
-final class NavigationBarViewModel: ViewModelTypeSelectable {
-    let letfItem: NavigationBarItem
-    let rightItem: NavigationBarItem
+/**
+ The Navigation bar model provides data related to display content on the navigation bar
+ */
+public final class NavigationBarViewModel: ViewModelTypeSelectable {
+    /// Left item of the navigation bar
+    public let letfItem: NavigationBarItem
+    /// Right item of the navigation bar
+    public let rightItem: NavigationBarItem
+    /// Selection variable
     public var selection: Action<NavigationBarInput, NavigationBarOutput> = Action { _ in
         return .just(.empty)
     }
     
-    init(leftItem: NavigationBarItem, rightItem: NavigationBarItem) {
+    // MARK: - Init methods
+    
+    public init(leftItem: NavigationBarItem, rightItem: NavigationBarItem) {
         self.letfItem = leftItem
         self.rightItem = rightItem
         self.selection = Action { input in

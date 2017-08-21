@@ -16,7 +16,12 @@ public class CityAnnotation: GMSMarker {
     /// Variable used to save the city
     public var city: City?
     
-    func getImage(bookedCity: Bool, nearestCity: Bool) -> UIImage {
+    /**
+     This method get image for city annotation depending on nearest car or booked car or car trip available
+     - Parameter bookedCity: A boolean variable that says to application if the city annotation is a city with booked car or car trip
+     - Parameter nearestCity: A boolean variable that says to application if the city annotation is a city with nearest car
+     */
+    public func getImage(bookedCity: Bool, nearestCity: Bool) -> UIImage {
         if let icon = self.city?.icon, let url = URL(string: icon) {
             do {
                 let data = try Data(contentsOf: url)

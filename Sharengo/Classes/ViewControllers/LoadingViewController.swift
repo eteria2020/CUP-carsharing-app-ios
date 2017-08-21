@@ -10,13 +10,16 @@ import UIKit
 import SpinKit
 import SnapKit
 
-class LoadingViewController: UIViewController {
-    
+/**
+ The Loading class is a view that adds a custom loading during operations involving communication with the server
+ */
+public class LoadingViewController: UIViewController {
     @IBOutlet fileprivate weak var img_loader: UIImageView!
     
-	override func viewDidLoad() {
-		super.viewDidLoad()
-        
+    // MARK: - View methods
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
         var frames: [UIImage] = [UIImage]()
         for i in 1...47 {
             let image = UIImage(named: "LOADER_00\(i)")!
@@ -25,7 +28,7 @@ class LoadingViewController: UIViewController {
         img_loader.image = UIImage.animatedImage(with: frames, duration: 2)
     }
 	
-	override func viewDidAppear(_ animated: Bool) {
+	override public func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 	}
 }

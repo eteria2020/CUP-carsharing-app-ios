@@ -13,17 +13,20 @@ import Boomerang
 import Gifu
 import DeviceKit
 
-class IntroViewController : UIViewController, ViewModelBindable {
+/**
+ The Intro class is used from the application as first screen of the application after splash screen. Based on the number of user accesses to the application, this class shows different intro
+ */
+public class IntroViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var img_intro: GIFImageView!
     @IBOutlet fileprivate weak var lbl_title1: UILabel!
     @IBOutlet fileprivate weak var lbl_title2: UILabel!
     @IBOutlet fileprivate weak var lbl_title3: UILabel!
-    
-    var viewModel: IntroViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: IntroViewModel?
   
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? IntroViewModel else {
             return
         }
@@ -32,7 +35,7 @@ class IntroViewController : UIViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.constraint(withIdentifier: "bottomLblTitle1", searchInSubviews: true)?.constant = -110
@@ -53,7 +56,10 @@ class IntroViewController : UIViewController, ViewModelBindable {
     
     // MARK: - Animation methods
     
-    fileprivate func executeLongIntro() {
+    /**
+     This method shows long intro with localized titles
+     */
+    public func executeLongIntro() {
         var bottomTitle1: CGFloat = 120.0
         var bottomTitle2: CGFloat = 70.0
         var bottomTitle3: CGFloat = 80.0
@@ -113,7 +119,10 @@ class IntroViewController : UIViewController, ViewModelBindable {
         }
     }
     
-    fileprivate func executeShortIntro() {
+    /**
+     This method shows short intro without localized titles
+     */
+    public func executeShortIntro() {
         self.img_intro.animate(withGIFNamed: "INTRO BREVE.gif", loopCount: 1)
         let dispatchTime = DispatchTime.now() + 1.5
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {

@@ -11,6 +11,12 @@ import RxSwift
 import Boomerang
 import Action
 
-final class IntroViewModel: ViewModelType {
-    init() { }
+/**
+ The Intro model provides data related to display content on the intro
+ */
+public final class IntroViewModel: ViewModelType {
+
+    // MARK: - Init methods
+    
+    public init () { }
 }

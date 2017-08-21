@@ -16,7 +16,11 @@ public class UserAnnotation: GMSMarker {
     /// Variable used to get the image to show in the marker
     public var image: UIImage = UIImage(named: "ic_user")!
     
-    func updateImage(carTrip: CarTrip?) {
+    /**
+     This method updates image of user annotation if car trip is available
+     - Parameter carTrip: The car trip variable the application has to check to update correctly user annotation image
+     */
+    public func updateImage(carTrip: CarTrip?) {
         if carTrip != nil {
             self.image = CoreController.shared.pulseYellow
         } else {

@@ -12,16 +12,20 @@ import RxCocoa
 import Boomerang
 import Action
 
-class NavigationBarView: UIView {
+/**
+ The Navigation bar class is a view that adds a custom bar at the top of the screen
+ */
+public class NavigationBarView: UIView {
     @IBOutlet fileprivate weak var btn_left: UIButton!
     @IBOutlet fileprivate weak var btn_right: UIButton!
-    fileprivate var view: UIView!
-    
-    var viewModel: NavigationBarViewModel?
+    /// Main view of the circular menu
+    public var view: UIView!
+    /// ViewModel variable used to represents the data
+    public var viewModel: NavigationBarViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? NavigationBarViewModel else {
             return
         }
@@ -33,11 +37,11 @@ class NavigationBarView: UIView {
     
     // MARK: - View methods
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     

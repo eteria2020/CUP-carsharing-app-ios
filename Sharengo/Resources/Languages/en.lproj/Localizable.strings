@@ -82,7 +82,7 @@
 // Intro
 "lbl_introTitle1" = "Electric";
 "lbl_introTitle2" = "Shared";
-"lbl_introTitle3" = "Outside your place";
+"lbl_introTitle3" = "Outside\nyour place";
 
 // SearchBar
 "lbl_searchBarTextField" = "Search for address or plate";
@@ -187,9 +187,9 @@
 "btn_searchCars" = "Go to the map";
 
 // OnBoard
-"lbl_onBoardStep1Description" = "Easy and fun to drive";
-"lbl_onBoardStep2Description" = "The more you need them, the less they cost you";
-"lbl_onBoardStep3Description" = "Every trip a surprise and a discovery";
+"lbl_onBoardStep1Description" = "Easy and fun\nto drive";
+"lbl_onBoardStep2Description" = "The more you need them,\nthe less they cost you";
+"lbl_onBoardStep3Description" = "Every trip a surprise\nand a discovery";
 "btn_onBoardSkip" = "Skip >>";
 
 // Feeds

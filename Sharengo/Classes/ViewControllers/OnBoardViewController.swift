@@ -16,7 +16,10 @@ import SideMenu
 import DeviceKit
 import BonMot
 
-class OnBoardViewController : UIViewController, ViewModelBindable {
+/**
+ The OnBoard class is used from the application as second screen of the application after splash screen. This is showed only the first time that user opens the application
+ */
+public class OnBoardViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var img_background: GIFImageView!
     @IBOutlet fileprivate weak var img_step: GIFImageView!
@@ -24,14 +27,16 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_skip: UIButton!
     @IBOutlet fileprivate weak var pgc_steps: UIPageControl!
     @IBOutlet fileprivate weak var view_white: UIView!
-    
-    var viewModel: OnBoardViewModel?
-    fileprivate var introIsShowed: Bool = false
-    fileprivate var gestureInProgress: Bool = false
+    /// ViewModel variable used to represents the data
+    public var viewModel: OnBoardViewModel?
+    /// Variable used to save if the intro is already showed
+    public var introIsShowed: Bool = false
+    /// Variable used to save to check if a gesture is in progress
+    public var gestureInProgress: Bool = false
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? OnBoardViewModel else {
             return
         }
@@ -40,10 +45,9 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        
         switch Device().diagonal {
         case 3.5:
             self.view.constraint(withIdentifier: "constraint1", searchInSubviews: true)?.constant = 0
@@ -57,7 +61,6 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
         default:
             break
         }
-
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -71,17 +74,14 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
-
         // Labels
         self.lbl_description.alpha = 0.0
         self.view_white.alpha = 0.0
-        
         // PageControl
         self.pgc_steps.currentPage = 0
         self.pgc_steps.numberOfPages = 3
         self.pgc_steps.pageIndicatorTintColor = Color.onBoardPageControlEmpty.value
         self.pgc_steps.currentPageIndicatorTintColor = Color.onBoardPageControlFilled.value
-        
         // Buttons
         self.btn_skip.rx.tap.asObservable()
             .subscribe(onNext:{
@@ -90,10 +90,8 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                 destination.introIsShowed = true
                 self.navigationController?.pushViewController(destination, animated: true)
             }).addDisposableTo(disposeBag)
-        
         // Images
         self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
-        
         let dispatchTime = DispatchTime.now() + 9.0
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.img_step.animate(withGIFNamed: "Auto-A-ingresso.gif", loopCount: 1)
@@ -103,7 +101,6 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
                 UIView.animate(withDuration: 0.3, animations: { 
                     self.lbl_description.alpha = 1.0
                 })
-                
                 // Gesture recognizers
                 self.view.rx.swipeGesture(.left).when(.recognized).subscribe(onNext: {_ in
                     if !self.gestureInProgress {
@@ -215,7 +212,7 @@ class OnBoardViewController : UIViewController, ViewModelBindable {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
             UserDefaults.standard.set(true, forKey: "LoginShowed")
