@@ -12,21 +12,23 @@ import RxCocoa
 import Boomerang
 import DeviceKit
 
-class SignupStepView: UIView {
+/**
+ The Signup step class is the view related to an item of signup scrollview
+ */
+public class SignupStepView: UIView {
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var icn_main: UIImageView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
-    
-    var viewModel: SignupStepViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: SignupStepViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SignupStepViewModel else {
             return
         }
         self.viewModel = viewModel
-       
         self.lbl_title.styledText = viewModel.title
         self.icn_main.image = viewModel.icon
         self.lbl_description.styledText = viewModel.description

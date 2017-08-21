@@ -11,25 +11,37 @@ import RxSwift
 import Boomerang
 import Action
 
-enum SignupSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum SignupSelectionInput: SelectionInput {
     case signup
 }
 
-enum SignupSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum SignupSelectionOutput: SelectionOutput {
     case signup
 }
 
-final class SignupViewModel: ViewModelType {
-    lazy var selection:Action<SignupSelectionInput,SignupSelectionOutput> = Action { input in
+/**
+ The Signup model provides data related to display content on signuip
+ */
+public final class SignupViewModel: ViewModelType {
+    /// ViewModel variable used to save data
+    public let stepsArray: [SignupStepView]
+    /// Selection variable
+    public lazy var selection:Action<SignupSelectionInput,SignupSelectionOutput> = Action { input in
         switch input {
         case .signup:
             return .just(.signup)
         }
     }
     
-    let stepsArray: [SignupStepView]
-
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         var stepsArray = [SignupStepView]()
         let step1 = Bundle.main.loadNibNamed(ViewXib.signupStep.rawValue, owner: nil, options: nil)?.last as? SignupStepView
         step1?.bind(to: SignupStepViewModel(title: "lbl_signupStepTitle1", icon: "signup_01", description: "lbl_signupStepDescription1"))
@@ -45,6 +57,4 @@ final class SignupViewModel: ViewModelType {
         stepsArray.append(step4!)
         self.stepsArray = stepsArray
     }
-    
-    func signup() { }
 }

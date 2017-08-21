@@ -13,16 +13,21 @@ import Boomerang
 import DeviceKit
 import SideMenu
 
-class CarBookingCompletedViewController : BaseViewController, ViewModelBindable {
+/**
+ The CarBookingCompleted class is shown when user completed a car trip and he taps on notification
+ */
+public class CarBookingCompletedViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var img_completed: UIImageView!
     @IBOutlet fileprivate weak var lbl_warning: UILabel!
     @IBOutlet fileprivate weak var lbl_thanks: UILabel!
     @IBOutlet fileprivate weak var btn_carRides: UIButton!
+    /// ViewModel variable used to represents the data
+    public var viewModel: CarBookingCompletedViewModel?
 
-    var viewModel: CarBookingCompletedViewModel?
-
-    func bind(to viewModel: ViewModelType?) {
+    // MARK: - ViewModel methods
+    
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? CarBookingCompletedViewModel else {
             return
         }
@@ -40,7 +45,9 @@ class CarBookingCompletedViewController : BaseViewController, ViewModelBindable 
         self.lbl_thanks.styledText = String(format: "lbl_carBookingCompletedCo2".localized(), viewModel.co2)
     }
 
-    override func viewDidLoad() {
+    // MARK: - Init methods
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.carBookingCompletedBackground.value

@@ -912,7 +912,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     let annotation = CityAnnotation(position: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
                     annotation.groundAnchor = CGPoint(x: 0.5, y: 0.5)
                     annotation.city = city
-                    annotation.icon = annotation.getImage(bookedCity: bookedCity?.identifier == city.identifier ? true : false, nearestCity: nearestCity?.identifier == city.identifier ? true : false)
+                    annotation.icon = annotation.getImage(bookedCity: bookedCity?.identifier == city.identifier ? true : false, nearestCity: nearestCity?.identifier == city.identifier && viewModel?.carBooked == nil ? true : false)
                     annotation.map = mapView
                     annotationsArray.append(annotation)
                 }

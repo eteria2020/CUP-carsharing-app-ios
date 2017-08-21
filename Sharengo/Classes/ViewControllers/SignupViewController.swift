@@ -15,7 +15,10 @@ import SnapKit
 import BonMot
 import SideMenu
 
-class SignupViewController : BaseViewController, ViewModelBindable {
+/**
+ The Signup class provides features related to show the user what are the benefits of registering himself
+ */
+public class SignupViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_topView: UIView!
     @IBOutlet fileprivate weak var lbl_header: UILabel!
@@ -29,13 +32,14 @@ class SignupViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var pgc_steps: UIPageControl!
     @IBOutlet fileprivate weak var view_bottomView: UIView!
     @IBOutlet fileprivate weak var btn_signup: UIButton!
-
-    var viewModel: SignupViewModel?
-    fileprivate var stepX: CGFloat = 0.0
+    /// ViewModel variable used to represents the data
+    public var viewModel: SignupViewModel?
+    /// Variable used to save incremental x position during setup of interface
+    public var stepX: CGFloat = 0.0
 
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SignupViewModel else {
             return
         }
@@ -45,7 +49,7 @@ class SignupViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         if let stepsArray = viewModel?.stepsArray {
@@ -133,10 +137,13 @@ class SignupViewController : BaseViewController, ViewModelBindable {
     }
 }
 
-// MARK: - ScrollViewDelegate methods
-
 extension SignupViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    // MARK: - ScrollViewDelegate methods
+
+    /**
+     This method is called when user scrolls horizontally
+     */
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if viewModel != nil {
             let pageWidth: CGFloat = scrollView.frame.size.width
             let page: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth))

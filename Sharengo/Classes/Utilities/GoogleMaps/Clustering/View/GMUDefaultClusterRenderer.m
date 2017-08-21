@@ -262,7 +262,8 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
                                         userData:cluster
                                      clusterIcon:icon
                                         animated:animated];
-    [_markers addObject:marker];
+      marker.groundAnchor = CGPointMake(0.5, 0.5);
+      [_markers addObject:marker];
   } else {
     for (id<GMUClusterItem> item in cluster.items) {
       CLLocationCoordinate2D fromPosition = kCLLocationCoordinate2DInvalid;
@@ -279,6 +280,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
                                           userData:item
                                        clusterIcon:item.marker
                                           animated:shouldAnimate];
+        marker.groundAnchor = CGPointMake(0.5, 0.5);
       [_markers addObject:marker];
       [_renderedClusterItems addObject:item];
     }
