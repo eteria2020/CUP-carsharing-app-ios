@@ -251,5 +251,5 @@
 "btn_tutorialAlertClose" = "EXIT";
 
 // NEXT:
-"alert_logoutError" = "An error occurred with your email and password";
+"alert_logoutError" = "Careful, an error occured. Please login again.";
 "btn_login" = "LOGIN";

@@ -251,5 +251,5 @@
 "btn_tutorialAlertClose" = "ESCI";
 
 // NEXT:
-"alert_logoutError" = "È avvenuto un errore con la tua email e password";
+"alert_logoutError" = "Attenzione si è verificato un errore. Ti invitiamo ad accedere nuovamente.";
 "btn_login" = "ACCEDI";
