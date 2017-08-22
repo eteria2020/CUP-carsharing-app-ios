@@ -31,6 +31,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     var hideButtons: Bool = false
     var info: Variable<String?> = Variable(nil)
     var timeTimer: Timer?
+    var carBookingPopupView: CarBookingPopupView?
     
     public var selection: Action<CarBookingPopupInput, CarBookingPopupOutput> = Action { _ in
         return .just(.empty)
@@ -119,12 +120,16 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     @objc fileprivate func updateTime() {
         self.time.value = ""
         if self.carBooking?.car.value?.opened == false {
-            if let timer = self.carBooking?.timer {
-                self.time.value = String(format: "lbl_carBookingPopupTime".localized(), timer)
+            if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
+                if let timer = self.carBooking?.timer {
+                    self.time.value = String(format: "lbl_carBookingPopupTime".localized(), timer)
+                }
             }
         } else if self.carTrip?.car.value?.opened == true {
-            if let timer = self.carTrip?.timer {
-                self.time.value = timer
+            if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
+                if let timer = self.carTrip?.timer {
+                    self.time.value = timer
+                }
             }
         }
     }

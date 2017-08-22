@@ -36,6 +36,7 @@ class CarBookingPopupView: UIView {
             return
         }
         self.viewModel = viewModel
+        self.viewModel?.carBookingPopupView = self
         xibSetup()
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
         self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
