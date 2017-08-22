@@ -25,6 +25,7 @@ class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var view_pin: UIView!
     @IBOutlet fileprivate weak var view_info: UIView!
     fileprivate var view: UIView!
+    fileprivate var firstLoaded: Bool = false
     
     var viewModel: CarBookingPopupViewModel?
     
@@ -64,6 +65,9 @@ class CarBookingPopupView: UIView {
         guard let viewModel = viewModel else {
             return
         }
+        if !self.firstLoaded {
+            self.icn_time.isHidden = true
+        }
         self.lbl_pin.styledText = viewModel.pin
         self.btn_open.isHidden = false
         self.btn_delete.isHidden = false
@@ -80,6 +84,7 @@ class CarBookingPopupView: UIView {
         viewModel.time.asObservable()
             .subscribe(onNext: {[weak self] (time) in
                 DispatchQueue.main.async {
+                    self?.firstLoaded = true
                     if time != "" {
                         self?.icn_time.isHidden = false
                         self?.lbl_time.styledText = time
