@@ -86,11 +86,13 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                 }
                 case .logout:
                 var languageid = "en"
-                if Locale.preferredLanguages[0] == "it" {
+                if Locale.preferredLanguages[0] == "it-IT" {
                     languageid = "it"
                 }
                 Localize.setCurrentLanguage(languageid)
                 KeychainSwift().clear()
+                CoreController.shared.currentCarBooking = nil
+                CoreController.shared.currentCarTrip = nil
                 CoreController.shared.allCarBookings = []
                 CoreController.shared.allCarTrips = []
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
