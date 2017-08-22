@@ -92,11 +92,21 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
             }).addDisposableTo(disposeBag)
         // Images
         self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
+        let language = "language".localized()
+        let autoA1 = language == "it" ? "Auto-A-ingresso.gif" : "Auto_A_Ingresso_eng.gif"
+        let autoA2 = language == "it" ? "Auto-A-loop.gif" : "Auto_A_Loop_eng.gif"
+        let autoA3 = language == "it" ? "Auto-A-uscita.gif" : "Auto_A_Uscita_eng.gif"
+        let autoB1 = language == "it" ? "Auto-B-ingresso.gif" : "Auto_B_Ingresso_eng.gif"
+        let autoB2 = language == "it" ? "Auto-B-loop.gif" : "Auto_B_Loop_eng.gif"
+        let autoB3 = language == "it" ? "Auto-B-uscita.gif" : "Auto_B_Uscita_eng.gif"
+        let autoC1 = language == "it" ? "Auto-C-ingresso.gif" : "Auto_C_Ingresso_eng.gif"
+        let autoC2 = language == "it" ? "Auto-C-loop.gif" : "Auto_C_Loop_eng.gif"
+        let autoC3 = language == "it" ? "Auto-C-Uscita.gif" : "Auto_C_Uscita_eng.gif"
         let dispatchTime = DispatchTime.now() + 9.0
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.img_step.animate(withGIFNamed: "Auto-A-ingresso.gif", loopCount: 1)
+            self.img_step.animate(withGIFNamed: autoA1, loopCount: 1)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.26) {
-                self.img_step.animate(withGIFNamed: "Auto-A-loop.gif", loopCount: 1)
+                self.img_step.animate(withGIFNamed: autoA2, loopCount: 1)
                 self.lbl_description.styledText = "lbl_onBoardStep1Description".localized()
                 UIView.animate(withDuration: 0.3, animations: { 
                     self.lbl_description.alpha = 1.0
@@ -111,12 +121,12 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                             UIView.animate(withDuration: 0.3, animations: {
                                 self.lbl_description.alpha = 0.0
                             })
-                            self.img_step.animate(withGIFNamed: "Auto-A-uscita.gif", loopCount: 1)
+                            self.img_step.animate(withGIFNamed: autoA3, loopCount: 1)
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.66) {
-                                self.img_step.animate(withGIFNamed: "Auto-B-ingresso.gif", loopCount: 1)
+                                self.img_step.animate(withGIFNamed: autoB1, loopCount: 1)
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {
                                     self.gestureInProgress = false
-                                    self.img_step.animate(withGIFNamed: "Auto-B-loop.gif", loopCount: 1)
+                                    self.img_step.animate(withGIFNamed: autoB2, loopCount: 1)
                                     self.lbl_description.styledText = "lbl_onBoardStep2Description".localized()
                                     UIView.animate(withDuration: 0.3, animations: {
                                         self.lbl_description.alpha = 1.0
@@ -129,12 +139,12 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                             UIView.animate(withDuration: 0.3, animations: {
                                 self.lbl_description.alpha = 0.0
                             })
-                            self.img_step.animate(withGIFNamed: "Auto-B-uscita.gif", loopCount: 1)
+                            self.img_step.animate(withGIFNamed: autoB3, loopCount: 1)
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.72) {
-                                self.img_step.animate(withGIFNamed: "Auto-C-ingresso.gif", loopCount: 1)
+                                self.img_step.animate(withGIFNamed: autoC1, loopCount: 1)
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.05) {
                                     self.gestureInProgress = false
-                                    self.img_step.animate(withGIFNamed: "Auto-C-loop.gif", loopCount: 1)
+                                    self.img_step.animate(withGIFNamed: autoC2, loopCount: 1)
                                     self.lbl_description.styledText = "lbl_onBoardStep3Description".localized()
                                     UIView.animate(withDuration: 0.3, animations: {
                                         self.lbl_description.alpha = 1.0
@@ -147,7 +157,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                             UIView.animate(withDuration: 0.3, animations: {
                                 self.lbl_description.alpha = 0.0
                             })
-                            self.img_step.animate(withGIFNamed: "Auto-C-Uscita.gif", loopCount: 1)
+                            self.img_step.animate(withGIFNamed: autoC3, loopCount: 1)
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
                                 UIView.animate(withDuration: 0.5, animations: {
                                     self.view_white.alpha = 1.0
