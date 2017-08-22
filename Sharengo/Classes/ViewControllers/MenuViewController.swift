@@ -31,6 +31,8 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
     public var introIsShowed: Bool = false
     /// Variable used to save if the animation is already executed
     public var executeAnimation: Bool = true
+    /// User can open profile eco status
+    public var profileEcoStatusAvailable: Bool = false
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
@@ -163,9 +165,11 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
             self.collectionView?.reloadData()
             self.view.layoutIfNeeded()
             self.lbl_welcome.styledText = self.viewModel?.welcome
-            self.view_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
-            self.img_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
-            self.btn_profileEco.isHidden = self.viewModel?.userIconIsHidden ?? true
+            if self.profileEcoStatusAvailable {
+                self.view_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
+                self.img_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
+                self.btn_profileEco.isHidden = self.viewModel?.userIconIsHidden ?? true
+            }
         }
     }
     

@@ -37,9 +37,9 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
     /// ViewModel variable used to represents the data
     public var viewModel: HomeViewModel?
     /// User can open profile eco status
-    public var profileEcoStatusAvailable: Bool = true
+    public var profileEcoStatusAvailable: Bool = false
     /// User can open feeds
-    public var feedsAvailable: Bool = true
+    public var feedsAvailable: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -57,6 +57,13 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                 case is ProfileViewModel:
                     if self.profileEcoStatusAvailable {
                         self.openSection(viewModel: viewModel, homeItem: .profile)
+                    } else {
+                        let message = "alert_homeNotAvailable".localized()
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
                     }
                 case is LoginViewModel:
                     self.openSection(viewModel: viewModel, homeItem: .profile)
@@ -82,6 +89,13 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                     } else {
                         self.openSection(viewModel: ViewModelFactory.feeds(), homeItem: .feeds)
                     }
+                } else {
+                    let message = "alert_homeNotAvailable".localized()
+                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
                 }
             }
         }).addDisposableTo(self.disposeBag)

@@ -34,7 +34,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
     /// Variable used to save if the intro is already showed
     public var introIsShowed: Bool = false
     /// User can open profile eco status
-    public var profileEcoStatusAvailable: Bool = true
+    public var profileEcoStatusAvailable: Bool = false
     /// ViewModel variable used to represents the data
     public var viewModel: LoginViewModel?
     
