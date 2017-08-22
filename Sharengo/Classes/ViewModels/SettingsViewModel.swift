@@ -98,5 +98,7 @@ public final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectabl
         let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_imposta_lingua", viewModel: ViewModelFactory.settingsLanguages())
         settings.append(settingItem3)
         self.dataHolder = ListDataHolder(data:Observable.just(settings).structured())
+        
+        self.title = "lbl_settingsHeaderTitle".localized()
     }
 }

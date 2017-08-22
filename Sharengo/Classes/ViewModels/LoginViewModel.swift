@@ -12,6 +12,7 @@ import Boomerang
 import Action
 import ReachabilitySwift
 import KeychainSwift
+import Localize_Swift
 
 /**
  Enum that specifies selection input
@@ -228,5 +229,6 @@ public final class LoginViewModel: ViewModelType {
                 }
             }
         }
+        Localize.setCurrentLanguage(languageid)
     }
 }

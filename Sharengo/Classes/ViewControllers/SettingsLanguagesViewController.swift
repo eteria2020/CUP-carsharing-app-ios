@@ -58,6 +58,7 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
                 self.updateLanguages()
             default: break
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
             self.dismiss(animated: true, completion: nil)
         }).addDisposableTo(self.disposeBag)
         self.viewModel = viewModel

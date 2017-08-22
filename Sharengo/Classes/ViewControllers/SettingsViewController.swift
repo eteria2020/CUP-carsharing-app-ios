@@ -91,6 +91,8 @@ public class SettingsViewController : BaseViewController, ViewModelBindable, UIC
         self.viewModel?.updateData()
         self.viewModel?.reload()
         self.collectionView?.reloadData()
+        
+        self.lbl_title.styledText = self.viewModel?.title
     }
     
     // MARK: - Collection methods
