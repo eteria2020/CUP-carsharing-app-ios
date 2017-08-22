@@ -10,13 +10,22 @@ import Foundation
 import RxSwift
 import Boomerang
 
-final class SettingItemViewModel : ItemViewModelType {
-    var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier = CollectionViewCell.setting
-    var title: String?
-    var icon: UIImage?
+/**
+ The Setting item model provides data related to display content on the setting item
+ */
+public final class SettingItemViewModel : ItemViewModelType {
+    /// ViewModel variable used to save data
+    public var model:ItemViewModelType.Model
+    /// ViewModel variable used to identify setting item cell
+    public var itemIdentifier:ListIdentifier = CollectionViewCell.setting
+    /// Title of the setting item
+    public var title: String?
+    /// Icon of the setting item
+    public var icon: UIImage?
     
-    init(model: Setting) {
+    // MARK: - Init methods
+    
+    public init(model: Setting) {
         self.model = model
         self.title = model.title.localized()
         self.icon = UIImage(named: model.icon)

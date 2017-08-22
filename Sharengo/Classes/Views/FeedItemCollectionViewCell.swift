@@ -108,10 +108,4 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             self.img_favorite.alpha = 0.0
         }
     }
-    
-    // MARK: - View methods
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }

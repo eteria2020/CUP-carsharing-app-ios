@@ -12,37 +12,28 @@ import RxSwift
 import Action
 import RxCocoa
 
-class SettingsLanguageItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+/**
+ The Setting language item class is the visual representation of a setting language's option
+ */
+public class SettingsLanguageItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var btn_selectedLanguage: UIButton!
-    
-    var viewModel:ItemViewModelType?
+    /// ViewModel variable used to represents the data
+    public var viewModel:ItemViewModelType?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SettingsLanguageItemViewModel else {
             return
         }
         self.layoutIfNeeded()
         self.viewModel = viewModel
         self.lbl_title.styledText = viewModel.title
-        
-        if viewModel.selected == true
-        {
+        if viewModel.selected == true {
             self.btn_selectedLanguage.setImage(UIImage(named: "ic_citta_selezionata")!, for: .normal)
-        }
-        else
-        {
+        } else {
             self.btn_selectedLanguage.setImage(nil, for: .normal)
         }
     }
-    
-    // MARK: - View methods
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    
 }

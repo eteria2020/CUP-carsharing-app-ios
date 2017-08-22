@@ -31,13 +31,13 @@
 // Signup
 "lbl_signupHeader" = "<title>Sign up to Share'ngo</title>\nThe subscription to the service costs 10 € per 30 minutes (standard conditions, unless promotions). If your need help in the sign-up process please use the chat button!";
 "btn_signupSignup" = "SIGN UP";
-"lbl_signupStepTitle1" = "To sign up you need to have at hand:";
+"lbl_signupStepTitle1" = "To sign up you need\nto have at hand:";
 "lbl_signupStepDescription1" = "PERSONAL I.D.";
-"lbl_signupStepTitle2" = "To sign up you need to have at hand:";
+"lbl_signupStepTitle2" = "To sign up you need\nto have at hand:";
 "lbl_signupStepDescription2" = "FISCAL CODE";
-"lbl_signupStepTitle3" = "To sign up you need to have at hand:";
+"lbl_signupStepTitle3" = "To sign up you need\nto have at hand:";
 "lbl_signupStepDescription3" = "DRIVING LICENSE";
-"lbl_signupStepTitle4" = "To sign up you need to have at hand:";
+"lbl_signupStepTitle4" = "To sign up you need\nto have at hand:";
 "lbl_signupStepDescription4" = "CREDIT CARD";
 
 // Login
@@ -129,7 +129,7 @@
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>You ended your trip<bold>\n\nPlease wait doors closing outside the car.\n\nYou will be notified via mail the transaction confirmation within 24h.";
-"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %1f CO2 BY THIS TRIP!";
+"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f CO2 BY THIS TRIP!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Trip ended. The trip lasted %@ minutes and terminated correctly. Thank you for using Share'ngo";
 "banner_carBookingDeletedTitle" = "Share'ngo";

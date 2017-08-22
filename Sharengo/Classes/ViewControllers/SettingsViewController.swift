@@ -13,20 +13,26 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class SettingsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+/**
+ The Settings class lets user select settings that he wants to change between:
+ - cities
+ - favourites
+ - language
+ */
+public class SettingsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    /// ViewModel variable used to represents the data
+    public var viewModel: SettingsViewModel?
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
     
-    var viewModel: SettingsViewModel?
-    
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SettingsViewModel else {
             return
         }
@@ -42,15 +48,14 @@ class SettingsViewController : BaseViewController, ViewModelBindable, UICollecti
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
         self.lbl_title.styledText = self.viewModel?.title
-        
         self.viewModel?.reload()
     }
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
+        // self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
         self.lbl_title.textColor = Color.settingHeaderLabel.value
        
@@ -66,7 +71,6 @@ class SettingsViewController : BaseViewController, ViewModelBindable, UICollecti
         default:
             break
         }
-        
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -82,46 +86,55 @@ class SettingsViewController : BaseViewController, ViewModelBindable, UICollecti
         }).addDisposableTo(self.disposeBag)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel?.updateData()
         self.viewModel?.reload()
         self.collectionView?.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     // MARK: - Collection methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (line spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (interitem spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (inset)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (size)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate when an option of the list is selected
+     */
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel?.selection.execute(.item(indexPath))
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate before display a cell to change list interface
+     */
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = Color.settingEvenCellBackground.value
         } else {

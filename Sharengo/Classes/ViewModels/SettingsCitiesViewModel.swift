@@ -12,36 +12,51 @@ import Boomerang
 import Action
 import KeychainSwift
 
-enum SettingsCitySelectionInput : SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum SettingsCitySelectionInput : SelectionInput {
     case item(IndexPath)
 }
-enum SettingsCitySelectionOutput : SelectionOutput {
+
+/**
+ Enum that specifies selection output
+ */
+public enum SettingsCitySelectionOutput : SelectionOutput {
     case model(City)
     case empty
 }
 
-final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
-    var title = ""
+/**
+ The Setting city model provides data related to display content on settings
+ */
+public final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
-    var nextViewModel: ViewModelType?
-    
-    lazy var selection:Action<SettingsCitySelectionInput,SettingsCitySelectionOutput> = Action { input in
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// Variable used to save title
+    public var title = ""
+    /// Variable used to save next screen that has to be opened after login
+    public var nextViewModel: ViewModelType?
+    /// Selection variable
+    public lazy var selection:Action<SettingsCitySelectionInput,SettingsCitySelectionOutput> = Action { input in
         return .empty()
     }
     
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    // MARK: - ViewModel methods
+    
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? City {
             return ViewModelFactory.settingsCitiesItem(fromModel: item)
         }
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         self.title = "lbl_settingsCitiesHeaderTitle".localized()
-        
         self.updateData()
-        
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
@@ -51,7 +66,10 @@ final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable
         }
     }
     
-    func updateData()
+    /**
+     This method updates settings cities options
+     */
+    public func updateData()
     {
         var cityid = "0"
         if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {

@@ -12,33 +12,49 @@ import Boomerang
 import Action
 import KeychainSwift
 
-enum SettingSelectionInput : SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum SettingSelectionInput : SelectionInput {
     case item(IndexPath)
 }
 
-enum SettingSelectionOutput : SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum SettingSelectionOutput : SelectionOutput {
     case viewModel(ViewModelType)
     case empty
 }
 
-final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
-    var settings = [Setting]()
-    var title = ""
+/**
+ The Setting model provides data related to display content on settings
+ */
+public final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
-    
-    lazy var selection:Action<SettingSelectionInput,SettingSelectionOutput> = Action { input in
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// ViewModel variable used to save data
+    public var settings = [Setting]()
+    /// Variable used to save title
+    var title = ""
+    /// Selection variable
+    public lazy var selection:Action<SettingSelectionInput,SettingSelectionOutput> = Action { input in
         return .empty()
     }
     
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    // MARK: - ViewModel methods
+    
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? Setting {
             return ViewModelFactory.settingItem(fromModel: item)
         }
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         self.title = "lbl_settingsHeaderTitle".localized()
         self.updateData()
         self.selection = Action { input in
@@ -65,23 +81,22 @@ final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
                     }
                     return .just(.viewModel(viewModel))
                 }
-            return .just(.empty)
-        }
+                return .just(.empty)
+            }
         }
     }
     
-    func updateData() {
+    /**
+     This method updates settings options
+     */
+    public func updateData() {
         settings.removeAll()
-        
         let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_imposta_citta", viewModel: ViewModelFactory.settingsCities())
         settings.append(settingItem1)
-        
         let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.noFavourites())
         settings.append(settingItem2)
-        
         let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_imposta_lingua", viewModel: ViewModelFactory.settingsLanguages())
         settings.append(settingItem3)
-        
         self.dataHolder = ListDataHolder(data:Observable.just(settings).structured())
     }
 }

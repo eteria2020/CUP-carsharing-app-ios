@@ -13,7 +13,7 @@ import Action
 import RxCocoa
 
 /**
- The Menu Item class is the visual representation of a menu's option
+ The Menu item class is the visual representation of a menu's option
  */
 public class MenuItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_title: UILabel!

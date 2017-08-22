@@ -45,10 +45,4 @@ class FavouriteItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             icn_action1.image = UIImage(named: "ic_favourites")
         }
     }
-    
-    // MARK: - View methods
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }

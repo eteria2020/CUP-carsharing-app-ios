@@ -10,13 +10,22 @@ import Foundation
 import RxSwift
 import Boomerang
 
-final class SettingsLanguageItemViewModel : ItemViewModelType {
-    var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier = CollectionViewCell.settingsLanguage
-    var selected: Bool = false
-    var title: String?
+/**
+ The Setting language item model provides data related to display content on the setting language item
+ */
+public final class SettingsLanguageItemViewModel : ItemViewModelType {
+    /// ViewModel variable used to save data
+    public var model:ItemViewModelType.Model
+    /// ViewModel variable used to identify setting language item cell
+    public var itemIdentifier:ListIdentifier = CollectionViewCell.settingsLanguage
+    /// Variable used to save if the setting language item is selected or not
+    public var selected: Bool = false
+    /// Title of the setting item
+    public var title: String?
     
-    init(model: Language) {
+    // MARK: - Init methods
+    
+    public init(model: Language) {
         self.model = model
         self.title = model.title.localized()
         self.selected = model.selected

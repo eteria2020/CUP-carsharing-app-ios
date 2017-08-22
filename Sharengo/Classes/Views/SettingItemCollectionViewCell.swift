@@ -12,16 +12,19 @@ import RxSwift
 import Action
 import RxCocoa
 
-class SettingItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+/**
+ The Setting item class is the visual representation of a setting's option
+ */
+public class SettingItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var view_icon: UIView!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
-    
-    var viewModel:ItemViewModelType?
+    /// ViewModel variable used to represents the data
+    public var viewModel:ItemViewModelType?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SettingItemViewModel else {
             return
         }
@@ -34,11 +37,5 @@ class SettingItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.view_icon.layer.masksToBounds = true
         self.view_icon.layer.borderWidth = 1
         self.view_icon.layer.borderColor = Color.settingItemLabel.value.cgColor        
-    }
-    
-    // MARK: - View methods
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
 }

@@ -98,10 +98,4 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             }
         }
     }
-    
-    // MARK: - View methods
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }

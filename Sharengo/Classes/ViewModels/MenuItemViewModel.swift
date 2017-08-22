@@ -11,7 +11,7 @@ import RxSwift
 import Boomerang
 
 /**
- The Menu Item model provides data related to display content on the menu item
+ The Menu item model provides data related to display content on the menu item
  */
 public final class MenuItemViewModel : ItemViewModelType {
     /// ViewModel variable used to save data

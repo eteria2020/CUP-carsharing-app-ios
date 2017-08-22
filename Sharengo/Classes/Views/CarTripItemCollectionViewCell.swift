@@ -100,10 +100,4 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             break
         }
     }
-    
-    // MARK: - View methods
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }

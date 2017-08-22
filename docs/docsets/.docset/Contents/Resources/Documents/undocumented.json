@@ -1961,6 +1961,20 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/CarBookingCompletedViewController.swift",
+      "line": 30,
+      "symbol": "CarBookingCompletedViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/CarBookingCompletedViewController.swift",
+      "line": 50,
+      "symbol": "CarBookingCompletedViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/HomeViewController.swift",
       "line": 46,
       "symbol": "HomeViewController.bind(to:)",
@@ -2101,6 +2115,20 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SignupViewController.swift",
+      "line": 42,
+      "symbol": "SignupViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SignupViewController.swift",
+      "line": 52,
+      "symbol": "SignupViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ViewControllerCommons.swift",
       "line": 119,
       "symbol": "BaseViewController",
@@ -2137,37 +2165,30 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingCompletedViewModel.swift",
-      "line": 14,
-      "symbol": "CarBookingCompletedInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingCompletedViewModel.swift",
-      "line": 15,
+      "line": 18,
       "symbol": "CarBookingCompletedInput.openCarRides",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingCompletedViewModel.swift",
-      "line": 18,
-      "symbol": "CarBookingCompletedOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingCompletedViewModel.swift",
-      "line": 19,
+      "line": 25,
       "symbol": "CarBookingCompletedOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingCompletedViewModel.swift",
-      "line": 20,
+      "line": 26,
       "symbol": "CarBookingCompletedOutput.openCarRides",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingCompletedViewModel.swift",
+      "line": 44,
+      "symbol": "CarBookingCompletedViewModel.init(carTrip:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2752,6 +2773,34 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SignupStepViewModel.swift",
+      "line": 26,
+      "symbol": "SignupStepViewModel.init(title:icon:description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SignupViewModel.swift",
+      "line": 18,
+      "symbol": "SignupSelectionInput.signup",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SignupViewModel.swift",
+      "line": 25,
+      "symbol": "SignupSelectionOutput.signup",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SignupViewModel.swift",
+      "line": 44,
+      "symbol": "SignupViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SupportViewModel.swift",
       "line": 14,
       "symbol": "SupportInput",
@@ -2860,6 +2909,13 @@
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/NavigationBarView.swift",
       "line": 44,
       "symbol": "NavigationBarView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/SignupStepView.swift",
+      "line": 27,
+      "symbol": "SignupStepView.bind(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }

@@ -20,10 +20,6 @@ class SearchBarCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var view_separator: UIView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SearchBarItemViewModel else { return }
         self.viewModel = viewModel

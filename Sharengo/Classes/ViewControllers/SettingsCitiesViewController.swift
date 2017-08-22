@@ -14,7 +14,10 @@ import SideMenu
 import DeviceKit
 import KeychainSwift
 
-class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+/**
+ The Settings city class lets user select his favorite city
+ */
+public class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -23,12 +26,12 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
-    
-    var viewModel: SettingsCitiesViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: SettingsCitiesViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SettingsCitiesViewModel else {
             return
         }
@@ -59,12 +62,11 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
+        // self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingsCitiesHeaderBackground.value
         self.lbl_title.textColor = Color.settingsCitiesHeaderLabel.value
-        
         switch Device().diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
@@ -77,7 +79,6 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
         default:
             break
         }
-        
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -91,13 +92,11 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
                 break
             }
         }).addDisposableTo(self.disposeBag)
-    
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
         }).addDisposableTo(disposeBag)
-        
         if viewModel?.nextViewModel != nil {
             self.btn_back.isHidden = true
         }
@@ -105,7 +104,10 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
     
     // MARK: - Update methods
     
-    fileprivate func updateCities() {
+    /**
+     This method is used to update cities interface after user selection
+     */
+    public func updateCities() {
         DispatchQueue.main.async {
             self.viewModel?.updateData()
             self.viewModel?.reload()
@@ -115,28 +117,46 @@ class SettingsCitiesViewController : BaseViewController, ViewModelBindable, UICo
     
     // MARK: - Collection methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (line spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (interitem spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (inset)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (size)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/4)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate when an option of the list is selected
+     */
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel?.selection.execute(.item(indexPath))
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate before display a cell to change list interface
+     */
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0
         {
             cell.backgroundColor = Color.settingsCitiesEvenCellBackground.value
