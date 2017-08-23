@@ -128,8 +128,8 @@
 "alert_carBookingPopupAlreadyBooked" = "Non puoi prenotare questa auto fino a che non saranno passate 4 ore da quando hai annullato la prenotazione";
 
 // CarBookingCompleted
-"lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nAttendi la chiusura delle portiere fuori dall'auto.\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
-"lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f CO2!";
+"lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
+"lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f GRAMMIM DI CO2!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
 "banner_carBookingDeletedTitle" = "Share'ngo";
@@ -253,3 +253,4 @@
 // NEXT:
 "alert_logoutError" = "Attenzione si è verificato un errore. Ti invitiamo ad accedere nuovamente.";
 "btn_login" = "ACCEDI";
+"lbl_buyMinutesHeader" = "ACQUISTA MINUTI";

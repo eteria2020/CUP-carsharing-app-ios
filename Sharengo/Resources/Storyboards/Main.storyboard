@@ -268,7 +268,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3183,6 +3183,80 @@ grazie al tuo invito</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nW6-BH-SiY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="769" y="1649"/>
+        </scene>
+        <!--Buy Minutes View Controller-->
+        <scene sceneID="5FA-Cd-W9Z">
+            <objects>
+                <viewController storyboardIdentifier="buyMinutes" id="uWk-2Q-kFE" customClass="BuyMinutesViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DiU-h5-s1Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="clF-tM-vk3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OEj-HG-6Jc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrG-Gn-vRK" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="wxd-6W-I7h"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85c-CS-ZzE">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-qR-hYE">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="faqHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="gNQ-qR-hYE" firstAttribute="top" secondItem="85c-CS-ZzE" secondAttribute="top" constant="5" id="LT0-nz-Asa"/>
+                                    <constraint firstAttribute="bottom" secondItem="gNQ-qR-hYE" secondAttribute="bottom" constant="5" id="TbA-TQ-vRc"/>
+                                    <constraint firstAttribute="trailing" secondItem="gNQ-qR-hYE" secondAttribute="trailing" constant="15" id="Ts2-eo-4j7"/>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="Vdh-Un-3VY"/>
+                                    <constraint firstItem="gNQ-qR-hYE" firstAttribute="leading" secondItem="85c-CS-ZzE" secondAttribute="leading" constant="15" id="aaY-ae-xOc"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wG-c5-wCL">
+                                <rect key="frame" x="0.0" y="78" width="375" height="589"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="uWk-2Q-kFE" id="mIs-Ua-Nr5"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zrG-Gn-vRK" firstAttribute="leading" secondItem="OEj-HG-6Jc" secondAttribute="leading" id="1WT-1b-Lad"/>
+                            <constraint firstAttribute="bottom" secondItem="8wG-c5-wCL" secondAttribute="bottom" id="2Nj-oy-fJP"/>
+                            <constraint firstAttribute="trailing" secondItem="8wG-c5-wCL" secondAttribute="trailing" id="Cmf-MW-Wjb"/>
+                            <constraint firstItem="8wG-c5-wCL" firstAttribute="leading" secondItem="OEj-HG-6Jc" secondAttribute="leading" id="Tdy-iz-V6S"/>
+                            <constraint firstAttribute="trailing" secondItem="zrG-Gn-vRK" secondAttribute="trailing" id="WqI-0w-17O"/>
+                            <constraint firstItem="8wG-c5-wCL" firstAttribute="top" secondItem="85c-CS-ZzE" secondAttribute="bottom" id="tml-AD-wtP"/>
+                            <constraint firstItem="85c-CS-ZzE" firstAttribute="leading" secondItem="OEj-HG-6Jc" secondAttribute="leading" id="uFO-F8-u9N"/>
+                            <constraint firstItem="85c-CS-ZzE" firstAttribute="top" secondItem="zrG-Gn-vRK" secondAttribute="bottom" id="vfH-Ey-hBP"/>
+                            <constraint firstItem="zrG-Gn-vRK" firstAttribute="top" secondItem="OEj-HG-6Jc" secondAttribute="top" id="zQs-nX-pya"/>
+                            <constraint firstAttribute="trailing" secondItem="85c-CS-ZzE" secondAttribute="trailing" id="zjL-Rn-luc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lbl_headerTitle" destination="gNQ-qR-hYE" id="kFy-p6-Sv2"/>
+                        <outlet property="view_header" destination="85c-CS-ZzE" id="o8O-Wl-C0y"/>
+                        <outlet property="view_navigationBar" destination="zrG-Gn-vRK" id="TVA-8D-cd8"/>
+                        <outlet property="webview_main" destination="8wG-c5-wCL" id="kck-a5-gks"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SoO-LZ-KCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="1647.5262368815593"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="bA6-5r-hYh">

@@ -66,7 +66,16 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                         dialog.show()
                     }
                 case is LoginViewModel:
-                    self.openSection(viewModel: viewModel, homeItem: .profile)
+                    if self.profileEcoStatusAvailable {
+                        self.openSection(viewModel: viewModel, homeItem: .profile)
+                    } else {
+                        let message = "alert_homeNotAvailable".localized()
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
                 default:
                     break
                 }
@@ -123,15 +132,9 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
             self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
             self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
         } else {
-            if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                self.view_profile.backgroundColor = Color.homeEnabledBackground.value
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
-            } else {
-                self.view_profile.backgroundColor = Color.homeDisabledBackground.value
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
-            }
+            self.view_profile.backgroundColor = Color.homeDisabledBackground.value
+            self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+            self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
         }
         self.view_profile.layer.cornerRadius = self.view_profile.frame.size.width/2
         self.view_profile.layer.masksToBounds = true
@@ -287,15 +290,9 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                 self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
                 self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
             } else {
-                if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-                    self.view_profile.backgroundColor = Color.homeEnabledBackground.value
-                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
-                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
-                } else {
-                    self.view_profile.backgroundColor = Color.homeDisabledBackground.value
-                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                    self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
-                }
+                self.view_profile.backgroundColor = Color.homeDisabledBackground.value
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
             }
         }
     }

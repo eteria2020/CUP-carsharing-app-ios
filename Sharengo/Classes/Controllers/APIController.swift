@@ -126,7 +126,7 @@ final class ApiController {
     
     func searchCar(plate: String) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -342,7 +342,7 @@ final class ApiController {
     
     func getTrip(trip: CarTrip) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -412,9 +412,7 @@ extension API: TargetType {
         case .tripsList(), .archivedTripsList():
             return "trips"
         case .getTrip(let trip):
-            // TODO: ripristinare?
-            // return "trips/\(trip.id ?? 0)"
-            return "trips/current"
+            return "trips/\(trip.id ?? 0)"
         }
     }
     

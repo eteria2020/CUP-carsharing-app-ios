@@ -51,7 +51,7 @@
 "txt_loginPasswordPlaceholder" = "password";
 "btn_loginForgotPassword" = "Forgot my password";
 "btn_loginLogin" = "LOGIN";
-"lbl_loginNotYetRegistered" = "Haven’t signed up yet?";
+"lbl_loginNotYetRegistered" = "Haven't signed up yet?";
 "btn_loginRegister" = "SUBSCRIBE";
 "btn_loginContinueAsNotLogged" = "CONTINUE WITHOUT LOGGING";
 
@@ -93,29 +93,29 @@
 "alert_searchBarAuthMicrophoneUndetermined" = "It was impossible to authorize access to the microphone. Would you like to open settings and enable the service?";
 "alert_searchBarNotSetted" = "An error occurred while processing voice recognition";
 "alert_searchBarNotAvailable" = "An error occurred while processing voice recognition";
-"lbl_searchBarNoFavorites" = "No favorite\notmemorize in the settings section";
+"lbl_searchBarNoFavorites" = "No favorite\nmemorize in the settings section";
 "lbl_searchBarPlate" = "%@\nPlate Share'ngo";
 "lcl_searchBarSpeechRecognizer" = "en-EN";
 
 // SearchCars
-"alert_centerMapMessage" = "Share\’ngo needs permissions to access your position. Would you like to open settings and enable geolocation?";
+"alert_centerMapMessage" = "Share'ngo needs permissions to access your position. Would you like to open settings and enable geolocation?";
 "alert_showCarsDisabledMessage" = "Careful! You will only be able to use this feature after ending your trip or the active booking.";
 
 // CarPopup
 "lbl_carPopupType" = "Nearest car";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
-"lbl_carPopupCapacity" = "autonomy : <bold>%@</bold>";
+"lbl_carPopupCapacity" = "autonomy: <bold>%@</bold>";
 "lbl_carPopupDistance_km" = "%.2f km away";
 "lbl_carPopupDistance_mt" = "%.3d m away";
 "lbl_carPopupWalkingDistance_h" = "%d hours on foot";
 "lbl_carPopupWalkingDistance_m" = "%d minutes on foot";
 "lbl_carPopupWalkingDistance_h_m" = "%d hours e %@ minutes on foot";
 "lbl_carPopupAddressPlaceholder" = "Charging";
-"alert_carPopupLocalizationMessage" = "Share\’ngo needs to know your position to open the doors. Would you like to open settings and enable geolocation?";
-"alert_carPopupDistanceMessage" = "You are too far from Saren\'go you selected. You will be able to open it as you get closer to it.";
+"alert_carPopupLocalizationMessage" = "Share'ngo needs to know your position to open the doors. Would you like to open settings and enable geolocation?";
+"alert_carPopupDistanceMessage" = "You are too far from Saren'go you selected. You will be able to open it as you get closer to it.";
 
 // CarBookingPopup
-"lbl_carBookingPopupPin" = "YOUR PIN number: %@";
+"lbl_carBookingPopupPin" = "YOUR PIN NUMBER: %@";
 "lbl_carBookingPopupInfo" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n<placeholder>Charging</placeholder>";
 "lbl_carTripPopupInfo" = "<status>ACTIVE TRIP</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
@@ -128,15 +128,15 @@
 "alert_carBookingPopupAlreadyBooked" = "You cannot book this car until 4 hours have passed since your last canceled your booking";
 
 // CarBookingCompleted
-"lbl_carBookingCompletedDescription" = "<bold>You ended your trip<bold>\n\nPlease wait doors closing outside the car.\n\nYou will be notified via mail the transaction confirmation within 24h.";
-"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f CO2 BY THIS TRIP!";
+"lbl_carBookingCompletedDescription" = "<bold>You ended your trip<bold>\n\nYou will be notified via mail the transaction confirmation within 24h.";
+"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f GRAMS OF CO2 CO2 BY THIS TRIP!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Trip ended. The trip lasted %@ minutes and terminated correctly. Thank you for using Share'ngo";
 "banner_carBookingDeletedTitle" = "Share'ngo";
 "banner_carBookingDeletedDescription" = "Booking time expired, your booking has been canceled. Book another car on the map.";
 
 // Settings
-"lbl_settingsHeaderTitle" = "Settings";
+"lbl_settingsHeaderTitle" = "SETTINGS";
 "lbl_settingsCities" = "Set up city";
 "lbl_settingsFavourites" = "Set up favorite addresses";
 "lbl_settingsLanguages" = "Set up language";
@@ -150,7 +150,7 @@
 // Settings Favourites
 "lbl_noFavouritesHeaderTitle" = "SET UP YOUR FAVORITE ADDRESSES";
 "lbl_noFavouritesTitle" = "Too bad!";
-"lbl_noFavouritesDescription" = "You haven’t set up any favorite o recent address yet! Set up your most frequent destinations and save time as you choose where to go.";
+"lbl_noFavouritesDescription" = "You haven't set up any favorite o recent address yet! Set up your most frequent destinations and save time as you choose where to go.";
 "btn_noFavouritesNewFavourite" = "SET UP A NEW ADDRESS";
 "lbl_newFavouriteHeaderTitle" = "SET UP A FAVORITE ADDRESS";
 "lbl_newFavouriteTitle" = "Set up a new address";
@@ -170,7 +170,7 @@
 "lbl_favouritesDeleteHis" = "Would you like to delete this address from your recent address list?";
 "lbl_favouritesModify" = "Would you like to change your favorite address?";
 "lbl_favouritesAdd" = "Would you like to add this address to your recent address list?";
-"lbl_favouritesNoFavorites" = "Input the address you’d like to add to your favorites";
+"lbl_favouritesNoFavorites" = "Input the address you'd like\nto add to your favorites";
 
 // CarTrips
 "lbl_carTripsHeaderTitle" = "TRIP HISTORY";
@@ -179,10 +179,10 @@
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm";
 "lbl_carTripsItemDescription" = "%@ - hours %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - HOURS %@</startDateAndTime>\n%@\n<endDateAndTime>END: %@ - HOURS %@</endDateAndTime>\n%@\n<kmTraveled> Traveled Kilometers: %@</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - HOURS %@</startDateAndTime>\n%@\n<endDateAndTime>END: %@ - HOURS %@</endDateAndTime>\n%@\n<kmTraveled>Traveled Kilometers: %@</kmTraveled>\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Charging</placeholder>";
 "lbl_noCarTripsTitle" = "Too bad!";
-"lbl_noCarTripsDescription" = "You haven’t made any trip with a Share\’ngo yet!";
+"lbl_noCarTripsDescription" = "You haven't made any trip with a Share'ngo yet!";
 "lbl_noCarTrips" = "Why not giving it a try?";
 "btn_searchCars" = "Go to the map";
 
@@ -220,10 +220,10 @@
 "lbl_inviteFriendHeader" = "INVITE A FRIEND";
 "lbl_inviteFriendDescriptionFirstPart" = "<title>Invite a friend and earn minute!</title>\n<subtitle>Upon subscription</subtitle>";
 "lbl_inviteFriendDescriptionSecondPart" = "they will receive 10 minutes of free driving";
-"lbl_inviteFriendDescriptionThirdPart" = "<firstPart>as a welcome gift</firstPart>\n\n<secondPart> For every friend signing up from your invitation</secondPart>";
+"lbl_inviteFriendDescriptionThirdPart" = "<firstPart>as a welcome gift</firstPart>\n\n<secondPart>For every friend signing up\nfrom your invitation</secondPart>";
 "lbl_inviteFriendDescriptionFourthPart" = "you will receive 20 minutes of free driving";
 "btn_inviteFriendInvite" = "INVITE NOW";
-"lbl_inviteFriendInviteDescription" = "Hey! Use the Share\'ngo app";
+"lbl_inviteFriendInviteDescription" = "Hey! Use the Share'ngo app";
 
 // Faq
 "lbl_faqHeader" = "FAQ";
@@ -246,10 +246,11 @@
 "img_tutorial640x960_06" = "tutorial_640x960_06-ENG";
 "img_tutorial640x960_07" = "tutorial_640x960_07-ENG";
 "img_tutorial640x960_08" = "tutorial_640x960_08-ENG";
-"alert_closeTutorial" = "Want to exit the tutorial? You will be able to watch it again any time from the \“Faq & tutorial”\ section in the menu";
+"alert_closeTutorial" = "Want to exit the tutorial?\nYou will be able to watch it again any time from the \"Faq and tutorial\" section in the menu";
 "btn_tutorialAlertStay" = "STAY";
 "btn_tutorialAlertClose" = "EXIT";
 
 // NEXT:
 "alert_logoutError" = "Careful, an error occured. Please login again.";
 "btn_login" = "LOGIN";
+"lbl_buyMinutesHeader" = "BUY MINUTES";

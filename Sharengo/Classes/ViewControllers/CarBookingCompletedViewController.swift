@@ -37,8 +37,9 @@ public class CarBookingCompletedViewController : BaseViewController, ViewModelBi
             if (self == nil) { return }
             switch output {
             case .openCarRides:
-                print("Open car rides")
-                break
+                let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
+                destination.bind(to: CarTripsViewModel(), afterLoad: true)
+                CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
             default: break
             }
         }).addDisposableTo(self.disposeBag)
