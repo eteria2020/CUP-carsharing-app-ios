@@ -119,13 +119,13 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     
     @objc fileprivate func updateTime() {
         self.time.value = ""
-        if self.carBooking?.car.value?.opened == false {
+        if self.carBooking != nil {
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
                 if let timer = self.carBooking?.timer {
                     self.time.value = String(format: "lbl_carBookingPopupTime".localized(), timer)
                 }
             }
-        } else if self.carTrip?.car.value?.opened == true {
+        } else if self.carTrip != nil {
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
                 if let timer = self.carTrip?.timer {
                     self.time.value = timer

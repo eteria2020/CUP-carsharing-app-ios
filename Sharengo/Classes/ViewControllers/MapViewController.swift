@@ -301,8 +301,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 // Show
                                 car.booked = true
                                 car.opened = true
-                                self?.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
                                 self?.view_carBookingPopup.alpha = 1.0
+                                self?.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
                                 self?.viewModel?.carBooked = car
                                 self?.viewModel?.carTrip = carTrip
                                 self?.getResultsWithoutLoading()
@@ -552,6 +552,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             self.view_carBookingPopup.alpha = 1.0
                             self.viewModel?.carBooked = car
                             self.viewModel?.carTrip = carTrip
+                            self.viewModel?.carBooking = nil
                             self.getResultsWithoutLoading()
                         })
                     }
@@ -618,8 +619,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                     car.booked = true
                                                     carBooking.car.value = car
                                                     self.closeCarPopup()
-                                                    self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
                                                     self.view_carBookingPopup.alpha = 1.0
+                                                    self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
                                                     self.viewModel?.carBooked = car
                                                     self.viewModel?.carBooking = carBooking
                                                     self.getResultsWithoutLoading()
@@ -872,36 +873,54 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.clusterManager.clearItems()
             var annotationsArray: [CityAnnotation] = []
             var bookedCity: City?
+            var nearestCity: City?
             if let carBooked = self.viewModel?.carBooked {
                 var bookedDistance: CLLocationDistance?
                 for city in CoreController.shared.cities {
-                    if let location = city.location, let location2 = carBooked.location {
-                        let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
-                        if bookedDistance == nil {
-                            bookedDistance = distance
-                            bookedCity = city
-                        } else {
-                            if bookedDistance ?? 0 > distance {
+                    if viewModel?.carTrip != nil {
+                        let locationManager = LocationManager.sharedInstance
+                        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                            if let location = city.location, let location2 = locationManager.lastLocationCopy.value {
+                                let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                                if bookedDistance == nil {
+                                    bookedDistance = distance
+                                    bookedCity = city
+                                } else {
+                                    if bookedDistance ?? 0 > distance {
+                                        bookedDistance = distance
+                                        bookedCity = city
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if let location = city.location, let location2 = carBooked.location {
+                            let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                            if bookedDistance == nil {
                                 bookedDistance = distance
                                 bookedCity = city
+                            } else {
+                                if bookedDistance ?? 0 > distance {
+                                    bookedDistance = distance
+                                    bookedCity = city
+                                }
                             }
                         }
                     }
                 }
-            }
-            var nearestCity: City?
-            if let nearestCar = self.viewModel?.nearestCar {
-                var nearestDistance: CLLocationDistance?
-                for city in CoreController.shared.cities {
-                    if let location = city.location, let location2 = nearestCar.location {
-                        let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
-                        if nearestDistance == nil {
-                            nearestDistance = distance
-                            nearestCity = city
-                        } else {
-                            if nearestDistance ?? 0 > distance {
+                if let nearestCar = self.viewModel?.nearestCar {
+                    var nearestDistance: CLLocationDistance?
+                    for city in CoreController.shared.cities {
+                        if let location = city.location, let location2 = nearestCar.location {
+                            let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                            if nearestDistance == nil {
                                 nearestDistance = distance
                                 nearestCity = city
+                            } else {
+                                if nearestDistance ?? 0 > distance {
+                                    nearestDistance = distance
+                                    nearestCity = city
+                                }
                             }
                         }
                     }
@@ -1106,17 +1125,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      */
     public func showUserPositionVisible(_ visible: Bool) {
         if visible {
-            let locationManager = LocationManager.sharedInstance
-            if let userLocation = locationManager.lastLocationCopy.value {
-                self.userAnnotation.position = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-                self.userAnnotation.groundAnchor = CGPoint(x: 0.5, y: 0.5)
-                self.userAnnotation.updateImage(carTrip: self.viewModel?.carTrip)
-                self.userAnnotation.icon = userAnnotation.image
-                self.userAnnotation.map = self.mapView
-                return
+            if let radius = self.getRadius() {
+                if radius < clusteringRadius || self.viewModel?.carTrip == nil {
+                    let locationManager = LocationManager.sharedInstance
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        self.userAnnotation.position = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+                        self.userAnnotation.groundAnchor = CGPoint(x: 0.5, y: 0.5)
+                        self.userAnnotation.updateImage(carTrip: self.viewModel?.carTrip)
+                        self.userAnnotation.icon = userAnnotation.image
+                        self.userAnnotation.map = self.mapView
+                        return
+                    }
+                }
             }
         }
-        
         self.userAnnotation.map = nil
     }
     

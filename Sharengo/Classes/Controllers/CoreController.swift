@@ -234,6 +234,22 @@ class CoreController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
         self.currentCarBooking = self.allCarBookings.first
         self.currentCarTrip = self.allCarTrips.first
+        /*
+        if self.currentCarTrip != nil {
+            apiController.getTrip(trip: self.currentCarTrip!)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        break
+                    case .error(_):
+                        break
+                    default:
+                        break
+                    }
+                }.addDisposableTo(self.disposeBag)
+        }
+        */
     }
     
     // MARK: - Pulse methods

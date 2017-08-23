@@ -118,7 +118,7 @@
 "lbl_carBookingPopupPin" = "YOUR PIN number: %@";
 "lbl_carBookingPopupInfo" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n<placeholder>Charging</placeholder>";
-"lbl_carTripPopupInfo" = "<status>ACTIVE BOOKING</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
+"lbl_carTripPopupInfo" = "<status>ACTIVE TRIP</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
 "lbl_carBookingPopupTime" = "Expires in\n%@";
 "lbl_carBookingPopupTimeMinute" = "minute";
 "lbl_carBookingPopupTimeMinutes" = "minutes";

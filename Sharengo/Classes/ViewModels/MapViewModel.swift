@@ -295,13 +295,13 @@ public final class MapViewModel: ViewModelType {
             self.updateCarsProperties()
             for car in self.cars {
                 if let coordinate = car.location?.coordinate {
-                    let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked)
+                    let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked, carTrip: self.carTrip)
                     annotations.append(annotation)
                 }
             }
-            if carBookedFounded == false && self.carBooked != nil && self.carTrip == nil {
+             if carBookedFounded == false && self.carBooked != nil && self.carTrip == nil {
                 if let coordinate = self.carBooked!.location?.coordinate {
-                    let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked)
+                    let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked, carTrip: self.carTrip)
                     annotations.append(annotation)
                 }
             }
