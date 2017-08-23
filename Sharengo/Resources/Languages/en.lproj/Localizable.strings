@@ -254,3 +254,4 @@
 "alert_logoutError" = "Careful, an error occured. Please login again.";
 "btn_login" = "LOGIN";
 "lbl_buyMinutesHeader" = "BUY MINUTES";
+"lbl_carTripParkingPopupInfo" = "<status>CAR PARKED</status>\n<bold>PLATE %@</bold>\nTrip Duration:";

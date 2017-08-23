@@ -299,7 +299,7 @@ public final class MapViewModel: ViewModelType {
                     annotations.append(annotation)
                 }
             }
-             if carBookedFounded == false && self.carBooked != nil && self.carTrip == nil {
+             if carBookedFounded == false && self.carBooked != nil && (self.carTrip == nil || self.carTrip?.car.value?.parking == true) {
                 if let coordinate = self.carBooked!.location?.coordinate {
                     let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked, carTrip: self.carTrip)
                     annotations.append(annotation)

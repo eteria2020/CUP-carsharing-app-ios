@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="btn_delete" destination="hIM-os-7nn" id="ADC-hG-uK9"/>
                 <outlet property="btn_open" destination="0y1-aY-MhT" id="b67-ER-nLP"/>
+                <outlet property="btn_openCentered" destination="uC6-4t-C8K" id="5Ra-u9-YVd"/>
                 <outlet property="icn_time" destination="aLg-CH-6lV" id="tTS-tP-RBc"/>
                 <outlet property="lbl_info" destination="KpP-6T-CZZ" id="SmV-3i-Y48"/>
                 <outlet property="lbl_pin" destination="4Fa-FO-OGd" id="Haw-Oz-wRH"/>
@@ -59,6 +60,12 @@
                             <inset key="titleEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Button"/>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uC6-4t-C8K">
+                            <rect key="frame" x="115" y="0.0" width="170" height="34"/>
+                            <color key="backgroundColor" red="1" green="0.35091145829999998" blue="0.3962131076" alpha="0.75679580479999997" colorSpace="calibratedRGB"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Button"/>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIM-os-7nn">
                             <rect key="frame" x="210" y="0.0" width="170" height="35"/>
                             <color key="backgroundColor" red="1" green="0.35091145833333331" blue="0.3962131076388889" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,12 +75,15 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="uC6-4t-C8K" firstAttribute="centerX" secondItem="2e5-ZQ-WEq" secondAttribute="centerX" id="AGZ-2Q-3KE"/>
                         <constraint firstAttribute="bottom" secondItem="0y1-aY-MhT" secondAttribute="bottom" constant="10" id="DxF-yt-4Gu"/>
                         <constraint firstItem="0y1-aY-MhT" firstAttribute="top" secondItem="2e5-ZQ-WEq" secondAttribute="top" id="ETm-xg-7YL"/>
                         <constraint firstAttribute="bottom" secondItem="hIM-os-7nn" secondAttribute="bottom" constant="10" id="Ea1-ST-p2X"/>
                         <constraint firstItem="0y1-aY-MhT" firstAttribute="leading" secondItem="2e5-ZQ-WEq" secondAttribute="leading" constant="20" id="PLG-dR-kFr"/>
+                        <constraint firstItem="uC6-4t-C8K" firstAttribute="top" secondItem="0y1-aY-MhT" secondAttribute="top" id="W0D-D4-uer"/>
                         <constraint firstAttribute="trailing" secondItem="hIM-os-7nn" secondAttribute="trailing" constant="20" id="XPc-gY-klp"/>
                         <constraint firstItem="hIM-os-7nn" firstAttribute="top" secondItem="2e5-ZQ-WEq" secondAttribute="top" id="ZIz-s5-Bp2"/>
+                        <constraint firstItem="uC6-4t-C8K" firstAttribute="width" secondItem="0y1-aY-MhT" secondAttribute="width" id="inS-JY-Llg"/>
                         <constraint firstItem="hIM-os-7nn" firstAttribute="leading" secondItem="2e5-ZQ-WEq" secondAttribute="centerX" constant="10" id="kqG-d9-g0z"/>
                         <constraint firstAttribute="height" constant="45" identifier="buttonsHeight" id="rjZ-Ok-KI7"/>
                         <constraint firstItem="0y1-aY-MhT" firstAttribute="trailing" secondItem="2e5-ZQ-WEq" secondAttribute="centerX" constant="-10" id="yWa-nY-cTl"/>

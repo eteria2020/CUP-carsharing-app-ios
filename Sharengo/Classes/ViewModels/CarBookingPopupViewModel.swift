@@ -43,6 +43,8 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
             case .open:
                 if let car = self.carBooking?.car.value {
                     return .just(.open(car))
+                } else if let car = self.carTrip?.car.value {
+                    return .just(.open(car))
                 }
             case .delete:
                 return .just(.delete)
@@ -86,7 +88,11 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         if let car = self.carTrip?.car.value {
             self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
             if self.carTrip != nil {
-                self.info.value = String(format: "lbl_carTripPopupInfo".localized(), car.plate ?? "")
+                if self.carTrip?.car.value?.parking == true {
+                    self.info.value = String(format: "lbl_carTripParkingPopupInfo".localized(), car.plate ?? "")
+                } else {
+                    self.info.value = String(format: "lbl_carTripPopupInfo".localized(), car.plate ?? "")
+                }
             } else if let address = car.address.value {
                 self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
             } else {

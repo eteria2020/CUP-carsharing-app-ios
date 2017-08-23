@@ -22,7 +22,11 @@ public class UserAnnotation: GMSMarker {
      */
     public func updateImage(carTrip: CarTrip?) {
         if carTrip != nil {
-            self.image = CoreController.shared.pulseYellow
+            if carTrip?.car.value?.parking == true {
+                self.image = UIImage(named: "ic_user")!
+            } else {
+                self.image = CoreController.shared.pulseYellow
+            }
         } else {
             self.image = UIImage(named: "ic_user")!
         }

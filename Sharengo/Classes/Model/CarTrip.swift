@@ -131,6 +131,24 @@ public class CarTrip: ModelType, Decodable {
         return CarTrip(car: Car())
     }
     
+    func updateCar(completionClosure: @escaping () ->()) {
+        if let carPlate = self.carPlate {
+            CoreController.shared.apiController.searchCar(plate: carPlate)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.dic_data {
+                            self.car.value = Car(json: data)
+                            completionClosure()
+                        }
+                    default:
+                        break
+                    }
+                }.addDisposableTo(CoreController.shared.disposeBag)
+        }
+    }
+    
     required public init?(json: JSON) {
         self.id = "id" <~~ json
         self.kmStart = "km_start" <~~ json

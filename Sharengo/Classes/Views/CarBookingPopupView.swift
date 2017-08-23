@@ -16,6 +16,7 @@ import DeviceKit
 
 class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
+    @IBOutlet fileprivate weak var btn_openCentered: UIButton!
     @IBOutlet fileprivate weak var btn_delete: UIButton!
     @IBOutlet fileprivate weak var lbl_pin: UILabel!
     @IBOutlet fileprivate weak var lbl_info: UILabel!
@@ -39,6 +40,7 @@ class CarBookingPopupView: UIView {
         self.viewModel?.carBookingPopupView = self
         xibSetup()
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
+        self.btn_openCentered.rx.bind(to: viewModel.selection, input: .open)
         self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
     }
     
@@ -70,12 +72,10 @@ class CarBookingPopupView: UIView {
             self.icn_time.isHidden = true
         }
         self.lbl_pin.styledText = viewModel.pin
+        self.btn_openCentered.isHidden = false
         self.btn_open.isHidden = false
         self.btn_delete.isHidden = false
-        if viewModel.hideButtons {
-            self.btn_open.isHidden = true
-            self.btn_delete.isHidden = true
-        }
+        self.updateButtons()
         viewModel.info.asObservable()
             .subscribe(onNext: {[weak self] (info) in
                 DispatchQueue.main.async {
@@ -104,6 +104,29 @@ class CarBookingPopupView: UIView {
             }).addDisposableTo(disposeBag)
     }
     
+    func updateButtons() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        if viewModel.hideButtons {
+            if viewModel.carTrip != nil {
+                if viewModel.carTrip?.car.value?.parking == true {
+                    self.btn_openCentered.isHidden = false
+                    self.btn_open.isHidden = true
+                    self.btn_delete.isHidden = true
+                    return
+                }
+            }
+            self.btn_openCentered.isHidden = true
+            self.btn_open.isHidden = true
+            self.btn_delete.isHidden = true
+        } else {
+            self.btn_openCentered.isHidden = true
+            self.btn_open.isHidden = false
+            self.btn_delete.isHidden = false
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -119,6 +142,7 @@ class CarBookingPopupView: UIView {
         addSubview(view)
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carBookingPopupBackground.value
+        self.btn_openCentered.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
         self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
         self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
         self.lbl_info.styledText = ""
@@ -138,7 +162,7 @@ class CarBookingPopupView: UIView {
                 return true
             } else if view_info.point(inside: convert(point, to: view_info), with: event) {
                 return true
-            } else if self.viewModel?.hideButtons == false && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event)) {
+            } else if (self.viewModel?.hideButtons == false || self.viewModel?.carTrip?.car.value?.parking == true) && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event)) {
                 return true
             }
         }

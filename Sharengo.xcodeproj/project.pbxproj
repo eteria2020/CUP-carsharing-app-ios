@@ -1104,8 +1104,8 @@
 		4D45BB2E1EE698C7004C7287 /* CarBookingPopup */ = {
 			isa = PBXGroup;
 			children = (
-				4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */,
 				4D45BB281EE69895004C7287 /* CarBookingPopupView.swift */,
+				4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */,
 				4D45BB2C1EE698C2004C7287 /* CarBookingPopupView.xib */,
 			);
 			name = CarBookingPopup;

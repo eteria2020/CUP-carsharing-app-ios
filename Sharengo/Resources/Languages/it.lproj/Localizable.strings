@@ -254,3 +254,5 @@
 "alert_logoutError" = "Attenzione si è verificato un errore. Ti invitiamo ad accedere nuovamente.";
 "btn_login" = "ACCEDI";
 "lbl_buyMinutesHeader" = "ACQUISTA MINUTI";
+"lbl_carTripParkingPopupInfo" = "<status>AUTO IN SOSTA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
+
