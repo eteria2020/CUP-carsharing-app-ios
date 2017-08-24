@@ -35,7 +35,7 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         self.uniqueIdentifier = car.plate ?? "0"
         self.marker = UIImage(named: "ic_auto")!
         super.init()
-        if car.booked && carTrip == nil {
+        if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
             self.marker = CoreController.shared.pulseYellow
             self.type = 3
         } else if car.nearest && carBooked == nil {

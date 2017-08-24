@@ -70,7 +70,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.mapView.clear()
                         self?.clusterManager.clearItems()
                         for annotation in array {
-                            self?.clusterManager.add(annotation)
+                            if let carAnnotation = annotation as? CarAnnotation {
+                                if viewModel.carBooked?.plate == carAnnotation.car.plate && viewModel.carTrip != nil && viewModel.carTrip?.car.value?.parking == false
+                                { }
+                                else {
+                                    self?.clusterManager.add(annotation)
+                                }
+                            } else {
+                                self?.clusterManager.add(annotation)
+                            }
                         }
                         self?.clusterManager.cluster()
                         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -305,10 +313,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self.viewModel?.carBooked = car
                                 self.viewModel?.carTrip = carTrip
                                 self.getResultsWithoutLoading()
-                                let locationManager = LocationManager.sharedInstance
-                                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                                    if let userLocation = locationManager.lastLocationCopy.value {
-                                        self.centerMap(on: userLocation, zoom: 18.5, animated: false)
+                                if car.parking == true {
+                                    if let location = car.location {
+                                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                                        self.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                     }
                                 }
                                 if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
@@ -908,19 +916,17 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 var bookedDistance: CLLocationDistance?
                 for city in CoreController.shared.cities {
                     if viewModel?.carTrip != nil {
-                        if viewModel?.carTrip?.car.value?.parking == false {
-                            let locationManager = LocationManager.sharedInstance
-                            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                                if let location = city.location, let location2 = locationManager.lastLocationCopy.value {
-                                    let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
-                                    if bookedDistance == nil {
+                        let locationManager = LocationManager.sharedInstance
+                        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                            if let location = city.location, let location2 = locationManager.lastLocationCopy.value {
+                                let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                                if bookedDistance == nil {
+                                    bookedDistance = distance
+                                    bookedCity = city
+                                } else {
+                                    if bookedDistance ?? 0 > distance {
                                         bookedDistance = distance
                                         bookedCity = city
-                                    } else {
-                                        if bookedDistance ?? 0 > distance {
-                                            bookedDistance = distance
-                                            bookedCity = city
-                                        }
                                     }
                                 }
                             }
@@ -1046,7 +1052,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
                 self.checkedUserPosition = true
-                if self.viewModel?.carBooking == nil || self.viewModel?.carTrip?.car.value?.parking == false {
+                if self.viewModel?.carBooking != nil { }
+                else if self.viewModel?.carTrip?.car.value?.parking == true { }
+                else {
                     self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                 }
                 return
@@ -1057,9 +1065,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if location != nil {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
-                if self.viewModel?.carBooking == nil || self.viewModel?.carTrip?.car.value?.parking == false {
+                if self.viewModel?.carBooking != nil { }
+                else if self.viewModel?.carTrip?.car.value?.parking == true { }
+                else {
                     self.centerMap(on: location!, zoom: 16.5, animated: false)
                 }
+
             }
         })
     }
