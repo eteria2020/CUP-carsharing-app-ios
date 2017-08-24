@@ -227,6 +227,8 @@
 		4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B3481ED964CD002C2375 /* CarPopupView.swift */; };
 		4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */; };
 		4D72B34E1ED96736002C2375 /* CarPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D72B34D1ED96736002C2375 /* CarPopupView.xib */; };
+		4D7335AD1F4F479000B58EB4 /* UserAreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7335AC1F4F479000B58EB4 /* UserAreaViewModel.swift */; };
+		4D7335AF1F4F47A500B58EB4 /* UserAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7335AE1F4F47A500B58EB4 /* UserAreaViewController.swift */; };
 		4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93514E1EE0346B008C65C3 /* SearchBarView.swift */; };
 		4D9351511EE03497008C65C3 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9351501EE03497008C65C3 /* SearchBarView.xib */; };
 		4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */; };
@@ -582,6 +584,8 @@
 		4D72B3481ED964CD002C2375 /* CarPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupView.swift; path = Classes/Views/CarPopupView.swift; sourceTree = "<group>"; };
 		4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarPopupViewModel.swift; path = Classes/ViewModels/CarPopupViewModel.swift; sourceTree = "<group>"; };
 		4D72B34D1ED96736002C2375 /* CarPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarPopupView.xib; path = Resources/Xibs/CarPopupView.xib; sourceTree = "<group>"; };
+		4D7335AC1F4F479000B58EB4 /* UserAreaViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAreaViewModel.swift; path = Classes/ViewModels/UserAreaViewModel.swift; sourceTree = "<group>"; };
+		4D7335AE1F4F47A500B58EB4 /* UserAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAreaViewController.swift; path = Classes/ViewControllers/UserAreaViewController.swift; sourceTree = "<group>"; };
 		4D93514E1EE0346B008C65C3 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarView.swift; path = Classes/Views/SearchBarView.swift; sourceTree = "<group>"; };
 		4D9351501EE03497008C65C3 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchBarView.xib; path = Resources/Xibs/SearchBarView.xib; sourceTree = "<group>"; };
 		4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominatimAPIController.swift; sourceTree = "<group>"; };
@@ -1264,6 +1268,15 @@
 			name = CarPopup;
 			sourceTree = "<group>";
 		};
+		4D7335B01F4F47AE00B58EB4 /* UserArea */ = {
+			isa = PBXGroup;
+			children = (
+				4D7335AE1F4F47A500B58EB4 /* UserAreaViewController.swift */,
+				4D7335AC1F4F479000B58EB4 /* UserAreaViewModel.swift */,
+			);
+			name = UserArea;
+			sourceTree = "<group>";
+		};
 		4DA178631ED63C4D00EBD32B /* ZAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1411,6 +1424,7 @@
 				038A07951F1F62DE007A4F46 /* Invite Friend */,
 				03856C731F28802400DCE48D /* Faq */,
 				4D69A2B01F4DD235000CDB1F /* BuyMinutes */,
+				4D7335B01F4F47AE00B58EB4 /* UserArea */,
 				033328771F28BBBA00CD3AD8 /* Tutorial */,
 				4DC4D4AA1EF46F9400330F23 /* Web */,
 			);
@@ -1934,6 +1948,7 @@
 				03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
+				4D7335AD1F4F479000B58EB4 /* UserAreaViewModel.swift in Sources */,
 				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
 				4D2EE30B1F05328E00EB2273 /* PublisheresAPIController.swift in Sources */,
 				037BDFBE1F03947F00C95962 /* SettingsCitiesViewModel.swift in Sources */,
@@ -2056,6 +2071,7 @@
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D60EA8C1F3E037E0085BFE3 /* GMUGeometryRenderer.m in Sources */,
+				4D7335AF1F4F47A500B58EB4 /* UserAreaViewController.swift in Sources */,
 				4D0471B11F3EF61E00C454A2 /* LocationManager.swift in Sources */,
 				03AF5D381EEE7B7900AC8826 /* LoginViewModel.swift in Sources */,
 				038641FC1F17628E003AF6B1 /* CategoryItemCollectionViewCell.swift in Sources */,

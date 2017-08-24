@@ -95,7 +95,11 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
                             return .just(.viewModel(viewModel))
                         }
                     case is BuyMinutesViewModel:
-                        if !(CoreController.shared.currentViewController is BuyMinutesViewModel) {
+                        if !(CoreController.shared.currentViewController is BuyMinutesViewController) {
+                            return .just(.viewModel(viewModel))
+                        }
+                    case is UserAreaViewModel:
+                        if !(CoreController.shared.currentViewController is UserAreaViewController) {
                             return .just(.viewModel(viewModel))
                         }
                     case is SupportViewModel:
@@ -136,24 +140,26 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
         } else {
             self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), KeychainSwift().get("UserFirstname")!)
             self.userIconIsHidden = false
-            let menuItem1 = MenuItem(title: "lbl_menuProfile", icon: "ic_profilo", viewModel: nil)
+            let menuItem1 = MenuItem(title: "lbl_menuProfile", icon: "ic_profilo", viewModel: ViewModelFactory.userArea())
             let menuItem2 = MenuItem(title: "lbl_menuSearchCars", icon: "ic_prenota", viewModel: ViewModelFactory.map(type: .searchCars))
             let menuItem3 = MenuItem(title: "lbl_menuRaces", icon: "ic_cron_corse", viewModel: ViewModelFactory.carTrips())
             let menuItem4 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: ViewModelFactory.support())
             let menuItem5 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: ViewModelFactory.faq())
-            let menuItem6 = MenuItem(title: "lbl_menuBuyMinutes", icon: "ic_acquistaminuti", viewModel: ViewModelFactory.buyMinutes())
+            // let menuItem6 = MenuItem(title: "lbl_menuBuyMinutes", icon: "ic_acquistaminuti", viewModel: ViewModelFactory.buyMinutes())
             // let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: ViewModelFactory.inviteFriend())
             let menuItem8 = MenuItem(title: "lbl_menuSettings", icon: "ic_impostazioni", viewModel: ViewModelFactory.settings())
             let menuItem9 = MenuItem(title: "lbl_menuLogout", icon: "ic_logout", viewModel: ViewModelFactory.home())
+            let menuItem10 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: nil)
             menuItems.append(menuItem1)
             menuItems.append(menuItem2)
             menuItems.append(menuItem3)
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
-            menuItems.append(menuItem6)
+            // menuItems.append(menuItem6)
             // menuItems.append(menuItem7)
             menuItems.append(menuItem8)
             menuItems.append(menuItem9)
+            menuItems.append(menuItem10)
         }
         self.dataHolder = ListDataHolder(data:Observable.just(menuItems).structured())
     }

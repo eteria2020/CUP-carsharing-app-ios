@@ -268,7 +268,7 @@
         <scene sceneID="eCS-jh-az7">
             <objects>
                 <navigationController storyboardIdentifier="menuNavigation" navigationBarHidden="YES" id="r7L-iD-Ujj" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rj-c0-yWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7rj-c0-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3257,6 +3257,80 @@ grazie al tuo invito</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoO-LZ-KCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1516" y="1647.5262368815593"/>
+        </scene>
+        <!--User Area View Controller-->
+        <scene sceneID="Msg-gt-2Ix">
+            <objects>
+                <viewController storyboardIdentifier="userArea" id="TfB-Ue-eTa" customClass="UserAreaViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IUt-7f-qUZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="6b5-OJ-sZO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s4f-6c-3IZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZaP-jU-lsv" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="mTV-yh-K0O"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxZ-f3-SSi">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5B-Y1-vz9">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="faqHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="8wx-MP-FDg"/>
+                                    <constraint firstItem="h5B-Y1-vz9" firstAttribute="leading" secondItem="kxZ-f3-SSi" secondAttribute="leading" constant="15" id="AEH-x5-hq2"/>
+                                    <constraint firstItem="h5B-Y1-vz9" firstAttribute="top" secondItem="kxZ-f3-SSi" secondAttribute="top" constant="5" id="C8c-9n-LEt"/>
+                                    <constraint firstAttribute="trailing" secondItem="h5B-Y1-vz9" secondAttribute="trailing" constant="15" id="YmF-dh-sDC"/>
+                                    <constraint firstAttribute="bottom" secondItem="h5B-Y1-vz9" secondAttribute="bottom" constant="5" id="oCh-Vc-qU9"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYU-fx-Zqo">
+                                <rect key="frame" x="0.0" y="78" width="375" height="589"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TfB-Ue-eTa" id="aRM-gC-FTq"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VYU-fx-Zqo" firstAttribute="top" secondItem="kxZ-f3-SSi" secondAttribute="bottom" id="10v-U0-i7s"/>
+                            <constraint firstAttribute="trailing" secondItem="kxZ-f3-SSi" secondAttribute="trailing" id="LF0-zr-ele"/>
+                            <constraint firstAttribute="trailing" secondItem="ZaP-jU-lsv" secondAttribute="trailing" id="Uua-dj-YmJ"/>
+                            <constraint firstAttribute="trailing" secondItem="VYU-fx-Zqo" secondAttribute="trailing" id="Y0h-sX-Vdc"/>
+                            <constraint firstItem="ZaP-jU-lsv" firstAttribute="leading" secondItem="s4f-6c-3IZ" secondAttribute="leading" id="dsa-CI-aBf"/>
+                            <constraint firstItem="kxZ-f3-SSi" firstAttribute="top" secondItem="ZaP-jU-lsv" secondAttribute="bottom" id="fhA-vt-l1w"/>
+                            <constraint firstItem="ZaP-jU-lsv" firstAttribute="top" secondItem="s4f-6c-3IZ" secondAttribute="top" id="jML-rr-igJ"/>
+                            <constraint firstAttribute="bottom" secondItem="VYU-fx-Zqo" secondAttribute="bottom" id="qG0-0P-Ph0"/>
+                            <constraint firstItem="kxZ-f3-SSi" firstAttribute="leading" secondItem="s4f-6c-3IZ" secondAttribute="leading" id="vdx-FF-Td5"/>
+                            <constraint firstItem="VYU-fx-Zqo" firstAttribute="leading" secondItem="s4f-6c-3IZ" secondAttribute="leading" id="yDA-z0-Jif"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lbl_headerTitle" destination="h5B-Y1-vz9" id="HI3-nc-cUP"/>
+                        <outlet property="view_header" destination="kxZ-f3-SSi" id="6Ad-sq-ZbP"/>
+                        <outlet property="view_navigationBar" destination="ZaP-jU-lsv" id="uer-Tk-oOL"/>
+                        <outlet property="webview_main" destination="VYU-fx-Zqo" id="tGl-4w-zr8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vt7-9M-Aj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2260" y="1648"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="bA6-5r-hYh">

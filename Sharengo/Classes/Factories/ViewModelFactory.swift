@@ -104,6 +104,10 @@ struct ViewModelFactory {
     static func buyMinutes() -> ViewModelType {
         return BuyMinutesViewModel()
     }
+    
+    static func userArea() -> ViewModelType {
+        return UserAreaViewModel()
+    }
 
     static func noCarTrips() -> ViewModelType {
         return NoCarTripsViewModel()

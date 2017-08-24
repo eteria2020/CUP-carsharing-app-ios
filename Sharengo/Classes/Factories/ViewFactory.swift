@@ -34,6 +34,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case noFeeds = "noFeeds"
     case faq = "faq"
     case buyMinutes = "buyMinutes"
+    case userArea = "userArea"
     case tutorial = "tutorial"
     case support = "support"
     case inviteFriend = "inviteFriend"

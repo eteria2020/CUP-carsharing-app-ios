@@ -289,6 +289,11 @@ enum Color {
     case buyMinutesBackground
     case buyMinutesHeaderBackground
     case buyMinutesHeaderTitle
+   
+    // UserArea
+    case userAreaBackground
+    case userAreaHeaderBackground
+    case userAreaHeaderTitle
     
     // Tutorial
     case tutorialBackground
@@ -662,6 +667,13 @@ enum Color {
             case .buyMinutesHeaderBackground:
                 return ColorBrand.black.value
             case .buyMinutesHeaderTitle:
+                return ColorBrand.white.value
+            // UserArea
+            case .userAreaBackground:
+                return ColorBrand.lightGray.value
+            case .userAreaHeaderBackground:
+                return ColorBrand.black.value
+            case .userAreaHeaderTitle:
                 return ColorBrand.white.value
             // Tutorial
             case .tutorialBackground:

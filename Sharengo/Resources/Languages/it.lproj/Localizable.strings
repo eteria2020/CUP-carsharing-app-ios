@@ -63,7 +63,7 @@
 "lbl_menuFaq" = "Faq e tutorial";
 "lbl_menuRates" = "Tariffe";
 "lbl_menuHelp" = "Richiedi assistenza";
-"lbl_menuProfile" = "Profilo";
+"lbl_menuProfile" = "Area personale";
 "lbl_menuSearchCars" = "Prenota un'auto";
 "lbl_menuRaces" = "Cronologie corse";
 "lbl_menuBuyMinutes" = "Acquista minuti";
@@ -254,5 +254,6 @@
 "alert_logoutError" = "Attenzione si è verificato un errore. Ti invitiamo ad accedere nuovamente.";
 "btn_login" = "ACCEDI";
 "lbl_buyMinutesHeader" = "ACQUISTA MINUTI";
+"lbl_userAreaHeader" = "AREA PERSONALE";
 "lbl_carTripParkingPopupInfo" = "<status>AUTO IN SOSTA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
 
