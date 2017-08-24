@@ -875,7 +875,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func getResults() {
         self.stopRequest()
         if let radius = self.getRadius() {
-            if radius < clusteringRadius {
+            if radius < self.clusteringRadius {
                 self.clusteringInProgress = true
                 if let mapView = self.mapView {
                     self.setUpdateButtonAnimated(true)
@@ -898,6 +898,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if radius < self.clusteringRadius {
                 self.clusteringInProgress = true
                 self.viewModel?.reloadResults(latitude: self.mapView.camera.target.latitude, longitude: self.mapView.camera.target.longitude, radius: radius)
+            } else {
+                self.clusteringInProgress = false
+                self.addCityAnnotations()
             }
         }
     }
@@ -916,6 +919,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 var bookedDistance: CLLocationDistance?
                 for city in CoreController.shared.cities {
                     if viewModel?.carTrip != nil {
+                        if viewModel?.carTrip?.car.value?.parking == false {
                         let locationManager = LocationManager.sharedInstance
                         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
                             if let location = city.location, let location2 = locationManager.lastLocationCopy.value {
@@ -930,6 +934,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                     }
                                 }
                             }
+                        }
+                        } else {
+                                if let location = city.location, let location2 = viewModel?.carTrip?.car.value?.location {
+                                    let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                                    if bookedDistance == nil {
+                                        bookedDistance = distance
+                                        bookedCity = city
+                                    } else {
+                                        if bookedDistance ?? 0 > distance {
+                                            bookedDistance = distance
+                                            bookedCity = city
+                                        }
+                                    }
+                                }
                         }
                     } else {
                         if let location = city.location, let location2 = carBooked.location {
