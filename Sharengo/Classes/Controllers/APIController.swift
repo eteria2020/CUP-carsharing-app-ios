@@ -313,7 +313,7 @@ final class ApiController {
         }
     }
     
-    func openCar(car: Car) -> Observable<Response> {
+    func openCar(car: Car, action: String) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -323,7 +323,7 @@ final class ApiController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.openCar(car: car))
+            return provider.request(.openCar(car: car, action: action))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -377,7 +377,7 @@ fileprivate enum API {
     case bookCar(car: Car, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case deleteCarBooking(carBooking: CarBooking)
     case getCarBooking(id: Int)
-    case openCar(car: Car)
+    case openCar(car: Car, action: String)
     case tripsList()
     case archivedTripsList()
     case getTrip(trip: CarTrip)
@@ -386,7 +386,7 @@ fileprivate enum API {
 extension API: TargetType {
     var baseURL: URL {
         switch self {
-        case .bookingList(), .tripsList(), .bookCar(_), .deleteCarBooking(_), .openCar(_), .getTrip(_), .archivedTripsList():
+        case .bookingList(), .tripsList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .getTrip(_), .archivedTripsList():
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
@@ -407,7 +407,7 @@ extension API: TargetType {
             return "reservations"
         case .deleteCarBooking(let carBooking):
             return "reservations/\(carBooking.id ?? 0)"
-        case .openCar(let car):
+        case .openCar(let car, _):
             return "cars/\(car.plate ?? "")"
         case .tripsList(), .archivedTripsList():
             return "trips"
@@ -439,8 +439,8 @@ extension API: TargetType {
             return ["plate": car.plate ?? "", "user_lat": userLatitude, "user_lon": userLongitude]
         case .getCarBooking(let id):
             return ["reservation_id": id]
-        case .openCar(_):
-            return ["action": "open"]
+        case .openCar(_, let action):
+            return ["action": action]
         case .tripsList(), .bookingList():
             return ["active": "true"]
         case .archivedTripsList():

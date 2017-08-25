@@ -386,8 +386,8 @@ public final class MapViewModel: ViewModelType {
      This method open car
      - Parameter car: The car that has to be opened
      */
-    public func openCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
-        self.apiController.openCar(car: car)
+    public func openCar(car: Car, action: String, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
+        self.apiController.openCar(car: car, action: action)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {

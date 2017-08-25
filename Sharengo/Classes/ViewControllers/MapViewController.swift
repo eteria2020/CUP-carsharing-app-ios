@@ -170,7 +170,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
-                self?.openCar(car: car)
+                self?.openCar(car: car, action: "open")
             case .book(let car):
                 self?.bookCar(car: car)
             case .car:
@@ -206,7 +206,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
-                self?.openCar(car: car)
+                if self?.viewModel?.carTrip?.car.value?.parking == true {
+                    self?.openCar(car: car, action: "open")
+                } else {
+                    self?.openCar(car: car, action: "open")
+                }
             case .delete:
                 self?.deleteBookCar()
             default: break
@@ -510,26 +514,29 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      This method open car after checked if the user is logged in and if the distance between him and the car is less than carPopupDistanceOpenDoors
      - Parameter car: The car that has to be opened
      */
-    public func openCar(car: Car) {
+    public func openCar(car: Car, action: String) {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
             return
         }
         if let distance = car.distance {
-            if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
-                let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-                return
-            }
+            #if ISDEBUG
+            #elseif ISRELEASE
+                if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
+                    let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                    return
+                }
+            #endif
         } else {
             self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
             return
         }
         self.showLoader()
-        self.viewModel?.openCar(car: car, completionClosure: { (success, error) in
+        self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
             if error != nil {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
