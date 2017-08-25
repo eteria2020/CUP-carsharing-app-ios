@@ -13,7 +13,7 @@ import Action
 
 enum WebType: String {
     case empty = ""
-    case forgotPassword = "https://www.sharengo.it/forgot-password"
+    case forgotPassword = "https://www.sharengo.it/forgot-password/mobile"
     case signup = "http://www.sharengo.it/signup/mobile"
 }
 
