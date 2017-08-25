@@ -562,12 +562,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             case .next(let response):
                                 if response.status == 200, let data = response.dic_data {
                                     let car2 = Car(json: data)
+                                    if action == "unpark" {
+                                        car2?.parking = false
+                                    }
                                     let carTrip = CarTrip(car: car2 ?? car)
                                     DispatchQueue.main.async {
                                         self.hideLoader(completionClosure: { () in
-                                            car.booked = true
-                                            car.opened = true
-                                            carTrip.car.value = car
+                                            carTrip.car.value?.booked = true
+                                            carTrip.car.value?.opened = true
                                             carTrip.timeStart = Date()
                                             self.closeCarPopup()
                                             self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
