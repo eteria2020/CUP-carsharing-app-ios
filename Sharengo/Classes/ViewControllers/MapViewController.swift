@@ -207,7 +207,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             switch output {
             case .open(let car):
                 if self?.viewModel?.carTrip?.car.value?.parking == true {
-                    self?.openCar(car: car, action: "open")
+                    self?.openCar(car: car, action: "unpark")
                 } else {
                     self?.openCar(car: car, action: "open")
                 }

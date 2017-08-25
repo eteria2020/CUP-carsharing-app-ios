@@ -31,7 +31,7 @@ final class UserAreaViewModel: ViewModelTypeSelectable {
     
     init()
     {
-        let url = URL(string: "http://support.sharengo.it/home")
+        let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
         self.urlRequest = URLRequest(url: url!)
     }    
 }
