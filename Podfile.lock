@@ -2,17 +2,13 @@ PODS:
   - Action (3.0.0):
     - RxCocoa (~> 3.4.0)
     - RxSwift (~> 3.4.0)
-  - ActiveLabel (0.7.1)
   - Alamofire (4.4.0)
-  - AlamofireImage (3.2.0):
-    - Alamofire (~> 4.1)
   - BonMot (4.3.1)
   - Boomerang (0.9.3):
     - Action (~> 3.0)
     - RxSwift (~> 3)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - DateToolsSwift (2.0.3)
   - DeviceKit (1.0.1)
   - Fabric (1.6.11)
   - Gifu (2.0.0)
@@ -22,10 +18,8 @@ PODS:
   - GoogleMaps/Base (2.4.0)
   - GoogleMaps/Maps (2.4.0):
     - GoogleMaps/Base
-  - Hero (0.3.6)
   - KeychainSwift (8.0.2)
   - Localize-Swift (1.7.1)
-  - MBProgressHUD (1.0.0)
   - Moya (8.0.4):
     - Moya/Core (= 8.0.4)
   - Moya-Gloss/Core (2.0.1):
@@ -41,9 +35,6 @@ PODS:
   - Moya/RxSwift (8.0.4):
     - Moya/Core
     - RxSwift (~> 3.0)
-  - MZAppearance (1.1.6)
-  - MZFormSheetPresentationController (2.4.2):
-    - MZAppearance
   - pop (1.0.9)
   - ReachabilitySwift (3)
   - Result (3.2.2)
@@ -61,24 +52,18 @@ PODS:
 
 DEPENDENCIES:
   - Action (from `https://github.com/RxSwiftCommunity/Action.git`)
-  - ActiveLabel
-  - AlamofireImage
   - BonMot
   - Boomerang (from `https://github.com/synesthesia-it/Boomerang.git`, branch `v1`)
   - Crashlytics
-  - DateToolsSwift
   - DeviceKit
   - Fabric
   - Gifu
   - Gloss
   - GoogleMaps
-  - Hero
   - KeychainSwift
   - Localize-Swift
-  - MBProgressHUD
   - Moya-Gloss/RxSwift
   - Moya/RxSwift
-  - MZFormSheetPresentationController
   - pop
   - ReachabilitySwift
   - RxGesture
@@ -106,26 +91,19 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Action: fed388b9160ad787a58cb34b5064db6dbaae7e45
-  ActiveLabel: 68625f22775f51c31bb691ca8de20f1e5a3bc825
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
   Boomerang: eaa3faf38fea21672cc65df2c900dd4d474b4df0
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Gifu: 56a4d8f1092399159fa32662aa2232158b48d8ac
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
-  Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   KeychainSwift: 213db04dfe7244988e61f77c72a2afb2f775954a
   Localize-Swift: 6cabc1087c0e910e77bfa87c2ed3f65c80c0b2df
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Moya: a08bc060c7a44eee27447b239ed33a189b641e2b
   Moya-Gloss: 59a96de0673f555e080afb381f8c4f932ae9fb1a
-  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
-  MZFormSheetPresentationController: c1dc3bce639d2393b3cc416fcb6e050eb5bca062
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 4edd39003fdccf281d418ee1b006571f70123250
@@ -138,6 +116,6 @@ SPEC CHECKSUMS:
   StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: 2cd7f43b612f35ed7621fb9a96507e372b1b1c5c
+PODFILE CHECKSUM: 3c55944de76f34b1925a245b1d911e327c511d2a
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.2.1
