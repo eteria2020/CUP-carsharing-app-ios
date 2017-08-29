@@ -164,7 +164,6 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             // menuItems.append(menuItem7)
             menuItems.append(menuItem8)
             menuItems.append(menuItem9)
-            menuItems.append(menuItem10)
         }
         self.dataHolder = ListDataHolder(data:Observable.just(menuItems).structured())
     }

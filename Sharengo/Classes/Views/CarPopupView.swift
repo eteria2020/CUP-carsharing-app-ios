@@ -96,6 +96,11 @@ class CarPopupView: UIView {
         self.lbl_plate.styledText = viewModel.plate
         self.lbl_capacity.styledText = viewModel.capacity
         self.lbl_distance.styledText = viewModel.distance
+        if viewModel.capacity == String(format: "lbl_carPopupCapacity".localized(), "") {
+            self.lbl_capacity.isHidden = true
+        } else {
+            self.lbl_capacity.isHidden = false
+        }
         self.lbl_walkingDistance.styledText = viewModel.walkingDistance
         if viewModel.distance.isEmpty {
             self.icn_walkingDistance.isHidden = true

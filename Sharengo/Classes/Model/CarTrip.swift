@@ -37,6 +37,8 @@ public class CarTrip: ModelType, Decodable {
     var kmEnd: Int?
     var locationStart: CLLocation?
     var locationEnd: CLLocation?
+    var total_cost: Int?
+    var cost_computed: Bool?
     
     var car: Variable<Car?> = Variable(nil)
     
@@ -151,6 +153,8 @@ public class CarTrip: ModelType, Decodable {
     
     required public init?(json: JSON) {
         self.id = "id" <~~ json
+        self.total_cost = "total_cost" <~~ json
+        self.cost_computed = "cost_computed" <~~ json
         self.kmStart = "km_start" <~~ json
         self.kmEnd = "km_end" <~~ json
         if let latitude: String = "lat_start" <~~ json, let longitude: String = "lon_start" <~~ json {

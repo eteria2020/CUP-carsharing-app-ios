@@ -108,6 +108,9 @@ public final class LoginViewModel: ViewModelType {
                         if let firstname = data["name"] {
                             KeychainSwift().set("\(String(describing: firstname))", forKey: "UserFirstname")
                         }
+                        if let bonus = data["bonus"] {
+                            KeychainSwift().set("\(String(describing: bonus))", forKey: "UserBonus")
+                        }
                         KeychainSwift().set(modifiedUsername, forKey: "Username")
                         KeychainSwift().set(modifiedPassword, forKey: "Password")
                         self.setupHistory()

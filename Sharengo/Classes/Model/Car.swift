@@ -11,11 +11,6 @@ import RxSwift
 import Gloss
 import CoreLocation
 
-enum CarStatus: String {
-    case empty
-    case operative = "operative"
-}
-
 public class Car: ModelType, Decodable {
     /*
      JSON response example:
@@ -77,7 +72,6 @@ public class Car: ModelType, Decodable {
     }
     */
     
-    var status: CarStatus = .empty
     var plate: String?
     var capacity: Int?
     var location: CLLocation?
@@ -99,13 +93,10 @@ public class Car: ModelType, Decodable {
     required public init?(json: JSON) {
         self.plate = "plate" <~~ json
         self.capacity = "battery" <~~ json
-        if let latitude: String = "latitude" <~~ json, let longitude: String = "longitude" <~~ json {
+        if let latitude: String = "lat" <~~ json, let longitude: String = "lon" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
                 self.location = CLLocation(latitude: lat, longitude: lon)
             }
-        }
-        if let status: String = "status" <~~ json {
-            self.status = CarStatus(rawValue: status) ?? .empty
         }
         self.parking = "parking" <~~ json ?? false
     }

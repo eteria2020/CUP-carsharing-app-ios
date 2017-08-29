@@ -93,9 +93,7 @@ public final class MapViewModel: ViewModelType {
                 case .next(let response):
                     if response.status == 200, let data = response.array_data {
                         if let cars = [Car].from(jsonArray: data) {
-                            self.allCars = cars.filter({ (car) -> Bool in
-                                return car.status == .operative
-                            })
+                            self.allCars = cars
                             // Distance
                             for car in self.allCars {
                                 let locationManager = LocationManager.sharedInstance
@@ -166,9 +164,7 @@ public final class MapViewModel: ViewModelType {
                     case .next(let response):
                         if response.status == 200, let data = response.array_data {
                             if let cars = [Car].from(jsonArray: data) {
-                                self.cars = cars.filter({ (car) -> Bool in
-                                    return car.status == .operative
-                                })
+                                self.cars = cars
                                 self.manageAnnotations()
                                 return
                             }

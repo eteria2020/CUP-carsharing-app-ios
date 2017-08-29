@@ -89,6 +89,8 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
         txt_password.placeHolderText = "txt_loginPasswordPlaceholder".localized()
         txt_password.style = CustomTextInputStyle1()
         #if ISDEBUG
+            //txt_email.text = "emilio.cristiano@tiscali.it"
+            //txt_password.text = "Sharengo2016!"
             txt_email.text = "francesco.galatro@gmail.com"
             txt_password.text = "AppTest2017"
         #elseif ISRELEASE
