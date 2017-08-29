@@ -181,6 +181,14 @@ enum Font {
     // Faq
     case faqHeader
 
+    // Rates
+    case ratesHeaderTitle
+    case ratesRatesTitle
+    case ratesRatesDescription
+    case ratesRatesValue
+    case ratesBonusTitle
+    case ratesBonusDescription
+
     var value: UIFont {
         get {
             switch self {
@@ -399,6 +407,19 @@ enum Font {
             // Faq
             case .faqHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            // Rates
+            case .ratesHeaderTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .ratesRatesTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .ratesRatesDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
+            case .ratesRatesValue:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 12))
+            case .ratesBonusTitle:
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
+            case .ratesBonusDescription:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
             }
         }
     }

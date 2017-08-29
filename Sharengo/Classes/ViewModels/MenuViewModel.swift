@@ -106,6 +106,10 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
                         if !(CoreController.shared.currentViewController is SupportViewController) {
                             return .just(.viewModel(viewModel))
                         }
+                    case is RatesViewModel:
+                        if !(CoreController.shared.currentViewController is RatesViewController) {
+                            return .just(.viewModel(viewModel))
+                        }
                     default:
                         return .just(.viewModel(viewModel))
                     }
@@ -130,7 +134,7 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             let menuItem1 = MenuItem(title: "lbl_menuLogin", icon: "ic_login", viewModel: ViewModelFactory.login())
             let menuItem2 = MenuItem(title: "lbl_menuSignUp", icon: "ic_iscrizione", viewModel: ViewModelFactory.signup())
             let menuItem3 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: ViewModelFactory.faq())
-            let menuItem4 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: nil)
+            let menuItem4 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: ViewModelFactory.rates())
             let menuItem5 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: ViewModelFactory.support())
             menuItems.append(menuItem1)
             menuItems.append(menuItem2)
@@ -149,7 +153,7 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             // let menuItem7 = MenuItem(title: "lbl_menuInvite", icon: "ic_invita_amico", viewModel: ViewModelFactory.inviteFriend())
             let menuItem8 = MenuItem(title: "lbl_menuSettings", icon: "ic_impostazioni", viewModel: ViewModelFactory.settings())
             let menuItem9 = MenuItem(title: "lbl_menuLogout", icon: "ic_logout", viewModel: ViewModelFactory.home())
-            let menuItem10 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: nil)
+            let menuItem10 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: ViewModelFactory.rates())
             menuItems.append(menuItem1)
             menuItems.append(menuItem2)
             menuItems.append(menuItem3)
@@ -160,6 +164,7 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             // menuItems.append(menuItem7)
             menuItems.append(menuItem8)
             menuItems.append(menuItem9)
+            menuItems.append(menuItem10)
         }
         self.dataHolder = ListDataHolder(data:Observable.just(menuItems).structured())
     }

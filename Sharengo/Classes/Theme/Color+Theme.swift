@@ -294,6 +294,16 @@ enum Color {
     case userAreaBackground
     case userAreaHeaderBackground
     case userAreaHeaderTitle
+
+    // Rates
+    case ratesBackground
+    case ratesHeaderBackground
+    case ratesHeaderTitle
+    case ratesRatesTitle
+    case ratesRatesDescription
+    case ratesBonusTitle
+    case ratesBonusDescription
+    case ratesBonusContainerBackground
     
     // Tutorial
     case tutorialBackground
@@ -675,6 +685,23 @@ enum Color {
                 return ColorBrand.black.value
             case .userAreaHeaderTitle:
                 return ColorBrand.white.value
+            // Rates
+            case .ratesBackground:
+                return ColorBrand.white.value
+            case .ratesHeaderBackground:
+                return ColorBrand.black.value
+            case .ratesHeaderTitle:
+                return ColorBrand.white.value
+            case .ratesRatesTitle:
+                return ColorBrand.green.value
+            case .ratesRatesDescription:
+                return ColorBrand.black.value
+            case .ratesBonusTitle:
+                return ColorBrand.green.value
+            case .ratesBonusDescription:
+                return ColorBrand.black.value
+            case .ratesBonusContainerBackground:
+                return ColorBrand.lightGray.value
             // Tutorial
             case .tutorialBackground:
                 return ColorBrand.lightGray.value

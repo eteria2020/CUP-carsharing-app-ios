@@ -91,6 +91,10 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                     let destination: UserAreaViewController = (Storyboard.main.scene(.userArea))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is RatesViewModel:
+                    let destination: RatesViewController = (Storyboard.main.scene(.rates))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 default:
                     break
                 }

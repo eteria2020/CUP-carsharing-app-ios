@@ -250,6 +250,14 @@
 "btn_tutorialAlertStay" = "STAY";
 "btn_tutorialAlertClose" = "EXIT";
 
+// Rates
+"lbl_ratesHeader" = "TARIFFE E BONUS";
+"lbl_ratesRatesTitle" = "Ecco la tua tariffa:";
+"lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description><value>€ %@</value>\n<description>Tariffa per 1 ora:</description><value>€ %@</value>\n<description>Tariffa giornaliera:</description><value>€ %@</value>\n<description>Tariffa di prenotazione:</description><value>€ %@</value>";
+"lbl_ratesBonusTitle" = "I tuoi minuti bonus:";
+"lbl_ratesBonusDescription" = "%@ minuti";
+"btn_ratesSignup" = "ISCRIVITI SUBITO";
+
 // NEXT:
 "alert_logoutError" = "Careful, an error occured. Please login again.";
 "btn_login" = "LOGIN";

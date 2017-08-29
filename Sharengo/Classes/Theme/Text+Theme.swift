@@ -137,6 +137,13 @@ enum TextStyle: String, TextStyleType {
     // Faq
     case faqHeader = "faqHeader"
 
+    // Rates
+    case ratesHeaderTitle = "ratesHeaderTitle"
+    case ratesRatesTitle = "ratesRatesTitle"
+    case ratesRatesDescription = "ratesRatesDescription"
+    case ratesBonusTitle = "ratesBonusTitle"
+    case ratesBonusDescription = "ratesBonusDescription"
+    
     static var all:[TextStyle] {
         return [
             // Intro
@@ -231,7 +238,13 @@ enum TextStyle: String, TextStyleType {
             .inviteFriendDescriptionThirdPart,
             .inviteFriendDescriptionFourthPart,
             // Faq
-            .faqHeader
+            .faqHeader,
+            // Rates
+            .ratesHeaderTitle,
+            .ratesRatesTitle,
+            .ratesRatesDescription,
+            .ratesBonusTitle,
+            .ratesBonusDescription,
         ]
     }
     
@@ -434,6 +447,19 @@ enum TextStyle: String, TextStyleType {
             // Faq
             case .faqHeader:
                 return StringStyle(.font(Font.faqHeader.value), .color(Color.faqHeaderTitle.value), .alignment(.center))
+            // Rates
+            case .ratesHeaderTitle:
+                return StringStyle(.font(Font.ratesHeaderTitle.value), .color(Color.ratesHeaderTitle.value), .alignment(.center))
+            case .ratesRatesTitle:
+                return StringStyle(.font(Font.ratesRatesTitle.value), .color(Color.ratesRatesTitle.value), .alignment(.center))
+            case .ratesRatesDescription:
+                let descriptionStyle = StringStyle(.font(Font.ratesRatesDescription.value), .color(Color.ratesRatesDescription.value), .alignment(.center))
+                let valueStyle = StringStyle(.font(Font.ratesRatesValue.value), .color(Color.ratesRatesDescription.value), .alignment(.center))
+                return StringStyle(.font(Font.ratesRatesDescription.value), .color(Color.ratesRatesDescription.value), .alignment(.center),.xmlRules([.style("description", descriptionStyle), .style("value", valueStyle)]))
+            case .ratesBonusTitle:
+                return StringStyle(.font(Font.ratesBonusTitle.value), .color(Color.ratesBonusTitle.value), .alignment(.center))
+            case .ratesBonusDescription:
+                return StringStyle(.font(Font.ratesBonusDescription.value), .color(Color.ratesBonusDescription.value), .alignment(.center))
             }
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }

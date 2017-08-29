@@ -250,6 +250,14 @@
 "btn_tutorialAlertStay" = "RIMANI";
 "btn_tutorialAlertClose" = "ESCI";
 
+// Rates
+"lbl_ratesHeader" = "TARIFFE E BONUS";
+"lbl_ratesRatesTitle" = "Ecco la tua tariffa:";
+"lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description><value>€ %@</value>\n<description>Tariffa per 1 ora:</description><value>€ %@</value>\n<description>Tariffa giornaliera:</description><value>€ %@</value>\n<description>Tariffa di prenotazione:</description><value>€ %@</value>";
+"lbl_ratesBonusTitle" = "I tuoi minuti bonus:";
+"lbl_ratesBonusDescription" = "%@ minuti";
+"btn_ratesSignup" = "ISCRIVITI SUBITO";
+
 // NEXT:
 "alert_logoutError" = "Attenzione si è verificato un errore. Ti invitiamo ad accedere nuovamente.";
 "btn_login" = "ACCEDI";

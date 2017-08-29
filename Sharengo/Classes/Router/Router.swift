@@ -136,6 +136,10 @@ struct Router : RouterType {
             let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
             destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is RatesViewModel:
+            let destination: RatesViewController = (Storyboard.main.scene(.rates))
+            destination.bind(to: viewModel, afterLoad: true)
+            return UIViewControllerRouterAction.push(source: source, destination: destination)
         default:
             return EmptyRouterAction()
         }

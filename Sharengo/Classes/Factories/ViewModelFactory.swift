@@ -149,6 +149,10 @@ struct ViewModelFactory {
         return TutorialViewModel()
     }
 
+    static func rates() -> ViewModelType {
+        return RatesViewModel()
+    }
+
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }
