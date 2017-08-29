@@ -129,7 +129,7 @@
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
-"lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f GRAMMIM DI CO2!";
+"lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f GRAMMI DI CO2!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
 "banner_carBookingDeletedTitle" = "Share'ngo";
@@ -250,15 +250,17 @@
 "btn_tutorialAlertStay" = "RIMANI";
 "btn_tutorialAlertClose" = "ESCI";
 
+/////////////////////////
+
 // Rates
 "lbl_ratesHeader" = "TARIFFE E BONUS";
-"lbl_ratesRatesTitle" = "Ecco la tua tariffa:";
-"lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description><value>€ %@</value>\n<description>Tariffa per 1 ora:</description><value>€ %@</value>\n<description>Tariffa giornaliera:</description><value>€ %@</value>\n<description>Tariffa di prenotazione:</description><value>€ %@</value>";
+"lbl_ratesLoggedRatesTitle" = "ECCO LA TUA TARIFFA:";
+"lbl_ratesNotLoggedRatesTitle" = "Ecco le tariffe Share'ngo:";
+"lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description> <value>€ %0.2f</value>\n<description>Tariffa per 1 ora:</description> <value>€ %0.2f</value>\n<description>Tariffa giornaliera:</description> <value>€ %0.2f</value>\n<description>Tariffa di prenotazione:</description> <value>€ %0.2f</value>";
 "lbl_ratesBonusTitle" = "I tuoi minuti bonus:";
-"lbl_ratesBonusDescription" = "%@ minuti";
+"lbl_ratesBonusDescription" = "%d minuti";
 "btn_ratesSignup" = "ISCRIVITI SUBITO";
 
-// NEXT:
 "alert_logoutError" = "Attenzione si è verificato un errore. Ti invitiamo ad accedere nuovamente.";
 "btn_login" = "ACCEDI";
 "lbl_buyMinutesHeader" = "ACQUISTA MINUTI";

@@ -39,8 +39,19 @@ class RatesViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
         }).addDisposableTo(self.disposeBag)
         
-        self.lbl_rates.styledText = viewModel.ratesDescription.value
-        self.lbl_bonus.styledText = viewModel.bonusDescription.value
+        viewModel.ratesDescription.asObservable()
+            .subscribe(onNext: {[weak self] (value) in
+                DispatchQueue.main.async {
+                    self?.lbl_rates.styledText = value
+                }
+            }).addDisposableTo(disposeBag)
+        
+        viewModel.bonusDescription.asObservable()
+            .subscribe(onNext: {[weak self] (value) in
+                DispatchQueue.main.async {
+                    self?.lbl_bonus.styledText = value
+                }
+            }).addDisposableTo(disposeBag)
     }
     
     // MARK: - View methods
@@ -57,8 +68,6 @@ class RatesViewController : BaseViewController, ViewModelBindable {
         // Labels
         self.lbl_headerTitle.textColor = Color.ratesHeaderTitle.value
         self.lbl_headerTitle.styledText = "lbl_ratesHeader".localized().uppercased()
-        self.lbl_titleRates.styledText = "lbl_ratesRatesTitle".localized().uppercased()
-        self.lbl_titleBonus.styledText = "lbl_ratesBonusTitle".localized().uppercased()
         
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -96,7 +105,20 @@ class RatesViewController : BaseViewController, ViewModelBindable {
         default:
             break
         }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.updateValues()
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            self.lbl_titleRates.styledText = "lbl_ratesNotLoggedRatesTitle".localized()
+        } else {
+            self.lbl_titleRates.styledText = "lbl_ratesLoggedRatesTitle".localized()
+        }
+        self.lbl_titleBonus.styledText = "lbl_ratesBonusTitle".localized().uppercased()
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.view_bonusContainer.isHidden = true
             self.btn_signup.isHidden = false

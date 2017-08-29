@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Action
 import Boomerang
+import KeychainSwift
 
 public enum RatesInput: SelectionInput {
     case empty
@@ -31,22 +32,27 @@ final class RatesViewModel: ViewModelTypeSelectable {
     
     init()
     {
-        let basicRate = 0.1
-        let oneHourRate = 0.2
-        let dayRate = 0.3
-        let reservationRate = 0.4
-        let bonusMinutes: Int? = 0
-
+        self.updateValues()
+    }
+    
+    func updateValues() {
+        var basicRate = 0.28
+        var oneHourRate = 12.0
+        var dayRate = 50.0
+        var reservationRate = 0.0
+        var bonusMinutes = 0
         
-        self.ratesDescription.value = String(format: "lbl_ratesRatesDescription".localized(), "\(basicRate)", "\(oneHourRate)", "\(dayRate)", "\(reservationRate)")
-
-        if bonusMinutes != nil
-        {
-            self.bonusDescription.value = String(format: "lbl_ratesBonusDescription".localized(), "\(bonusMinutes!)")
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        } else {
+            let discountRate = Int(KeychainSwift().get("UserDiscountRate") ?? "0") ?? 0
+            basicRate = 0.28 - (0.28 * Double(discountRate) / 100)
+            oneHourRate = 12.00 - (12.00 * Double(discountRate) / 100)
+            dayRate = 50.00 - (50.00 * Double(discountRate) / 100)
+            // TODO: reservationRate
+            bonusMinutes = Int(KeychainSwift().get("UserBonus") ?? "0") ?? 0
         }
-        else
-        {
-            self.bonusDescription.value = ""
-        }
+        
+        self.ratesDescription.value = String(format: "lbl_ratesRatesDescription".localized(), basicRate, oneHourRate, dayRate, reservationRate)
+        self.bonusDescription.value = String(format: "lbl_ratesBonusDescription".localized(), bonusMinutes)
     }
 }

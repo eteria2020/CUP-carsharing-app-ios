@@ -123,6 +123,10 @@ class CoreController {
                         if let bonus = data["bonus"] {
                             KeychainSwift().set("\(String(describing: bonus))", forKey: "UserBonus")
                         }
+                        if let discountRate = data["discount_rate"] {
+                            KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
+                        }
+                        
                         self.updateCarBookings()
                     }
                     else if response.status == 404, let code = response.code {
