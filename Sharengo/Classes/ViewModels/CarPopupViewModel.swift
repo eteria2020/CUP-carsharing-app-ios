@@ -84,7 +84,32 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         self.car = car
         self.carType.value = car.type
         self.plate = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
-        self.capacity = String(format: "lbl_carPopupCapacity".localized(), car.capacity != nil ? "\(car.capacity!)%" : "")
+        if let capacity = car.capacity {
+            self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(capacity)%")
+        } else if let plate = car.plate {
+            let key = "capacity-\(plate)"
+            if let c = UserDefaults.standard.object(forKey: key) as? String {
+                self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(c)%")
+            } else {
+                self.capacity = String(format: "lbl_carPopupCapacity".localized(), "")
+            }
+            CoreController.shared.apiController.searchCar(plate: plate)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.dic_data {
+                            let car = Car(json: data)
+                            if let c = car?.capacity {
+                                self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(c)%")
+                                UserDefaults.standard.set("\(c)", forKey: key)
+                            }
+                        }
+                    default:
+                        break
+                    }
+                }.addDisposableTo(CoreController.shared.disposeBag)
+        }
         if let distance = car.distance {
             let restultDistance = getDistanceFromMeters(inputedMeters: Int(distance.rounded(.up)))
             if restultDistance.kilometers > 0 {
