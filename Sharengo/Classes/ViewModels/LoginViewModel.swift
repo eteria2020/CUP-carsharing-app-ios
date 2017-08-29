@@ -116,6 +116,7 @@ public final class LoginViewModel: ViewModelType {
                         }
                         KeychainSwift().set(modifiedUsername, forKey: "Username")
                         KeychainSwift().set(modifiedPassword, forKey: "Password")
+                        KeychainSwift().set(password, forKey: "PasswordClear")
                         self.setupHistory()
                         self.setupFavourites()
                         self.setupSettings()

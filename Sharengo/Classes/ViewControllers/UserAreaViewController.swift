@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
+import KeychainSwift
 
 class UserAreaViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -39,7 +40,9 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
         self.showLoader()
         var request = URLRequest(url: URL(string: "https://www.sharengo.it/user/login")!)
         request.httpMethod = "POST"
-        let postString = "identity=francesco.galatro@gmail.com&credential=AppTest2017"
+        let username = KeychainSwift().get("Username")!
+        let password = KeychainSwift().get("PasswordClear")!
+        let postString = "identity=\(username)&credential=\(password)"
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             self.hideLoader {
