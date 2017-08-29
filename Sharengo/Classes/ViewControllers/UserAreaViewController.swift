@@ -28,19 +28,43 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
             return
         }
         self.viewModel = viewModel
-        if let request = viewModel.urlRequest {
-            self.webview_main.loadRequest(request)
-        }
         self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
-            case .tutorial:
-                let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
-                let viewModel = ViewModelFactory.tutorial()
-                destination.bind(to: viewModel, afterLoad: true)
-                self?.present(destination, animated: true, completion: nil)
+            default:
+                break
             }
         }).addDisposableTo(self.disposeBag)
+        
+        self.showLoader()
+        var request = URLRequest(url: URL(string: "https://www.sharengo.it/user/login")!)
+        request.httpMethod = "POST"
+        let postString = "identity=francesco.galatro@gmail.com&credential=AppTest2017"
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            self.hideLoader {
+                guard let _ = data, error == nil else {
+                    let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
+                                            okButtonHandler: { alertView in
+                                                let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+                                                let viewModel = ViewModelFactory.tutorial()
+                                                destination.bind(to: viewModel, afterLoad: true)
+                                                self.present(destination, animated: true, completion: nil)
+                                                alertView.dismissAlertView()
+                    },
+                                            cancelButtonHandler: { alertView in
+                                                Router.back(self)
+                                                alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                    return
+                }
+                let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                self.webview_main.loadRequest(URLRequest(url: url!))
+            }
+        }
+        task.resume()
     }
     
     // MARK: - View methods
