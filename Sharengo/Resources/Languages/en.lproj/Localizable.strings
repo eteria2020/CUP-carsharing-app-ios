@@ -179,7 +179,7 @@
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm";
 "lbl_carTripsItemDescription" = "%@ - hours %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - HOURS %@</startDateAndTime>\n%@\n<endDateAndTime>END: %@ - HOURS %@</endDateAndTime>\n%@\n<kmTraveled>Traveled Kilometers: %@\nTariffa al minuto: € %0.2f</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - HOURS %@</startDateAndTime>\n%@\n<endDateAndTime>END: %@ - HOURS %@</endDateAndTime>\n%@\n<kmTraveled>Minute fare: € %0.2f</kmTraveled>\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Charging</placeholder>";
 "lbl_noCarTripsTitle" = "Too bad!";
 "lbl_noCarTripsDescription" = "You haven't made any trip with a Share'ngo yet!";
@@ -253,13 +253,13 @@
 /////////////////////////
 
 // Rates
-"lbl_ratesHeader" = "TARIFFE E BONUS";
-"lbl_ratesLoggedRatesTitle" = "ECCO LA TUA TARIFFA:";
-"lbl_ratesNotLoggedRatesTitle" = "Ecco le tariffe Share'ngo:";
-"lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description> <value>€ %0.2f</value>\n<description>Tariffa per 1 ora:</description> <value>€ %0.2f</value>\n<description>Tariffa giornaliera:</description> <value>€ %0.2f</value>\n<description>Tariffa di prenotazione:</description> <value>€ %0.2f</value>";
-"lbl_ratesBonusTitle" = "I tuoi minuti bonus:";
-"lbl_ratesBonusDescription" = "%d minuti";
-"btn_ratesSignup" = "ISCRIVITI SUBITO";
+"lbl_ratesHeader" = "FARES AND BONUSES";
+"lbl_ratesLoggedRatesTitle" = "HERE'S YOUR FARE:";
+"lbl_ratesNotLoggedRatesTitle" = "Here are the Share’ngo fares:";
+"lbl_ratesRatesDescription" = "<description>Trip basic fare:</description> <value>€ %0.2f</value>\n<description>1h Fare:</description> <value>€ %0.2f</value>\n<description>Daily Fare:</description> <value>€ %0.2f</value>\n<description>Booking Fare:</description> <value>€ %0.2f</value>";
+"lbl_ratesBonusTitle" = "Your bonus minutes:";
+"lbl_ratesBonusDescription" = "%d minutes";
+"btn_ratesSignup" = "SUBSCRIBE NOW";
 
 "alert_logoutError" = "Careful, an error occured. Please login again.";
 "btn_login" = "LOGIN";

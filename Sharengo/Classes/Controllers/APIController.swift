@@ -339,6 +339,33 @@ final class ApiController {
             }
         }
     }
+    
+    func getTrip(trip: CarTrip) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.getTrip(trip: trip))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
 }
 
 fileprivate enum API {
@@ -365,7 +392,7 @@ extension API: TargetType {
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
         case .searchCars(_, _, _, _, _), .searchAllCars():
             return URL(string: "https://api.sharengo.it:8023/v3")!
-        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .getTrip(_):
+        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!

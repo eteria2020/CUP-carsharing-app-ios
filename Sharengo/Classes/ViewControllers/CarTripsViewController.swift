@@ -54,6 +54,20 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                         if response.status == 200, let data = response.array_data {
                             if let carTrips = [CarTrip].from(jsonArray: data) {
                                 self.allCarTrips = carTrips
+                                /*
+                                self.apiController.getTrip(trip: carTrips[0])
+                                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                                    .subscribe { event in
+                                    switch event {
+                                    case .next(let response):
+                                        break
+                                    case .error(_):
+                                        break
+                                    default:
+                                        break
+                                    }
+                                }.addDisposableTo(self.disposeBag)
+                                */
                                 DispatchQueue.main.async {
                                     self.viewModel?.updateData(carTrips: self.allCarTrips)
                                     self.viewModel?.reload()

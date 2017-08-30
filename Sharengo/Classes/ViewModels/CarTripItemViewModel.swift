@@ -35,7 +35,7 @@ final class CarTripItemViewModel : ItemViewModelType {
 
         if model.costComputed == true && model.totalCost != nil {
             self.subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.endTime)
-            self.subtitle = "\(self.subtitle!) - € \(model.totalCost!),00"
+            self.subtitle = "\(self.subtitle!) - € \(model.totalCost!)"
         } else {
             self.subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.endTime)
         }
@@ -71,23 +71,23 @@ final class CarTripItemViewModel : ItemViewModelType {
             
             var startAddress = "lbl_carTripsItemExtendedDescriptionPlaceholder".localized()
             var endAddress = "lbl_carTripsItemExtendedDescriptionPlaceholder".localized()
-            var kmTraveled = "0"
-            if model.locationStart != nil && model.locationEnd != nil {
-                let distance = model.locationStart!.distance(from: model.locationEnd!)
-                let restultDistance = getDistanceFromMeters(inputedMeters: Int(distance.rounded(.up)))
-                kmTraveled = "\(Int(restultDistance.kilometers))"
-            }
+//            var kmTraveled = "0"
+//            if model.locationStart != nil && model.locationEnd != nil {
+//                let distance = model.locationStart!.distance(from: model.locationEnd!)
+//                let restultDistance = getDistanceFromMeters(inputedMeters: Int(distance.rounded(.up)))
+//                kmTraveled = "\(Int(restultDistance.kilometers))"
+//            }
             let plate = model.carPlate ?? ""
             let discountRate = Int(KeychainSwift().get("UserDiscountRate") ?? "0") ?? 0
             let basicRate = 0.28 - (0.28 * Double(discountRate) / 100)
             
-            self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, basicRate, plate)
+            self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
             
             if let location = model.locationStart {
                 let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
                 if let address = UserDefaults.standard.object(forKey: key) as? String {
                     startAddress = "<startAddress>\(address)</startAddress>"
-                    self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, basicRate, plate)
+                    self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
                 } else {
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
@@ -96,12 +96,12 @@ final class CarTripItemViewModel : ItemViewModelType {
                                 let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
                                 UserDefaults.standard.set(address, forKey: key)
                                 startAddress = "<startAddress>\(address)</startAddress>"
-                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, basicRate, plate)
+                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
                             } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
                                 let address = "\(thoroughfare), \(locality)"
                                 UserDefaults.standard.set(address, forKey: key)
                                 startAddress = "<startAddress>\(address)</startAddress>"
-                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, basicRate, plate)
+                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
                             }
                         }
                     })
@@ -111,7 +111,7 @@ final class CarTripItemViewModel : ItemViewModelType {
                 let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
                 if let address = UserDefaults.standard.object(forKey: key) as? String {
                     endAddress = "<endAddress>\(address)</endAddress>"
-                    self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, basicRate, plate)
+                    self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
                 } else {
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
@@ -120,12 +120,12 @@ final class CarTripItemViewModel : ItemViewModelType {
                                 let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
                                 UserDefaults.standard.set(address, forKey: key)
                                 endAddress = "<endAddress>\(address)</endAddress>"
-                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, basicRate, plate)
+                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
                             } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
                                 let address = "\(thoroughfare), \(locality)"
                                 UserDefaults.standard.set(address, forKey: key)
                                 endAddress = "<endAddress>\(address)</endAddress>"
-                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, kmTraveled, basicRate, plate)
+                                self.description.value = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
                             }
                         }
                     })

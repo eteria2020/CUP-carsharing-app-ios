@@ -39,7 +39,7 @@ final class RatesViewModel: ViewModelTypeSelectable {
         var basicRate = 0.28
         var oneHourRate = 12.0
         var dayRate = 50.0
-        var reservationRate = 0.0
+        let reservationRate = 0.0
         var bonusMinutes = 0
         
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -48,11 +48,10 @@ final class RatesViewModel: ViewModelTypeSelectable {
             basicRate = 0.28 - (0.28 * Double(discountRate) / 100)
             oneHourRate = 12.00 - (12.00 * Double(discountRate) / 100)
             dayRate = 50.00 - (50.00 * Double(discountRate) / 100)
-            // TODO: reservationRate
             bonusMinutes = Int(KeychainSwift().get("UserBonus") ?? "0") ?? 0
         }
         
-        self.ratesDescription.value = String(format: "lbl_ratesRatesDescription".localized(), basicRate, oneHourRate, dayRate, reservationRate)
-        self.bonusDescription.value = String(format: "lbl_ratesBonusDescription".localized(), bonusMinutes)
+        self.ratesDescription.value = String(format: "lbl_ratesRatesDescription".localized(), basicRate, oneHourRate, dayRate, reservationRate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
+        self.bonusDescription.value = String(format: "lbl_ratesBonusDescription".localized(), bonusMinutes).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
     }
 }
