@@ -34,8 +34,7 @@ final class CarTripItemViewModel : ItemViewModelType {
         }
 
         if model.costComputed == true && model.totalCost != nil {
-            self.subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.endTime)
-            self.subtitle = "\(self.subtitle!) - € \(model.totalCost!)"
+            self.subtitle = String(format: "lbl_carTripsItemSubtitleTotalCost".localized(), model.endTime, Float(model.totalCost!)/100).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
         } else {
             self.subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.endTime)
         }

@@ -973,19 +973,19 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                     }
                 }
-                if let nearestCar = self.viewModel?.nearestCar {
-                    var nearestDistance: CLLocationDistance?
-                    for city in CoreController.shared.cities {
-                        if let location = city.location, let location2 = nearestCar.location {
-                            let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
-                            if nearestDistance == nil {
+            }
+            if let nearestCar = self.viewModel?.nearestCar {
+                var nearestDistance: CLLocationDistance?
+                for city in CoreController.shared.cities {
+                    if let location = city.location, let location2 = nearestCar.location {
+                        let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                        if nearestDistance == nil {
+                            nearestDistance = distance
+                            nearestCity = city
+                        } else {
+                            if nearestDistance ?? 0 > distance {
                                 nearestDistance = distance
                                 nearestCity = city
-                            } else {
-                                if nearestDistance ?? 0 > distance {
-                                    nearestDistance = distance
-                                    nearestCity = city
-                                }
                             }
                         }
                     }

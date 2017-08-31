@@ -104,7 +104,7 @@
 // CarPopup
 "lbl_carPopupType" = "Auto più vicina";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
-"lbl_carPopupCapacity" = "autonomia: <bold>%@</bold>";
+"lbl_carPopupCapacity" = "autonomia: <bold>%@ km</bold>";
 "lbl_carPopupDistance_km" = "%.2f km di distanza";
 "lbl_carPopupDistance_mt" = "%.3d mt di distanza";
 "lbl_carPopupWalkingDistance_h" = "%d ore a piedi";
@@ -176,6 +176,7 @@
 "lbl_carTripsHeaderTitle" = "CRONOLOGIA CORSE";
 "lbl_carTripsItemTitle" = "Prenotazione n. %@";
 "lbl_carTripsItemSubtitle" = "%@";
+"lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm";
 "lbl_carTripsItemDescription" = "%@ - ORE %@";
@@ -254,7 +255,7 @@
 
 // Rates
 "lbl_ratesHeader" = "TARIFFE E BONUS";
-"lbl_ratesLoggedRatesTitle" = "ECCO LA TUA TARIFFA:";
+"lbl_ratesLoggedRatesTitle" = "Ecco la tua tariffa:";
 "lbl_ratesNotLoggedRatesTitle" = "Ecco le tariffe Share'ngo:";
 "lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description> <value>€ %0.2f</value>\n<description>Tariffa per 1 ora:</description> <value>€ %0.2f</value>\n<description>Tariffa giornaliera:</description> <value>€ %0.2f</value>\n<description>Tariffa di prenotazione:</description> <value>€ %0.2f</value>";
 "lbl_ratesBonusTitle" = "I tuoi minuti bonus:";

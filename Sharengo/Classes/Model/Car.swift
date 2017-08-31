@@ -98,6 +98,11 @@ public class Car: ModelType, Decodable {
                 self.location = CLLocation(latitude: lat, longitude: lon)
             }
         }
+        if let latitude: String = "latitude" <~~ json, let longitude: String = "longitude" <~~ json {
+            if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
+                self.location = CLLocation(latitude: lat, longitude: lon)
+            }
+        }
         self.parking = "parking" <~~ json ?? false
     }
     

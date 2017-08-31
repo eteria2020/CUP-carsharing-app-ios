@@ -38,36 +38,38 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         
         self.showLoader()
-        var request = URLRequest(url: URL(string: "https://www.sharengo.it/user/login")!)
-        request.httpMethod = "POST"
-        let username = KeychainSwift().get("Username")!
-        let password = KeychainSwift().get("PasswordClear")!
-        let postString = "identity=\(username)&credential=\(password)"
-        request.httpBody = postString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.hideLoader {
-                guard let _ = data, error == nil else {
-                    let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
-                                            okButtonHandler: { alertView in
-                                                let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
-                                                let viewModel = ViewModelFactory.tutorial()
-                                                destination.bind(to: viewModel, afterLoad: true)
-                                                self.present(destination, animated: true, completion: nil)
-                                                alertView.dismissAlertView()
-                    },
-                                            cancelButtonHandler: { alertView in
-                                                Router.back(self)
-                                                alertView.dismissAlertView()
-                    })
-                    dialog.allowTouchOutsideToDismiss = false
-                    dialog.show()
-                    return
+        URLSession.shared.reset { 
+            var request = URLRequest(url: URL(string: "https://www.sharengo.it/user/login")!)
+            request.httpMethod = "POST"
+            let username = KeychainSwift().get("Username")!
+            let password = KeychainSwift().get("PasswordClear")!
+            let postString = "identity=\(username)&credential=\(password)"
+            request.httpBody = postString.data(using: .utf8)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                self.hideLoader {
+                    guard let _ = data, error == nil else {
+                        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
+                                                okButtonHandler: { alertView in
+                                                    let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+                                                    let viewModel = ViewModelFactory.tutorial()
+                                                    destination.bind(to: viewModel, afterLoad: true)
+                                                    self.present(destination, animated: true, completion: nil)
+                                                    alertView.dismissAlertView()
+                        },
+                                                cancelButtonHandler: { alertView in
+                                                    Router.back(self)
+                                                    alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                        return
+                    }
+                    let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
                 }
-                let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
-                self.webview_main.loadRequest(URLRequest(url: url!))
             }
+            task.resume()
         }
-        task.resume()
     }
     
     // MARK: - View methods

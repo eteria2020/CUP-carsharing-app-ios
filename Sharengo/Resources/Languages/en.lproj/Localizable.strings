@@ -104,7 +104,7 @@
 // CarPopup
 "lbl_carPopupType" = "Nearest car";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
-"lbl_carPopupCapacity" = "autonomy: <bold>%@</bold>";
+"lbl_carPopupCapacity" = "autonomy: <bold>%@ km</bold>";
 "lbl_carPopupDistance_km" = "%.2f km away";
 "lbl_carPopupDistance_mt" = "%.3d m away";
 "lbl_carPopupWalkingDistance_h" = "%d hours on foot";
@@ -176,6 +176,7 @@
 "lbl_carTripsHeaderTitle" = "TRIP HISTORY";
 "lbl_carTripsItemTitle" = "Booking n. %@";
 "lbl_carTripsItemSubtitle" = "%@";
+"lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm";
 "lbl_carTripsItemDescription" = "%@ - hours %@";
@@ -254,7 +255,7 @@
 
 // Rates
 "lbl_ratesHeader" = "FARES AND BONUSES";
-"lbl_ratesLoggedRatesTitle" = "HERE'S YOUR FARE:";
+"lbl_ratesLoggedRatesTitle" = "Here's your fare:";
 "lbl_ratesNotLoggedRatesTitle" = "Here are the Share’ngo fares:";
 "lbl_ratesRatesDescription" = "<description>Trip basic fare:</description> <value>€ %0.2f</value>\n<description>1h Fare:</description> <value>€ %0.2f</value>\n<description>Daily Fare:</description> <value>€ %0.2f</value>\n<description>Booking Fare:</description> <value>€ %0.2f</value>";
 "lbl_ratesBonusTitle" = "Your bonus minutes:";

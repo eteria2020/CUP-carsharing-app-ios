@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        CoreController.shared.currentViewController?.hideMenuBackground()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
