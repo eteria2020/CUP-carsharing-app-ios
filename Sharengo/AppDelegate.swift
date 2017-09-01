@@ -7,6 +7,7 @@ import Gloss
 import SideMenu
 import Localize_Swift
 import GoogleMaps
+import KeychainSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate let menuPadding: CGFloat = 100.0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            // Non sono loggato
+        } else {
+            if KeychainSwift().get("PasswordClear") == nil {
+                var languageid = "en"
+                if Locale.preferredLanguages[0] == "it-IT" {
+                    languageid = "it"
+                }
+                Localize.setCurrentLanguage(languageid)
+                KeychainSwift().clear()
+            }
+        }
         self.setupAlert()
         self.setupHistory()
         self.setupFavourites()
@@ -22,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupPolygons()
         self.setupGoogleMaps()
         self.setupFabric()
-        
         _ = CoreController.shared.pulseYellow
         _ = CoreController.shared.pulseGreen
         
