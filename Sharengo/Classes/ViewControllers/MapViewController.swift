@@ -562,23 +562,32 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             case .next(let response):
                                 if response.status == 200, let data = response.dic_data {
                                     let car2 = Car(json: data)
-                                    if action == "unpark" {
+                                    if action == "unpark" && self.viewModel?.carTrip != nil {
                                         car2?.parking = false
-                                    }
-                                    let carTrip = CarTrip(car: car2 ?? car)
-                                    DispatchQueue.main.async {
-                                        self.hideLoader(completionClosure: { () in
-                                            carTrip.car.value?.booked = true
-                                            carTrip.car.value?.opened = true
-                                            carTrip.timeStart = Date()
-                                            self.closeCarPopup()
-                                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
-                                            self.view_carBookingPopup.alpha = 1.0
-                                            self.viewModel?.carBooked = car
-                                            self.viewModel?.carTrip = carTrip
-                                            self.viewModel?.carBooking = nil
-                                            self.getResultsWithoutLoading()
-                                        })
+                                        car2?.opened = true
+                                        car2?.booked = true
+                                        DispatchQueue.main.async {
+                                            self.hideLoader(completionClosure: { () in
+                                                self.viewModel!.carTrip!.car.value = car2
+                                                self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
+                                            })
+                                        }
+                                    } else {
+                                        let carTrip = CarTrip(car: car2 ?? car)
+                                        DispatchQueue.main.async {
+                                            self.hideLoader(completionClosure: { () in
+                                                carTrip.car.value?.booked = true
+                                                carTrip.car.value?.opened = true
+                                                carTrip.timeStart = Date()
+                                                self.closeCarPopup()
+                                                self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                                                self.view_carBookingPopup.alpha = 1.0
+                                                self.viewModel?.carBooked = car
+                                                self.viewModel?.carTrip = carTrip
+                                                self.viewModel?.carBooking = nil
+                                                self.getResultsWithoutLoading()
+                                            })
+                                        }
                                     }
                                 }
                             default:
