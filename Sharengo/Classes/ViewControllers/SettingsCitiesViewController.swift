@@ -56,7 +56,6 @@ public class SettingsCitiesViewController : BaseViewController, ViewModelBindabl
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
         self.lbl_title.styledText = self.viewModel?.title
-    
         self.viewModel?.reload()
     }
     

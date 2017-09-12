@@ -11,20 +11,31 @@ import RxSwift
 import Boomerang
 import Action
 
-enum NewFavouriteSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum NewFavouriteSelectionInput: SelectionInput {
     case empty
 }
 
-enum NewFavouriteSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum NewFavouriteSelectionOutput: SelectionOutput {
     case empty
 }
 
-final class NewFavouriteViewModel: ViewModelType {
-    lazy var selection:Action<NewFavouriteSelectionInput,NewFavouriteSelectionOutput> = Action { input in
+/**
+ The New favourite model provides data related to display content on new favourite in settings
+ */
+public final class NewFavouriteViewModel: ViewModelType {
+    /// Selection variable
+    public lazy var selection:Action<NewFavouriteSelectionInput,NewFavouriteSelectionOutput> = Action { input in
         return .just(.empty)
     }
     
-    init() {
-        
-    }
+    // MARK: - Init methods
+    
+    public required init()
+    { }
 }

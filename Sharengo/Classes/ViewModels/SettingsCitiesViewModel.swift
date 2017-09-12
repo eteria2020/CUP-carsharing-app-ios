@@ -66,6 +66,8 @@ public final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSel
         }
     }
     
+    // MARK: - Update methods
+    
     /**
      This method updates settings cities options
      */

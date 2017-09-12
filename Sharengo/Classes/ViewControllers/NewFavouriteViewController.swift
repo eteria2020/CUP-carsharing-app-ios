@@ -15,7 +15,10 @@ import DeviceKit
 import TPKeyboardAvoiding
 import KeychainSwift
 
-class NewFavouriteViewController : BaseViewController, ViewModelBindable {
+/**
+ The New favourite class is used to let the user create a new favourite
+ */
+public class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -31,19 +34,20 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_scrollViewContainer: UIView!
     @IBOutlet fileprivate weak var btn_back: UIButton!
     @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
-    
-    var viewModel: NewFavouriteViewModel?
-    var fromFavourites: Bool = false
-    fileprivate var selectedAddress: Address?
+    /// ViewModel variable used to represents the data
+    public var viewModel: NewFavouriteViewModel?
+    /// Variable used to check if the screen is opened from favourites or not
+    public var fromFavourites: Bool = false
+    /// Variable used to save the selected address
+    public var selectedAddress: Address?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? NewFavouriteViewModel else {
             return
         }
         self.viewModel = viewModel
-        
         self.btn_saveFavourite.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.view_searchBar.endEditing(true)
@@ -96,18 +100,15 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
-        
         self.btn_saveFavourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_newFavouriteSaveFavourite".localized())
         self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value, Color.alertButton.value), title: "btn_newFavouriteUndo".localized())
-        
         self.lbl_headerTitle.styledText = "lbl_newFavouriteHeaderTitle".localized()
         self.lbl_title.styledText = "lbl_newFavouriteTitle".localized()
         self.lbl_description.styledText = "lbl_newFavouriteDescription".localized()
-        
         switch Device().diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
@@ -132,15 +133,12 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
         default:
             break
         }
-        
         self.txt_address.placeHolderText = "txt_newFavouriteAddressPlaceholder".localized()
         self.txt_address.style = CustomTextInputStyle1()
-        
         self.txt_name.delegate = self
         self.txt_name.returnKeyType = UIReturnKeyType.done
         self.txt_name.placeHolderText = "txt_newFavouriteNamePlaceholder".localized()
         self.txt_name.style = CustomTextInputStyle1()
-      
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -175,7 +173,6 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         self.view_searchBar.setupForFavourites()
-        
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
@@ -183,7 +180,6 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
                 self.view_searchBar.endEditing(true)
                 Router.back(self)
         }).addDisposableTo(disposeBag)
-        
         NotificationCenter.default.addObserver(forName:
         NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
@@ -192,14 +188,15 @@ class NewFavouriteViewController : BaseViewController, ViewModelBindable {
     }
 }
 
-// MARK: - TextField delegate
-
 extension NewFavouriteViewController: AnimatedTextInputDelegate
 {
-    func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool
-    {
+    // MARK: - TextField delegate
+    
+    /**
+     This method is called when user try to close keyboard
+     */
+    public func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool {
         _ = animatedTextInput.resignFirstResponder()
-        
         return true
     }
 }

@@ -83,10 +83,6 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                     let destination: FaqViewController = (Storyboard.main.scene(.faq))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
-                case is BuyMinutesViewModel:
-                    let destination: BuyMinutesViewController = (Storyboard.main.scene(.buyMinutes))
-                    destination.bind(to: viewModel, afterLoad: true)
-                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 case is UserAreaViewModel:
                     let destination: UserAreaViewController = (Storyboard.main.scene(.userArea))
                     destination.bind(to: viewModel, afterLoad: true)

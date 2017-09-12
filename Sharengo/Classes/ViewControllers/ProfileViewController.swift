@@ -12,6 +12,8 @@ import RxCocoa
 import Boomerang
 import SideMenu
 
+// TODO: non commentata perché non utilizzata
+
 class ProfileViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var lbl_profileEcoStatus: UILabel!

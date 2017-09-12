@@ -12,22 +12,32 @@ import Boomerang
 import Action
 import KeychainSwift
 
-enum FavouritesSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum FavouritesSelectionInput: SelectionInput {
     case newFavourite
     case item(IndexPath)
 }
 
-enum FavouritesSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum FavouritesSelectionOutput: SelectionOutput {
     case newFavourite
     case viewModel(ViewModelType)
     case empty
 }
 
-final class FavouritesViewModel: ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
+/**
+ The Favourites model provides data related to display content on favourites in settings
+ */
+public final class FavouritesViewModel: ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
-   
-    lazy var selection:Action<FavouritesSelectionInput,FavouritesSelectionOutput> = Action { input in
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// Selection variable
+    public lazy var selection:Action<FavouritesSelectionInput,FavouritesSelectionOutput> = Action { input in
         switch input {
         case .newFavourite:
             return .just(.newFavourite)
@@ -36,17 +46,26 @@ final class FavouritesViewModel: ListViewModelType, ViewModelTypeSelectable {
         }
     }
 
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    // MARK: - ViewModel methods
+    
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? Address {
             return ViewModelFactory.favouriteItem(fromModel: item)
         }
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
     }
     
-    func updateData() {
+    // MARK: - Update methods
+    
+    /**
+     This method updates settings favourites
+     */
+    public func updateData() {
         var historyAndFavorites: [ModelType] = [ModelType]()
         if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
             if let username = KeychainSwift().get("Username") {

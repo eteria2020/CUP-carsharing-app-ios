@@ -220,8 +220,6 @@
 		4D60EA951F3E037E0085BFE3 /* GMUStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA7A1F3E037E0085BFE3 /* GMUStyle.m */; };
 		4D60EA961F3E037E0085BFE3 /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA7F1F3E037E0085BFE3 /* GQTPointQuadTree.m */; };
 		4D60EA971F3E037E0085BFE3 /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA811F3E037E0085BFE3 /* GQTPointQuadTreeChild.m */; };
-		4D69A2AD1F4DD222000CDB1F /* BuyMinutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D69A2AC1F4DD222000CDB1F /* BuyMinutesViewController.swift */; };
-		4D69A2AF1F4DD231000CDB1F /* BuyMinutesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D69A2AE1F4DD231000CDB1F /* BuyMinutesViewModel.swift */; };
 		4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */; };
 		4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */; };
 		4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */; };
@@ -579,8 +577,6 @@
 		4D60EA801F3E037E0085BFE3 /* GQTPointQuadTreeChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeChild.h; sourceTree = "<group>"; };
 		4D60EA811F3E037E0085BFE3 /* GQTPointQuadTreeChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQTPointQuadTreeChild.m; sourceTree = "<group>"; };
 		4D60EA821F3E037E0085BFE3 /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
-		4D69A2AC1F4DD222000CDB1F /* BuyMinutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuyMinutesViewController.swift; path = Classes/ViewControllers/BuyMinutesViewController.swift; sourceTree = "<group>"; };
-		4D69A2AE1F4DD231000CDB1F /* BuyMinutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuyMinutesViewModel.swift; path = Classes/ViewModels/BuyMinutesViewModel.swift; sourceTree = "<group>"; };
 		4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularMenuViewModel.swift; path = Classes/ViewModels/CircularMenuViewModel.swift; sourceTree = "<group>"; };
 		4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationBarView.xib; path = Resources/Xibs/NavigationBarView.xib; sourceTree = "<group>"; };
 		4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBarView.swift; path = Classes/Views/NavigationBarView.swift; sourceTree = "<group>"; };
@@ -1262,15 +1258,6 @@
 			path = QuadTree;
 			sourceTree = "<group>";
 		};
-		4D69A2B01F4DD235000CDB1F /* BuyMinutes */ = {
-			isa = PBXGroup;
-			children = (
-				4D69A2AC1F4DD222000CDB1F /* BuyMinutesViewController.swift */,
-				4D69A2AE1F4DD231000CDB1F /* BuyMinutesViewModel.swift */,
-			);
-			name = BuyMinutes;
-			sourceTree = "<group>";
-		};
 		4D72B34C1ED965F7002C2375 /* CarPopup */ = {
 			isa = PBXGroup;
 			children = (
@@ -1436,7 +1423,6 @@
 				0366DD951F1F4726006657D9 /* Support */,
 				038A07951F1F62DE007A4F46 /* Invite Friend */,
 				03856C731F28802400DCE48D /* Faq */,
-				4D69A2B01F4DD235000CDB1F /* BuyMinutes */,
 				4D7335B01F4F47AE00B58EB4 /* UserArea */,
 				03E77CF01F555B5500765852 /* Rates */,
 				033328771F28BBBA00CD3AD8 /* Tutorial */,
@@ -2083,7 +2069,6 @@
 				036D922D1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift in Sources */,
 				03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */,
 				4D60EA941F3E037E0085BFE3 /* GMUPolygon.m in Sources */,
-				4D69A2AD1F4DD222000CDB1F /* BuyMinutesViewController.swift in Sources */,
 				03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
 				037BDFCA1F03E47D00C95962 /* NewFavouriteViewController.swift in Sources */,
@@ -2135,7 +2120,6 @@
 				4D43DDE41F078564001E41F8 /* FavouriteItemViewModel.swift in Sources */,
 				4D60EA971F3E037E0085BFE3 /* GQTPointQuadTreeChild.m in Sources */,
 				4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */,
-				4D69A2AF1F4DD231000CDB1F /* BuyMinutesViewModel.swift in Sources */,
 				03C632331EEFC87600BFEDA3 /* SignupViewModel.swift in Sources */,
 				4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */,
 				4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */,

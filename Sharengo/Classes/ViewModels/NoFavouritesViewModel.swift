@@ -11,18 +11,28 @@ import RxSwift
 import Boomerang
 import Action
 
-enum NoFavouritesSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum NoFavouritesSelectionInput: SelectionInput {
     case newFavourite
     case empty
 }
 
-enum NoFavouritesSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum NoFavouritesSelectionOutput: SelectionOutput {
     case newFavourite
     case empty
 }
 
-final class NoFavouritesViewModel: ViewModelType {
-    lazy var selection:Action<NoFavouritesSelectionInput,NoFavouritesSelectionOutput> = Action { input in
+/**
+ The No favourites model provides data related to display content on no favourites in settings
+ */
+public class NoFavouritesViewModel: ViewModelType {
+    /// Selection variable
+    public lazy var selection:Action<NoFavouritesSelectionInput,NoFavouritesSelectionOutput> = Action { input in
         switch input {
         case .newFavourite:
             return .just(.newFavourite)
@@ -31,7 +41,8 @@ final class NoFavouritesViewModel: ViewModelType {
         }
     }
 
-    init() {
-
-    }
+    // MARK: - Init methods
+    
+    public required init()
+    { }
 }

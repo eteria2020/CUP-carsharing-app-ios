@@ -14,7 +14,10 @@ import SideMenu
 import DeviceKit
 import KeychainSwift
 
-class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+/**
+ The Favourites class shows the list of favorites with the ability to handle them
+ */
+public class FavouritesViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -30,21 +33,22 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
     @IBOutlet fileprivate weak var lbl_popupDescription: UILabel!
     @IBOutlet fileprivate weak var txt_address: AnimatedTextInput!
     @IBOutlet fileprivate weak var txt_name: AnimatedTextInput!
+    /// ViewModel variable used to represents the data
+    public var viewModel: FavouritesViewModel?
+    /// Variable used to check if the screen is opened from favourites or not
+    public var fromNoFavourites: Bool = false
+    /// Variable used to save the selected address
+    public var selectedAddress: Address?
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
-
-    var viewModel: FavouritesViewModel?
-    var fromNoFavourites: Bool = false
-    fileprivate var selectedAddress: Address?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FavouritesViewModel else {
             return
         }
-        
         viewModel.selection.elements.subscribe(onNext:{ selection in
             switch selection {
             case .newFavourite:
@@ -55,7 +59,6 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
             default: break
             }
         }).addDisposableTo(self.disposeBag)
-        
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
@@ -65,15 +68,13 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         self.view_title.backgroundColor = Color.favouritesTitle.value
-        
         self.btn_newFavourite.style(.squaredButton(Color.loginContinueAsNotLoggedButton.value), title: "btn_noFavouritesNewFavourite".localized())
         self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value, ColorBrand.white.value), title: "btn_favouritesUndo".localized())
-        
         switch Device().diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
@@ -94,10 +95,8 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
         default:
             break
         }
-        
         self.lbl_headerTitle.styledText = "lbl_favouritesHeaderTitle".localized()
         self.lbl_title.styledText = "lbl_favouritesTitle".localized()
-        
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
@@ -110,7 +109,6 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                 break
             }
         }).addDisposableTo(self.disposeBag)
-        
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
@@ -261,21 +259,18 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
                     }
                 }
             }).addDisposableTo(disposeBag)
-        
         self.view_popup.isHidden = true
-        
         self.txt_address.delegate = self
         self.txt_address.returnKeyType = UIReturnKeyType.done
         self.txt_address.placeHolderText = "txt_newFavouriteAddressPlaceholder".localized()
         self.txt_address.style = CustomTextInputStyle2()
-         
         self.txt_name.delegate = self
         self.txt_name.returnKeyType = UIReturnKeyType.done
         self.txt_name.placeHolderText = "txt_newFavouriteNamePlaceholder".localized()
         self.txt_name.style = CustomTextInputStyle2()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel?.updateData()
         self.viewModel?.reload()
@@ -284,28 +279,46 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
     
     // MARK: - Collection methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (line spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (interitem spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (inset)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (size)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height+self.view_title.frame.size.height))/5)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate when an option of the list is selected
+     */
+    public  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel?.selection.execute(.item(indexPath))
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate before display a cell to change list interface
+     */
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let favCell = cell as? FavouriteItemCollectionViewCell else {
             return
         }
@@ -380,12 +393,14 @@ class FavouritesViewController : BaseViewController, ViewModelBindable, UICollec
     }
 }
 
-// MARK: - TextField delegate
-
 extension FavouritesViewController: AnimatedTextInputDelegate
 {
-    func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool
-    {
+    // MARK: - TextField delegate
+    
+    /**
+     This method is called when user try to close keyboard
+     */
+    public func animatedTextInputShouldReturn(animatedTextInput: AnimatedTextInput) -> Bool {
         _ = animatedTextInput.resignFirstResponder()
         
         return true

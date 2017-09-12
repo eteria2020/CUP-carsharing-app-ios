@@ -13,6 +13,8 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
+// TODO: non commentata perché non utilizzata
+
 class InviteFriendViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
