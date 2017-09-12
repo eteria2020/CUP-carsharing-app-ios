@@ -135,11 +135,9 @@ public class Address: ModelType, Decodable {
 
     required public init?(json: JSON) {
         self.identifier = "place_id" <~~ json
-        self.name = "display_name" <~~ json
-        if let latitude: String = "lat" <~~ json, let longitude: String = "lon" <~~ json {
-            if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
-                self.location = CLLocation(latitude: lat, longitude: lon)
-            }
+        self.name = "formatted_address" <~~ json
+        if let latitude: Double = "geometry.location.lat" <~~ json, let longitude: Double = "geometry.location.lng" <~~ json {
+            self.location = CLLocation(latitude: latitude, longitude: longitude)
         }
     }
     

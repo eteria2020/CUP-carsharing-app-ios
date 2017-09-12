@@ -43,5 +43,8 @@ class Response: ModelType, Decodable {
         self.msg = "msg" <~~ json
         self.array_data =  "data" <~~ json
         self.dic_data = "data" <~~ json
+        if let results: [JSON] = "results" <~~ json {
+            self.array_data =  results
+        }
     }
 }

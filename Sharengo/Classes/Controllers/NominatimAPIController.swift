@@ -30,7 +30,7 @@ final class NominatimAPIController {
     
     func searchAddress(text: String) -> Observable<[Address]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -40,11 +40,15 @@ final class NominatimAPIController {
             })])
             return provider.request(.searchAddress(text: text))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapArray(type: Address.self)
+                .mapObject(type: Response.self)
                 .subscribe { event in
                 switch event {
-                case .next(let addresses):
-                    observable.onNext(addresses)
+                case .next(let response):
+                    if let data = response.array_data {
+                        if let addresses = [Address].from(jsonArray: data) {
+                            observable.onNext(addresses)
+                        }
+                    }
                     observable.onCompleted()
                 case .error(let error):
                     observable.onError(error)
@@ -61,12 +65,12 @@ fileprivate enum API {
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "http://maps.sharengo.it")! }
+    var baseURL: URL { return URL(string: "https://maps.googleapis.com/maps/api/place/textsearch/json")! }
     
     var path: String {
         switch self {
         case .searchAddress(_):
-            return "search.php"
+            return ""
         }
     }
     
@@ -77,7 +81,12 @@ extension API: TargetType {
     var parameters: [String: Any]? {
         switch self {
         case .searchAddress(let text):
-            return ["q": text, "format": "json"]
+            var location = ""
+            let locationManager = LocationManager.sharedInstance
+            if let userLocation = locationManager.lastLocationCopy.value {
+                location = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
+            }
+            return ["query": text.replacingOccurrences(of: " ", with: "+"), "language": "language".localized(), "location": "\(location)", "key": "AIzaSyAnVjGP9ZCkSkBVkrX-5SBdmNW9AwE_Gew"]
         }
     }
     
