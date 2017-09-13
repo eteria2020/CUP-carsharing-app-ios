@@ -11,19 +11,31 @@ import RxSwift
 import Action
 import Boomerang
 
+/**
+ Enum that specifies selection input
+ */
 public enum SupportInput: SelectionInput {
     case empty
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum SupportOutput: SelectionInput {
     case empty
 }
 
-final class SupportViewModel: ViewModelTypeSelectable {
+/**
+ The Support model provides data related to display content on support
+ */
+public final class SupportViewModel: ViewModelTypeSelectable {
+    /// Selection variable
     public var selection: Action<SupportInput, SupportOutput> = Action { _ in
         return .just(.empty)
     }
     
-    init()
+    // MARK: - Init methods
+    
+    public required init()
     { }
 }

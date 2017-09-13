@@ -13,7 +13,10 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class SupportViewController : BaseViewController, ViewModelBindable {
+/**
+ The Support class allows the user to call Share'ngo team if he needs help
+ */
+public class SupportViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -22,12 +25,12 @@ class SupportViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_subtitle: UILabel!
     @IBOutlet fileprivate weak var btn_call: UIButton!
     @IBOutlet fileprivate weak var view_callArea: UIView!
-
-    var viewModel: SupportViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: SupportViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SupportViewModel else {
             return
         }
@@ -36,18 +39,16 @@ class SupportViewController : BaseViewController, ViewModelBindable {
             default: break
             }
         }).addDisposableTo(self.disposeBag)
-        
         self.viewModel = viewModel
     }
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.supportBackground.value
         self.view_header.backgroundColor = Color.supportHeaderBackground.value
-        
         switch Device().diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
@@ -61,15 +62,12 @@ class SupportViewController : BaseViewController, ViewModelBindable {
         default:
             break
         }
-        
         self.lbl_headerTitle.textColor = Color.supportHeaderLabel.value
         self.lbl_headerTitle.styledText = "lbl_supportHeaderTitle".localized().uppercased()
         self.lbl_title.textColor = Color.supportTitle.value
         self.lbl_title.styledText = "lbl_supportTitle".localized()
         self.lbl_subtitle.textColor = Color.supportSubtitle.value
         self.lbl_subtitle.styledText = "lbl_supportSubtitle".localized()
-
-        
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
@@ -82,7 +80,6 @@ class SupportViewController : BaseViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
-        
         // Buttons
         self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
         self.btn_call.rx.tap.asObservable()

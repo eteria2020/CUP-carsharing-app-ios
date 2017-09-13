@@ -11,19 +11,31 @@ import RxSwift
 import Action
 import Boomerang
 
+/**
+ Enum that specifies selection input
+ */
 public enum InviteFriendInput: SelectionInput {
     case empty
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum InviteFriendOutput: SelectionInput {
     case empty
 }
 
-final class InviteFriendViewModel: ViewModelTypeSelectable {
+/**
+ The Invite friend model provides data related to display content on invite friend
+ */
+public final class InviteFriendViewModel: ViewModelTypeSelectable {
+    /// Selection variable
     public var selection: Action<InviteFriendInput, InviteFriendOutput> = Action { _ in
         return .just(.empty)
     }
     
-    init()
+    // MARK: - Init methods
+    
+    public required init()
     { }
 }

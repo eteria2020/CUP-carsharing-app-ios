@@ -13,9 +13,10 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-// TODO: non commentata perché non utilizzata
-
-class InviteFriendViewController : BaseViewController, ViewModelBindable {
+/**
+ The Invite friend class allows the user to invite a friend to sign up on Share'ngo
+ */
+public class InviteFriendViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -29,12 +30,12 @@ class InviteFriendViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_thirdSeparator: UIView!
     @IBOutlet fileprivate weak var view_fourthSeparator: UIView!
     @IBOutlet fileprivate weak var btn_invite: UIButton!
-    
-    var viewModel: InviteFriendViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: InviteFriendViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? InviteFriendViewModel else {
             return
         }
@@ -43,19 +44,16 @@ class InviteFriendViewController : BaseViewController, ViewModelBindable {
             default: break
             }
         }).addDisposableTo(self.disposeBag)
-        
         self.viewModel = viewModel
     }
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.inviteFriendBackground.value
         self.view_header.backgroundColor = Color.inviteFriendHeaderBackground.value
-        
         switch Device().diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
@@ -69,15 +67,12 @@ class InviteFriendViewController : BaseViewController, ViewModelBindable {
         default:
             break
         }
-        
         self.lbl_headerTitle.textColor = Color.inviteFriendHeaderLabel.value
         self.lbl_headerTitle.styledText = "lbl_inviteFriendHeader".localized().uppercased()
-     
         self.lbl_descriptionFirstPart.styledText = "lbl_inviteFriendDescriptionFirstPart".localized()
         self.lbl_descriptionSecondPart.styledText = "lbl_inviteFriendDescriptionSecondPart".localized()
         self.lbl_descriptionThirdPart.styledText = "lbl_inviteFriendDescriptionThirdPart".localized()
         self.lbl_descriptionFourthPart.styledText = "lbl_inviteFriendDescriptionFourthPart".localized()
-
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
@@ -90,7 +85,6 @@ class InviteFriendViewController : BaseViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
-        
         // Buttons
         self.btn_invite.style(.roundedButton(Color.inviteFriendInviteBackgroundButton.value), title: "btn_inviteFriendInvite".localized().uppercased())
         self.btn_invite.rx.tap.asObservable()

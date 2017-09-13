@@ -11,6 +11,12 @@ import RxSwift
 import Boomerang
 import Action
 
-final class ProfileViewModel: ViewModelType {
-    init() { }
+/**
+ The Profile model provides data related to display content on profile
+ */
+public final class ProfileViewModel: ViewModelType {
+    // MARK: - Init methods
+    
+    public required init()
+    { }
 }

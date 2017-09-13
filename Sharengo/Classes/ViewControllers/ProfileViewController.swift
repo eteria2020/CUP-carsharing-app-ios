@@ -12,17 +12,18 @@ import RxCocoa
 import Boomerang
 import SideMenu
 
-// TODO: non commentata perché non utilizzata
-
-class ProfileViewController : BaseViewController, ViewModelBindable {
+/**
+ The Profile class is the screen where all user data are displayed
+ */
+public class ProfileViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var lbl_profileEcoStatus: UILabel!
-    
-    var viewModel: ProfileViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: ProfileViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? ProfileViewModel else {
             return
         }
@@ -31,7 +32,7 @@ class ProfileViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.profileBackground.value
