@@ -482,17 +482,17 @@ public final class MapViewModel: ViewModelType {
     
     // MARK: - Route methods
     
-    public func getRoute(destination: CLLocation) {
+    public func getRoute(destination: CLLocation, completionClosure: @escaping (_ steps: [RouteStep]) ->()) {
         let locationManager = LocationManager.sharedInstance
         if locationManager.lastLocationCopy.value != nil {
             self.googleApiController.searchRoute(destination: destination)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
                     switch event {
-                    case .next(let addresses):
-                        print(addresses)
-                    case .error(let error):
-                        print(error)
+                    case .next(let steps):
+                        completionClosure(steps)
+                    case .error(_):
+                        completionClosure([])
                     default:
                         break
                     }

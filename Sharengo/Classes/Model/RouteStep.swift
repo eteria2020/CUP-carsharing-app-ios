@@ -40,7 +40,15 @@ public class RouteStep: ModelType, Decodable {
     
 //    var startLocation: CLLocation?
 //    var endLocation: CLLocation?
+    var points: String?
   
     required public init?(json: JSON) {
+        points = "overview_polyline.points" <~~ json
+//        if let latitude: Double = "start_location.lat" <~~ json, let longitude: Double = "start_location.lng" <~~ json {
+//            self.endLocation = CLLocation(latitude: latitude, longitude: longitude)
+//        }
+//        if let latitude: Double = "end_location.lat" <~~ json, let longitude: Double = "end_location.lng" <~~ json {
+//            self.endLocation = CLLocation(latitude: latitude, longitude: longitude)
+//        }
     }
 }

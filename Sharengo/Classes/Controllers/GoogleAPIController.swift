@@ -40,7 +40,7 @@ final class GoogleAPIController {
             })])
             return provider.request(.searchAddress(text: text))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapObject(type: GoogleResponse.self)
                 .subscribe { event in
                 switch event {
                 case .next(let response):
@@ -59,9 +59,9 @@ final class GoogleAPIController {
         }
     }
     
-    func searchRoute(destination: CLLocation) -> Observable<[Address]> {
+    func searchRoute(destination: CLLocation) -> Observable<[RouteStep]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -71,15 +71,15 @@ final class GoogleAPIController {
             })])
             return provider.request(.searchRoute(destination: destination))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapObject(type: GoogleResponse.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
-//                        if let data = response.array_data {
-//                            if let addresses = [Address].from(jsonArray: data) {
-//                                observable.onNext(addresses)
-//                            }
-//                        }
+                        if let data = response.array_data {
+                            if let steps = [RouteStep].from(jsonArray: data) {
+                                observable.onNext(steps)
+                            }
+                        }
                         observable.onCompleted()
                     case .error(let error):
                         observable.onError(error)

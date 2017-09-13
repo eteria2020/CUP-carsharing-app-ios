@@ -267,6 +267,7 @@
 		4DD9C7E31ECDC48B00BE4218 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */; };
 		4DEBEE711EED373800AEF617 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBEE701EED373800AEF617 /* Banner.swift */; };
+		4DECFD411F69B5F6006ED6CB /* GoogleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DECFD401F69B5F6006ED6CB /* GoogleResponse.swift */; };
 		4DF0EC6E1F077AE00003D502 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0EC6D1F077AE00003D502 /* FavouritesViewController.swift */; };
 		4DF0EC701F077AF00003D502 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0EC6F1F077AF00003D502 /* FavouritesViewModel.swift */; };
 		4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */; };
@@ -628,6 +629,7 @@
 		4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Classes/ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewModel.swift; path = Classes/ViewModels/MapViewModel.swift; sourceTree = "<group>"; };
 		4DEBEE701EED373800AEF617 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		4DECFD401F69B5F6006ED6CB /* GoogleResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleResponse.swift; path = Classes/Model/GoogleResponse.swift; sourceTree = "<group>"; };
 		4DF0EC6D1F077AE00003D502 /* FavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesViewController.swift; path = Classes/ViewControllers/FavouritesViewController.swift; sourceTree = "<group>"; };
 		4DF0EC6F1F077AF00003D502 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesViewModel.swift; path = Classes/ViewModels/FavouritesViewModel.swift; sourceTree = "<group>"; };
 		4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechController.swift; sourceTree = "<group>"; };
@@ -1369,6 +1371,7 @@
 			isa = PBXGroup;
 			children = (
 				4DC59F981EDADC6200DD658A /* Response.swift */,
+				4DECFD401F69B5F6006ED6CB /* GoogleResponse.swift */,
 				4D45BB2F1EE69F49004C7287 /* CarBooking.swift */,
 				4D965B6D1EEAF3780006294E /* CarTrip.swift */,
 				4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */,
@@ -2110,6 +2113,7 @@
 				03A86FA41EF97171009C72F4 /* MenuItemCollectionViewCell.swift in Sources */,
 				4DC10DFF1EE9AA3300A74E26 /* LoadingViewController.swift in Sources */,
 				03A86F941EF96FAD009C72F4 /* MenuViewController.swift in Sources */,
+				4DECFD411F69B5F6006ED6CB /* GoogleResponse.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */,
 				03B5960F1F1B5AB000811A36 /* NoFeedsViewController.swift in Sources */,

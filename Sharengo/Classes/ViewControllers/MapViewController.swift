@@ -54,6 +54,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var carTripTimeStart: Date?
     /// Variable used to save user annotation
     public var userAnnotation: UserAnnotation = UserAnnotation()
+    /// Variable used to save route steps
+    public var routeSteps: [RouteStep] = []
+    /// Variable used to save route polylines
+    public var routePolylines: [GMSPolyline] = []
     
     // MARK: - ViewModel methods
     
@@ -69,6 +73,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     if self?.clusteringInProgress == true {
                         self?.mapView.clear()
                         self?.clusterManager.clearItems()
+                        if let steps = self?.routeSteps {
+                            self?.drawRoutes(steps: steps)
+                        }
                         for annotation in array {
                             if let carAnnotation = annotation as? CarAnnotation {
                                 if viewModel.carBooked?.plate == carAnnotation.car.plate && viewModel.carTrip != nil && viewModel.carTrip?.car.value?.parking == false
@@ -259,7 +266,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                     self?.view.layoutIfNeeded()
                     if let location = car.location {
-                        self?.viewModel?.getRoute(destination: location)
+                        self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                            self?.drawRoutes(steps: steps)
+                        })
                     }
                 })
                 self?.updateSpeechSearchBar()
@@ -486,6 +495,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         UIView.animate(withDuration: 0.2, animations: {
             self.selectedCar = nil
             self.view_carPopup.alpha = 0.0
+            self.drawRoutes(steps: [])
             self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
             self.view.layoutIfNeeded()
         })
@@ -1067,6 +1077,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 DispatchQueue.main.async {
                     if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
                         self?.showUserPositionVisible(true)
+                        if let location = self?.selectedCar?.location {
+                            self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                self?.drawRoutes(steps: steps)
+                            })
+                        }
                     } else {
                         self?.showUserPositionVisible(false)
                     }
@@ -1272,6 +1287,28 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         dialog.allowTouchOutsideToDismiss = false
         dialog.show()
     }
+    
+    // MARK: - Route methods
+    
+    public func drawRoutes(steps: [RouteStep]) {
+        DispatchQueue.main.async {
+            self.routeSteps = steps
+            for polyline in self.routePolylines {
+                polyline.map = nil
+            }
+            self.routePolylines = []
+            for step in steps {
+                let points = step.points
+                let path = GMSPath.init(fromEncodedPath: points!)
+                let polyline = GMSPolyline.init(path: path)
+                polyline.strokeColor = UIColor(hexString: "#336633")
+                polyline.strokeWidth = 10
+                polyline.spans = GMSStyleSpans(polyline.path!, [GMSStrokeStyle.solidColor(UIColor(hexString: "#336633")), GMSStrokeStyle.solidColor(UIColor.clear)], [5, 5], GMSLengthKind.rhumb)
+                polyline.map = self.mapView
+                self.routePolylines.append(polyline)
+            }
+        }
+    }
 }
 
 extension MapViewController: GMSMapViewDelegate {
@@ -1348,7 +1385,9 @@ extension MapViewController: GMSMapViewDelegate {
                 self.view.layoutIfNeeded()
                 self.selectedCar = car
                 if let location = car.location {
-                    self.viewModel?.getRoute(destination: location)
+                    self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                        self.drawRoutes(steps: steps)
+                    })
                 }
             })
         } else if let feedAnnotation = marker.userData as? FeedAnnotation {
