@@ -39,6 +39,7 @@ public enum MapType {
 */
 public final class MapViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
+    fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var timerCars: Timer?
@@ -477,5 +478,25 @@ public final class MapViewModel: ViewModelType {
                     break
                 }
             }.addDisposableTo(self.disposeBag)
+    }
+    
+    // MARK: - Route methods
+    
+    public func getRoute(destination: CLLocation) {
+        let locationManager = LocationManager.sharedInstance
+        if locationManager.lastLocationCopy.value != nil {
+            self.googleApiController.searchRoute(destination: destination)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let addresses):
+                        print(addresses)
+                    case .error(let error):
+                        print(error)
+                    default:
+                        break
+                    }
+                }.addDisposableTo(resultsDispose!)
+        }
     }
 }

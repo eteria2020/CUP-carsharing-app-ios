@@ -231,7 +231,7 @@
 		4D7335AF1F4F47A500B58EB4 /* UserAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7335AE1F4F47A500B58EB4 /* UserAreaViewController.swift */; };
 		4D93514F1EE0346B008C65C3 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93514E1EE0346B008C65C3 /* SearchBarView.swift */; };
 		4D9351511EE03497008C65C3 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9351501EE03497008C65C3 /* SearchBarView.xib */; };
-		4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */; };
+		4D9400D51EDF441700AD0EC6 /* GoogleAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D41EDF441700AD0EC6 /* GoogleAPIController.swift */; };
 		4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D61EDF4BFE00AD0EC6 /* Address.swift */; };
 		4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D965B6D1EEAF3780006294E /* CarTrip.swift */; };
 		4DA178671ED63C4D00EBD32B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
@@ -263,6 +263,7 @@
 		4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */; };
 		4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */; };
 		4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */; };
+		4DCFB1251F6976450015D651 /* RouteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFB1241F6976450015D651 /* RouteStep.swift */; };
 		4DD9C7E31ECDC48B00BE4218 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */; };
 		4DD9C7EC1ECDC50500BE4218 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */; };
 		4DEBEE711EED373800AEF617 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBEE701EED373800AEF617 /* Banner.swift */; };
@@ -588,7 +589,7 @@
 		4D7335AE1F4F47A500B58EB4 /* UserAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAreaViewController.swift; path = Classes/ViewControllers/UserAreaViewController.swift; sourceTree = "<group>"; };
 		4D93514E1EE0346B008C65C3 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarView.swift; path = Classes/Views/SearchBarView.swift; sourceTree = "<group>"; };
 		4D9351501EE03497008C65C3 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchBarView.xib; path = Resources/Xibs/SearchBarView.xib; sourceTree = "<group>"; };
-		4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NominatimAPIController.swift; sourceTree = "<group>"; };
+		4D9400D41EDF441700AD0EC6 /* GoogleAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAPIController.swift; sourceTree = "<group>"; };
 		4D9400D61EDF4BFE00AD0EC6 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Classes/Model/Address.swift; sourceTree = "<group>"; };
 		4D965B6D1EEAF3780006294E /* CarTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CarTrip.swift; path = Classes/Model/CarTrip.swift; sourceTree = "<group>"; };
 		4DA178641ED63C4D00EBD32B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -623,6 +624,7 @@
 		4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarCollectionViewCell.swift; path = Classes/Views/SearchBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarItemViewModel.swift; path = Classes/ViewModels/SearchBarItemViewModel.swift; sourceTree = "<group>"; };
 		4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Favorite.swift; path = Classes/Model/Favorite.swift; sourceTree = "<group>"; };
+		4DCFB1241F6976450015D651 /* RouteStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteStep.swift; path = Classes/Model/RouteStep.swift; sourceTree = "<group>"; };
 		4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Classes/ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewModel.swift; path = Classes/ViewModels/MapViewModel.swift; sourceTree = "<group>"; };
 		4DEBEE701EED373800AEF617 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
@@ -1092,7 +1094,7 @@
 				4D0471B01F3EF61E00C454A2 /* LocationManager.swift */,
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
 				03140E0D1F40437600F67160 /* SharengoApiController.swift */,
-				4D9400D41EDF441700AD0EC6 /* NominatimAPIController.swift */,
+				4D9400D41EDF441700AD0EC6 /* GoogleAPIController.swift */,
 				4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */,
 				4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */,
 				03653E221EEADA4800AC7A93 /* NotificationsController.swift */,
@@ -1379,6 +1381,7 @@
 				03140E0F1F4043BB00F67160 /* Polygon.swift */,
 				038641FF1F1762FF003AF6B1 /* Category.swift */,
 				037689FB1F160C7A00523BAA /* Feed.swift */,
+				4DCFB1241F6976450015D651 /* RouteStep.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -2030,10 +2033,11 @@
 				4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
 				4D43DDE21F078556001E41F8 /* FavouriteItemCollectionViewCell.swift in Sources */,
-				4D9400D51EDF441700AD0EC6 /* NominatimAPIController.swift in Sources */,
+				4D9400D51EDF441700AD0EC6 /* GoogleAPIController.swift in Sources */,
 				03C632381EEFD02C00BFEDA3 /* SignupStepViewModel.swift in Sources */,
 				037689FC1F160C7A00523BAA /* Feed.swift in Sources */,
 				4D60EA8E1F3E037E0085BFE3 /* GMUFeature.m in Sources */,
+				4DCFB1251F6976450015D651 /* RouteStep.swift in Sources */,
 				037BDFC61F03B2EC00C95962 /* NoFavouritesViewController.swift in Sources */,
 				03AF5D731EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
 				4D2339951EE6CCE300780384 /* IntroViewController.swift in Sources */,

@@ -38,7 +38,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var apiController: ApiController = ApiController()
-    fileprivate var nominatimApiController: NominatimAPIController = NominatimAPIController()
+    fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate let numberOfResults: Int = 15
     var allCars: [Car] = []
     var favourites: Bool = false
@@ -203,7 +203,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                 })).structured())
                 self.selection.execute(.reload)
             } else {
-            self.nominatimApiController.searchAddress(text: text)
+            self.googleApiController.searchAddress(text: text)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
                     switch event {

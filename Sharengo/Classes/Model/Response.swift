@@ -46,5 +46,8 @@ class Response: ModelType, Decodable {
         if let results: [JSON] = "results" <~~ json {
             self.array_data =  results
         }
+        if let routes: [JSON] = "routes.legs.steps" <~~ json {
+            self.array_data =  routes
+        }
     }
 }

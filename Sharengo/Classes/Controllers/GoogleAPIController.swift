@@ -1,5 +1,5 @@
 //
-//  NominatimAPIController.swift
+//  GoogleAPIController.swift
 //
 //  Created by Dedecube on 31/05/17.
 //  Copyright © 2017 Dedecube. All rights reserved.
@@ -15,7 +15,7 @@ import Alamofire
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class NominatimAPIController {
+final class GoogleAPIController {
     fileprivate var manager: SessionManager?
    
     init() {
@@ -58,19 +58,53 @@ final class NominatimAPIController {
             }
         }
     }
+    
+    func searchRoute(destination: CLLocation) -> Observable<[Address]> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.searchRoute(destination: destination))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+//                        if let data = response.array_data {
+//                            if let addresses = [Address].from(jsonArray: data) {
+//                                observable.onNext(addresses)
+//                            }
+//                        }
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
 }
 
 fileprivate enum API {
     case searchAddress(text: String)
+    case searchRoute(destination: CLLocation)
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "https://maps.googleapis.com/maps/api/place/textsearch/json")! }
+    var baseURL: URL { return URL(string: "https://maps.googleapis.com/maps/api")! }
     
     var path: String {
         switch self {
         case .searchAddress(_):
-            return ""
+            return "place/textsearch/json"
+        case .searchRoute(_):
+            return "directions/json"
         }
     }
     
@@ -81,12 +115,20 @@ extension API: TargetType {
     var parameters: [String: Any]? {
         switch self {
         case .searchAddress(let text):
-            var location = ""
+            var locationString = ""
             let locationManager = LocationManager.sharedInstance
             if let userLocation = locationManager.lastLocationCopy.value {
-                location = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
+                locationString = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
             }
-            return ["query": text.replacingOccurrences(of: " ", with: "+"), "language": "language".localized(), "location": "\(location)", "key": "AIzaSyAnVjGP9ZCkSkBVkrX-5SBdmNW9AwE_Gew"]
+            return ["query": text.replacingOccurrences(of: " ", with: "+"), "language": "language".localized(), "location": "\(locationString)", "key": "AIzaSyAnVjGP9ZCkSkBVkrX-5SBdmNW9AwE_Gew"]
+        case .searchRoute(let destination):
+            var originString = ""
+            let locationManager = LocationManager.sharedInstance
+            if let userLocation = locationManager.lastLocationCopy.value {
+                originString = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
+            }
+            let destinationString = "\(destination.coordinate.latitude),\(destination.coordinate.longitude)"
+            return ["mode": "walking", "origin": "\(originString)", "destination": "\(destinationString)", "key": "AIzaSyAnVjGP9ZCkSkBVkrX-5SBdmNW9AwE_Gew"]
         }
     }
     

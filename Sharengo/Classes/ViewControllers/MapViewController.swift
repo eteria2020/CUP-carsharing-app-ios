@@ -258,6 +258,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self?.view_carPopup.alpha = 1.0
                     self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                     self?.view.layoutIfNeeded()
+                    if let location = car.location {
+                        self?.viewModel?.getRoute(destination: location)
+                    }
                 })
                 self?.updateSpeechSearchBar()
             default: break
@@ -1344,6 +1347,9 @@ extension MapViewController: GMSMapViewDelegate {
                 self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                 self.view.layoutIfNeeded()
                 self.selectedCar = car
+                if let location = car.location {
+                    self.viewModel?.getRoute(destination: location)
+                }
             })
         } else if let feedAnnotation = marker.userData as? FeedAnnotation {
             let feed = feedAnnotation.feed
