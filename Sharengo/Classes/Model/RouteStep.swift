@@ -11,44 +11,19 @@ import RxSwift
 import Gloss
 
 public class RouteStep: ModelType, Decodable {
-    /*
-     JSON response example:
-     {
-     "distance" : {
-     "text" : "87 m",
-     "value" : 87
-     },
-     "duration" : {
-     "text" : "1 min",
-     "value" : 63
-     },
-     "end_location" : {
-     "lat" : 41.8909852,
-     "lng" : 12.49189
-     },
-     "html_instructions" : "Head \u003cb\u003enorthwest\u003c/b\u003e on \u003cb\u003ePiazza del Colosseo\u003c/b\u003e",
-     "polyline" : {
-     "points" : "yxt~Fs_gkAAFKVEZCTCVARAb@@X@L"
-     },
-     "start_location" : {
-     "lat" : 41.8908484,
-     "lng" : 12.4928967
-     },
-     "travel_mode" : "WALKING"
-     }
-     */
     
-//    var startLocation: CLLocation?
-//    var endLocation: CLLocation?
     var points: String?
+    var distance: Int?
+    var duration: Int?
   
     required public init?(json: JSON) {
         points = "overview_polyline.points" <~~ json
-//        if let latitude: Double = "start_location.lat" <~~ json, let longitude: Double = "start_location.lng" <~~ json {
-//            self.endLocation = CLLocation(latitude: latitude, longitude: longitude)
-//        }
-//        if let latitude: Double = "end_location.lat" <~~ json, let longitude: Double = "end_location.lng" <~~ json {
-//            self.endLocation = CLLocation(latitude: latitude, longitude: longitude)
-//        }
+        if let legs: [JSON] = "legs" <~~ json {
+            if legs.count > 0 {
+                let leg = legs[0]
+                distance = "distance.value" <~~ leg
+                duration = "duration.value" <~~ leg
+            }
+        }
     }
 }

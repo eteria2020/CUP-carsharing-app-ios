@@ -136,6 +136,29 @@ class CarPopupView: UIView {
         }
     }
     
+    func updateWithDistanceAndDuration(distance: Int, duration: Int) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        let restultDistance = viewModel.getDistanceFromMeters(inputedMeters: distance)
+        if restultDistance.kilometers > 0 {
+            self.lbl_distance.styledText = String(format: "lbl_carPopupDistance_km".localized(), restultDistance.kilometers)
+        } else if restultDistance.meters > 0 {
+            self.lbl_distance.styledText = String(format: "lbl_carPopupDistance_mt".localized(), restultDistance.meters)
+        }
+        let minutes: Float = Float(duration/60)
+        let restultWalkingDistance = viewModel.getTimeFromMinutes(inputedMinutes: Int(minutes.rounded(.up)))
+        if restultWalkingDistance.hours > 0 {
+            if restultWalkingDistance.minutes > 0 {
+                self.lbl_walkingDistance.styledText = String(format: "lbl_carPopupWalkingDistance_h_m".localized(), restultWalkingDistance.hours, restultWalkingDistance.minutes < 10 ? "0\(restultWalkingDistance.minutes)" : "\(restultWalkingDistance.minutes)")
+            } else {
+                self.lbl_walkingDistance.styledText = String(format: "lbl_carPopupWalkingDistance_h".localized(), restultWalkingDistance.hours)
+            }
+        } else if restultWalkingDistance.minutes > 0 {
+            self.lbl_walkingDistance.styledText = String(format: "lbl_carPopupWalkingDistance_m".localized(), restultWalkingDistance.minutes)
+        }
+    }
+    
     func updateWithFeed(feed: Feed) {
         guard let viewModel = viewModel else {
             return
