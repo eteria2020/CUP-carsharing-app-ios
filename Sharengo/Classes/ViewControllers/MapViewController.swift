@@ -346,13 +346,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                                         self.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                     }
-                                    let dispatchTime = DispatchTime.now() + 0.5
-                                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                        if let location = car.location {
-                                            self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                                self.drawRoutes(steps: steps)
-                                            })
-                                        }
+                                    if let location = car.location {
+                                        self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                            self.drawRoutes(steps: steps)
+                                        })
                                     }
                                 }
                                 if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
@@ -1419,8 +1416,6 @@ extension MapViewController: GMSMapViewDelegate {
                 self.centerMap(on: newLocation, zoom: 11.5, animated: true)
             }
         } else if let carAnnotation = marker.userData as? CarAnnotation {
-            self.routeSteps = []
-            self.drawRoutes(steps: [])
             let car = carAnnotation.car
             if let bookedCar = self.viewModel?.carBooked {
                 if car.plate != bookedCar.plate {
@@ -1436,6 +1431,10 @@ extension MapViewController: GMSMapViewDelegate {
                     }
                 }
                 return true
+            }
+            if car.plate != self.selectedCar?.plate {
+                self.routeSteps = []
+                self.drawRoutes(steps: [])
             }
             if let location = car.location {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)

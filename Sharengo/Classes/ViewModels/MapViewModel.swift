@@ -484,19 +484,25 @@ public final class MapViewModel: ViewModelType {
     
     public func getRoute(destination: CLLocation, completionClosure: @escaping (_ steps: [RouteStep]) ->()) {
         let locationManager = LocationManager.sharedInstance
-        if locationManager.lastLocationCopy.value != nil {
-            self.googleApiController.searchRoute(destination: destination)
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let steps):
-                        completionClosure(steps)
-                    case .error(_):
-                        completionClosure([])
-                    default:
-                        break
-                    }
-                }.addDisposableTo(resultsDispose!)
+        if let userLocation = locationManager.lastLocationCopy.value {
+            let distance = destination.distance(from: userLocation)
+            if distance <= 10000 {
+                let dispatchTime = DispatchTime.now() + 0.3
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    self.googleApiController.searchRoute(destination: destination)
+                        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                        .subscribe { event in
+                            switch event {
+                            case .next(let steps):
+                                completionClosure(steps)
+                            case .error(_):
+                                completionClosure([])
+                            default:
+                                break
+                            }
+                        }.addDisposableTo(self.disposeBag)
+                }
+            }
         }
     }
 }
