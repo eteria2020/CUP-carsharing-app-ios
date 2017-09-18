@@ -82,6 +82,7 @@ public class Car: ModelType, Decodable {
     var parking: Bool = false
     lazy var type: String = self.getType()
     var address: Variable<String?> = Variable(nil)
+    var bonus: [Bonus] = []
     
     static var empty:Car {
         return Car()
@@ -104,12 +105,20 @@ public class Car: ModelType, Decodable {
             }
         }
         self.parking = "parking" <~~ json ?? false
+        if let bonus = [Bonus].from(jsonArray: json["bonus"] as! [JSON]) {
+            self.bonus = bonus
+        }
     }
     
     // MARK: - Lazy methods
     
-    fileprivate func getType() -> String {
-        if self.nearest {
+    public func getType() -> String {
+        let bonusFree = self.bonus.filter({ (bonus) -> Bool in
+            return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
+        })
+        if bonusFree.count > 0 {
+            return "lbl_carPopupFreeType".localized()
+        } else if self.nearest {
            return "lbl_carPopupType".localized()
         } else {
             return ""

@@ -267,3 +267,7 @@
 "lbl_buyMinutesHeader" = "BUY MINUTES";
 "lbl_userAreaHeader" = "USER AREA";
 "lbl_carTripParkingPopupInfo" = "<status>CAR PARKED</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
+
+/////////////////////////
+
+"lbl_carPopupFreeType" = "Auto con minuti gratuiti";

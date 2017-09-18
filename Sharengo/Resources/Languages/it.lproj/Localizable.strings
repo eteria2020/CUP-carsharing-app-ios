@@ -268,3 +268,6 @@
 "lbl_userAreaHeader" = "AREA PERSONALE";
 "lbl_carTripParkingPopupInfo" = "<status>AUTO IN SOSTA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
 
+/////////////////////////
+
+"lbl_carPopupFreeType" = "Auto con minuti gratuiti";

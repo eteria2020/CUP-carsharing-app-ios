@@ -220,6 +220,7 @@
 		4D60EA951F3E037E0085BFE3 /* GMUStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA7A1F3E037E0085BFE3 /* GMUStyle.m */; };
 		4D60EA961F3E037E0085BFE3 /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA7F1F3E037E0085BFE3 /* GQTPointQuadTree.m */; };
 		4D60EA971F3E037E0085BFE3 /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA811F3E037E0085BFE3 /* GQTPointQuadTreeChild.m */; };
+		4D6876311F6FC4BA00CD910E /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6876301F6FC4BA00CD910E /* Bonus.swift */; };
 		4D6ACACB1ECF2FC000D58948 /* CircularMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */; };
 		4D6ACACD1ECF333700D58948 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */; };
 		4D6ACACF1ECF33CE00D58948 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */; };
@@ -579,6 +580,7 @@
 		4D60EA801F3E037E0085BFE3 /* GQTPointQuadTreeChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeChild.h; sourceTree = "<group>"; };
 		4D60EA811F3E037E0085BFE3 /* GQTPointQuadTreeChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQTPointQuadTreeChild.m; sourceTree = "<group>"; };
 		4D60EA821F3E037E0085BFE3 /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
+		4D6876301F6FC4BA00CD910E /* Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bonus.swift; path = Classes/Model/Bonus.swift; sourceTree = "<group>"; };
 		4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularMenuViewModel.swift; path = Classes/ViewModels/CircularMenuViewModel.swift; sourceTree = "<group>"; };
 		4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationBarView.xib; path = Resources/Xibs/NavigationBarView.xib; sourceTree = "<group>"; };
 		4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBarView.swift; path = Classes/Views/NavigationBarView.swift; sourceTree = "<group>"; };
@@ -1385,6 +1387,7 @@
 				038641FF1F1762FF003AF6B1 /* Category.swift */,
 				037689FB1F160C7A00523BAA /* Feed.swift */,
 				4DCFB1241F6976450015D651 /* RouteStep.swift */,
+				4D6876301F6FC4BA00CD910E /* Bonus.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -1988,6 +1991,7 @@
 				03140E0E1F40437600F67160 /* SharengoApiController.swift in Sources */,
 				038A07971F1F6306007A4F46 /* InviteFriendViewController.swift in Sources */,
 				4DCD1A901ECDC18500FC8BF5 /* Router.swift in Sources */,
+				4D6876311F6FC4BA00CD910E /* Bonus.swift in Sources */,
 				037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
 				4D45BB301EE69F49004C7287 /* CarBooking.swift in Sources */,

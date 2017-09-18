@@ -35,12 +35,30 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         self.uniqueIdentifier = car.plate ?? "0"
         self.marker = UIImage(named: "ic_auto")!
         super.init()
-        if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
+        let bonusFree = car.bonus.filter({ (bonus) -> Bool in
+            return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
+        })
+        if bonusFree.count > 0 {
+            let bonus = bonusFree[0]
+            let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)
+            self.marker = image
+        } else if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
             self.marker = CoreController.shared.pulseYellow
             self.type = 3
         } else if car.nearest && carBooked == nil {
             self.marker = CoreController.shared.pulseGreen
             self.type = 2
         }
+    }
+    
+    fileprivate func freeImage(image: UIImage, value: Int) -> (UIImage) {
+        let newSize = CGSize(width: image.size.width, height: image.size.height)
+        let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
+        let thumbRect = CGRect(origin: newOrigin, size: newSize).integral
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+        image.draw(in: thumbRect)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result!
     }
 }
