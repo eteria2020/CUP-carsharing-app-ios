@@ -60,6 +60,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var routePolylines: [GMSPolyline] = []
     /// Variable used to save old location
     public var lastLocation: CLLocation?
+    /// Variable used to save nearest car
+    public var lastNearestCar: Car?
+    /// Variable used to save nearest car route steps
+    public var nearestCarRouteSteps: [RouteStep] = []
     
     // MARK: - ViewModel methods
     
@@ -68,6 +72,23 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }
         self.viewModel = viewModel
+        // NearestCar
+        viewModel.nearestCar.asObservable()
+            .subscribe(onNext: {[weak self] (nearestCar) in
+                if nearestCar == nil {
+                    self?.routeSteps = []
+                    self?.nearestCarRouteSteps = []
+                    self?.drawRoutes(steps: [])
+                }
+                else if self?.lastNearestCar?.location?.coordinate.latitude != nearestCar?.location?.coordinate.latitude && self?.lastNearestCar?.location?.coordinate.longitude != nearestCar?.location?.coordinate.longitude {
+                    self?.lastNearestCar = nearestCar
+                    self?.viewModel?.getRoute(destination: nearestCar!.location!, completionClosure: { (steps) in
+                        self?.routeSteps = steps
+                        self?.nearestCarRouteSteps = steps
+                        self?.drawRoutes(steps: steps)
+                    })
+                }
+            })
         // Annotations
         viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
@@ -508,8 +529,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 CoreController.shared.allCarBookings = []
                 CoreController.shared.currentCarBooking = nil
                 self.getResultsWithoutLoading()
-                self.routeSteps = []
-                self.drawRoutes(steps: [])
+                self.routeSteps = self.nearestCarRouteSteps
+                self.drawRoutes(steps: self.nearestCarRouteSteps)
                 DispatchQueue.main.async {
                     self.updateResults()
                 }
@@ -527,8 +548,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         UIView.animate(withDuration: 0.2, animations: {
             self.selectedCar = nil
             self.view_carPopup.alpha = 0.0
-            self.routeSteps = []
-            self.drawRoutes(steps: [])
+            self.routeSteps = self.nearestCarRouteSteps
+            self.drawRoutes(steps: self.nearestCarRouteSteps)
             self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
             self.view.layoutIfNeeded()
         })
@@ -538,10 +559,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      This method shows nearest car
      */
     public func showNearestCar() {
-        if let location = self.viewModel?.nearestCar?.location {
+        if let location = self.viewModel?.nearestCar.value?.location {
             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             self.centerMap(on: newLocation, zoom: 18.5, animated: true)
-            self.view_carPopup.updateWithCar(car: self.viewModel!.nearestCar!)
+            self.view_carPopup.updateWithCar(car: self.viewModel!.nearestCar.value!)
             if routeSteps.count > 0 {
                 if let distance = routeSteps[0].distance, let duration = routeSteps[0].duration {
                     self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
@@ -637,8 +658,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 self.viewModel?.carTrip = carTrip
                                                 self.viewModel?.carBooking = nil
                                                 self.getResultsWithoutLoading()
-                                                self.routeSteps = []
-                                                self.drawRoutes(steps: [])
+                                                self.routeSteps = self.nearestCarRouteSteps
+                                                self.drawRoutes(steps: self.nearestCarRouteSteps)
                                             })
                                         }
                                     }
@@ -1041,7 +1062,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     }
                 }
             }
-            if let nearestCar = self.viewModel?.nearestCar {
+            if let nearestCar = self.viewModel?.nearestCar.value {
                 var nearestDistance: CLLocationDistance?
                 for city in CoreController.shared.cities {
                     if let location = city.location, let location2 = nearestCar.location {
@@ -1357,6 +1378,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 polyline.map = nil
             }
             self.routePolylines = []
+            if self.viewModel?.carTrip?.car.value?.parking == false {
+                return
+            }
             if steps.count > 0 {
                 let points = steps[0].points
                 if let distance = steps[0].distance, let duration = steps[0].duration {
@@ -1409,8 +1433,7 @@ extension MapViewController: GMSMapViewDelegate {
      */
     public func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let cityAnnotation = marker as? CityAnnotation {
-            self.routeSteps = []
-            self.drawRoutes(steps: [])
+            self.drawRoutes(steps: self.routeSteps)
             if let location = cityAnnotation.city?.location {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.centerMap(on: newLocation, zoom: 11.5, animated: true)
@@ -1433,8 +1456,7 @@ extension MapViewController: GMSMapViewDelegate {
                 return true
             }
             if car.plate != self.selectedCar?.plate {
-                self.routeSteps = []
-                self.drawRoutes(steps: [])
+                self.drawRoutes(steps: self.routeSteps)
             }
             if let location = car.location {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)

@@ -58,7 +58,7 @@ public final class MapViewModel: ViewModelType {
     /// Variable used to save all cars in share'ngo system
     public var allCars: [Car] = []
     /// Variable used to save nearest car
-    public var nearestCar: Car?
+    public var nearestCar: Variable<Car?> = Variable<Car?>(nil)
     /// Variable used to save car booked
     public var carBooked: Car?
     /// Variable used to save car booking
@@ -343,7 +343,7 @@ public final class MapViewModel: ViewModelType {
      - opened
      */
     public func updateCarsProperties () {
-        self.nearestCar = nil
+        var nearestCarCopy: Car? = nil
         for car in self.allCars {
             car.nearest = false
             car.booked = false
@@ -355,12 +355,12 @@ public final class MapViewModel: ViewModelType {
                 }
             }
             if car.distance ?? 0 > 0 {
-                if self.nearestCar == nil {
-                    self.nearestCar = car
-                } else if let nearestCar = nearestCar {
+                if nearestCarCopy == nil {
+                    nearestCarCopy = car
+                } else if let nearestCar = nearestCarCopy {
                     if let nearestCarDistance = nearestCar.distance, let carDistance = car.distance {
                         if nearestCarDistance > carDistance {
-                            self.nearestCar = car
+                            nearestCarCopy = car
                         }
                     }
                 }
@@ -374,7 +374,8 @@ public final class MapViewModel: ViewModelType {
                 }
             }
         }
-        self.nearestCar?.nearest = true
+        nearestCarCopy?.nearest = true
+        self.nearestCar.value = nearestCarCopy
     }
     
     // MARK: - Action methods
