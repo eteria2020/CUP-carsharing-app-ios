@@ -289,6 +289,22 @@ public final class MapViewModel: ViewModelType {
                     carBookedFounded = true
                 }
             }
+            for car in self.allCars {
+                let locationManager = LocationManager.sharedInstance
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                            let index = self.cars.index(where: { (allCar) -> Bool in
+                                return car.plate == allCar.plate
+                            })
+                            if let index = index {
+                                self.cars[index].distance = car.distance
+                            }
+                        }
+                    }
+                }
+            }
             self.updateCarsProperties()
             for car in self.cars {
                 if let coordinate = car.location?.coordinate {
@@ -503,7 +519,11 @@ public final class MapViewModel: ViewModelType {
                             }
                         }.addDisposableTo(self.disposeBag)
                 }
+            } else {
+                completionClosure([])
             }
+        } else {
+            completionClosure([])
         }
     }
 }

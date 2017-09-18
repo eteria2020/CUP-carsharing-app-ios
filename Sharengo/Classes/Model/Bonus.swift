@@ -17,7 +17,6 @@ public class Bonus: ModelType, Decodable {
     var status: Bool = false
   
     required public init?(json: JSON) {
-        print(json)
         if let t: String = "type" <~~ json {
             type = t
         }

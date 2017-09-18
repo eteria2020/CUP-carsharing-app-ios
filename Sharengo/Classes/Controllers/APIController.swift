@@ -342,7 +342,7 @@ final class ApiController {
     
     func getTrip(trip: CarTrip) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true), NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true

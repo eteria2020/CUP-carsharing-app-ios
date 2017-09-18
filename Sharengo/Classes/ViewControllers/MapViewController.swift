@@ -76,16 +76,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         viewModel.nearestCar.asObservable()
             .subscribe(onNext: {[weak self] (nearestCar) in
                 if nearestCar == nil {
-                    self?.routeSteps = []
                     self?.nearestCarRouteSteps = []
-                    self?.drawRoutes(steps: [])
+                    if self?.viewModel?.carTrip == nil && self?.viewModel?.carBooking == nil {
+                        self?.routeSteps = []
+                        self?.drawRoutes(steps: [])
+                    }
                 }
                 else if self?.lastNearestCar?.location?.coordinate.latitude != nearestCar?.location?.coordinate.latitude && self?.lastNearestCar?.location?.coordinate.longitude != nearestCar?.location?.coordinate.longitude {
                     self?.lastNearestCar = nearestCar
                     self?.viewModel?.getRoute(destination: nearestCar!.location!, completionClosure: { (steps) in
-                        self?.routeSteps = steps
                         self?.nearestCarRouteSteps = steps
-                        self?.drawRoutes(steps: steps)
+                        if self?.viewModel?.carTrip == nil && self?.viewModel?.carBooking == nil {
+                            self?.routeSteps = steps
+                            self?.drawRoutes(steps: steps)
+                        }
                     })
                 }
             })
@@ -300,6 +304,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self?.view.layoutIfNeeded()
                     if let location = car.location {
                         self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                            self?.routeSteps = steps
                             self?.drawRoutes(steps: steps)
                         })
                     }
@@ -369,6 +374,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                     }
                                     if let location = car.location {
                                         self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                            self.routeSteps = steps
                                             self.drawRoutes(steps: steps)
                                         })
                                     }
@@ -419,6 +425,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     CoreController.shared.allCarTrips = []
                     CoreController.shared.currentCarTrip = nil
                     self.getResultsWithoutLoading()
+                    self.routeSteps = self.nearestCarRouteSteps
+                    self.drawRoutes(steps: self.nearestCarRouteSteps)
                 }
             }
         }
@@ -440,13 +448,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                                         self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                     }
-                                    let dispatchTime = DispatchTime.now() + 0.5
-                                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                        if let location = car.location {
-                                            self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                                self?.drawRoutes(steps: steps)
-                                            })
-                                        }
+                                    if let location = car.location {
+                                        self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                            self?.routeSteps = steps
+                                            self?.drawRoutes(steps: steps)
+                                        })
                                     }
                                     if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                         DispatchQueue.main.async {
@@ -756,8 +762,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                     self.getResultsWithoutLoading()
                                                     if let location = car.location {
                                                         self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                                            self.routeSteps = steps
                                                             self.drawRoutes(steps: steps)
                                                         })
+                                                    }
+                                                    let locationManager = LocationManager.sharedInstance
+                                                    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                                                        if let userLocation = locationManager.lastLocationCopy.value {
+                                                            self.centerMap(on: userLocation, zoom: 16.5, animated: false)
+                                                        }
                                                     }
                                                 })
                                             }
@@ -1146,17 +1159,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         if self?.lastLocation?.coordinate.latitude != locationManager.lastLocationCopy.value?.coordinate.latitude && self?.lastLocation?.coordinate.longitude != locationManager.lastLocationCopy.value?.coordinate.longitude {
                             if let location = self?.selectedCar?.location {
                                 self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                    self?.routeSteps = steps
                                     self?.drawRoutes(steps: steps)
                                 })
                             } else if self?.viewModel?.carTrip != nil && self?.viewModel?.carTrip?.car.value?.parking == true {
                                 if let location = self!.viewModel?.carTrip?.car.value?.location {
                                     self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                        self?.routeSteps = steps
                                         self?.drawRoutes(steps: steps)
                                     })
                                 }
                             } else if self?.viewModel?.carBooking != nil {
                                 if let location = self!.viewModel?.carBooking?.car.value?.location {
                                     self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                        self?.routeSteps = steps
                                         self?.drawRoutes(steps: steps)
                                     })
                                 }
@@ -1482,6 +1498,7 @@ extension MapViewController: GMSMapViewDelegate {
                 self.selectedCar = car
                 if let location = car.location {
                     self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                        self.routeSteps = steps
                         self.drawRoutes(steps: steps)
                     })
                 }

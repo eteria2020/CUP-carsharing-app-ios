@@ -46,7 +46,13 @@ public class CarAnnotation: NSObject, GMUClusterItem {
             self.marker = CoreController.shared.pulseYellow
             self.type = 3
         } else if car.nearest && carBooked == nil {
-            self.marker = CoreController.shared.pulseGreen
+            if bonusFree.count > 0 {
+                let bonus = bonusFree[0]
+                let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)
+                self.marker = image
+            } else {
+                self.marker = CoreController.shared.pulseGreen
+            }
             self.type = 2
         }
     }
@@ -57,6 +63,14 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         let thumbRect = CGRect(origin: newOrigin, size: newSize).integral
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
         image.draw(in: thumbRect)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        let attrs = [NSFontAttributeName: UIFont(name: "Poppins-SemiBold", size: 12)!, NSForegroundColorAttributeName: UIColor.white, NSParagraphStyleAttributeName: paragraphStyle]
+        let string = "\(value)"
+        let thumbRect2 = CGRect(origin: CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2 + 16), size: newSize).integral
+        string.draw(in: thumbRect2, withAttributes: attrs)
+
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return result!
