@@ -42,7 +42,8 @@ public class CarAnnotation: NSObject, GMUClusterItem {
             let bonus = bonusFree[0]
             let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)
             self.marker = image
-        } else if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
+        }
+        if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
             self.marker = CoreController.shared.pulseYellow
             self.type = 3
         } else if car.nearest && carBooked == nil {
