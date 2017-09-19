@@ -11,26 +11,26 @@ import RxSwift
 import Gloss
 import CoreLocation
 
+/**
+ The Favourite Address model is used to represent user's favourite addresses.
+*/
 public class FavouriteAddress: NSObject, NSCoding {
-    var identifier: String?
-    var name: String?
-    var location: CLLocation?
-    var address: String?
+    /// Unique identifier
+    public var identifier: String?
+    /// Name that user used to remember this address
+    public var name: String?
+    /// Location of address
+    public var location: CLLocation?
+    /// Textual representation of address
+    public var address: String?
     
-    init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
+    // MARK: - Init methods
+    
+    public init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
         self.identifier = identifier
         self.name = name
         self.location = location
         self.address = address
-    }
-    
-    // MARK: - Coding methods
-    
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.identifier, forKey: "identifier")
-        aCoder.encode(self.name, forKey: "name")
-        aCoder.encode(self.location, forKey: "location")
-        aCoder.encode(self.address, forKey: "address")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -47,34 +47,45 @@ public class FavouriteAddress: NSObject, NSCoding {
             self.address = address
         }
     }
+
+    // MARK: - Coding methods
+    
+    /// Used to convert this object as NSCoder
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.identifier, forKey: "identifier")
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.location, forKey: "location")
+        aCoder.encode(self.address, forKey: "address")
+    }
     
     // MARK: - Address methods
     
-    func getAddress() -> Address {
+    /// Used to get address of this favourite
+    public func getAddress() -> Address {
         return Address(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
 }
 
+/**
+ The History Address model is used to represent historical addresses.
+*/
 public class HistoryAddress: NSObject, NSCoding {
-    var identifier: String?
-    var name: String?
-    var location: CLLocation?
-    var address: String?
+    /// Unique identifier
+    public var identifier: String?
+    /// Name that user used to remember this address
+    public var name: String?
+    /// Location of address
+    public var location: CLLocation?
+    /// Textual representation of address
+    public var address: String?
     
-    init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
+    // MARK: - Init methods
+    
+    public init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
         self.identifier = identifier
         self.name = name
         self.location = location
         self.address = address
-    }
-    
-    // MARK: - Coding methods
-    
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.identifier, forKey: "identifier")
-        aCoder.encode(self.name, forKey: "name")
-        aCoder.encode(self.location, forKey: "location")
-        aCoder.encode(self.address, forKey: "address")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -91,42 +102,41 @@ public class HistoryAddress: NSObject, NSCoding {
             self.address = address
         }
     }
+
+    // MARK: - Coding methods
+    
+    /// Used to convert this object as NSCoder
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.identifier, forKey: "identifier")
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.location, forKey: "location")
+        aCoder.encode(self.address, forKey: "address")
+    }
     
     // MARK: - Address methods
     
+    /// Used to get address of this historical address
     func getAddress() -> Address {
         return Address(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
 }
 
+/**
+ The Address model is used to represent an address.
+*/
 public class Address: ModelType, Decodable {
-    /*
-     JSON response example:
-    {
-        "place_id":"3325415",
-        "licence":"Data © OpenStreetMap contributors, ODbL 1.0. http:\/\/www.openstreetmap.org\/copyright",
-        "osm_type":"way",
-        "osm_id":"176617221",
-        "boundingbox":["43.5331996","43.5336263","10.3346801","10.3353129"],
-        "lat":"43.5332977",
-        "lon":"10.3353129",
-        "display_name":"Via dei Pelaghi, Nuovo Centro, Salviano, Livorno, LI, TOS, 57127, Italia",
-        "class":"highway",
-        "type":"service",
-        "importance":0.375
-     }
-    */
+    /// Unique identifier
+    public var identifier: String?
+    /// Name that user used to remember this address
+    public var name: String?
+    /// Location of address
+    public var location: CLLocation?
+    /// Textual representation of address
+    public var address: String?
     
-    var identifier: String?
-    var name: String?
-    var location: CLLocation?
-    var address: String?
+    // MARK: - Init methods
     
-    static var empty:Address {
-        return Address(identifier: nil, name: nil, location: nil, address: nil)
-    }
-    
-    init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
+    public init(identifier: String?, name: String?, location: CLLocation?, address: String?) {
         self.identifier = identifier
         self.name = name
         self.location = location
@@ -143,12 +153,14 @@ public class Address: ModelType, Decodable {
     
     // MARK: - History methods
     
+    /// Used to get historical address
     func getHistoryAddress() -> HistoryAddress {
         return HistoryAddress(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
     
     // MARK: - Favourite methods
     
+    /// Used to get favourite address
     func getFavouriteAddress() -> FavouriteAddress {
         return FavouriteAddress(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }

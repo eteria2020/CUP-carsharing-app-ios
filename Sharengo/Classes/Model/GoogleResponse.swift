@@ -9,17 +9,19 @@ import Boomerang
 import RxSwift
 import Gloss
 
-class GoogleResponse: ModelType, Decodable {
-    var array_data: [JSON]?
+/**
+ The Google Response model is used to convert api response from Google Servers in an object that have useful data
+ */
+public class GoogleResponse: ModelType, Decodable {
+    /// Content of data as array
+    public var array_data: [JSON]?
     
-    static var empty:Response {
-        return Response()
+    // MARK: - Init methods
+    
+    public init() {
     }
     
-    init() {
-    }
-    
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         if let results: [JSON] = "results" <~~ json {
             self.array_data =  results
         }

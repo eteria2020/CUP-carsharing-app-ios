@@ -10,27 +10,23 @@ import Boomerang
 import RxSwift
 import Gloss
 
+/**
+ The CarBooking model is used to represent a Car Booking action.
+ */
 public class CarBooking: ModelType, Decodable {
-    /*
-     JSON response example:
-     {
-        "id":1679899,
-        "reservation_timestamp":1496780744,
-        "timestamp_start":1496780744,
-        "is_active":true,
-        "car_plate":"EF72806",
-        "length":1200
-     }
-     */
-    
+    /// Unique identifier
     var id: Int?
+    /// Boolean that show if CarBooking is activated or not
     var isActive: Bool = false
+    /// Car Plate of booked car if CarBooking is active
     var carPlate: String?
+    /// Start time of Car Booking
     var timeStart: Date?
+    /// Duration time of Car Booking
     var timeLength: Int = 1200
-    
+    /// Car Object Model used as Car Booked
     var car: Variable<Car?> = Variable(nil)
-  
+    /// Timer of carBooking in action used in views
     var timer: String? {
         get {
             if let timeStart = self.timeStart {
@@ -62,15 +58,13 @@ public class CarBooking: ModelType, Decodable {
         }
     }
 
-    init(car: Car) {
+    // MARK: - Init methods
+    
+    public init(car: Car) {
         self.car.value = car
     }
     
-    static var empty:CarBooking {
-        return CarBooking(car: Car())
-    }
-    
-    required public init?(json: JSON) {
+    public required init?(json: JSON) {
         self.id = "id" <~~ json
         self.isActive = "is_active" <~~ json ?? false
         self.timeLength = "length" <~~ json ?? 1200
