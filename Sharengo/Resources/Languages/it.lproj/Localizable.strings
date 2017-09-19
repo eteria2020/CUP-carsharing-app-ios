@@ -270,4 +270,4 @@
 
 /////////////////////////
 
-"lbl_carPopupFreeType" = "Auto con minuti gratuiti";
+"lbl_carPopupFreeType" = "%d minuti di guida gratuita!";

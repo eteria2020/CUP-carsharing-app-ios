@@ -61,7 +61,12 @@ class CarPopupView: UIView {
                     if type.isEmpty {
                         self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 0
                         self?.view_separator.isHidden = true
-                    } else {
+                    } else if type.contains("\n") {
+                        self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 55
+                        self?.view_separator.isHidden = false
+                        self?.lbl_type.styledText = type
+                    } else
+                    {
                         self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 40
                         self?.view_separator.isHidden = false
                         self?.lbl_type.styledText = type

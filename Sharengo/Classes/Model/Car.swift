@@ -71,8 +71,14 @@ public class Car: ModelType, Decodable {
         let bonusFree = self.bonus.filter({ (bonus) -> Bool in
             return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
         })
-        if bonusFree.count > 0 {
-            return "lbl_carPopupFreeType".localized()
+        if bonusFree.count > 0 && self.nearest {
+            let bonus = bonusFree[0]
+            let string1 = "lbl_carPopupType".localized()
+            let string2 = String(format: "lbl_carPopupFreeType".localized(), bonus.value)
+            return "\(string1)\n\(string2)"
+        } else if bonusFree.count > 0 {
+            let bonus = bonusFree[0]
+            return String(format: "lbl_carPopupFreeType".localized(), bonus.value)
         } else if self.nearest {
            return "lbl_carPopupType".localized()
         } else {

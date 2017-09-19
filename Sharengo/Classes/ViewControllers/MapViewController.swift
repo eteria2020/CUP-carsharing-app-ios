@@ -296,6 +296,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 UIView.animate(withDuration: 0.2, animations: {
                     if car.type.isEmpty {
                         self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0
+                    } else if car.type.contains("\n") {
+                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0 + 55
                     } else {
                         self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0 + 40
                     }
@@ -444,9 +446,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                     self?.viewModel?.carBooked = car
                                     self?.viewModel?.carBooking = carBooking
                                     self?.getResultsWithoutLoading()
-                                    if let location = car.location {
-                                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                        self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                                    let locationManager = LocationManager.sharedInstance
+                                    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                                        if let userLocation = locationManager.lastLocationCopy.value {
+                                            self?.centerMap(on: userLocation, zoom: 16.5, animated: false)
+                                        }
                                     }
                                     if let location = car.location {
                                         self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
@@ -1203,8 +1207,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
                 self.checkedUserPosition = true
-                if self.viewModel?.carBooking != nil { }
-                else if self.viewModel?.carTrip?.car.value?.parking == true { }
+                if self.viewModel?.carTrip?.car.value?.parking == true { }
                 else {
                     self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                 }
@@ -1216,8 +1219,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if location != nil {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
-                if self.viewModel?.carBooking != nil { }
-                else if self.viewModel?.carTrip?.car.value?.parking == true { }
+                if self.viewModel?.carTrip?.car.value?.parking == true { }
                 else {
                     self.centerMap(on: location!, zoom: 16.5, animated: false)
                 }
@@ -1489,6 +1491,8 @@ extension MapViewController: GMSMapViewDelegate {
             UIView .animate(withDuration: 0.2, animations: {
                 if car.type.isEmpty {
                     self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+                } else if car.type.contains("\n") {
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55
                 } else {
                     self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
                 }
