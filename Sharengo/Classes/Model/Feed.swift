@@ -14,26 +14,48 @@ import Gloss
  The Favourite Feed model is used to represent user's favourite feeds.
  */
 public class FavouriteFeed: NSObject, NSCoding {
-    var identifier: String?
-    var categoryTitle: String?
-    var title: String?
-    var subtitle: String?
-    var ddescription: String?
-    var icon: String?
-    var claim: String?
-    var date: String?
-    var advantage: String?
-    var color: String?
-    var image: String?
-    var location: String?
-    var address: String?
-    var city: String?
-    var launchTitle: String?
-    var forceColor: Bool = false
-    var orderDate: Date = Date()
-    var feedLocation: CLLocation?
-    var marker: String?
-    var sponsored: Bool = false
+    /// Unique identifier
+    public var identifier: String?
+    /// Category's title
+    public var categoryTitle: String?
+    /// Title
+    public var title: String?
+    /// Subtitle
+    public var subtitle: String?
+    /// Description
+    public var ddescription: String?
+    /// Icon
+    public var icon: String?
+    /// Claim
+    public var claim: String?
+    /// Date
+    public var date: String?
+    /// Advantage
+    public var advantage: String?
+    /// Color
+    public var color: String?
+    /// Image
+    public var image: String?
+    /// Location
+    public var location: String?
+    /// Address
+    public var address: String?
+    /// City
+    public var city: String?
+    /// Launch Title
+    public var launchTitle: String?
+    /// Boolean that determine if color has to be default color or not
+    public var forceColor: Bool = false
+    /// Order Date
+    public var orderDate: Date = Date()
+    /// Feed Location
+    public var feedLocation: CLLocation?
+    /// Marker
+    public var marker: String?
+    /// Boolean that determine if is sponsored or not
+    public var sponsored: Bool = false
+    
+    // MARK: - Init methods
     
     init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, ddescription: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?, marker: String?, sponsored: Bool) {
         self.identifier = identifier
@@ -56,31 +78,6 @@ public class FavouriteFeed: NSObject, NSCoding {
         self.feedLocation = feedLocation
         self.marker = marker
         self.sponsored = sponsored
-    }
-    
-    // MARK: - Coding methods
-    
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.identifier, forKey: "identifier")
-        aCoder.encode(self.categoryTitle, forKey: "categoryTitle")
-        aCoder.encode(self.title, forKey: "title")
-        aCoder.encode(self.subtitle, forKey: "subtitle")
-        aCoder.encode(self.ddescription, forKey: "ddescription")
-        aCoder.encode(self.icon, forKey: "icon")
-        aCoder.encode(self.claim, forKey: "claim")
-        aCoder.encode(self.date, forKey: "date")
-        aCoder.encode(self.advantage, forKey: "advantage")
-        aCoder.encode(self.color, forKey: "color")
-        aCoder.encode(self.forceColor, forKey: "forceColor")
-        aCoder.encode(self.image, forKey: "image")
-        aCoder.encode(self.location, forKey: "location")
-        aCoder.encode(self.address, forKey: "address")
-        aCoder.encode(self.city, forKey: "city")
-        aCoder.encode(self.launchTitle, forKey: "launchTitle")
-        aCoder.encode(self.orderDate, forKey: "orderDate")
-        aCoder.encode(self.feedLocation, forKey: "feedLocation")
-        aCoder.encode(self.marker, forKey: "marker")
-        aCoder.encode(self.sponsored, forKey: "sponsored")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -139,37 +136,89 @@ public class FavouriteFeed: NSObject, NSCoding {
         self.forceColor = aDecoder.decodeBool(forKey: "forceColor")
         self.sponsored = aDecoder.decodeBool(forKey: "sponsored")
     }
+
+    // MARK: - Coding methods
+    
+    /// Used to convert this object as NSCoder
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.identifier, forKey: "identifier")
+        aCoder.encode(self.categoryTitle, forKey: "categoryTitle")
+        aCoder.encode(self.title, forKey: "title")
+        aCoder.encode(self.subtitle, forKey: "subtitle")
+        aCoder.encode(self.ddescription, forKey: "ddescription")
+        aCoder.encode(self.icon, forKey: "icon")
+        aCoder.encode(self.claim, forKey: "claim")
+        aCoder.encode(self.date, forKey: "date")
+        aCoder.encode(self.advantage, forKey: "advantage")
+        aCoder.encode(self.color, forKey: "color")
+        aCoder.encode(self.forceColor, forKey: "forceColor")
+        aCoder.encode(self.image, forKey: "image")
+        aCoder.encode(self.location, forKey: "location")
+        aCoder.encode(self.address, forKey: "address")
+        aCoder.encode(self.city, forKey: "city")
+        aCoder.encode(self.launchTitle, forKey: "launchTitle")
+        aCoder.encode(self.orderDate, forKey: "orderDate")
+        aCoder.encode(self.feedLocation, forKey: "feedLocation")
+        aCoder.encode(self.marker, forKey: "marker")
+        aCoder.encode(self.sponsored, forKey: "sponsored")
+    }
     
     // MARK: - Feed methods
     
+    /// Return Feed Object
     func getFeed() -> Feed {
         return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }
 }
 
+/**
+ The  Feed model is used to represent a singular feed.
+*/
 public class Feed: ModelType, Decodable {
-    var identifier: String?
-    var categoryTitle: String?
-    var title: String?
-    var subtitle: String?
-    var description: String?
-    var icon: String?
-    var claim: String?
-    var date: String?
-    var orderDate: Date = Date()
-    var advantage: String?
-    var color: String?
-    var image: String?
-    var location: String?
-    var address: String?
-    var city: String?
-    var launchTitle: String?
-    var forceColor: Bool = false
-    var feedLocation: CLLocation?
-    var marker: String?
-    var sponsored: Bool = false
+    /// Unique identifier
+    public var identifier: String?
+    /// Category's title
+    public var categoryTitle: String?
+    /// Title
+    public var title: String?
+    /// Subtitle
+    public var subtitle: String?
+    /// Description
+    public var description: String?
+    /// Icon
+    public var icon: String?
+    /// Claim
+    public var claim: String?
+    /// Date
+    public var date: String?
+    /// Order Date
+    public var orderDate: Date = Date()
+    /// Advantage
+    public var advantage: String?
+    /// Color
+    public var color: String?
+    /// Image
+    public var image: String?
+    /// Location
+    public var location: String?
+    /// Address
+    public var address: String?
+    /// City
+    public var city: String?
+    /// Launch Title
+    public var launchTitle: String?
+    /// Boolean that determine if color has to be default color or not
+    public var forceColor: Bool = false
+    /// Feed Location
+    public var feedLocation: CLLocation?
+    /// Marker
+    public var marker: String?
+    /// Boolean that determine if is sponsored or not
+    public var sponsored: Bool = false
     
-    init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, description: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?, marker: String?, sponsored: Bool) {
+    // MARK: - Init methods
+    
+    public init(identifier: String?, categoryTitle: String?, title: String?, subtitle: String?, description: String?, icon: String?, claim: String?, date: String?, advantage: String?, color: String?, forceColor: Bool, image: String?, location: String?, address: String?, city: String?, launchTitle: String?, orderDate: Date, feedLocation: CLLocation?, marker: String?, sponsored: Bool) {
         self.identifier = identifier
         self.categoryTitle = categoryTitle
         self.title = title
@@ -243,6 +292,7 @@ public class Feed: ModelType, Decodable {
     
     // MARK: - History methods
     
+    /// Get Favourite Feed connected to Feed
     func getFavoriteFeed() -> FavouriteFeed {
         return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }
