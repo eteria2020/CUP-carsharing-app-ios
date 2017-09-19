@@ -9,33 +9,31 @@ import Boomerang
 import RxSwift
 import Gloss
 
-class Response: ModelType, Decodable {
-    /*
-    JSON response example:
-    {
-        "status":200,
-        "reason":"No cars found",
-        "data":null,
-        "time":1495966726
-    }
-    */
-    
-    var status: Int?
-    var status_bool: Bool?
-    var reason: String?
+/**
+ The Response model is used to convert api response in an object that have useful data from server like code
+*/
+public class Response: ModelType, Decodable {
+    /// HTTP Status code of response (200, 404, ...)
+    public var status: Int?
+    /// Boolean that determine if status is present or not
+    public var status_bool: Bool?
+    /// Description of response
+    public var reason: String?
+    /// Generic code
     var code: String?
+    /// Message that describe how response is gone
     var msg: String?
+    /// Content of data as array
     var array_data: [JSON]?
+    /// Content of data as dictionary
     var dic_data: JSON?
     
-    static var empty:Response {
-        return Response()
+    // MARK: - Init methods
+    
+    public init() {
     }
     
-    init() {
-    }
-    
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
         self.status = "status" <~~ json
         self.status_bool = "status" <~~ json
         self.reason = "reason" <~~ json

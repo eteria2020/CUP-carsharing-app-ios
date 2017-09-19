@@ -11,87 +11,39 @@ import RxSwift
 import Gloss
 import CoreLocation
 
+/**
+ The Car model is used to represent a Car.
+ */
 public class Car: ModelType, Decodable {
-    /*
-     JSON response example:
-    {
-     "plate":"ED93147",
-     "manufactures":"Xindayang Ltd.",
-     "model":"ZD 80",
-     "label":"/",
-     "active":true,
-     "int_cleanliness":"clean",
-     "ext_cleanliness":"clean",
-     "notes":"1929",
-     "longitude":"9.24313",
-     "latitude":"45.51891",
-     "damages":
-        [
-        "Paraurti posteriore",
-        "Porta sin","Led anteriore dx"
-        ],
-     "battery":73,
-     "frame":null,
-     "location":"0101000020E61000005C5A0D897B7C22409FC893A46BC24640",
-     "firmware_version":"V4.6.3",
-     "software_version":"0.104.10",
-     "Mac":null,
-     "imei":"861311004706528",
-     "last_contact":"2017-05-13T10:36:02.000Z",
-     "last_location_time":"2017-05-13T10:36:02.000Z",
-     "busy":false,
-     "hidden":false,
-     "rpm":0,
-     "speed":0,
-     "obc_in_use":0,
-     "obc_wl_size":65145,
-     "km":6120,
-     "running":false,
-     "parking":false,
-     "status":"operative",
-     "soc":73,
-     "vin":null,
-     "key_status":"OFF",
-     "charging":false,
-     "battery_offset":0,
-     "gps_data":
-        {
-        "time":"13/05/2017 12:35:49",
-        "fix_age":20,
-        "accuracy":1.4199999570846558,
-        "change_age":20,"satellites":10
-        },
-     "park_enabled":false,
-     "plug":false,
-     "fleet_id":1,
-     "fleets":
-        {
-        "id":1,
-        "label":"Milano"
-        }
-    }
-    */
+    /// Car Plate
+    public var plate: String?
+    /// Duration of a trip
+    public var capacity: Int?
+    /// Location where Car is located
+    public var location: CLLocation?
+    /// Distance between User and Car
+    public var distance: CLLocationDistance?
+    /// Boolean that determine if car is the nearest from user
+    public var nearest: Bool = false
+    /// Boolean that determine if car is booked or not
+    public var booked: Bool = false
+    /// Boolean that determine if car is opened or not
+    public var opened: Bool = false
+    /// Boolean that determine if car is parked or not
+    public var parking: Bool = false
+    /// Type of car
+    public lazy var type: String = self.getType()
+    /// Address where Car is located
+    public var address: Variable<String?> = Variable(nil)
+    /// Array used to show if there are bonus with this car
+    public var bonus: [Bonus] = []
     
-    var plate: String?
-    var capacity: Int?
-    var location: CLLocation?
-    var distance: CLLocationDistance?
-    var nearest: Bool = false
-    var booked: Bool = false
-    var opened: Bool = false
-    var parking: Bool = false
-    lazy var type: String = self.getType()
-    var address: Variable<String?> = Variable(nil)
-    var bonus: [Bonus] = []
+    // MARK: - Init methods
     
-    static var empty:Car {
-        return Car()
+    public init() {
     }
     
-    init() {
-    }
-
-    required public init?(json: JSON) {
+    public required init?(json: JSON) {
         self.plate = "plate" <~~ json
         self.capacity = "battery" <~~ json
         if let latitude: String = "lat" <~~ json, let longitude: String = "lon" <~~ json {
@@ -112,6 +64,9 @@ public class Car: ModelType, Decodable {
     
     // MARK: - Lazy methods
     
+    /**
+     This method return typology of car
+     */
     public func getType() -> String {
         let bonusFree = self.bonus.filter({ (bonus) -> Bool in
             return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
@@ -127,6 +82,9 @@ public class Car: ModelType, Decodable {
     
     // MARK: - Variable methods
     
+    /**
+     This method return address of car
+     */
     func getAddress() {
         if let location = self.location {
             let geocoder = CLGeocoder()

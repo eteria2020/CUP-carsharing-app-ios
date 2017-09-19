@@ -52,7 +52,12 @@ public class FeedAnnotation: NSObject, GMUClusterItem {
         }
     }
     
-    fileprivate func resizeImageForAnnotation(image: UIImage, newSize: CGSize) -> (UIImage) {
+    /**
+     This method resize image for annotation
+     - Parameter image: Image to be resized
+     - Parameter newSize: Size of image returned
+     */
+    public func resizeImageForAnnotation(image: UIImage, newSize: CGSize) -> (UIImage) {
         let scale = min(image.size.width/newSize.width, image.size.height/newSize.height)
         let newSize = CGSize(width: image.size.width/scale, height: image.size.height/scale)
         let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)

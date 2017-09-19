@@ -10,37 +10,32 @@ import Boomerang
 import RxSwift
 import Gloss
 
+/**
+ The CarTrip model is used to represent a Car Trip.
+ */
 public class CarTrip: ModelType, Decodable {
-     /*
-     JSON response example:
-     {
-        "id":1512138,
-        "car_plate":"EH43413",
-        "timestamp_start":1497018223,
-        "timestamp_end":1497018373,
-        "km_start":2226,
-        "km_end":2226,
-        "lat_start":"41.82672816666666",
-        "lat_end":"41.826792833333336",
-        "lon_start":"12.475439999999999",
-        "lon_end":"12.475500833333335",
-        "park_seconds":0
-     }
-     */
-    
-    var id: Int?
-    var carPlate: String?
-    var timeStart: Date?
-    var timeEnd: Date?
-    var selected = false
-    var locationStart: CLLocation?
-    var locationEnd: CLLocation?
-    var totalCost: Int?
-    var costComputed: Bool?
-    
-    var car: Variable<Car?> = Variable(nil)
-    
-    var timer: String? {
+    /// Unique identifier
+    public var id: Int?
+    /// Car Plate
+    public var carPlate: String?
+    /// Start time of Car Trip
+    public var timeStart: Date?
+    /// End time of Car Trip
+    public var timeEnd: Date?
+    /// Boolean used in car trips list
+    public var selected = false
+    /// Start Location of Car Trip
+    public var locationStart: CLLocation?
+    /// End Location of Car Trip
+    public var locationEnd: CLLocation?
+    /// Price of Car Trip
+    public var totalCost: Int?
+    /// Boolean that determine if price is calculated or not
+    public var costComputed: Bool?
+    /// Car Object Model used as Car Trip
+    public var car: Variable<Car?> = Variable(nil)
+    /// Timer of carTrip in action used in views
+    public var timer: String? {
         get {
             if let timeStart = self.timeStart {
                 let start = timeStart
@@ -67,7 +62,8 @@ public class CarTrip: ModelType, Decodable {
             return nil
         }
     }
-    var time: String {
+    /// Time of carTrip in action used in views
+    public var time: String {
         get {
             if let timeStart = self.timeStart {
                 let start = timeStart
@@ -87,7 +83,8 @@ public class CarTrip: ModelType, Decodable {
             return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
         }
     }
-    var endTime: String {
+    /// End time of carTrip in action used in views
+    public var endTime: String {
         get {
             if let timeStart = self.timeStart,
                 let timeEnd = self.timeEnd {
@@ -108,7 +105,8 @@ public class CarTrip: ModelType, Decodable {
             return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
         }
     }
-    var minutes: Int {
+    /// Time of carTrip in action used in views
+    public var minutes: Int {
         get {
             if let timeStart = self.timeStart {
                 let start = timeStart
@@ -122,34 +120,14 @@ public class CarTrip: ModelType, Decodable {
             return 0
         }
     }
+
+    // MARK: - Init methods
     
-    init(car: Car) {
+    public init(car: Car) {
         self.car.value = car
     }
     
-    static var empty:CarTrip {
-        return CarTrip(car: Car())
-    }
-    
-    func updateCar(completionClosure: @escaping () ->()) {
-        if let carPlate = self.carPlate {
-            CoreController.shared.apiController.searchCar(plate: carPlate)
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status == 200, let data = response.dic_data {
-                            self.car.value = Car(json: data)
-                            completionClosure()
-                        }
-                    default:
-                        break
-                    }
-                }.addDisposableTo(CoreController.shared.disposeBag)
-        }
-    }
-    
-    required public init?(json: JSON) {
+    public required init?(json: JSON) {
         self.id = "id" <~~ json
         self.totalCost = "total_cost" <~~ json
         self.costComputed = "cost_computed" <~~ json
@@ -178,6 +156,29 @@ public class CarTrip: ModelType, Decodable {
                     case .next(let response):
                         if response.status == 200, let data = response.dic_data {
                             self.car.value = Car(json: data)
+                        }
+                    default:
+                        break
+                    }
+                }.addDisposableTo(CoreController.shared.disposeBag)
+        }
+    }
+
+    // MARK - Update methods
+    
+    /**
+     This method is used to update car connected to Car Trip
+     */
+    public func updateCar(completionClosure: @escaping () ->()) {
+        if let carPlate = self.carPlate {
+            CoreController.shared.apiController.searchCar(plate: carPlate)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.dic_data {
+                            self.car.value = Car(json: data)
+                            completionClosure()
                         }
                     default:
                         break

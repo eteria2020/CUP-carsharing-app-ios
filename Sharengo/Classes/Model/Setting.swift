@@ -9,12 +9,20 @@
 import Boomerang
 import RxSwift
 
+/**
+ The Setting  model is used to represent singular setting.
+ */
 public class Setting: ModelType {
-    var title: String = ""
-    var icon: String = ""
-    var viewModel: ViewModelType?
+    /// Title
+    public var title: String = ""
+    /// Icon
+    public var icon: String = ""
+    /// ViewModel connected to this setting
+    public var viewModel: ViewModelType?
     
-    init(title: String, icon: String, viewModel: ViewModelType?) {
+    // MARK: - Init methods
+    
+    public init(title: String, icon: String, viewModel: ViewModelType?) {
         self.title = title
         self.icon = icon
         self.viewModel = viewModel

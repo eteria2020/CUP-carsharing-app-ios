@@ -10,12 +10,19 @@ import Boomerang
 import RxSwift
 import Gloss
 
+/**
+ The Route Step model is used to represent singular step of a route.
+ */
 public class RouteStep: ModelType, Decodable {
-    
-    var points: String?
-    var distance: Int?
-    var duration: Int?
+    /// Points
+    public var points: String?
+    /// Distance
+    public var distance: Int?
+    /// Duration of step
+    public var duration: Int?
   
+    // MARK: - Init methods
+    
     required public init?(json: JSON) {
         points = "overview_polyline.points" <~~ json
         if let legs: [JSON] = "legs" <~~ json {

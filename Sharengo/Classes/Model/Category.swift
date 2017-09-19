@@ -23,57 +23,24 @@ extension String {
     }
 }
 
+/**
+ The Category model is used to represent a category of feeds.
+ */
 public class Category: ModelType, Decodable {
-    /*
-    JSON response example:
-    {
-        "tid":"1",
-        "name":"Shopping",
-        "status":
-        {
-            "published":"1"
-        },
-        "media":
-        {
-            "images":
-            {
-                "marker":
-                {
-                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/markers\/puntatore-shop-generico_0.png"
-                },
-                "icon":
-                {
-                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/icons\/sng-icona-shop-generica-100.png"
-                },
-                "image":
-                {
-                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/sng-icona-shop-sng-100.png"
-                }
-            },
-            "videos":
-            {
-                "default":
-                {
-                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/videos\/video_demo.mp4"
-                }
-            }
-        },
-        "appearance":
-        {
-            "color":
-            {
-                "rgb":"#3aa652"
-            }
-        }
-    }
-    */
+    /// Unique identifier
+    public var identifier: String = ""
+    /// Title
+    public var title: String = ""
+    /// Icon
+    public var icon: String = ""
+    /// Gif path
+    public var gif: String = ""
+    /// Boolean that determine if Category is published or not
+    public var published: Bool = false
+    /// Category's color
+    public var color: String = ""
     
-    var identifier: String = ""
-    var title: String = ""
-    var icon: String = ""
-    var gif: String = ""
-    var published: Bool = false
-    var color: String = ""
+    // MARK: - Init methods
     
     required public init?(json: JSON) {
         self.identifier = "tid" <~~ json ?? ""
