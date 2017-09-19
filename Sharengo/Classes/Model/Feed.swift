@@ -165,7 +165,9 @@ public class FavouriteFeed: NSObject, NSCoding {
     
     // MARK: - Feed methods
     
-    /// Return Feed Object
+    /**
+     This method return Feed Object
+     */
     func getFeed() -> Feed {
         return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }
@@ -292,7 +294,9 @@ public class Feed: ModelType, Decodable {
     
     // MARK: - History methods
     
-    /// Get Favourite Feed connected to Feed
+    /**
+     This method get Favourite Feed connected to Feed
+     */
     func getFavoriteFeed() -> FavouriteFeed {
         return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }

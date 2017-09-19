@@ -63,7 +63,9 @@ public class CityCache: NSObject, NSCoding {
     
     // MARK: - Coding methods
     
-    /// Used to convert this object as NSCoder
+    /**
+     This method is used to convert this object as NSCoder
+     */
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.identifier, forKey: "identifier")
         aCoder.encode(self.title, forKey: "title")
@@ -74,7 +76,9 @@ public class CityCache: NSObject, NSCoding {
 
     // MARK: - City methods
     
-    /// Return City connected to CityCache
+    /**
+     This method return City connected to CityCache
+     */
     public func getCity() -> City {
         return City(identifier: self.identifier, title: self.title, icon: self.icon, selected: self.selected, location: self.location)
     }
@@ -118,7 +122,9 @@ public class City: ModelType, Decodable {
     
     // MARK: - CityCache methods
     
-    /// Returned CityCache connected to City
+    /**
+     This method return CityCache connected to City
+     */
     func getCityCache() -> CityCache {
         return CityCache(identifier: self.identifier, title: self.title, icon: self.icon, selected: self.selected, location: self.location)
     }

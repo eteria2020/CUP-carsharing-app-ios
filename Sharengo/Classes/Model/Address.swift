@@ -50,7 +50,9 @@ public class FavouriteAddress: NSObject, NSCoding {
 
     // MARK: - Coding methods
     
-    /// Used to convert this object as NSCoder
+    /**
+     This method is used to convert this object as NSCoder
+     */
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.identifier, forKey: "identifier")
         aCoder.encode(self.name, forKey: "name")
@@ -60,7 +62,9 @@ public class FavouriteAddress: NSObject, NSCoding {
     
     // MARK: - Address methods
     
-    /// Used to get address of this favourite
+    /**
+     This method is used to to get address of this favourite
+     */
     public func getAddress() -> Address {
         return Address(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
@@ -105,7 +109,9 @@ public class HistoryAddress: NSObject, NSCoding {
 
     // MARK: - Coding methods
     
-    /// Used to convert this object as NSCoder
+    /**
+     This method is used to convert this object as NSCoder
+     */
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.identifier, forKey: "identifier")
         aCoder.encode(self.name, forKey: "name")
@@ -115,7 +121,9 @@ public class HistoryAddress: NSObject, NSCoding {
     
     // MARK: - Address methods
     
-    /// Used to get address of this historical address
+    /**
+     This method is used to get address of this historical address
+     */
     func getAddress() -> Address {
         return Address(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
@@ -153,14 +161,18 @@ public class Address: ModelType, Decodable {
     
     // MARK: - History methods
     
-    /// Used to get historical address
+    /**
+     This method is used to get historical address
+     */
     func getHistoryAddress() -> HistoryAddress {
         return HistoryAddress(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }
     
     // MARK: - Favourite methods
     
-    /// Used to get favourite address
+    /**
+     This method is used to get favourite address
+     */
     func getFavouriteAddress() -> FavouriteAddress {
         return FavouriteAddress(identifier: self.identifier, name: self.name, location: self.location, address: self.address)
     }

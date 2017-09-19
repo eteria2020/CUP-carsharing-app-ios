@@ -64,7 +64,9 @@ public class Car: ModelType, Decodable {
     
     // MARK: - Lazy methods
     
-    /// Method that return typology of car
+    /**
+     This method return typology of car
+     */
     public func getType() -> String {
         let bonusFree = self.bonus.filter({ (bonus) -> Bool in
             return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
@@ -80,7 +82,9 @@ public class Car: ModelType, Decodable {
     
     // MARK: - Variable methods
     
-    /// Method that return address of Car
+    /**
+     This method return address of car
+     */
     func getAddress() {
         if let location = self.location {
             let geocoder = CLGeocoder()

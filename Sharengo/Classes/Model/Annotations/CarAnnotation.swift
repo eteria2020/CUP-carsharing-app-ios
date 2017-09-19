@@ -57,7 +57,12 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         }
     }
     
-    fileprivate func freeImage(image: UIImage, value: Int) -> (UIImage) {
+    /**
+     This method create image with paragraph
+     - Parameter image: Image value
+     - Parameter value: Int value
+     */
+    public func freeImage(image: UIImage, value: Int) -> (UIImage) {
         let newSize = CGSize(width: image.size.width, height: image.size.height)
         let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
         let thumbRect = CGRect(origin: newOrigin, size: newSize).integral

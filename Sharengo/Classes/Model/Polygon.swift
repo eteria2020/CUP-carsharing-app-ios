@@ -44,7 +44,9 @@ public class PolygonCache: NSObject, NSCoding {
 
     // MARK: - Coding methods
     
-    /// Used to convert this object as NSCoder
+    /**
+     This method is used to convert this object as NSCoder
+     */
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.type, forKey: "type")
         
@@ -58,7 +60,9 @@ public class PolygonCache: NSObject, NSCoding {
     
     // MARK: - Polygon methods
     
-    /// Returned Polygon connected to PolygonCache
+    /**
+     This method return Polygon connected to PolygonCache
+     */
     func getPolygon() -> Polygon {
         return Polygon(type: self.type, coordinates: self.coordinates)
     }
@@ -153,7 +157,9 @@ public class Polygon: ModelType {
     
     // MARK: - PolygonCache methods
     
-    /// Returned PolygonCache connected to polygon
+    /**
+     This method return PolygonCache connected to polygon
+     */
     public func getPolygonCache() -> PolygonCache {
         return PolygonCache(type: self.type, coordinates: self.coordinates)
     }

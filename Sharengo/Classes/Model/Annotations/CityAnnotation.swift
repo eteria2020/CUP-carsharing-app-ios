@@ -61,7 +61,12 @@ public class CityAnnotation: GMSMarker {
         return UIImage(named: "ic_cluster")!
     }
     
-    fileprivate func resizeImageForCluster(image: UIImage, newSize: CGSize) -> (UIImage) {
+    /**
+     This method resize image for Cluster
+     - Parameter image: Image to be resized
+     - Parameter newSize: Size of image resized
+     */
+    public func resizeImageForCluster(image: UIImage, newSize: CGSize) -> (UIImage) {
         let scale = min(image.size.width/newSize.width, image.size.height/newSize.height)
         let newSize = CGSize(width: image.size.width/scale, height: image.size.height/scale)
         let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
@@ -74,8 +79,14 @@ public class CityAnnotation: GMSMarker {
         UIGraphicsEndImageContext()
         return result!
     }
-    
-    fileprivate func drawImageForAnimation(image1: UIImage, image2: UIImage, newSize: CGSize) -> (UIImage) {
+
+    /**
+     This method draw two images in unique image with a specific size
+     - Parameter image1: First image
+     - Parameter image2: Second image
+     - Parameter newSize: Size of image returned
+     */
+    public func drawImageForAnimation(image1: UIImage, image2: UIImage, newSize: CGSize) -> (UIImage) {
         let scale = min(image2.size.width/newSize.width, image2.size.height/newSize.height)
         let newSize = CGSize(width: image2.size.width/scale, height: image2.size.height/scale)
         let newSize2 = CGSize(width: image1.size.width, height: image1.size.height)

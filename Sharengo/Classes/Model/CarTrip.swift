@@ -166,7 +166,9 @@ public class CarTrip: ModelType, Decodable {
 
     // MARK - Update methods
     
-    /// Update of car connected to Car Trip
+    /**
+     This method is used to update car connected to Car Trip
+     */
     public func updateCar(completionClosure: @escaping () ->()) {
         if let carPlate = self.carPlate {
             CoreController.shared.apiController.searchCar(plate: carPlate)
