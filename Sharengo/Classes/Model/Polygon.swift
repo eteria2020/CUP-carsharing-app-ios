@@ -10,25 +10,20 @@ import Boomerang
 import RxSwift
 import Gloss
 
+/**
+ The PolygonCache model is used to represent cache of a polygon.
+*/
 public class PolygonCache: NSObject, NSCoding {
-    var type: String = ""
-    var coordinates: [CLLocationCoordinate2D] = []
+    /// Type
+    public var type: String = ""
+    /// Coordinates array of Polygon
+    public var coordinates: [CLLocationCoordinate2D] = []
     
-    init(type: String, coordinates: [CLLocationCoordinate2D]) {
+    // MARK: - Init methods
+    
+    public init(type: String, coordinates: [CLLocationCoordinate2D]) {
         self.type = type
         self.coordinates = coordinates
-    }
-    
-    // MARK: - Coding methods
-    
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.type, forKey: "type")
-        
-        var coordinatesToEncode = [[String: Double]]()
-        for coordinate in coordinates {
-            coordinatesToEncode.append(["latitude": coordinate.latitude, "longitude": coordinate.longitude] )
-        }
-        aCoder.encode(coordinatesToEncode, forKey: "coordinates")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -46,16 +41,38 @@ public class PolygonCache: NSObject, NSCoding {
             self.coordinates = coordinates
         }
     }
+
+    // MARK: - Coding methods
+    
+    /// Used to convert this object as NSCoder
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.type, forKey: "type")
+        
+        var coordinatesToEncode = [[String: Double]]()
+        for coordinate in coordinates {
+            coordinatesToEncode.append(["latitude": coordinate.latitude, "longitude": coordinate.longitude] )
+        }
+        aCoder.encode(coordinatesToEncode, forKey: "coordinates")
+    }
+    
     
     // MARK: - Polygon methods
     
+    /// Returned Polygon connected to PolygonCache
     func getPolygon() -> Polygon {
         return Polygon(type: self.type, coordinates: self.coordinates)
     }
 }
 
+/**
+ The JSONPolygons model is used to represent Polygon JSON Object.
+ */
 public class JSONPolygons: ModelType, Decodable {
+    /// Array of polygons
     var polygons: [Polygon] = []
+    
+    // Init methods
+    
     required public init?(json: JSON) {
         var exit: Bool = false
         var index: Int = 0
@@ -118,34 +135,26 @@ public class JSONPolygons: ModelType, Decodable {
     }
 }
 
+/**
+ The Polygon model is used to represent a polygon used in the map.
+*/
 public class Polygon: ModelType {
-    /*
-     JSON response example:
-     "type": "Polygon",
-     "coordinates": [
-     [
-     [
-     9.1592502593994,
-     45.522931576139
-     ],
-     [
-     9.1505876736107,
-     45.521279981882
-     ]
-     }
-    */
+    /// Type
+    public var type: String = ""
+    /// Coordinates array of Polygon
+    public var coordinates: [CLLocationCoordinate2D] = []
     
-    var type: String = ""
-    var coordinates: [CLLocationCoordinate2D] = []
+    // MARK: - Init methods
     
-    init(type: String, coordinates: [CLLocationCoordinate2D]) {
+    public init(type: String, coordinates: [CLLocationCoordinate2D]) {
         self.type = type
         self.coordinates = coordinates
     }
     
     // MARK: - PolygonCache methods
     
-    func getPolygonCache() -> PolygonCache {
+    /// Returned PolygonCache connected to polygon
+    public func getPolygonCache() -> PolygonCache {
         return PolygonCache(type: self.type, coordinates: self.coordinates)
     }
 }

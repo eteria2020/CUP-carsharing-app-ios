@@ -10,14 +10,24 @@ import Boomerang
 import RxSwift
 import Gloss
 
+/**
+ The CityCache  model is used to represent cache of a city.
+*/
 public class CityCache: NSObject, NSCoding {
-    var identifier: String = ""
-    var title: String = ""
-    var icon: String = ""
-    var selected = false
-    var location: CLLocation?
+    /// Unique identifier
+    public var identifier: String = ""
+    /// Title
+    public var title: String = ""
+    /// Icon
+    public var icon: String = ""
+    /// Boolean determine if selected or not
+    public var selected = false
+    /// Location of CityCache
+    public var location: CLLocation?
     
-    init(identifier: String, title: String, icon: String, selected: Bool, location: CLLocation?) {
+    // MARK: - Init methods
+    
+    public init(identifier: String, title: String, icon: String, selected: Bool, location: CLLocation?) {
         self.identifier = identifier
         self.title = title
         self.icon = icon
@@ -31,16 +41,6 @@ public class CityCache: NSObject, NSCoding {
                 fileManager.createFile(atPath: paths as String, contents: data, attributes: nil)
             } catch { }
         }
-    }
-    
-    // MARK: - Coding methods
-    
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.identifier, forKey: "identifier")
-        aCoder.encode(self.title, forKey: "title")
-        aCoder.encode(self.icon, forKey: "icon")
-        aCoder.encode(self.selected, forKey: "selected")
-        aCoder.encode(self.location, forKey: "location")
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -61,51 +61,43 @@ public class CityCache: NSObject, NSCoding {
         }
     }
     
+    // MARK: - Coding methods
+    
+    /// Used to convert this object as NSCoder
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.identifier, forKey: "identifier")
+        aCoder.encode(self.title, forKey: "title")
+        aCoder.encode(self.icon, forKey: "icon")
+        aCoder.encode(self.selected, forKey: "selected")
+        aCoder.encode(self.location, forKey: "location")
+    }
+
     // MARK: - City methods
     
-    func getCity() -> City {
+    /// Return City connected to CityCache
+    public func getCity() -> City {
         return City(identifier: self.identifier, title: self.title, icon: self.icon, selected: self.selected, location: self.location)
     }
 }
 
+/**
+ The City  model is used to represent a city.
+ */
 public class City: ModelType, Decodable {
-    /*
-    JSON response example:
-    {
-        "tid":"5",
-        "name":"Milano",
-        "media":
-        {
-            "images":
-            {
-                "icon":
-                {
-                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/icona_trasparente-milano.png"
-                },
-                "icon_svg":
-                {
-                    "uri":"http:\/\/universo-sharengo.thedigitalproject.it\/sites\/default\/files\/assets\/images\/icona_trasparente-milano.svg"
-                }
-            }
-        },
-        "informations":
-        {
-            "address":
-            {
-                "lat":"45.4628328",
-                "lng":"9.1076928"
-            }
-        }
-    }
-    */
+    /// Unique identifier
+    public var identifier: String = ""
+    /// Title
+    public var title: String = ""
+    /// Icon
+    public var icon: String = ""
+    /// Boolean determine if selected or not
+    public var selected = false
+    /// Location of CityCache
+    public var location: CLLocation?
     
-    var identifier: String = ""
-    var title: String = ""
-    var icon: String = ""
-    var selected = false
-    var location: CLLocation?
+    // MARK: - Init methods
     
-    init(identifier: String, title: String, icon: String, selected: Bool, location: CLLocation?) {
+    public init(identifier: String, title: String, icon: String, selected: Bool, location: CLLocation?) {
         self.identifier = identifier
         self.title = title
         self.icon = icon
@@ -126,6 +118,7 @@ public class City: ModelType, Decodable {
     
     // MARK: - CityCache methods
     
+    /// Returned CityCache connected to City
     func getCityCache() -> CityCache {
         return CityCache(identifier: self.identifier, title: self.title, icon: self.icon, selected: self.selected, location: self.location)
     }
