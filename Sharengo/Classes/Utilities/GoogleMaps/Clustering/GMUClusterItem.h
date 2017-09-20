@@ -28,6 +28,7 @@
 @property(nonatomic) UIImage *marker;
 @property(nonatomic) int identifier;
 @property(nonatomic) int type;
+@property(nonatomic) BOOL canCluster;
 @property(nonatomic) NSString *uniqueIdentifier;
 
 @end

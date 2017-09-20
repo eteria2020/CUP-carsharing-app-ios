@@ -35,7 +35,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /// User can open doors 50 meters down
     public let carPopupDistanceOpenDoors: Int = 50
     /// Map has to show cities 35000 meters up
-    public let clusteringRadius: Double = 35000
+    public let citiesRadius: Double = 35000
+    /// Map has to show callout 6000 meters up
+    public let clusteringRadius: Double = 6000
     /// Variable used to save height of popup
     public var closeCarPopupHeight: CGFloat = 0.0
     /// Variable used to save if the position of the user is checked
@@ -103,7 +105,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         if let steps = self?.routeSteps {
                             self?.drawRoutes(steps: steps)
                         }
+                        var canCluster = true
+                        if let radius = self?.getRadius() {
+                            if radius < self!.clusteringRadius {
+                                canCluster = false
+                            }
+                        }
                         for annotation in array {
+                            annotation.canCluster = canCluster
                             if let carAnnotation = annotation as? CarAnnotation {
                                 if viewModel.carBooked?.plate == carAnnotation.car.plate && viewModel.carTrip != nil && viewModel.carTrip?.car.value?.parking == false
                                 { }
@@ -986,12 +995,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     }
     
     /**
-     This method checks radius with animation. If radius is less than clusteringRadius application asks new results from server, if radius is over application shows cities
+     This method checks radius with animation. If radius is less than citiesRadius application asks new results from server, if radius is over application shows cities
      */
     public func getResults() {
         self.stopRequest()
         if let radius = self.getRadius() {
-            if radius < self.clusteringRadius {
+            if radius < self.citiesRadius {
                 self.clusteringInProgress = true
                 if let mapView = self.mapView {
                     self.setUpdateButtonAnimated(true)
@@ -1011,7 +1020,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      */
     public func getResultsWithoutLoading() {
         if let radius = self.getRadius() {
-            if radius < self.clusteringRadius {
+            if radius < self.citiesRadius {
                 self.clusteringInProgress = true
                 self.viewModel?.reloadResults(latitude: self.mapView.camera.target.latitude, longitude: self.mapView.camera.target.longitude, radius: radius)
             } else {
@@ -1324,7 +1333,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func showUserPositionVisible(_ visible: Bool) {
         if visible {
             if let radius = self.getRadius() {
-                if radius < clusteringRadius || (self.viewModel?.carTrip == nil || self.viewModel?.carTrip?.car.value?.parking == true) {
+                if radius < citiesRadius || (self.viewModel?.carTrip == nil || self.viewModel?.carTrip?.car.value?.parking == true) {
                     let locationManager = LocationManager.sharedInstance
                     if let userLocation = locationManager.lastLocationCopy.value {
                         self.userAnnotation.position = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
