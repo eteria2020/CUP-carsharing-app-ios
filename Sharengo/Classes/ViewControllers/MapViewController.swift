@@ -693,6 +693,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self.viewModel?.carTrip = carTrip
                                 self.viewModel?.carBooking = nil
                                 self.getResultsWithoutLoading()
+                                self.routeSteps = self.nearestCarRouteSteps
+                                self.drawRoutes(steps: self.nearestCarRouteSteps)
                             })
                         }
                     }

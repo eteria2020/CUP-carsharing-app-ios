@@ -20,6 +20,7 @@ class CoreController {
     let publishersApiController: PublishersAPIController = PublishersAPIController()
     let sharengoApiController: SharengoApiController = SharengoApiController()
     var updateTimer: Timer?
+    var updateCarTripTimer: Timer?
     var updateInProgress = false
     var allCarBookings: [CarBooking] = []
     var allCarTrips: [CarTrip] = []
@@ -48,6 +49,7 @@ class CoreController {
     
     private init() {
         self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
+        self.updateCarTripTimer = Timer.scheduledTimer(timeInterval: 10*1, target: self, selector: #selector(self.updateCarTripData), userInfo: nil, repeats: true)
     }
     
     @objc func updateData() {
@@ -210,11 +212,40 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
+    @objc func updateCarTripData() {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            return
+        }
+        if self.currentCarTrip != nil {
+            self.apiController.getCurrentTrip()
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.array_data {
+                            if let carTrips = [CarTrip].from(jsonArray: data) {
+                                self.allCarTrips = carTrips
+                                self.stopUpdateData()
+                                return
+                            }
+                        }
+                        self.allCarTrips = []
+                        self.stopUpdateData()
+                    case .error(_):
+                        self.allCarTrips = []
+                        self.stopUpdateData()
+                    default:
+                        break
+                    }
+                }.addDisposableTo(self.disposeBag)
+        }
+    }
+    
     fileprivate func updateCarTrips() {
         if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
-        self.apiController.tripsList()
+        self.apiController.getCurrentTrip()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
