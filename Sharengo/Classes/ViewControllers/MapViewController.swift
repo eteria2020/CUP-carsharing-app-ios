@@ -327,9 +327,34 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         // Map
         self.setupMap()
         // NotificationCenter
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main) {
+            [unowned self] notification in
+            if let car = self.view_carBookingPopup?.viewModel?.carTrip?.car.value {
+                car.booked = false
+                car.opened = false
+            }
+            if let car = self.view_carBookingPopup?.viewModel?.carBooking?.car.value {
+                car.booked = false
+                car.opened = false
+            }
+            self.view_carBookingPopup.alpha = 0.0
+            self.view_carBookingPopup?.viewModel?.carTrip = nil
+            self.view_carBookingPopup?.viewModel?.carBooking = nil
+            self.viewModel?.carBooked = nil
+            self.viewModel?.carTrip = nil
+            self.viewModel?.carBooking = nil
+            CoreController.shared.allCarBookings = []
+            CoreController.shared.currentCarBooking = nil
+            CoreController.shared.allCarTrips = []
+            CoreController.shared.currentCarTrip = nil
+            self.getResultsWithoutLoading()
+            self.routeSteps = self.nearestCarRouteSteps
+            self.drawRoutes(steps: self.nearestCarRouteSteps)
+        }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
             self.checkUserPositionFromForeground()
+            CoreController.shared.updateData()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
