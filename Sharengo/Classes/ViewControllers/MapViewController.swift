@@ -1165,6 +1165,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.setUserPositionButtonVisible(false)
         // User
         self.userAnnotation.icon = userAnnotation.image
+        self.userAnnotation.zIndex = 2
         let locationManager = LocationManager.sharedInstance
         locationManager.lastLocationCopy.asObservable()
             .subscribe(onNext: {[weak self] (_) in
