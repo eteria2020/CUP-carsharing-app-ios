@@ -112,7 +112,7 @@
 "lbl_carPopupWalkingDistance_h_m" = "%d hours e %@ minutes on foot";
 "lbl_carPopupAddressPlaceholder" = "Charging";
 "alert_carPopupLocalizationMessage" = "Share'ngo needs to know your position to open the doors. Would you like to open settings and enable geolocation?";
-"alert_carPopupDistanceMessage" = "You are too far from Saren'go you selected. You will be able to open it as you get closer to it.";
+"alert_carPopupDistanceMessage" = "You are too far from Share'ngo you selected. You will be able to open it as you get closer to it.";
 
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "YOUR PIN NUMBER: %@";
@@ -174,7 +174,7 @@
 
 // CarTrips
 "lbl_carTripsHeaderTitle" = "TRIP HISTORY";
-"lbl_carTripsItemTitle" = "Booking n. %@";
+"lbl_carTripsItemTitle" = "Ride n. %@";
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";

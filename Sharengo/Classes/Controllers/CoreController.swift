@@ -91,7 +91,7 @@ public class CoreController {
     }
     
     /**
-     This method update polygons where Sharen'go cars can stay
+     This method update polygons where Share'ngo cars can stay
      */
     public func updatePolygons() {
         self.sharengoApiController.getPolygons()
@@ -115,7 +115,7 @@ public class CoreController {
     }
 
     /**
-     This method update cities where Sharen'go offers its services
+     This method update cities where Share'ngo offers its services
      */
     public func updateCities() {
         self.publishersApiController.getCities()

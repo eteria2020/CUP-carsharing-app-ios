@@ -98,7 +98,7 @@
 "lcl_searchBarSpeechRecognizer" = "it-IT";
 
 // SearchCars
-"alert_centerMapMessage" = "Sharen'go ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
+"alert_centerMapMessage" = "Share'ngo ha bisogno dei permessi per accedere alla tua posizione. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 "alert_showCarsDisabledMessage" = "Attenzione! Potrai utilizzare questa funzione solo dopo aver concluso la corsa o la prenotazione attiva";
 
 // CarPopup
@@ -112,7 +112,7 @@
 "lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
-"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sharen'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"alert_carPopupDistanceMessage" = "Sei troppo distante dalla Share'ngo che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
@@ -174,7 +174,7 @@
 
 // CarTrips
 "lbl_carTripsHeaderTitle" = "CRONOLOGIA CORSE";
-"lbl_carTripsItemTitle" = "Prenotazione n. %@";
+"lbl_carTripsItemTitle" = "Corsa n. %@";
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
