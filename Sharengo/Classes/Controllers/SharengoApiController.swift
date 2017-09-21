@@ -66,7 +66,7 @@ public class SharengoApiController {
 }
 
 /// Enum with api calls
-public enum API {
+fileprivate enum API {
     case polygons()
 }
 

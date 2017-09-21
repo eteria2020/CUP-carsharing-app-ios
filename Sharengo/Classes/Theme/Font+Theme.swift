@@ -386,7 +386,7 @@ enum Font {
             case .supportHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .supportTitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
             case .supportSubtitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // Invite Friend

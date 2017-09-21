@@ -211,7 +211,7 @@
 "lbl_supportHeaderTitle" = "REQUEST ASSISTANCE";
 "lbl_supportTitle" = "We are here to help!";
 "lbl_supportSubtitle" = "Talk to an operator?";
-"btn_supportCall" = "Call now";
+"btn_supportCall" = "CALL NOW";
 "alert_supportCall" = "+39 0586 1975772";
 "alert_noSupportCall" = "Your device is not enabled to calling";
 "supportTelephoneNumber" = "+3905861975772";

@@ -82,6 +82,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         // Buttons
         self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
+        self.btn_call.titleLabel?.font = FontWeight.bold.font(withSize: Font.roundedButton.getFontSize(size: 18))
         self.btn_call.rx.tap.asObservable()
             .subscribe(onNext:{
                 guard let phoneCallURL = URL(string: "tel://" + "supportTelephoneNumber".localized()) else { return }

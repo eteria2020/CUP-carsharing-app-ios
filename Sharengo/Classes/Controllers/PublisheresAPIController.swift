@@ -16,7 +16,7 @@ import KeychainSwift
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class PublishersAPIController {
+public class PublishersAPIController {
     fileprivate var manager: SessionManager?
    
     init() {

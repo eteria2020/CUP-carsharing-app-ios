@@ -2826,7 +2826,7 @@ Corsa!</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siamo qui per aiutarti!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-Tb-EjZ">
-                                <rect key="frame" x="15" y="308" width="345" height="142.5"/>
+                                <rect key="frame" x="15" y="333" width="345" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2835,7 +2835,7 @@ Corsa!</string>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYS-HS-hLR" userLabel="View call area">
-                                <rect key="frame" x="10" y="475.5" width="355" height="166.5"/>
+                                <rect key="frame" x="10" y="393.5" width="355" height="166.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vuoi parlare con un operatore?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1N-gI-NVh">
                                         <rect key="frame" x="25" y="48" width="305" height="20.5"/>
@@ -2876,16 +2876,15 @@ Corsa!</string>
                             <constraint firstItem="DYS-HS-hLR" firstAttribute="leading" secondItem="EBL-XL-ApY" secondAttribute="leading" constant="10" id="E0b-qD-3Sy"/>
                             <constraint firstItem="jL3-Tb-EjZ" firstAttribute="leading" secondItem="EBL-XL-ApY" secondAttribute="leading" constant="15" id="Fqh-hA-pO9"/>
                             <constraint firstItem="HcG-NR-tNs" firstAttribute="leading" secondItem="EBL-XL-ApY" secondAttribute="leading" constant="15" id="Hlt-rx-3Vr"/>
-                            <constraint firstItem="jL3-Tb-EjZ" firstAttribute="top" secondItem="HcG-NR-tNs" secondAttribute="bottom" constant="15" id="IUO-bc-yh4"/>
+                            <constraint firstItem="jL3-Tb-EjZ" firstAttribute="top" secondItem="HcG-NR-tNs" secondAttribute="bottom" constant="40" id="IUO-bc-yh4"/>
                             <constraint firstItem="bEr-z1-a6u" firstAttribute="top" secondItem="EBL-XL-ApY" secondAttribute="top" id="KdL-sS-C5U"/>
                             <constraint firstAttribute="trailing" secondItem="jL3-Tb-EjZ" secondAttribute="trailing" constant="15" id="Kj5-0b-Khq"/>
-                            <constraint firstItem="2uE-EH-lzd" firstAttribute="top" secondItem="DYS-HS-hLR" secondAttribute="bottom" constant="25" id="VwF-GC-9l7"/>
                             <constraint firstItem="2xl-Li-hne" firstAttribute="top" secondItem="bEr-z1-a6u" secondAttribute="bottom" id="X5s-Gd-MV5"/>
                             <constraint firstAttribute="trailing" secondItem="2xl-Li-hne" secondAttribute="trailing" id="YuU-qb-GPg"/>
                             <constraint firstItem="HcG-NR-tNs" firstAttribute="height" secondItem="EBL-XL-ApY" secondAttribute="height" multiplier="0.3" id="Z45-1H-ite"/>
                             <constraint firstItem="DYS-HS-hLR" firstAttribute="height" secondItem="EBL-XL-ApY" secondAttribute="height" multiplier="0.25" id="ZkV-UX-dBU"/>
                             <constraint firstAttribute="trailing" secondItem="DYS-HS-hLR" secondAttribute="trailing" constant="10" id="ebW-40-0jq"/>
-                            <constraint firstItem="DYS-HS-hLR" firstAttribute="top" secondItem="jL3-Tb-EjZ" secondAttribute="bottom" constant="25" id="qGh-2o-Fmx"/>
+                            <constraint firstItem="DYS-HS-hLR" firstAttribute="top" secondItem="jL3-Tb-EjZ" secondAttribute="bottom" constant="40" id="qGh-2o-Fmx"/>
                             <constraint firstItem="HcG-NR-tNs" firstAttribute="top" secondItem="2xl-Li-hne" secondAttribute="bottom" constant="15" id="t5b-xW-PnP"/>
                             <constraint firstItem="bEr-z1-a6u" firstAttribute="leading" secondItem="EBL-XL-ApY" secondAttribute="leading" id="vf7-jd-wne"/>
                         </constraints>
