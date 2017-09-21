@@ -69,8 +69,11 @@ public class CarTrip: ModelType, Decodable {
                 let start = timeStart
                 let enddt = Date()
                 let calendar = Calendar.current
-                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
-                if let min = datecomponents.minute {
+                let datecomponents = calendar.dateComponents([Calendar.Component.minute, Calendar.Component.second], from: start, to: enddt)
+                if var min = datecomponents.minute, let sec = datecomponents.second {
+                    if sec > 30 {
+                        min += 1
+                    }
                     if min <= 0 {
                         return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
                     } else if min == 1 {
