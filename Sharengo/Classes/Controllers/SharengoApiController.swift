@@ -15,10 +15,16 @@ import Alamofire
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class SharengoApiController {
-    fileprivate var manager: SessionManager?
+/**
+Sharengo API controller is class thant manage web services of sharengo servers
+*/
+public class SharengoApiController {
+    /// Session Manager
+    public var manager: SessionManager?
     
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
         configuration.timeoutIntervalForResource = 20
@@ -28,7 +34,10 @@ final class SharengoApiController {
         )
     }
     
-    func getPolygons() -> Observable<[Polygon]> {
+    /**
+     This method return polygons from server
+     */
+    public func getPolygons() -> Observable<[Polygon]> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -56,7 +65,8 @@ final class SharengoApiController {
     }
 }
 
-fileprivate enum API {
+/// Enum with api calls
+public enum API {
     case polygons()
 }
 

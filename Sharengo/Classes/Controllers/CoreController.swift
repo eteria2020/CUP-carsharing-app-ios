@@ -21,7 +21,7 @@ public class CoreController {
     public static let shared = CoreController()
     /// Current viewController that user see
     public var currentViewController: UIViewController?
-    /// Instance of Api Controller that manage web services
+    /// Instance of Api Controller that manage generic settings about web services
     public let apiController: ApiController = ApiController()
     /// Instance of Publishers Api Controller that manage web services about feed
     public let publishersApiController: PublishersAPIController = PublishersAPIController()

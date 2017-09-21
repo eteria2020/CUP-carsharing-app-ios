@@ -16,10 +16,16 @@ import KeychainSwift
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class ApiController {
-    fileprivate var manager: SessionManager?
+/**
+ ApiController is superclass that has generic settings about web services
+ */
+public class ApiController {
+    /// Session Manager
+    public var manager: SessionManager?
    
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         let cert = PKCS12.init(mainBundleResource: "client", resourceType: "p12", password: "oi8dmf0");
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "api.sharengo.it": .disableEvaluation
@@ -43,7 +49,12 @@ final class ApiController {
         }
     }
     
-    func getUser(username: String, password: String) -> Observable<Response> {
+    /**
+     This method return User data from username and password given
+     - Parameter username: username of user
+     - Parameter password: password of user
+     */
+    public func getUser(username: String, password: String) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -70,7 +81,10 @@ final class ApiController {
         }
     }
 
-    func searchCars() -> Observable<Response> {
+    /**
+     This method return cars from server
+     */
+    public func searchCars() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -97,7 +111,15 @@ final class ApiController {
         }
     }
     
-    func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response> {
+    /**
+     This method return cars visible in map that user see
+     - Parameter latitude: latitude of map's center
+     - Parameter longitude: longitude of map's center
+     - Parameter radius: radius in CLLocationDistance
+     - Parameter userLatitude: latitude of user location
+     - Parameter userLongitude: longitude of user location
+     */
+    public func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -124,7 +146,11 @@ final class ApiController {
         }
     }
     
-    func searchCar(plate: String) -> Observable<Response> {
+    /**
+     This method return car from a plate
+     - Parameter plate: plate given in string type
+     */
+    public func searchCar(plate: String) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -151,7 +177,10 @@ final class ApiController {
         }
     }
     
-    func bookingList() -> Observable<Response> {
+    /**
+     This method return list of booking
+     */
+    public func bookingList() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -178,7 +207,10 @@ final class ApiController {
         }
     }
     
-    func tripsList() -> Observable<Response> {
+    /**
+     This method return car trips
+     */
+    public func tripsList() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -205,6 +237,9 @@ final class ApiController {
         }
     }
     
+    /**
+     This method return archived car trips
+     */
     func archivedTripsList() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
@@ -232,6 +267,12 @@ final class ApiController {
         }
     }
     
+    /**
+     This method book a car
+     - Parameter car: car object that user wants book
+     - Parameter userLatitude: latitude of user location
+     - Parameter userLongitude: longitude of user location
+     */
     func bookCar(car: Car, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
@@ -259,7 +300,11 @@ final class ApiController {
         }
     }
     
-    func deleteCarBooking(carBooking: CarBooking) -> Observable<Response> {
+    /**
+     This method remove a car booking
+     - Parameter carBooking: car booking object that user wants delete
+     */
+    public func deleteCarBooking(carBooking: CarBooking) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -286,7 +331,11 @@ final class ApiController {
         }
     }
     
-    func getCarBooking(id: Int) -> Observable<Response> {
+    /**
+     This method give a car booking from its id
+     - Parameter id: id of car booking
+     */
+    public func getCarBooking(id: Int) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -313,7 +362,12 @@ final class ApiController {
         }
     }
     
-    func openCar(car: Car, action: String) -> Observable<Response> {
+    /**
+     This method open a car
+     - Parameter car: car object that user wants open
+     - Parameter action: action
+     */
+    public func openCar(car: Car, action: String) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -340,7 +394,11 @@ final class ApiController {
         }
     }
     
-    func getTrip(trip: CarTrip) -> Observable<Response> {
+    /**
+     This method give trip data
+     - Parameter trip: car trip object
+     */
+    public func getTrip(trip: CarTrip) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -367,7 +425,10 @@ final class ApiController {
         }
     }
     
-    func getCurrentTrip() -> Observable<Response> {
+    /**
+     This method give current trip data
+     */
+    public func getCurrentTrip() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -395,7 +456,8 @@ final class ApiController {
     }
 }
 
-fileprivate enum API {
+/// Enum of api calls
+public enum API {
     case getUserWith(username: String, password: String)
     case searchAllCars()
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
