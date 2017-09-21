@@ -13,29 +13,50 @@ import Boomerang
 import KeychainSwift
 import Localize_Swift
 
-class CoreController {
-    static let shared = CoreController()
-    var currentViewController: UIViewController?
-    let apiController: ApiController = ApiController()
-    let publishersApiController: PublishersAPIController = PublishersAPIController()
-    let sharengoApiController: SharengoApiController = SharengoApiController()
-    var updateTimer: Timer?
-    var updateCarTripTimer: Timer?
-    var updateInProgress = false
-    var allCarBookings: [CarBooking] = []
-    var allCarTrips: [CarTrip] = []
-    var currentCarBooking: CarBooking?
-    var currentCarTrip: CarTrip?
-    var notificationIsShowed: Bool = false
-    var cities: [City] = []
-    var polygons: [Polygon] = []
+/**
+ CoreController class is a singleton class accessible from other classes with support variables, etc...
+ */
+public class CoreController {
+    /// Shared instance
+    public static let shared = CoreController()
+    /// Current viewController that user see
+    public var currentViewController: UIViewController?
+    /// Instance of Api Controller that manage web services
+    public let apiController: ApiController = ApiController()
+    /// Instance of Publishers Api Controller that manage web services about feed
+    public let publishersApiController: PublishersAPIController = PublishersAPIController()
+    /// Instance of Api Controller that manage Sharengo web services
+    public let sharengoApiController: SharengoApiController = SharengoApiController()
+    /// Update Timer
+    public var updateTimer: Timer?
+    /// Update Car Trip Timer
+    public var updateCarTripTimer: Timer?
+    /// Boolean that indicate if there is an update in progress
+    public var updateInProgress = false
+    /// Array of Car Bookings
+    public var allCarBookings: [CarBooking] = []
+    /// Array of Car Trips
+    public var allCarTrips: [CarTrip] = []
+    /// Model of current Car Booking
+    public var currentCarBooking: CarBooking?
+    /// Model of current Car Trip
+    public var currentCarTrip: CarTrip?
+    /// Boolean that indicate if there is a notification showed now or not
+    public var notificationIsShowed: Bool = false
+    /// Array of Cities
+    public var cities: [City] = []
+    /// Array of Polygons
+    public var polygons: [Polygon] = []
+    /// Support variabile for POI with Pulse yellow image
     public lazy var pulseYellow: UIImage = CoreController.shared.getPulseYellow()
+    /// Support variabile for POI with Pulse green image
     public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
 
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
     }
     
+    /// Dispose bag used for RX
     public var disposeBag: DisposeBag {
         var disposeBag: DisposeBag
         if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
@@ -47,12 +68,19 @@ class CoreController {
         return disposeBag
     }
     
+    // MARK: - Init methods
+    
     private init() {
         self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
         self.updateCarTripTimer = Timer.scheduledTimer(timeInterval: 10*1, target: self, selector: #selector(self.updateCarTripData), userInfo: nil, repeats: true)
     }
     
-    @objc func updateData() {
+    // MARK: - Update methods
+    
+    /**
+     This method update useful data of app like cities and polygons
+     */
+    @objc public func updateData() {
         self.updateCities()
         self.updatePolygons()
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -62,7 +90,10 @@ class CoreController {
         self.updateUser()
     }
     
-    fileprivate func updatePolygons() {
+    /**
+     This method update polygons where Sharen'go cars can stay
+     */
+    public func updatePolygons() {
         self.sharengoApiController.getPolygons()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -83,7 +114,10 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
 
-    fileprivate func updateCities() {
+    /**
+     This method update cities where Sharen'go offers its services
+     */
+    public func updateCities() {
         self.publishersApiController.getCities()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -107,8 +141,11 @@ class CoreController {
                 }
             }.addDisposableTo(self.disposeBag)
     }
-    
-    fileprivate func updateUser() {
+
+    /**
+     This method update user data like bonus
+     */
+    public func updateUser() {
         if let username = KeychainSwift().get("Username"), let password = KeychainSwift().get("Password") {
         self.apiController.getUser(username: username, password: password)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -152,6 +189,9 @@ class CoreController {
         }
     }
     
+    /**
+     This method execute logout of current user
+     */
     func executeLogout() {
         var languageid = "en"
         if Locale.preferredLanguages[0] == "it-IT" {
@@ -183,7 +223,10 @@ class CoreController {
         }
     }
     
-    fileprivate func updateCarBookings() {
+    /**
+     This method update Car Bookings array
+     */
+    public func updateCarBookings() {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
@@ -212,6 +255,9 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
+    /**
+     This method update car trip data
+     */
     @objc func updateCarTripData() {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
@@ -241,7 +287,10 @@ class CoreController {
         }
     }
     
-    fileprivate func updateCarTrips() {
+    /**
+     This method update car trips array
+     */
+    public func updateCarTrips() {
         if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
@@ -268,7 +317,10 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func stopUpdateData() {
+    /**
+     This method stop update of data with a notification
+     */
+    public func stopUpdateData() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
         self.currentCarBooking = self.allCarBookings.first
         self.currentCarTrip = self.allCarTrips.first
@@ -276,7 +328,10 @@ class CoreController {
     
     // MARK: - Pulse methods
     
-    func getPulseYellow() -> UIImage {
+    /**
+     This method return image of yellow pulse
+     */
+    public func getPulseYellow() -> UIImage {
         var frames: [UIImage] = [UIImage]()
         for i in 1...47 {
             let image = self.resizeImageForPulse(image: UIImage(named: "Giallo_loop_000\(i)")!, newSize: CGSize(width: 200, height: 200))
@@ -285,7 +340,10 @@ class CoreController {
         return UIImage.animatedImage(with: frames, duration: 3)!
     }
     
-    func getPulseGreen() -> UIImage {
+    /**
+     This method return image of green pulse
+     */
+    public func getPulseGreen() -> UIImage {
         var frames: [UIImage] = [UIImage]()
         for i in 1...47 {
             let image = self.resizeImageForPulse(image: UIImage(named: "Verde_loop_000\(i)")!, newSize: CGSize(width: 200, height: 200))
@@ -294,7 +352,12 @@ class CoreController {
         return UIImage.animatedImage(with: frames, duration: 3)!
     }
     
-    fileprivate func resizeImageForPulse(image: UIImage, newSize: CGSize) -> (UIImage) {
+    /**
+     This method is a support method for pulse image. It resize image with size given in parameters.
+     - Parameter image: image to be resized
+     - Parameter newSize: size of new image
+     */
+    public func resizeImageForPulse(image: UIImage, newSize: CGSize) -> (UIImage) {
         let scale = min(image.size.width/newSize.width, image.size.height/newSize.height)
         let newSize = CGSize(width: image.size.width/scale, height: image.size.height/scale)
         let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
