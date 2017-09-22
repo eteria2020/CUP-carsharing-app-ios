@@ -128,7 +128,7 @@ extension API: TargetType {
                 originString = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
             }
             let destinationString = "\(destination.coordinate.latitude),\(destination.coordinate.longitude)"
-            return ["mode": "walking", "origin": "\(originString)", "destination": "\(destinationString)", "key": "AIzaSyAnVjGP9ZCkSkBVkrX-5SBdmNW9AwE_Gew"]
+            return ["mode": "walking", "origin": "\(originString)", "destination": "\(destinationString)", "key": "AIzaSyBwHmQj5SXyKDwLaMe6KouQ9u6AFY5DUK0"]
         }
     }
     
