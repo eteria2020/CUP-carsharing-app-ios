@@ -37,7 +37,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /// Map has to show cities 35000 meters up
     public let citiesRadius: Double = 35000
     /// Map has to show callout 6000 meters up
-    public let clusteringRadius: Double = 2500
+    public let clusteringRadius: Double = 7500
     /// Variable used to save height of popup
     public var closeCarPopupHeight: CGFloat = 0.0
     /// Variable used to save if the position of the user is checked
