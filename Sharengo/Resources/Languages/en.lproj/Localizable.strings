@@ -273,3 +273,5 @@
 /////////////////////////
 
 "lbl_carPopupFreeType" = "%d minutes free drive";
+"alert_carBookingAlreadyBookedMessage" = "Hai già una prenotazione attiva!";
+"alert_carTripAlreadyBookedMessage" = "Hai già una corsa attiva!";

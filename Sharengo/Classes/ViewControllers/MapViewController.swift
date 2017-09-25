@@ -592,8 +592,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         UIView.animate(withDuration: 0.2, animations: {
             self.selectedCar = nil
             self.view_carPopup.alpha = 0.0
-            self.routeSteps = self.nearestCarRouteSteps
-            self.drawRoutes(steps: self.nearestCarRouteSteps)
+            if self.viewModel?.carBooked == nil {
+                self.routeSteps = self.nearestCarRouteSteps
+                self.drawRoutes(steps: self.nearestCarRouteSteps)
+            }
             self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
             self.view.layoutIfNeeded()
         })
@@ -633,6 +635,22 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func openCar(car: Car, action: String) {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
+            return
+        }
+        if self.viewModel?.carBooked != nil {
+            if self.viewModel?.carBooking != nil {
+                let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            } else if self.viewModel?.carTrip != nil {
+                let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
             return
         }
         if let distance = car.distance {
@@ -748,6 +766,22 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func bookCar(car: Car) {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
+            return
+        }
+        if self.viewModel?.carBooked != nil {
+            if self.viewModel?.carBooking != nil {
+                let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            } else if self.viewModel?.carTrip != nil {
+                let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
             return
         }
         self.showLoader()
@@ -1199,10 +1233,17 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.showUserPositionVisible(true)
                         if self?.lastLocation?.coordinate.latitude != locationManager.lastLocationCopy.value?.coordinate.latitude && self?.lastLocation?.coordinate.longitude != locationManager.lastLocationCopy.value?.coordinate.longitude {
                             if let location = self?.selectedCar?.location {
+                                if self?.viewModel?.carBooked != nil {
+                                    self?.viewModel?.getRoute(destination: self!.viewModel!.carBooked!.location!, completionClosure: { (steps) in
+                                        self?.routeSteps = steps
+                                        self?.drawRoutes(steps: steps)
+                                    })
+                                } else {
                                 self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
                                     self?.routeSteps = steps
                                     self?.drawRoutes(steps: steps)
                                 })
+                                }
                             } else if self?.viewModel?.carTrip != nil && self?.viewModel?.carTrip?.car.value?.parking == true {
                                 if let location = self!.viewModel?.carTrip?.car.value?.location {
                                     self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
@@ -1495,21 +1536,21 @@ extension MapViewController: GMSMapViewDelegate {
             }
         } else if let carAnnotation = marker.userData as? CarAnnotation {
             let car = carAnnotation.car
-            if let bookedCar = self.viewModel?.carBooked {
-                if car.plate != bookedCar.plate {
-                    let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                        alertView.dismissAlertView()
-                    })
-                    dialog.allowTouchOutsideToDismiss = false
-                    dialog.show()
-                } else {
-                    if let location = car.location {
-                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                        self.centerMap(on: newLocation, zoom: 18.5, animated: true)
-                    }
-                }
-                return true
-            }
+//            if let bookedCar = self.viewModel?.carBooked {
+//                if car.plate != bookedCar.plate {
+//                    let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+//                        alertView.dismissAlertView()
+//                    })
+//                    dialog.allowTouchOutsideToDismiss = false
+//                    dialog.show()
+//                } else {
+//                    if let location = car.location {
+//                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//                        self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+//                    }
+//                }
+//                return true
+//            }
             if car.plate != self.selectedCar?.plate {
                 self.drawRoutes(steps: self.routeSteps)
             }
@@ -1537,11 +1578,13 @@ extension MapViewController: GMSMapViewDelegate {
                 self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                 self.view.layoutIfNeeded()
                 self.selectedCar = car
-                if let location = car.location {
-                    self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                        self.routeSteps = steps
-                        self.drawRoutes(steps: steps)
-                    })
+                if self.viewModel?.carBooked == nil {
+                    if let location = car.location {
+                        self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                            self.routeSteps = steps
+                            self.drawRoutes(steps: steps)
+                        })
+                    }
                 }
             })
         } else if let feedAnnotation = marker.userData as? FeedAnnotation {
