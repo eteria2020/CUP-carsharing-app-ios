@@ -218,6 +218,22 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
+                if self?.viewModel?.carBooked != nil {
+                    if self?.viewModel?.carBooking != nil {
+                        let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    } else if self?.viewModel?.carTrip != nil {
+                        let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                    return
+                }
                 self?.openCar(car: car, action: "open")
             case .book(let car):
                 self?.bookCar(car: car)
@@ -268,13 +284,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.view_carBookingPopup.alpha = 0.0
         switch Device().diagonal {
         case 3.5:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
-        case 4:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195
+        case 4:
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 210
         case 4.7:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
         case 5.5:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
         default:
             break
         }
@@ -635,22 +651,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func openCar(car: Car, action: String) {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
-            return
-        }
-        if self.viewModel?.carBooked != nil {
-            if self.viewModel?.carBooking != nil {
-                let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-            } else if self.viewModel?.carTrip != nil {
-                let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-            }
             return
         }
         if let distance = car.distance {
@@ -1533,6 +1533,27 @@ extension MapViewController: GMSMapViewDelegate {
             if let location = cityAnnotation.city?.location {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.centerMap(on: newLocation, zoom: 11.5, animated: true)
+            }
+        } else if marker as? UserAnnotation != nil {
+            if let carTrip = self.viewModel?.carTrip {
+                if carTrip.car.value?.parking == false {
+                    self.view_carPopup.updateWithCar(car: carTrip.car.value!)
+                    self.view_carPopup.viewModel?.type.value = .car
+                    self.view.layoutIfNeeded()
+                    UIView .animate(withDuration: 0.2, animations: {
+                        if carTrip.car.value!.type.isEmpty {
+                            self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+                        } else if carTrip.car.value!.type.contains("\n") {
+                            self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55
+                        } else {
+                            self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
+                        }
+                        self.view_carPopup.alpha = 1.0
+                        self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                        self.view.layoutIfNeeded()
+                        self.selectedCar = carTrip.car.value!
+                    })
+                }
             }
         } else if let carAnnotation = marker.userData as? CarAnnotation {
             let car = carAnnotation.car

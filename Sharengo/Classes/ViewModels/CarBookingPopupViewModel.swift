@@ -134,7 +134,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         } else if self.carTrip != nil {
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
                 if let timer = self.carTrip?.timer {
-                    self.time.value = timer
+                    self.time.value = String(format: "lbl_carTripPopupTime".localized(), timer)
                 }
             }
         }

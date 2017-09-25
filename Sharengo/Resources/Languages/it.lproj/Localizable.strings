@@ -105,7 +105,7 @@
 
 // CarPopup
 "lbl_carPopupType" = "Auto più vicina";
-"lbl_carPopupPlate" = "<bold>%@</bold>";
+"lbl_carPopupPlate" = "<big>%@</big>";
 "lbl_carPopupCapacity" = "autonomia: <bold>%@ km</bold>";
 "lbl_carPopupDistance_km" = "%.2f km di distanza";
 "lbl_carPopupDistance_mt" = "%.3d mt di distanza";
@@ -117,11 +117,12 @@
 "alert_carPopupDistanceMessage" = "Sei troppo distante dalla Share'ngo che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 
 // CarBookingPopup
-"lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
+"lbl_carBookingPopupPin" = "<white>IL TUO PIN UTENTE:</white> %@";
 "lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
-"lbl_carTripPopupInfo" = "<status>CORSA ATTIVA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
+"lbl_carTripPopupInfo" = "<status>CORSA ATTIVA</status>\n<bold>TARGA %@</bold>";
 "lbl_carBookingPopupTime" = "Scade tra\n%@";
+"lbl_carTripPopupTime" = "Durata corsa:\n%@";
 "lbl_carBookingPopupTimeMinute" = "minuto";
 "lbl_carBookingPopupTimeMinutes" = "minuti";
 "alert_carBookingPopupDeleteMessage" = "Eliminando questa prenotazione, non potrai più prenotare la stessa auto nelle prossime 4 ore. Confermi di voler cancellare la prenotazione?";

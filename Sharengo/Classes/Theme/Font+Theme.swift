@@ -232,13 +232,13 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
             // CarBookingPopup
             case .carBookingPopupPin:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .carBookingPopupLabel:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             case .carBookingPopupLabelEmphasized:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .carBookingPopupStatus:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // CarBookingCompleted
             case .carBookingCompletedBannerLabel:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
