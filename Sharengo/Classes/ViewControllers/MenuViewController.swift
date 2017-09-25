@@ -208,9 +208,10 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
      This method is called from collection delegate to decide how the list interface is showed (size)
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let height = max(54, (UIScreen.main.bounds.height-76)/9)
-        return CGSize(width: size.width, height: height)
+        let width = collectionView.bounds.size.width
+        return CGSize(width: width, height: height)
     }
     
     /**

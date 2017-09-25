@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupPolygons()
         self.setupGoogleMaps()
         self.setupFabric()
+        CoreController.shared.updateArchivedCarTrips()
         _ = CoreController.shared.pulseYellow
         _ = CoreController.shared.pulseGreen
         
@@ -57,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         LocationManager.sharedInstance.locationManager?.stopUpdatingLocation()
         LocationManager.sharedInstance.locationManager?.startUpdatingLocation()
+        CoreController.shared.updateArchivedCarTrips()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

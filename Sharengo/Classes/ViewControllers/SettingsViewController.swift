@@ -122,8 +122,9 @@ public class SettingsViewController : BaseViewController, ViewModelBindable, UIC
      This method is called from collection delegate to decide how the list interface is showed (size)
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
+        //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        let width = collectionView.bounds.size.width
+        return CGSize(width: width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/3)
     }
     
     /**

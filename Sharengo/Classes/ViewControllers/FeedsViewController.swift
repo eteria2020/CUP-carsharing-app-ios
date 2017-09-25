@@ -410,8 +410,9 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
                 return size
             case .categories:
-                let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 2)
-                return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height+self.btn_aroundMe.frame.size.height))/3)
+                //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 2)
+                let width = collectionView.bounds.size.width
+                return CGSize(width: width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height+self.btn_aroundMe.frame.size.height))/3)
             }
         }
         

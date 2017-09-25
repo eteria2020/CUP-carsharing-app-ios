@@ -51,6 +51,8 @@ public class CoreController {
     public lazy var pulseYellow: UIImage = CoreController.shared.getPulseYellow()
     /// Support variabile for POI with Pulse green image
     public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
+    /// Array of archived car trips
+    public var archivedCarTrips: [CarTrip] = []
 
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -76,6 +78,28 @@ public class CoreController {
     }
     
     // MARK: - Update methods
+    
+    /**
+     This method update list of archived car trips
+     */
+    public func updateArchivedCarTrips() {
+        ApiController().archivedTripsList()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.array_data {
+                        if let carTrips = [CarTrip].from(jsonArray: data) {
+                            self.archivedCarTrips = carTrips
+                        }
+                    }
+                case .error(_):
+                    break
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
     
     /**
      This method update useful data of app like cities and polygons

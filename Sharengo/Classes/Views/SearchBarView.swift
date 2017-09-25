@@ -236,7 +236,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        let width = collectionView.bounds.size.width
         var height: CGFloat = 0.0
         switch Device().diagonal {
         case 3.5:
@@ -250,7 +251,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         default:
             break
         }
-        let newSize = CGSize(width: size.width, height: height)
+        let newSize = CGSize(width: width, height: height)
         return newSize
     }
     
