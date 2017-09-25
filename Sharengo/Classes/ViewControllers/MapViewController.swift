@@ -1365,6 +1365,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     }
     
     /**
+     This method centers map on user position
+     */
+    public func centerMapWithoutAlert() {
+        let locationManager = LocationManager.sharedInstance
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if let userLocation = locationManager.lastLocationCopy.value {
+                self.centerMap(on: userLocation, zoom: 16.5, animated: true)
+                return
+            }}
+    }
+    
+    /**
      This method centers map on position with zoom
      - Parameter position: Location in which the map has to be centered
      - Parameter zoom: Zoom level of the map

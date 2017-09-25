@@ -290,6 +290,11 @@ public class CoreController {
             return
         }
         if self.currentCarTrip != nil {
+            /*
+            if let mapViewController = CoreController.shared.currentViewController as? MapViewController {
+                mapViewController.centerMapWithoutAlert()
+            }
+            */
             self.apiController.getCurrentTrip()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
