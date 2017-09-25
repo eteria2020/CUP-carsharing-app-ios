@@ -57,6 +57,7 @@
 
 // Menu
 "lbl_menuHeaderTitleLogged" = "Hi %@, welcome back!";
+"lbl_menuHeaderTitleLoggedF" = "Hi %@, welcome back!";
 "lbl_menuHeaderTitleGuest" = "Hi, welcome!";
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Signup";
@@ -77,6 +78,7 @@
 // Home
 "alert_homeNotAvailable" = "This feature will be released soon";
 "lbl_homeDescriptionLogged" = "<bold>Welcome back %@!</bold>";
+"lbl_homeDescriptionLoggedF" = "<bold>Welcome back %@!</bold>";
 "lbl_homeDescriptionNotLogged" = "<bold>Welcome!</bold>";
 
 // Intro

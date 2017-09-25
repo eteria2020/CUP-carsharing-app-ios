@@ -57,6 +57,7 @@
 
 // Menu
 "lbl_menuHeaderTitleLogged" = "Ciao %@, bentornato!";
+"lbl_menuHeaderTitleLoggedF" = "Ciao %@, bentornata!";
 "lbl_menuHeaderTitleGuest" = "Ciao, benvenuto!";
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Iscrizione";
@@ -77,6 +78,7 @@
 // Home
 "alert_homeNotAvailable" = "Questa funzione sarà disponibile prossimamente.";
 "lbl_homeDescriptionLogged" = "<bold>Bentornato %@!</bold>";
+"lbl_homeDescriptionLoggedF" = "<bold>Bentornata %@!</bold>";
 "lbl_homeDescriptionNotLogged" = "<bold>Benvenuto!</bold>";
 
 // Intro

@@ -111,6 +111,9 @@ public final class LoginViewModel: ViewModelType {
                         if let bonus = data["bonus"] {
                             KeychainSwift().set("\(String(describing: bonus))", forKey: "UserBonus")
                         }
+                        if let gender = data["gender"] {
+                            KeychainSwift().set("\(String(describing: gender))", forKey: "UserGender")
+                        }
                         if let discountRate = data["discount_rate"] {
                             KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
                         }
@@ -122,6 +125,7 @@ public final class LoginViewModel: ViewModelType {
                         self.setupSettings()
                         self.loginExecuted.value = true
                         CoreController.shared.updateData()
+                        CoreController.shared.updateArchivedCarTrips()
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
                     }
                     else if response.status == 404, let code = response.code {

@@ -243,7 +243,11 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
     @objc fileprivate func updateUserData() {
         DispatchQueue.main.async {
             if let firstname = KeychainSwift().get("UserFirstname") {
-                self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
+                if KeychainSwift().get("UserGender") == "female" {
+                    self.lbl_description.styledText = String(format: "lbl_homeDescriptionLoggedF".localized(), firstname)
+                } else {
+                    self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
+                }
             } else {
                 self.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
             }

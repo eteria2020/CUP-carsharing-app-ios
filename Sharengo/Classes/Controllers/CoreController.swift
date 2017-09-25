@@ -83,6 +83,9 @@ public class CoreController {
      This method update list of archived car trips
      */
     public func updateArchivedCarTrips() {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            return
+        }
         ApiController().archivedTripsList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in

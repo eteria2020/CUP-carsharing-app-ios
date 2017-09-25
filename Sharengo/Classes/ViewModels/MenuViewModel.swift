@@ -138,7 +138,11 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
         } else {
-            self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), KeychainSwift().get("UserFirstname")!)
+            if KeychainSwift().get("UserGender") == "female" {
+                self.welcome = String(format: "lbl_menuHeaderTitleLoggedF".localized(), KeychainSwift().get("UserFirstname")!)
+            } else {
+                self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), KeychainSwift().get("UserFirstname")!)
+            }
             self.userIconIsHidden = false
             let menuItem1 = MenuItem(title: "lbl_menuProfile", icon: "ic_profilo", viewModel: ViewModelFactory.userArea())
             let menuItem2 = MenuItem(title: "lbl_menuSearchCars", icon: "ic_prenota", viewModel: ViewModelFactory.map(type: .searchCars))
