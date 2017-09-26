@@ -264,6 +264,16 @@ public class CoreController {
                     self.updateCarTrips()
                     return
                 }
+            } else if let carTrip = currentViewController.viewModel?.carTrip {
+                if carTrip.minutes < 1 {
+                    self.updateCarTrips()
+                    return
+                } else if carTrip.changedStatus != nil {
+                    if carTrip.changedStatusMinutes < 1 {
+                        self.updateCarTrips()
+                        return
+                    }
+                }
             }
         }
         self.apiController.bookingList()

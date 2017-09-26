@@ -374,7 +374,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
             self.checkUserPositionFromForeground()
-            CoreController.shared.updateData()
+//            CoreController.shared.updateData()
+            CoreController.shared.updateCarBookings()
+            CoreController.shared.updateCarTrips()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
@@ -724,6 +726,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 self.viewModel?.carBooked = car
                                                 self.viewModel?.carTrip = carTrip
                                                 self.viewModel?.carBooking = nil
+                                                CoreController.shared.allCarBookings = []
+                                                CoreController.shared.currentCarBooking = nil
                                                 self.getResultsWithoutLoading()
                                                 self.routeSteps = self.nearestCarRouteSteps
                                                 self.drawRoutes(steps: self.nearestCarRouteSteps)
@@ -749,6 +753,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self.viewModel?.carBooked = car
                                 self.viewModel?.carTrip = carTrip
                                 self.viewModel?.carBooking = nil
+                                CoreController.shared.allCarBookings = []
+                                CoreController.shared.currentCarBooking = nil
                                 self.getResultsWithoutLoading()
                                 self.routeSteps = self.nearestCarRouteSteps
                                 self.drawRoutes(steps: self.nearestCarRouteSteps)
