@@ -370,6 +370,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.getResultsWithoutLoading()
             self.routeSteps = self.nearestCarRouteSteps
             self.drawRoutes(steps: self.nearestCarRouteSteps)
+            CoreController.shared.notificationIsShowed = true
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
@@ -377,6 +378,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
 //            CoreController.shared.updateData()
             CoreController.shared.updateCarBookings()
             CoreController.shared.updateCarTrips()
+            let dispatchTime = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                CoreController.shared.notificationIsShowed = false
+            }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
@@ -672,8 +677,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
             #endif
         } else {
-            self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
-            return
+            //self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
+            //return
         }
         self.showLoader()
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
