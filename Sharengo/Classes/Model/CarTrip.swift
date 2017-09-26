@@ -123,6 +123,21 @@ public class CarTrip: ModelType, Decodable {
             return 0
         }
     }
+    var changedStatus: Date?
+    public var changedStatusMinutes: Int {
+        get {
+            if let timeStart = self.changedStatus {
+                let start = timeStart
+                let enddt = Date()
+                let calendar = Calendar.current
+                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
+                if let min = datecomponents.minute {
+                    return Int(min)
+                }
+            }
+            return 0
+        }
+    }
 
     // MARK: - Init methods
     

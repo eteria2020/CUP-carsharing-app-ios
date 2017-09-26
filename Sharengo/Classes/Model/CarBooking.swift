@@ -57,6 +57,22 @@ public class CarBooking: ModelType, Decodable {
             return nil
         }
     }
+    
+    /// Time of carBooking in action used in views
+    public var minutes: Int {
+        get {
+            if let timeStart = self.timeStart {
+                let start = timeStart
+                let enddt = Date()
+                let calendar = Calendar.current
+                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
+                if let min = datecomponents.minute {
+                    return Int(min)
+                }
+            }
+            return 0
+        }
+    }
 
     // MARK: - Init methods
     

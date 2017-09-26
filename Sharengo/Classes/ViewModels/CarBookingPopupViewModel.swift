@@ -78,6 +78,8 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
             }
             if car.opened {
                 self.hideButtons = true
+            } else {
+                self.hideButtons = false
             }
         }
     }
@@ -119,8 +121,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
             self.pin = ""
         }
         self.info.value = ""
-        self.hideButtons = false
-        self.updateTime()
+         self.updateTime()
     }
     
     @objc fileprivate func updateTime() {

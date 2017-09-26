@@ -257,6 +257,15 @@ public class CoreController {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
+        if let currentViewController = CoreController.shared.currentViewController as? MapViewController {
+            if let carBooking = currentViewController.viewModel?.carBooking {
+                if carBooking.minutes < 1 {
+                    self.allCarBookings = [carBooking]
+                    self.updateCarTrips()
+                    return
+                }
+            }
+        }
         self.apiController.bookingList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -289,33 +298,41 @@ public class CoreController {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
-        if self.currentCarTrip != nil {
-            /*
-            if let mapViewController = CoreController.shared.currentViewController as? MapViewController {
-                mapViewController.centerMapWithoutAlert()
-            }
-            */
-            self.apiController.getCurrentTrip()
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status == 200, let data = response.array_data {
-                            if let carTrips = [CarTrip].from(jsonArray: data) {
-                                self.allCarTrips = carTrips
-                                self.stopUpdateData()
-                                return
-                            }
-                        }
-                        self.allCarTrips = []
+        if let currentViewController = CoreController.shared.currentViewController as? MapViewController {
+            if let carTrip = currentViewController.viewModel?.carTrip {
+                if carTrip.minutes < 1 {
+                    self.allCarTrips = [carTrip]
+                    self.stopUpdateData()
+                    return
+                } else if carTrip.changedStatus != nil {
+                    if carTrip.changedStatusMinutes < 1 {
+                        self.allCarTrips = [carTrip]
                         self.stopUpdateData()
-                    case .error(_):
-                        self.allCarTrips = []
-                        self.stopUpdateData()
-                    default:
-                        break
+                        return
                     }
-                }.addDisposableTo(self.disposeBag)
+                }
+                self.apiController.getCurrentTrip()
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status == 200, let data = response.array_data {
+                                if let carTrips = [CarTrip].from(jsonArray: data) {
+                                    self.allCarTrips = carTrips
+                                    self.stopUpdateData()
+                                    return
+                                }
+                            }
+                            self.allCarTrips = []
+                            self.stopUpdateData()
+                        case .error(_):
+                            self.allCarTrips = []
+                            self.stopUpdateData()
+                        default:
+                            break
+                        }
+                    }.addDisposableTo(self.disposeBag)
+            }
         }
     }
     
@@ -325,6 +342,21 @@ public class CoreController {
     public func updateCarTrips() {
         if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
+        }
+        if let currentViewController = CoreController.shared.currentViewController as? MapViewController {
+            if let carTrip = currentViewController.viewModel?.carTrip {
+                if carTrip.minutes < 1 {
+                    self.allCarTrips = [carTrip]
+                    self.stopUpdateData()
+                    return
+                } else if carTrip.changedStatus != nil {
+                    if carTrip.changedStatusMinutes < 1 {
+                        self.allCarTrips = [carTrip]
+                        self.stopUpdateData()
+                        return
+                    }
+                }
+            }
         }
         self.apiController.getCurrentTrip()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))

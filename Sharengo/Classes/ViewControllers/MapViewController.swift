@@ -66,6 +66,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var lastNearestCar: Car?
     /// Variable used to save nearest car route steps
     public var nearestCarRouteSteps: [RouteStep] = []
+    /// Update Car Trip Timer
+    public var updateCarTripTimer: Timer?
     
     // MARK: - ViewModel methods
     
@@ -189,6 +191,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             default: break
             }
         }).addDisposableTo(self.disposeBag)
+        
+        self.updateCarTripTimer = Timer.scheduledTimer(timeInterval: 5*1, target: self, selector: #selector(self.centerMapWithoutAlert), userInfo: nil, repeats: true)
     }
     
     // MARK: - View methods
@@ -702,6 +706,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         car2?.booked = true
                                         DispatchQueue.main.async {
                                             self.hideLoader(completionClosure: { () in
+                                                self.viewModel!.carTrip!.changedStatus = Date()
                                                 self.viewModel!.carTrip!.car.value = car2
                                                 self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
                                             })
@@ -1367,13 +1372,17 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /**
      This method centers map on user position
      */
-    public func centerMapWithoutAlert() {
-        let locationManager = LocationManager.sharedInstance
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            if let userLocation = locationManager.lastLocationCopy.value {
-                self.centerMap(on: userLocation, zoom: 16.5, animated: true)
-                return
-            }}
+    @objc public func centerMapWithoutAlert() {
+        if let carTrip = self.viewModel?.carTrip {
+            if carTrip.car.value?.parking == false {
+                let locationManager = LocationManager.sharedInstance
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        self.centerMap(on: userLocation, zoom: 16.5, animated: true)
+                        return
+                    }}
+            }
+        }
     }
     
     /**
