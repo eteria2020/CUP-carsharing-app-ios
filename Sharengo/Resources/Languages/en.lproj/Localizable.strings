@@ -276,3 +276,4 @@
 "lbl_carPopupFreeType" = "%d minutes free drive";
 "alert_carBookingAlreadyBookedMessage" = "You already have an active booking!";
 "alert_carTripAlreadyBookedMessage" = "Your trip is already active!";
+"lbl_noDistance" = "Enable the GPS for more information";

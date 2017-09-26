@@ -134,6 +134,8 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
             } else if restultWalkingDistance.minutes > 0 {
                 self.walkingDistance = String(format: "lbl_carPopupWalkingDistance_m".localized(), restultWalkingDistance.minutes)
             }
+        } else {
+            self.distance = "lbl_noDistance".localized()
         }
     }
     

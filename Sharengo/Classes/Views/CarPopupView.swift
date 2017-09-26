@@ -108,15 +108,23 @@ class CarPopupView: UIView {
         }
         self.lbl_walkingDistance.styledText = viewModel.walkingDistance
         if viewModel.distance.isEmpty {
-            self.icn_walkingDistance.isHidden = true
-            self.lbl_walkingDistance.isHidden = true
             self.icn_distance.isHidden = true
             self.lbl_distance.isHidden = true
         } else {
-            self.icn_walkingDistance.isHidden = false
-            self.lbl_walkingDistance.isHidden = false
+            if car.distance != nil {
+                self.lbl_distance.numberOfLines = 2
+            } else {
+                self.lbl_distance.numberOfLines = 1
+            }
             self.icn_distance.isHidden = false
             self.lbl_distance.isHidden = false
+        }
+        if viewModel.walkingDistance.isEmpty {
+            self.icn_walkingDistance.isHidden = true
+            self.lbl_walkingDistance.isHidden = true
+        } else {
+            self.icn_walkingDistance.isHidden = false
+            self.lbl_walkingDistance.isHidden = false
         }
         if let location = car.location {
             let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
