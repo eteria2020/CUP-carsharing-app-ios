@@ -121,7 +121,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
             self.pin = ""
         }
         self.info.value = ""
-         self.updateTime()
+        self.updateTime()
     }
     
     @objc fileprivate func updateTime() {

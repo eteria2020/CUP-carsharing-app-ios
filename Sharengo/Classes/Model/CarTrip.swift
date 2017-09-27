@@ -188,6 +188,15 @@ public class CarTrip: ModelType, Decodable {
      This method is used to update car connected to Car Trip
      */
     public func updateCar(completionClosure: @escaping () ->()) {
+        if self.minutes < 1 {
+            completionClosure()
+            return
+        } else if self.changedStatus != nil {
+            if self.changedStatusMinutes < 1 {
+                completionClosure()
+                return
+            }
+        }
         if let carPlate = self.carPlate {
             CoreController.shared.apiController.searchCar(plate: carPlate)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
