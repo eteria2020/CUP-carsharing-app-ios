@@ -62,12 +62,17 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
 //                    self?.lbl_description.styledText = description
 //                }
 //            }).addDisposableTo(disposeBag)
-       
+    }
+    
+    func updateWithPlateSelected(idSelected: Int) {
         var title: String?
         var subtitle: String?
         
+        guard let viewModel = viewModel else {
+            return
+        }
         let model = viewModel.model as! CarTrip
-        let selected = model.selected
+        let selected = (model.id ?? -1) == idSelected
         
         if model.id != nil
         {
@@ -181,7 +186,7 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = -3
             self.constraint(withIdentifier: "bottomLblTitle", searchInSubviews: true)?.constant = 1
             self.constraint(withIdentifier: "topLblDescription", searchInSubviews: true)?.constant = 1
-//            if !viewModel.selected {
+            //            if !viewModel.selected {
             if !selected {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
@@ -190,27 +195,27 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         case 4:
             self.constraint(withIdentifier: "bottomLblTitle", searchInSubviews: true)?.constant = 5
             self.constraint(withIdentifier: "topLblDescription", searchInSubviews: true)?.constant = 5
-//            if !viewModel.selected {
+            //            if !viewModel.selected {
             if !selected {
-                    self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
+                self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -34
             }
         case 4.7:
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 5
             self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 5
-//            if !viewModel.selected {
+            //            if !viewModel.selected {
             if !selected {
-                    self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
+                self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -44
             }
         case 5.5:
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 10
             self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 10
-//            if !viewModel.selected {
+            //            if !viewModel.selected {
             if !selected {
-                    self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
+                self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -52
             }

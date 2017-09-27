@@ -55,6 +55,9 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                     case .next(let response):
                         if response.status == 200, let data = response.array_data {
                             if let carTrips = [CarTrip].from(jsonArray: data) {
+                                
+                                
+                                
                                 CoreController.shared.archivedCarTrips = carTrips
                                 self.allCarTrips = carTrips
                                 DispatchQueue.main.async {
@@ -175,7 +178,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
         guard let model = self.viewModel?.model(atIndex: indexPath) as?  CarTrip else { return CGSize.zero }
         //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let width = collectionView.bounds.size.width
-        if model.selected {
+        if model.id == self.viewModel?.idSelected {
             switch Device().diagonal {
             case 3.5:
                 return CGSize(width: width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/1.75)
@@ -193,6 +196,9 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let carTripCell = cell as? CarTripItemCollectionViewCell {
+            carTripCell.updateWithPlateSelected(idSelected: self.viewModel?.idSelected ?? -1)
+        }
         if indexPath.row % 2 == 0
         {
             cell.backgroundColor = Color.carTripsEvenCellBackground.value

@@ -721,8 +721,25 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 self.viewModel!.carTrip!.changedStatus = Date()
                                                 self.viewModel!.carTrip!.car.value = car2
                                                 self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
+                                                self.getResultsWithoutLoading()
+                                                self.routeSteps = self.nearestCarRouteSteps
+                                                self.drawRoutes(steps: self.nearestCarRouteSteps)
                                             })
                                         }
+//                                    } else if action == "park" && self.viewModel?.carTrip != nil {
+//                                        car2?.parking = true
+//                                        car2?.opened = true
+//                                        car2?.booked = true
+//                                        DispatchQueue.main.async {
+//                                            self.hideLoader(completionClosure: { () in
+//                                                self.viewModel!.carTrip!.changedStatus = Date()
+//                                                self.viewModel!.carTrip!.car.value = car2
+//                                                self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
+//                                                self.getResultsWithoutLoading()
+//                                                self.routeSteps = self.nearestCarRouteSteps
+//                                                self.drawRoutes(steps: self.nearestCarRouteSteps)
+//                                            })
+//                                        }
                                     } else {
                                         let carTrip = CarTrip(car: car2 ?? car)
                                         DispatchQueue.main.async {
@@ -1422,6 +1439,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      This method turns map toward the north
      */
     public func turnMap() {
+//        if let car = viewModel?.carTrip?.car.value {
+//            self.openCar(car: car, action: "park")
+//        }
         let newCamera = GMSCameraPosition.camera(withLatitude: self.mapView.camera.target.latitude,
                                                  longitude: self.mapView.camera.target.longitude,
                                                  zoom: self.mapView.camera.zoom,
