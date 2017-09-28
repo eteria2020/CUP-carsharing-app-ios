@@ -269,7 +269,7 @@
 "btn_login" = "ACCEDI";
 "lbl_buyMinutesHeader" = "ACQUISTA MINUTI";
 "lbl_userAreaHeader" = "AREA PERSONALE";
-"lbl_carTripParkingPopupInfo" = "<status>AUTO IN SOSTA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
+"lbl_carTripParkingPopupInfo" = "<status>AUTO IN SOSTA</status>\n<bold>TARGA %@</bold>";
 
 /////////////////////////
 

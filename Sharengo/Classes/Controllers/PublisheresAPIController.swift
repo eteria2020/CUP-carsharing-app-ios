@@ -202,7 +202,7 @@ fileprivate enum API {
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "http://universo-sharengo.thedigitalproject.it:universo-sharengo.thedigitalproject.it@universo-sharengo.thedigitalproject.it/feed")! }
+    var baseURL: URL { return URL(string: "https://www.sharengo.it/feed")! }
     
     var path: String {
         switch self {
