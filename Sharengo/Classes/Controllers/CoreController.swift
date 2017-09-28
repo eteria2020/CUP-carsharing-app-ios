@@ -189,6 +189,9 @@ public class CoreController {
                         if let bonus = data["bonus"] {
                             KeychainSwift().set("\(String(describing: bonus))", forKey: "UserBonus")
                         }
+                        if let gender = data["gender"] {
+                            KeychainSwift().set("\(String(describing: gender))", forKey: "UserGender")
+                        }
                         if let discountRate = data["discount_rate"] {
                             KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
                         }
