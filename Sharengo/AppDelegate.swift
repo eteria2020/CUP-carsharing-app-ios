@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             // Non sono loggato
         } else {
-            if KeychainSwift().get("PasswordClear") == nil {
+            if KeychainSwift().get("PasswordClear") == nil || KeychainSwift().get("UserFirstname") == nil  {
                 var languageid = "en"
                 if Locale.preferredLanguages[0] == "it-IT" {
                     languageid = "it"

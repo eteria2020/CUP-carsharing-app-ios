@@ -68,6 +68,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var nearestCarRouteSteps: [RouteStep] = []
     /// Update Car Trip Timer
     public var updateCarTripTimer: Timer?
+    public var updateFromBackgroundInProgress: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -354,6 +355,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         // NotificationCenter
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
+            self.updateFromBackgroundInProgress = true
+            self.showLoader()
             if let car = self.view_carBookingPopup?.viewModel?.carTrip?.car.value {
                 car.booked = false
                 car.opened = false
@@ -424,55 +427,57 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if let carTrip = CoreController.shared.allCarTrips.first {
             self.carTripTimeStart = carTrip.timeStart
             carTrip.updateCar {
-                    DispatchQueue.main.async {
-                        if let car = carTrip.car.value {
-                            if carTrip.id != self.viewModel?.carTrip?.id {
-                                // Show
-                                car.booked = true
-                                car.opened = true
-                                self.view_carBookingPopup.alpha = 1.0
-                                self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
-                                self.viewModel?.carBooked = car
-                                self.viewModel?.carTrip = carTrip
-                                self.getResultsWithoutLoading()
-                                if car.parking == true {
-                                    if let location = car.location {
-                                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                        self.centerMap(on: newLocation, zoom: 18.5, animated: true)
-                                    }
-                                    if let location = car.location {
-                                        self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                            self.routeSteps = steps
-                                            self.drawRoutes(steps: steps)
-                                        })
-                                    }
+                DispatchQueue.main.async {
+                    if let car = carTrip.car.value {
+                        if carTrip.id != self.viewModel?.carTrip?.id {
+                            // Show
+                            car.booked = true
+                            car.opened = true
+                            self.view_carBookingPopup.alpha = 1.0
+                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                            self.viewModel?.carBooked = car
+                            self.viewModel?.carTrip = carTrip
+                            self.getResultsWithoutLoading()
+                            if car.parking == true {
+                                if let location = car.location {
+                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                                    self.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                 }
-                                if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
-                                    DispatchQueue.main.async {
-                                        self.setCarsButtonVisible(true)
-                                        self.viewModel?.showCars = true
-                                        self.updateResults()
-                                    }
-                                }
-                            } else {
-                                // Update
-                                car.booked = true
-                                car.opened = true
-                                self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
-                                self.viewModel?.carBooked = car
-                                self.viewModel?.carTrip = carTrip
-                                self.getResultsWithoutLoading()
-                                if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
-                                    DispatchQueue.main.async {
-                                        self.setCarsButtonVisible(true)
-                                        self.viewModel?.showCars = true
-                                        self.updateResults()
-                                    }
+                                if let location = car.location {
+                                    self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                        self.routeSteps = steps
+                                        self.drawRoutes(steps: steps)
+                                    })
                                 }
                             }
+                            if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
+                                DispatchQueue.main.async {
+                                    self.setCarsButtonVisible(true)
+                                    self.viewModel?.showCars = true
+                                    self.updateResults()
+                                }
+                            }
+                            self.closeLoader()
+                        } else {
+                            // Update
+                            car.booked = true
+                            car.opened = true
+                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                            self.viewModel?.carBooked = car
+                            self.viewModel?.carTrip = carTrip
+                            self.getResultsWithoutLoading()
+                            if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
+                                DispatchQueue.main.async {
+                                    self.setCarsButtonVisible(true)
+                                    self.viewModel?.showCars = true
+                                    self.updateResults()
+                                }
+                            }
+                            self.closeLoader()
                         }
                     }
                 }
+            }
         } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carTrip != nil {
             let dispatchTime = DispatchTime.now() + 1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -495,6 +500,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self.getResultsWithoutLoading()
                     self.routeSteps = self.nearestCarRouteSteps
                     self.drawRoutes(steps: self.nearestCarRouteSteps)
+                    self.closeLoader()
                 }
             }
         }
@@ -531,6 +537,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                             self?.updateResults()
                                         }
                                     }
+                                    self?.closeLoader()
                                 }
                             } else {
                                 // Update
@@ -546,6 +553,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         self?.updateResults()
                                     }
                                 }
+                                self?.closeLoader()
                             }
                         }
                     }
@@ -553,6 +561,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carBooking != nil {
             // Hide
             self.closeCarBookingPopupView()
+            self.closeLoader()
         }
         if let car = self.selectedCar {
             self.view_carPopup.updateWithCar(car: car)
@@ -568,6 +577,17 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.setCarsButtonVisible(true)
                 self.viewModel?.showCars = true
                 self.updateResults()
+            }
+        }
+    }
+    
+    func closeLoader() {
+        if self.updateFromBackgroundInProgress {
+            let dispatchTime = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                self.hideLoader {
+                    self.updateFromBackgroundInProgress = false
+                }
             }
         }
     }
