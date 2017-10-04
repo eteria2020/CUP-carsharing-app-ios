@@ -16,9 +16,15 @@ import KeychainSwift
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
+/**
+ PublishersAPIController class is a controller that manage publishers services.
+ */
 public class PublishersAPIController {
-    fileprivate var manager: SessionManager?
+    /// Session Manager
+    public var manager: SessionManager?
    
+    // MARK: - Init methods
+    
     init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
@@ -29,7 +35,12 @@ public class PublishersAPIController {
         )
     }
     
-    func getCities() -> Observable<Response> {
+    // MARK: - Get methods
+    
+    /**
+     This method return cities related to publishers.
+     */
+    public func getCities() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -56,7 +67,10 @@ public class PublishersAPIController {
         }
     }
     
-    func getCategories() -> Observable<Response> {
+    /**
+     This method return categories relative to publishers.
+     */
+    public func getCategories() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -83,7 +97,11 @@ public class PublishersAPIController {
         }
     }
     
-    func getOffers(category: Category? = nil) -> Observable<Response> {
+    /**
+     This method return offers of a category.
+     - Parameter category: category that can be nil if we want return all offers
+     */
+    public func getOffers(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -110,7 +128,13 @@ public class PublishersAPIController {
         }
     }
     
-    func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
+    /**
+     This method return offers visible in map that user see
+     - Parameter latitude: The latitude is one of the coordinate that determines the center of the map
+     - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
+     - Parameter radius: The radius is the distance from the center of the map to the edge of the map
+     */
+    public func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -137,7 +161,11 @@ public class PublishersAPIController {
         }
     }
     
-    func getEvents(category: Category? = nil) -> Observable<Response> {
+    /**
+     This method return events of a category.
+     - Parameter category: category that can be nil if we want return all events
+     */
+    public func getEvents(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -164,7 +192,13 @@ public class PublishersAPIController {
         }
     }
     
-    func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
+    /**
+     This method return events visible in map that user see
+     - Parameter latitude: The latitude is one of the coordinate that determines the center of the map
+     - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
+     - Parameter radius: The radius is the distance from the center of the map to the edge of the map
+     */
+    public func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {

@@ -12,7 +12,7 @@ import Boomerang
 import Action
 import RxSwift
 
-enum SpeechErrorType {
+public enum SpeechErrorType {
     case empty
     case authSpeechAuthorizationDenied
     case authSpeechAuthorizationRestricted
@@ -86,24 +86,37 @@ enum SpeechErrorType {
     }
 }
 
+/**
+ SpeechController class is a controller that manage speech device functionality.
+ */
 @available(iOS 10.0, *)
-class SpeechController: NSObject
+public class SpeechController: NSObject
 {
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "lcl_searchBarSpeechRecognizer".localized()))
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    private var recognitionTask: SFSpeechRecognitionTask?
-    private let audioEngine = AVAudioEngine()
-    
-    var speechInProgress: Variable<Bool> = Variable(false)
-    var speechTranscription: Variable<String?> = Variable(nil)
-    var speechError: Variable<SpeechErrorType?> = Variable(nil)
-    var isAuthorized:Bool {
+    /// Speech Recognizer with user language setting
+    public let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "lcl_searchBarSpeechRecognizer".localized()))
+    /// Buffer Speech Recognizer Request
+    public var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    /// Speech Recognizer task
+    public var recognitionTask: SFSpeechRecognitionTask?
+    /// Audio engine
+    public let audioEngine = AVAudioEngine()
+    /// Boolean that determine if there is a speech in progress
+    public var speechInProgress: Variable<Bool> = Variable(false)
+    /// Speech Transcription of last speech
+    public var speechTranscription: Variable<String?> = Variable(nil)
+    /// Speech Error if there is one in last speech
+    public var speechError: Variable<SpeechErrorType?> = Variable(nil)
+    /// Boolean that determine if app can use speech services or not
+    public var isAuthorized:Bool {
         get {
             return SFSpeechRecognizer.authorizationStatus() == .authorized && AVAudioSession.sharedInstance().recordPermission() == AVAudioSessionRecordPermission.granted
         }
     }
     
-    func requestSpeechAuthorization() {
+    /**
+     This method request authorization to user for use speech services
+     */
+    public func requestSpeechAuthorization() {
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             UserDefaults.standard.set(true, forKey: "alertSpeechRecognizerRequestAuthorization")
             switch authStatus {
@@ -134,6 +147,9 @@ class SpeechController: NSObject
         }
     }
     
+    /**
+     This method request authorization to user for use microphone services
+     */
     func requestMicrophoneAuthorization() {
         UserDefaults.standard.set(true, forKey: "alertMicrophoneRequestAuthorization")
         AVAudioSession.sharedInstance().requestRecordPermission { (success) in
@@ -160,7 +176,10 @@ class SpeechController: NSObject
         }
     }
     
-    func manageRecording() {
+    /**
+     This method manage recording actions like start and stop.
+     */
+    public func manageRecording() {
         if self.audioEngine.isRunning {
             self.speechInProgress.value = false
             // Terminiamo l'ascolto
@@ -172,7 +191,10 @@ class SpeechController: NSObject
         }
     }
     
-    fileprivate func startRecording() {
+    /**
+     This method start recording of a new speech.
+     */
+    public func startRecording() {
         audioEngine.inputNode?.removeTap(onBus: 0)
         self.speechRecognizer?.delegate = self
         if self.recognitionTask != nil {
@@ -228,7 +250,10 @@ class SpeechController: NSObject
 
 @available(iOS 10.0, *)
 extension SpeechController: SFSpeechRecognizerDelegate {
-    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+    /**
+     SFSpeech Delegate that check if user's authorization about speech is changed or not.
+     */
+    public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         self.speechInProgress.value = false
         self.speechError.value = .notAvailable
         self.manageRecording()

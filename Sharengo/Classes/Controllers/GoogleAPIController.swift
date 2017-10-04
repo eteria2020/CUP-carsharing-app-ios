@@ -15,9 +15,15 @@ import Alamofire
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class GoogleAPIController {
-    fileprivate var manager: SessionManager?
+/**
+ GoogleAPIController class is a controller that manage google services about search address and walk navigation.
+ */
+public class GoogleAPIController {
+    /// Session Manager
+    public var manager: SessionManager?
    
+    // MARK: - Init methods
+    
     init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
@@ -27,8 +33,14 @@ final class GoogleAPIController {
             configuration: configuration
         )
     }
+
+    // MARK: - Search methods
     
-    func searchAddress(text: String) -> Observable<[Address]> {
+    /**
+     This method return an observable address object.
+     - Parameter text: address to find
+     */
+    public func searchAddress(text: String) -> Observable<[Address]> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -59,7 +71,11 @@ final class GoogleAPIController {
         }
     }
     
-    func searchRoute(destination: CLLocation) -> Observable<[RouteStep]> {
+    /**
+     This method return an observable route step object.
+     - Parameter destination: final location of route
+     */
+    public func searchRoute(destination: CLLocation) -> Observable<[RouteStep]> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {

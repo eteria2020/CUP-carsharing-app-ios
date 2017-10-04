@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Enum of button's styles used in app
+*/
 public enum ButtonStyle {
     case clearButton(UIFont, UIColor)
     case roundedButton(UIColor)
@@ -15,8 +18,16 @@ public enum ButtonStyle {
     case headerButton(UIFont, UIColor, UIColor)
 }
 
+/**
+ UIButton Extension with useful methods
+*/
 public extension UIButton {
-    func style(_ style:ButtonStyle, title: String) {
+    /**
+     This method set button properties associated with a style and set button's title.
+     - Parameter style: style of button
+     - Parameter title: title of button
+     */
+    public func style(_ style:ButtonStyle, title: String) {
         switch style {
         case .clearButton(let font, let color):
             self.backgroundColor = .clear
