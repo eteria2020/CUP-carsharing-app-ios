@@ -9,18 +9,27 @@
 import UIKit
 import BonMot
 
+/**
+ Protocol used with TextStyle enum
+ */
 public protocol TextStyleType {
     var name:String {get}
     var style:StringStyle {get}
 }
 
+/**
+ Protocol that register Text Theme with a specific label, textfield, etc...
+ */
 public extension NamedStyles {
     func registerStyle(style:TextStyleType) {
         self.registerStyle(forName: style.name, style: style.style)
     }
 }
 
-enum TextStyle: String, TextStyleType {
+/**
+ Main text in app associate with a Text Style
+ */
+public enum TextStyle: String, TextStyleType {
     // Intro
     case introTitle = "introTitle"
 
@@ -144,7 +153,8 @@ enum TextStyle: String, TextStyleType {
     case ratesBonusTitle = "ratesBonusTitle"
     case ratesBonusDescription = "ratesBonusDescription"
     
-    static var all:[TextStyle] {
+    /// All Text Styles in a array
+    public static var all:[TextStyle] {
         return [
             // Intro
             .introTitle,
@@ -248,11 +258,11 @@ enum TextStyle: String, TextStyleType {
         ]
     }
     
-    var name:String {
+    public var name:String {
         return self.rawValue
     }
     
-    var style:StringStyle {
+    public var style:StringStyle {
         return { () -> StringStyle in
             switch self {
             // Intro
@@ -467,7 +477,10 @@ enum TextStyle: String, TextStyleType {
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
     
-    static func setup() {
+    /**
+     This method register all text styles that UI will use
+     */
+    public static func setup() {
         all.forEach { NamedStyles.shared.registerStyle(style: $0) }
     }
 }

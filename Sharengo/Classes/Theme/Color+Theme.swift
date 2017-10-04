@@ -8,7 +8,10 @@
 
 import UIKit
 
-extension UIColor {
+/**
+ UIColor Extension with useful methods
+ */
+public extension UIColor {
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
@@ -28,7 +31,10 @@ extension UIColor {
     }
 }
 
-enum ColorBrand {
+/**
+ Brand's Colors
+ */
+public enum ColorBrand {
     case yellow
     case green
     case black
@@ -62,7 +68,10 @@ enum ColorBrand {
     }
 }
 
-enum Color {
+/**
+ Colors of main parts
+ */
+public enum Color {
     // Alert
     case alertBackground
     case alertButtonsPositiveBackground
