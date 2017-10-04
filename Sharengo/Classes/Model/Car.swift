@@ -12,16 +12,16 @@ import Gloss
 import CoreLocation
 
 /**
- The Car model is used to represent a Car.
+ The Car model is used to represent a car.
  */
 public class Car: ModelType, Decodable {
-    /// Car Plate
+    /// Car plate
     public var plate: String?
-    /// Duration of a trip
+    /// Car autonomy
     public var capacity: Int?
-    /// Location where Car is located
+    /// Location where car is located
     public var location: CLLocation?
-    /// Distance between User and Car
+    /// Distance between user and car
     public var distance: CLLocationDistance?
     /// Boolean that determine if car is the nearest from user
     public var nearest: Bool = false
@@ -33,7 +33,7 @@ public class Car: ModelType, Decodable {
     public var parking: Bool = false
     /// Type of car
     public lazy var type: String = self.getType()
-    /// Address where Car is located
+    /// Address where car is located
     public var address: Variable<String?> = Variable(nil)
     /// Array used to show if there are bonus with this car
     public var bonus: [Bonus] = []
@@ -91,7 +91,7 @@ public class Car: ModelType, Decodable {
     /**
      This method return address of car
      */
-    func getAddress() {
+    public func getAddress() {
         if let location = self.location {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in

@@ -11,7 +11,7 @@ import RxSwift
 import Gloss
 
 /**
- The Bonus model is used to represent a singular bonus.
+ The Bonus model is used to represent a car bonus.
  */
 public class Bonus: ModelType, Decodable {
     /// Bonus type

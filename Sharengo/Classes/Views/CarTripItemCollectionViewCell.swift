@@ -84,7 +84,13 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         }
         
         if model.costComputed == true && model.totalCost != nil {
-            subtitle = String(format: "lbl_carTripsItemSubtitleTotalCost".localized(), model.endTime, Float(model.totalCost!)/100).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
+            let value = (Float(model.totalCost!)/100)
+            let valueString = "\(value)".replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
+            if valueString == "0" {
+                subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.endTime)
+            } else {
+                subtitle = String(format: "lbl_carTripsItemSubtitleTotalCost".localized(), model.endTime, Float(model.totalCost!)/100).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
+            }
         } else {
             subtitle = String(format: "lbl_carTripsItemSubtitle".localized(), model.endTime)
         }

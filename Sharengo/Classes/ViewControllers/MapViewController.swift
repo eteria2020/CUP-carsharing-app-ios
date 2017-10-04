@@ -68,6 +68,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var nearestCarRouteSteps: [RouteStep] = []
     /// Update Car Trip Timer
     public var updateCarTripTimer: Timer?
+    /// Boolean that checks if update is execute after background operation
     public var updateFromBackgroundInProgress: Bool = false
     
     // MARK: - ViewModel methods
@@ -386,9 +387,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
 //            CoreController.shared.updateData()
             CoreController.shared.updateCarBookings()
             CoreController.shared.updateCarTrips()
-            let dispatchTime = DispatchTime.now() + 0.5
+            let dispatchTime = DispatchTime.now() + 2.0
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                CoreController.shared.notificationIsShowed = false
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
@@ -424,7 +424,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      3. If there isn't a car trip/car booking and there is a saved car trip/car booking the application hides popup
      */
     @objc public func updateCarData() {
+        var hideLoader: Bool = true
         if let carTrip = CoreController.shared.allCarTrips.first {
+            hideLoader = false
             self.carTripTimeStart = carTrip.timeStart
             carTrip.updateCar {
                 DispatchQueue.main.async {
@@ -462,6 +464,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             // Update
                             car.booked = true
                             car.opened = true
+                            self.view_carBookingPopup.alpha = 1.0
                             self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
                             self.viewModel?.carBooked = car
                             self.viewModel?.carTrip = carTrip
@@ -475,10 +478,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             }
                             self.closeLoader()
                         }
+                    } else {
+                        self.closeLoader()
                     }
                 }
             }
         } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carTrip != nil {
+            hideLoader = false
             let dispatchTime = DispatchTime.now() + 1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 if self.view_carBookingPopup?.viewModel?.carTrip != nil {
@@ -501,10 +507,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self.routeSteps = self.nearestCarRouteSteps
                     self.drawRoutes(steps: self.nearestCarRouteSteps)
                     self.closeLoader()
+                } else {
+                    self.closeLoader()
                 }
             }
-        }
-        if let carBooking = CoreController.shared.allCarBookings.first {
+        } else if let carBooking = CoreController.shared.allCarBookings.first {
+            hideLoader = false
             carBooking.car.asObservable()
                 .subscribe(onNext: {[weak self] (car) in
                     DispatchQueue.main.async {
@@ -538,11 +546,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         }
                                     }
                                     self?.closeLoader()
+                                } else {
+                                    self?.closeLoader()
                                 }
                             } else {
                                 // Update
                                 car.booked = true
                                 self?.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                self?.view_carBookingPopup.alpha = 1.0
                                 self?.viewModel?.carBooked = car
                                 self?.viewModel?.carBooking = carBooking
                                 self?.getResultsWithoutLoading()
@@ -555,10 +566,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 }
                                 self?.closeLoader()
                             }
+                        } else {
+                            self?.closeLoader()
                         }
                     }
                 }).addDisposableTo(disposeBag)
         } else if self.view_carBookingPopup.alpha == 1.0 && self.view_carBookingPopup?.viewModel?.carBooking != nil {
+            hideLoader = false
             // Hide
             self.closeCarBookingPopupView()
             self.closeLoader()
@@ -579,9 +593,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.updateResults()
             }
         }
+        if hideLoader {
+            self.closeLoader()
+        }
     }
     
-    func closeLoader() {
+    /**
+     This method close loader after update
+     */
+    public func closeLoader() {
         if self.updateFromBackgroundInProgress {
             let dispatchTime = DispatchTime.now() + 1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {

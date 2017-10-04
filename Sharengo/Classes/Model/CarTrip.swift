@@ -11,30 +11,28 @@ import RxSwift
 import Gloss
 
 /**
- The CarTrip model is used to represent a Car Trip.
+ The CarTrip model is used to represent a car trip (current or archived).
  */
 public class CarTrip: ModelType, Decodable {
-    /// Unique identifier
+    /// Unique identifier of car trip
     public var id: Int?
-    /// Car Plate
+    /// Plate of booked car
     public var carPlate: String?
-    /// Start time of Car Trip
+    /// Start time of car trip
     public var timeStart: Date?
-    /// End time of Car Trip
+    /// End time of car trip
     public var timeEnd: Date?
-    /// Boolean used in car trips list
-    public var selected = false
-    /// Start Location of Car Trip
+    /// Start location of car trip
     public var locationStart: CLLocation?
-    /// End Location of Car Trip
+    /// End location of car trip
     public var locationEnd: CLLocation?
-    /// Price of Car Trip
+    /// Price of car trip
     public var totalCost: Int?
     /// Boolean that determine if price is calculated or not
     public var costComputed: Bool?
-    /// Car Object Model used as Car Trip
+    /// Car object used to read info about car (address, for example)
     public var car: Variable<Car?> = Variable(nil)
-    /// Timer of carTrip in action used in views
+    /// Timer of current car trip used in car booking popup (11:11:11, for example)
     public var timer: String? {
         get {
             if let timeStart = self.timeStart {
@@ -62,7 +60,7 @@ public class CarTrip: ModelType, Decodable {
             return nil
         }
     }
-    /// Time of carTrip in action used in views
+    /// Time of current car trip used in notification (1 minute, for example). If seconds are more than 30 1 minute is added
     public var time: String {
         get {
             if let timeStart = self.timeStart {
@@ -86,7 +84,7 @@ public class CarTrip: ModelType, Decodable {
             return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
         }
     }
-    /// End time of carTrip in action used in views
+    /// Time of current car trip used in car trips list (1 minute, for example)
     public var endTime: String {
         get {
             if let timeStart = self.timeStart,
@@ -108,7 +106,7 @@ public class CarTrip: ModelType, Decodable {
             return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
         }
     }
-    /// Time of carTrip in action used in views
+    /// Minutes of current car trip used in update data
     public var minutes: Int {
         get {
             if let timeStart = self.timeStart {
@@ -123,7 +121,9 @@ public class CarTrip: ModelType, Decodable {
             return 0
         }
     }
-    var changedStatus: Date?
+    /// Variable used from update data when car in car trip is parked
+    public var changedStatus: Date?
+    /// Minutes of car in car trip parked used in update data
     public var changedStatusMinutes: Int {
         get {
             if let timeStart = self.changedStatus {
@@ -185,12 +185,14 @@ public class CarTrip: ModelType, Decodable {
     // MARK - Update methods
     
     /**
-     This method is used to update car connected to Car Trip
+     This method is used to update car connected to car trip
      */
     public func updateCar(completionClosure: @escaping () ->()) {
         if self.minutes < 1 {
-            completionClosure()
-            return
+            if self.car.value != nil {
+                completionClosure()
+                return
+            }
         } else if self.changedStatus != nil {
             if self.changedStatusMinutes < 1 {
                 completionClosure()

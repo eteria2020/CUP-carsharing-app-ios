@@ -11,23 +11,23 @@ import RxSwift
 import Gloss
 
 /**
- The CarBooking model is used to represent a Car Booking action.
+ The CarBooking model is used to represent a car booking action.
  */
 public class CarBooking: ModelType, Decodable {
-    /// Unique identifier
-    var id: Int?
-    /// Boolean that show if CarBooking is activated or not
-    var isActive: Bool = false
-    /// Car Plate of booked car if CarBooking is active
-    var carPlate: String?
-    /// Start time of Car Booking
-    var timeStart: Date?
-    /// Duration time of Car Booking
-    var timeLength: Int = 1200
-    /// Car Object Model used as Car Booked
-    var car: Variable<Car?> = Variable(nil)
-    /// Timer of carBooking in action used in views
-    var timer: String? {
+    /// Unique identifier of car booking
+    public var id: Int?
+    /// Boolean that shows if car booking is active or not
+    public var isActive: Bool = false
+    /// Plate of booked car
+    public var carPlate: String?
+    /// Start time of car booking
+    public var timeStart: Date?
+    /// Max duration time of car booking
+    public var timeLength: Int = 1200
+    /// Car object used to read info about car (address, for example)
+    public var car: Variable<Car?> = Variable(nil)
+    /// Timer of current car booked used in car booking popup (11:11 minutes, for example)
+    public var timer: String? {
         get {
             if let timeStart = self.timeStart {
                 let start = timeStart
@@ -57,8 +57,7 @@ public class CarBooking: ModelType, Decodable {
             return nil
         }
     }
-    
-    /// Time of carBooking in action used in views
+    /// Minutes of current car booked used in update data
     public var minutes: Int {
         get {
             if let timeStart = self.timeStart {
