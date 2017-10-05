@@ -14,6 +14,9 @@ import Action
 import CoreLocation
 import DeviceKit
 
+/**
+ The CarBookingPopup View class is a view that shows info and actions relative to a car booking
+ */
 class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
     @IBOutlet fileprivate weak var btn_openCentered: UIButton!
@@ -27,12 +30,12 @@ class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var view_info: UIView!
     fileprivate var view: UIView!
     fileprivate var firstLoaded: Bool = false
-    
-    var viewModel: CarBookingPopupViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: CarBookingPopupViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? CarBookingPopupViewModel else {
             return
         }
@@ -46,7 +49,11 @@ class CarBookingPopupView: UIView {
     
     // MARK: - View methods
     
-    func updateWithCarBooking(carBooking: CarBooking) {
+    /**
+     This method update ui with a car booking object
+     - Parameter carBooking: car booking object
+     */
+    public func updateWithCarBooking(carBooking: CarBooking) {
         guard let viewModel = viewModel else {
             return
         }
@@ -55,7 +62,11 @@ class CarBookingPopupView: UIView {
         self.updateData()
     }
     
-    func updateWithCarTrip(carTrip: CarTrip) {
+    /**
+     This method update ui with a car trip object
+     - Parameter carTrip: car trip object
+     */
+    public func updateWithCarTrip(carTrip: CarTrip) {
         guard let viewModel = viewModel else {
             return
         }
@@ -104,7 +115,10 @@ class CarBookingPopupView: UIView {
             }).addDisposableTo(disposeBag)
     }
     
-    func updateButtons() {
+    /**
+     This method update buttons based on hideButtons property and if carTrip is nil or not
+     */
+    public func updateButtons() {
         guard let viewModel = viewModel else {
             return
         }

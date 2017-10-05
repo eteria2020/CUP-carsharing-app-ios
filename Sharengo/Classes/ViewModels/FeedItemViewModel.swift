@@ -11,9 +11,12 @@ import RxSwift
 import Boomerang
 import KeychainSwift
 
-final class FeedItemViewModel : ItemViewModelType {
-    var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier = CollectionViewCell.feed
+/**
+ The Feed viewmodel provides data related to display content on feed collection view cell
+ */
+public class FeedItemViewModel : ItemViewModelType {
+    public var model:ItemViewModelType.Model
+    public var itemIdentifier:ListIdentifier = CollectionViewCell.feed
     var date: String?
     var claim: String?
     var bottomText: String = ""
@@ -23,7 +26,7 @@ final class FeedItemViewModel : ItemViewModelType {
     var image: String?
     var favourited = false
     
-    init(model: Feed) {
+    public init(model: Feed) {
         self.model = model
         
         self.bottomText = ""

@@ -11,16 +11,26 @@ import RxSwift
 import Boomerang
 import Action
 
-enum NoFeedsSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum NoFeedsSelectionInput: SelectionInput {
     case empty
 }
 
-enum NoFeedsSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum NoFeedsSelectionOutput: SelectionOutput {
     case empty
 }
 
-final class NoFeedsViewModel: ViewModelType {
-    lazy var selection:Action<NoFeedsSelectionInput,NoFeedsSelectionOutput> = Action { input in
+/**
+ The No Feeds viewmodel provides data related to display content on NoFeedsVC
+ */
+public class NoFeedsViewModel: ViewModelType {
+    /// Selection variable
+    lazy public var selection:Action<NoFeedsSelectionInput,NoFeedsSelectionOutput> = Action { input in
         switch input {
         default:
             return .just(.empty)

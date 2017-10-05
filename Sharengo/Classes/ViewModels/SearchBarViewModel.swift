@@ -14,12 +14,19 @@ import ReachabilitySwift
 import CoreLocation
 import KeychainSwift
 
-enum SearchBarSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum SearchBarSelectionInput: SelectionInput {
     case item(IndexPath)
     case dictated
     case reload
 }
-enum SearchBarSelectionOutput: SelectionOutput {
+
+/**
+ Enum that specifies selection output
+ */
+public enum SearchBarSelectionOutput: SelectionOutput {
     case empty
     case dictated
     case reload
@@ -27,27 +34,29 @@ enum SearchBarSelectionOutput: SelectionOutput {
     case car(Car)
 }
 
-final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
+/**
+ The SearchBar viewmodel provides data related to display car booking data in CarBookingPopupView
+ */
+public class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
     var speechInProgress: Variable<Bool> = Variable(false)
     var speechTranscription: Variable<String?> = Variable(nil)
     var hideButton: Variable<Bool> = Variable(false)
     var itemSelected: Bool = false
     @available(iOS 10.0, *)
     lazy var speechController = SpeechController()
-    
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate let numberOfResults: Int = 15
     var allCars: [Car] = []
     var favourites: Bool = false
-    
-    lazy var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
+    /// Selection variable
+    lazy public var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
         return .empty()
     }
     
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? Address {
             return ViewModelFactory.searchBarItem(fromModel: item)
         }
@@ -60,7 +69,9 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public required init() {
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
@@ -178,7 +189,10 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     // MARK: - Dictated methods
     
-    func dictatedIsAuthorized() -> Bool {
+    /**
+     This method check if dictated is authorized or not to working
+     */
+    public func dictatedIsAuthorized() -> Bool {
         if #available(iOS 10.0, *) {
             return self.speechController.isAuthorized
         } else {
@@ -188,12 +202,19 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     // MARK: - Address methods
     
-    func stopRequest() {
+    /**
+     This method stop search request
+     */
+    public func stopRequest() {
         self.resultsDispose = nil
         self.resultsDispose = DisposeBag()
     }
-    
-    func reloadResults(text: String) {
+
+    /**
+     This method reload results with a new text
+     - Parameter text: new text to find
+     */
+    public func reloadResults(text: String) {
         if text.characters.count > 2 {
             let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
             let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.characters.count))
@@ -237,7 +258,10 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         }
     }
     
-    func getHistoryAndFavorites() {
+    /**
+     This method update data holder with history and favorites
+     */
+    public func getHistoryAndFavorites() {
         var historyAndFavorites: [ModelType] = [ModelType]()
         
         var favourites: Bool = false

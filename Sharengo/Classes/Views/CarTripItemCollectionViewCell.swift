@@ -14,7 +14,10 @@ import RxCocoa
 import DeviceKit
 import KeychainSwift
 
-class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+/**
+ The CarTripItemCollectionViewCell show data of singular car trip in a cell
+ */
+public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_icon: UIImageView!
     @IBOutlet fileprivate weak var img_collapsed: UIImageView!
     @IBOutlet fileprivate weak var view_topBorder: UIView!
@@ -23,11 +26,12 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var view_bottomBorder: UIView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
 
-    var viewModel:ItemViewModelType?
+    /// ViewModel variable used to represents the data
+    public var viewModel:ItemViewModelType?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? CarTripItemViewModel else {
             return
         }
@@ -64,7 +68,11 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
 //            }).addDisposableTo(disposeBag)
     }
     
-    func updateWithPlateSelected(idSelected: Int) {
+    /**
+     This method update car trip with selected plate.
+     - Parameter idSelected: id of car trip
+     */
+    public func updateWithPlateSelected(idSelected: Int) {
         var title: String?
         var subtitle: String?
         

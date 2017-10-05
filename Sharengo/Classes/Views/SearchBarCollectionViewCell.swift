@@ -12,15 +12,18 @@ import RxSwift
 import Action
 import RxCocoa
 
-class SearchBarCollectionViewCell: UICollectionViewCell, ViewModelBindable {
-    
-    var viewModel: ItemViewModelType?
+/**
+ The SearchBarCollectionCell class show single result of a search
+ */
+public class SearchBarCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+    /// ViewModel variable used to represents the data
+    public var viewModel: ItemViewModelType?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var view_separator: UIView!
 
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SearchBarItemViewModel else { return }
         self.viewModel = viewModel
         self.titleLabel.styledText = viewModel.name

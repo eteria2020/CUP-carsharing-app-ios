@@ -13,7 +13,10 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class NoCarTripsViewController : BaseViewController, ViewModelBindable {
+/**
+ The No Car Trips class shows user that there is no car trips with their account
+ */
+public class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -23,11 +26,12 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_noCarTrips: UILabel!
     @IBOutlet fileprivate weak var btn_searchCars: UIButton!
     
-    var viewModel: NoCarTripsViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: NoCarTripsViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? NoCarTripsViewModel else {
             return
         }
@@ -47,7 +51,7 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value

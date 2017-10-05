@@ -13,18 +13,21 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class FaqViewController : BaseViewController, ViewModelBindable {
+/**
+ The Faq class shows faqs to user
+ */
+public class FaqViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
     @IBOutlet fileprivate weak var webview_main: UIWebView!
     @IBOutlet fileprivate weak var btn_appTutorial: UIButton!
-    
-    var viewModel: FaqViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: FaqViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FaqViewModel else {
             return
         }
@@ -47,7 +50,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         
@@ -103,11 +106,17 @@ class FaqViewController : BaseViewController, ViewModelBindable {
 }
 
 extension FaqViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    /**
+     With this method app starts loading url
+     */
+    public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         return true
     }
-    
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+
+    /**
+     With this method app shows to user if there was an error to load url page
+     */
+    public func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
         let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
                                 okButtonHandler: { alertView in
                                     let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))

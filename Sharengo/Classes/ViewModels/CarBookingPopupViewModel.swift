@@ -12,18 +12,27 @@ import Boomerang
 import Action
 import KeychainSwift
 
+/**
+ Enum that specifies selection input
+ */
 public enum CarBookingPopupInput: SelectionInput {
     case open
     case delete
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum CarBookingPopupOutput: SelectionInput {
     case empty
     case open(Car)
     case delete
 }
 
-final class CarBookingPopupViewModel: ViewModelTypeSelectable {
+/**
+ The CarBookingPopup viewmodel provides data related to display car booking data in CarBookingPopupView
+ */
+public class CarBookingPopupViewModel: ViewModelTypeSelectable {
     var carBooking: CarBooking?
     var carTrip: CarTrip?
     var pin: String = ""
@@ -32,12 +41,14 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     var info: Variable<String?> = Variable(nil)
     var timeTimer: Timer?
     var carBookingPopupView: CarBookingPopupView?
-    
+    /// Selection variable
     public var selection: Action<CarBookingPopupInput, CarBookingPopupOutput> = Action { _ in
         return .just(.empty)
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public required init() {
         self.selection = Action { input in
             switch input {
             case .open:
@@ -54,7 +65,11 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.timeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
     }
     
-    func updateWithCarBooking(carBooking: CarBooking) {
+    /**
+     This method update ui with Car Booking
+     - Parameter carBooking: car booking object
+     */
+    public func updateWithCarBooking(carBooking: CarBooking) {
         self.carBooking = carBooking
         self.updateData()
         if let car = self.carBooking?.car.value {
@@ -84,7 +99,11 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         }
     }
     
-    func updateWithCarTrip(carTrip: CarTrip) {
+    /**
+     This method update ui with Car Trip
+     - Parameter carTrip: car trip object
+     */
+    public func updateWithCarTrip(carTrip: CarTrip) {
         self.carTrip = carTrip
         self.updateData()
         if let car = self.carTrip?.car.value {
@@ -114,7 +133,10 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         }
     }
     
-    func updateData() {
+    /**
+     This method update data
+     */
+    public func updateData() {
         if let pin = KeychainSwift().get("UserPin") {
             self.pin = String(format: "lbl_carBookingPopupPin".localized(), pin)
         } else {

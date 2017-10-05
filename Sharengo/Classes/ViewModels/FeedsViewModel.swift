@@ -12,34 +12,46 @@ import Boomerang
 import Action
 import KeychainSwift
 
-enum FeedsSelectionInput : SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum FeedsSelectionInput : SelectionInput {
     case item(IndexPath)
     case aroundMe
 }
 
-enum FeedsSelectionOutput : SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum FeedsSelectionOutput : SelectionOutput {
     case viewModel(ViewModelType)
     case empty
 }
 
-enum FeedSections {
+/**
+ Enum that specifies feed sections
+ */
+public enum FeedSections {
     case feed
     case categories
 }
 
-final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
+/**
+ The Feeds viewmodel provides data related to display content on FeedsVC
+ */
+public class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
     var feeds = [Feed]()
     var categories = [Category]()
     var category: Category? = nil
     var sectionSelected = FeedSections.feed
     fileprivate var resultsDispose: DisposeBag?
-    
-    lazy var selection:Action<FeedsSelectionInput,FeedsSelectionOutput> = Action { input in
+    /// Selection variable
+    lazy public var selection:Action<FeedsSelectionInput,FeedsSelectionOutput> = Action { input in
         return .empty()
     }
     
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? Feed {
             return ViewModelFactory.feedItem(fromModel: item)
         }
@@ -49,7 +61,9 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public required init() {
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
@@ -77,7 +91,12 @@ final class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
         }
     }
     
-    func updateListDataHolder() {
+    // MARK: - Update methods
+    
+    /**
+     This method update list data holder with feeds or categories based on selected section
+     */
+    public func updateListDataHolder() {
         switch sectionSelected {
         case .feed:
             self.dataHolder = ListDataHolder(data:Observable.just(feeds).structured())

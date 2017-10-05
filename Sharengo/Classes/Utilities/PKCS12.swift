@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ String utilities (md5, decode of html entities, etc...)
+ */
 public class PKCS12 {
     var label:String?
     var keyID:Data?
@@ -15,6 +18,8 @@ public class PKCS12 {
     var certChain:[SecTrust]?
     var identity:SecIdentity?
     let securityError:OSStatus
+    
+    // MARK: - Init methods
     
     public init(data:Data, password:String) {
         var items:CFArray?
@@ -36,6 +41,11 @@ public class PKCS12 {
         self.init(data: NSData(contentsOfFile: Bundle.main.path(forResource: mainBundleResource, ofType:resourceType)!)! as Data, password: password);
     }
     
+    // MARK: - Utility methods
+    
+    /**
+     This method return URL Credential from certificate and identity
+     */
     public func urlCredential()  -> URLCredential  {
         return URLCredential(
             identity: self.identity!,

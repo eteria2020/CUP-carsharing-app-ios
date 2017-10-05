@@ -11,34 +11,47 @@ import RxSwift
 import Boomerang
 import Action
 
-enum CarTripSelectionInput : SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum CarTripSelectionInput : SelectionInput {
     case item(IndexPath)
     case empty
 }
-enum CarTripSelectionOutput : SelectionOutput {
+
+/**
+ Enum that specifies selection output
+ */
+public enum CarTripSelectionOutput : SelectionOutput {
     case reload
     case empty
 }
 
-final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
+/**
+ The Car Trips viewmodel provides data related to display content on CarTripsVC
+ */
+public class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
     var carTrips = [CarTrip]()
     var previousSelectedCarTrip: CarTrip?
     fileprivate var resultsDispose: DisposeBag?
     var idSelected: Int = -1
     
-    lazy var selection:Action<CarTripSelectionInput,CarTripSelectionOutput> = Action { input in
+    /// Selection variable
+    lazy public var selection:Action<CarTripSelectionInput,CarTripSelectionOutput> = Action { input in
         return .empty()
     }
     
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? CarTrip {
             return ViewModelFactory.carTripItem(fromModel: item)
         }
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public required init() {
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
@@ -62,6 +75,9 @@ final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
         }
     }
     
+    /**
+     This method updates car trips
+     */
     func updateData(carTrips: [CarTrip]) {
         self.carTrips = carTrips
         self.dataHolder = ListDataHolder(data:Observable.just(carTrips).structured())

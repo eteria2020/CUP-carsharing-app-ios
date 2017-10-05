@@ -14,17 +14,20 @@ import SideMenu
 import DeviceKit
 import KeychainSwift
 
-class UserAreaViewController : BaseViewController, ViewModelBindable {
+/**
+ The User Area class shows to user its data
+ */
+public class UserAreaViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
     @IBOutlet fileprivate weak var webview_main: UIWebView!
-    
-    var viewModel: UserAreaViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: UserAreaViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? UserAreaViewModel else {
             return
         }
@@ -74,7 +77,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         
@@ -123,11 +126,17 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
 }
 
 extension UserAreaViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    /**
+     With this method app starts loading url
+     */
+    public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         return true
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+    /**
+     With this method app shows to user if there was an error to load url page
+     */
+    public func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
         let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
                                 okButtonHandler: { alertView in
                                     let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))

@@ -7,8 +7,12 @@
 
 import UIKit
 
+/**
+ String utilities (md5, decode of html entities, etc...)
+ */
 extension String
 {
+    /// MD5 of a string
     var md5: String? {
         let length = Int(CC_MD5_DIGEST_LENGTH)
         
@@ -23,6 +27,9 @@ extension String
         return (0..<length).map { String(format: "%02x", hash[$0]) }.joined()
     }
     
+    /**
+     This method decode html entities present in a string
+     */
     func htmlDecoded()->String {
         
         guard (self != "") else { return self }

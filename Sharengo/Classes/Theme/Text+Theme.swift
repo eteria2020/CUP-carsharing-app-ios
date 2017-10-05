@@ -258,10 +258,12 @@ public enum TextStyle: String, TextStyleType {
         ]
     }
     
+    /// Return name of style.
     public var name:String {
         return self.rawValue
     }
     
+    /// Return BonMot style
     public var style:StringStyle {
         return { () -> StringStyle in
             switch self {

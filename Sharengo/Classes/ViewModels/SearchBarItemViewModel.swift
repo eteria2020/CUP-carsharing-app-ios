@@ -11,9 +11,12 @@ import RxSwift
 import Boomerang
 import KeychainSwift
 
-final class SearchBarItemViewModel : ItemViewModelType {
-    var model: ItemViewModelType.Model
-    var itemIdentifier: ListIdentifier = CollectionViewCell.searchBar
+/**
+ The SearchBarItem viewmodel provides data related to display singular search result in SearchBarCollectionVCs
+ */
+public class SearchBarItemViewModel : ItemViewModelType {
+    public var model: ItemViewModelType.Model
+    public var itemIdentifier: ListIdentifier = CollectionViewCell.searchBar
     
     var name: String?
     var image: String?

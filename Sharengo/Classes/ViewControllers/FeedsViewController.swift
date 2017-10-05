@@ -29,7 +29,10 @@ extension Date
     }
 }
 
-class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+/**
+ The Feeds class shows feeds
+ */
+public class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_headerCategory: UIView!
     @IBOutlet fileprivate weak var lbl_titleCategory: UILabel!
@@ -46,14 +49,15 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     }
     
     fileprivate let publishersApiController: PublishersAPIController = PublishersAPIController()
-    var viewModel: FeedsViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: FeedsViewModel?
     var errorCategories: Bool?
     var errorOffers: Bool?
     var errorEvents: Bool?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FeedsViewModel else {
             return
         }
@@ -200,7 +204,10 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         }
     }
     
-    func checkData() {
+    /**
+     This method is used to check data relative to feeds
+     */
+    public func checkData() {
         if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
             DispatchQueue.main.async {
                 if self.viewModel?.feeds.count == 0 {
@@ -253,7 +260,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         // Views
@@ -373,36 +380,48 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         self.lbl_titleCategory.textColor = Color.feedsHeaderCategoryLabel.value
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel?.reload()
         self.collectionView?.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
     // MARK: - Collection methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (line spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (interitem spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (inset)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (size)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let viewModel = self.viewModel
         {
             switch viewModel.sectionSelected {
@@ -421,13 +440,19 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         return size
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate when an option of the list is selected
+     */
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel?.selection.execute(.item(indexPath))
     }
     
     // MARK: - Header buttons methods
     
-    func updateHeaderButtonsInterface()
+    /**
+     This method update header buttons interface based on section selected
+     */
+    public func updateHeaderButtonsInterface()
     {
         if let viewModel = self.viewModel
         {

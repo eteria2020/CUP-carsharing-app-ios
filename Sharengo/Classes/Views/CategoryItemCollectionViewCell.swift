@@ -13,7 +13,10 @@ import Action
 import RxCocoa
 import Gifu
 
-class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+/**
+ The CategoryItemCollectionViewCell show data of singular category in a cell
+ */
+public class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_icon: UIImageView!
     @IBOutlet fileprivate weak var gif_icon: GIFImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
@@ -22,12 +25,12 @@ class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var view_leftBorder: UIView!
     @IBOutlet fileprivate weak var view_rightBorder: UIView!
     @IBOutlet fileprivate weak var view_bottomBorder: UIView!
-    
-    var viewModel:ItemViewModelType?
+    /// ViewModel variable used to represents the data
+    public var viewModel:ItemViewModelType?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? CategoryItemViewModel else {
             return
         }

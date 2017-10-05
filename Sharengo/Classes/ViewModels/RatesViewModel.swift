@@ -12,15 +12,25 @@ import Action
 import Boomerang
 import KeychainSwift
 
+/**
+ Enum that specifies selection input
+ */
 public enum RatesInput: SelectionInput {
     case empty
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum RatesOutput: SelectionInput {
     case empty
 }
 
-final class RatesViewModel: ViewModelTypeSelectable {
+/**
+ The Rates viewmodel provides data related to display Share'ngo rates on RatesVC
+ */
+public class RatesViewModel: ViewModelTypeSelectable {
+    /// Selection variable
     public var selection: Action<RatesInput, RatesOutput> = Action { input in
         switch input {
         case .empty:
@@ -30,12 +40,17 @@ final class RatesViewModel: ViewModelTypeSelectable {
     var ratesDescription: Variable<String> = Variable("")
     var bonusDescription: Variable<String> = Variable("")
     
-    init()
+    // MARK: - Init methods
+    
+    public required init()
     {
         self.updateValues()
     }
     
-    func updateValues() {
+    /**
+     This method updates Sharen'go rates depending on whetever user is logged or not
+     */
+    public func updateValues() {
         var basicRate = 0.28
         var oneHourRate = 12.0
         var dayRate = 50.0

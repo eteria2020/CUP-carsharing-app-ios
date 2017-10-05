@@ -12,7 +12,10 @@ import Boomerang
 import Action
 import KeychainSwift
 
-final class FeedDetailViewModel: ViewModelType {
+/**
+ The Feed Detail viewmodel provides data related to display content on FeedDetailVC
+ */
+public class FeedDetailViewModel: ViewModelType {
     var model:ItemViewModelType.Model
     var title: String?
     var date: String?
@@ -24,7 +27,9 @@ final class FeedDetailViewModel: ViewModelType {
     var image: String?
     var favourited = false
     
-    init(model: Feed) {
+    // MARK: - Init methods
+    
+    public init(model: Feed) {
         self.model = model
         
         self.bottomText = ""

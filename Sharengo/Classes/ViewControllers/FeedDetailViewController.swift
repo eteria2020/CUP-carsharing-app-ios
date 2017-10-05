@@ -16,7 +16,10 @@ import BonMot
 import pop
 import KeychainSwift
 
-class FeedDetailViewController : BaseViewController, ViewModelBindable {
+/**
+ The Feed Detail class show feed content in a viewcontroller
+ */
+public class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -35,12 +38,12 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var img_favorite: UIImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
     @IBOutlet fileprivate weak var btn_favourite: UIButton!
-
-    var viewModel: FeedDetailViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: FeedDetailViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FeedDetailViewModel else {
             return
         }
@@ -184,7 +187,7 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         

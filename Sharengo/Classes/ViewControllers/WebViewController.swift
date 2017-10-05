@@ -12,16 +12,19 @@ import RxCocoa
 import Boomerang
 import SideMenu
 
-class WebViewController : BaseViewController, ViewModelBindable {
+/**
+ The WebViewController class shows share'ngo url pages to user
+ */
+public class WebViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var webView: UIWebView!
-    
-    var viewModel: WebViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: WebViewModel?
     var firstCall: Bool = true
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? WebViewModel else {
             return
         }
@@ -33,7 +36,7 @@ class WebViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.webBackground.value
@@ -60,7 +63,10 @@ class WebViewController : BaseViewController, ViewModelBindable {
 }
 
 extension WebViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    /**
+     With this method app starts loading url. If page is about forgot password app checks returned data from server else if page is about signup app checks url and go back of two steps.
+     */
+    public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if let type = viewModel?.type {
             switch type {
             case .forgotPassword:
@@ -94,7 +100,10 @@ extension WebViewController: UIWebViewDelegate {
         return true
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+    /**
+     With this method app shows to user if there was an error to load url page
+     */
+    public func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
         let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
             alertView.dismissAlertView()
             Router.back(self)

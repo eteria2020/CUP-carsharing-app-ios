@@ -14,7 +14,10 @@ import DeviceKit
 import SnapKit
 import BonMot
 
-class TutorialViewController : BaseViewController, ViewModelBindable {
+/**
+ The Tutorial class shows tutorial to user
+ */
+public class TutorialViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var scrollView_main: UIScrollView!
     @IBOutlet fileprivate weak var view_scrollViewContainer: UIView!
     @IBOutlet fileprivate weak var view_scrollViewContainerWidthConstraint: NSLayoutConstraint!
@@ -27,15 +30,15 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var constraint_close: NSLayoutConstraint!
     @IBOutlet fileprivate weak var constraint_buttons: NSLayoutConstraint!
     @IBOutlet fileprivate weak var constraint_width: NSLayoutConstraint!
-    
-    var viewModel: TutorialViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: TutorialViewModel?
     fileprivate var stepX: CGFloat = 0.0
     fileprivate var currentStep: Int = 0
     fileprivate var pageWidth: CGFloat = 0
 
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? TutorialViewModel else {
             return
         }
@@ -44,11 +47,11 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override var prefersStatusBarHidden: Bool {
+    override public var prefersStatusBarHidden: Bool {
         return true
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         btn_previousStep.isHidden = true
         img_leftArrow.isHidden = true
@@ -159,7 +162,10 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
 // MARK: - ScrollViewDelegate methods
 
 extension TutorialViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    /**
+     With this method app show next or previous tutorial's step to user
+     */
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
          if viewModel != nil {
             let page: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth))
             self.currentStep = page + 1

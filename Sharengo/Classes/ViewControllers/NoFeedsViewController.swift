@@ -13,7 +13,10 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class NoFeedsViewController : BaseViewController, ViewModelBindable {
+/**
+ The No Feeds class shows user that there is no feeds
+ */
+public class NoFeedsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -26,11 +29,12 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var img_top: UIImageView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
     
-    var viewModel: NoFeedsViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: NoFeedsViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? NoFeedsViewModel else {
             return
         }
@@ -59,7 +63,7 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFeedsBackground.value
@@ -123,7 +127,10 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - Header buttons methods
     
-    func updateHeaderButtonsInterface()
+    /**
+     This method update header buttons interface based on section selected
+     */
+    public func updateHeaderButtonsInterface()
     {
         if let viewModel = self.viewModel
         {

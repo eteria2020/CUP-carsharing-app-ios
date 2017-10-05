@@ -13,6 +13,9 @@ import Boomerang
 import Action
 import DeviceKit
 
+/**
+ The SearchBar View class is a view where user can input text to search
+ */
 class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_black: UIView!
     @IBOutlet fileprivate weak var view_background: UIView!
@@ -26,14 +29,14 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
-    
-    var viewModel: SearchBarViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: SearchBarViewModel?
     fileprivate var view: UIView!
     fileprivate var favourites: Bool = false
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SearchBarViewModel else {
             return
         }
@@ -140,7 +143,10 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         return false
     }
     
-    func updateInterface() {
+    /**
+     This method update interface
+     */
+    public func updateInterface() {
         guard let viewModel = viewModel else {
             return
         }
@@ -156,6 +162,9 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         }
     }
     
+    /**
+     This method update collectionView's interface
+     */
     func updateCollectionView(show: Bool) {
         if show {
             DispatchQueue.main.async {
@@ -178,17 +187,26 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         }
     }
     
-    func stopSearchBar() {
+    /**
+     This method stop editing of search bar textfield
+     */
+    public func stopSearchBar() {
         self.endEditing(true)
     }
     
-    func setupForFavourites() {
+    /**
+     This method stop editing of search bar textfield
+     */
+    public func setupForFavourites() {
         self.favourites = true
         self.viewModel?.favourites = true
         self.view_background.alpha = 0.0
     }
     
-    func showSearchBar() {
+    /**
+     This method show searchBar with animation
+     */
+    public func showSearchBar() {
         self.viewModel?.reloadResults(text: self.txt_search.text ?? "")
         switch Device().diagonal {
         case 3.5:
@@ -223,19 +241,31 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     
     // MARK: - Collection methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (line spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (interitem spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (inset)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (size)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let width = collectionView.bounds.size.width
         var height: CGFloat = 0.0
@@ -255,17 +285,26 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         return newSize
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate when an option of the list is selected
+     */
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel?.selection.execute(.item(indexPath))
     }
 }
 
 extension SearchBarView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    /**
+     This method update collection view when user tap on textField
+     */
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         self.updateCollectionView(show: true)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    /**
+     This method call get results while User enter text to find
+     */
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string == "\n" {
             if self.viewModel?.itemSelected == false {
                 self.viewModel?.speechTranscription.value = ""
@@ -287,7 +326,10 @@ extension SearchBarView: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    /**
+     This method is called from collection delegate when an option of the list is selected
+     */
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         if self.viewModel?.speechInProgress.value == true && self.viewModel?.itemSelected == false {
             self.viewModel?.selection.execute(.dictated)
         }

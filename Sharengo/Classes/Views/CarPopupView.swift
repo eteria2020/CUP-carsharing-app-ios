@@ -15,7 +15,10 @@ import CoreLocation
 import DeviceKit
 import BonMot
 
-class CarPopupView: UIView {
+/**
+ The CarPopup View class is a view that shows info and actions relative to a car
+ */
+public class CarPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
     @IBOutlet fileprivate weak var btn_book: UIButton!
     @IBOutlet fileprivate weak var view_type: UIView!
@@ -45,12 +48,12 @@ class CarPopupView: UIView {
     @IBOutlet fileprivate weak var btn_detail: UIButton!
     @IBOutlet fileprivate weak var btn_car: UIButton!
     fileprivate var view: UIView!
-    
-    var viewModel: CarPopupViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: CarPopupViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? CarPopupViewModel else {
             return
         }
@@ -93,7 +96,11 @@ class CarPopupView: UIView {
     
     // MARK: - View methods
     
-    func updateWithCar(car: Car) {
+    /**
+     This method update UI with a Car object
+     - Parameter car: car object
+     */
+    public func updateWithCar(car: Car) {
         guard let viewModel = viewModel else {
             return
         }
@@ -149,7 +156,12 @@ class CarPopupView: UIView {
         }
     }
     
-    func updateWithDistanceAndDuration(distance: Int, duration: Int) {
+    /**
+     This method update UI with distance and duration
+     - Parameter distance: distance as Int
+     - Parameter duration: duration as Int
+     */
+    public func updateWithDistanceAndDuration(distance: Int, duration: Int) {
         guard let viewModel = viewModel else {
             return
         }
@@ -172,7 +184,11 @@ class CarPopupView: UIView {
         }
     }
     
-    func updateWithFeed(feed: Feed) {
+    /**
+     This method update UI with feed
+     - Parameter feed: feed object
+     */
+    public func updateWithFeed(feed: Feed) {
         guard let viewModel = viewModel else {
             return
         }
@@ -248,7 +264,7 @@ class CarPopupView: UIView {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     

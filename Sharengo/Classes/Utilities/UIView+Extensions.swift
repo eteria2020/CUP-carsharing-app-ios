@@ -16,9 +16,18 @@ extension FloatingPoint {
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
 
-extension UIView
+/**
+ UIView utilities
+ */
+public extension UIView
 {
-    func startZRotation(duration: CFTimeInterval = 1, repeatCount: Float = Float.infinity, clockwise: Bool = true)
+    /**
+     This method execute a rotation on z-axis of a UIView
+     - Parameter duration: duration in CFTimeInterval
+     - Parameter repeatCount: how many times it has to rotate
+     - Parameter clockwise: default value is true
+     */
+    public func startZRotation(duration: CFTimeInterval = 1, repeatCount: Float = Float.infinity, clockwise: Bool = true)
     {
         if self.layer.animation(forKey: "transform.rotation.z") != nil {
             return
@@ -32,7 +41,10 @@ extension UIView
         self.layer.add(animation, forKey:"transform.rotation.z")
     }
     
-    func stopZRotation()
+    /**
+     This method stop a rotation on z-axis of a UIView
+     */
+    public func stopZRotation()
     {
         self.layer.removeAnimation(forKey: "transform.rotation.z")
     }

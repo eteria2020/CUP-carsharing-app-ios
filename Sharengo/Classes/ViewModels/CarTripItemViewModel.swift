@@ -11,9 +11,12 @@ import RxSwift
 import Boomerang
 import KeychainSwift
 
-final class CarTripItemViewModel : ItemViewModelType {
-    var model:ItemViewModelType.Model
-    var itemIdentifier:ListIdentifier = CollectionViewCell.carTrip
+/**
+ The Car Trip viewmodel provides data related to display content on car trip collection view cell
+ */
+public class CarTripItemViewModel : ItemViewModelType {
+    public var model:ItemViewModelType.Model
+    public var itemIdentifier:ListIdentifier = CollectionViewCell.carTrip
 //    var title: String?
 //    var subtitle: String?
 //    var description: Variable<String> = Variable("")

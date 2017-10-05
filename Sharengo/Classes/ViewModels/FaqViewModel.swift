@@ -11,25 +11,35 @@ import RxSwift
 import Action
 import Boomerang
 
+/**
+ Enum that specifies selection input
+ */
 public enum FaqInput: SelectionInput {
     case tutorial
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum FaqOutput: SelectionInput {
     case tutorial
 }
 
-final class FaqViewModel: ViewModelTypeSelectable {
+/**
+ The Faq viewmodel provides data related to display content on faqViewController
+ */
+public class FaqViewModel: ViewModelTypeSelectable {
+    /// Selection variable
     public var selection: Action<FaqInput, FaqOutput> = Action { input in
             switch input {
             case .tutorial:
                 return .just(.tutorial)
              }
     }
+    /// URL Request used with Faq WebView
+    public var urlRequest:URLRequest?
     
-    var urlRequest:URLRequest?
-    
-    init()
+    public required init()
     {
         let url = URL(string: "http://support.sharengo.it/home")
         self.urlRequest = URLRequest(url: url!)

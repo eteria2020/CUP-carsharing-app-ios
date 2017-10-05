@@ -12,26 +12,39 @@ import Action
 import Boomerang
 import DeviceKit
 
+/**
+ Enum that specifies selection input
+ */
 public enum TutorialInput: SelectionInput {
     case empty
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum TutorialOutput: SelectionInput {
     case empty
 }
 
-struct TutorialStep {
+/**
+ Struct with step's properties
+ */
+public struct TutorialStep {
     var stepNumber: Int
     var image: String
 }
 
-final class TutorialViewModel: ViewModelTypeSelectable {
+/**
+ The Tutorial viewmodel provides data related to display tutorial steps to user
+ */
+public class TutorialViewModel: ViewModelTypeSelectable {
+    /// Selection variable
     public var selection: Action<TutorialInput, TutorialOutput> = Action { _ in
         return .just(.empty)
     }
     var steps: [TutorialStep] = []
     
-    init()
+    public required init()
     {
         switch Device().diagonal {
         case 3.5:
