@@ -58,6 +58,7 @@
 // Menu
 "lbl_menuHeaderTitleLogged" = "Hi %@, welcome back!";
 "lbl_menuHeaderTitleLoggedF" = "Hi %@, welcome back!";
+"lbl_menuHeaderTitleLoggedWithoutFirstName" = "Hi, welcome back!";
 "lbl_menuHeaderTitleGuest" = "Hi, welcome!";
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Signup";

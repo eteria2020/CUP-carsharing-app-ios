@@ -58,6 +58,7 @@
 // Menu
 "lbl_menuHeaderTitleLogged" = "Ciao %@, bentornato!";
 "lbl_menuHeaderTitleLoggedF" = "Ciao %@, bentornata!";
+"lbl_menuHeaderTitleLoggedWithoutFirstName" = "Ciao, bentornato!";
 "lbl_menuHeaderTitleGuest" = "Ciao, benvenuto!";
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Iscrizione";
