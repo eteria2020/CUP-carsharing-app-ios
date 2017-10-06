@@ -45,6 +45,16 @@ public class TutorialViewController : BaseViewController, ViewModelBindable {
         self.viewModel = viewModel
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        self.scrollView_main.delegate = nil
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.scrollView_main.delegate = nil
+    }
+    
     // MARK: - View methods
     
     override public var prefersStatusBarHidden: Bool {

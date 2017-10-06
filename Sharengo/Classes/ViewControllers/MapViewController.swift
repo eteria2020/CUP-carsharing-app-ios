@@ -1298,6 +1298,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         let renderer = GMUDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
         self.clusterManager = GMUClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
         self.mapView.delegate = self
+        self.mapView.settings.indoorPicker = false
         self.showUserPositionVisible(false)
         self.setUserPositionButtonVisible(false)
         // User

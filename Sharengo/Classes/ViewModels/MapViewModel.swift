@@ -105,8 +105,8 @@ public final class MapViewModel: ViewModelType {
                                             let index = self.cars.index(where: { (singleCar) -> Bool in
                                                 return car.plate == singleCar.plate
                                             })
-                                            if let index = index {
-                                                self.cars[index].distance = car.distance
+                                            if let i = index {
+                                                self.cars[i].distance = car.distance
                                             }
                                         }
                                     }
@@ -263,8 +263,8 @@ public final class MapViewModel: ViewModelType {
                             let index = self.cars.index(where: { (singleCar) -> Bool in
                                 return car.plate == singleCar.plate
                             })
-                            if let index = index {
-                                self.cars[index].distance = car.distance
+                            if let i = index {
+                                self.cars[i].distance = car.distance
                             }
                         }
                     }
@@ -279,8 +279,8 @@ public final class MapViewModel: ViewModelType {
                             let index = self.allCars.index(where: { (allCar) -> Bool in
                                 return car.plate == allCar.plate
                             })
-                            if let index = index {
-                                self.allCars[index].distance = car.distance
+                            if let i = index {
+                                self.allCars[i].distance = car.distance
                             }
                         }
                     }
@@ -298,8 +298,8 @@ public final class MapViewModel: ViewModelType {
                             let index = self.cars.index(where: { (allCar) -> Bool in
                                 return car.plate == allCar.plate
                             })
-                            if let index = index {
-                                self.cars[index].distance = car.distance
+                            if let i = index {
+                                self.cars[i].distance = car.distance
                             }
                         }
                     }
@@ -384,9 +384,9 @@ public final class MapViewModel: ViewModelType {
             let index = self.cars.index(where: { (singleCar) -> Bool in
                 return car.plate == singleCar.plate
             })
-            if let index = index {
-                if self.cars.count > index {
-                    self.cars[index] = car
+            if let i = index {
+                if self.cars.count > i {
+                    self.cars[i] = car
                 }
             }
         }
