@@ -459,7 +459,7 @@ public class ApiController {
 /// Enum of api calls
 fileprivate enum API {
     case getUserWith(username: String, password: String)
-    case searchAllCars()-
+    case searchAllCars()
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case searchCar(plate: String)
     case bookingList()
