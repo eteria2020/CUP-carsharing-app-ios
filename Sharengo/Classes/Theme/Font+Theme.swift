@@ -30,7 +30,7 @@ public enum FontWeight {
         case .semibold:
             return UIFont(name: "Poppins-SemiBold", size: size)!
         case .bold:
-            return UIFont(name: "Poppins", size: size)!
+            return UIFont(name: "Poppins-Bold", size: size)!
         }
     }
 }

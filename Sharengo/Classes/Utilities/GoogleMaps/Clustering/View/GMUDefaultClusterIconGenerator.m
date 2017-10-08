@@ -171,7 +171,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
             return icon;
         }
         UIColor *mainColor = UIColorFromHEX(0x61b15e);
-        UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+        UIFont *font = [UIFont fontWithName:@"Poppins-Bold" size:15];
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentCenter;
         NSDictionary *attributes = @{
@@ -211,7 +211,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
             return icon;
         }
         UIColor *mainColor = UIColorFromHEX(0x61b15e);
-        UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+        UIFont *font = [UIFont fontWithName:@"Poppins-Bold" size:15];
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentCenter;
         NSDictionary *attributes = @{
@@ -264,7 +264,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
         secondaryColor = UIColorFromHEX(0x61b15e);
     }
     
-    UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+    UIFont *font = [UIFont fontWithName:@"Poppins-Bold" size:15];
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *attributes = @{
