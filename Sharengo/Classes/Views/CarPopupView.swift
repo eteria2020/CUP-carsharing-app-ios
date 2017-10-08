@@ -100,11 +100,11 @@ public class CarPopupView: UIView {
      This method update UI with a Car object
      - Parameter car: car object
      */
-    public func updateWithCar(car: Car) {
+    public func updateWithCar(car: Car, carNearest: Car?) {
         guard let viewModel = viewModel else {
             return
         }
-        viewModel.updateWithCar(car: car)
+        viewModel.updateWithCar(car: car, carNearest: carNearest)
         self.lbl_plate.styledText = viewModel.plate
         self.lbl_capacity.styledText = viewModel.capacity
         self.lbl_distance.styledText = viewModel.distance

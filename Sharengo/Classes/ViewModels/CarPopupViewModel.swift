@@ -97,9 +97,9 @@ public class CarPopupViewModel: ViewModelTypeSelectable {
     /**
      This method update data with a new car
      */
-    public func updateWithCar(car: Car) {
+    public func updateWithCar(car: Car, carNearest: Car?) {
         self.car = car
-        self.carType.value = car.type
+        self.carType.value = car.getType(carNearest: carNearest)
         self.plate = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
         if var capacity = car.capacity {
             if capacity < 50 {

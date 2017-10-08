@@ -144,7 +144,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                     }
                     if let car = self?.selectedCar {
-                        self?.view_carPopup.updateWithCar(car: car)
+                        self?.view_carPopup.updateWithCar(car: car, carNearest: self?.viewModel?.nearestCar.value)
                         if self!.routeSteps.count > 0 {
                             if let distance = self?.routeSteps[0].distance, let duration = self?.routeSteps[0].duration {
                                 self?.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
@@ -322,7 +322,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
                     self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
                 }
-                self?.view_carPopup.updateWithCar(car: car)
+                self?.view_carPopup.updateWithCar(car: car, carNearest: self?.viewModel?.nearestCar.value)
                 if self!.routeSteps.count > 0 {
                     if let distance = self?.routeSteps[0].distance, let duration = self?.routeSteps[0].duration {
                         self?.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
@@ -330,9 +330,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
                 self?.view.layoutIfNeeded()
                 UIView.animate(withDuration: 0.2, animations: {
-                    if car.type.isEmpty {
+                    if car.getType(carNearest: self?.viewModel?.nearestCar.value).isEmpty {
                         self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0
-                    } else if car.type.contains("\n") {
+                    } else if car.getType(carNearest: self?.viewModel?.nearestCar.value).contains("\n") {
                         self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0 + 55
                     } else {
                         self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0 + 40
@@ -578,7 +578,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.closeLoader()
         }
         if let car = self.selectedCar {
-            self.view_carPopup.updateWithCar(car: car)
+            self.view_carPopup.updateWithCar(car: car, carNearest: self.viewModel?.nearestCar.value)
             if routeSteps.count > 0 {
                 if let distance = routeSteps[0].distance, let duration = routeSteps[0].duration {
                     self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
@@ -680,7 +680,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if let location = self.viewModel?.nearestCar.value?.location {
             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             self.centerMap(on: newLocation, zoom: 18.5, animated: true)
-            self.view_carPopup.updateWithCar(car: self.viewModel!.nearestCar.value!)
+            self.view_carPopup.updateWithCar(car: self.viewModel!.nearestCar.value!, carNearest: self.viewModel?.nearestCar.value)
             if routeSteps.count > 0 {
                 if let distance = routeSteps[0].distance, let duration = routeSteps[0].duration {
                     self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
@@ -1635,13 +1635,13 @@ extension MapViewController: GMSMapViewDelegate {
         } else if marker as? UserAnnotation != nil {
             if let carTrip = self.viewModel?.carTrip {
                 if carTrip.car.value?.parking == false {
-                    self.view_carPopup.updateWithCar(car: carTrip.car.value!)
+                    self.view_carPopup.updateWithCar(car: carTrip.car.value!, carNearest: self.viewModel?.nearestCar.value)
                     self.view_carPopup.viewModel?.type.value = .car
                     self.view.layoutIfNeeded()
                     UIView .animate(withDuration: 0.2, animations: {
-                        if carTrip.car.value!.type.isEmpty {
+                        if carTrip.car.value!.getType(carNearest: self.viewModel?.nearestCar.value).isEmpty {
                             self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
-                        } else if carTrip.car.value!.type.contains("\n") {
+                        } else if carTrip.car.value!.getType(carNearest: self.viewModel?.nearestCar.value).contains("\n") {
                             self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55
                         } else {
                             self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
@@ -1677,7 +1677,7 @@ extension MapViewController: GMSMapViewDelegate {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             }
-            self.view_carPopup.updateWithCar(car: car)
+            self.view_carPopup.updateWithCar(car: car, carNearest: self.viewModel?.nearestCar.value)
             if routeSteps.count > 0 {
                 if let distance = routeSteps[0].distance, let duration = routeSteps[0].duration {
                     self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
@@ -1686,9 +1686,9 @@ extension MapViewController: GMSMapViewDelegate {
             self.view_carPopup.viewModel?.type.value = .car
             self.view.layoutIfNeeded()
             UIView .animate(withDuration: 0.2, animations: {
-                if car.type.isEmpty {
+                if car.getType(carNearest: self.viewModel?.nearestCar.value).isEmpty {
                     self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
-                } else if car.type.contains("\n") {
+                } else if car.getType(carNearest: self.viewModel?.nearestCar.value).contains("\n") {
                     self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55
                 } else {
                     self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40

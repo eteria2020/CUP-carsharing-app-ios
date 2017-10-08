@@ -29,7 +29,7 @@ public class CarAnnotation: NSObject, GMUClusterItem {
     
     // MARK: - Init methods
     
-    public init(position: CLLocationCoordinate2D, car: Car, carBooked: Car?, carTrip: CarTrip?) {
+    public init(position: CLLocationCoordinate2D, car: Car, carBooked: Car?, carTrip: CarTrip?, carNearest: Car?) {
         self.position = position
         self.car = car
         self.identifier = 1
@@ -48,7 +48,7 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
             self.marker = CoreController.shared.pulseYellow
             self.type = 3
-        } else if car.nearest && carBooked == nil {
+        } else if car.plate == carNearest?.plate && carBooked == nil {
             if bonusFree.count > 0 {
                 let bonus = bonusFree[0]
                 let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)

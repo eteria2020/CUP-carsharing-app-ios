@@ -24,7 +24,7 @@ public class Car: ModelType, Decodable {
     /// Distance between user and car
     public var distance: CLLocationDistance?
     /// Boolean that determine if car is the nearest from user
-    public var nearest: Bool = false
+    // public var nearest: Bool = false
     /// Boolean that determine if car is booked or not
     public var booked: Bool = false
     /// Boolean that determine if car is opened or not
@@ -32,7 +32,7 @@ public class Car: ModelType, Decodable {
     /// Boolean that determine if car is parked or not
     public var parking: Bool = false
     /// Type of car
-    public lazy var type: String = self.getType()
+    // public lazy var type: String = self.getType()
     /// Address where car is located
     public var address: Variable<String?> = Variable(nil)
     /// Array used to show if there are bonus with this car
@@ -67,11 +67,11 @@ public class Car: ModelType, Decodable {
     /**
      This method return typology of car
      */
-    public func getType() -> String {
+    public func getType(carNearest: Car?) -> String {
         let bonusFree = self.bonus.filter({ (bonus) -> Bool in
             return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
         })
-        if bonusFree.count > 0 && self.nearest {
+        if bonusFree.count > 0 && self.plate == carNearest?.plate {
             let bonus = bonusFree[0]
             let string1 = "lbl_carPopupType".localized()
             let string2 = String(format: "lbl_carPopupFreeType".localized(), bonus.value)
@@ -79,7 +79,7 @@ public class Car: ModelType, Decodable {
         } else if bonusFree.count > 0 {
             let bonus = bonusFree[0]
             return String(format: "lbl_carPopupFreeType".localized(), bonus.value)
-        } else if self.nearest {
+        } else if self.plate == carNearest?.plate {
            return "lbl_carPopupType".localized()
         } else {
             return ""
