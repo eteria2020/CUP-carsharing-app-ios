@@ -109,7 +109,9 @@
 "lbl_carPopupPlate" = "<big>%@</big>";
 "lbl_carPopupCapacity" = "autonomia: <bold>%@ km</bold>";
 "lbl_carPopupDistance_km" = "%.2f km di distanza";
-"lbl_carPopupDistance_mt" = "%.3d mt di distanza";
+"lbl_carPopupDistance_mt3" = "%.3d mt di distanza";
+"lbl_carPopupDistance_mt2" = "%.2d mt di distanza";
+"lbl_carPopupDistance_mt1" = "%.1d mt di distanza";
 "lbl_carPopupWalkingDistance_h" = "%d ore a piedi";
 "lbl_carPopupWalkingDistance_m" = "%d minuti a piedi";
 "lbl_carPopupWalkingDistance_h_m" = "%d ore e %@ minuti a piedi";

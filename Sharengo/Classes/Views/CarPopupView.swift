@@ -169,7 +169,13 @@ public class CarPopupView: UIView {
         if restultDistance.kilometers > 0 {
             self.lbl_distance.styledText = String(format: "lbl_carPopupDistance_km".localized(), restultDistance.kilometers)
         } else if restultDistance.meters > 0 {
-            self.lbl_distance.styledText = String(format: "lbl_carPopupDistance_mt".localized(), restultDistance.meters)
+            if restultDistance.meters < 10 {
+                self.lbl_distance.styledText = String(format: "lbl_carPopupDistance_mt1".localized(), restultDistance.meters)
+            } else if restultDistance.meters < 100 {
+                self.lbl_distance.styledText = String(format: "lbl_carPopupDistance_mt2".localized(), restultDistance.meters)
+            } else {
+                self.lbl_distance.styledText = String(format: "lbl_carPopupDistance_mt3".localized(), restultDistance.meters)
+            }
         }
         let minutes: Float = Float(duration/60)
         let restultWalkingDistance = viewModel.getTimeFromMinutes(inputedMinutes: Int(minutes.rounded(.up)))

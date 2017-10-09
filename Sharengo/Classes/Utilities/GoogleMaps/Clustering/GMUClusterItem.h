@@ -29,6 +29,7 @@
 @property(nonatomic) int identifier;
 @property(nonatomic) int type;
 @property(nonatomic) BOOL canCluster;
+@property(nonatomic) NSString *carPlate;
 @property(nonatomic) NSString *uniqueIdentifier;
 
 @end

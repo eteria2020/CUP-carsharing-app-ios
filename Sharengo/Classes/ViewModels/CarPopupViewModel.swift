@@ -138,7 +138,13 @@ public class CarPopupViewModel: ViewModelTypeSelectable {
             if restultDistance.kilometers > 0 {
                 self.distance = String(format: "lbl_carPopupDistance_km".localized(), restultDistance.kilometers)
             } else if restultDistance.meters > 0 {
-                self.distance = String(format: "lbl_carPopupDistance_mt".localized(), restultDistance.meters)
+                if restultDistance.meters < 10 {
+                    self.distance = String(format: "lbl_carPopupDistance_mt1".localized(), restultDistance.meters)
+                } else if restultDistance.meters < 100 {
+                    self.distance = String(format: "lbl_carPopupDistance_mt2".localized(), restultDistance.meters)
+                } else {
+                    self.distance = String(format: "lbl_carPopupDistance_mt3".localized(), restultDistance.meters)
+                }
             }
             let minutes: Float = Float(distance.rounded(.up)/100.0)
             let restultWalkingDistance = getTimeFromMinutes(inputedMinutes: Int(minutes.rounded(.up)))

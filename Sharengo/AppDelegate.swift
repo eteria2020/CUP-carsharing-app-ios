@@ -15,7 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate let menuPadding: CGFloat = 100.0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        if UserDefaults.standard.bool(forKey: "LongIntro") == false {
+            var languageid = "en"
+            if Locale.preferredLanguages[0] == "it-IT" {
+                languageid = "it"
+            }
+            Localize.setCurrentLanguage(languageid)
+            KeychainSwift().clear()
+        } else if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             // Non sono loggato
         } else {
             if KeychainSwift().get("PasswordClear") == nil || KeychainSwift().get("UserFirstname") == nil  {

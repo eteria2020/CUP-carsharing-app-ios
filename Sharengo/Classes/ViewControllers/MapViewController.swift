@@ -115,7 +115,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 canCluster = false
                             }
                         }
+                        var nearestCarFounded: Bool = false
                         for annotation in array {
+                            if annotation.carPlate == viewModel.nearestCar.value?.plate {
+                                nearestCarFounded = true
+                            }
                             annotation.canCluster = canCluster
                             if let carAnnotation = annotation as? CarAnnotation {
                                 if viewModel.carBooked?.plate == carAnnotation.car.plate && viewModel.carTrip != nil && viewModel.carTrip?.car.value?.parking == false
@@ -125,6 +129,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 }
                             } else {
                                 self?.clusterManager.add(annotation)
+                            }
+                        }
+                        if !nearestCarFounded {
+                            if let nearestCar = viewModel.nearestCar.value {
+                                if let coordinate = nearestCar.location?.coordinate {
+                                    let annotation = CarAnnotation(position: coordinate, car: nearestCar, carBooked: self?.viewModel?.carBooked, carTrip: self?.viewModel?.carTrip, carNearest: nearestCar)
+                                    annotation.carPlate = nearestCar.plate ?? ""
+                                    self?.clusterManager.add(annotation)
+                                }
                             }
                         }
                         self?.clusterManager.cluster()
@@ -387,8 +400,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
 //            CoreController.shared.updateData()
             CoreController.shared.updateCarBookings()
             CoreController.shared.updateCarTrips()
-            let dispatchTime = DispatchTime.now() + 2.0
+            let dispatchTime = DispatchTime.now() + 5.0
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                CoreController.shared.notificationIsShowed = false
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
@@ -504,8 +518,22 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     CoreController.shared.allCarTrips = []
                     CoreController.shared.currentCarTrip = nil
                     self.getResultsWithoutLoading()
-                    self.routeSteps = self.nearestCarRouteSteps
-                    self.drawRoutes(steps: self.nearestCarRouteSteps)
+                    if let car = self.selectedCar {
+                        if CoreController.shared.allCarTrips.first == nil && CoreController.shared.allCarBookings.first == nil {
+                            if let location = car.location {
+                                self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                    self.routeSteps = steps
+                                    self.drawRoutes(steps: steps)
+                                })
+                            }
+                        } else {
+                            self.routeSteps = self.nearestCarRouteSteps
+                            self.drawRoutes(steps: self.nearestCarRouteSteps)
+                        }
+                    } else {
+                        self.routeSteps = self.nearestCarRouteSteps
+                        self.drawRoutes(steps: self.nearestCarRouteSteps)
+                    }
                     self.closeLoader()
                 } else {
                     self.closeLoader()
@@ -645,8 +673,22 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 CoreController.shared.allCarBookings = []
                 CoreController.shared.currentCarBooking = nil
                 self.getResultsWithoutLoading()
-                self.routeSteps = self.nearestCarRouteSteps
-                self.drawRoutes(steps: self.nearestCarRouteSteps)
+                if let car = self.selectedCar {
+                    if CoreController.shared.allCarTrips.first == nil && CoreController.shared.allCarBookings.first == nil {
+                        if let location = car.location {
+                            self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                self.routeSteps = steps
+                                self.drawRoutes(steps: steps)
+                            })
+                        }
+                    } else {
+                        self.routeSteps = self.nearestCarRouteSteps
+                        self.drawRoutes(steps: self.nearestCarRouteSteps)
+                    }
+                } else {
+                    self.routeSteps = self.nearestCarRouteSteps
+                    self.drawRoutes(steps: self.nearestCarRouteSteps)
+                }
                 DispatchQueue.main.async {
                     self.updateResults()
                 }

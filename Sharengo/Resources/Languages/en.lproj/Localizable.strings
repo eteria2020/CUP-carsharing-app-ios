@@ -109,7 +109,9 @@
 "lbl_carPopupPlate" = "<big>%@</big>";
 "lbl_carPopupCapacity" = "autonomy: <bold>%@ km</bold>";
 "lbl_carPopupDistance_km" = "%.2f km away";
-"lbl_carPopupDistance_mt" = "%.3d m away";
+"lbl_carPopupDistance_mt3" = "%.3d m away";
+"lbl_carPopupDistance_mt2" = "%.2d m away";
+"lbl_carPopupDistance_mt1" = "%.1d m away";
 "lbl_carPopupWalkingDistance_h" = "%d hours on foot";
 "lbl_carPopupWalkingDistance_m" = "%d minutes on foot";
 "lbl_carPopupWalkingDistance_h_m" = "%d hours e %@ minutes on foot";

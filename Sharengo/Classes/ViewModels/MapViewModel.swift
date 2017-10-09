@@ -315,12 +315,14 @@ public final class MapViewModel: ViewModelType {
             for car in self.cars {
                 if let coordinate = car.location?.coordinate {
                     let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked, carTrip: self.carTrip, carNearest: self.nearestCar.value)
+                    annotation.carPlate = car.plate ?? ""
                     annotations.append(annotation)
                 }
             }
             if carBookedFounded == false && self.carBooked != nil && (self.carTrip == nil || self.carTrip?.car.value?.parking == true) {
                 if let coordinate = self.carBooked!.location?.coordinate {
                     let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked, carTrip: self.carTrip, carNearest: self.nearestCar.value)
+                    annotation.carPlate = self.carBooked!.plate ?? ""
                     annotations.append(annotation)
                 }
             }

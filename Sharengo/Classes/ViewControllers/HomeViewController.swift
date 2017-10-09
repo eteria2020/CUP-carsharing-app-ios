@@ -172,7 +172,8 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .home:
-                Router.exit(self!)
+                break
+                //Router.exit(self!)
             case .menu:
                 self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
             default:
