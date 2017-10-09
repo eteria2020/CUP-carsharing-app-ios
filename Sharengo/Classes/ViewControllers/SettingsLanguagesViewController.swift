@@ -115,11 +115,11 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
      This method is used to update language interface after user selection
     */
     public func updateLanguages() {
-        DispatchQueue.main.async {
-            self.viewModel?.updateData()
-            self.viewModel?.reload()
-            self.collectionView?.reloadData()
-            self.lbl_title.styledText = self.viewModel?.title
+        DispatchQueue.main.async {[weak self]  in
+            self?.viewModel?.updateData()
+            self?.viewModel?.reload()
+            self?.collectionView?.reloadData()
+            self?.lbl_title.styledText = self?.viewModel?.title
         }
     }
     

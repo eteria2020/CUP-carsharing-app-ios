@@ -242,15 +242,15 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
      - user's city showed in the feed button
      */
     @objc fileprivate func updateUserData() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self]  in
             if let firstname = KeychainSwift().get("UserFirstname") {
                 if KeychainSwift().get("UserGender") == "female" {
-                    self.lbl_description.styledText = String(format: "lbl_homeDescriptionLoggedF".localized(), firstname)
+                    self?.lbl_description.styledText = String(format: "lbl_homeDescriptionLoggedF".localized(), firstname)
                 } else {
-                    self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
+                    self?.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
                 }
             } else {
-                self.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
+                self?.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
             }
             var cityid = "0"
             if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
@@ -268,12 +268,12 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                             let data = try Data(contentsOf: url)
                             if let image = UIImage(data: data) {
                                 cityFounded = true
-                                if self.feedsAvailable {
-                                    self.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
-                                    self.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                                if self?.feedsAvailable ?? false {
+                                    self?.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
+                                    self?.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
                                 } else {
-                                    self.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                                    self.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                                    self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                                    self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
                                 }
                             }
                         } catch {
@@ -282,22 +282,22 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                 }
             }
             if !cityFounded {
-                if self.feedsAvailable {
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white), for: .normal)
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                if self?.feedsAvailable ?? false {
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white), for: .normal)
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
                 } else {
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
                 }
             }
-            if self.profileEcoStatusAvailable {
-                self.view_profile.backgroundColor = Color.homeEnabledBackground.value
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+            if self?.profileEcoStatusAvailable ?? false {
+                self?.view_profile.backgroundColor = Color.homeEnabledBackground.value
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
             } else {
-                self.view_profile.backgroundColor = Color.homeDisabledBackground.value
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                self?.view_profile.backgroundColor = Color.homeDisabledBackground.value
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
             }
         }
     }

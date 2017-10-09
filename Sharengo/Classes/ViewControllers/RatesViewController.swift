@@ -44,14 +44,14 @@ public class RatesViewController : BaseViewController, ViewModelBindable {
         
         viewModel.ratesDescription.asObservable()
             .subscribe(onNext: {[weak self] (value) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     self?.lbl_rates.styledText = value
                 }
             }).addDisposableTo(disposeBag)
         
         viewModel.bonusDescription.asObservable()
             .subscribe(onNext: {[weak self] (value) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     self?.lbl_bonus.styledText = value
                 }
             }).addDisposableTo(disposeBag)

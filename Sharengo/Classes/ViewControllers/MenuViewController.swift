@@ -167,16 +167,16 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
      This method is linked to a notification with name "updateData". When other methods calls this "updateData" the menu updates its options
      */
     @objc public func updateData() {
-        DispatchQueue.main.async {
-            self.viewModel?.updateData()
-            self.viewModel?.reload()
-            self.collectionView?.reloadData()
-            self.view.layoutIfNeeded()
-            self.lbl_welcome.styledText = self.viewModel?.welcome
-            if self.profileEcoStatusAvailable {
-                self.view_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
-                self.img_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
-                self.btn_profileEco.isHidden = self.viewModel?.userIconIsHidden ?? true
+        DispatchQueue.main.async {[weak self]  in
+            self?.viewModel?.updateData()
+            self?.viewModel?.reload()
+            self?.collectionView?.reloadData()
+            self?.view.layoutIfNeeded()
+            self?.lbl_welcome.styledText = self?.viewModel?.welcome
+            if (self?.profileEcoStatusAvailable ?? false) {
+                self?.view_userIcon.isHidden = self?.viewModel?.userIconIsHidden ?? true
+                self?.img_userIcon.isHidden = self?.viewModel?.userIconIsHidden ?? true
+                self?.btn_profileEco.isHidden = self?.viewModel?.userIconIsHidden ?? true
             }
         }
     }

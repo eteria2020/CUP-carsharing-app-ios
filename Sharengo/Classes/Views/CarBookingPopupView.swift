@@ -89,13 +89,13 @@ class CarBookingPopupView: UIView {
         self.updateButtons()
         viewModel.info.asObservable()
             .subscribe(onNext: {[weak self] (info) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     self?.lbl_info.styledText = info
                 }
             }).addDisposableTo(disposeBag)
         viewModel.time.asObservable()
             .subscribe(onNext: {[weak self] (time) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     self?.firstLoaded = true
                     if time != "" {
                         self?.icn_time.isHidden = false

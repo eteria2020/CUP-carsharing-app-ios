@@ -333,14 +333,14 @@ public final class MapViewModel: ViewModelType {
         if type == .feeds {
             self.updateCarsProperties()
             if self.errorEvents == false && self.errorOffers == false {
-                DispatchQueue.main.async {
-                    for feed in self.feeds {
+                DispatchQueue.main.async {[weak self]  in
+                    for feed in self?.feeds ?? [] {
                         if let coordinate = feed.feedLocation?.coordinate {
                             let annotation = FeedAnnotation(position: coordinate, feed: feed)
                             annotations.append(annotation)
                         }
                     }
-                    self.array_annotations.value = annotations
+                    self?.array_annotations.value = annotations
                 }
             } else if self.errorEvents == true || self.errorOffers == true {
                 let dispatchTime = DispatchTime.now() + 0.5

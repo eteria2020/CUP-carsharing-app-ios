@@ -72,10 +72,10 @@ public class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBind
                 {
                     do {
                         let data = try Data(contentsOf: url)
-                        DispatchQueue.main.async {
-                            self.gif_icon.animate(withGIFData: data)
+                        DispatchQueue.main.async {[weak self]  in
+                            self?.gif_icon.animate(withGIFData: data)
                             UIView.animate(withDuration: 0.25, animations: {
-                                self.gif_icon.alpha = 1.0
+                                self?.gif_icon.alpha = 1.0
                             })
                         }
                     } catch {
@@ -88,10 +88,10 @@ public class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBind
                     do {
                         let data = try Data(contentsOf: url)
                         if let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.img_icon.image = image.tinted(UIColor(hexString: "#aca59d"))
+                            DispatchQueue.main.async {[weak self]  in
+                                self?.img_icon.image = image.tinted(UIColor(hexString: "#aca59d"))
                                 UIView.animate(withDuration: 0.25, animations: {
-                                    self.img_icon.alpha = 1.0
+                                    self?.img_icon.alpha = 1.0
                                 })
                             }
                         }

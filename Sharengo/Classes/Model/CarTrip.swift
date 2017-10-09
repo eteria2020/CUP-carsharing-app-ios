@@ -173,7 +173,9 @@ public class CarTrip: ModelType, Decodable {
                     switch event {
                     case .next(let response):
                         if response.status == 200, let data = response.dic_data {
-                            self.car.value = Car(json: data)
+                            DispatchQueue.main.async {[weak self]  in
+                                self?.car.value = Car(json: data)
+                            }
                         }
                     default:
                         break
@@ -206,7 +208,9 @@ public class CarTrip: ModelType, Decodable {
                     switch event {
                     case .next(let response):
                         if response.status == 200, let data = response.dic_data {
-                            self.car.value = Car(json: data)
+                            DispatchQueue.main.async {[weak self]  in
+                                self?.car.value = Car(json: data)
+                            }
                             completionClosure()
                         }
                     default:

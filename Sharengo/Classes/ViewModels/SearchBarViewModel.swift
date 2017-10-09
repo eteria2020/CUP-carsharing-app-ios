@@ -135,20 +135,20 @@ public class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                         self.speechController.requestSpeechAuthorization()
                         self.speechController.speechInProgress.asObservable()
                             .subscribe(onNext: {[weak self] (speechInProgress) in
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async {[weak self]  in
                                     self?.speechInProgress.value = speechInProgress
                                 }
                             }).addDisposableTo(self.disposeBag)
                         self.speechController.speechTranscription.asObservable()
                             .subscribe(onNext: {[weak self] (speechTransition) in
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async {[weak self]  in
                                     self?.itemSelected = false
                                     self?.speechTranscription.value = speechTransition ?? ""
                                 }
                             }).addDisposableTo(self.disposeBag)
                         self.speechController.speechError.asObservable()
                             .subscribe(onNext: {[weak self] (error) in
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async {[weak self]  in
                                     self?.itemSelected = false
                                     if let error = error {
                                         self?.speechInProgress.value = false

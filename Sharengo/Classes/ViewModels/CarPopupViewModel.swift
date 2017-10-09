@@ -172,7 +172,7 @@ public class CarPopupViewModel: ViewModelTypeSelectable {
             car.getAddress()
             car.address.asObservable()
                 .subscribe(onNext: {[weak self] (address) in
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async {[weak self]  in
                         if address != nil {
                             self?.address.value = address
                         }

@@ -107,10 +107,10 @@ public class SettingsCitiesViewController : BaseViewController, ViewModelBindabl
      This method is used to update cities interface after user selection
      */
     public func updateCities() {
-        DispatchQueue.main.async {
-            self.viewModel?.updateData()
-            self.viewModel?.reload()
-            self.collectionView?.reloadData()
+        DispatchQueue.main.async {[weak self]  in
+            self?.viewModel?.updateData()
+            self?.viewModel?.reload()
+            self?.collectionView?.reloadData()
         }
     }
     

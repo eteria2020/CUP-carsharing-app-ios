@@ -76,7 +76,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         }
         viewModel.speechInProgress.asObservable()
             .subscribe(onNext: {[weak self] (speechInProgress) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     if speechInProgress {
                         self?.txt_search.becomeFirstResponder()
                         self?.updateCollectionView(show: true)
@@ -88,7 +88,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             }).addDisposableTo(disposeBag)
         viewModel.speechTranscription.asObservable()
             .subscribe(onNext: {[weak self] (speechTransition) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     if self?.viewModel?.speechInProgress.value == true {
                         self?.txt_search.text = speechTransition ?? ""
                         if speechTransition != nil && self?.viewModel?.speechInProgress.value == true {
@@ -100,7 +100,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             }).addDisposableTo(self.disposeBag)
         viewModel.hideButton.asObservable()
             .subscribe(onNext: {[weak self] (hideButton) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     if hideButton {
                         self?.view_microphone.alpha = 0.5
                     } else {
@@ -167,21 +167,21 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
      */
     func updateCollectionView(show: Bool) {
         if show {
-            DispatchQueue.main.async {
-                self.collectionView.isHidden = false
-                self.viewModel?.reload()
-                self.collectionView?.reloadData()
-                self.collectionView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 10), animated: false)
+            DispatchQueue.main.async {[weak self]  in
+                self?.collectionView.isHidden = false
+                self?.viewModel?.reload()
+                self?.collectionView?.reloadData()
+                self?.collectionView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 10), animated: false)
             }
         } else {
-            DispatchQueue.main.async {
-                self.view_black.alpha = 0.0
-                self.collectionView.isHidden = true
-                self.endEditing(true)
-                self.viewModel?.reload()
-                self.collectionView?.reloadData()
-                if self.favourites {
-                    self.view_background.alpha = 0.0
+            DispatchQueue.main.async {[weak self]  in
+                self?.view_black.alpha = 0.0
+                self?.collectionView.isHidden = true
+                self?.endEditing(true)
+                self?.viewModel?.reload()
+                self?.collectionView?.reloadData()
+                if (self?.favourites ?? false) {
+                    self?.view_background.alpha = 0.0
                 }
             }
         }

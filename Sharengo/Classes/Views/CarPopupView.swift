@@ -60,7 +60,7 @@ public class CarPopupView: UIView {
         self.viewModel = viewModel
         viewModel.carType.asObservable()
             .subscribe(onNext: {[weak self] (type) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     if type.isEmpty {
                         self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 0
                         self?.view_separator.isHidden = true
@@ -78,7 +78,7 @@ public class CarPopupView: UIView {
         }).addDisposableTo(disposeBag)
         viewModel.type.asObservable()
             .subscribe(onNext: {[weak self] (type) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     switch type {
                     case .car:
                         self?.view_feed.isHidden = true
@@ -144,7 +144,7 @@ public class CarPopupView: UIView {
                 viewModel.getAddress(car: car)
                 viewModel.address.asObservable()
                     .subscribe(onNext: {[weak self] (address) in
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async {[weak self]  in
                             if address != nil {
                                 self?.lbl_address.bonMotStyleName = "carPopupAddress"
                                 self?.lbl_address.styledText = address!

@@ -82,7 +82,7 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     car.getAddress()
                     car.address.asObservable()
                         .subscribe(onNext: {[weak self] (address) in
-                            DispatchQueue.main.async {
+                            DispatchQueue.main.async {[weak self]  in
                                 if address != nil {
                                     self?.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address!)
                                     UserDefaults.standard.set(address!, forKey: key)
@@ -120,7 +120,7 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 car.getAddress()
                 car.address.asObservable()
                     .subscribe(onNext: {[weak self] (address) in
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async {[weak self]  in
                             if address != nil {
                                 self?.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address!)
                             }

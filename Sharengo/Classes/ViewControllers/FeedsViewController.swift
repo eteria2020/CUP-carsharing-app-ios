@@ -209,36 +209,36 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
      */
     public func checkData() {
         if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
-            DispatchQueue.main.async {
-                if self.viewModel?.feeds.count == 0 {
+            DispatchQueue.main.async {[weak self]  in
+                if self?.viewModel?.feeds.count == 0 {
                     let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
-                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self.viewModel?.category), afterLoad: true)
-                    var array = self.navigationController?.viewControllers ?? []
-                    if self.viewModel?.category != nil {
+                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self?.viewModel?.category), afterLoad: true)
+                    var array = self?.navigationController?.viewControllers ?? []
+                    if self?.viewModel?.category != nil {
                         array.removeLast()
                     }
                     array.append(destination)
-                    self.navigationController?.viewControllers = array
-                    self.hideLoader(completionClosure: { () in
+                    self?.navigationController?.viewControllers = array
+                    self?.hideLoader(completionClosure: { () in
                        // let dispatchTime = DispatchTime.now() + 0.3
                        // DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            self.view.backgroundColor = Color.categoriesBackground.value
-                            self.viewModel?.sectionSelected = .categories
-                            self.updateHeaderButtonsInterface()
-                            self.viewModel?.updateListDataHolder()
-                            self.viewModel?.reload()
-                            self.collectionView?.reloadData()
+                            self?.view.backgroundColor = Color.categoriesBackground.value
+                            self?.viewModel?.sectionSelected = .categories
+                            self?.updateHeaderButtonsInterface()
+                            self?.viewModel?.updateListDataHolder()
+                            self?.viewModel?.reload()
+                            self?.collectionView?.reloadData()
                        // }
                     })
                     return
                 }
-                self.viewModel?.updateListDataHolder()
-                self.viewModel?.reload()
-                self.collectionView?.reloadData()
-                self.hideLoader(completionClosure: { () in
+                self?.viewModel?.updateListDataHolder()
+                self?.viewModel?.reload()
+                self?.collectionView?.reloadData()
+                self?.hideLoader(completionClosure: { () in
                 })
-                if self.viewModel?.category == nil {
-                    self.btn_aroundMe.isHidden = false
+                if self?.viewModel?.category == nil {
+                    self?.btn_aroundMe.isHidden = false
                 }
             }
         } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {

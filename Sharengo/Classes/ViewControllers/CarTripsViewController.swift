@@ -63,10 +63,12 @@ public class CarTripsViewController : BaseViewController, ViewModelBindable, UIC
                                 
                                 CoreController.shared.archivedCarTrips = carTrips
                                 self.allCarTrips = carTrips
-                                DispatchQueue.main.async {
-                                    self.viewModel?.updateData(carTrips: self.allCarTrips)
-                                    self.viewModel?.reload()
-                                    self.collectionView?.reloadData()
+                                DispatchQueue.main.async {[weak self]  in
+                                    if let carTrips = self?.allCarTrips {
+                                        self?.viewModel?.updateData(carTrips: carTrips)
+                                    }
+                                    self?.viewModel?.reload()
+                                    self?.collectionView?.reloadData()
                                 }
                                 return
                             }
@@ -94,12 +96,14 @@ public class CarTripsViewController : BaseViewController, ViewModelBindable, UIC
                             if let carTrips = [CarTrip].from(jsonArray: data) {
                                 CoreController.shared.archivedCarTrips = carTrips
                                 self.allCarTrips = carTrips
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async {[weak self]  in
                                     if CoreController.shared.currentViewController is NoCarTripsViewController {
-                                        self.viewModel?.updateData(carTrips: self.allCarTrips)
-                                        self.viewModel?.reload()
-                                        self.collectionView?.reloadData()
-                                        self.objectsLoaded = true
+                                        if let carTrips = self?.allCarTrips {
+                                            self?.viewModel?.updateData(carTrips: carTrips)
+                                        }
+                                        self?.viewModel?.reload()
+                                        self?.collectionView?.reloadData()
+                                        self?.objectsLoaded = true
                                         array.removeLast()
                                         navigationController.viewControllers = array
                                     }

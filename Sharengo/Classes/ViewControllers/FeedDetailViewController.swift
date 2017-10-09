@@ -84,10 +84,10 @@ public class FeedDetailViewController : BaseViewController, ViewModelBindable {
                 do {
                     let data = try Data(contentsOf: url)
                     if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.img_background.image = image
+                        DispatchQueue.main.async {[weak self]  in
+                            self?.img_background.image = image
                             UIView.animate(withDuration: 0.25, animations: {
-                                self.img_background.alpha = 1.0
+                                self?.img_background.alpha = 1.0
                            })
                         }
                     }
