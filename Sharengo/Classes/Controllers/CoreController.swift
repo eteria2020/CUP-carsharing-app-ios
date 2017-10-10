@@ -14,42 +14,42 @@ import KeychainSwift
 import Localize_Swift
 
 /**
- CoreController class is a singleton class accessible from other classes with support variables, etc...
+ CoreController class is a singleton class accessible from other classes with support variables, methods, ...
  */
 public class CoreController {
     /// Shared instance
     public static let shared = CoreController()
-    /// Current viewController that user see
+    /// Current screen that user sees
     public var currentViewController: UIViewController?
-    /// Instance of Api Controller that manage generic settings about web services
+    /// Instance of ApiController
     public let apiController: ApiController = ApiController()
-    /// Instance of Publishers Api Controller that manage web services about feed
+    /// Instance of PublishersApiController
     public let publishersApiController: PublishersAPIController = PublishersAPIController()
-    /// Instance of Api Controller that manage Sharengo web services
+    /// Instance of SharengoApiController
     public let sharengoApiController: SharengoApiController = SharengoApiController()
-    /// Update Timer
+    /// Update timer used to update application
     public var updateTimer: Timer?
-    /// Update Car Trip Timer
+    /// Update car timer used to update current car trip
     public var updateCarTripTimer: Timer?
     /// Boolean that indicate if there is an update in progress
     public var updateInProgress = false
-    /// Array of Car Bookings
+    /// Array of car bookings
     public var allCarBookings: [CarBooking] = []
-    /// Array of Car Trips
+    /// Array of car trips
     public var allCarTrips: [CarTrip] = []
-    /// Model of current Car Booking
+    /// Current car booking
     public var currentCarBooking: CarBooking?
-    /// Model of current Car Trip
+    /// Current car trip
     public var currentCarTrip: CarTrip?
-    /// Boolean that indicate if there is a notification showed now or not
+    /// Boolean that indicate if there is a notification showed in this moment or not
     public var notificationIsShowed: Bool = false
-    /// Array of Cities
+    /// Array of cities
     public var cities: [City] = []
-    /// Array of Polygons
+    /// Array of polygons
     public var polygons: [Polygon] = []
-    /// Support variabile for POI with Pulse yellow image
+    /// Support variabile for pulse yellow gif
     public lazy var pulseYellow: UIImage = CoreController.shared.getPulseYellow()
-    /// Support variabile for POI with Pulse green image
+    /// Support variabile for pulse green gif
     public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
     /// Array of archived car trips
     public var archivedCarTrips: [CarTrip] = []
@@ -58,7 +58,7 @@ public class CoreController {
         static var disposeBag = "vc_disposeBag"
     }
     
-    /// Dispose bag used for RX
+    /// Dispose bag used from RxSwift
     public var disposeBag: DisposeBag {
         var disposeBag: DisposeBag
         if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
@@ -72,7 +72,7 @@ public class CoreController {
     
     // MARK: - Init methods
     
-    private init() {
+    public init() {
         self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
         self.updateCarTripTimer = Timer.scheduledTimer(timeInterval: 10*1, target: self, selector: #selector(self.updateCarTripData), userInfo: nil, repeats: true)
     }
@@ -80,7 +80,7 @@ public class CoreController {
     // MARK: - Update methods
     
     /**
-     This method update list of archived car trips
+     This method updates list of archived car trips
      */
     public func updateArchivedCarTrips() {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -105,7 +105,7 @@ public class CoreController {
     }
     
     /**
-     This method update useful data of app like cities and polygons
+     This method updates application data like cities, polygons, user info, ...
      */
     @objc public func updateData() {
         self.updateCities()
@@ -118,7 +118,7 @@ public class CoreController {
     }
     
     /**
-     This method update polygons where Share'ngo cars can stay
+     This method updates polygons
      */
     public func updatePolygons() {
         self.sharengoApiController.getPolygons()
@@ -142,7 +142,7 @@ public class CoreController {
     }
 
     /**
-     This method update cities where Share'ngo offers its services
+     This method updates cities
      */
     public func updateCities() {
         self.publishersApiController.getCities()
@@ -170,7 +170,7 @@ public class CoreController {
     }
 
     /**
-     This method update user data like bonus
+     This method updates user info like pin, firstname, ...
      */
     public func updateUser() {
         if let username = KeychainSwift().get("Username"), let password = KeychainSwift().get("Password") {
@@ -220,9 +220,9 @@ public class CoreController {
     }
     
     /**
-     This method execute logout of current user
+     This method executes logout of current user
      */
-    func executeLogout() {
+    public func executeLogout() {
         var languageid = "en"
         if Locale.preferredLanguages[0] == "it-IT" {
             languageid = "it"
@@ -254,7 +254,7 @@ public class CoreController {
     }
     
     /**
-     This method update Car Bookings array
+     This method updates array of car bookings
      */
     public func updateCarBookings() {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -305,9 +305,9 @@ public class CoreController {
     }
     
     /**
-     This method update car trip data
+     This method updates current car trip data
      */
-    @objc func updateCarTripData() {
+    @objc public func updateCarTripData() {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
@@ -350,7 +350,7 @@ public class CoreController {
     }
     
     /**
-     This method update car trips array
+     This method updates array of car trips
      */
     public func updateCarTrips() {
         if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -395,7 +395,7 @@ public class CoreController {
     }
     
     /**
-     This method stop update of data with a notification
+     This method updates application sending a notification to all classes
      */
     public func stopUpdateData() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
@@ -406,7 +406,7 @@ public class CoreController {
     // MARK: - Pulse methods
     
     /**
-     This method return image of yellow pulse
+     This method returns yellow pulse gif
      */
     public func getPulseYellow() -> UIImage {
         var frames: [UIImage] = [UIImage]()
@@ -418,7 +418,7 @@ public class CoreController {
     }
     
     /**
-     This method return image of green pulse
+     This method returns green pulse gif
      */
     public func getPulseGreen() -> UIImage {
         var frames: [UIImage] = [UIImage]()
@@ -430,7 +430,7 @@ public class CoreController {
     }
     
     /**
-     This method is a support method for pulse image. It resize image with size given in parameters.
+     This method is a support method for pulse gif. It resizes images with size given in parameters.
      - Parameter image: image to be resized
      - Parameter newSize: size of new image
      */
