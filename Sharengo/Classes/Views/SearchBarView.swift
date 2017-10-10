@@ -14,7 +14,7 @@ import Action
 import DeviceKit
 
 /**
- The SearchBar View class is a view where user can input text to search
+ The SearchBarView class is a view where user can input text to search
  */
 class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_black: UIView!
@@ -25,14 +25,15 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     @IBOutlet fileprivate weak var view_search: UIView!
     @IBOutlet fileprivate weak var txt_search: UITextField!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
-    
-    var flow: UICollectionViewFlowLayout? {
+    fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
     /// ViewModel variable used to represents the data
     public var viewModel: SearchBarViewModel?
-    fileprivate var view: UIView!
-    fileprivate var favourites: Bool = false
+    /// Main view of the search bar
+    public var view: UIView!
+    /// Variable used to check if search bar is showed in favourites screen or not
+    public var favourites: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -49,11 +50,11 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
    
     // MARK: - View methods
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     
@@ -133,7 +134,12 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         return view
     }
     
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    // MARK: - Interface methods
+    
+    /**
+     This method is called by the system when user executes a touch on the screen
+     */
+    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         if self.view_background.point(inside: convert(point, to: self.view_background), with: event) {
             return true
         }
@@ -144,7 +150,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     /**
-     This method update interface
+     This method updates interface
      */
     public func updateInterface() {
         guard let viewModel = viewModel else {
@@ -163,9 +169,9 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     /**
-     This method update collectionView's interface
+     This method updates collectionView's interface
      */
-    func updateCollectionView(show: Bool) {
+    public func updateCollectionView(show: Bool) {
         if show {
             DispatchQueue.main.async {[weak self]  in
                 self?.collectionView.isHidden = false
@@ -188,14 +194,14 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     /**
-     This method stop editing of search bar textfield
+     This method closes keyboard
      */
     public func stopSearchBar() {
         self.endEditing(true)
     }
     
     /**
-     This method stop editing of search bar textfield
+     This method setup interface for favourites screen
      */
     public func setupForFavourites() {
         self.favourites = true
@@ -204,7 +210,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     }
     
     /**
-     This method show searchBar with animation
+     This method shows search bar with animation
      */
     public func showSearchBar() {
         self.viewModel?.reloadResults(text: self.txt_search.text ?? "")
@@ -230,11 +236,18 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     
     // MARK: - Data methods
     
-    fileprivate func stopRequest() {
+    /**
+     This method stops search request
+     */
+    public func stopRequest() {
         self.viewModel?.stopRequest()
     }
     
-    fileprivate func getResults(text: String) {
+    /**
+     This method starts search request
+     - Parameter text: text to find
+     */
+    public func getResults(text: String) {
         self.stopRequest()
         self.viewModel?.reloadResults(text: text)
     }
@@ -266,7 +279,6 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
      This method is called from collection delegate to decide how the list interface is showed (size)
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let width = collectionView.bounds.size.width
         var height: CGFloat = 0.0
         switch Device().diagonal {
@@ -294,15 +306,17 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
 }
 
 extension SearchBarView: UITextFieldDelegate {
+    // MARK: - UITextField delegate
+    
     /**
-     This method update collection view when user tap on textField
+     This method updates collection view when user tap on textField
      */
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         self.updateCollectionView(show: true)
     }
     
     /**
-     This method call get results while User enter text to find
+     This method calls get results while user enter text to find
      */
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string == "\n" {
@@ -327,7 +341,7 @@ extension SearchBarView: UITextFieldDelegate {
     }
     
     /**
-     This method is called from collection delegate when an option of the list is selected
+     This method is called from textfield when keyboard is closed
      */
     public func textFieldDidEndEditing(_ textField: UITextField) {
         if self.viewModel?.speechInProgress.value == true && self.viewModel?.itemSelected == false {

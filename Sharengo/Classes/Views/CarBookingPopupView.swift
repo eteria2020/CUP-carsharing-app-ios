@@ -15,9 +15,9 @@ import CoreLocation
 import DeviceKit
 
 /**
- The CarBookingPopup View class is a view that shows info and actions relative to a car booking
+ The CarBookingPopupView class is a view that shows info and actions relative to a car booking or a car tirp
  */
-class CarBookingPopupView: UIView {
+public class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
     @IBOutlet fileprivate weak var btn_openCentered: UIButton!
     @IBOutlet fileprivate weak var btn_delete: UIButton!
@@ -28,8 +28,10 @@ class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var view_time: UIView!
     @IBOutlet fileprivate weak var view_pin: UIView!
     @IBOutlet fileprivate weak var view_info: UIView!
-    fileprivate var view: UIView!
-    fileprivate var firstLoaded: Bool = false
+    /// Main view of the popup
+    public var view: UIView!
+    /// Variable used to check if it's the first time that tne popup is showed
+    public var firstLoaded: Bool = false
     /// ViewModel variable used to represents the data
     public var viewModel: CarBookingPopupViewModel?
     
@@ -49,8 +51,55 @@ class CarBookingPopupView: UIView {
     
     // MARK: - View methods
     
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
+    fileprivate func xibSetup() {
+        view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        addSubview(view)
+        self.layoutIfNeeded()
+        self.view.backgroundColor = Color.carBookingPopupBackground.value
+        self.btn_openCentered.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
+        self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
+        self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
+        self.lbl_info.styledText = ""
+    }
+    
+    fileprivate func loadViewFromNib() -> UIView {
+        let nib = ViewXib.carBookingPopup.getNib()
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        return view
+    }
+    
+    // MARK: - Interface methods
+    
     /**
-     This method update ui with a car booking object
+     This method is called by the system when user executes a touch on the screen
+     */
+    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if self.view.point(inside: convert(point, to: self.view), with: event) {
+            if self.viewModel?.time.value != "" && view_time.point(inside: convert(point, to: view_time), with: event) {
+                return true
+            } else if view_pin.point(inside: convert(point, to: view_pin), with: event) {
+                return true
+            } else if view_info.point(inside: convert(point, to: view_info), with: event) {
+                return true
+            } else if (self.viewModel?.hideButtons == false || self.viewModel?.carTrip?.car.value?.parking == true) && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event)) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    /**
+     This method updates interface with a car booking object
      - Parameter carBooking: car booking object
      */
     public func updateWithCarBooking(carBooking: CarBooking) {
@@ -63,7 +112,7 @@ class CarBookingPopupView: UIView {
     }
     
     /**
-     This method update ui with a car trip object
+     This method updates interface with a car trip object
      - Parameter carTrip: car trip object
      */
     public func updateWithCarTrip(carTrip: CarTrip) {
@@ -75,7 +124,10 @@ class CarBookingPopupView: UIView {
         self.updateData()
     }
     
-    fileprivate func updateData() {
+    /**
+     This method updates interface
+     */
+    public func updateData() {
         guard let viewModel = viewModel else {
             return
         }
@@ -116,7 +168,7 @@ class CarBookingPopupView: UIView {
     }
     
     /**
-     This method update buttons based on hideButtons property and if carTrip is nil or not
+     This method updates buttons based on hideButtons property in viewModel and if car trip is nil or not
      */
     public func updateButtons() {
         guard let viewModel = viewModel else {
@@ -139,47 +191,5 @@ class CarBookingPopupView: UIView {
             self.btn_open.isHidden = false
             self.btn_delete.isHidden = false
         }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-    }
-    
-    fileprivate func xibSetup() {
-        view = loadViewFromNib()
-        view.frame = bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        addSubview(view)
-        self.layoutIfNeeded()
-        self.view.backgroundColor = Color.carBookingPopupBackground.value
-        self.btn_openCentered.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
-        self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
-        self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
-        self.lbl_info.styledText = ""
-    }
-    
-    fileprivate func loadViewFromNib() -> UIView {
-        let nib = ViewXib.carBookingPopup.getNib()
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        return view
-    }
-    
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if self.view.point(inside: convert(point, to: self.view), with: event) {
-            if self.viewModel?.time.value != "" && view_time.point(inside: convert(point, to: view_time), with: event) {
-                return true
-            } else if view_pin.point(inside: convert(point, to: view_pin), with: event) {
-                return true
-            } else if view_info.point(inside: convert(point, to: view_info), with: event) {
-                return true
-            } else if (self.viewModel?.hideButtons == false || self.viewModel?.carTrip?.car.value?.parking == true) && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event)) {
-                return true
-            }
-        }
-        return false
     }
 }

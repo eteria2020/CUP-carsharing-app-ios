@@ -35,26 +35,36 @@ public enum SearchBarSelectionOutput: SelectionOutput {
 }
 
 /**
- The SearchBar viewmodel provides data related to display car booking data in CarBookingPopupView
+ The SearchBarViewModel provides data related to display search data in SearchBarView
  */
 public class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
-    public var dataHolder: ListDataHolderType = ListDataHolder.empty
-    var speechInProgress: Variable<Bool> = Variable(false)
-    var speechTranscription: Variable<String?> = Variable(nil)
-    var hideButton: Variable<Bool> = Variable(false)
-    var itemSelected: Bool = false
-    @available(iOS 10.0, *)
-    lazy var speechController = SpeechController()
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate let numberOfResults: Int = 15
-    var allCars: [Car] = []
-    var favourites: Bool = false
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// Variable used to save if speech is in progress
+    public var speechInProgress: Variable<Bool> = Variable(false)
+    /// Variable used to save text speeched by user
+    public var speechTranscription: Variable<String?> = Variable(nil)
+    /// Variable used to save if buttons has to be hidden or not
+    public var hideButton: Variable<Bool> = Variable(false)
+    /// Variable used to save if item is selected
+    public var itemSelected: Bool = false
+    /// Cars array
+    public var allCars: [Car] = []
+    /// Variable used to check if search bar is showed in favourites screen or not
+    public var favourites: Bool = false
+    @available(iOS 10.0, *)
+    /// Instance of SpeechController
+    lazy public var speechController = SpeechController()
     /// Selection variable
     lazy public var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
         return .empty()
     }
+    
+    // MARK: - ViewModel methods
     
     public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? Address {
@@ -190,7 +200,7 @@ public class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     // MARK: - Dictated methods
     
     /**
-     This method check if dictated is authorized or not to working
+     This method check if speech controller is authorized or not
      */
     public func dictatedIsAuthorized() -> Bool {
         if #available(iOS 10.0, *) {
@@ -259,11 +269,10 @@ public class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     }
     
     /**
-     This method update data holder with history and favorites
+     This method update data holder with history and/or favorites
      */
     public func getHistoryAndFavorites() {
         var historyAndFavorites: [ModelType] = [ModelType]()
-        
         var favourites: Bool = false
         var numberOfResults: Int = self.numberOfResults
         if !self.favourites {

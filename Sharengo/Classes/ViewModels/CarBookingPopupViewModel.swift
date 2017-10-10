@@ -20,7 +20,7 @@ public enum CarBookingPopupInput: SelectionInput {
     case delete
 }
 
-/**
+/** 
  Enum that specifies selection output
  */
 public enum CarBookingPopupOutput: SelectionInput {
@@ -30,17 +30,25 @@ public enum CarBookingPopupOutput: SelectionInput {
 }
 
 /**
- The CarBookingPopup viewmodel provides data related to display car booking data in CarBookingPopupView
+ The CarBookingPopupViewModel provides data related to display car booking data or car trip data in CarBookingPopupView
  */
 public class CarBookingPopupViewModel: ViewModelTypeSelectable {
-    var carBooking: CarBooking?
-    var carTrip: CarTrip?
-    var pin: String = ""
-    var time: Variable<String> = Variable("")
-    var hideButtons: Bool = false
-    var info: Variable<String?> = Variable(nil)
-    var timeTimer: Timer?
-    var carBookingPopupView: CarBookingPopupView?
+    /// Variable used to save car booking
+    public var carBooking: CarBooking?
+    /// Variable used to save car trip
+    public var carTrip: CarTrip?
+    /// User pin
+    public var pin: String = ""
+    /// Time that has to be shown in popup
+    public var time: Variable<String> = Variable("")
+    /// Timer that updates time variable
+    public var timeTimer: Timer?
+    /// Variable used to save if buttons have to be hidden or not
+    public var hideButtons: Bool = false
+    /// Info that has to be shown in popup
+    public var info: Variable<String?> = Variable(nil)
+    /// Reference of CarBookingPopupView
+    public var carBookingPopupView: CarBookingPopupView?
     /// Selection variable
     public var selection: Action<CarBookingPopupInput, CarBookingPopupOutput> = Action { _ in
         return .just(.empty)
@@ -65,8 +73,10 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.timeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
     }
     
+    // MARK: - Interface methods
+    
     /**
-     This method update ui with Car Booking
+     This method updates interface with a car booking object
      - Parameter carBooking: car booking object
      */
     public func updateWithCarBooking(carBooking: CarBooking) {
@@ -100,7 +110,7 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
     }
     
     /**
-     This method update ui with Car Trip
+     This method updates interface with a car trip object
      - Parameter carTrip: car trip object
      */
     public func updateWithCarTrip(carTrip: CarTrip) {
@@ -134,7 +144,7 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
     }
     
     /**
-     This method update data
+     This method updates interface
      */
     public func updateData() {
         if let pin = KeychainSwift().get("UserPin") {
@@ -146,7 +156,10 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.updateTime()
     }
     
-    @objc fileprivate func updateTime() {
+    /**
+     This method updates time variable depending on car booking or car trip object
+     */
+    @objc public func updateTime() {
         self.time.value = ""
         if self.carBooking != nil {
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
