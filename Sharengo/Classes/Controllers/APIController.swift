@@ -17,7 +17,7 @@ import KeychainSwift
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
 /**
- ApiController is superclass that has generic settings about web services
+ ApiController class is controller that manage sharengo web services (https://api.sharengo.it:8023/)
  */
 public class ApiController {
     /// Session Manager
@@ -50,7 +50,7 @@ public class ApiController {
     }
     
     /**
-     This method return User data from username and password given
+     This method returns user data from username and password
      - Parameter username: username of user
      - Parameter password: password of user
      */
@@ -82,7 +82,7 @@ public class ApiController {
     }
 
     /**
-     This method return cars from server
+     This method returns all cars from server
      */
     public func searchCars() -> Observable<Response> {
         return Observable.create{ observable in
@@ -112,10 +112,10 @@ public class ApiController {
     }
     
     /**
-     This method return cars visible in map that user see
-     - Parameter latitude: latitude of map's center
-     - Parameter longitude: longitude of map's center
-     - Parameter radius: radius in CLLocationDistance
+     This method returns cars visible in map
+     - Parameter latitude: one of the coordinate that determines the center of the map
+     - Parameter longitude: one of the coordinate that determines the center of the map
+     - Parameter radius: the distance from the center of the map to the edge of the map
      - Parameter userLatitude: latitude of user location
      - Parameter userLongitude: longitude of user location
      */
@@ -147,8 +147,8 @@ public class ApiController {
     }
     
     /**
-     This method return car from a plate
-     - Parameter plate: plate given in string type
+     This method returns car
+     - Parameter plate: car's plate
      */
     public func searchCar(plate: String) -> Observable<Response> {
         return Observable.create{ observable in
@@ -178,7 +178,7 @@ public class ApiController {
     }
     
     /**
-     This method return list of booking
+     This method returns list of booking
      */
     public func bookingList() -> Observable<Response> {
         return Observable.create{ observable in
@@ -208,7 +208,7 @@ public class ApiController {
     }
     
     /**
-     This method return car trips
+     This method returns car trips
      */
     public func tripsList() -> Observable<Response> {
         return Observable.create{ observable in
@@ -238,7 +238,7 @@ public class ApiController {
     }
     
     /**
-     This method return archived car trips
+     This method returns archived car trips
      */
     func archivedTripsList() -> Observable<Response> {
         return Observable.create{ observable in
@@ -268,8 +268,8 @@ public class ApiController {
     }
     
     /**
-     This method book a car
-     - Parameter car: car object that user wants book
+     This method books a car
+     - Parameter car: car object that user wants to book
      - Parameter userLatitude: latitude of user location
      - Parameter userLongitude: longitude of user location
      */
@@ -301,8 +301,8 @@ public class ApiController {
     }
     
     /**
-     This method remove a car booking
-     - Parameter carBooking: car booking object that user wants delete
+     This method deletes a car booking
+     - Parameter carBooking: car booking object that user wants to delete
      */
     public func deleteCarBooking(carBooking: CarBooking) -> Observable<Response> {
         return Observable.create{ observable in
@@ -332,8 +332,8 @@ public class ApiController {
     }
     
     /**
-     This method give a car booking from its id
-     - Parameter id: id of car booking
+     This method returns a car booking
+     - Parameter id: car booking's id
      */
     public func getCarBooking(id: Int) -> Observable<Response> {
         return Observable.create{ observable in
@@ -363,9 +363,9 @@ public class ApiController {
     }
     
     /**
-     This method open a car
-     - Parameter car: car object that user wants open
-     - Parameter action: action
+     This method executes an action on a car
+     - Parameter car: car that user wants to open, unpark, ...
+     - Parameter action: action ("open", "unpark", ...)
      */
     public func openCar(car: Car, action: String) -> Observable<Response> {
         return Observable.create{ observable in
@@ -395,7 +395,7 @@ public class ApiController {
     }
     
     /**
-     This method give trip data
+     This method returns trip data
      - Parameter trip: car trip object
      */
     public func getTrip(trip: CarTrip) -> Observable<Response> {
@@ -426,7 +426,7 @@ public class ApiController {
     }
     
     /**
-     This method give current trip data
+     This method returns current trip data
      */
     public func getCurrentTrip() -> Observable<Response> {
         return Observable.create{ observable in
@@ -456,7 +456,6 @@ public class ApiController {
     }
 }
 
-/// Enum of api calls
 fileprivate enum API {
     case getUserWith(username: String, password: String)
     case searchAllCars()

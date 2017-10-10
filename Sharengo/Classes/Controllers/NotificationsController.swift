@@ -8,16 +8,16 @@
 import Foundation
 
 /**
- NotificationsController class is a controller that manage notifications task as show a single notification.
+ NotificationsController class is a controller that manage notifications inside application
  */
 public class NotificationsController
 {
     /**
-     This method show notification to user.
+     This method shows notification to user.
      - Parameter title: notification's title
-     - Parameter description: description's title
-     - Parameter carTrip: carTrip object used with tap to show car booking completed viewcontroller
-     - Parameter source: viewController where will method show notification
+     - Parameter description: notification's description
+     - Parameter carTrip: car trip object is used to show a new screen when user tap on notification
+     - Parameter source: viewController where notification has to be shown
      */
     public class func showNotification(title: String, description: String, carTrip: CarTrip?, source: UIViewController) {
         let banner = Banner(title: title, subtitle: description, image: UIImage(named: "img_notification_car"), backgroundColor: Color.carBookingCompletedBannerBackground.value)

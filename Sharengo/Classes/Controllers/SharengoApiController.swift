@@ -16,7 +16,7 @@ import Alamofire
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
 /**
-Sharengo API controller is class thant manage web services of sharengo servers
+ SharengoAPIcontroller class is a controller that manage sharengo web services (http://www.sharengo.it)
 */
 public class SharengoApiController {
     /// Session Manager
@@ -35,7 +35,7 @@ public class SharengoApiController {
     }
     
     /**
-     This method return polygons from server
+     This method returns array of polygon
      */
     public func getPolygons() -> Observable<[Polygon]> {
         return Observable.create{ observable in
@@ -65,7 +65,6 @@ public class SharengoApiController {
     }
 }
 
-/// Enum with api calls
 fileprivate enum API {
     case polygons()
 }

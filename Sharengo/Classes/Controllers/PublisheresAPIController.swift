@@ -17,7 +17,7 @@ import KeychainSwift
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
 /**
- PublishersAPIController class is a controller that manage publishers services.
+ PublishersAPIController class is a controller that manage publishers services
  */
 public class PublishersAPIController {
     /// Session Manager
@@ -25,7 +25,7 @@ public class PublishersAPIController {
    
     // MARK: - Init methods
     
-    init() {
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
         configuration.timeoutIntervalForResource = 20
@@ -38,7 +38,7 @@ public class PublishersAPIController {
     // MARK: - Get methods
     
     /**
-     This method return cities related to publishers.
+     This method returns cities
      */
     public func getCities() -> Observable<Response> {
         return Observable.create{ observable in
@@ -68,7 +68,7 @@ public class PublishersAPIController {
     }
     
     /**
-     This method return categories relative to publishers.
+     This method returns categories
      */
     public func getCategories() -> Observable<Response> {
         return Observable.create{ observable in
@@ -98,8 +98,8 @@ public class PublishersAPIController {
     }
     
     /**
-     This method return offers of a category.
-     - Parameter category: category that can be nil if we want return all offers
+     This method returns offers of a category
+     - Parameter category: category that can be nil if we want all offers
      */
     public func getOffers(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
@@ -129,10 +129,10 @@ public class PublishersAPIController {
     }
     
     /**
-     This method return offers visible in map that user see
-     - Parameter latitude: The latitude is one of the coordinate that determines the center of the map
-     - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
-     - Parameter radius: The radius is the distance from the center of the map to the edge of the map
+     This method returns offers visible in map
+     - Parameter latitude: one of the coordinate that determines the center of the map
+     - Parameter longitude: one of the coordinate that determines the center of the map
+     - Parameter radius: the distance from the center of the map to the edge of the map
      */
     public func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
@@ -162,8 +162,8 @@ public class PublishersAPIController {
     }
     
     /**
-     This method return events of a category.
-     - Parameter category: category that can be nil if we want return all events
+     This method returns events of a category
+     - Parameter category: category that can be nil if we want all events
      */
     public func getEvents(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
@@ -193,10 +193,10 @@ public class PublishersAPIController {
     }
     
     /**
-     This method return events visible in map that user see
-     - Parameter latitude: The latitude is one of the coordinate that determines the center of the map
-     - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
-     - Parameter radius: The radius is the distance from the center of the map to the edge of the map
+     This method returns events visible in map
+     - Parameter latitude: one of the coordinate that determines the center of the map
+     - Parameter longitude: one of the coordinate that determines the center of the map
+     - Parameter radius: the distance from the center of the map to the edge of the map
      */
     public func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in

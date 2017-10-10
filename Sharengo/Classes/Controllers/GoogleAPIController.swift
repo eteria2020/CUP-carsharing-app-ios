@@ -16,7 +16,7 @@ import Alamofire
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
 /**
- GoogleAPIController class is a controller that manage google services about search address and walk navigation.
+ GoogleAPIController class is a controller that manage google services about search address and walk navigation
  */
 public class GoogleAPIController {
     /// Session Manager
@@ -24,7 +24,7 @@ public class GoogleAPIController {
    
     // MARK: - Init methods
     
-    init() {
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
         configuration.timeoutIntervalForResource = 20
@@ -37,8 +37,8 @@ public class GoogleAPIController {
     // MARK: - Search methods
     
     /**
-     This method return an observable address object.
-     - Parameter text: address to find
+     This method returns an array of address
+     - Parameter text: text to find
      */
     public func searchAddress(text: String) -> Observable<[Address]> {
         return Observable.create{ observable in
@@ -72,7 +72,7 @@ public class GoogleAPIController {
     }
     
     /**
-     This method return an observable route step object.
+     This method returns an array of route step
      - Parameter destination: final location of route
      */
     public func searchRoute(destination: CLLocation) -> Observable<[RouteStep]> {

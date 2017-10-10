@@ -12,6 +12,9 @@ import Boomerang
 import Action
 import RxSwift
 
+/**
+ Enum that specifies speech error type
+ */
 public enum SpeechErrorType {
     case empty
     case authSpeechAuthorizationDenied
@@ -22,7 +25,10 @@ public enum SpeechErrorType {
     case notSetted
     case notAvailable
     
-    func getMessage() -> String {
+    /**
+     Get localized message from error type
+     */
+    public func getMessage() -> String {
         switch self {
         case .empty:
             return ""
@@ -43,7 +49,10 @@ public enum SpeechErrorType {
         }
     }
     
-    func showSettings() -> Bool {
+    /**
+     Check if error type has to shown settings
+     */
+    public func showSettings() -> Bool {
         switch self {
         case .empty:
             return false
@@ -64,7 +73,10 @@ public enum SpeechErrorType {
         }
     }
     
-    func hideButton() -> Bool {
+    /**
+     Check if error type has to hide button
+     */
+    public func hideButton() -> Bool {
         switch self {
         case .empty:
             return true
@@ -87,7 +99,7 @@ public enum SpeechErrorType {
 }
 
 /**
- SpeechController class is a controller that manage speech device functionality.
+ SpeechController class is a controller that manage speech device functionality (available only from iOS 10.0)
  */
 @available(iOS 10.0, *)
 public class SpeechController: NSObject
@@ -102,9 +114,9 @@ public class SpeechController: NSObject
     public let audioEngine = AVAudioEngine()
     /// Boolean that determine if there is a speech in progress
     public var speechInProgress: Variable<Bool> = Variable(false)
-    /// Speech Transcription of last speech
+    /// Speech transcription of last speech
     public var speechTranscription: Variable<String?> = Variable(nil)
-    /// Speech Error if there is one in last speech
+    /// Speech error if there is one in last speech
     public var speechError: Variable<SpeechErrorType?> = Variable(nil)
     /// Boolean that determine if app can use speech services or not
     public var isAuthorized:Bool {
@@ -177,7 +189,7 @@ public class SpeechController: NSObject
     }
     
     /**
-     This method manage recording actions like start and stop.
+     This method manage recording actions like start and stop
      */
     public func manageRecording() {
         if self.audioEngine.isRunning {
@@ -192,7 +204,7 @@ public class SpeechController: NSObject
     }
     
     /**
-     This method start recording of a new speech.
+     This method start recording a new speech
      */
     public func startRecording() {
         audioEngine.inputNode?.removeTap(onBus: 0)
@@ -251,7 +263,7 @@ public class SpeechController: NSObject
 @available(iOS 10.0, *)
 extension SpeechController: SFSpeechRecognizerDelegate {
     /**
-     SFSpeech Delegate that check if user's authorization about speech is changed or not.
+     This method is called if user's authorization about speech is changed
      */
     public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         self.speechInProgress.value = false
