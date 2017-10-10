@@ -18,7 +18,7 @@ public protocol TextStyleType {
 }
 
 /**
- Protocol that register Text Theme with a specific label, textfield, etc...
+ Protocol that register Text Theme for a specific label, textfield, ...
  */
 public extension NamedStyles {
     func registerStyle(style:TextStyleType) {
@@ -27,7 +27,7 @@ public extension NamedStyles {
 }
 
 /**
- Main text in app associate with a Text Style
+ Main text styles in application
  */
 public enum TextStyle: String, TextStyleType {
     // Intro
@@ -258,7 +258,7 @@ public enum TextStyle: String, TextStyleType {
         ]
     }
     
-    /// Return name of style.
+    /// Return name of style
     public var name:String {
         return self.rawValue
     }
@@ -480,7 +480,7 @@ public enum TextStyle: String, TextStyleType {
     }
     
     /**
-     This method register all text styles that UI will use
+     This method registers all text styles used by application
      */
     public static func setup() {
         all.forEach { NamedStyles.shared.registerStyle(style: $0) }

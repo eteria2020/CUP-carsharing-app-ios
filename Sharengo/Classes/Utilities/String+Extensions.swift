@@ -8,12 +8,12 @@
 import UIKit
 
 /**
- String utilities (md5, decode of html entities, etc...)
+ String utilities like md5, decode of html entities, ...
  */
 extension String
 {
     /// MD5 of a string
-    var md5: String? {
+    public var md5: String? {
         let length = Int(CC_MD5_DIGEST_LENGTH)
         
         guard let data = self.data(using: String.Encoding.utf8) else { return nil }
@@ -28,15 +28,14 @@ extension String
     }
     
     /**
-     This method decode html entities present in a string
+     This method decode html entities present in a string (https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references)
      */
-    func htmlDecoded()->String {
+    public func htmlDecoded() -> String {
         
         guard (self != "") else { return self }
         
         var newStr = self
-        // from https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-        let entities = [ //a dictionary of HTM/XML entities.
+        let entities = [
             "&quot;"    : "\"",
             "&amp;"     : "&",
             "&apos;"    : "'",

@@ -7,11 +7,17 @@
 
 import UIKit
 
-extension Int {
+/**
+ Int utilities
+ */
+public extension Int {
     var degreesToRadians: Double { return Double(self) * .pi / 180 }
 }
 
-extension FloatingPoint {
+/**
+ FloatingPoint utilities
+ */
+public extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
@@ -22,10 +28,10 @@ extension FloatingPoint {
 public extension UIView
 {
     /**
-     This method execute a rotation on z-axis of a UIView
-     - Parameter duration: duration in CFTimeInterval
-     - Parameter repeatCount: how many times it has to rotate
-     - Parameter clockwise: default value is true
+     This method executes a rotation on z-axis
+     - Parameter duration: duration in CFTimeInterval (default value is 1)
+     - Parameter repeatCount: how many times it has to rotate (default value is infinity)
+     - Parameter clockwise: rotation direction (default value is true)
      */
     public func startZRotation(duration: CFTimeInterval = 1, repeatCount: Float = Float.infinity, clockwise: Bool = true)
     {
@@ -42,7 +48,7 @@ public extension UIView
     }
     
     /**
-     This method stop a rotation on z-axis of a UIView
+     This method stops a rotation on z-axis
      */
     public func stopZRotation()
     {

@@ -138,7 +138,7 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
         } else {
-            if let firstname = KeychainSwift().get("UserFirstname") {
+            if let firstname: String = KeychainSwift().get("UserFirstname") {
                 if KeychainSwift().get("UserGender") == "female" {
                     self.welcome = String(format: "lbl_menuHeaderTitleLoggedF".localized(), firstname)
                 }

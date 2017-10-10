@@ -270,7 +270,7 @@ extension UIViewController {
             }
             self!.loaderCount = max(0, (self!.loaderCount ) - 1)
             if (self!.loaderCount == 0) {
-                if self?.loadingViewController != nil {
+                if let loadingViewController = self?.loadingViewController {
                     let start = self?.loadingStartDate
                     let enddt = Date()
                     let calendar = Calendar.current
@@ -278,10 +278,10 @@ extension UIViewController {
                     if let s = datecomponents.second {
                         if s > 2 {
                             UIView.animate(withDuration: 0.4, animations: {
-                                self?.loadingViewController!.view.alpha = 0
+                                loadingViewController.view.alpha = 0
                             }, completion: { (success) in
-                                self?.loadingViewController!.view.removeFromSuperview()
-                                self?.loadingViewController!.removeFromParentViewController()
+                                loadingViewController.view.removeFromSuperview()
+                                loadingViewController.removeFromParentViewController()
                                 completionClosure()
                             })
                         } else {

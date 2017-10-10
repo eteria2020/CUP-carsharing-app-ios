@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- Enum with xib's names
+ Enum of ViewXib used in the application
 */
 public enum ViewXib: String {
     case navigationBar = "NavigationBarView"
@@ -20,7 +20,7 @@ public enum ViewXib: String {
     case signupStep = "SignupStepView"
     
     /**
-     This method return nib object from xib's name.
+     This method return nib object from xib's name
      */
     public func getNib() -> UINib {
         let bundle = Bundle.main

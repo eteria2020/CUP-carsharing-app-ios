@@ -11,10 +11,9 @@ import MapKit
 import RxSwift
 
 /**
- LocationManager class is a controller that manage services about user location and other task like reverse geocoding
+ LocationManager class is a singleton class that manage services about user location
  */
 public class LocationManager: NSObject,CLLocationManagerDelegate {
-    
     /// Enum of possible location errors
     public enum LocationErrors: String {
         case denied = "Locations are turned off. Please turn it on in Settings"
@@ -24,28 +23,26 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
         case invalidLocation = "Invalid Location"
         case reverseGeocodingFailed = "Reverse Geocoding Failed"
     }
-    
     /// Time allowed to fetch the location continuously for accuracy
     public var locationFetchTimeInSeconds = 1.0
     /// LocationClosure
     public typealias LocationClosure = ((_ location:CLLocation?,_ error: NSError?)->Void)
-    /// locationCompletionHandler
+    /// LocationCompletionHandler
     public var locationCompletionHandler: LocationClosure?
     /// ReverseGeoLocationClosure
     public typealias ReverseGeoLocationClosure = ((_ location:CLLocation?, _ placemark:CLPlacemark?,_ error: NSError?)->Void)
-    /// geoLocationCompletionHandler
+    /// GeoLocationCompletionHandler
     public var geoLocationCompletionHandler: ReverseGeoLocationClosure?
-    /// Variable of type CLLocationManager used for user location
+    /// Variable used for user location
     public var locationManager:CLLocationManager?
-    /// Variable used for manage accuracy of user location
+    /// Variable used for user location accuracy
     public var locationAccuracy = kCLLocationAccuracyBest
-    /// Last location that app knows about user
+    /// Last location about user
     public var lastLocation:CLLocation?
     /// Support variable about last location
     public var lastLocationCopy: Variable<CLLocation?> = Variable(nil)
     /// Boolean that indicate if reverse geocoding is active or not
     public var reverseGeocoding = false
-    
     /// Singleton Instance
     public static let sharedInstance: LocationManager = {
         let instance = LocationManager()
@@ -59,7 +56,7 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     /**
-     This method remove from memory location manager
+     This method removes from memory location manager
      */
     public func destroyLocationManager() {
         locationManager?.delegate = nil
@@ -70,10 +67,9 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     // MARK: - Setup methods
     
     /**
-     This method setup location manager variable with its properties
+     This method setups location manager variable with its properties
      */
     public func setupLocationManager() {
-        //Setting of location manager
         locationManager = nil
         locationManager = CLLocationManager()
         locationManager?.desiredAccuracy = locationAccuracy
@@ -84,21 +80,21 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     //MARK: - Selectors methods
     
     /**
-     This method setup location manager variable with its properties
+     This method setups location manager variable with its properties
      */
     public func startThread() {
         self.perform(#selector(sendLocation), with: nil, afterDelay: locationFetchTimeInSeconds)
     }
     
     /**
-     This method setup location manager variable with its properties
+     This method setups location manager variable with its properties
      */
     public func startGeocodeThread() {
         self.perform(#selector(sendPlacemark), with: nil, afterDelay: locationFetchTimeInSeconds)
     }
     
     /**
-     This method setup location manager variable with its properties
+     This method setups location manager variable with its properties
      */
     @objc public func sendPlacemark() {
         guard let _ = lastLocation else {
@@ -120,7 +116,7 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     /**
-     This method setup location manager variable with its properties
+     This method setups location manager variable with its properties
      */
     @objc public func sendLocation() {
         guard let _ = lastLocation else {
@@ -139,8 +135,8 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
 
     /**
-     This method change the fetch waiting time for location. Default is 1 second
-      - Parameter seconds: seconds given for GPS to fetch location
+     This method change the variable locationFetchTimeInSeconds. Default is 1 second
+      - Parameter seconds: seconds given to GPS to fetch location
      */
     public func setTimerForLocation(seconds:Double) {
         locationFetchTimeInSeconds = seconds
@@ -148,14 +144,12 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     
     /**
      This method get current location
-     - Parameter completionHandler: will return CLLocation object which is the current location of the user and NSError in case of error
+     - Parameter completionHandler: closure with Location, Placemark and error
      */
     public func getLocation(completionHandler:@escaping LocationClosure) {
         
-        //Cancelling the previous selector handlers if any
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         
-        //Resetting last location
         lastLocation = nil
         
         self.locationCompletionHandler = completionHandler
@@ -164,13 +158,12 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     /**
-     This method get Reverse Geocoded Placemark address by passing CLLocation
-     - Parameter location: location Passed which is a CLLocation object
-     - Parameter completionHandler: will return CLLocation object and CLPlacemark of the CLLocation and NSError in case of error
+     This method gets reverse geocoding from location
+     - Parameter location: location to find
+     - Parameter completionHandler: closure with Location, Placemark and error
      */
     public func getReverseGeoCodedLocation(location:CLLocation,completionHandler:@escaping ReverseGeoLocationClosure) {
         
-        //Cancelling the previous selector handlers if any
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         
         self.geoLocationCompletionHandler = nil
@@ -183,13 +176,12 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     /**
-     This method get Latitude and Longitude of the address as CLLocation object
-     - Parameter address: address given by the user in String
-     - Parameter completionHandler: will return CLLocation object and CLPlacemark of the address entered and NSError in case of error
+     This method gets reverse geocoding from address
+     - Parameter address: text to find
+     - Parameter completionHandler: closure with Location, Placemark and error
      */
     public func getReverseGeoCodedLocation(address:String,completionHandler:@escaping ReverseGeoLocationClosure) {
         
-        //Cancelling the previous selector handlers if any
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         
         self.geoLocationCompletionHandler = nil
@@ -201,8 +193,8 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     /**
-     This method get current location with placemark
-     - Parameter completionHandler: will return Location,Placemark and error
+     This method gets current reverse geocoding
+     - Parameter completionHandler: closure with Location, Placemark and error
      */
     public func getCurrentReverseGeoCodedLocation(completionHandler:@escaping ReverseGeoLocationClosure) {
         
@@ -210,10 +202,8 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
             
             reverseGeocoding = true
             
-            //Cancelling the previous selector handlers if any
             NSObject.cancelPreviousPerformRequests(withTarget: self)
             
-            //Resetting last location
             lastLocation = nil
             
             self.geoLocationCompletionHandler = completionHandler
@@ -225,14 +215,13 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     // MARK: - Reverse GeoCoding
     
     /**
-     This method execute reverse geocoding of a location
-     - Parameter location: location Passed which is a CLLocation object
+     This method executes reverse geocoding of a location
+     - Parameter location: location to find
      */
-    public  func reverseGeoCoding(location:CLLocation?) {
+    public func reverseGeoCoding(location:CLLocation?) {
         CLGeocoder().reverseGeocodeLocation(location!, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
-                //Reverse geocoding failed
                 self.didCompleteGeocoding(location: nil, placemark: nil, error: NSError(
                     domain: self.classForCoder.description(),
                     code:Int(CLAuthorizationStatus.denied.rawValue),
@@ -265,13 +254,12 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     /**
-     This method execute reverse geocoding of an address
-     - Parameter address: address given by the user in String
+     This method executs reverse geocoding of an address
+     - Parameter address: text to find
      */
     public func reverseGeoCoding(address:String) {
         CLGeocoder().geocodeAddressString(address, completionHandler: {(placemarks, error)->Void in
             if (error != nil) {
-                //Reverse geocoding failed
                 self.didCompleteGeocoding(location: nil, placemark: nil, error: NSError(
                     domain: self.classForCoder.description(),
                     code:Int(CLAuthorizationStatus.denied.rawValue),
@@ -310,12 +298,10 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastLocation = locations.last
         lastLocationCopy.value = lastLocation
-        
-        //Manager is stopped as per the timer given
     }
     
     /**
-     Delegate method that notifies if user change app's authorization about location
+     Delegate method that notifies if user changes app's authorization about location
      */
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
@@ -365,7 +351,7 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     /**
-     Delegate method that notifies if there is some problem with CLLocationManager
+     Delegate method that notifies if an error occurred with CLLocationManager
      */
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
@@ -375,18 +361,15 @@ public class LocationManager: NSObject,CLLocationManagerDelegate {
     // MARK: - Final closure/callback
     
     /**
-     didComplete
+     Delegate method that notifies complete action
      */
     public func didComplete(location: CLLocation?,error: NSError?) {
         lastLocationCopy.value = location
-        //locationManager?.stopUpdatingLocation()
         locationCompletionHandler?(location,error)
-        //locationManager?.delegate = nil
-        //locationManager = nil
     }
     
     /**
-     didCompleteGeocoding
+     Delegate method that notifies complete action (geocoding)
      */
     public func didCompleteGeocoding(location:CLLocation?,placemark: CLPlacemark?,error: NSError?) {
         locationManager?.stopUpdatingLocation()

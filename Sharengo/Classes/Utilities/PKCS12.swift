@@ -9,15 +9,15 @@
 import Foundation
 
 /**
- String utilities (md5, decode of html entities, etc...)
+ String utilities like md5, decode of html entities, ...
  */
 public class PKCS12 {
-    var label:String?
-    var keyID:Data?
-    var trust:SecTrust?
-    var certChain:[SecTrust]?
-    var identity:SecIdentity?
-    let securityError:OSStatus
+    fileprivate var label:String?
+    fileprivate var keyID:Data?
+    fileprivate var trust:SecTrust?
+    fileprivate var certChain:[SecTrust]?
+    fileprivate var identity:SecIdentity?
+    fileprivate let securityError:OSStatus
     
     // MARK: - Init methods
     
@@ -46,7 +46,7 @@ public class PKCS12 {
     /**
      This method return URL Credential from certificate and identity
      */
-    public func urlCredential()  -> URLCredential  {
+    public func urlCredential() -> URLCredential  {
         return URLCredential(
             identity: self.identity!,
             certificates: self.certChain!,

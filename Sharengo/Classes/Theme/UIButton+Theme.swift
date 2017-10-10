@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- Enum of button's styles used in app
+ Enum of button's styles used in the application
 */
 public enum ButtonStyle {
     case clearButton(UIFont, UIColor)
@@ -19,11 +19,11 @@ public enum ButtonStyle {
 }
 
 /**
- UIButton Extension with useful methods
+ UIButton utilities
 */
 public extension UIButton {
     /**
-     This method set button properties associated with a style and set button's title.
+     This method sets button's title and button properties associated with a style
      - Parameter style: style of button
      - Parameter title: title of button
      */

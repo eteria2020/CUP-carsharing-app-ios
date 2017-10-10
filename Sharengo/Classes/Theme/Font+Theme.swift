@@ -10,7 +10,7 @@ import UIKit
 import DeviceKit
 
 /**
- Enum of Font Weight used
+ Enum of FontWeight used in the application
  */
 public enum FontWeight {
     case light
@@ -19,6 +19,9 @@ public enum FontWeight {
     case semibold
     case bold
     
+    /**
+     This method return font from font's weight
+     */
     public func font(withSize size:CGFloat) -> UIFont {
         switch self {
         case .light:
@@ -36,7 +39,7 @@ public enum FontWeight {
 }
 
 /**
- Main fonts in app associate with a font
+ Main fonts in application
  */
 public enum Font {
     // General
@@ -196,7 +199,7 @@ public enum Font {
     case ratesBonusDescription
 
     /**
-     Main text in app associate with a Text Style
+     Value returned from font
      */
     public var value: UIFont {
         get {
@@ -434,7 +437,7 @@ public enum Font {
     }
     
     /**
-     This method return font size relative a device diagonal.
+     This method returns font size depending on device diagonal
      - Parameter size: base font size
      */
     public func getFontSize(size: CGFloat) -> CGFloat {

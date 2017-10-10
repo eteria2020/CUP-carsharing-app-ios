@@ -9,10 +9,10 @@
 import UIKit
 
 /**
- UIColor Extension with useful methods
+ UIColor utilities
  */
 public extension UIColor {
-    convenience init(hexString: String) {
+    convenience public init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
         Scanner(string: hex).scanHexInt32(&int)
@@ -32,7 +32,7 @@ public extension UIColor {
 }
 
 /**
- Brand's Colors
+ Main brand colors in application
  */
 public enum ColorBrand {
     case yellow
@@ -44,7 +44,10 @@ public enum ColorBrand {
     case grayDisabled
     case clear
 
-    var value: UIColor {
+    /**
+     Value returned from color
+     */
+    public var value: UIColor {
         get {
             switch self {
             case .yellow:
@@ -69,7 +72,7 @@ public enum ColorBrand {
 }
 
 /**
- Colors of main parts
+ Main colors in application
  */
 public enum Color {
     // Alert
@@ -317,6 +320,9 @@ public enum Color {
     // Tutorial
     case tutorialBackground
     
+    /**
+     Value returned from color
+     */
     var value: UIColor {
         get {
             switch self {

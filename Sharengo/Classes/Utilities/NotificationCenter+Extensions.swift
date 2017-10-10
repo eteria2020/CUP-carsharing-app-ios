@@ -8,12 +8,12 @@
 import UIKit
 
 /**
-Notification center utilities
+NotificationCenter utilities
  */
 public extension NotificationCenter
 {
     /**
-     This method post a notification from name and object (if present)
+     This method post a notification with name and object (not mandatory)
      - Parameter name: notification's name
      - Parameter object: object to be attach with notification
      */
@@ -23,7 +23,7 @@ public extension NotificationCenter
 	}
 
     /**
-     This method post a notification from name, object (if present) and userInfo dictionary
+     This method post a notification with name, object (not mandatory) and userInfo dictionary
      - Parameter name: notification's name
      - Parameter object: object to be attach with notification
      - Parameter userInfo: dictionary with format String:Any
@@ -34,7 +34,7 @@ public extension NotificationCenter
 	}
 	
     /**
-     This method post a notification from name, object (if present) and error
+     This method post a notification with name, object (not mandatory) and error
      - Parameter name: notification's name
      - Parameter object: object to be attach with notification
      - Parameter error: error inserted in userInfo dictionary with key NotificationError
@@ -45,9 +45,9 @@ public extension NotificationCenter
 	}
 	
     /**
-     This method observe a notification with a Closure
+     This method observe a notification with name, object (not mandatory) and closure
      - Parameter name: notification's name
-     - Parameter from: object to be attach with notification
+     - Parameter from: object to be observed with notification
      - Parameter closure: closure used to observe notification
      */
 	public static func observe(notificationWithName name:Notification.Name, _ from:Any? = nil, _ closure: @escaping (Notification)->Void)
@@ -56,11 +56,11 @@ public extension NotificationCenter
 	}
 	
     /**
-     This method observe a notification with a Selector
+     This method observe a notification with an observer, name, object (not mandatory) and selector
      - Parameter observer: observer's object
      - Parameter name: notification's name
-     - Parameter from: object to be attach with notification
-     - Parameter selector: selector to be used
+     - Parameter from: object to be observed with notification
+     - Parameter selector: selector used to observer notification
      */
 	public static func add(observer:Any, forName name:Notification.Name, from:AnyObject?, selector:Selector)
 	{

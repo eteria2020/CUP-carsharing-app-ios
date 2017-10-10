@@ -1108,15 +1108,13 @@
 		4DCD1A571ECDBF7400FC8BF5 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4DCD1A811ECDC16400FC8BF5 /* Operators.swift */,
-				4DCD1A821ECDC16400FC8BF5 /* SeparatorLayout.swift */,
-				4DCD1A831ECDC16400FC8BF5 /* Utilities.swift */,
 				4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */,
 				4D36D7C41ED2F604005FAEB8 /* MKMapKit+Extensions.swift */,
 				4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */,
 				4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */,
-				4D2628F31ED57D7B001C4E38 /* PKCS12.swift */,
 				03AF5D771EEEBED300AC8826 /* String+Extensions.swift */,
+				4D2628F31ED57D7B001C4E38 /* PKCS12.swift */,
+				4DE46E5C1F8CF8B800583106 /* Syn */,
 				03AF5D581EEE83FC00AC8826 /* AnimatedTextInput */,
 				4DEBEE6F1EED373800AEF617 /* BRYXBanner */,
 				4DA178631ED63C4D00EBD32B /* ZAlertView */,
@@ -1306,6 +1304,16 @@
 				4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */,
 			);
 			name = Map;
+			sourceTree = "<group>";
+		};
+		4DE46E5C1F8CF8B800583106 /* Syn */ = {
+			isa = PBXGroup;
+			children = (
+				4DCD1A811ECDC16400FC8BF5 /* Operators.swift */,
+				4DCD1A821ECDC16400FC8BF5 /* SeparatorLayout.swift */,
+				4DCD1A831ECDC16400FC8BF5 /* Utilities.swift */,
+			);
+			name = Syn;
 			sourceTree = "<group>";
 		};
 		4DEBEE6F1EED373800AEF617 /* BRYXBanner */ = {
