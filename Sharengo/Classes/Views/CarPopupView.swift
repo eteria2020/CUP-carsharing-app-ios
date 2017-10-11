@@ -16,7 +16,7 @@ import DeviceKit
 import BonMot
 
 /**
- The CarPopup View class is a view that shows info and actions relative to a car
+ The CarPopupView class is a view that shows info and actions relative to a car
  */
 public class CarPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
@@ -47,7 +47,8 @@ public class CarPopupView: UIView {
     @IBOutlet fileprivate weak var lbl_category: UILabel!
     @IBOutlet fileprivate weak var btn_detail: UIButton!
     @IBOutlet fileprivate weak var btn_car: UIButton!
-    fileprivate var view: UIView!
+    /// Main view of the popup
+    public  var view: UIView!
     /// ViewModel variable used to represents the data
     public var viewModel: CarPopupViewModel?
     
@@ -96,9 +97,56 @@ public class CarPopupView: UIView {
     
     // MARK: - View methods
     
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+    
+    fileprivate func xibSetup() {
+        view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        addSubview(view)
+        self.layoutIfNeeded()
+        self.view.backgroundColor = Color.carPopupBackground.value
+        self.view_feed.backgroundColor = Color.carPopupBackground.value
+        self.view_bottomContainer.backgroundColor = Color.carPopupBackground.value
+        self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
+        self.btn_book.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_book".localized())
+        self.btn_detail.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_detail".localized())
+        self.btn_car.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_car".localized())
+        self.view_separator.constraint(withIdentifier: "separatorHeight", searchInSubviews: false)?.constant = 1
+        switch Device().diagonal {
+        case 3.5:
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 35
+            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 28
+            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 28
+        case 4:
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 38
+            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 31
+            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 31
+        default:
+            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 40
+            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 33
+            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 33
+        }
+    }
+    
+    fileprivate func loadViewFromNib() -> UIView {
+        let nib = ViewXib.carPopup.getNib()
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        return view
+    }
+    
+    // MARK: - Interface methods
+    
     /**
-     This method update UI with a Car object
+     This method updates interface with a car object
      - Parameter car: car object
+     - Parameter car nearest: car with lower distance
      */
     public func updateWithCar(car: Car, carNearest: Car?) {
         guard let viewModel = viewModel else {
@@ -157,9 +205,9 @@ public class CarPopupView: UIView {
     }
     
     /**
-     This method update UI with distance and duration
-     - Parameter distance: distance as Int
-     - Parameter duration: duration as Int
+     This method updates interfaces with distance and duration from google
+     - Parameter distance: distance (meters)
+     - Parameter duration: duration (seconds)
      */
     public func updateWithDistanceAndDuration(distance: Int, duration: Int) {
         guard let viewModel = viewModel else {
@@ -191,7 +239,7 @@ public class CarPopupView: UIView {
     }
     
     /**
-     This method update UI with feed
+     This method update interface with feed object
      - Parameter feed: feed object
      */
     public func updateWithFeed(feed: Feed) {
@@ -238,7 +286,7 @@ public class CarPopupView: UIView {
         self.view_overlayBackgroundImage.backgroundColor = (viewModel.color ?? UIColor()).withAlphaComponent(0.5)
         
         let titleStyle = StringStyle(.font(Font.feedsItemTitle.value), .color(viewModel.color ?? UIColor()), .alignment(.left))
-       
+        
         self.lbl_category.bonMotStyle = StringStyle(.font(Font.feedsItemDescription.value), .color(Color.feedsItemDescription.value), .alignment(.center),.xmlRules([.style("title", titleStyle)]))
         self.lbl_category.styledText = viewModel.category
         
@@ -264,49 +312,5 @@ public class CarPopupView: UIView {
         {
             self.img_favorite.alpha = 0.0
         }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-    }
-    
-    fileprivate func xibSetup() {
-        view = loadViewFromNib()
-        view.frame = bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        addSubview(view)
-        self.layoutIfNeeded()
-        self.view.backgroundColor = Color.carPopupBackground.value
-        self.view_feed.backgroundColor = Color.carPopupBackground.value
-        self.view_bottomContainer.backgroundColor = Color.carPopupBackground.value
-        self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
-        self.btn_book.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_book".localized())
-        self.btn_detail.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_detail".localized())
-        self.btn_car.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_car".localized())
-        self.view_separator.constraint(withIdentifier: "separatorHeight", searchInSubviews: false)?.constant = 1
-        switch Device().diagonal {
-        case 3.5:
-            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 35
-            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 28
-            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 28
-        case 4:
-            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 38
-            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 31
-            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 31
-        default:
-            self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 40
-            self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 33
-            self.constraint(withIdentifier: "buttonHeight2", searchInSubviews: true)?.constant = 33
-        }
-    }
-    
-    fileprivate func loadViewFromNib() -> UIView {
-        let nib = ViewXib.carPopup.getNib()
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        return view
     }
 }
