@@ -12,7 +12,7 @@ import Boomerang
 import Action
 
 /**
- Share'ngo urls
+ Enum that specifies web type (url)
  */
 public enum WebType: String {
     case empty = ""
@@ -21,12 +21,16 @@ public enum WebType: String {
 }
 
 /**
- The Web viewmodel provides data related to display Share'ngo pages on WebVC
+ The WebViewModel provides data related to display share'ngo url pages to user
  */
 public class WebViewModel: ViewModelType {
+    /// Web type
     public var type: WebType = .empty
-    public var urlRequest:URLRequest?
+    /// Url request created with page url
+    public var urlRequest: URLRequest?
   
+    // MARK: - Init methods
+    
     public init(with type: WebType) {
         self.type = type
         self.clearCacheCookie()
@@ -34,8 +38,10 @@ public class WebViewModel: ViewModelType {
         self.urlRequest = URLRequest(url: url!)
     }
 
+    // MARK: - Utilities methods
+    
     /**
-     Clear cache and cookie of a loaded page
+     This method clears cache and cookie of a loaded page
      */
     public func clearCacheCookie() {
         URLCache.shared.removeAllCachedResponses()

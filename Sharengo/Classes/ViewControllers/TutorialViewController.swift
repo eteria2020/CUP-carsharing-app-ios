@@ -15,7 +15,7 @@ import SnapKit
 import BonMot
 
 /**
- The Tutorial class shows tutorial to user
+ The TutorialViewController class shows tutorial to user
  */
 public class TutorialViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var scrollView_main: UIScrollView!
@@ -32,9 +32,12 @@ public class TutorialViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var constraint_width: NSLayoutConstraint!
     /// ViewModel variable used to represents the data
     public var viewModel: TutorialViewModel?
-    fileprivate var stepX: CGFloat = 0.0
-    fileprivate var currentStep: Int = 0
-    fileprivate var pageWidth: CGFloat = 0
+    /// Variable used to save step index
+    public var stepX: CGFloat = 0.0
+    /// Variable used to save current step index
+    public var currentStep: Int = 0
+    /// Variable used to page with
+    public var pageWidth: CGFloat = 0
 
     // MARK: - ViewModel methods
     

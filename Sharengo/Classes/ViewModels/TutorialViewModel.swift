@@ -35,14 +35,17 @@ public struct TutorialStep {
 }
 
 /**
- The Tutorial viewmodel provides data related to display tutorial steps to user
+ The TutorialViewModel provides data related to display tutorial steps to user
  */
 public class TutorialViewModel: ViewModelTypeSelectable {
     /// Selection variable
     public var selection: Action<TutorialInput, TutorialOutput> = Action { _ in
         return .just(.empty)
     }
-    var steps: [TutorialStep] = []
+    /// Array of steps
+    public var steps: [TutorialStep] = []
+    
+    // MARK: - Init methods
     
     public required init()
     {
