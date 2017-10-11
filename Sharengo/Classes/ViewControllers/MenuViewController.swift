@@ -140,6 +140,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
         self.view_userIcon.isHidden = true
         self.img_userIcon.isHidden = true
         self.btn_profileEco.isHidden = true
+        updateData()
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -147,9 +148,9 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
         self.executeAnimation = true
         if animated {
             CoreController.shared.currentViewController?.showMenuBackground()
-        } 
-        self.updateData()
-    }
+        }
+        updateData()
+   }
     
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -169,6 +170,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
      */
     @objc public func updateData() {
         DispatchQueue.main.async {[weak self]  in
+            self?.view.layoutIfNeeded()
             self?.viewModel?.updateData()
             self?.viewModel?.reload()
             self?.collectionView?.reloadData()
