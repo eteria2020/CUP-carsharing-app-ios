@@ -1,8 +1,8 @@
 {
   "name": "Action",
-  "version": "3.0.0",
+  "version": "3.3.0-alpha.1",
   "summary": "Abstracts actions to be performed in RxSwift.",
-  "description": "Encapsulates an action to be performed, usually by a UIButton press.\n\nBut who knows what could have an action – the possibilities are endless!",
+  "description": "Encapsulates an action to be performed, usually by a button press, but also useful to pass actions to execute later\n(once or multiple times) without having to expose other objects.",
   "homepage": "https://github.com/RxSwiftCommunity/Action",
   "license": {
     "type": "MIT",
@@ -20,36 +20,36 @@
   },
   "source": {
     "git": "https://github.com/RxSwiftCommunity/Action.git",
-    "tag": "3.0.0"
+    "tag": "3.3.0-alpha.1"
   },
   "source_files": "Sources/**/*.{swift}",
   "frameworks": "Foundation",
   "dependencies": {
     "RxSwift": [
-      "~> 3.4.0"
+      "~> 4.0.0-alpha.1"
     ],
     "RxCocoa": [
-      "~> 3.4.0"
+      "~> 4.0.0-alpha.1"
     ]
   },
   "watchos": {
     "exclude_files": [
-      "UIButton+Rx.swift",
+      "Control+Action.swift",
+      "Button+Action.swift",
       "UIBarButtonItem+Action.swift",
-      "AlertAction.swift"
+      "UIAlertAction+Action.swift"
     ]
   },
   "osx": {
     "exclude_files": [
-      "UIButton+Rx.swift",
       "UIBarButtonItem+Action.swift",
-      "AlertAction.swift"
+      "UIAlertAction+Action.swift"
     ]
   },
   "tvos": {
     "exclude_files": [
       "UIBarButtonItem+Action.swift",
-      "AlertAction.swift"
+      "UIAlertAction+Action.swift"
     ]
   }
 }

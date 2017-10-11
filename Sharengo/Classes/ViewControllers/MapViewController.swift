@@ -14,7 +14,7 @@ import Action
 import MapKit
 import StoryboardConstraint
 import DeviceKit
-import ReachabilitySwift
+import Reachability
 import KeychainSwift
 import SideMenu
 import GoogleMaps
@@ -227,7 +227,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 Router.exit(self!)
                 self?.closeCarPopup()
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
                 self?.closeCarPopup()
             default:
                 break
@@ -283,12 +283,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.closeCarPopupHeight = 160
         case 4:
             self.closeCarPopupHeight = 170
-        case 4.7:
+        case 4.7, 5.8:
             self.closeCarPopupHeight = 185
-        case 5.5:
-            self.closeCarPopupHeight = 195
+        //case 5.5:
         default:
-            break
+            self.closeCarPopupHeight = 195
+        //default:
+        //    break
         }
         // CarBookingPopup
         self.view_carBookingPopup.bind(to: ViewModelFactory.carBookingPopup())
@@ -313,12 +314,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195
         case 4:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 210
-        case 4.7:
+        case 4.7, 5.8:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
-        case 5.5:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
+        //case 5.5:
         default:
-            break
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
+        //default:
+        //    break
         }
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())

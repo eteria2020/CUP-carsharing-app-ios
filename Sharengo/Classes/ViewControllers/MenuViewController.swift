@@ -147,7 +147,8 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
         self.executeAnimation = true
         if animated {
             CoreController.shared.currentViewController?.showMenuBackground()
-        }
+        } 
+        self.updateData()
     }
     
     override public func viewWillDisappear(_ animated: Bool) {

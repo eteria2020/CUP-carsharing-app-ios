@@ -13,7 +13,7 @@ import Action
 import MapKit
 import Moya
 import Gloss
-import ReachabilitySwift
+import Reachability
 import GoogleMaps
 
 /**

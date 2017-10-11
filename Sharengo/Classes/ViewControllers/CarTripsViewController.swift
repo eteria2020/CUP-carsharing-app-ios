@@ -12,7 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
-import ReachabilitySwift
+import Reachability
 
 /**
  The Car Trips class shows to user its car trips
@@ -144,12 +144,13 @@ public class CarTripsViewController : BaseViewController, ViewModelBindable, UIC
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
-        case 4.7:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        case 5.5:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+        //case 5.5:
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+        //default:
+        //    break
         }
         
         // NavigationBar
@@ -160,7 +161,7 @@ public class CarTripsViewController : BaseViewController, ViewModelBindable, UIC
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

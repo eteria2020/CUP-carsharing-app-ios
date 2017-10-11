@@ -80,7 +80,7 @@ public class TutorialViewController : BaseViewController, ViewModelBindable {
             self.constraint_buttons.constant = 120
             self.pageWidth = 320
             self.constraint_width.constant = 25
-        case 4.7:
+        case 4.7, 5.8:
             self.constraint_close.constant = 60
             self.constraint_buttons.constant = 140
             self.pageWidth = 375
@@ -89,6 +89,21 @@ public class TutorialViewController : BaseViewController, ViewModelBindable {
             self.constraint_close.constant = 65
             self.constraint_buttons.constant = 155
             self.pageWidth = 414
+            self.constraint_width.constant = 35
+        case 9.7, 7.9:
+            self.constraint_close.constant = 95
+            self.constraint_buttons.constant = 205
+            self.pageWidth = 768
+            self.constraint_width.constant = 35
+        case 10.5:
+            self.constraint_close.constant = 105
+            self.constraint_buttons.constant = 225
+            self.pageWidth = 834
+            self.constraint_width.constant = 35
+        case 12.9:
+            self.constraint_close.constant = 135
+            self.constraint_buttons.constant = 275
+            self.pageWidth = 1024
             self.constraint_width.constant = 35
         default:
             break

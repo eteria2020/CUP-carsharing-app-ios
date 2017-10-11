@@ -12,7 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
-import ReachabilitySwift
+import Reachability
 
 extension Date
 {
@@ -279,12 +279,13 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
                 headerCategoryHeight = 30
             case 4:
                 headerCategoryHeight = 30
-            case 4.7:
+            case 4.7, 5.8:
                 headerCategoryHeight = 32
-            case 5.5:
-                headerCategoryHeight = 32
+            //case 5.5:
             default:
-                break
+                headerCategoryHeight = 32
+            //default:
+            //    break
             }
             self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
@@ -302,14 +303,15 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
             case 4:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 46
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
-            case 4.7:
+            case 4.7, 5.8:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-            case 5.5:
-                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
-                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            //case 5.5:
             default:
-                break
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            //default:
+            //    break
             }
         }
         
@@ -321,7 +323,7 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

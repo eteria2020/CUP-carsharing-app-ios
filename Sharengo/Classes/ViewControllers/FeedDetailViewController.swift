@@ -202,7 +202,7 @@ public class FeedDetailViewController : BaseViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -231,14 +231,15 @@ public class FeedDetailViewController : BaseViewController, ViewModelBindable {
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
-        case 4.7:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        case 5.5:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-            self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+        //case 5.5:
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+        //default:
+        //    break
         }
     }
 }

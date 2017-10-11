@@ -215,7 +215,7 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -34
             }
-        case 4.7:
+        case 4.7, 5.8:
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 5
             self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 5
             //            if !viewModel.selected {
@@ -224,7 +224,8 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -44
             }
-        case 5.5:
+        //case 5.5:
+        default:
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 10
             self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 10
             //            if !viewModel.selected {
@@ -233,8 +234,8 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -52
             }
-        default:
-            break
+        //default:
+        //    break
         }
     }
 }

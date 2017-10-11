@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
-import ReachabilitySwift
+import Reachability
 import KeychainSwift
 import Localize_Swift
 

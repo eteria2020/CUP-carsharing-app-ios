@@ -1,12 +1,22 @@
+<img src="https://cdn.rawgit.com/dennisweissmann/DeviceKit/master/DeviceKit.svg" height="128">
+
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/dennisweissmann/DeviceKit/master/LICENSE)
-[![Build Status](https://travis-ci.org/dennisweissmann/DeviceKit.svg)](https://travis-ci.org/dennisweissmann/DeviceKit)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/DeviceKit.svg)](https://cocoapods.org/pods/DeviceKit)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![codecov](https://codecov.io/gh/dennisweissmann/DeviceKit/branch/master/graph/badge.svg)](https://codecov.io/gh/dennisweissmann/DeviceKit)
 [![Platform](https://img.shields.io/cocoapods/p/DeviceKit.svg?style=flat)](http://cocoadocs.org/docsets/DeviceKit)
 
-`Device` is a value-type replacement of [`UIDevice`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDevice_Class/).
 
-##Features
+| Branch | Build Status | Versions |
+|:---------|:--------------:|:----------:|
+| **master** |[![Build Status](https://travis-ci.org/dennisweissmann/DeviceKit.svg?branch=master)](https://travis-ci.org/dennisweissmann/DeviceKit)| - |
+| **Swift 4** |[![Build Status](https://travis-ci.org/dennisweissmann/DeviceKit.svg?branch=swift-4)](https://travis-ci.org/dennisweissmann/DeviceKit)| ≥ 1.3.0 |
+| **Swift 3** |[![Build Status](https://travis-ci.org/dennisweissmann/DeviceKit.svg?branch=swift-3)](https://travis-ci.org/dennisweissmann/DeviceKit)| ≥ 1.0 ≤ 1.2.3 |
+| **Swift 2.3** |[![Build Status](https://travis-ci.org/dennisweissmann/DeviceKit.svg?branch=swift-2.3-unsupported)](https://travis-ci.org/dennisweissmann/DeviceKit)| < 1.0 |
+
+`DeviceKit` is a value-type replacement of [`UIDevice`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDevice_Class/).
+
+## Features
 
 - [x] Device identification
 - [x] Device family detection
@@ -26,7 +36,7 @@ DeviceKit can be installed in various ways.
 
 ### CocoaPods
 
-#### Swift 3.0
+#### Swift 3
 ```ruby
 pod 'DeviceKit', '~> 1.0'
 ```
@@ -37,9 +47,9 @@ pod 'DeviceKit', :git => 'https://github.com/dennisweissmann/DeviceKit.git', :br
 
 ### Carthage
 
-#### Swift 3.0
+#### Swift 3
 ```ogdl
-github "dennisweissmann/DeviceKit" "HEAD"
+github "dennisweissmann/DeviceKit" ~> 1.0
 ```
 #### Swift 2.3 (Unsupported)
 ```ogdl
@@ -135,6 +145,25 @@ if device.batteryLevel >= 50 {
 }
 ```
 
+## Source of Information
+All model identifiers are taken from the following website: https://www.theiphonewiki.com/wiki/Models or extracted from the simulator app bundled with Xcode.
+
 ## Contributing
 If you have the need for a specific feature that you want implemented or if you experienced a bug, please open an issue.
 If you extended the functionality of DeviceKit yourself and want others to use it too, please submit a pull request.
+
+## Contributors
+The following people (in alphabetical order) contributed to this project - it wouldn't be what it is without you! Thank you very much! 🙏
+
+- [chappieee](https://github.com/chappieee)
+- [Rui Costa](https://github.com/ruipfcosta)
+- [elgordino](https://github.com/elgordino)
+- [Genie Jhang](https://github.com/geniejhang)
+- [Steve Moser](https://github.com/stevemoser)
+- [Juan Carlos Ospina Gonzalez](https://github.com/piterwilson)
+- [phiren](https://github.com/phiren)
+- [Prakash Rajendran](https://github.com/dearprakash)
+- [Trey Richards](https://github.com/treyrich)
+- [Tillman Swinke](https://github.com/tswinke)
+- [Kraig Wastlund](https://github.com/KraigWastlund)
+- [Kaden Wilkinson](https://github.com/kdawgwilk)
