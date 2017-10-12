@@ -26,7 +26,7 @@ public enum SupportOutput: SelectionInput {
 }
 
 /**
- The Support model provides data related to display content on support
+ The SupportViewModel provides data related to display content on support screen
  */
 public final class SupportViewModel: ViewModelTypeSelectable {
     /// Selection variable

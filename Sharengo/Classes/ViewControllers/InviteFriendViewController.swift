@@ -14,7 +14,7 @@ import SideMenu
 import DeviceKit
 
 /**
- The Invite friend class allows the user to invite a friend to sign up on Share'ngo
+ The InviteFriend class allows the user to invite a friend to use Share'ngo
  */
 public class InviteFriendViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!

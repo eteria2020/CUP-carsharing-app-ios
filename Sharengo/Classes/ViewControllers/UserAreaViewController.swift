@@ -15,7 +15,7 @@ import DeviceKit
 import KeychainSwift
 
 /**
- The User Area class shows to user its data
+ The UserArea class shows to user its data
  */
 public class UserAreaViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -32,14 +32,6 @@ public class UserAreaViewController : BaseViewController, ViewModelBindable {
             return
         }
         self.viewModel = viewModel
-        self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
-            if (self == nil) { return }
-            switch output {
-            default:
-                break
-            }
-        }).addDisposableTo(self.disposeBag)
-        
         self.showLoader()
         URLSession.shared.reset { 
             var request = URLRequest(url: URL(string: "https://www.sharengo.it/user/login")!)
@@ -135,7 +127,7 @@ extension UserAreaViewController: UIWebViewDelegate {
     }
     
     /**
-     With this method app shows to user if there was an error to load url page
+     With this method app shows to user if there was an error loading url page
      */
     public func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
         let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),

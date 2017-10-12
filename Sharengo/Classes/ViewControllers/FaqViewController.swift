@@ -14,7 +14,7 @@ import SideMenu
 import DeviceKit
 
 /**
- The Faq class shows faqs to user
+ The FaqViewController class shows faqs to user
  */
 public class FaqViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -115,7 +115,7 @@ extension FaqViewController: UIWebViewDelegate {
     }
 
     /**
-     With this method app shows to user if there was an error to load url page
+     With this method app shows to user if there was an error loading url page
      */
     public func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
         let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),

@@ -20,7 +20,6 @@ public class WebViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var webView: UIWebView!
     /// ViewModel variable used to represents the data
     public var viewModel: WebViewModel?
-    var firstCall: Bool = true
     
     // MARK: - ViewModel methods
     
@@ -64,7 +63,7 @@ public class WebViewController : BaseViewController, ViewModelBindable {
 
 extension WebViewController: UIWebViewDelegate {
     /**
-     With this method app starts loading url. If page is about forgot password app checks returned data from server else if page is about signup app checks url and go back of two steps.
+     With this method app starts loading url. If page is about forgot password app checks returned data from server. If page is about signup app checks url and go back of two steps.
      */
     public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if let type = viewModel?.type {
@@ -101,7 +100,7 @@ extension WebViewController: UIWebViewDelegate {
     }
     
     /**
-     With this method app shows to user if there was an error to load url page
+     With this method app shows to user if there was an error loading url page
      */
     public func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
         let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in

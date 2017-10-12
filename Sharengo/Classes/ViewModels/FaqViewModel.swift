@@ -26,7 +26,7 @@ public enum FaqOutput: SelectionInput {
 }
 
 /**
- The Faq viewmodel provides data related to display content on faqViewController
+ The FaqViewModel provides data related to display content on faqs
  */
 public class FaqViewModel: ViewModelTypeSelectable {
     /// Selection variable
@@ -36,8 +36,10 @@ public class FaqViewModel: ViewModelTypeSelectable {
                 return .just(.tutorial)
              }
     }
-    /// URL Request used with Faq WebView
+    /// Url request created with page url
     public var urlRequest:URLRequest?
+    
+    // MARK: - Utilities methods
     
     public required init()
     {

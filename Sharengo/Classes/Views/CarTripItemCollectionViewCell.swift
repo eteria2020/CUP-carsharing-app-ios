@@ -37,35 +37,6 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
         }
         self.layoutIfNeeded()
         self.viewModel = viewModel
-        
-//        if !viewModel.selected
-//        {
-//            self.lbl_description.bonMotStyleName = "carTripsItemDescription"
-//            self.img_collapsed.image = UIImage(named: "ic_open_collapsed")
-//        }
-//        else
-//        {
-//            self.lbl_description.bonMotStyleName = "carTripsItemExtendedDescription"
-//            self.img_collapsed.image = UIImage(named: "ic_close_collapsed")
-//        }
-        
-//        self.lbl_title.styledText = viewModel.title
-//        self.lbl_subtitle.styledText = viewModel.subtitle
-        
-//        viewModel.description.asObservable()
-//            .subscribe(onNext: {[weak self] (description) in
-//                DispatchQueue.main.async {
-//                    if !viewModel.selected
-//                    {
-//                        self?.lbl_description.bonMotStyleName = "carTripsItemDescription"
-//                    }
-//                    else
-//                    {
-//                        self?.lbl_description.bonMotStyleName = "carTripsItemExtendedDescription"
-//                    }
-//                    self?.lbl_description.styledText = description
-//                }
-//            }).addDisposableTo(disposeBag)
     }
     
     /**

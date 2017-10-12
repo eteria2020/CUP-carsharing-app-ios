@@ -14,7 +14,7 @@ import SideMenu
 import DeviceKit
 
 /**
- The Support class allows the user to call Share'ngo team if he needs help
+ The Support class allows the user to contact Share'ngo team if he needs help
  */
 public class SupportViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!

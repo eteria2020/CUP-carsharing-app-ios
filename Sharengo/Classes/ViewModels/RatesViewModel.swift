@@ -27,7 +27,7 @@ public enum RatesOutput: SelectionInput {
 }
 
 /**
- The Rates viewmodel provides data related to display Share'ngo rates on RatesVC
+ The RatesViewModel provides data related to display Share'ngo rates
  */
 public class RatesViewModel: ViewModelTypeSelectable {
     /// Selection variable
@@ -37,8 +37,10 @@ public class RatesViewModel: ViewModelTypeSelectable {
             return .just(.empty)
         }
     }
-    var ratesDescription: Variable<String> = Variable("")
-    var bonusDescription: Variable<String> = Variable("")
+    /// Variable used to save rates description
+    public var ratesDescription: Variable<String> = Variable("")
+    /// Variable used to save bonus description
+    public var bonusDescription: Variable<String> = Variable("")
     
     // MARK: - Init methods
     
@@ -46,6 +48,8 @@ public class RatesViewModel: ViewModelTypeSelectable {
     {
         self.updateValues()
     }
+    
+    // MARK: - Update methods
     
     /**
      This method updates Sharen'go rates depending on whetever user is logged or not
