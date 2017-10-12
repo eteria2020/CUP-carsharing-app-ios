@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import KeychainSwift
 import Localize_Swift
+import Reachability
 
 /**
  CoreController class is a singleton class accessible from other classes with support variables, methods, ...
@@ -53,7 +54,9 @@ public class CoreController {
     public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
     /// Array of archived car trips
     public var archivedCarTrips: [CarTrip] = []
-
+    /// Boolean used to save connection value
+    public var connection: Bool = true
+    
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
     }
@@ -195,7 +198,6 @@ public class CoreController {
                         if let discountRate = data["discount_rate"] {
                             KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
                         }
-                        
                         self.updateCarBookings()
                     }
                     else if response.status == 404, let code = response.code {
@@ -211,7 +213,7 @@ public class CoreController {
                         }
                     }
                 case .error(_):
-                    break
+                    self.updateCarBookings()
                 default:
                     break
                 }
@@ -296,6 +298,7 @@ public class CoreController {
                     self.allCarBookings = []
                     self.updateCarTrips()
                 case .error(_):
+                    CoreController.shared.notificationIsShowed = true
                     self.allCarBookings = []
                     self.updateCarTrips()
                 default:
@@ -311,40 +314,50 @@ public class CoreController {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
-        if let currentViewController = CoreController.shared.currentViewController as? MapViewController {
-            if let carTrip = currentViewController.viewModel?.carTrip {
-                if carTrip.minutes < 1 {
-                    self.allCarTrips = [carTrip]
-                    self.stopUpdateData()
-                    return
-                } else if carTrip.changedStatus != nil {
-                    if carTrip.changedStatusMinutes < 1 {
+        if Reachability()?.isReachable == false {
+            self.connection = false
+            self.updateData()
+        } else {
+            if !self.connection {
+                self.updateData()
+            }
+            self.connection = true
+            if let currentViewController = CoreController.shared.currentViewController as? MapViewController {
+                if let carTrip = currentViewController.viewModel?.carTrip {
+                    if carTrip.minutes < 1 {
                         self.allCarTrips = [carTrip]
                         self.stopUpdateData()
                         return
-                    }
-                }
-                self.apiController.getCurrentTrip()
-                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                    .subscribe { event in
-                        switch event {
-                        case .next(let response):
-                            if response.status == 200, let data = response.array_data {
-                                if let carTrips = [CarTrip].from(jsonArray: data) {
-                                    self.allCarTrips = carTrips
-                                    self.stopUpdateData()
-                                    return
-                                }
-                            }
-                            self.allCarTrips = []
+                    } else if carTrip.changedStatus != nil {
+                        if carTrip.changedStatusMinutes < 1 {
+                            self.allCarTrips = [carTrip]
                             self.stopUpdateData()
-                        case .error(_):
-                            self.allCarTrips = []
-                            self.stopUpdateData()
-                        default:
-                            break
+                            return
                         }
-                    }.addDisposableTo(self.disposeBag)
+                    }
+                    self.apiController.getCurrentTrip()
+                        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                        .subscribe { event in
+                            switch event {
+                            case .next(let response):
+                                if response.status == 200, let data = response.array_data {
+                                    if let carTrips = [CarTrip].from(jsonArray: data) {
+                                        self.allCarTrips = carTrips
+                                        self.stopUpdateData()
+                                        return
+                                    }
+                                }
+                                self.allCarTrips = []
+                                self.stopUpdateData()
+                            case .error(_):
+                                CoreController.shared.notificationIsShowed = true
+                                self.allCarTrips = []
+                                self.stopUpdateData()
+                            default:
+                                break
+                            }
+                        }.addDisposableTo(self.disposeBag)
+                }
             }
         }
     }
@@ -386,6 +399,7 @@ public class CoreController {
                     self.allCarTrips = []
                     self.stopUpdateData()
                 case .error(_):
+                    CoreController.shared.notificationIsShowed = true
                     self.allCarTrips = []
                     self.stopUpdateData()
                 default:
