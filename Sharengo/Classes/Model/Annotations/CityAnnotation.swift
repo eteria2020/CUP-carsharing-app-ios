@@ -26,25 +26,9 @@ public class CityAnnotation: GMSMarker {
             do {
                 let data = try Data(contentsOf: url)
                 if let cityImage = UIImage(data: data) {
-//                    if bookedCity == false && nearestCity == false {
-                        let size = CGSize(width: 50, height: 50)
-                        let topImage = self.resizeImageForCluster(image: cityImage.tinted(ColorBrand.green.value), newSize: size)
-                        return topImage
-//                    } else if bookedCity == true {
-//                        var frames: [UIImage] = [UIImage]()
-//                        for i in 1...47 {
-//                            let image = UIImage(named: "Pulse_Giallo_00\(i)")!
-//                            frames.append(self.drawImageForAnimation(image1: image, image2: cityImage.tinted(ColorBrand.green.value), newSize: CGSize(width: 50, height: 50)))
-//                        }
-//                        return UIImage.animatedImage(with: frames, duration: 3)!
-//                    } else if nearestCity == true {
-//                        var frames: [UIImage] = [UIImage]()
-//                        for i in 1...47 {
-//                            let image = UIImage(named: "Pulse_Verde_00\(i)")!
-//                            frames.append(self.drawImageForAnimation(image1: image, image2: cityImage.tinted(ColorBrand.green.value), newSize: CGSize(width: 50, height: 50)))
-//                        }
-//                        return UIImage.animatedImage(with: frames, duration: 3)!
-//                    }
+                    let size = CGSize(width: 50, height: 50)
+                    let topImage = self.resizeImageForCluster(image: cityImage.tinted(ColorBrand.green.value), newSize: size)
+                    return topImage
                 }
             } catch {
                 let fileManager = FileManager.default

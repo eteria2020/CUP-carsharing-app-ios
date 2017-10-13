@@ -452,11 +452,8 @@ public enum Font {
             return size
         case 4.7, 5.8:
             return size * 1.1
-        //case 5.5:
         default:
             return size * 1.2
-        //default:
-        //    return size
         }
     }
 }

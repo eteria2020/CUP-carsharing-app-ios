@@ -117,11 +117,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 179
         case 4.7, 5.8:
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 259
-        //case 5.5:
         default:
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 299
-        //default:
-        //    break
         }
         let dispatchTime = DispatchTime.now() + 0.3
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -222,11 +219,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 93
         case 4.7, 5.8:
             self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 98
-        //case 5.5:
         default:
             self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 105
-        //default:
-        //    break
         }
         UIView.animate(withDuration: 0.3, animations: {
             self.view_background.alpha = 1.0
@@ -290,11 +284,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             height = 60.0
         case 4.7, 5.8:
             height = 65.0
-        //case 5.5:
         default:
             height = 75.0
-        //default:
-        //    break
         }
         let newSize = CGSize(width: width, height: height)
         return newSize
