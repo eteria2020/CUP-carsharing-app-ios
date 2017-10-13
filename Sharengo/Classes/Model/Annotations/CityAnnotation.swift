@@ -22,6 +22,8 @@ public class CityAnnotation: GMSMarker {
      - Parameter nearestCity: A boolean variable that says to application if the city annotation is a city with nearest car
      */
     public func getImage(bookedCity: Bool, nearestCity: Bool) -> UIImage {
+        // Cities from web
+        /*
         if let icon = self.city?.icon, let url = URL(string: icon) {
             do {
                 let data = try Data(contentsOf: url)
@@ -40,6 +42,14 @@ public class CityAnnotation: GMSMarker {
                         return topImage
                     }
                 }
+            }
+        }
+        */
+        if let icon = self.city?.icon {
+            if let cityImage = UIImage(named: icon) {
+                let size = CGSize(width: 50, height: 50)
+                let topImage = self.resizeImageForCluster(image: cityImage.tinted(ColorBrand.green.value), newSize: size)
+                return topImage
             }
         }
         return UIImage(named: "ic_cluster")!

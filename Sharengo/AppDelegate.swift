@@ -137,6 +137,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     fileprivate func setupCities() {
+        // Cities from web
+        /*
         if let cache = UserDefaults.standard.object(forKey: "cacheCities") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: cache) as? [CityCache] {
                 var cities: [City] = [City]()
@@ -146,6 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 CoreController.shared.cities = cities
             }
         }
+        */
     }
     
     fileprivate func setupPolygons() {

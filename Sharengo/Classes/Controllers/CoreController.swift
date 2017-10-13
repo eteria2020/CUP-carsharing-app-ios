@@ -13,6 +13,7 @@ import Boomerang
 import KeychainSwift
 import Localize_Swift
 import Reachability
+import Gloss
 
 /**
  CoreController class is a singleton class accessible from other classes with support variables, methods, ...
@@ -148,6 +149,8 @@ public class CoreController {
      This method updates cities
      */
     public func updateCities() {
+        // Cities from web
+        /*
         self.publishersApiController.getCities()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -170,6 +173,27 @@ public class CoreController {
                     break
                 }
             }.addDisposableTo(self.disposeBag)
+        */
+        if cities.count == 0 {
+            let filePath = Bundle.main.path(forResource: "cities", ofType: "json")
+            do {
+                if filePath != nil
+                {
+                    let data = try Data(contentsOf: URL(fileURLWithPath: filePath!))
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data) as! JSON
+                        let array: [JSON] = ("data" <~~ json)!
+                        if let cities = [City].from(jsonArray: array) {
+                            self.cities = cities
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
 
     /**

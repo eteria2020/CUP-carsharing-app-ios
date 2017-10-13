@@ -192,6 +192,7 @@
 		4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178651ED63C4D00EBD32B /* UIImage.swift */; };
 		4DA178691ED63C4D00EBD32B /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178661ED63C4D00EBD32B /* ZAlertView.swift */; };
 		4DA554511EE56337001627E7 /* CityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554501EE56337001627E7 /* CityAnnotation.swift */; };
+		4DAC975C1F9146A20031DE07 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DAC975B1F9146A20031DE07 /* cities.json */; };
 		4DC10DFF1EE9AA3300A74E26 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */; };
 		4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10E011EE9D6F000A74E26 /* CoreController.swift */; };
 		4DC4D4A71EF46F7100330F23 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D4A61EF46F7100330F23 /* WebViewController.swift */; };
@@ -459,6 +460,7 @@
 		4DA178661ED63C4D00EBD32B /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
 		4DA554381EE54EA0001627E7 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4DA554501EE56337001627E7 /* CityAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityAnnotation.swift; sourceTree = "<group>"; };
+		4DAC975B1F9146A20031DE07 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = Classes/ViewControllers/LoadingViewController.swift; sourceTree = "<group>"; };
 		4DC10E011EE9D6F000A74E26 /* CoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreController.swift; sourceTree = "<group>"; };
 		4DC4D4A61EF46F7100330F23 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Classes/ViewControllers/WebViewController.swift; sourceTree = "<group>"; };
@@ -1059,6 +1061,15 @@
 			path = Classes/Various;
 			sourceTree = "<group>";
 		};
+		4DAC975A1F9146A20031DE07 /* Jsons */ = {
+			isa = PBXGroup;
+			children = (
+				4DAC975B1F9146A20031DE07 /* cities.json */,
+			);
+			name = Jsons;
+			path = Resources/Jsons;
+			sourceTree = "<group>";
+		};
 		4DC10E001EE9AC5800A74E26 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -1221,6 +1232,7 @@
 				4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */,
 				4DCD1A9D1ECDC22900FC8BF5 /* Plists */,
 				4DCD1A9F1ECDC22900FC8BF5 /* Storyboards */,
+				4DAC975A1F9146A20031DE07 /* Jsons */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1429,6 +1441,7 @@
 				03AF5D691EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png in Resources */,
 				032D3A871F08E79000F260A5 /* Auto-B-loop.gif in Resources */,
 				032D3A851F08E79000F260A5 /* Auto-A-uscita.gif in Resources */,
+				4DAC975C1F9146A20031DE07 /* cities.json in Resources */,
 				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
 				038642021F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib in Resources */,
 				4D43DDE61F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib in Resources */,

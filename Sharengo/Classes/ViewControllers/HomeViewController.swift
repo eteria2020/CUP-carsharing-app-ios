@@ -262,6 +262,8 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
             let cities = CoreController.shared.cities
             for city in cities {
                 if city.identifier == cityid {
+                    // Cities from web
+                    /*
                     if let url = URL(string: city.icon)
                     {
                         do {
@@ -277,6 +279,17 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                                 }
                             }
                         } catch {
+                        }
+                    }
+                    */
+                    if let image = UIImage(named: city.icon) {
+                        cityFounded = true
+                        if self?.feedsAvailable ?? false {
+                            self?.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
+                            self?.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                        } else {
+                            self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                            self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
                         }
                     }
                 }
