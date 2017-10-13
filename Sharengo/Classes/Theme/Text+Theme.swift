@@ -39,6 +39,7 @@ public enum TextStyle: String, TextStyleType {
 
     // Home
     case homeDescription = "homeDescription"
+    case homeVersion = "homeVersion"
     
     // SearchBar
     case searchBarTextField = "searchBarTextField"
@@ -160,6 +161,7 @@ public enum TextStyle: String, TextStyleType {
             .introTitle,
             // Home
             .homeDescription,
+            .homeVersion,
             // Menu
             .menuHeader,
             .menuItemTitle,
@@ -279,6 +281,8 @@ public enum TextStyle: String, TextStyleType {
             case .homeDescription:
                 let boldStyle = StringStyle(.font(Font.homeDescriptionEmphasized.value), .color(Color.homeDescriptionLabel.value), .alignment(.center))
                 return StringStyle(.font(Font.homeDescription.value), .color(Color.homeDescriptionLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+            case .homeVersion:
+                return StringStyle(.font(Font.homeVersion.value), .color(Color.homeVersionLabel.value), .alignment(.center))
             // SearchBar
             case .searchBarTextField:
                 return StringStyle(.font(Font.searchBarTextField.value), .color(Color.searchBarTextField.value), .alignment(.center))

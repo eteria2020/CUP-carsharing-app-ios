@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -171,6 +171,15 @@
                                     <constraint firstAttribute="width" secondItem="ozH-SZ-gyS" secondAttribute="height" multiplier="1:1" id="Uzo-5T-Lw3"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.1.2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lN-u6-HP0">
+                                <rect key="frame" x="329.5" y="636" width="35.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="homeVersion"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -179,12 +188,14 @@
                             <constraint firstItem="yLO-45-Nei" firstAttribute="width" secondItem="hag-IA-zQe" secondAttribute="width" id="5Ob-2P-8hg"/>
                             <constraint firstItem="rHt-ZL-VHF" firstAttribute="leading" secondItem="29D-Sx-MLm" secondAttribute="leading" id="6o3-p5-G4X"/>
                             <constraint firstItem="oJH-8h-d4d" firstAttribute="top" secondItem="rHt-ZL-VHF" secondAttribute="bottom" id="7by-cP-6d6"/>
+                            <constraint firstItem="STo-jJ-oEN" firstAttribute="top" secondItem="8lN-u6-HP0" secondAttribute="bottom" constant="10" id="8HG-kK-9ch"/>
                             <constraint firstAttribute="trailing" secondItem="rHt-ZL-VHF" secondAttribute="trailing" id="92C-Bq-qvi"/>
                             <constraint firstAttribute="bottom" secondItem="oJH-8h-d4d" secondAttribute="bottom" id="AbS-i7-qll"/>
                             <constraint firstItem="mLy-nQ-Met" firstAttribute="leading" secondItem="29D-Sx-MLm" secondAttribute="leading" constant="30" id="DMJ-me-Fgg"/>
                             <constraint firstItem="mLy-nQ-Met" firstAttribute="top" secondItem="ozH-SZ-gyS" secondAttribute="bottom" constant="30" id="DSC-lf-ZZm"/>
                             <constraint firstItem="yLO-45-Nei" firstAttribute="centerX" secondItem="ozH-SZ-gyS" secondAttribute="trailing" constant="-15" id="Gdg-xx-8zI"/>
                             <constraint firstAttribute="trailing" secondItem="mLy-nQ-Met" secondAttribute="trailing" constant="30" id="J8L-yZ-luX"/>
+                            <constraint firstAttribute="trailing" secondItem="8lN-u6-HP0" secondAttribute="trailing" constant="10" id="KeY-mn-qWN"/>
                             <constraint firstAttribute="trailing" secondItem="oJH-8h-d4d" secondAttribute="trailing" id="LwL-tG-IwB"/>
                             <constraint firstItem="ozH-SZ-gyS" firstAttribute="centerY" secondItem="29D-Sx-MLm" secondAttribute="centerY" id="N3e-i2-Wed"/>
                             <constraint firstItem="STo-jJ-oEN" firstAttribute="top" secondItem="mLy-nQ-Met" secondAttribute="bottom" constant="30" id="RO1-Tg-Gq4"/>

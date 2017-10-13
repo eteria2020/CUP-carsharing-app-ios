@@ -118,6 +118,7 @@ public enum Color {
     case homeDisabledBackground
     case homeDisabledIcon
     case homeDescriptionLabel
+    case homeVersionLabel
     
     // SearchCars
     case searchCarsClusterLabel
@@ -389,6 +390,8 @@ public enum Color {
             case .homeDisabledIcon:
                 return UIColor(hexString: "#b4ada7")
             case .homeDescriptionLabel:
+                return ColorBrand.black.value
+            case .homeVersionLabel:
                 return ColorBrand.black.value
             // SearchCars
             case .searchCarsClusterLabel:
