@@ -170,7 +170,6 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = -3
             self.constraint(withIdentifier: "bottomLblTitle", searchInSubviews: true)?.constant = 1
             self.constraint(withIdentifier: "topLblDescription", searchInSubviews: true)?.constant = 1
-            //            if !viewModel.selected {
             if !selected {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
@@ -179,7 +178,6 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
         case 4:
             self.constraint(withIdentifier: "bottomLblTitle", searchInSubviews: true)?.constant = 5
             self.constraint(withIdentifier: "topLblDescription", searchInSubviews: true)?.constant = 5
-            //            if !viewModel.selected {
             if !selected {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
@@ -188,24 +186,19 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
         case 4.7, 5.8:
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 5
             self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 5
-            //            if !viewModel.selected {
             if !selected {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -44
             }
-        //case 5.5:
         default:
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 10
             self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 10
-            //            if !viewModel.selected {
             if !selected {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 20
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -52
             }
-        //default:
-        //    break
         }
     }
 }

@@ -73,7 +73,6 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        // self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
         self.lbl_title.textColor = Color.settingHeaderLabel.value
         
@@ -84,11 +83,8 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //case 5.5:
         default:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //default:
-        //    break
         }
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -151,7 +147,6 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
      This method is called from collection delegate to decide how the list interface is showed (size)
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let width = collectionView.bounds.size.width
         return CGSize(width: width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/4)
     }

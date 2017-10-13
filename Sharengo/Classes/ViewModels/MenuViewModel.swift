@@ -32,7 +32,7 @@ public enum MenuSelectionOutput : SelectionOutput {
 /**
  The Menu model provides data related to display content on the menu
  */
-public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
+public class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
     /// ViewModel variable used to save data
     public var dataHolder: ListDataHolderType = ListDataHolder.empty

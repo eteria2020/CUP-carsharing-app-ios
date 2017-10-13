@@ -234,12 +234,9 @@ public class FeedDetailViewController : BaseViewController, ViewModelBindable {
         case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //case 5.5:
         default:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //default:
-        //    break
         }
     }
 }

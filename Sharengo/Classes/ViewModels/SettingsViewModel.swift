@@ -30,7 +30,7 @@ public enum SettingSelectionOutput : SelectionOutput {
 /**
  The Setting model provides data related to display content on settings
  */
-public final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
+public class SettingsViewModel : ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
     /// ViewModel variable used to save data
     public var dataHolder: ListDataHolderType = ListDataHolder.empty

@@ -401,13 +401,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
             self.checkUserPositionFromForeground()
-//            CoreController.shared.updateData()
             CoreController.shared.updateCarBookings()
             CoreController.shared.updateCarTrips()
-//            let dispatchTime = DispatchTime.now() + 5.0
-//            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-//                CoreController.shared.notificationIsShowed = false
-//            }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
@@ -767,10 +762,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     return
                 }
             #endif
-        } else {
-            //self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
-            //return
-        }
+        } else { }
         self.showLoader()
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
             if error != nil {
@@ -815,20 +807,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 }
                                             })
                                         }
-//                                    } else if action == "park" && self.viewModel?.carTrip != nil {
-//                                        car2?.parking = true
-//                                        car2?.opened = true
-//                                        car2?.booked = true
-//                                        DispatchQueue.main.async {
-//                                            self.hideLoader(completionClosure: { () in
-//                                                self.viewModel!.carTrip!.changedStatus = Date()
-//                                                self.viewModel!.carTrip!.car.value = car2
-//                                                self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
-//                                                self.getResultsWithoutLoading()
-//                                                self.routeSteps = self.nearestCarRouteSteps
-//                                                self.drawRoutes(steps: self.nearestCarRouteSteps)
-//                                            })
-//                                        }
                                     } else {
                                         let carTrip = CarTrip(car: car2 ?? car)
                                         DispatchQueue.main.async {[weak self]  in
@@ -1533,9 +1511,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      This method turns map toward the north
      */
     public func turnMap() {
-//        if let car = viewModel?.carTrip?.car.value {
-//            self.openCar(car: car, action: "park")
-//        }
         let newCamera = GMSCameraPosition.camera(withLatitude: self.mapView.camera.target.latitude,
                                                  longitude: self.mapView.camera.target.longitude,
                                                  zoom: self.mapView.camera.zoom,
@@ -1708,21 +1683,6 @@ extension MapViewController: GMSMapViewDelegate {
             }
         } else if let carAnnotation = marker.userData as? CarAnnotation {
             let car = carAnnotation.car
-//            if let bookedCar = self.viewModel?.carBooked {
-//                if car.plate != bookedCar.plate {
-//                    let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-//                        alertView.dismissAlertView()
-//                    })
-//                    dialog.allowTouchOutsideToDismiss = false
-//                    dialog.show()
-//                } else {
-//                    if let location = car.location {
-//                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//                        self.centerMap(on: newLocation, zoom: 18.5, animated: true)
-//                    }
-//                }
-//                return true
-//            }
             if car.plate != self.selectedCar?.plate {
                 self.drawRoutes(steps: self.routeSteps)
             }

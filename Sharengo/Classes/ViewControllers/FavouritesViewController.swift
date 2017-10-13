@@ -70,7 +70,6 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         self.view_title.backgroundColor = Color.favouritesTitle.value
         self.btn_newFavourite.style(.squaredButton(Color.loginContinueAsNotLoggedButton.value), title: "btn_noFavouritesNewFavourite".localized())
@@ -88,13 +87,10 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
             self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //case 5.5:
         default:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
             self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //default:
-        //    break
         }
         self.lbl_headerTitle.styledText = "lbl_favouritesHeaderTitle".localized()
         self.lbl_title.styledText = "lbl_favouritesTitle".localized()
@@ -370,11 +366,8 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 250
                 case 4.7, 5.8:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 275
-                //case 5.5:
                 default:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 300
-                //default:
-                //    break
                 }
                 self.txt_name.isHidden = true
                 self.txt_address.isHidden = true

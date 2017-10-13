@@ -28,7 +28,7 @@ public enum NewFavouriteSelectionOutput: SelectionOutput {
 /**
  The New favourite model provides data related to display content on new favourite in settings
  */
-public final class NewFavouriteViewModel: ViewModelType {
+public class NewFavouriteViewModel: ViewModelType {
     /// Selection variable
     public lazy var selection:Action<NewFavouriteSelectionInput,NewFavouriteSelectionOutput> = Action { input in
         return .just(.empty)

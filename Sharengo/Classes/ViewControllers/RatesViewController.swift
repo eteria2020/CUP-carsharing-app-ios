@@ -103,11 +103,8 @@ public class RatesViewController : BaseViewController, ViewModelBindable {
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //case 5.5:
         default:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //default:
-        //    break
         }
     }
     

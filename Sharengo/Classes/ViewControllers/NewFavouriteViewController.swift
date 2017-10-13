@@ -102,7 +102,6 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         self.btn_saveFavourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_newFavouriteSaveFavourite".localized())
         self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value, Color.alertButton.value), title: "btn_newFavouriteUndo".localized())
@@ -127,12 +126,9 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
         case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //case 5.5:
         default:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //default:
-        //    break
         }
         self.txt_address.placeHolderText = "txt_newFavouriteAddressPlaceholder".localized()
         self.txt_address.style = CustomTextInputStyle1()

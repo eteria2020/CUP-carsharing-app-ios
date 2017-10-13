@@ -51,7 +51,6 @@ public class InviteFriendViewController : BaseViewController, ViewModelBindable 
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.inviteFriendBackground.value
         self.view_header.backgroundColor = Color.inviteFriendHeaderBackground.value
         switch Device().diagonal {
@@ -62,11 +61,8 @@ public class InviteFriendViewController : BaseViewController, ViewModelBindable 
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //case 5.5:
         default:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //default:
-        //    break
         }
         self.lbl_headerTitle.textColor = Color.inviteFriendHeaderLabel.value
         self.lbl_headerTitle.styledText = "lbl_inviteFriendHeader".localized().uppercased()

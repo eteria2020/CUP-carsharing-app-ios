@@ -28,7 +28,7 @@ public enum SignupSelectionOutput: SelectionOutput {
 /**
  The Signup model provides data related to display content on signuip
  */
-public final class SignupViewModel: ViewModelType {
+public class SignupViewModel: ViewModelType {
     /// ViewModel variable used to save data
     public let stepsArray: [SignupStepView]
     /// Selection variable

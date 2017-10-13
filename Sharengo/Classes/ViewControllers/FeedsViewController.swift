@@ -211,7 +211,6 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         // Views
         self.view.backgroundColor = ColorBrand.white.value
         self.btn_aroundMe.isHidden = true
@@ -230,11 +229,8 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
                 headerCategoryHeight = 30
             case 4.7, 5.8:
                 headerCategoryHeight = 32
-            //case 5.5:
             default:
                 headerCategoryHeight = 32
-            //default:
-            //    break
             }
             self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
@@ -255,12 +251,9 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
             case 4.7, 5.8:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-            //case 5.5:
             default:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-            //default:
-            //    break
             }
         }
         
@@ -295,15 +288,12 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
                     array.append(destination)
                     self.navigationController?.viewControllers = array
                     self.hideLoader(completionClosure: { () in
-                    //let dispatchTime = DispatchTime.now() + 0.3
-                    //DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        self.view.backgroundColor = Color.categoriesBackground.value
-                        self.viewModel?.sectionSelected = .categories
-                        self.updateHeaderButtonsInterface()
-                        self.viewModel?.updateListDataHolder()
-                        self.viewModel?.reload()
-                        self.collectionView?.reloadData()
-                    //}
+                    self.view.backgroundColor = Color.categoriesBackground.value
+                    self.viewModel?.sectionSelected = .categories
+                    self.updateHeaderButtonsInterface()
+                    self.viewModel?.updateListDataHolder()
+                    self.viewModel?.reload()
+                    self.collectionView?.reloadData()
                     })
                     return
                 }
@@ -380,7 +370,6 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
                 let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
                 return size
             case .categories:
-                //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 2)
                 let width = collectionView.bounds.size.width
                 return CGSize(width: width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height+self.btn_aroundMe.frame.size.height))/3)
             }
@@ -438,15 +427,12 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
                     array.append(destination)
                     self?.navigationController?.viewControllers = array
                     self?.hideLoader(completionClosure: { () in
-                        // let dispatchTime = DispatchTime.now() + 0.3
-                        // DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                         self?.view.backgroundColor = Color.categoriesBackground.value
                         self?.viewModel?.sectionSelected = .categories
                         self?.updateHeaderButtonsInterface()
                         self?.viewModel?.updateListDataHolder()
                         self?.viewModel?.reload()
                         self?.collectionView?.reloadData()
-                        // }
                     })
                     return
                 }

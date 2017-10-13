@@ -61,7 +61,6 @@ public class NoFeedsViewController : BaseViewController, ViewModelBindable {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFeedsBackground.value
         self.view_header.backgroundColor = Color.noFeedsHeaderBackground.value
         self.view_headerFeeds.backgroundColor = Color.noFeedsFeedsHeaderBackground.value
@@ -77,12 +76,9 @@ public class NoFeedsViewController : BaseViewController, ViewModelBindable {
         case 4.7, 5.8:
             self.view_headerFeeds.constraint(withIdentifier: "viewHeaderFeedsHeight", searchInSubviews: true)?.constant = 48
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //case 5.5:
         default:
             self.view_headerFeeds.constraint(withIdentifier: "viewHeaderFeedsHeight", searchInSubviews: true)?.constant = 48
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        //default:
-        //    break
         }
         
         self.lbl_title.textColor = Color.noFeedsHeaderLabel.value

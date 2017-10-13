@@ -37,7 +37,7 @@ public enum LoginSelectionOutput: SelectionOutput {
 /**
  The Login model provides data related to display content on login
  */
-public final class LoginViewModel: ViewModelType {
+public class LoginViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
     /// Selection variable
     public lazy var selection:Action<LoginSelectionInput,LoginSelectionOutput> = Action { input in

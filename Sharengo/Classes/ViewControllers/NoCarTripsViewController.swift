@@ -52,7 +52,6 @@ public class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         
         self.lbl_noCarTrips.styledText = "lbl_noCarTrips".localized()
@@ -70,12 +69,9 @@ public class NoCarTripsViewController : BaseViewController, ViewModelBindable {
         case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_searchCars.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //case 5.5:
         default:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_searchCars.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        //default:
-        //    break
         }
         
         self.lbl_headerTitle.styledText = "lbl_carTripsHeaderTitle".localized()

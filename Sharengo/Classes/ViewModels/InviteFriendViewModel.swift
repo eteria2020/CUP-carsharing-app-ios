@@ -28,7 +28,7 @@ public enum InviteFriendOutput: SelectionInput {
 /**
  The InviteFriendViewModel provides data related to display content on invite friend
  */
-public final class InviteFriendViewModel: ViewModelTypeSelectable {
+public class InviteFriendViewModel: ViewModelTypeSelectable {
     /// Selection variable
     public var selection: Action<InviteFriendInput, InviteFriendOutput> = Action { _ in
         return .just(.empty)

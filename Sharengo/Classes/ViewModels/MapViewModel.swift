@@ -37,7 +37,7 @@ public enum MapType {
 /**
  The Map model provides data related to display content on a map
 */
-public final class MapViewModel: ViewModelType {
+public class MapViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
@@ -95,23 +95,6 @@ public final class MapViewModel: ViewModelType {
                     if response.status == 200, let data = response.array_data {
                         if let cars = [Car].from(jsonArray: data) {
                             self.allCars = cars
-//                            // Distance
-//                            for car in self.allCars {
-//                                let locationManager = LocationManager.sharedInstance
-//                                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-//                                    if let userLocation = locationManager.lastLocationCopy.value {
-//                                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-//                                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-//                                            let index = self.cars.index(where: { (singleCar) -> Bool in
-//                                                return car.plate == singleCar.plate
-//                                            })
-//                                            if let i = index {
-//                                                self.cars[i].distance = car.distance
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
                             self.manageAnnotations()
                             return
                         }
@@ -260,12 +243,6 @@ public final class MapViewModel: ViewModelType {
                     if let userLocation = locationManager.lastLocationCopy.value {
                         if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
                             car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-//                            let index = self.cars.index(where: { (allCar) -> Bool in
-//                                return car.plate == allCar.plate
-//                            })
-//                            if let i = index {
-//                                self.cars[i].distance = car.distance
-//                            }
                         }
                     }
                 }
@@ -276,12 +253,6 @@ public final class MapViewModel: ViewModelType {
                     if let userLocation = locationManager.lastLocationCopy.value {
                         if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
                             car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-//                            let index = self.allCars.index(where: { (allCar) -> Bool in
-//                                return car.plate == allCar.plate
-//                            })
-//                            if let i = index {
-//                                self.allCars[i].distance = car.distance
-//                            }
                         }
                     }
                 }
@@ -295,18 +266,6 @@ public final class MapViewModel: ViewModelType {
                     if let userLocation = locationManager.lastLocationCopy.value {
                         if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
                             car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-//                            let index1 = self.cars.index(where: { (singleCar) -> Bool in
-//                                return car.plate == singleCar.plate
-//                            })
-//                            if let i1 = index1 {
-//                                self.cars[i1].distance = car.distance
-//                            }
-//                            let index2 = self.allCars.index(where: { (allCar) -> Bool in
-//                                return car.plate == allCar.plate
-//                            })
-//                            if let i2 = index2 {
-//                                self.allCars[i2].distance = car.distance
-//                            }
                         }
                     }
                 }
@@ -369,7 +328,6 @@ public final class MapViewModel: ViewModelType {
     public func updateCarsProperties () {
         var nearestCarCopy: Car? = nil
         for car in self.allCars {
-            //car.nearest = false
             car.booked = false
             car.opened = false
             if let carBooked = self.carBooked {
@@ -389,14 +347,6 @@ public final class MapViewModel: ViewModelType {
                     }
                 }
             }
-//            let index = self.cars.index(where: { (singleCar) -> Bool in
-//                return car.plate == singleCar.plate
-//            })
-//            if let i = index {
-//                if self.cars.count > i {
-//                    self.cars[i] = car
-//                }
-//            }
         }
         for car in self.cars {
             car.booked = false
@@ -432,7 +382,6 @@ public final class MapViewModel: ViewModelType {
                 }
             }
         }
-        //nearestCarCopy?.nearest = true
         self.nearestCar.value = nearestCarCopy
     }
     
