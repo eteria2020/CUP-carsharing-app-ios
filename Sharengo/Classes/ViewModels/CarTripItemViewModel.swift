@@ -15,7 +15,9 @@ import KeychainSwift
  The CarTripViewModel provides data related to display content on car trip collection view cell
  */
 public class CarTripItemViewModel : ItemViewModelType {
+    /// ViewModel variable used to save data
     public var model:ItemViewModelType.Model
+    /// ViewModel variable used to identify favourite item cell
     public var itemIdentifier:ListIdentifier = CollectionViewCell.carTrip
 
     // MARK: - Init methods

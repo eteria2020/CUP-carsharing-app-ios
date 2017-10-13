@@ -15,7 +15,7 @@ import DeviceKit
 import KeychainSwift
 
 /**
- The CarTripItemCollectionViewCell show data of singular car trip in a cell
+ The CarTripItemCollectionViewCell shows data of singular car trip in a cell
  */
 public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_icon: UIImageView!

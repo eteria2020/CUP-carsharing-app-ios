@@ -14,7 +14,7 @@ import SideMenu
 import DeviceKit
 
 /**
- The No Feeds class shows user that there is no feeds
+ The NoFeeds class shows user that there are no feeds
  */
 public class NoFeedsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -28,7 +28,6 @@ public class NoFeedsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_bottomCategoriesButton: UIView!
     @IBOutlet fileprivate weak var img_top: UIImageView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
-    
     /// ViewModel variable used to represents the data
     public var viewModel: NoFeedsViewModel?
     
@@ -47,18 +46,15 @@ public class NoFeedsViewController : BaseViewController, ViewModelBindable {
         self.viewModel = viewModel
         self.lbl_title.styledText = self.viewModel?.category?.title.uppercased()
 
-        if self.viewModel?.category != nil
-        {
+        if self.viewModel?.category != nil {
             self.lbl_description.styledText = "lbl_noFeedsDescriptionWithCategory".localized()
             self.view_headerFeeds.isHidden = true
             self.view_header.isHidden = false
-        }
-        else
-        {
+        } else {
             self.lbl_description.styledText = "lbl_noFeedsDescriptionWithNoCategory".localized()
             self.view_headerFeeds.isHidden = false
             self.view_header.isHidden = true
-    }
+        }
     }
     
     // MARK: - View methods
@@ -129,12 +125,11 @@ public class NoFeedsViewController : BaseViewController, ViewModelBindable {
     // MARK: - Header buttons methods
     
     /**
-     This method update header buttons interface based on section selected
+     This method updates header buttons interface based on section selected
      */
     public func updateHeaderButtonsInterface()
     {
-        if let viewModel = self.viewModel
-        {
+        if let viewModel = self.viewModel {
             switch viewModel.sectionSelected {
             case .feed:
                 self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderFeed".localized())

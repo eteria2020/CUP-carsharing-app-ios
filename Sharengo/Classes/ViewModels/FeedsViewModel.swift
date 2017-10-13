@@ -37,19 +37,26 @@ public enum FeedSections {
 }
 
 /**
- The Feeds viewmodel provides data related to display content on FeedsVC
+ The FeedsViewModel provides data related to display content on feeds screen
  */
 public class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
-    public var dataHolder: ListDataHolderType = ListDataHolder.empty
-    var feeds = [Feed]()
-    var categories = [Category]()
-    var category: Category? = nil
-    var sectionSelected = FeedSections.feed
     fileprivate var resultsDispose: DisposeBag?
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// Array of feeds
+    public var feeds = [Feed]()
+    /// Array of categories
+    public var categories = [Category]()
+    /// Variable used to save selected category
+    public var category: Category? = nil
+    /// Variable used to save if section is feeds or categories
+    public var sectionSelected = FeedSections.feed
     /// Selection variable
     lazy public var selection:Action<FeedsSelectionInput,FeedsSelectionOutput> = Action { input in
         return .empty()
     }
+    
+    // MARK: - ViewModel methods
     
     public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? Feed {
@@ -94,7 +101,7 @@ public class FeedsViewModel : ListViewModelType, ViewModelTypeSelectable {
     // MARK: - Update methods
     
     /**
-     This method update list data holder with feeds or categories based on selected section
+     This method updates list data holder with feeds or categories based on selected section
      */
     public func updateListDataHolder() {
         switch sectionSelected {

@@ -26,7 +26,7 @@ public enum NoFeedsSelectionOutput: SelectionOutput {
 }
 
 /**
- The No Feeds viewmodel provides data related to display content on NoFeedsVC
+ The NoFeedsViewModel provides data related to display content on no feeds screen
  */
 public class NoFeedsViewModel: ViewModelType {
     /// Selection variable
@@ -36,11 +36,16 @@ public class NoFeedsViewModel: ViewModelType {
             return .just(.empty)
         }
     }
-    var category: Category? = nil
-    var categoryTitle: String?
-    var sectionSelected = FeedSections.feed
+    /// Variable used to save category
+    public var category: Category? = nil
+    /// Variable used to save category title
+    public var categoryTitle: String?
+    /// Variable used to save if section is feeds or categories
+    public var sectionSelected = FeedSections.feed
     
-    init(category: Category?) {
+    // MARK: Init methods
+    
+    public init(category: Category?) {
         self.category = category
         self.categoryTitle = category?.title
     }

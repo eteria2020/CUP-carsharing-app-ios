@@ -14,7 +14,7 @@ import RxCocoa
 import BonMot
 
 /**
- The FeedItemCollectionViewCell show data of singular feed in a cell
+ The FeedItemCollectionViewCell shows data of singular feed in a cell
  */
 public class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var view_containerBackgroundImage: UIView!

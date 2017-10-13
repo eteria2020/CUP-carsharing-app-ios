@@ -30,7 +30,7 @@ extension Date
 }
 
 /**
- The Feeds class shows feeds
+ The Feeds class shows feeds to user
  */
 public class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -44,16 +44,19 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
     @IBOutlet fileprivate weak var view_bottomCategoriesButton: UIView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var btn_aroundMe: UIButton!
+    /// Instance of PublishersApiController
+    public let publishersApiController: PublishersAPIController = PublishersAPIController()
+    /// Variable used to save if an error occurred with categories
+    public var errorCategories: Bool?
+    /// Variable used to save if an error occurred with offers
+    public var errorOffers: Bool?
+    /// Variable used to save if an error occurred with events
+    public var errorEvents: Bool?
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
-    
-    fileprivate let publishersApiController: PublishersAPIController = PublishersAPIController()
     /// ViewModel variable used to represents the data
     public var viewModel: FeedsViewModel?
-    var errorCategories: Bool?
-    var errorOffers: Bool?
-    var errorEvents: Bool?
     
     // MARK: - ViewModel methods
     
@@ -201,60 +204,6 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
                         }
                     }.addDisposableTo(self.disposeBag)
             }
-        }
-    }
-    
-    /**
-     This method is used to check data relative to feeds
-     */
-    public func checkData() {
-        if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
-            DispatchQueue.main.async {[weak self]  in
-                if self?.viewModel?.feeds.count == 0 {
-                    let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
-                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self?.viewModel?.category), afterLoad: true)
-                    var array = self?.navigationController?.viewControllers ?? []
-                    if self?.viewModel?.category != nil {
-                        array.removeLast()
-                    }
-                    array.append(destination)
-                    self?.navigationController?.viewControllers = array
-                    self?.hideLoader(completionClosure: { () in
-                       // let dispatchTime = DispatchTime.now() + 0.3
-                       // DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            self?.view.backgroundColor = Color.categoriesBackground.value
-                            self?.viewModel?.sectionSelected = .categories
-                            self?.updateHeaderButtonsInterface()
-                            self?.viewModel?.updateListDataHolder()
-                            self?.viewModel?.reload()
-                            self?.collectionView?.reloadData()
-                       // }
-                    })
-                    return
-                }
-                self?.viewModel?.updateListDataHolder()
-                self?.viewModel?.reload()
-                self?.collectionView?.reloadData()
-                self?.hideLoader(completionClosure: { () in
-                })
-                if self?.viewModel?.category == nil {
-                    self?.btn_aroundMe.isHidden = false
-                }
-            }
-        } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {
-            self.hideLoader(completionClosure: { () in
-                var message = "alert_generalError".localized()
-                if Reachability()?.isReachable == false {
-                    message = "alert_connectionError".localized()
-                }
-                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                    Router.back(self)
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-                
-            })
         }
     }
     
@@ -470,6 +419,60 @@ public class FeedsViewController : BaseViewController, ViewModelBindable, UIColl
                 self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderCategories".localized())
                 self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
             }
+        }
+    }
+
+    /**
+     This method is used to check data relative to feeds
+     */
+    public func checkData() {
+        if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
+            DispatchQueue.main.async {[weak self]  in
+                if self?.viewModel?.feeds.count == 0 {
+                    let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
+                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self?.viewModel?.category), afterLoad: true)
+                    var array = self?.navigationController?.viewControllers ?? []
+                    if self?.viewModel?.category != nil {
+                        array.removeLast()
+                    }
+                    array.append(destination)
+                    self?.navigationController?.viewControllers = array
+                    self?.hideLoader(completionClosure: { () in
+                        // let dispatchTime = DispatchTime.now() + 0.3
+                        // DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        self?.view.backgroundColor = Color.categoriesBackground.value
+                        self?.viewModel?.sectionSelected = .categories
+                        self?.updateHeaderButtonsInterface()
+                        self?.viewModel?.updateListDataHolder()
+                        self?.viewModel?.reload()
+                        self?.collectionView?.reloadData()
+                        // }
+                    })
+                    return
+                }
+                self?.viewModel?.updateListDataHolder()
+                self?.viewModel?.reload()
+                self?.collectionView?.reloadData()
+                self?.hideLoader(completionClosure: { () in
+                })
+                if self?.viewModel?.category == nil {
+                    self?.btn_aroundMe.isHidden = false
+                }
+            }
+        } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {
+            self.hideLoader(completionClosure: { () in
+                var message = "alert_generalError".localized()
+                if Reachability()?.isReachable == false {
+                    message = "alert_connectionError".localized()
+                }
+                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                    Router.back(self)
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+                
+            })
         }
     }
 }
