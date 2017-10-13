@@ -12,13 +12,15 @@ import Boomerang
 import KeychainSwift
 
 /**
- The Car Trip viewmodel provides data related to display content on car trip collection view cell
+ The CarTripViewModel provides data related to display content on car trip collection view cell
  */
 public class CarTripItemViewModel : ItemViewModelType {
     public var model:ItemViewModelType.Model
     public var itemIdentifier:ListIdentifier = CollectionViewCell.carTrip
 
-    init(model: CarTrip) {
+    // MARK: - Init methods
+    
+    public init(model: CarTrip) {
         self.model = model
     }
 }

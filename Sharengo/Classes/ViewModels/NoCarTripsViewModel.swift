@@ -26,10 +26,9 @@ public enum NoCarTripsSelectionOutput: SelectionOutput {
 }
 
 /**
- The No Car Trips viewmodel provides data related to display content on NoCarTripsVC
+ The NoCarTripsViewModel provides data related to display content on no car trips screen
  */
 public class NoCarTripsViewModel: ViewModelType {
-    
     /// Selection variable
     public lazy var selection:Action<NoFavouritesSelectionInput,NoFavouritesSelectionOutput> = Action { input in
         switch input {
@@ -40,7 +39,6 @@ public class NoCarTripsViewModel: ViewModelType {
 
     // MARK: Init methods
     
-    public required init() {
-
-    }
+    public required init()
+    { }
 }

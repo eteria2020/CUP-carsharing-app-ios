@@ -28,19 +28,22 @@ public enum CarTripSelectionOutput : SelectionOutput {
 }
 
 /**
- The Car Trips viewmodel provides data related to display content on CarTripsVC
+ The Car TripsViewModel provides data related to display content on car trips screen
  */
 public class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
-    public var dataHolder: ListDataHolderType = ListDataHolder.empty
-    var carTrips = [CarTrip]()
-    var previousSelectedCarTrip: CarTrip?
     fileprivate var resultsDispose: DisposeBag?
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// Array of car trips
+    public var carTrips = [CarTrip]()
+    /// Id of selected car trip
     var idSelected: Int = -1
-    
     /// Selection variable
     lazy public var selection:Action<CarTripSelectionInput,CarTripSelectionOutput> = Action { input in
         return .empty()
     }
+    
+    // MARK: - ViewModel methods
     
     public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? CarTrip {
@@ -67,6 +70,8 @@ public class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
             }
         }
     }
+    
+    // MARK: - Update methods
     
     /**
      This method updates car trips

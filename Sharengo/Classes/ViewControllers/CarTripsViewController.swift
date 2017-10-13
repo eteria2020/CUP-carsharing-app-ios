@@ -15,20 +15,23 @@ import DeviceKit
 import Reachability
 
 /**
- The Car Trips class shows to user its car trips
+ The CarTrips class shows to user its car trips
  */
 public class CarTripsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
-    fileprivate var allCarTrips: [CarTrip] = []
-    fileprivate let apiController: ApiController = ApiController()
+    /// Array of car trips
+    public var allCarTrips: [CarTrip] = []
+    /// Instance of ApiController
+    public let apiController: ApiController = ApiController()
+    /// Boolean used to check if car trip detail can be shown to user
+    public var objectsLoaded: Bool = false
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
-    fileprivate var objectsLoaded: Bool = false
-    
+    /// ViewModel variable used to represents the data
     public var viewModel: CarTripsViewModel?
     
     // MARK: - ViewModel methods

@@ -25,7 +25,6 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
     @IBOutlet fileprivate weak var lbl_subtitle: UILabel!
     @IBOutlet fileprivate weak var view_bottomBorder: UIView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
-
     /// ViewModel variable used to represents the data
     public var viewModel:ItemViewModelType?
     
@@ -40,8 +39,8 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
     }
     
     /**
-     This method update car trip with selected plate.
-     - Parameter idSelected: id of car trip
+     This method updates car trip with selected id
+     - Parameter idSelected: id of selected car trip
      */
     public func updateWithPlateSelected(idSelected: Int) {
         var title: String?

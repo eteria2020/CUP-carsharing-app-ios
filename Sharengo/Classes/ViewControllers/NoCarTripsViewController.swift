@@ -14,7 +14,7 @@ import SideMenu
 import DeviceKit
 
 /**
- The No Car Trips class shows user that there is no car trips with their account
+ The NoCarTrips class shows user that there are no car trips in his account
  */
 public class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
@@ -25,7 +25,6 @@ public class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_description: UILabel!
     @IBOutlet fileprivate weak var lbl_noCarTrips: UILabel!
     @IBOutlet fileprivate weak var btn_searchCars: UIButton!
-    
     /// ViewModel variable used to represents the data
     public var viewModel: NoCarTripsViewModel?
     
