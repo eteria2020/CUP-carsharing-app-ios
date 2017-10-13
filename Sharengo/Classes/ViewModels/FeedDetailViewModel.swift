@@ -13,19 +13,29 @@ import Action
 import KeychainSwift
 
 /**
- The Feed Detail viewmodel provides data related to display content on FeedDetailVC
+ The FeedDetailViewModel provides data related to display content on feed detail screen
  */
 public class FeedDetailViewModel: ViewModelType {
-    var model:ItemViewModelType.Model
-    var title: String?
-    var date: String?
-    var claim: String?
-    var bottomText: String = ""
-    var icon: String?
-    var color: UIColor
-    var advantageColor: UIColor
-    var image: String?
-    var favourited = false
+    /// ViewModel variable used to save data
+    public var model:ItemViewModelType.Model
+    /// Feed title
+    public var title: String?
+    /// Feed date
+    public var date: String?
+    /// Feed claim
+    public var claim: String?
+    /// Feed bottom text composed by date, subtitle, ...
+    public var bottomText: String = ""
+    /// Feed icon
+    public var icon: String?
+    /// Feed color
+    public var color: UIColor
+    /// Feed advantage color
+    public var advantageColor: UIColor
+    /// Feed image
+    public var image: String?
+    /// Variable used to save if the feed is a favourite item or not
+    public var favourited = false
     
     // MARK: - Init methods
     

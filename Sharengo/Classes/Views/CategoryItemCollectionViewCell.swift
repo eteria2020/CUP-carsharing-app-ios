@@ -14,7 +14,7 @@ import RxCocoa
 import Gifu
 
 /**
- The CategoryItemCollectionViewCell show data of singular category in a cell
+ The CategoryItemCollectionViewCell shows data of singular category in a cell
  */
 public class CategoryItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_icon: UIImageView!

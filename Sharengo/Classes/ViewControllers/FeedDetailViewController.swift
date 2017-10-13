@@ -17,7 +17,7 @@ import pop
 import KeychainSwift
 
 /**
- The Feed Detail class show feed content in a viewcontroller
+ The FeedDetail class shows feed content in a screen
  */
 public class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
