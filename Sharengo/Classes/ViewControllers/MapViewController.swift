@@ -611,7 +611,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
                 }
             }
-            self.view.layoutIfNeeded()
+            DispatchQueue.main.async {[weak self]  in
+                self?.view.layoutIfNeeded()
+            }
         }
         if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
             DispatchQueue.main.async {[weak self]  in
