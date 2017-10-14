@@ -18,9 +18,9 @@ public class SearchBarItemViewModel : ItemViewModelType {
     public var model: ItemViewModelType.Model
     public var itemIdentifier: ListIdentifier = CollectionViewCell.searchBar
     /// Name that has to be displayed
-    var name: String?
+    public var name: String?
     /// Image that has to be displayed
-    var image: String?
+    public var image: String?
     
     // MARK: - Init methods
     

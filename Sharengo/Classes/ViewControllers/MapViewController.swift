@@ -285,11 +285,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.closeCarPopupHeight = 170
         case 4.7, 5.8:
             self.closeCarPopupHeight = 185
-        //case 5.5:
         default:
             self.closeCarPopupHeight = 195
-        //default:
-        //    break
         }
         // CarBookingPopup
         self.view_carBookingPopup.bind(to: ViewModelFactory.carBookingPopup())
@@ -316,11 +313,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 210
         case 4.7, 5.8:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
-        //case 5.5:
         default:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
-        //default:
-        //    break
         }
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())

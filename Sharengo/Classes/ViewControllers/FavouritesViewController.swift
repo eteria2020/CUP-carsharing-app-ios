@@ -332,11 +332,8 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 325
                 case 4.7, 5.8:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 375
-                //case 5.5:
                 default:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 375
-                //default:
-                //    break
                 }
                 self.btn_action.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_ok".localized())
                 self.txt_name.isHidden = false
