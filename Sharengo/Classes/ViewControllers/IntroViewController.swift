@@ -75,46 +75,53 @@ public class IntroViewController : UIViewController, ViewModelBindable {
         default:
             break
         }
-        self.img_intro.animate(withGIFNamed: "INTRO LUNGA INIZIO.gif", loopCount: 1)
-        var dispatchTime = DispatchTime.now() + 3.4
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.img_intro.animate(withGIFNamed: "INTRO LUNGA FINE.gif", loopCount: 1)
-            self.lbl_title1.alpha = 1.0
-            UIView.animate(withDuration: 0.8, animations: {
-                self.view.constraint(withIdentifier: "bottomLblTitle1", searchInSubviews: true)?.constant = bottomTitle1
-                self.view.layoutIfNeeded()
-            })
-            dispatchTime = DispatchTime.now() + 1
+        if let data = CoreController.shared.introData {
+            self.img_intro.animate(withGIFData: data, loopCount: 1)
+            var dispatchTime = DispatchTime.now() + 3.4
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.lbl_title2.alpha = 1.0
+                self.img_intro.animate(withGIFNamed: "INTRO LUNGA FINE.gif", loopCount: 1)
+                self.lbl_title1.alpha = 1.0
                 UIView.animate(withDuration: 0.8, animations: {
-                    self.view.constraint(withIdentifier: "bottomLblTitle2", searchInSubviews: true)?.constant = bottomTitle2
+                    self.view.constraint(withIdentifier: "bottomLblTitle1", searchInSubviews: true)?.constant = bottomTitle1
                     self.view.layoutIfNeeded()
                 })
                 dispatchTime = DispatchTime.now() + 1
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    self.lbl_title3.alpha = 1.0
+                    self.lbl_title2.alpha = 1.0
                     UIView.animate(withDuration: 0.8, animations: {
-                        self.lbl_title1.alpha = 0.0
-                        self.lbl_title2.alpha = 0.0
-                        self.view.constraint(withIdentifier: "bottomLblTitle3", searchInSubviews: true)?.constant = bottomTitle3
+                        self.view.constraint(withIdentifier: "bottomLblTitle2", searchInSubviews: true)?.constant = bottomTitle2
                         self.view.layoutIfNeeded()
                     })
                     dispatchTime = DispatchTime.now() + 1
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        self.lbl_title3.alpha = 1.0
                         UIView.animate(withDuration: 0.8, animations: {
-                            self.lbl_title3.alpha = 0.0
+                            self.lbl_title1.alpha = 0.0
+                            self.lbl_title2.alpha = 0.0
+                            self.view.constraint(withIdentifier: "bottomLblTitle3", searchInSubviews: true)?.constant = bottomTitle3
+                            self.view.layoutIfNeeded()
                         })
+                        dispatchTime = DispatchTime.now() + 1
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            UIView.animate(withDuration: 0.8, animations: {
+                                self.lbl_title3.alpha = 0.0
+                            })
+                        }
                     }
                 }
+                dispatchTime = DispatchTime.now() + 5.2
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    self.img_intro.stopAnimating()
+                    UserDefaults.standard.set(true, forKey: "LongIntro")
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.view.frame.origin.y = -UIScreen.main.bounds.size.height
+                    })
+                }
             }
-            dispatchTime = DispatchTime.now() + 5.2
+        } else {
+            let dispatchTime = DispatchTime.now() + 0.5
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.img_intro.stopAnimating()
-                UserDefaults.standard.set(true, forKey: "LongIntro")
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.frame.origin.y = -UIScreen.main.bounds.size.height
-                })
+                self.executeLongIntro()
             }
         }
     }
@@ -123,12 +130,19 @@ public class IntroViewController : UIViewController, ViewModelBindable {
      This method shows short intro without localized titles
      */
     public func executeShortIntro() {
-        self.img_intro.animate(withGIFNamed: "INTRO BREVE.gif", loopCount: 1)
-        let dispatchTime = DispatchTime.now() + 1.5
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.frame.origin.y = -UIScreen.main.bounds.size.height
-            })
+        if let data = CoreController.shared.introData {
+            self.img_intro.animate(withGIFData: data, loopCount: 1)
+            let dispatchTime = DispatchTime.now() + 1.5
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.frame.origin.y = -UIScreen.main.bounds.size.height
+                })
+            }
+        } else {
+            let dispatchTime = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                self.executeShortIntro()
+            }
         }
     }
 }

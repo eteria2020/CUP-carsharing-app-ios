@@ -55,7 +55,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.91764705882352937" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="yYC-de-gla" secondAttribute="bottom" id="2mz-Ng-gEX"/>
                             <constraint firstItem="yYC-de-gla" firstAttribute="top" secondItem="Vbs-rE-TfA" secondAttribute="top" id="8Ie-ZX-Xov"/>

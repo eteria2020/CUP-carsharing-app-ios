@@ -43,8 +43,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupGoogleMaps()
         self.setupFabric()
         CoreController.shared.updateArchivedCarTrips()
-        _ = CoreController.shared.pulseYellow
-        _ = CoreController.shared.pulseGreen
+        DispatchQueue.global(qos: .background).async {
+            _ = CoreController.shared.pulseYellow
+            _ = CoreController.shared.pulseGreen
+            if UserDefaults.standard.bool(forKey: "LongIntro") == false {
+                if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
+                    CoreController.shared.introData = try? Data(contentsOf: url)
+                }
+            } else {
+                if let url = Bundle.main.url(forResource: "INTRO BREVE", withExtension: "gif") {
+                    CoreController.shared.introData = try? Data(contentsOf: url)
+                }
+            }
+        }
         
         TextStyle.setup()
         Router.start(self)
