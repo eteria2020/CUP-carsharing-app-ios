@@ -217,6 +217,7 @@
                         <outlet property="btn_profile" destination="Gl2-Jg-1gC" id="xQe-X3-7M1"/>
                         <outlet property="btn_searchCar" destination="DCp-lr-Etq" id="TFo-ca-G7f"/>
                         <outlet property="lbl_description" destination="mLy-nQ-Met" id="CqA-YP-ead"/>
+                        <outlet property="lbl_version" destination="8lN-u6-HP0" id="kw8-la-L79"/>
                         <outlet property="view_dotted" destination="ozH-SZ-gyS" id="Atr-nc-O8s"/>
                         <outlet property="view_feeds" destination="HSy-wc-TK1" id="RPb-mT-HPZ"/>
                         <outlet property="view_navigationBar" destination="rHt-ZL-VHF" id="dZb-8h-uT3"/>

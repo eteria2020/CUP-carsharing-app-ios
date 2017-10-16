@@ -119,7 +119,7 @@ public class IntroViewController : UIViewController, ViewModelBindable {
                 }
             }
         } else {
-            let dispatchTime = DispatchTime.now() + 0.5
+            let dispatchTime = DispatchTime.now() + 0.1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.executeLongIntro()
             }
@@ -139,7 +139,7 @@ public class IntroViewController : UIViewController, ViewModelBindable {
                 })
             }
         } else {
-            let dispatchTime = DispatchTime.now() + 0.5
+            let dispatchTime = DispatchTime.now() + 0.1
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 self.executeShortIntro()
             }

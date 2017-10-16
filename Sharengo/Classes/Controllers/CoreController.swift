@@ -341,6 +341,9 @@ public class CoreController {
         }
         if Reachability()?.isReachable == false {
             self.connection = false
+            self.allCarTrips = []
+            self.allCarBookings = []
+            self.stopUpdateData()
             self.updateData()
         } else {
             if !self.connection {
