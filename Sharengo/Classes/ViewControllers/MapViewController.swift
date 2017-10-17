@@ -257,6 +257,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             dialog.allowTouchOutsideToDismiss = false
                             dialog.show()
                             return
+                        } else if carTrip.car.value?.parking == false {
+                            let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                alertView.dismissAlertView()
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                            return
                         }
                     }
                 }
