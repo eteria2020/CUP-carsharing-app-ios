@@ -1109,7 +1109,6 @@
 			isa = PBXGroup;
 			children = (
 				4DFC9A011EF673D9003427F2 /* Sharengo.entitlements */,
-				4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */,
 				4DCD1A951ECDC1F600FC8BF5 /* Classes */,
 				4DCD1A961ECDC20500FC8BF5 /* Resources */,
 			);
@@ -1208,6 +1207,7 @@
 		4DCD1A951ECDC1F600FC8BF5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */,
 				4DCD1A751ECDBF7400FC8BF5 /* ViewControllers */,
 				4D377AB41ECEDA27005DF900 /* Views */,
 				4DCD1A5E1ECDBF7400FC8BF5 /* Model */,

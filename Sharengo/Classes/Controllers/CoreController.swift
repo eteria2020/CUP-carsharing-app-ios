@@ -57,6 +57,7 @@ public class CoreController {
     public var archivedCarTrips: [CarTrip] = []
     /// Boolean used to save connection value
     public var connection: Bool = true
+    public var introData: Data?
     
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
@@ -340,6 +341,9 @@ public class CoreController {
         }
         if Reachability()?.isReachable == false {
             self.connection = false
+            self.allCarTrips = []
+            self.allCarBookings = []
+            self.stopUpdateData()
             self.updateData()
         } else {
             if !self.connection {

@@ -612,7 +612,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
                 }
             }
-            self.view.layoutIfNeeded()
+            DispatchQueue.main.async {[weak self]  in
+                self?.view.layoutIfNeeded()
+            }
         }
         if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
             DispatchQueue.main.async {[weak self]  in
@@ -1356,15 +1358,23 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 })
                                 }
                             } else if self?.viewModel?.carTrip != nil && self?.viewModel?.carTrip?.car.value?.parking == true {
-                                if let location = self!.viewModel?.carTrip?.car.value?.location {
+                                if let location = self?.viewModel?.carTrip?.car.value?.location {
                                     self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
                                         self?.routeSteps = steps
                                         self?.drawRoutes(steps: steps)
                                     })
                                 }
                             } else if self?.viewModel?.carBooking != nil {
-                                if let location = self!.viewModel?.carBooking?.car.value?.location {
+                                if let location = self?.viewModel?.carBooking?.car.value?.location {
                                     self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                        self?.routeSteps = steps
+                                        self?.drawRoutes(steps: steps)
+                                    })
+                                }
+                            } else {
+                                if let location = self?.viewModel?.nearestCar.value?.location {
+                                    self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                        self?.nearestCarRouteSteps = steps
                                         self?.routeSteps = steps
                                         self?.drawRoutes(steps: steps)
                                     })

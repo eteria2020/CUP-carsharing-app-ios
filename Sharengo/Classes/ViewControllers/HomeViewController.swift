@@ -28,6 +28,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_feeds: UIView!
     @IBOutlet fileprivate weak var view_dotted: UIView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
+    @IBOutlet fileprivate weak var lbl_version: UILabel!
     /// Variable used to save if the login is already showed
     public var loginIsShowed: Bool = false
     /// Variable used to save if the intro is already showed
@@ -121,6 +122,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
+        self.lbl_version.text = "1.0.1"
         self.view_searchCar.backgroundColor = Color.homeEnabledBackground.value
         self.view_searchCar.layer.cornerRadius = self.view_searchCar.frame.size.width/2
         self.view_searchCar.layer.masksToBounds = true
