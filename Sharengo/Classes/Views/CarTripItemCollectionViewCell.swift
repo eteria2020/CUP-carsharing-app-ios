@@ -120,6 +120,7 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
                 if let address = UserDefaults.standard.object(forKey: key) as? String {
                     startAddress = "<startAddress>\(address)</startAddress>"
                     self.lbl_description.styledText = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
+                    /*
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
                         if let placemark = placemarks?.last {
@@ -136,6 +137,7 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
                             }
                         }
                     })
+                    */
                 } else {
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
@@ -160,6 +162,7 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
                 if let address = UserDefaults.standard.object(forKey: key) as? String {
                     endAddress = "<endAddress>\(address)</endAddress>"
                     self.lbl_description.styledText = String(format: "lbl_carTripsItemExtendedDescription".localized(), startDateText.uppercased(), startTimeText.uppercased(), startAddress, endDateText.uppercased(), endTimeText.uppercased(), endAddress, basicRate, plate).replacingOccurrences(of: ".", with: ",").replacingOccurrences(of: ",00", with: "")
+                    /*
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
                         if let placemark = placemarks?.last {
@@ -176,6 +179,7 @@ public class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBinda
                             }
                         }
                     })
+                    */
                 } else {
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in

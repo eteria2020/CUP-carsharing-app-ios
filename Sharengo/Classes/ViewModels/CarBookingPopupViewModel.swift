@@ -87,6 +87,7 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
                 if let address = UserDefaults.standard.object(forKey: key) as? String {
                     self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
+                    /*
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
                         if let placemark = placemarks?.last {
@@ -102,6 +103,7 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
                             }
                         }
                     })
+                    */
                 } else {
                     self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
                     let geocoder = CLGeocoder()

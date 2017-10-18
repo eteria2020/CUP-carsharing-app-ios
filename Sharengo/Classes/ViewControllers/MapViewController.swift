@@ -267,7 +267,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                     }
                 }
-                self?.openCar(car: car, action: "open")
+                if self?.viewModel?.carTrip?.car.value?.parking == true {
+                    self?.openCar(car: car, action: "unpark")
+                } else {
+                    self?.openCar(car: car, action: "open")
+                }
             case .book(let car):
                 self?.bookCar(car: car)
             case .car:

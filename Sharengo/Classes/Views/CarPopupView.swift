@@ -186,6 +186,7 @@ public class CarPopupView: UIView {
             if let address = UserDefaults.standard.object(forKey: key) as? String {
                 self.lbl_address.bonMotStyleName = "carPopupAddress"
                 self.lbl_address.styledText = address
+                /*
                 let geocoder = CLGeocoder()
                 geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
                     if let placemark = placemarks?.last {
@@ -202,6 +203,7 @@ public class CarPopupView: UIView {
                         }
                     }
                 })
+                */
             } else {
                 self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
                 self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
