@@ -1545,8 +1545,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     let locationManager = LocationManager.sharedInstance
                     if let userLocation = locationManager.lastLocationCopy.value {
                         self.userAnnotation.position = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-                        self.userAnnotation.groundAnchor = CGPoint(x: 0.5, y: 0.5)
                         self.userAnnotation.updateImage(carTrip: self.viewModel?.carTrip)
+                        if self.userAnnotation.image == UIImage(named: "ic_user") {
+                            self.userAnnotation.groundAnchor = CGPoint(x: 0.5, y: 1)
+                        } else {
+                            self.userAnnotation.groundAnchor = CGPoint(x: 0.5, y: 0.65)
+                        }
                         self.userAnnotation.icon = userAnnotation.image
                         self.userAnnotation.map = self.mapView
                         return
