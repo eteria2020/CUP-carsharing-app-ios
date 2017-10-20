@@ -186,44 +186,26 @@ public class CarPopupView: UIView {
             if let address = UserDefaults.standard.object(forKey: key) as? String {
                 self.lbl_address.bonMotStyleName = "carPopupAddress"
                 self.lbl_address.styledText = address
-                /*
-                let geocoder = CLGeocoder()
-                geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
-                    if let placemark = placemarks?.last {
-                        if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
-                            let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
-                            self.lbl_address.bonMotStyleName = "carPopupAddress"
-                            self.lbl_address.styledText = address
-                            UserDefaults.standard.set(address, forKey: key)
-                        } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
-                            let address = "\(thoroughfare), \(locality)"
-                            self.lbl_address.bonMotStyleName = "carPopupAddress"
-                            self.lbl_address.styledText = address
-                            UserDefaults.standard.set(address, forKey: key)
-                        }
-                    }
-                })
-                */
             } else {
                 self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
                 self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
-                let geocoder = CLGeocoder()
-                geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
-                    if let placemark = placemarks?.last {
-                        if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
-                            let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
-                            self.lbl_address.bonMotStyleName = "carPopupAddress"
-                            self.lbl_address.styledText = address
-                            UserDefaults.standard.set(address, forKey: key)
-                        } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
-                            let address = "\(thoroughfare), \(locality)"
-                            self.lbl_address.bonMotStyleName = "carPopupAddress"
-                            self.lbl_address.styledText = address
-                            UserDefaults.standard.set(address, forKey: key)
-                        }
-                    }
-                })
             }
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                if let placemark = placemarks?.last {
+                    if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                        let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                        self.lbl_address.bonMotStyleName = "carPopupAddress"
+                        self.lbl_address.styledText = address
+                        UserDefaults.standard.set(address, forKey: key)
+                    } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                        let address = "\(thoroughfare), \(locality)"
+                        self.lbl_address.bonMotStyleName = "carPopupAddress"
+                        self.lbl_address.styledText = address
+                        UserDefaults.standard.set(address, forKey: key)
+                    }
+                }
+            })
         }
     }
     

@@ -73,7 +73,7 @@ public class MapViewModel: ViewModelType {
     public init(type: MapType) {
         self.type = type
         self.getAllCars()
-        self.timerCars = Timer.scheduledTimer(timeInterval: 60*5, target: self, selector: #selector(self.getAllCars), userInfo: nil, repeats: true)
+        self.timerCars = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.getAllCars), userInfo: nil, repeats: true)
     }
     
     deinit {
@@ -87,7 +87,16 @@ public class MapViewModel: ViewModelType {
      This method gets all cars in share'ngo system and updates distance
      */
     @objc public func getAllCars() {
-        self.apiController.searchCars()
+        var userLatitude: CLLocationDegrees = 0
+        var userLongitude: CLLocationDegrees = 0
+        let locationManager = LocationManager.sharedInstance
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if let userLocation = locationManager.lastLocationCopy.value {
+                userLatitude = userLocation.coordinate.latitude
+                userLongitude = userLocation.coordinate.longitude
+            }
+        }
+        self.apiController.searchCars(userLatitude: userLatitude, userLongitude: userLongitude)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
@@ -128,50 +137,60 @@ public class MapViewModel: ViewModelType {
      - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
      - Parameter radius: The radius is the distance from the center of the map to the edge of the map
      */
-    public func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
+    public func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, topLeftCoordinate: CLLocationCoordinate2D, bottomRightCoordinate: CLLocationCoordinate2D, fromCircularMenu: Bool) {
         self.errorEvents = nil
         self.errorOffers = nil
         if type == .searchCars || showCars == true {
-            var userLatitude: CLLocationDegrees = 0
-            var userLongitude: CLLocationDegrees = 0
-            let locationManager = LocationManager.sharedInstance
-            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                if let userLocation = locationManager.lastLocationCopy.value {
-                    userLatitude = userLocation.coordinate.latitude
-                    userLongitude = userLocation.coordinate.longitude
-                }
-            }
-            self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude)
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status == 200, let data = response.array_data {
-                            if let cars = [Car].from(jsonArray: data) {
-                                self.cars = cars
-                                self.manageAnnotations()
-                                return
-                            }
-                        }
-                        self.resetCars()
-                    case .error(_):
-                        let dispatchTime = DispatchTime.now() + 0.5
-                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            var message = "alert_generalError".localized()
-                            if Reachability()?.isReachable == false {
-                                message = "alert_connectionError".localized()
-                            }
-                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                alertView.dismissAlertView()
-                            })
-                            dialog.allowTouchOutsideToDismiss = false
-                            dialog.show()
-                            self.resetCars()
-                        }
-                    default:
-                        break
+            if fromCircularMenu {
+                var userLatitude: CLLocationDegrees = 0
+                var userLongitude: CLLocationDegrees = 0
+                let locationManager = LocationManager.sharedInstance
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        userLatitude = userLocation.coordinate.latitude
+                        userLongitude = userLocation.coordinate.longitude
                     }
-                }.addDisposableTo(resultsDispose!)
+                }
+                self.apiController.searchCars(userLatitude: userLatitude, userLongitude: userLongitude)
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status == 200, let data = response.array_data {
+                                if let cars = [Car].from(jsonArray: data) {
+                                    self.allCars = cars
+                                    self.cars = [Car]()
+                                    for car in self.allCars {
+                                        if let coordinates = car.location?.coordinate {
+                                            if coordinates.latitude <= topLeftCoordinate.latitude && coordinates.latitude >= bottomRightCoordinate.latitude &&
+                                                coordinates.longitude >= topLeftCoordinate.longitude && coordinates.longitude <= bottomRightCoordinate.longitude {
+                                                self.cars.append(car)
+                                            }
+                                        }
+                                    }
+                                    self.manageAnnotations()
+                                    return
+                                }
+                            }
+                            self.allCars.removeAll()
+                            self.cars = [Car]()
+                            self.manageAnnotations()
+                        default:
+                            break
+                        }
+                    }.addDisposableTo(self.disposeBag)
+            } else {
+                self.cars = [Car]()
+                for car in self.allCars {
+                    if let coordinates = car.location?.coordinate {
+                        if coordinates.latitude <= topLeftCoordinate.latitude && coordinates.latitude >= bottomRightCoordinate.latitude &&
+                            coordinates.longitude >= topLeftCoordinate.longitude && coordinates.longitude <= bottomRightCoordinate.longitude {
+                            self.cars.append(car)
+                        }
+                    }
+                }
+                self.manageAnnotations()
+            }
         } else {
             self.resetCars()
         }

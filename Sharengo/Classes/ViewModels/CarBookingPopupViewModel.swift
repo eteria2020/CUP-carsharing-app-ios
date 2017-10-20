@@ -87,41 +87,24 @@ public class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
                 if let address = UserDefaults.standard.object(forKey: key) as? String {
                     self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
-                    /*
-                    let geocoder = CLGeocoder()
-                    geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
-                        if let placemark = placemarks?.last {
-                            if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
-                                let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
-                                self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
-                                UserDefaults.standard.set(address, forKey: key)
-                                UserDefaults.standard.set(address, forKey: key)
-                            } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
-                                let address = "\(thoroughfare), \(locality)"
-                                self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
-                                UserDefaults.standard.set(address, forKey: key)
-                            }
-                        }
-                    })
-                    */
                 } else {
                     self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
-                    let geocoder = CLGeocoder()
-                    geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
-                        if let placemark = placemarks?.last {
-                            if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
-                                let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
-                                self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
-                                UserDefaults.standard.set(address, forKey: key)
-                                UserDefaults.standard.set(address, forKey: key)
-                            } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
-                                let address = "\(thoroughfare), \(locality)"
-                                self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
-                                UserDefaults.standard.set(address, forKey: key)
-                            }
-                        }
-                    })
                 }
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                    if let placemark = placemarks?.last {
+                        if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                            self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
+                            UserDefaults.standard.set(address, forKey: key)
+                            UserDefaults.standard.set(address, forKey: key)
+                        } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare), \(locality)"
+                            self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
+                            UserDefaults.standard.set(address, forKey: key)
+                        }
+                    }
+                })
             }
             if car.opened {
                 self.hideButtons = true

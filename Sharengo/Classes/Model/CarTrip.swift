@@ -89,19 +89,16 @@ public class CarTrip: ModelType, Decodable {
         get {
             if let timeStart = self.timeStart,
                 let timeEnd = self.timeEnd {
-                let start = timeStart
-                let enddt = timeEnd
                 let calendar = Calendar.current
-                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
-                if let min = datecomponents.minute {
-                    if min <= 0 {
-                        return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
-                    } else if min == 1 {
-                        return "1 \("lbl_carBookingPopupTimeMinute".localized())"
-                    }
-                    let m = Int(min)
-                    return "\(m) \("lbl_carBookingPopupTimeMinutes".localized())"
+                let tripDurationSeconds = calendar.dateComponents([Calendar.Component.second], from: timeStart, to: timeEnd).second
+                let tripDurationMinutes: Double = Double((tripDurationSeconds ?? 0)/60)
+                let tripDurationMinutesRnd: Int = Int(tripDurationMinutes.rounded())
+                if tripDurationMinutesRnd <= 0 {
+                    return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
+                } else if tripDurationMinutesRnd == 1 {
+                    return "1 \("lbl_carBookingPopupTimeMinute".localized())"
                 }
+                return "\(tripDurationMinutesRnd) \("lbl_carBookingPopupTimeMinutes".localized())"
             }
             return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
         }
