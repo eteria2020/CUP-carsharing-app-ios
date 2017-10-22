@@ -25,6 +25,8 @@ public class Response: ModelType, Decodable {
     public var array_data: [JSON]?
     /// Content of data as dictionary
     public var dic_data: JSON?
+    /// Content of reason as string
+    public var reason: String?
     
     // MARK: - Init methods
     
@@ -38,5 +40,6 @@ public class Response: ModelType, Decodable {
         self.msg = "msg" <~~ json
         self.array_data =  "data" <~~ json
         self.dic_data = "data" <~~ json
+        self.reason = "reason" <~~ json
     }
 }

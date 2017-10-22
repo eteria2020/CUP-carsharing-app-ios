@@ -167,9 +167,9 @@ public class CarPopupView: UIView {
             self.lbl_distance.isHidden = true
         } else {
             if car.distance != nil {
-                self.lbl_distance.numberOfLines = 2
-            } else {
                 self.lbl_distance.numberOfLines = 1
+            } else {
+                self.lbl_distance.numberOfLines = 2
             }
             self.icn_distance.isHidden = false
             self.lbl_distance.isHidden = false

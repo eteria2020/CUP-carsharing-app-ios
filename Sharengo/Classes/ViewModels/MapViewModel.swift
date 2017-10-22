@@ -431,7 +431,7 @@ public class MapViewModel: ViewModelType {
      This method book car
      - Parameter car: The car that has to be booked
      */
-    public func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: JSON?) ->()) {
+    public func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ reason: String?, _ error: Swift.Error?, _ data: JSON?) ->()) {
         var userLatitude: CLLocationDegrees = 0
         var userLongitude: CLLocationDegrees = 0
         let locationManager = LocationManager.sharedInstance
@@ -447,12 +447,16 @@ public class MapViewModel: ViewModelType {
                 switch event {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
-                        completionClosure(true, nil, data)
+                        completionClosure(true, nil, nil, data)
                     } else {
-                        completionClosure(false, nil, nil)
+                        if response.reason == "Error: reservation:true - status:false - trip:false - limit:false - limit_archive:false" {
+                            completionClosure(false, "alert_carBookingPopupStrangeBooking".localized(), nil, nil)
+                        } else {
+                            completionClosure(false, nil, nil, nil)
+                        }
                     }
                 case .error(let error):
-                    completionClosure(false, error, nil)
+                    completionClosure(false, nil, error, nil)
                 default:
                     break
                 }

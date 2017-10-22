@@ -132,6 +132,7 @@
 "alert_carBookingPopupConfirmDeleteMessage" = "La tua prenotazione è stata annullata correttamente.";
 "alert_carBookingPopupBookedMessage" = "Hai già una prenotazione attiva";
 "alert_carBookingPopupAlreadyBooked" = "Non puoi prenotare questa auto fino a che non saranno passate 4 ore da quando hai annullato la prenotazione";
+"alert_carBookingPopupStrangeBooking" = "Si è verificato un errore, per favore riprova più tardi o richiedi assistenza";
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";

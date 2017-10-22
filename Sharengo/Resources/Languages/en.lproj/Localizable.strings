@@ -132,10 +132,11 @@
 "alert_carBookingPopupConfirmDeleteMessage" = "Your booking has been canceled correctly";
 "alert_carBookingPopupBookedMessage" = "You already have an active booking";
 "alert_carBookingPopupAlreadyBooked" = "You cannot book this car until 4 hours have passed since your last canceled your booking";
+"alert_carBookingPopupStrangeBooking" = "An error occurred, please try again later or requeste assistance";
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>You ended your trip</bold>\n\nYou will be notified via mail the transaction confirmation within 24h.";
-"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f GRAMS OF CO2 CO2 BY THIS TRIP!";
+"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f GRAMS OF CO2 BY THIS TRIP!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Trip ended. The trip lasted %@ minutes and terminated correctly. Thank you for using Share'ngo";
 "banner_carBookingDeletedTitle" = "Share'ngo";

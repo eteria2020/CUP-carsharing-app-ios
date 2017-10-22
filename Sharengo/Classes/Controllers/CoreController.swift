@@ -314,6 +314,9 @@ public class CoreController {
                     if response.status == 200, let data = response.array_data {
                         if let carBookings = [CarBooking].from(jsonArray: data) {
                             self.allCarBookings = carBookings.filter({ (carBooking) -> Bool in
+                                if carBooking.timer == "<bold>00:00</bold> \("lbl_carBookingPopupTimeMinutes".localized())" {
+                                    return false
+                                }
                                 return carBooking.isActive == true
                             })
                             self.updateCarTrips()

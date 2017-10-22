@@ -901,7 +901,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }
         self.showLoader()
-        self.viewModel?.bookCar(car: car, completionClosure: { (success, error, data) in
+        self.viewModel?.bookCar(car: car, completionClosure: { (success, reason, error, data) in
             if error != nil {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -979,15 +979,27 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         })
                     }
                 } else {
-                    let dispatchTime = DispatchTime.now() + 0.5
-                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        self.hideLoader(completionClosure: { () in
-                            let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                alertView.dismissAlertView()
+                    if reason != nil {
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.hideLoader(completionClosure: { () in
+                                let dialog = ZAlertView(title: nil, message: reason, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
                             })
-                            dialog.allowTouchOutsideToDismiss = false
-                            dialog.show()
-                        })
+                        } } else {
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.hideLoader(completionClosure: { () in
+                                let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
+                            })
+                        }
                     }
                 }
             }
@@ -1034,16 +1046,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                         })
                                                     }
                                                 } else {
-                                                    let dispatchTime = DispatchTime.now() + 0.5
-                                                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                        self.hideLoader(completionClosure: { () in
-                                                            let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                                                alertView.dismissAlertView()
-                                                            })
-                                                            dialog.allowTouchOutsideToDismiss = false
-                                                            dialog.show()
-                                                        })
+                                                    var message = "alert_generalError".localized()
+                                                    if Reachability()?.isReachable == false {
+                                                        message = "alert_connectionError".localized()
                                                     }
+                                                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                        alertView.dismissAlertView()
+                                                    })
+                                                    dialog.allowTouchOutsideToDismiss = false
+                                                    dialog.show()
                                                 }
                                             }
                                         })

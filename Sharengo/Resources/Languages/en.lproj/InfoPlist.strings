@@ -1,5 +1,5 @@
 /* Localized versions of Info.plist keys for the English version */
 
-"NSLocationWhenInUseUsageDescription" = "Permetti a Share'ngo di accedere alle tua posizione durante il suo utilizzo";
-"NSMicrophoneUsageDescription" = "Permetti a Share'ngo di accedere al microfono";
-"NSSpeechRecognitionUsageDescription" = "Permetti a Share'ngo di riconoscere la tua voce";
+"NSLocationWhenInUseUsageDescription" = "Allow Share'ngo to access your location while using it";
+"NSMicrophoneUsageDescription" = "Allow Share'ngo to access the microphone";
+"NSSpeechRecognitionUsageDescription" = "Allow Share'ngo to recognize your voice";
