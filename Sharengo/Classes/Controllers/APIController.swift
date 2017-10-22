@@ -114,6 +114,41 @@ public class ApiController {
     }
     
     /**
+    This method returns cars visible in map
+    - Parameter latitude: one of the coordinate that determines the center of the map
+    - Parameter longitude: one of the coordinate that determines the center of the map
+    - Parameter radius: the distance from the center of the map to the edge of the map
+    - Parameter userLatitude: latitude of user location
+    - Parameter userLongitude: longitude of user location
+    */
+    public func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
+    
+    /**
      This method returns car
      - Parameter plate: car's plate
      */

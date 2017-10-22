@@ -151,16 +151,15 @@ public class MapViewModel: ViewModelType {
                         userLongitude = userLocation.coordinate.longitude
                     }
                 }
-                self.apiController.searchCars(userLatitude: userLatitude, userLongitude: userLongitude)
+                self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude)
                     .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                     .subscribe { event in
                         switch event {
                         case .next(let response):
                             if response.status == 200, let data = response.array_data {
                                 if let cars = [Car].from(jsonArray: data) {
-                                    self.allCars = cars
                                     self.cars = [Car]()
-                                    for car in self.allCars {
+                                    for car in cars {
                                         if let coordinates = car.location?.coordinate {
                                             if coordinates.latitude <= topLeftCoordinate.latitude && coordinates.latitude >= bottomRightCoordinate.latitude &&
                                                 coordinates.longitude >= topLeftCoordinate.longitude && coordinates.longitude <= bottomRightCoordinate.longitude {
@@ -172,7 +171,6 @@ public class MapViewModel: ViewModelType {
                                     return
                                 }
                             }
-                            self.allCars.removeAll()
                             self.cars = [Car]()
                             self.manageAnnotations()
                         default:

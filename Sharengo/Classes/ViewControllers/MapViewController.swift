@@ -240,16 +240,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             switch output {
             case .open(let car):
                 if self?.viewModel?.carBooked != nil {
-                    if let carBooking = self?.viewModel?.carBooking {
-                        if carBooking.car.value?.plate != car.plate {
-                            let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                alertView.dismissAlertView()
-                            })
-                            dialog.allowTouchOutsideToDismiss = false
-                            dialog.show()
-                            return
-                        }
-                    } else if let carTrip = self?.viewModel?.carTrip {
+                    if let carTrip = self?.viewModel?.carTrip {
                         if carTrip.car.value?.plate != car.plate {
                             let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
@@ -259,6 +250,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             return
                         } else if carTrip.car.value?.parking == false {
                             let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                alertView.dismissAlertView()
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                            return
+                        }
+                    } else if let carBooking = self?.viewModel?.carBooking {
+                        if carBooking.car.value?.plate != car.plate {
+                            let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
                             })
                             dialog.allowTouchOutsideToDismiss = false
@@ -885,14 +885,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }
         if self.viewModel?.carBooked != nil {
-            if self.viewModel?.carBooking != nil {
-                let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+            if self.viewModel?.carTrip != nil {
+                let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                     alertView.dismissAlertView()
                 })
                 dialog.allowTouchOutsideToDismiss = false
                 dialog.show()
-            } else if self.viewModel?.carTrip != nil {
-                let dialog = ZAlertView(title: nil, message: "alert_carTripAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+            } else if self.viewModel?.carBooking != nil {
+                let dialog = ZAlertView(title: nil, message: "alert_carBookingAlreadyBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                     alertView.dismissAlertView()
                 })
                 dialog.allowTouchOutsideToDismiss = false
@@ -1499,16 +1499,16 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      This method centers map on user position
      */
     @objc public func centerMapWithoutAlert() {
-//        if let carTrip = self.viewModel?.carTrip {
-//            if carTrip.car.value?.parking == false {
-//                let locationManager = LocationManager.sharedInstance
-//                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-//                    if let userLocation = locationManager.lastLocationCopy.value {
-//                        self.centerMap(on: userLocation, zoom: 16.5, animated: true)
-//                        return
-//                    }}
-//            }
-//        }
+        if let carTrip = self.viewModel?.carTrip {
+            if carTrip.car.value?.parking == false {
+                let locationManager = LocationManager.sharedInstance
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        self.centerMap(on: userLocation, zoom: 16.5, animated: true)
+                        return
+                    }}
+            }
+        }
     }
     
     /**
