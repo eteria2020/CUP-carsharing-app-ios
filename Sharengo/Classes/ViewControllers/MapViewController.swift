@@ -1529,8 +1529,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      - Parameter animated: Animated determinates if the action is animated or not
      */
     public func centerMap(on position: CLLocation, zoom: Float, animated: Bool) {
-        let location = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
-        let newCamera = GMSCameraPosition.camera(withTarget: location, zoom: zoom)
+        let newCamera = GMSCameraPosition.camera(withLatitude: position.coordinate.latitude,
+                                                 longitude: position.coordinate.longitude,
+                                                 zoom: zoom,
+                                                 bearing: self.mapView.camera.bearing,
+                                                 viewingAngle: self.mapView.camera.viewingAngle)
         let update = GMSCameraUpdate.setCamera(newCamera)
         if animated {
             self.mapView.animate(with: update)
