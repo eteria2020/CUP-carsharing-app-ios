@@ -15,7 +15,7 @@
 "btn_yes" = "SÌ";
 "btn_no" = "NO";
 "alert_connectionError" = "Non sei connesso ad internet, per favore riprova";
-"alert_generalError" = "Si è verificato un errore, per favore riprova";
+"alert_generalError" = "Si è verificato un errore di connessione, per favore riprova";
 "alert_loginError" = "Devi effettuare l’accesso per utilizzare questa funzionalità";
 "alert_webViewError" = "Si è verificato un errore, per favore controlla la tua connessione ad internet o riprova più tardi";
 "btn_login" = "LOGIN";

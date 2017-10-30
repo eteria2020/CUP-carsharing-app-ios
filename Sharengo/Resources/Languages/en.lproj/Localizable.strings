@@ -15,7 +15,7 @@
 "btn_yes" = "YES";
 "btn_no" = "NO";
 "alert_connectionError" = "You are offline, please try again";
-"alert_generalError" = "An error occurred, please try again";
+"alert_generalError" = "A connection error occurred, please try again";
 "alert_loginError" = "You need to log in to use this feature";
 "alert_webViewError" = "An error occurred, please check your internet connection and try again later";
 "btn_login" = "LOGIN";
