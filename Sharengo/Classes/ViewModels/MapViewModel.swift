@@ -451,6 +451,8 @@ public class MapViewModel: ViewModelType {
                     } else {
                         if response.reason == "Error: reservation:true - status:false - trip:false - limit:false - limit_archive:false" {
                             completionClosure(false, "alert_carBookingPopupStrangeBooking".localized(), nil, nil)
+                        } else if response.reason == "Error: reservation:false - status:false - trip:false - limit:false - limit_archive:true" {
+                            completionClosure(false, "alert_carBookingPopupAlreadyBooked".localized(), nil, nil)
                         } else {
                             completionClosure(false, nil, nil, nil)
                         }

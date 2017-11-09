@@ -407,7 +407,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             [unowned self] notification in
             self.checkUserPositionFromForeground()
             CoreController.shared.updateCarBookings()
-            CoreController.shared.updateCarTrips()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
@@ -993,7 +992,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         let dispatchTime = DispatchTime.now() + 0.5
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                             self.hideLoader(completionClosure: { () in
-                                let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                let dialog = ZAlertView(title: nil, message: "alert_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                     alertView.dismissAlertView()
                                 })
                                 dialog.allowTouchOutsideToDismiss = false
