@@ -44,8 +44,8 @@
 "alert_loginMissingFields" = "One or more fields are not completed";
 "alert_loginWrongEmail" = "Careful! The email address you input does not match up in our database.";
 "alert_loginWrongPassword" = "Careful! Wrong password";
-"alert_loginUserDisabled" = "Careful! The user is not enabled to access";
-"alert_loginUserNotEnabled" = "Careful! You cannot use the Share'ngo service. Please verify your data or contact our customer service. Thank you.";
+"alert_loginUserDisabled" = "You are not able to log in due to a problem with your profile. Find out on the website or contact Customer Service"";
+"alert_loginUserNotEnabled" = "You are not able to log in due to a problem with your profile. Find out on the website or contact Customer Service"";
 "lbl_loginFormHeader" = "Please fill out the fields to log in";
 "txt_loginEmailPlaceholder" = "email";
 "txt_loginPasswordPlaceholder" = "password";
