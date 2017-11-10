@@ -152,10 +152,12 @@ public class BaseViewController: UIViewController {
                 if CoreController.shared.allCarBookings.first != nil {
                 } else if carBooking != nil {
                     if CoreController.shared.currentCarTrip == nil {
-                        CoreController.shared.notificationIsShowed = true
-                        NotificationsController.showNotification(title: "banner_carBookingDeletedTitle".localized(), description: "banner_carBookingDeletedDescription".localized(), carTrip: nil, source: self)
-                        CoreController.shared.currentCarBooking = nil
-                        CoreController.shared.allCarBookings = []
+                        if carBooking!.timer == "<bold>00:00</bold> \("lbl_carBookingPopupTimeMinutes".localized())" {
+                            CoreController.shared.notificationIsShowed = true
+                            NotificationsController.showNotification(title: "banner_carBookingDeletedTitle".localized(), description: "banner_carBookingDeletedDescription".localized(), carTrip: nil, source: self)
+                            CoreController.shared.currentCarBooking = nil
+                            CoreController.shared.allCarBookings = []
+                        }
                     }
                 }
             }
