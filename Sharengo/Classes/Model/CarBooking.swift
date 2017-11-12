@@ -104,4 +104,24 @@ public class CarBooking: ModelType, Decodable {
             */
         }
     }
+    
+    public func updateCar(completionClosure: @escaping () ->()) {
+        if let carPlate = self.carPlate {
+            CoreController.shared.apiController.searchCar(plate: carPlate)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.dic_data {
+                            DispatchQueue.main.async {[weak self]  in
+                                self?.car.value = Car(json: data)
+                            }
+                            completionClosure()
+                        }
+                    default:
+                        break
+                    }
+                }.addDisposableTo(CoreController.shared.disposeBag)
+        }
+    }
 }
