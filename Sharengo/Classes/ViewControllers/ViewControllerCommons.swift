@@ -298,6 +298,26 @@ extension UIViewController {
         }
     }
     
+    func hideLoaderNow() {
+        DispatchQueue.main.async {[weak self]  in
+            if (self == nil) {
+                return
+            }
+            self!.loaderCount = max(0, (self!.loaderCount ) - 1)
+            if (self!.loaderCount == 0) {
+                if let loadingViewController = self?.loadingViewController {
+                    UIView.animate(withDuration: 0.4, animations: {
+                        loadingViewController.view.alpha = 0
+                    }, completion: { (success) in
+                        loadingViewController.view.removeFromSuperview()
+                        loadingViewController.removeFromParentViewController()
+                    })
+                    
+                }
+            }
+        }
+    }
+
     func showMenuBackground() {
         if self.menuBackgroundView == nil {
             self.menuBackgroundView = UIView(frame: self.view.frame)

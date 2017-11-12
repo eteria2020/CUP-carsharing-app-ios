@@ -168,6 +168,7 @@ public class CarTrip: ModelType, Decodable {
         }
         if let carPlate: String = "car_plate" <~~ json {
             self.carPlate = carPlate
+            /*
             CoreController.shared.apiController.searchCar(plate: carPlate)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
@@ -182,6 +183,7 @@ public class CarTrip: ModelType, Decodable {
                         break
                     }
                 }.addDisposableTo(CoreController.shared.disposeBag)
+            */
         }
     }
 

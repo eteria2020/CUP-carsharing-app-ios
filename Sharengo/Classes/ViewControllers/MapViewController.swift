@@ -18,6 +18,7 @@ import Reachability
 import KeychainSwift
 import SideMenu
 import GoogleMaps
+import Reachability
 
 /**
  The Map class provides features related to display content on a map. These include:
@@ -380,6 +381,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             [unowned self] notification in
             self.updateFromBackgroundInProgress = true
             self.showLoader()
+            /*
             if let car = self.view_carBookingPopup?.viewModel?.carTrip?.car.value {
                 car.booked = false
                 car.opened = false
@@ -401,6 +403,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.getResultsWithoutLoading(circularMenu: false)
             self.routeSteps = self.nearestCarRouteSteps
             self.drawRoutes(steps: self.nearestCarRouteSteps)
+            */
             CoreController.shared.notificationIsShowed = true
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
@@ -442,6 +445,31 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      */
     @objc public func updateCarData() {
         var hideLoader: Bool = true
+        if Reachability()?.isReachable == false && self.updateFromBackgroundInProgress {
+            if let car = self.view_carBookingPopup?.viewModel?.carTrip?.car.value {
+                car.booked = false
+                car.opened = false
+            }
+            if let car = self.view_carBookingPopup?.viewModel?.carBooking?.car.value {
+                car.booked = false
+                car.opened = false
+            }
+            self.view_carBookingPopup.alpha = 0.0
+            self.view_carBookingPopup?.viewModel?.carTrip = nil
+            self.view_carBookingPopup?.viewModel?.carBooking = nil
+            self.viewModel?.carBooked = nil
+            self.viewModel?.carTrip = nil
+            self.viewModel?.carBooking = nil
+            CoreController.shared.allCarBookings = []
+            CoreController.shared.currentCarBooking = nil
+            CoreController.shared.allCarTrips = []
+            CoreController.shared.currentCarTrip = nil
+            self.getResultsWithoutLoading(circularMenu: false)
+            self.routeSteps = self.nearestCarRouteSteps
+            self.drawRoutes(steps: self.nearestCarRouteSteps)
+            self.closeLoader()
+            return
+        }
         if let carTrip = CoreController.shared.allCarTrips.first {
             hideLoader = false
             self.carTripTimeStart = carTrip.timeStart
@@ -486,6 +514,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             self?.viewModel?.carBooked = car
                             self?.viewModel?.carTrip = carTrip
                             self?.getResultsWithoutLoading(circularMenu: false)
+                            if car.parking == true {
+                                if let location = car.location {
+                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                                    self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                                }
+                                if let location = car.location {
+                                    self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                        self?.routeSteps = steps
+                                        self?.drawRoutes(steps: steps)
+                                    })
+                                }
+                            }
                             if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                 DispatchQueue.main.async {[weak self]  in
                                     self?.setCarsButtonVisible(true)
@@ -636,12 +676,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      */
     public func closeLoader() {
         if self.updateFromBackgroundInProgress {
-            let dispatchTime = DispatchTime.now() + 1
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.hideLoader {
-                    self.updateFromBackgroundInProgress = false
-                }
-            }
+            self.hideLoaderNow()
+            self.updateFromBackgroundInProgress = false
         }
     }
     
