@@ -261,8 +261,8 @@ extension UIViewController {
                 self.loadingViewController!.view.alpha = 1.0
                 self.loadingStartDate = Date()
             }
+            self.loaderCount += 1
         }
-        self.loaderCount += 1
     }
     
     func hideLoader(completionClosure: @escaping () ->()) {

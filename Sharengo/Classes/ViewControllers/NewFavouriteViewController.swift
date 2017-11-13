@@ -183,6 +183,15 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
             self.view_searchBar.updateInterface()
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 extension NewFavouriteViewController: AnimatedTextInputDelegate

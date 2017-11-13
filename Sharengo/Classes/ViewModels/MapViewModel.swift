@@ -88,13 +88,6 @@ public class MapViewModel: ViewModelType {
      This method gets all cars in share'ngo system and updates distance
      */
     @objc public func getAllCars() {
-        if Reachability()?.isReachable == false && self.allCars.count == 0 {
-            let dispatchTime = DispatchTime.now() + 1
-            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                self.getAllCars()
-            }
-            return
-        }
         var userLatitude: CLLocationDegrees = 0
         var userLongitude: CLLocationDegrees = 0
         let locationManager = LocationManager.sharedInstance
@@ -117,7 +110,21 @@ public class MapViewModel: ViewModelType {
                         }
                     }
                     self.allCars.removeAll()
+                    if self.allCars.count == 0 {
+                        let dispatchTime = DispatchTime.now() + 1
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.getAllCars()
+                        }
+                        return
+                    }
                 default:
+                    if self.allCars.count == 0 {
+                        let dispatchTime = DispatchTime.now() + 1
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.getAllCars()
+                        }
+                        return
+                    }
                     break
                 }
             }.addDisposableTo(self.disposeBag)
