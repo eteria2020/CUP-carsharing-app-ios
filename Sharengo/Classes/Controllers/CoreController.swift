@@ -285,6 +285,7 @@ public class CoreController {
      */
     public func updateCarBookings() {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
             return
         }
         if let currentViewController = CoreController.shared.currentViewController as? MapViewController {
