@@ -1231,9 +1231,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 if let mapView = self.mapView {
                     self.setUpdateButtonAnimated(true)
                     let projection = mapView.projection.visibleRegion()
-                    let topLeft: CLLocationCoordinate2D = projection.farLeft
-                    let bottomleft: CLLocationCoordinate2D = projection.nearRight
-                    self.viewModel?.reloadResults(latitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, radius: radius, topLeftCoordinate: topLeft, bottomRightCoordinate: bottomleft, fromCircularMenu: circularMenu)
+                    let rect = GMSMutablePath()
+                    rect.add(projection.farRight)
+                    rect.add(projection.farLeft)
+                    rect.add(projection.nearLeft)
+                    rect.add(projection.nearRight)
+                    self.viewModel?.reloadResults(latitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, radius: radius, rect: rect, fromCircularMenu: circularMenu)
                     return
                 }
             } else {
@@ -1252,9 +1255,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if radius < self.citiesRadius {
                 self.clusteringInProgress = true
                 let projection = mapView.projection.visibleRegion()
-                let topLeft: CLLocationCoordinate2D = projection.farLeft
-                let bottomleft: CLLocationCoordinate2D = projection.nearRight
-                self.viewModel?.reloadResults(latitude: self.mapView.camera.target.latitude, longitude: self.mapView.camera.target.longitude, radius: radius, topLeftCoordinate: topLeft, bottomRightCoordinate: bottomleft, fromCircularMenu: circularMenu)
+                let rect = GMSMutablePath()
+                rect.add(projection.farRight)
+                rect.add(projection.farLeft)
+                rect.add(projection.nearLeft)
+                rect.add(projection.nearRight)
+                self.viewModel?.reloadResults(latitude: self.mapView.camera.target.latitude, longitude: self.mapView.camera.target.longitude, radius: radius, rect: rect, fromCircularMenu: circularMenu)
             } else {
                 self.clusteringInProgress = false
                 self.addCityAnnotations()

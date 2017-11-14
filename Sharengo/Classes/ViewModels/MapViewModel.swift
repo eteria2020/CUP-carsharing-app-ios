@@ -152,7 +152,7 @@ public class MapViewModel: ViewModelType {
      - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
      - Parameter radius: The radius is the distance from the center of the map to the edge of the map
      */
-    public func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, topLeftCoordinate: CLLocationCoordinate2D, bottomRightCoordinate: CLLocationCoordinate2D, fromCircularMenu: Bool) {
+    public func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, rect: GMSPath, fromCircularMenu: Bool) {
         self.errorEvents = nil
         self.errorOffers = nil
         if type == .searchCars || showCars == true {
@@ -176,9 +176,8 @@ public class MapViewModel: ViewModelType {
                                     self.cars = [Car]()
                                     for car in cars {
                                         if let coordinates = car.location?.coordinate {
-                                            if coordinates.latitude <= topLeftCoordinate.latitude && coordinates.latitude >= bottomRightCoordinate.latitude &&
-                                                coordinates.longitude >= topLeftCoordinate.longitude && coordinates.longitude <= bottomRightCoordinate.longitude {
-                                                self.cars.append(car)
+                                            if (GMSGeometryContainsLocation(coordinates, rect, true)) {
+                                               self.cars.append(car)
                                             }
                                         }
                                     }
@@ -196,8 +195,7 @@ public class MapViewModel: ViewModelType {
                 self.cars = [Car]()
                 for car in self.allCars {
                     if let coordinates = car.location?.coordinate {
-                        if coordinates.latitude <= topLeftCoordinate.latitude && coordinates.latitude >= bottomRightCoordinate.latitude &&
-                            coordinates.longitude >= topLeftCoordinate.longitude && coordinates.longitude <= bottomRightCoordinate.longitude {
+                        if (GMSGeometryContainsLocation(coordinates, rect, true)) {
                             self.cars.append(car)
                         }
                     }
