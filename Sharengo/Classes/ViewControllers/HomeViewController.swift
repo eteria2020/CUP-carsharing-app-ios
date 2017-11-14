@@ -122,7 +122,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        self.lbl_version.text = "1.0.3.1"
+        self.lbl_version.text = "1.0.3.2"
         self.view_searchCar.backgroundColor = Color.homeEnabledBackground.value
         self.view_searchCar.layer.cornerRadius = self.view_searchCar.frame.size.width/2
         self.view_searchCar.layer.masksToBounds = true
