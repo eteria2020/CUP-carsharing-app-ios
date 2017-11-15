@@ -811,8 +811,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             #endif
         } else { }
         self.showLoader()
+        if let carTrip = self.viewModel?.carTrip {
+            carTrip.changedStatus = Date()
+        }
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
             if error != nil {
+                if let carTrip = self.viewModel?.carTrip {
+                    carTrip.changedStatus = nil
+                }
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                     self.hideLoader(completionClosure: { () in
@@ -843,7 +849,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         car2?.booked = true
                                         DispatchQueue.main.async {[weak self]  in
                                             self?.hideLoader(completionClosure: { () in
-                                                carTrip.changedStatus = Date()
                                                 carTrip.car.value = car2
                                                 self?.viewModel?.carTrip = carTrip
                                                 self?.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
@@ -907,6 +912,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                     }
                 } else {
+                    if let carTrip = self.viewModel?.carTrip {
+                        carTrip.changedStatus = nil
+                    }
                     self.hideLoader(completionClosure: { () in
                         self.showGeneralAlert()
                     })
