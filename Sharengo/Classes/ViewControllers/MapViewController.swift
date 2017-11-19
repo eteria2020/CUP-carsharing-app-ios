@@ -73,6 +73,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var updateFromBackgroundInProgress: Bool = false
     /// Boolean that checks if method is called after background operation
     public var backFromBackground: Bool = true
+    /// Boolean to check if there is an update in progress
+    public var updateInProgress: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -106,7 +108,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
                 DispatchQueue.main.async {[weak self]  in
-                    if self?.clusteringInProgress == true {
+                    if self?.updateInProgress == false {
+                        self?.updateInProgress = true
+                        if self?.clusteringInProgress == true {
                         self?.mapView.clear()
                         self?.clusterManager.clearItems()
                         if let steps = self?.routeSteps {
@@ -171,6 +175,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     }
                     if let allCars = self?.viewModel?.allCars {
                         self?.view_searchBar.viewModel?.allCars = allCars
+                    }
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self?.updateInProgress = false
+                        }
                     }
                 }
             }).addDisposableTo(disposeBag)

@@ -105,7 +105,7 @@ public class MapViewModel: ViewModelType {
                     if response.status == 200, let data = response.array_data {
                         if let cars = [Car].from(jsonArray: data) {
                             self.allCars = cars
-                            self.manageAnnotations()
+                            //self.manageAnnotations()
                             return
                         }
                     }
@@ -205,6 +205,7 @@ public class MapViewModel: ViewModelType {
         } else {
             self.resetCars()
         }
+        /*
         self.feeds.removeAll()
         if type == .feeds {
             self.publishersApiController.getMapOffers(latitude: latitude, longitude: longitude, radius: radius)
@@ -257,6 +258,7 @@ public class MapViewModel: ViewModelType {
         } else {
             self.manageAnnotations()
         }
+        */
     }
     
     /**
