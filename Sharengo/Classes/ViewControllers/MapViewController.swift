@@ -813,11 +813,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.showLoader()
         if let carTrip = self.viewModel?.carTrip {
             carTrip.changedStatus = Date()
+            self.viewModel?.carTrip = carTrip
         }
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
             if error != nil {
                 if let carTrip = self.viewModel?.carTrip {
                     carTrip.changedStatus = nil
+                    self.viewModel?.carTrip = carTrip
                 }
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -914,6 +916,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 } else {
                     if let carTrip = self.viewModel?.carTrip {
                         carTrip.changedStatus = nil
+                        self.viewModel?.carTrip = carTrip
                     }
                     self.hideLoader(completionClosure: { () in
                         self.showGeneralAlert()
