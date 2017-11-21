@@ -75,6 +75,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var backFromBackground: Bool = true
     /// Boolean to check if there is an update in progress
     public var updateInProgress: Bool = false
+    /// Boolean to check if the map is centered
+    public var mapIsCentered: Bool = false
     
     // MARK: - ViewModel methods
     
@@ -501,10 +503,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             self?.getResultsWithoutLoading(circularMenu: false)
                             if car.parking == true {
                                 if let location = car.location {
-                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                    self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
-                                }
-                                if let location = car.location {
                                     self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
                                         self?.routeSteps = steps
                                         self?.drawRoutes(steps: steps)
@@ -529,10 +527,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             self?.viewModel?.carTrip = carTrip
                             self?.getResultsWithoutLoading(circularMenu: false)
                             if car.parking == true {
-                                if let location = car.location {
-                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                                    self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
-                                }
                                 if let location = car.location {
                                     self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
                                         self?.routeSteps = steps
@@ -1493,8 +1487,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
                 self.checkedUserPosition = true
-                if self.viewModel?.carTrip?.car.value?.parking == true { }
-                else {
+                if self.viewModel?.carTrip?.car.value?.parking == true {
+                    if !self.mapIsCentered {
+                        if let location = self.viewModel?.carTrip?.car.value?.location {
+                            let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                            self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                        }
+                    }
+                } else {
                     self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                 }
                 return
@@ -1505,8 +1505,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if location != nil {
                 self.showUserPositionVisible(true)
                 self.setUserPositionButtonVisible(true)
-                if self.viewModel?.carTrip?.car.value?.parking == true { }
-                else {
+                if self.viewModel?.carTrip?.car.value?.parking == true {
+                    if !self.mapIsCentered {
+                        if let location = self.viewModel?.carTrip?.car.value?.location {
+                            let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                            self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                        }
+                    }
+                } else {
                     self.centerMap(on: location!, zoom: 16.5, animated: false)
                 }
 
@@ -1606,6 +1612,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         } else {
             self.mapView.moveCamera(update)
         }
+        self.mapIsCentered = true
     }
     
     /**
