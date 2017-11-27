@@ -1,276 +1,360 @@
 {
   "warnings": [
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/APIController.swift",
+      "line": 28,
+      "symbol": "ApiController.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/CoreController.swift",
+      "line": 79,
+      "symbol": "CoreController.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/GoogleAPIController.swift",
+      "line": 27,
+      "symbol": "GoogleAPIController.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/LocationManager.swift",
+      "line": 19,
+      "symbol": "LocationManager.LocationErrors.denied",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/LocationManager.swift",
+      "line": 20,
+      "symbol": "LocationManager.LocationErrors.restricted",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/LocationManager.swift",
+      "line": 21,
+      "symbol": "LocationManager.LocationErrors.notDetermined",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/LocationManager.swift",
+      "line": 22,
+      "symbol": "LocationManager.LocationErrors.notFetched",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/LocationManager.swift",
+      "line": 23,
+      "symbol": "LocationManager.LocationErrors.invalidLocation",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/LocationManager.swift",
+      "line": 24,
+      "symbol": "LocationManager.LocationErrors.reverseGeocodingFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/PublisheresAPIController.swift",
+      "line": 28,
+      "symbol": "PublishersAPIController.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SharengoApiController.swift",
+      "line": 27,
+      "symbol": "SharengoApiController.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 19,
+      "symbol": "SpeechErrorType.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 20,
+      "symbol": "SpeechErrorType.authSpeechAuthorizationDenied",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 21,
+      "symbol": "SpeechErrorType.authSpeechAuthorizationRestricted",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 22,
+      "symbol": "SpeechErrorType.authSpeechAuthorizationNotDetermined",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 23,
+      "symbol": "SpeechErrorType.authMicrophoneDenied",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 24,
+      "symbol": "SpeechErrorType.authMicrophoneUndetermined",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 25,
+      "symbol": "SpeechErrorType.notSetted",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Controllers/SpeechController.swift",
+      "line": 26,
+      "symbol": "SpeechErrorType.notAvailable",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Factories/ViewFactory.swift",
-      "line": 46,
+      "line": 50,
       "symbol": "ListViewModelType.listIdentifiers",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
-      "line": 14,
-      "symbol": "FavouriteAddress",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
       "line": 29,
-      "symbol": "FavouriteAddress.encode(with:)",
+      "symbol": "FavouriteAddress.init(identifier:name:location:address:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
-      "line": 36,
-      "symbol": "FavouriteAddress.init(coder:)",
+      "line": 91,
+      "symbol": "HistoryAddress.init(identifier:name:location:address:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
-      "line": 58,
-      "symbol": "HistoryAddress",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
-      "line": 73,
-      "symbol": "HistoryAddress.encode(with:)",
+      "line": 153,
+      "symbol": "Address.init(identifier:name:location:address:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
-      "line": 80,
-      "symbol": "HistoryAddress.init(coder:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
-      "line": 102,
-      "symbol": "Address",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Address.swift",
-      "line": 136,
+      "line": 160,
       "symbol": "Address.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Annotations/CarAnnotation.swift",
-      "line": 30,
-      "symbol": "CarAnnotation.init(position:car:carBooked:)",
+      "line": 34,
+      "symbol": "CarAnnotation.init(position:car:carBooked:carTrip:carNearest:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Annotations/FeedAnnotation.swift",
-      "line": 31,
+      "line": 35,
       "symbol": "FeedAnnotation.init(position:feed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Car.swift",
-      "line": 19,
-      "symbol": "Car",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Bonus.swift",
+      "line": 26,
+      "symbol": "Bonus.init(json:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Car.swift",
-      "line": 98,
+      "line": 40,
+      "symbol": "Car.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Car.swift",
+      "line": 43,
       "symbol": "Car.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/CarBooking.swift",
-      "line": 13,
-      "symbol": "CarBooking",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 78,
+      "symbol": "CarBooking.init(car:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/CarBooking.swift",
-      "line": 73,
+      "line": 82,
       "symbol": "CarBooking.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/CarTrip.swift",
-      "line": 13,
-      "symbol": "CarTrip",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 144,
+      "symbol": "CarTrip.init(car:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/CarTrip.swift",
-      "line": 134,
+      "line": 148,
       "symbol": "CarTrip.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Category.swift",
-      "line": 26,
-      "symbol": "Category",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Category.swift",
-      "line": 78,
+      "line": 45,
       "symbol": "Category.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/City.swift",
-      "line": 13,
-      "symbol": "CityCache",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/City.swift",
-      "line": 38,
-      "symbol": "CityCache.encode(with:)",
+      "line": 30,
+      "symbol": "CityCache.init(identifier:title:icon:selected:location:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/City.swift",
-      "line": 46,
-      "symbol": "CityCache.init(coder:)",
+      "line": 107,
+      "symbol": "City.init(identifier:title:icon:selected:location:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/City.swift",
-      "line": 71,
-      "symbol": "City",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/City.swift",
-      "line": 116,
+      "line": 115,
       "symbol": "City.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Favorite.swift",
-      "line": 14,
-      "symbol": "Favorite",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Feed.swift",
-      "line": 13,
-      "symbol": "FavouriteFeed",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Feed.swift",
-      "line": 60,
-      "symbol": "FavouriteFeed.encode(with:)",
+      "line": 31,
+      "symbol": "Favorite.init(name:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Feed.swift",
-      "line": 83,
-      "symbol": "FavouriteFeed.init(coder:)",
+      "line": 228,
+      "symbol": "Feed.init(identifier:categoryTitle:title:subtitle:description:icon:claim:date:advantage:color:forceColor:image:location:address:city:launchTitle:orderDate:feedLocation:marker:sponsored:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Feed.swift",
-      "line": 147,
-      "symbol": "Feed",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Feed.swift",
-      "line": 273,
+      "line": 251,
       "symbol": "Feed.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/GoogleResponse.swift",
+      "line": 21,
+      "symbol": "GoogleResponse.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/GoogleResponse.swift",
+      "line": 24,
+      "symbol": "GoogleResponse.init(json:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Language.swift",
-      "line": 12,
-      "symbol": "Language",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 25,
+      "symbol": "Language.init(title:action:selected:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/MenuItem.swift",
-      "line": 12,
-      "symbol": "MenuItem",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 13,
-      "symbol": "PolygonCache",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 25,
+      "symbol": "MenuItem.init(title:icon:viewModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
       "line": 24,
-      "symbol": "PolygonCache.encode(with:)",
+      "symbol": "PolygonCache.init(type:coordinates:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 34,
-      "symbol": "PolygonCache.init(coder:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 57,
-      "symbol": "JSONPolygons",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 59,
+      "line": 82,
       "symbol": "JSONPolygons.init(json:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Polygon.swift",
-      "line": 121,
-      "symbol": "Polygon",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 155,
+      "symbol": "Polygon.init(type:coordinates:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Response.swift",
+      "line": 31,
+      "symbol": "Response.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Response.swift",
+      "line": 34,
+      "symbol": "Response.init(json:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/RouteStep.swift",
+      "line": 26,
+      "symbol": "RouteStep.init(json:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Model/Setting.swift",
-      "line": 12,
-      "symbol": "Setting",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 25,
+      "symbol": "Setting.init(title:icon:viewModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -309,73 +393,2691 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
-      "line": 12,
-      "symbol": "TextStyleType",
-      "symbol_kind": "source.lang.swift.decl.protocol",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 15,
+      "symbol": "UIColor.init(hexString:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 38,
+      "symbol": "ColorBrand.yellow",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 39,
+      "symbol": "ColorBrand.green",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 40,
+      "symbol": "ColorBrand.black",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 41,
+      "symbol": "ColorBrand.white",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 42,
+      "symbol": "ColorBrand.lightGray",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 43,
+      "symbol": "ColorBrand.gray",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 44,
+      "symbol": "ColorBrand.grayDisabled",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 45,
+      "symbol": "ColorBrand.clear",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 79,
+      "symbol": "Color.alertBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 80,
+      "symbol": "Color.alertButtonsPositiveBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 81,
+      "symbol": "Color.alertButtonsNegativeBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 82,
+      "symbol": "Color.alertMessage",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 83,
+      "symbol": "Color.alertButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 84,
+      "symbol": "Color.alertLightButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 87,
+      "symbol": "Color.navigationBarBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 90,
+      "symbol": "Color.circularMenuBackgroundBorder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 91,
+      "symbol": "Color.circularMenuBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 94,
+      "symbol": "Color.menuTopBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 95,
+      "symbol": "Color.menuBackBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 96,
+      "symbol": "Color.menuLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 97,
+      "symbol": "Color.menuProfile",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 100,
+      "symbol": "Color.signupBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 101,
+      "symbol": "Color.signupHeaderTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 102,
+      "symbol": "Color.signupHeaderSubTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 103,
+      "symbol": "Color.signupStepHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 104,
+      "symbol": "Color.signupStepDescriptionLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 107,
+      "symbol": "Color.loginBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 108,
+      "symbol": "Color.loginHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 109,
+      "symbol": "Color.loginTextField",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 110,
+      "symbol": "Color.loginTextFieldPlaceholder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 111,
+      "symbol": "Color.loginContinueAsNotLoggedButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 114,
+      "symbol": "Color.introTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 117,
+      "symbol": "Color.homeEnabledBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 118,
+      "symbol": "Color.homeDisabledBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 119,
+      "symbol": "Color.homeDisabledIcon",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 120,
+      "symbol": "Color.homeDescriptionLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 121,
+      "symbol": "Color.homeVersionLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 124,
+      "symbol": "Color.searchCarsClusterLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 125,
+      "symbol": "Color.searchCarsNearestCar",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 126,
+      "symbol": "Color.searchCarsBookedCar",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 129,
+      "symbol": "Color.searchBarBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 130,
+      "symbol": "Color.searchBarBackgroundMicrophone",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 131,
+      "symbol": "Color.searchBarBackgroundMicrophoneSpeechInProgress",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 132,
+      "symbol": "Color.searchBarTextField",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 133,
+      "symbol": "Color.searchBarTextFieldPlaceholder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 134,
+      "symbol": "Color.searchBarResult",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 135,
+      "symbol": "Color.searchBarResultBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 138,
+      "symbol": "Color.carPopupBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 139,
+      "symbol": "Color.carPopupType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 140,
+      "symbol": "Color.carPopupLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 141,
+      "symbol": "Color.carPopupAddressPlaceholder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 144,
+      "symbol": "Color.carBookingPopupBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 145,
+      "symbol": "Color.carBookingPopupPin",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 146,
+      "symbol": "Color.carBookingPopupLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 147,
+      "symbol": "Color.carBookingPopupStatus",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 150,
+      "symbol": "Color.carBookingCompletedBannerBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 151,
+      "symbol": "Color.carBookingCompletedBannerLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 152,
+      "symbol": "Color.carBookingCompletedBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 153,
+      "symbol": "Color.carBookingCompletedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 154,
+      "symbol": "Color.carBookingCompletedCo2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 157,
+      "symbol": "Color.profileBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 158,
+      "symbol": "Color.profileEcoStatus",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 161,
+      "symbol": "Color.settingHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 162,
+      "symbol": "Color.settingHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 163,
+      "symbol": "Color.settingItemLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 164,
+      "symbol": "Color.settingIconBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 165,
+      "symbol": "Color.settingOddCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 166,
+      "symbol": "Color.settingEvenCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 169,
+      "symbol": "Color.settingsLanguagesHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 170,
+      "symbol": "Color.settingsLanguagesHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 171,
+      "symbol": "Color.settingsLanguagesItemLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 172,
+      "symbol": "Color.settingsLanguagesBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 173,
+      "symbol": "Color.settingsLanguagesOddCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 174,
+      "symbol": "Color.settingsLanguagesEvenCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 177,
+      "symbol": "Color.settingsCitiesHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 178,
+      "symbol": "Color.settingsCitiesHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 179,
+      "symbol": "Color.settingsCitiesItemLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 180,
+      "symbol": "Color.settingsCitiesBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 181,
+      "symbol": "Color.settingsCitiesOddCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 182,
+      "symbol": "Color.settingsCitiesEvenCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 185,
+      "symbol": "Color.noFavouritesHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 186,
+      "symbol": "Color.noFavouritesHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 187,
+      "symbol": "Color.noFavouritesBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 188,
+      "symbol": "Color.noFavouritesTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 189,
+      "symbol": "Color.noFavouritesDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 190,
+      "symbol": "Color.noFavouritesNewFavouriteTextButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 191,
+      "symbol": "Color.noFavouritesNewFavouriteBackgroundButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 192,
+      "symbol": "Color.favouritesTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 193,
+      "symbol": "Color.favouritesTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 194,
+      "symbol": "Color.favouritesItemTitleLabelEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 195,
+      "symbol": "Color.favouritesItemTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 196,
+      "symbol": "Color.favouritesPopupTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 199,
+      "symbol": "Color.carTripsHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 200,
+      "symbol": "Color.carTripsHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 201,
+      "symbol": "Color.carTripsItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 202,
+      "symbol": "Color.carTripsItemBorderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 203,
+      "symbol": "Color.carTripsItemSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 204,
+      "symbol": "Color.carTripsItemDescriptionTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 205,
+      "symbol": "Color.carTripsItemDescriptionSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 206,
+      "symbol": "Color.carTripsOddCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 207,
+      "symbol": "Color.carTripsEvenCellBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 208,
+      "symbol": "Color.carTripsItemExtendedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 209,
+      "symbol": "Color.carTripsSearchCarsLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 210,
+      "symbol": "Color.noCarTripsSearchCarsButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 213,
+      "symbol": "Color.onBoardDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 214,
+      "symbol": "Color.onBoardSkipTextButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 215,
+      "symbol": "Color.onBoardPageControlEmpty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 216,
+      "symbol": "Color.onBoardPageControlFilled",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 219,
+      "symbol": "Color.feedsHeaderCategoryBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 220,
+      "symbol": "Color.feedsHeaderCategoryLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 221,
+      "symbol": "Color.feedsHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 222,
+      "symbol": "Color.feedsHeaderLabelOn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 223,
+      "symbol": "Color.feedsHeaderLabelOff",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 224,
+      "symbol": "Color.feedsHeaderBottomButtonOn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 225,
+      "symbol": "Color.feedsHeaderBottomButtonOff",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 226,
+      "symbol": "Color.feedsAroundMeButtonLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 227,
+      "symbol": "Color.feedsAroundMeButtonBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 228,
+      "symbol": "Color.feedsItemIconBorderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 229,
+      "symbol": "Color.feedsItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 230,
+      "symbol": "Color.feedsItemDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 231,
+      "symbol": "Color.feedsItemSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 232,
+      "symbol": "Color.feedsItemDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 233,
+      "symbol": "Color.feedsItemAdvantage",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 234,
+      "symbol": "Color.feedsClaim",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 237,
+      "symbol": "Color.categoriesBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 238,
+      "symbol": "Color.categoriesItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 239,
+      "symbol": "Color.categoriesItemIconBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 240,
+      "symbol": "Color.categoriesItemBorderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 241,
+      "symbol": "Color.categoriesItemTitleDisabled",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 242,
+      "symbol": "Color.categoriesItemIconBackgroundDisabled",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 245,
+      "symbol": "Color.feedDetailHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 246,
+      "symbol": "Color.feedDetailHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 247,
+      "symbol": "Color.feedFavouriteButtonLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 248,
+      "symbol": "Color.feedFavouriteButtonBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 249,
+      "symbol": "Color.feedIconBorderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 250,
+      "symbol": "Color.feedTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 251,
+      "symbol": "Color.feedDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 252,
+      "symbol": "Color.feedSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 253,
+      "symbol": "Color.feedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 254,
+      "symbol": "Color.feedAdvantage",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 255,
+      "symbol": "Color.feedClaim",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 256,
+      "symbol": "Color.feedExtendedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 259,
+      "symbol": "Color.noFeedsHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 260,
+      "symbol": "Color.noFeedsHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 261,
+      "symbol": "Color.noFeedsBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 262,
+      "symbol": "Color.noFeedsTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 263,
+      "symbol": "Color.noFeedsDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 264,
+      "symbol": "Color.noFeedsFeedsHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 265,
+      "symbol": "Color.noFeedsFeedsLabelOn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 266,
+      "symbol": "Color.noFeedsFeedsLabelOff",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 267,
+      "symbol": "Color.noFeedsFeedsBottomButtonOn",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 268,
+      "symbol": "Color.noFeedsFeedsBottomButtonOff",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 271,
+      "symbol": "Color.supportHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 272,
+      "symbol": "Color.supportHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 273,
+      "symbol": "Color.supportBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 274,
+      "symbol": "Color.supportTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 275,
+      "symbol": "Color.supportSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 276,
+      "symbol": "Color.supportCallBackgroundArea",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 277,
+      "symbol": "Color.supportCallBackgroundButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 280,
+      "symbol": "Color.inviteFriendHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 281,
+      "symbol": "Color.inviteFriendHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 282,
+      "symbol": "Color.inviteFriendBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 283,
+      "symbol": "Color.inviteFriendDescriptionFirstPartTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 284,
+      "symbol": "Color.inviteFriendDescriptionFirstPartSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 285,
+      "symbol": "Color.inviteFriendDescriptionSecondPartLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 286,
+      "symbol": "Color.inviteFriendDescriptionThirdPartTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 287,
+      "symbol": "Color.inviteFriendDescriptionThirdPartSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 288,
+      "symbol": "Color.inviteFriendDescriptionFourthPartLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 289,
+      "symbol": "Color.inviteFriendSeparatorBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 290,
+      "symbol": "Color.inviteFriendInviteBackgroundButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 293,
+      "symbol": "Color.webBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 296,
+      "symbol": "Color.faqBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 297,
+      "symbol": "Color.faqHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 298,
+      "symbol": "Color.faqHeaderTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 299,
+      "symbol": "Color.faqAppTutorialButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 302,
+      "symbol": "Color.buyMinutesBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 303,
+      "symbol": "Color.buyMinutesHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 304,
+      "symbol": "Color.buyMinutesHeaderTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 307,
+      "symbol": "Color.userAreaBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 308,
+      "symbol": "Color.userAreaHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 309,
+      "symbol": "Color.userAreaHeaderTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 312,
+      "symbol": "Color.ratesBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 313,
+      "symbol": "Color.ratesHeaderBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 314,
+      "symbol": "Color.ratesHeaderTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 315,
+      "symbol": "Color.ratesRatesTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 316,
+      "symbol": "Color.ratesRatesDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 317,
+      "symbol": "Color.ratesBonusTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 318,
+      "symbol": "Color.ratesBonusDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 319,
+      "symbol": "Color.ratesBonusContainerBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Color+Theme.swift",
+      "line": 322,
+      "symbol": "Color.tutorialBackground",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 16,
+      "symbol": "FontWeight.light",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 17,
+      "symbol": "FontWeight.regular",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 18,
+      "symbol": "FontWeight.medium",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 19,
+      "symbol": "FontWeight.semibold",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 20,
+      "symbol": "FontWeight.bold",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 46,
+      "symbol": "Font.roundedButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 49,
+      "symbol": "Font.alertMessage",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 50,
+      "symbol": "Font.alertButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 53,
+      "symbol": "Font.introTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 56,
+      "symbol": "Font.menuHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 57,
+      "symbol": "Font.menuLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 60,
+      "symbol": "Font.homeDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 61,
+      "symbol": "Font.homeDescriptionEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 62,
+      "symbol": "Font.homeVersion",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 65,
+      "symbol": "Font.searchCarsClusterLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 68,
+      "symbol": "Font.searchBarTextField",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 69,
+      "symbol": "Font.searchBarTextFieldPlaceholder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 70,
+      "symbol": "Font.searchBarResult",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 73,
+      "symbol": "Font.carPopupType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 74,
+      "symbol": "Font.carPopup",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 75,
+      "symbol": "Font.carPopupEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 78,
+      "symbol": "Font.carBookingPopupPin",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 79,
+      "symbol": "Font.carBookingPopupLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 80,
+      "symbol": "Font.carBookingPopupLabelEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 81,
+      "symbol": "Font.carBookingPopupStatus",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 84,
+      "symbol": "Font.carBookingCompletedBannerLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 85,
+      "symbol": "Font.carBookingCompletedBannerLabelEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 86,
+      "symbol": "Font.carBookingCompletedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 87,
+      "symbol": "Font.carBookingCompletedDescriptionEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 90,
+      "symbol": "Font.signupHeaderTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 91,
+      "symbol": "Font.signupHeaderSubTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 92,
+      "symbol": "Font.signupStepHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 93,
+      "symbol": "Font.signupStepDescriptionLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 96,
+      "symbol": "Font.loginHeaderLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 97,
+      "symbol": "Font.loginTextField",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 98,
+      "symbol": "Font.loginTextFieldPlaceholder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 99,
+      "symbol": "Font.loginForgotPassword",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 102,
+      "symbol": "Font.profileEcoStatus",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 105,
+      "symbol": "Font.settingHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 106,
+      "symbol": "Font.settingLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 109,
+      "symbol": "Font.settingsLanguagesHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 110,
+      "symbol": "Font.settingsLanguagesLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 113,
+      "symbol": "Font.settingsCitiesHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 114,
+      "symbol": "Font.settingsCitiesLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 117,
+      "symbol": "Font.noFavouritesHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 118,
+      "symbol": "Font.noFavouritesTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 119,
+      "symbol": "Font.noFavouritesDescriptionLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 122,
+      "symbol": "Font.favouritesUndoButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 123,
+      "symbol": "Font.favouritesTitleLabelEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 124,
+      "symbol": "Font.favouritesTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 125,
+      "symbol": "Font.favouritesItemTitleLabelEmphasized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 126,
+      "symbol": "Font.favouritesItemTitleLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 127,
+      "symbol": "Font.favouritesPopupTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 130,
+      "symbol": "Font.carTripsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 131,
+      "symbol": "Font.carTripsItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 132,
+      "symbol": "Font.carTripsItemSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 133,
+      "symbol": "Font.carTripsItemDescriptionTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 134,
+      "symbol": "Font.carTripsItemDescriptionSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 135,
+      "symbol": "Font.carTripsItemExtendedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 136,
+      "symbol": "Font.carTripsSearchCarsLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 139,
+      "symbol": "Font.onBoardDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 140,
+      "symbol": "Font.onBoardSkipButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 143,
+      "symbol": "Font.feedsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 144,
+      "symbol": "Font.feedsHeaderCategory",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 145,
+      "symbol": "Font.feedsItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 146,
+      "symbol": "Font.feedsItemDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 147,
+      "symbol": "Font.feedsItemDate2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 148,
+      "symbol": "Font.feedsItemSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 149,
+      "symbol": "Font.feedsItemSubtitle2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 150,
+      "symbol": "Font.feedsItemDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 151,
+      "symbol": "Font.feedsItemDescription2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 152,
+      "symbol": "Font.feedsItemAdvantage",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 153,
+      "symbol": "Font.feedsItemAdvantage2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 154,
+      "symbol": "Font.feedsAroundMeButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 155,
+      "symbol": "Font.feedsClaim",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 158,
+      "symbol": "Font.categoriesItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 161,
+      "symbol": "Font.feedDetailHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 162,
+      "symbol": "Font.feedTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 163,
+      "symbol": "Font.feedDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 164,
+      "symbol": "Font.feedSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 165,
+      "symbol": "Font.feedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 166,
+      "symbol": "Font.feedExtendedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 167,
+      "symbol": "Font.feedAdvantage",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 168,
+      "symbol": "Font.feedFavouriteButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 169,
+      "symbol": "Font.feedClaim",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 172,
+      "symbol": "Font.noFeedsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 173,
+      "symbol": "Font.noFeedsTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 174,
+      "symbol": "Font.noFeedsDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 175,
+      "symbol": "Font.noFeedsFeedsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 178,
+      "symbol": "Font.supportHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 179,
+      "symbol": "Font.supportTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 180,
+      "symbol": "Font.supportSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 183,
+      "symbol": "Font.inviteFriendHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 184,
+      "symbol": "Font.inviteFriendDescriptionFirstPartTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 185,
+      "symbol": "Font.inviteFriendDescriptionFirstPartSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 186,
+      "symbol": "Font.inviteFriendDescriptionSecondPart",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 187,
+      "symbol": "Font.inviteFriendDescriptionThirdPartTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 188,
+      "symbol": "Font.inviteFriendDescriptionThirdPartSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 189,
+      "symbol": "Font.inviteFriendDescriptionFourthPart",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 192,
+      "symbol": "Font.faqHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 195,
+      "symbol": "Font.ratesHeaderTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 196,
+      "symbol": "Font.ratesRatesTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 197,
+      "symbol": "Font.ratesRatesDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 198,
+      "symbol": "Font.ratesRatesValue",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 199,
+      "symbol": "Font.ratesBonusTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Font+Theme.swift",
+      "line": 200,
+      "symbol": "Font.ratesBonusDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
-      "line": 13,
+      "line": 16,
       "symbol": "TextStyleType.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
-      "line": 14,
+      "line": 17,
       "symbol": "TextStyleType.style",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
-      "line": 18,
+      "line": 24,
       "symbol": "NamedStyles.registerStyle(style:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
-      "line": 11,
-      "symbol": "ButtonStyle",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
-      "line": 12,
-      "symbol": "ButtonStyle.clearButton",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 34,
+      "symbol": "TextStyle.introTitle",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
-      "line": 13,
-      "symbol": "ButtonStyle.roundedButton",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 37,
+      "symbol": "TextStyle.menuHeader",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
-      "line": 14,
-      "symbol": "ButtonStyle.squaredButton",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 38,
+      "symbol": "TextStyle.menuItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 41,
+      "symbol": "TextStyle.homeDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 42,
+      "symbol": "TextStyle.homeVersion",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 45,
+      "symbol": "TextStyle.searchBarTextField",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 46,
+      "symbol": "TextStyle.searchBarResult",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 49,
+      "symbol": "TextStyle.signupHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 50,
+      "symbol": "TextStyle.signupStepHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 51,
+      "symbol": "TextStyle.signupStepDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 54,
+      "symbol": "TextStyle.carPopupType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 55,
+      "symbol": "TextStyle.carPopupPlate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 56,
+      "symbol": "TextStyle.carPopupCapacity",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 57,
+      "symbol": "TextStyle.carPopupAddressPlaceholder",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 58,
+      "symbol": "TextStyle.carPopupAddress",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 59,
+      "symbol": "TextStyle.carPopupDistance",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 60,
+      "symbol": "TextStyle.carPopupWalkingDistance",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 63,
+      "symbol": "TextStyle.carBookingPopupPin",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 64,
+      "symbol": "TextStyle.carBookingPopupInfo",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 65,
+      "symbol": "TextStyle.carBookingPopupTime",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 68,
+      "symbol": "TextStyle.carBookingCompletedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 69,
+      "symbol": "TextStyle.carBookingCompletedCo2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 72,
+      "symbol": "TextStyle.loginFormHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 73,
+      "symbol": "TextStyle.loginNotYetRegistered",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 76,
+      "symbol": "TextStyle.profileEcoStatus",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 79,
+      "symbol": "TextStyle.settingHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 80,
+      "symbol": "TextStyle.settingItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 83,
+      "symbol": "TextStyle.settingsLanguagesHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 84,
+      "symbol": "TextStyle.settingsLanguagesItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 87,
+      "symbol": "TextStyle.settingsCitiesHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 88,
+      "symbol": "TextStyle.settingsCitiesItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 91,
+      "symbol": "TextStyle.noFavouritesHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 92,
+      "symbol": "TextStyle.noFavouritesTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 93,
+      "symbol": "TextStyle.noFavouritesDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 96,
+      "symbol": "TextStyle.favouritesTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 97,
+      "symbol": "TextStyle.favouritesItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 98,
+      "symbol": "TextStyle.favouritesPopupTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 99,
+      "symbol": "TextStyle.favouritesPopupDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 102,
+      "symbol": "TextStyle.carTripsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 103,
+      "symbol": "TextStyle.carTripsItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 104,
+      "symbol": "TextStyle.carTripsItemSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 105,
+      "symbol": "TextStyle.carTripsItemDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 106,
+      "symbol": "TextStyle.carTripsItemExtendedDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 107,
+      "symbol": "TextStyle.carTripsSearchCarsLabel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 110,
+      "symbol": "TextStyle.onBoardDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 111,
+      "symbol": "TextStyle.onBoardSkip",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 114,
+      "symbol": "TextStyle.feedsHeaderCategory",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 115,
+      "symbol": "TextStyle.feedsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 116,
+      "symbol": "TextStyle.feedsClaim",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 117,
+      "symbol": "TextStyle.feedsItemBottom",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 118,
+      "symbol": "TextStyle.feedsAroundMe",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 121,
+      "symbol": "TextStyle.categoriesItemTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 124,
+      "symbol": "TextStyle.feedDetailHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 125,
+      "symbol": "TextStyle.feedClaim",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 126,
+      "symbol": "TextStyle.feedsClaimMirrored",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 127,
+      "symbol": "TextStyle.feedBottom",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 128,
+      "symbol": "TextStyle.feedFavourite",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 131,
+      "symbol": "TextStyle.noFeedsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 132,
+      "symbol": "TextStyle.noFeedsDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 133,
+      "symbol": "TextStyle.noFeedsFeedsHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 136,
+      "symbol": "TextStyle.supportHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 137,
+      "symbol": "TextStyle.supportTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 138,
+      "symbol": "TextStyle.supportSubtitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 141,
+      "symbol": "TextStyle.inviteFriendHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 142,
+      "symbol": "TextStyle.inviteFriendDescriptionFirstPart",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 143,
+      "symbol": "TextStyle.inviteFriendDescriptionSecondPart",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 144,
+      "symbol": "TextStyle.inviteFriendDescriptionThirdPart",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 145,
+      "symbol": "TextStyle.inviteFriendDescriptionFourthPart",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 148,
+      "symbol": "TextStyle.faqHeader",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 151,
+      "symbol": "TextStyle.ratesHeaderTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 152,
+      "symbol": "TextStyle.ratesRatesTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 153,
+      "symbol": "TextStyle.ratesRatesDescription",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 154,
+      "symbol": "TextStyle.ratesBonusTitle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/Text+Theme.swift",
+      "line": 155,
+      "symbol": "TextStyle.ratesBonusDescription",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
       "line": 15,
-      "symbol": "ButtonStyle.headerButton",
+      "symbol": "ButtonStyle.clearButton",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
+      "line": 16,
+      "symbol": "ButtonStyle.roundedButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
+      "line": 17,
+      "symbol": "ButtonStyle.squaredButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/UIButton+Theme.swift",
+      "line": 18,
+      "symbol": "ButtonStyle.headerButton",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/View+Theme.swift",
+      "line": 15,
+      "symbol": "ViewXib.navigationBar",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/View+Theme.swift",
+      "line": 16,
+      "symbol": "ViewXib.circularMenu",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/View+Theme.swift",
+      "line": 17,
+      "symbol": "ViewXib.carPopup",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/View+Theme.swift",
+      "line": 18,
+      "symbol": "ViewXib.carBookingPopup",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/View+Theme.swift",
       "line": 19,
-      "symbol": "UIButton.style(_:title:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "symbol": "ViewXib.searchBar",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Theme/View+Theme.swift",
+      "line": 20,
+      "symbol": "ViewXib.signupStep",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
@@ -1227,30 +3929,37 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/PKCS12.swift",
-      "line": 11,
-      "symbol": "PKCS12",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/PKCS12.swift",
-      "line": 19,
+      "line": 24,
       "symbol": "PKCS12.init(data:password:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/PKCS12.swift",
-      "line": 35,
+      "line": 40,
       "symbol": "PKCS12.init(mainBundleResource:resourceType:password:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/PKCS12.swift",
-      "line": 39,
-      "symbol": "PKCS12.urlCredential()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/UIView+Extensions.swift",
+      "line": 14,
+      "symbol": "Int.degreesToRadians",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/UIView+Extensions.swift",
+      "line": 21,
+      "symbol": "FloatingPoint.degreesToRadians",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Utilities/UIView+Extensions.swift",
+      "line": 22,
+      "symbol": "FloatingPoint.radiansToDegrees",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -1969,8 +4678,106 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/CarBookingCompletedViewController.swift",
-      "line": 50,
+      "line": 51,
       "symbol": "CarBookingCompletedViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/CarTripsViewController.swift",
+      "line": 39,
+      "symbol": "CarTripsViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/CarTripsViewController.swift",
+      "line": 128,
+      "symbol": "CarTripsViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FaqViewController.swift",
+      "line": 30,
+      "symbol": "FaqViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FaqViewController.swift",
+      "line": 53,
+      "symbol": "FaqViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FavouritesViewController.swift",
+      "line": 48,
+      "symbol": "FavouritesViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FavouritesViewController.swift",
+      "line": 71,
+      "symbol": "FavouritesViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FavouritesViewController.swift",
+      "line": 270,
+      "symbol": "FavouritesViewController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FeedDetailViewController.swift",
+      "line": 46,
+      "symbol": "FeedDetailViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FeedDetailViewController.swift",
+      "line": 190,
+      "symbol": "FeedDetailViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FeedsViewController.swift",
+      "line": 63,
+      "symbol": "FeedsViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FeedsViewController.swift",
+      "line": 212,
+      "symbol": "FeedsViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FeedsViewController.swift",
+      "line": 324,
+      "symbol": "FeedsViewController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FeedsViewController.swift",
+      "line": 330,
+      "symbol": "FeedsViewController.viewDidAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/FeedsViewController.swift",
+      "line": 335,
+      "symbol": "FeedsViewController.viewWillDisappear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -1983,14 +4790,14 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/HomeViewController.swift",
-      "line": 98,
+      "line": 121,
       "symbol": "HomeViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/HomeViewController.swift",
-      "line": 168,
+      "line": 186,
       "symbol": "HomeViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2006,6 +4813,20 @@
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/IntroViewController.swift",
       "line": 38,
       "symbol": "IntroViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/InviteFriendViewController.swift",
+      "line": 38,
+      "symbol": "InviteFriendViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/InviteFriendViewController.swift",
+      "line": 52,
+      "symbol": "InviteFriendViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2039,57 +4860,120 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 60,
+      "line": 76,
       "symbol": "MapViewController.bind(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 140,
+      "line": 217,
       "symbol": "MapViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 266,
+      "line": 406,
       "symbol": "MapViewController.viewDidAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
-      "line": 275,
+      "line": 415,
       "symbol": "MapViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MapViewController.swift",
+      "line": 1590,
+      "symbol": "MapViewController.drawRoutes(steps:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
-      "line": 40,
+      "line": 42,
       "symbol": "MenuViewController.bind(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
-      "line": 123,
+      "line": 135,
       "symbol": "MenuViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
-      "line": 133,
+      "line": 146,
       "symbol": "MenuViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/MenuViewController.swift",
-      "line": 141,
+      "line": 155,
       "symbol": "MenuViewController.viewWillDisappear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NewFavouriteViewController.swift",
+      "line": 46,
+      "symbol": "NewFavouriteViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NewFavouriteViewController.swift",
+      "line": 103,
+      "symbol": "NewFavouriteViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NoCarTripsViewController.swift",
+      "line": 33,
+      "symbol": "NoCarTripsViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NoCarTripsViewController.swift",
+      "line": 53,
+      "symbol": "NoCarTripsViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NoFavouritesViewController.swift",
+      "line": 33,
+      "symbol": "NoFavouritesViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NoFavouritesViewController.swift",
+      "line": 52,
+      "symbol": "NoFavouritesViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NoFeedsViewController.swift",
+      "line": 36,
+      "symbol": "NoFeedsViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/NoFeedsViewController.swift",
+      "line": 62,
+      "symbol": "NoFeedsViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2109,8 +4993,92 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/OnBoardViewController.swift",
-      "line": 215,
+      "line": 225,
       "symbol": "OnBoardViewController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ProfileViewController.swift",
+      "line": 26,
+      "symbol": "ProfileViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ProfileViewController.swift",
+      "line": 35,
+      "symbol": "ProfileViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/RatesViewController.swift",
+      "line": 36,
+      "symbol": "RatesViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/RatesViewController.swift",
+      "line": 62,
+      "symbol": "RatesViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/RatesViewController.swift",
+      "line": 111,
+      "symbol": "RatesViewController.viewWillAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SettingsCitiesViewController.swift",
+      "line": 34,
+      "symbol": "SettingsCitiesViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SettingsCitiesViewController.swift",
+      "line": 64,
+      "symbol": "SettingsCitiesViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SettingsLanguagesViewController.swift",
+      "line": 35,
+      "symbol": "SettingsLanguagesViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SettingsLanguagesViewController.swift",
+      "line": 74,
+      "symbol": "SettingsLanguagesViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SettingsViewController.swift",
+      "line": 35,
+      "symbol": "SettingsViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SettingsViewController.swift",
+      "line": 56,
+      "symbol": "SettingsViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SettingsViewController.swift",
+      "line": 87,
+      "symbol": "SettingsViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2129,38 +5097,108 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SupportViewController.swift",
+      "line": 33,
+      "symbol": "SupportViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/SupportViewController.swift",
+      "line": 47,
+      "symbol": "SupportViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/TutorialViewController.swift",
+      "line": 44,
+      "symbol": "TutorialViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/TutorialViewController.swift",
+      "line": 56,
+      "symbol": "TutorialViewController.viewWillDisappear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/TutorialViewController.swift",
+      "line": 63,
+      "symbol": "TutorialViewController.prefersStatusBarHidden",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/TutorialViewController.swift",
+      "line": 67,
+      "symbol": "TutorialViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/UserAreaViewController.swift",
+      "line": 30,
+      "symbol": "UserAreaViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/UserAreaViewController.swift",
+      "line": 72,
+      "symbol": "UserAreaViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ViewControllerCommons.swift",
-      "line": 119,
+      "line": 118,
       "symbol": "BaseViewController",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ViewControllerCommons.swift",
-      "line": 120,
+      "line": 119,
       "symbol": "BaseViewController.prefersStatusBarHidden",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ViewControllerCommons.swift",
-      "line": 124,
+      "line": 123,
       "symbol": "BaseViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ViewControllerCommons.swift",
-      "line": 129,
+      "line": 128,
       "symbol": "BaseViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/ViewControllerCommons.swift",
-      "line": 176,
+      "line": 175,
       "symbol": "UIViewController.disposeBag",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/WebViewController.swift",
+      "line": 26,
+      "symbol": "WebViewController.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewControllers/WebViewController.swift",
+      "line": 38,
+      "symbol": "WebViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2193,128 +5231,184 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
-      "line": 15,
-      "symbol": "CarBookingPopupInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
-      "line": 16,
+      "line": 19,
       "symbol": "CarBookingPopupInput.open",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
-      "line": 17,
+      "line": 20,
       "symbol": "CarBookingPopupInput.delete",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
-      "line": 20,
-      "symbol": "CarBookingPopupOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
-      "line": 21,
+      "line": 27,
       "symbol": "CarBookingPopupOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
-      "line": 22,
+      "line": 28,
       "symbol": "CarBookingPopupOutput.open",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
-      "line": 23,
+      "line": 29,
       "symbol": "CarBookingPopupOutput.delete",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 15,
-      "symbol": "CarPopupInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarBookingPopupViewModel.swift",
+      "line": 59,
+      "symbol": "CarBookingPopupViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 16,
+      "line": 19,
       "symbol": "CarPopupInput.open",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 17,
+      "line": 20,
       "symbol": "CarPopupInput.book",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 18,
+      "line": 21,
       "symbol": "CarPopupInput.detail",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 19,
+      "line": 22,
       "symbol": "CarPopupInput.car",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 22,
-      "symbol": "CarPopupOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 23,
+      "line": 29,
       "symbol": "CarPopupOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 24,
+      "line": 30,
       "symbol": "CarPopupOutput.open",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 25,
+      "line": 31,
       "symbol": "CarPopupOutput.book",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 26,
+      "line": 32,
       "symbol": "CarPopupOutput.detail",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
-      "line": 27,
+      "line": 33,
       "symbol": "CarPopupOutput.car",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
+      "line": 40,
+      "symbol": "CarPopupType.car",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
+      "line": 41,
+      "symbol": "CarPopupType.feed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarPopupViewModel.swift",
+      "line": 91,
+      "symbol": "CarPopupViewModel.init(type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarTripItemViewModel.swift",
+      "line": 25,
+      "symbol": "CarTripItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarTripsViewModel.swift",
+      "line": 18,
+      "symbol": "CarTripSelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarTripsViewModel.swift",
+      "line": 19,
+      "symbol": "CarTripSelectionInput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarTripsViewModel.swift",
+      "line": 26,
+      "symbol": "CarTripSelectionOutput.reload",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarTripsViewModel.swift",
+      "line": 27,
+      "symbol": "CarTripSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarTripsViewModel.swift",
+      "line": 48,
+      "symbol": "CarTripsViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CarTripsViewModel.swift",
+      "line": 57,
+      "symbol": "CarTripsViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/CategoryItemViewModel.swift",
+      "line": 34,
+      "symbol": "CategoryItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2431,30 +5525,149 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FaqViewModel.swift",
-      "line": 14,
-      "symbol": "FaqInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FaqViewModel.swift",
-      "line": 15,
+      "line": 18,
       "symbol": "FaqInput.tutorial",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FaqViewModel.swift",
-      "line": 18,
-      "symbol": "FaqOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "line": 25,
+      "symbol": "FaqOutput.tutorial",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FaqViewModel.swift",
+      "line": 44,
+      "symbol": "FaqViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouriteItemViewModel.swift",
+      "line": 31,
+      "symbol": "FavouriteItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouritesViewModel.swift",
       "line": 19,
-      "symbol": "FaqOutput.tutorial",
+      "symbol": "FavouritesSelectionInput.newFavourite",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouritesViewModel.swift",
+      "line": 20,
+      "symbol": "FavouritesSelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouritesViewModel.swift",
+      "line": 27,
+      "symbol": "FavouritesSelectionOutput.newFavourite",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouritesViewModel.swift",
+      "line": 28,
+      "symbol": "FavouritesSelectionOutput.viewModel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouritesViewModel.swift",
+      "line": 29,
+      "symbol": "FavouritesSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouritesViewModel.swift",
+      "line": 51,
+      "symbol": "FavouritesViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FavouritesViewModel.swift",
+      "line": 60,
+      "symbol": "FavouritesViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedDetailViewModel.swift",
+      "line": 42,
+      "symbol": "FeedDetailViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedItemViewModel.swift",
+      "line": 41,
+      "symbol": "FeedItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 19,
+      "symbol": "FeedsSelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 20,
+      "symbol": "FeedsSelectionInput.aroundMe",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 27,
+      "symbol": "FeedsSelectionOutput.viewModel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 28,
+      "symbol": "FeedsSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 35,
+      "symbol": "FeedSections.feed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 36,
+      "symbol": "FeedSections.categories",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 61,
+      "symbol": "FeedsViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/FeedsViewModel.swift",
+      "line": 73,
+      "symbol": "FeedsViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2529,91 +5742,84 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/InviteFriendViewModel.swift",
-      "line": 14,
-      "symbol": "InviteFriendInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/InviteFriendViewModel.swift",
-      "line": 15,
+      "line": 18,
       "symbol": "InviteFriendInput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/InviteFriendViewModel.swift",
-      "line": 18,
-      "symbol": "InviteFriendOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/InviteFriendViewModel.swift",
-      "line": 19,
+      "line": 25,
       "symbol": "InviteFriendOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/InviteFriendViewModel.swift",
+      "line": 39,
+      "symbol": "InviteFriendViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 20,
+      "line": 21,
       "symbol": "LoginSelectionInput.login",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 21,
+      "line": 22,
       "symbol": "LoginSelectionInput.forgotPassword",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 22,
+      "line": 23,
       "symbol": "LoginSelectionInput.register",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 23,
+      "line": 24,
       "symbol": "LoginSelectionInput.continueAsNotLogged",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 30,
+      "line": 31,
       "symbol": "LoginSelectionOutput.login",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 31,
+      "line": 32,
       "symbol": "LoginSelectionOutput.forgotPassword",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 32,
+      "line": 33,
       "symbol": "LoginSelectionOutput.register",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 33,
+      "line": 34,
       "symbol": "LoginSelectionOutput.continueAsNotLogged",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/LoginViewModel.swift",
-      "line": 61,
+      "line": 62,
       "symbol": "LoginViewModel.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2641,8 +5847,15 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MapViewModel.swift",
-      "line": 72,
+      "line": 73,
       "symbol": "MapViewModel.init(type:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/MapViewModel.swift",
+      "line": 493,
+      "symbol": "MapViewModel.getRoute(destination:completionClosure:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2766,9 +5979,380 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NewFavouriteViewModel.swift",
+      "line": 18,
+      "symbol": "NewFavouriteSelectionInput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NewFavouriteViewModel.swift",
+      "line": 25,
+      "symbol": "NewFavouriteSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NewFavouriteViewModel.swift",
+      "line": 39,
+      "symbol": "NewFavouriteViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoCarTripsViewModel.swift",
+      "line": 18,
+      "symbol": "NoCarTripsSelectionInput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoCarTripsViewModel.swift",
+      "line": 25,
+      "symbol": "NoCarTripsSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoCarTripsViewModel.swift",
+      "line": 42,
+      "symbol": "NoCarTripsViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFavouritesViewModel.swift",
+      "line": 18,
+      "symbol": "NoFavouritesSelectionInput.newFavourite",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFavouritesViewModel.swift",
+      "line": 19,
+      "symbol": "NoFavouritesSelectionInput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFavouritesViewModel.swift",
+      "line": 26,
+      "symbol": "NoFavouritesSelectionOutput.newFavourite",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFavouritesViewModel.swift",
+      "line": 27,
+      "symbol": "NoFavouritesSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFavouritesViewModel.swift",
+      "line": 46,
+      "symbol": "NoFavouritesViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFeedsViewModel.swift",
+      "line": 18,
+      "symbol": "NoFeedsSelectionInput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFeedsViewModel.swift",
+      "line": 25,
+      "symbol": "NoFeedsSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/NoFeedsViewModel.swift",
+      "line": 48,
+      "symbol": "NoFeedsViewModel.init(category:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/OnBoardViewModel.swift",
       "line": 21,
       "symbol": "OnBoardViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/ProfileViewModel.swift",
+      "line": 20,
+      "symbol": "ProfileViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/RatesViewModel.swift",
+      "line": 19,
+      "symbol": "RatesInput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/RatesViewModel.swift",
+      "line": 26,
+      "symbol": "RatesOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/RatesViewModel.swift",
+      "line": 47,
+      "symbol": "RatesViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarItemViewModel.swift",
+      "line": 18,
+      "symbol": "SearchBarItemViewModel.model",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarItemViewModel.swift",
+      "line": 19,
+      "symbol": "SearchBarItemViewModel.itemIdentifier",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarItemViewModel.swift",
+      "line": 27,
+      "symbol": "SearchBarItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarItemViewModel.swift",
+      "line": 61,
+      "symbol": "SearchBarItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarItemViewModel.swift",
+      "line": 67,
+      "symbol": "SearchBarItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 21,
+      "symbol": "SearchBarSelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 22,
+      "symbol": "SearchBarSelectionInput.dictated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 23,
+      "symbol": "SearchBarSelectionInput.reload",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 30,
+      "symbol": "SearchBarSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 31,
+      "symbol": "SearchBarSelectionOutput.dictated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 32,
+      "symbol": "SearchBarSelectionOutput.reload",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 33,
+      "symbol": "SearchBarSelectionOutput.address",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 34,
+      "symbol": "SearchBarSelectionOutput.car",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 61,
+      "symbol": "SearchBarViewModel.speechController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 69,
+      "symbol": "SearchBarViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SearchBarViewModel.swift",
+      "line": 84,
+      "symbol": "SearchBarViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingItemViewModel.swift",
+      "line": 28,
+      "symbol": "SettingItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsCitiesViewModel.swift",
+      "line": 19,
+      "symbol": "SettingsCitySelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsCitiesViewModel.swift",
+      "line": 26,
+      "symbol": "SettingsCitySelectionOutput.model",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsCitiesViewModel.swift",
+      "line": 27,
+      "symbol": "SettingsCitySelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsCitiesViewModel.swift",
+      "line": 48,
+      "symbol": "SettingsCitiesViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsCitiesViewModel.swift",
+      "line": 57,
+      "symbol": "SettingsCitiesViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsCityItemViewModel.swift",
+      "line": 30,
+      "symbol": "SettingsCityItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsLanguageItemViewModel.swift",
+      "line": 28,
+      "symbol": "SettingsLanguageItemViewModel.init(model:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsLanguagesViewModel.swift",
+      "line": 19,
+      "symbol": "SettingsLanguageSelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsLanguagesViewModel.swift",
+      "line": 26,
+      "symbol": "SettingsLanguageSelectionOutput.english",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsLanguagesViewModel.swift",
+      "line": 27,
+      "symbol": "SettingsLanguageSelectionOutput.italian",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsLanguagesViewModel.swift",
+      "line": 28,
+      "symbol": "SettingsLanguageSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsLanguagesViewModel.swift",
+      "line": 49,
+      "symbol": "SettingsLanguagesViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsLanguagesViewModel.swift",
+      "line": 58,
+      "symbol": "SettingsLanguagesViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsViewModel.swift",
+      "line": 19,
+      "symbol": "SettingSelectionInput.item",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsViewModel.swift",
+      "line": 26,
+      "symbol": "SettingSelectionOutput.viewModel",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsViewModel.swift",
+      "line": 27,
+      "symbol": "SettingSelectionOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsViewModel.swift",
+      "line": 48,
+      "symbol": "SettingsViewModel.itemViewModel(fromModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SettingsViewModel.swift",
+      "line": 57,
+      "symbol": "SettingsViewModel.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2802,58 +6386,135 @@
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SupportViewModel.swift",
-      "line": 14,
-      "symbol": "SupportInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SupportViewModel.swift",
-      "line": 15,
+      "line": 18,
       "symbol": "SupportInput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SupportViewModel.swift",
-      "line": 18,
-      "symbol": "SupportOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SupportViewModel.swift",
-      "line": 19,
+      "line": 25,
       "symbol": "SupportOutput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/TutorialViewModel.swift",
-      "line": 15,
-      "symbol": "TutorialInput",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/SupportViewModel.swift",
+      "line": 39,
+      "symbol": "SupportViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/TutorialViewModel.swift",
-      "line": 16,
+      "line": 19,
       "symbol": "TutorialInput.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/TutorialViewModel.swift",
-      "line": 19,
-      "symbol": "TutorialOutput",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "line": 26,
+      "symbol": "TutorialOutput.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/TutorialViewModel.swift",
-      "line": 20,
-      "symbol": "TutorialOutput.empty",
+      "line": 50,
+      "symbol": "TutorialViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/UserAreaViewModel.swift",
+      "line": 21,
+      "symbol": "UserAreaViewModel.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/WebViewModel.swift",
+      "line": 18,
+      "symbol": "WebType.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/WebViewModel.swift",
+      "line": 19,
+      "symbol": "WebType.forgotPassword",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/WebViewModel.swift",
+      "line": 20,
+      "symbol": "WebType.signup",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/ViewModels/WebViewModel.swift",
+      "line": 34,
+      "symbol": "WebViewModel.init(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CarBookingPopupView.swift",
+      "line": 40,
+      "symbol": "CarBookingPopupView.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CarBookingPopupView.swift",
+      "line": 54,
+      "symbol": "CarBookingPopupView.init(frame:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CarBookingPopupView.swift",
+      "line": 58,
+      "symbol": "CarBookingPopupView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CarPopupView.swift",
+      "line": 57,
+      "symbol": "CarPopupView.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CarPopupView.swift",
+      "line": 100,
+      "symbol": "CarPopupView.init(frame:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CarPopupView.swift",
+      "line": 104,
+      "symbol": "CarPopupView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CarTripItemCollectionViewCell.swift",
+      "line": 33,
+      "symbol": "CarTripItemCollectionViewCell.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CategoryItemCollectionViewCell.swift",
+      "line": 33,
+      "symbol": "CategoryItemCollectionViewCell.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -2874,6 +6535,20 @@
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/CircularMenuView.swift",
       "line": 61,
       "symbol": "CircularMenuView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/FavouriteItemCollectionViewCell.swift",
+      "line": 32,
+      "symbol": "FavouriteItemCollectionViewCell.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/FeedItemCollectionViewCell.swift",
+      "line": 36,
+      "symbol": "FeedItemCollectionViewCell.bind(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2909,6 +6584,34 @@
       "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/NavigationBarView.swift",
       "line": 44,
       "symbol": "NavigationBarView.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/SearchBarCollectionViewCell.swift",
+      "line": 27,
+      "symbol": "SearchBarCollectionViewCell.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/SettingItemCollectionViewCell.swift",
+      "line": 27,
+      "symbol": "SettingItemCollectionViewCell.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/SettingsCityItemCollectionViewCell.swift",
+      "line": 29,
+      "symbol": "SettingsCityItemCollectionViewCell.bind(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/elenaporcelli/SVN/Sharengo iOS/Sharengo/Classes/Views/SettingsLanguageItemCollectionViewCell.swift",
+      "line": 26,
+      "symbol": "SettingsLanguageItemCollectionViewCell.bind(to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
