@@ -164,13 +164,14 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
 }
 
 - (UIImage *)iconForText:(NSString *)text withBucketIndex:(NSUInteger)bucketIndex identifier:(int)identifier type:(int)type {
+    /*
     if (type == 2) {
         UIImage *icon = [_iconCache objectForKey:[NSString stringWithFormat:@"%@-%d-%d", text, identifier, type]];
         if (icon != nil) {
             return icon;
         }
         UIColor *mainColor = UIColorFromHEX(0x61b15e);
-        UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+        UIFont *font = [UIFont fontWithName:@"Poppins-Bold" size:15];
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentCenter;
         NSDictionary *attributes = @{
@@ -210,7 +211,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
             return icon;
         }
         UIColor *mainColor = UIColorFromHEX(0x61b15e);
-        UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+        UIFont *font = [UIFont fontWithName:@"Poppins-Bold" size:15];
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentCenter;
         NSDictionary *attributes = @{
@@ -245,6 +246,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
         [_iconCache setObject:animatedImage forKey:[NSString stringWithFormat:@"%@-%d-%d", text, identifier, type]];
         return animatedImage;
     }
+    */
     
     UIImage *icon = [_iconCache objectForKey:[NSString stringWithFormat:@"%@-%d", text, identifier]];
     if (icon != nil) {
@@ -262,7 +264,7 @@ static NSArray<UIColor *> *kGMUBucketBackgroundColors;
         secondaryColor = UIColorFromHEX(0x61b15e);
     }
     
-    UIFont *font = [UIFont fontWithName:@"Poppins" size:15];
+    UIFont *font = [UIFont fontWithName:@"Poppins-Bold" size:15];
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *attributes = @{

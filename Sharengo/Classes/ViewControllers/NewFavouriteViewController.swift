@@ -102,7 +102,6 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         self.btn_saveFavourite.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_newFavouriteSaveFavourite".localized())
         self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value, Color.alertButton.value), title: "btn_newFavouriteUndo".localized())
@@ -124,14 +123,12 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
             self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
             self.view.constraint(withIdentifier: "topTxtName", searchInSubviews: true)?.constant = 5
             self.view.constraint(withIdentifier: "topTxtAddress", searchInSubviews: true)?.constant = 5
-        case 4.7:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-            self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        case 5.5:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
         self.txt_address.placeHolderText = "txt_newFavouriteAddressPlaceholder".localized()
         self.txt_address.style = CustomTextInputStyle1()
@@ -147,7 +144,7 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -185,6 +182,15 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
             [unowned self] notification in
             self.view_searchBar.updateInterface()
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

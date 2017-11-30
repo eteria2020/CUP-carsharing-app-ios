@@ -7,9 +7,13 @@
 
 import UIKit
 
+/**
+ String utilities like md5, decode of html entities, ...
+ */
 extension String
 {
-    var md5: String? {
+    /// MD5 of a string
+    public var md5: String? {
         let length = Int(CC_MD5_DIGEST_LENGTH)
         
         guard let data = self.data(using: String.Encoding.utf8) else { return nil }
@@ -23,13 +27,15 @@ extension String
         return (0..<length).map { String(format: "%02x", hash[$0]) }.joined()
     }
     
-    func htmlDecoded()->String {
+    /**
+     This method decode html entities present in a string (https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references)
+     */
+    public func htmlDecoded() -> String {
         
         guard (self != "") else { return self }
         
         var newStr = self
-        // from https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-        let entities = [ //a dictionary of HTM/XML entities.
+        let entities = [
             "&quot;"    : "\"",
             "&amp;"     : "&",
             "&apos;"    : "'",

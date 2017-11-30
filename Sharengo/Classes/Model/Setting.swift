@@ -10,7 +10,7 @@ import Boomerang
 import RxSwift
 
 /**
- The Setting  model is used to represent singular setting.
+ The Setting model is used to represent singular setting
  */
 public class Setting: ModelType {
     /// Title

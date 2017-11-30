@@ -32,7 +32,7 @@ public enum MenuSelectionOutput : SelectionOutput {
 /**
  The Menu model provides data related to display content on the menu
  */
-public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
+public class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
     /// ViewModel variable used to save data
     public var dataHolder: ListDataHolderType = ListDataHolder.empty
@@ -138,7 +138,16 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
         } else {
-            self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), KeychainSwift().get("UserFirstname")!)
+            if let firstname: String = KeychainSwift().get("UserFirstname") {
+                if KeychainSwift().get("UserGender") == "female" {
+                    self.welcome = String(format: "lbl_menuHeaderTitleLoggedF".localized(), firstname)
+                }
+                else {
+                    self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), firstname)
+                }
+            } else {
+                self.welcome = String(format: "lbl_menuHeaderTitleLoggedWithoutFirstName".localized())
+            }
             self.userIconIsHidden = false
             let menuItem1 = MenuItem(title: "lbl_menuProfile", icon: "ic_profilo", viewModel: ViewModelFactory.userArea())
             let menuItem2 = MenuItem(title: "lbl_menuSearchCars", icon: "ic_prenota", viewModel: ViewModelFactory.map(type: .searchCars))

@@ -11,46 +11,46 @@ import RxSwift
 import Gloss
 
 /**
- The Favourite Feed model is used to represent user's favourite feeds.
+ The Favourite Feed model is used to represent user's favourite feeds
  */
 public class FavouriteFeed: NSObject, NSCoding {
-    /// Unique identifier
+    /// Unique identifier of feed
     public var identifier: String?
-    /// Category's title
+    /// Feed cateegory title
     public var categoryTitle: String?
-    /// Title
+    /// Feed title
     public var title: String?
-    /// Subtitle
+    /// Feed subtitle
     public var subtitle: String?
-    /// Description
+    /// Feed description
     public var ddescription: String?
-    /// Icon
+    /// Feed icon
     public var icon: String?
-    /// Claim
+    /// Feed claim
     public var claim: String?
-    /// Date
+    /// Feed date
     public var date: String?
-    /// Advantage
+    /// Feed advantage
     public var advantage: String?
-    /// Color
+    /// Feed color
     public var color: String?
-    /// Image
+    /// Feed image
     public var image: String?
-    /// Location
+    /// Feed location
     public var location: String?
-    /// Address
+    /// Feed address
     public var address: String?
-    /// City
+    /// Feed city
     public var city: String?
-    /// Launch Title
+    /// Feed launch title
     public var launchTitle: String?
     /// Boolean that determine if color has to be default color or not
     public var forceColor: Bool = false
-    /// Order Date
+    /// Feed order date
     public var orderDate: Date = Date()
-    /// Feed Location
+    /// Feed location
     public var feedLocation: CLLocation?
-    /// Marker
+    /// Feed marker
     public var marker: String?
     /// Boolean that determine if is sponsored or not
     public var sponsored: Bool = false
@@ -80,6 +80,9 @@ public class FavouriteFeed: NSObject, NSCoding {
         self.sponsored = sponsored
     }
     
+    /**
+     This method is used to convert this object from NSCoder
+     */
     public required init?(coder aDecoder: NSCoder) {
         if let identifier = aDecoder.decodeObject(forKey: "identifier") as? String {
             self.identifier = identifier
@@ -139,7 +142,9 @@ public class FavouriteFeed: NSObject, NSCoding {
 
     // MARK: - Coding methods
     
-    /// Used to convert this object as NSCoder
+    /**
+     This method is used to convert this object as NSCoder
+     */
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.identifier, forKey: "identifier")
         aCoder.encode(self.categoryTitle, forKey: "categoryTitle")
@@ -166,54 +171,54 @@ public class FavouriteFeed: NSObject, NSCoding {
     // MARK: - Feed methods
     
     /**
-     This method return Feed Object
+     This method return feed object from favourite feed
      */
-    func getFeed() -> Feed {
+    public func getFeed() -> Feed {
         return Feed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, description: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }
 }
 
 /**
- The  Feed model is used to represent a singular feed.
+ The Feed model is used to represent a singular feed
 */
 public class Feed: ModelType, Decodable {
-    /// Unique identifier
+    /// Unique identifier of feed
     public var identifier: String?
-    /// Category's title
+    /// Feed category title
     public var categoryTitle: String?
-    /// Title
+    /// Feed title
     public var title: String?
-    /// Subtitle
+    /// Feed subtitle
     public var subtitle: String?
-    /// Description
+    /// Feed description
     public var description: String?
-    /// Icon
+    /// Feed icon
     public var icon: String?
-    /// Claim
+    /// Feed claim
     public var claim: String?
-    /// Date
+    /// Feed date
     public var date: String?
-    /// Order Date
+    /// Feed order Date
     public var orderDate: Date = Date()
-    /// Advantage
+    /// Feed advantage
     public var advantage: String?
-    /// Color
+    /// Feed color
     public var color: String?
-    /// Image
+    /// Feed image
     public var image: String?
-    /// Location
+    /// Feed location
     public var location: String?
-    /// Address
+    /// Feed address
     public var address: String?
-    /// City
+    /// Feed city
     public var city: String?
-    /// Launch Title
+    /// Feed launch title
     public var launchTitle: String?
     /// Boolean that determine if color has to be default color or not
     public var forceColor: Bool = false
     /// Feed Location
     public var feedLocation: CLLocation?
-    /// Marker
+    /// Marker used in map
     public var marker: String?
     /// Boolean that determine if is sponsored or not
     public var sponsored: Bool = false
@@ -292,12 +297,12 @@ public class Feed: ModelType, Decodable {
         self.launchTitle = self.launchTitle?.htmlDecoded()
     }
     
-    // MARK: - History methods
+    // MARK: - Favourites methods
     
     /**
-     This method get Favourite Feed connected to Feed
+     This method get favourite feed connected to feed
      */
-    func getFavoriteFeed() -> FavouriteFeed {
+    public func getFavoriteFeed() -> FavouriteFeed {
         return FavouriteFeed(identifier: self.identifier, categoryTitle: self.categoryTitle, title: self.title, subtitle: self.subtitle, ddescription: self.description, icon: self.icon, claim: self.claim, date: self.date, advantage: self.advantage, color: self.color, forceColor: self.forceColor, image: self.image, location: self.location, address: self.address, city: self.city, launchTitle: self.launchTitle, orderDate: self.orderDate, feedLocation: self.feedLocation, marker: self.marker, sponsored: self.sponsored)
     }
 }

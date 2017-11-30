@@ -11,23 +11,34 @@ import RxSwift
 import Boomerang
 import Action
 
-enum NoCarTripsSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum NoCarTripsSelectionInput: SelectionInput {
     case empty
 }
 
-enum NoCarTripsSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum NoCarTripsSelectionOutput: SelectionOutput {
     case empty
 }
 
-final class NoCarTripsViewModel: ViewModelType {
-    lazy var selection:Action<NoFavouritesSelectionInput,NoFavouritesSelectionOutput> = Action { input in
+/**
+ The NoCarTripsViewModel provides data related to display content on no car trips screen
+ */
+public class NoCarTripsViewModel: ViewModelType {
+    /// Selection variable
+    public lazy var selection:Action<NoFavouritesSelectionInput,NoFavouritesSelectionOutput> = Action { input in
         switch input {
         default:
             return .just(.empty)
         }
     }
 
-    init() {
-
-    }
+    // MARK: Init methods
+    
+    public required init()
+    { }
 }

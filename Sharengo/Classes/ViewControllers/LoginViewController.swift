@@ -51,7 +51,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
         self.btn_continueAsNotLogged.rx.bind(to: viewModel.selection, input: .continueAsNotLogged)
         viewModel.loginExecuted.asObservable()
             .subscribe(onNext: {[weak self] (loginExecuted) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     self?.hideLoader(completionClosure: { () in
                         if loginExecuted {
                             if self != nil {
@@ -159,7 +159,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

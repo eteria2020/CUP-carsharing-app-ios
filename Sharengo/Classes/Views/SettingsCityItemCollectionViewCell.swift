@@ -38,6 +38,8 @@ public class SettingsCityItemCollectionViewCell: UICollectionViewCell, ViewModel
         self.view_icon.layer.borderWidth = 1
         self.view_icon.layer.borderColor = Color.settingItemLabel.value.cgColor
         self.lbl_title.styledText = viewModel.title
+        // Cities from web
+        /*
         if let icon = viewModel.icon,
             let url = URL(string: icon)
         {
@@ -47,6 +49,12 @@ public class SettingsCityItemCollectionViewCell: UICollectionViewCell, ViewModel
                     self.img_icon.image = image
                 }
             } catch {
+            }
+        }
+        */
+        if let icon = viewModel.icon {
+            if let image = UIImage(named: icon) {
+                self.img_icon.image = image
             }
         }
         if viewModel.selected == true

@@ -1,0 +1,73 @@
+{
+  "status": true,
+  "data": [
+    {
+      "tid": "5",
+      "name": "Milano",
+      "media": {
+        "images": {
+          "icon": {
+            "uri": "icona_trasparente-milano"
+          }
+        }
+      },
+      "informations": {
+        "address": {
+          "lat": "45.464145",
+          "lng": "9.190245"
+        }
+      }
+    },
+    {
+      "tid": "8",
+      "name": "Modena",
+      "media": {
+        "images": {
+          "icon": {
+            "uri": "icona_trasparente-modena"
+          }
+        }
+      },
+      "informations": {
+        "address": {
+          "lat": "44.646429",
+          "lng": "10.925301"
+        }
+      }
+    },
+    {
+      "tid": "7",
+      "name": "Roma",
+      "media": {
+        "images": {
+          "icon": {
+            "uri": "icona_trasparente-roma"
+          }
+        }
+      },
+      "informations": {
+        "address": {
+          "lat": "41.899508",
+          "lng": "12.486770"
+        }
+      }
+    },
+    {
+      "tid": "6",
+      "name": "Firenze",
+      "media": {
+        "images": {
+          "icon": {
+            "uri": "icona_trasparente-firenze"
+          }
+        }
+      },
+      "informations": {
+        "address": {
+          "lat": "43.772875",
+          "lng": "11.257487"
+        }
+      }
+    }
+  ]
+}

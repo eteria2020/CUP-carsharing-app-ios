@@ -10,23 +10,23 @@ import RxSwift
 import Gloss
 
 /**
- The Response model is used to convert api response in an object that have useful data from server like code
+ The Response model is used to convert api response in an object that has useful data from server
 */
 public class Response: ModelType, Decodable {
-    /// HTTP Status code of response (200, 404, ...)
+    /// Status code of response (200, 404, ...)
     public var status: Int?
-    /// Boolean that determine if status is present or not
+    /// Status code used from publisheres api
     public var status_bool: Bool?
-    /// Description of response
-    public var reason: String?
-    /// Generic code
-    var code: String?
     /// Message that describe how response is gone
-    var msg: String?
+    public var code: String?
+    /// Message that describe how response is gone
+    public var msg: String?
     /// Content of data as array
-    var array_data: [JSON]?
+    public var array_data: [JSON]?
     /// Content of data as dictionary
-    var dic_data: JSON?
+    public var dic_data: JSON?
+    /// Content of reason as string
+    public var reason: String?
     
     // MARK: - Init methods
     
@@ -36,10 +36,10 @@ public class Response: ModelType, Decodable {
     public required init?(json: JSON) {
         self.status = "status" <~~ json
         self.status_bool = "status" <~~ json
-        self.reason = "reason" <~~ json
         self.code = "code" <~~ json
         self.msg = "msg" <~~ json
         self.array_data =  "data" <~~ json
         self.dic_data = "data" <~~ json
+        self.reason = "reason" <~~ json
     }
 }

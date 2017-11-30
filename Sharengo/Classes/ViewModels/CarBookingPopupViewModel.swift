@@ -12,32 +12,51 @@ import Boomerang
 import Action
 import KeychainSwift
 
+/**
+ Enum that specifies selection input
+ */
 public enum CarBookingPopupInput: SelectionInput {
     case open
     case delete
 }
 
+/** 
+ Enum that specifies selection output
+ */
 public enum CarBookingPopupOutput: SelectionInput {
     case empty
     case open(Car)
     case delete
 }
 
-final class CarBookingPopupViewModel: ViewModelTypeSelectable {
-    var carBooking: CarBooking?
-    var carTrip: CarTrip?
-    var pin: String = ""
-    var time: Variable<String> = Variable("")
-    var hideButtons: Bool = false
-    var info: Variable<String?> = Variable(nil)
-    var timeTimer: Timer?
-    var carBookingPopupView: CarBookingPopupView?
-    
+/**
+ The CarBookingPopupViewModel provides data related to display car booking data or car trip data in CarBookingPopupView
+ */
+public class CarBookingPopupViewModel: ViewModelTypeSelectable {
+    /// Variable used to save car booking
+    public var carBooking: CarBooking?
+    /// Variable used to save car trip
+    public var carTrip: CarTrip?
+    /// User pin
+    public var pin: String = ""
+    /// Time that has to be shown in popup
+    public var time: Variable<String> = Variable("")
+    /// Timer that updates time variable
+    public var timeTimer: Timer?
+    /// Variable used to save if buttons have to be hidden or not
+    public var hideButtons: Bool = false
+    /// Info that has to be shown in popup
+    public var info: Variable<String?> = Variable(nil)
+    /// Reference of CarBookingPopupView
+    public var carBookingPopupView: CarBookingPopupView?
+    /// Selection variable
     public var selection: Action<CarBookingPopupInput, CarBookingPopupOutput> = Action { _ in
         return .just(.empty)
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public required init() {
         self.selection = Action { input in
             switch input {
             case .open:
@@ -54,7 +73,13 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         self.timeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
     }
     
-    func updateWithCarBooking(carBooking: CarBooking) {
+    // MARK: - Interface methods
+    
+    /**
+     This method updates interface with a car booking object
+     - Parameter carBooking: car booking object
+     */
+    public func updateWithCarBooking(carBooking: CarBooking) {
         self.carBooking = carBooking
         self.updateData()
         if let car = self.carBooking?.car.value {
@@ -64,25 +89,36 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
                 } else {
                     self.info.value = String(format: "lbl_carBookingPopupInfoPlaceholder".localized(), car.plate ?? "")
-                    car.getAddress()
-                    car.address.asObservable()
-                        .subscribe(onNext: {[weak self] (address) in
-                            DispatchQueue.main.async {
-                                if address != nil {
-                                    self?.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address!)
-                                    UserDefaults.standard.set(address!, forKey: key)
-                                }
-                            }
-                        }).addDisposableTo(disposeBag)
                 }
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                    if let placemark = placemarks?.last {
+                        if let thoroughfare = placemark.thoroughfare, let subthoroughfare = placemark.subThoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare) \(subthoroughfare), \(locality)"
+                            self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
+                            UserDefaults.standard.set(address, forKey: key)
+                            UserDefaults.standard.set(address, forKey: key)
+                        } else if let thoroughfare = placemark.thoroughfare, let locality = placemark.locality {
+                            let address = "\(thoroughfare), \(locality)"
+                            self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
+                            UserDefaults.standard.set(address, forKey: key)
+                        }
+                    }
+                })
             }
             if car.opened {
                 self.hideButtons = true
+            } else {
+                self.hideButtons = false
             }
         }
     }
     
-    func updateWithCarTrip(carTrip: CarTrip) {
+    /**
+     This method updates interface with a car trip object
+     - Parameter carTrip: car trip object
+     */
+    public func updateWithCarTrip(carTrip: CarTrip) {
         self.carTrip = carTrip
         self.updateData()
         if let car = self.carTrip?.car.value {
@@ -99,7 +135,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 car.getAddress()
                 car.address.asObservable()
                     .subscribe(onNext: {[weak self] (address) in
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async {[weak self]  in
                             if address != nil {
                                 self?.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address!)
                             }
@@ -112,18 +148,23 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         }
     }
     
-    func updateData() {
+    /**
+     This method updates interface
+     */
+    public func updateData() {
         if let pin = KeychainSwift().get("UserPin") {
             self.pin = String(format: "lbl_carBookingPopupPin".localized(), pin)
         } else {
             self.pin = ""
         }
         self.info.value = ""
-        self.hideButtons = false
         self.updateTime()
     }
     
-    @objc fileprivate func updateTime() {
+    /**
+     This method updates time variable depending on car booking or car trip object
+     */
+    @objc public func updateTime() {
         self.time.value = ""
         if self.carBooking != nil {
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
@@ -134,7 +175,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
         } else if self.carTrip != nil {
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
                 if let timer = self.carTrip?.timer {
-                    self.time.value = timer
+                    self.time.value = String(format: "lbl_carTripPopupTime".localized(), timer)
                 }
             }
         }

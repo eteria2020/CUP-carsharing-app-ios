@@ -13,18 +13,21 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class FaqViewController : BaseViewController, ViewModelBindable {
+/**
+ The FaqViewController class shows faqs to user
+ */
+public class FaqViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
     @IBOutlet fileprivate weak var webview_main: UIWebView!
     @IBOutlet fileprivate weak var btn_appTutorial: UIButton!
-    
-    var viewModel: FaqViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: FaqViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FaqViewModel else {
             return
         }
@@ -47,7 +50,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         
@@ -76,7 +79,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -90,24 +93,28 @@ class FaqViewController : BaseViewController, ViewModelBindable {
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
-        case 4.7:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-            self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        case 5.5:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
     }
 }
 
 extension FaqViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    /**
+     With this method app starts loading url
+     */
+    public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         return true
     }
-    
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+
+    /**
+     With this method app shows to user if there was an error loading url page
+     */
+    public func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
         let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
                                 okButtonHandler: { alertView in
                                     let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))

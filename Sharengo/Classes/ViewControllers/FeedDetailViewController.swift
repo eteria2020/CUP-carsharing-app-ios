@@ -16,7 +16,10 @@ import BonMot
 import pop
 import KeychainSwift
 
-class FeedDetailViewController : BaseViewController, ViewModelBindable {
+/**
+ The FeedDetail class shows feed content in a screen
+ */
+public class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -35,12 +38,12 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var img_favorite: UIImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
     @IBOutlet fileprivate weak var btn_favourite: UIButton!
-
-    var viewModel: FeedDetailViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: FeedDetailViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FeedDetailViewModel else {
             return
         }
@@ -81,10 +84,10 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
                 do {
                     let data = try Data(contentsOf: url)
                     if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.img_background.image = image
+                        DispatchQueue.main.async {[weak self]  in
+                            self?.img_background.image = image
                             UIView.animate(withDuration: 0.25, animations: {
-                                self.img_background.alpha = 1.0
+                                self?.img_background.alpha = 1.0
                            })
                         }
                     }
@@ -184,7 +187,7 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         
@@ -199,7 +202,7 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -228,14 +231,12 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
-        case 4.7:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-            self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        case 5.5:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
     }
 }

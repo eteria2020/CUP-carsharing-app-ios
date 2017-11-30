@@ -262,6 +262,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
                                         userData:cluster
                                      clusterIcon:icon
                                         animated:animated];
+      // CLUSTER
       marker.groundAnchor = CGPointMake(0.5, 0.5);
       [_markers addObject:marker];
   } else {
@@ -280,7 +281,12 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
                                           userData:item
                                        clusterIcon:item.marker
                                           animated:shouldAnimate];
-        marker.groundAnchor = CGPointMake(0.5, 0.5);
+        // PIN
+        if (item.type == 1) {
+            marker.groundAnchor = CGPointMake(0.5, 1);
+        } else {
+            marker.groundAnchor = CGPointMake(0.5, 0.65);
+        }
       [_markers addObject:marker];
       [_renderedClusterItems addObject:item];
     }
@@ -309,7 +315,6 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
   marker.userData = userData;
   if (clusterIcon != nil) {
     marker.icon = clusterIcon;
-    marker.groundAnchor = CGPointMake(0.5, 0.5);
   }
   marker.zIndex = _zIndex;
 

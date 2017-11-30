@@ -32,7 +32,7 @@ public enum FavouritesSelectionOutput: SelectionOutput {
 /**
  The Favourites model provides data related to display content on favourites in settings
  */
-public final class FavouritesViewModel: ListViewModelType, ViewModelTypeSelectable {
+public class FavouritesViewModel: ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
     /// ViewModel variable used to save data
     public var dataHolder: ListDataHolderType = ListDataHolder.empty

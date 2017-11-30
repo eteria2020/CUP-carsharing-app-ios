@@ -14,7 +14,10 @@ import SideMenu
 import DeviceKit
 import KeychainSwift
 
-class RatesViewController : BaseViewController, ViewModelBindable {
+/**
+ The Rates class shows Share'ngo rates
+ */
+public class RatesViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -25,12 +28,12 @@ class RatesViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_titleBonus: UILabel!
     @IBOutlet fileprivate weak var lbl_bonus: UILabel!
     @IBOutlet fileprivate weak var btn_signup: UIButton!
-
-    var viewModel: RatesViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: RatesViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? RatesViewModel else {
             return
         }
@@ -41,14 +44,14 @@ class RatesViewController : BaseViewController, ViewModelBindable {
         
         viewModel.ratesDescription.asObservable()
             .subscribe(onNext: {[weak self] (value) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     self?.lbl_rates.styledText = value
                 }
             }).addDisposableTo(disposeBag)
         
         viewModel.bonusDescription.asObservable()
             .subscribe(onNext: {[weak self] (value) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {[weak self]  in
                     self?.lbl_bonus.styledText = value
                 }
             }).addDisposableTo(disposeBag)
@@ -56,7 +59,7 @@ class RatesViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         
@@ -77,7 +80,7 @@ class RatesViewController : BaseViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -98,16 +101,14 @@ class RatesViewController : BaseViewController, ViewModelBindable {
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
-        case 4.7:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        case 5.5:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let viewModel = viewModel else {
             return

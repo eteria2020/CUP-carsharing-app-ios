@@ -1,57 +1,56 @@
 PODS:
-  - Action (3.0.0):
-    - RxCocoa (~> 3.4.0)
-    - RxSwift (~> 3.4.0)
-  - Alamofire (4.4.0)
+  - Action (3.2.0):
+    - RxCocoa (~> 3.4)
+    - RxSwift (~> 3.4)
+  - Alamofire (4.5.1)
   - BonMot (4.3.1)
   - Boomerang (0.9.3):
     - Action (~> 3.0)
     - RxSwift (~> 3)
-  - Crashlytics (3.8.4):
-    - Fabric (~> 1.6.3)
-  - DeviceKit (1.0.1)
-  - Fabric (1.6.11)
-  - Gifu (2.0.0)
+  - Crashlytics (3.9.0):
+    - Fabric (~> 1.7.0)
+  - DeviceKit (1.4.0)
+  - Fabric (1.7.0)
+  - Gifu (2.0.1)
   - Gloss (1.2.4)
   - GoogleMaps (2.4.0):
     - GoogleMaps/Maps (= 2.4.0)
   - GoogleMaps/Base (2.4.0)
   - GoogleMaps/Maps (2.4.0):
     - GoogleMaps/Base
-  - KeychainSwift (8.0.2)
-  - Localize-Swift (1.7.1)
-  - Moya (8.0.4):
-    - Moya/Core (= 8.0.4)
-  - Moya-Gloss/Core (2.0.1):
+  - KeychainSwift (9.0.2)
+  - Localize-Swift (2.0.0)
+  - Moya (8.0.5):
+    - Moya/Core (= 8.0.5)
+  - Moya-Gloss/Core (2.0.3):
     - Gloss (~> 1.2)
     - Moya (~> 8.0)
-  - Moya-Gloss/RxSwift (2.0.1):
+  - Moya-Gloss/RxSwift (2.0.3):
     - Moya-Gloss/Core
     - Moya/RxSwift
     - RxSwift (~> 3.4)
-  - Moya/Core (8.0.4):
+  - Moya/Core (8.0.5):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
-  - Moya/RxSwift (8.0.4):
+  - Moya/RxSwift (8.0.5):
     - Moya/Core
     - RxSwift (~> 3.0)
-  - pop (1.0.9)
-  - ReachabilitySwift (3)
-  - Result (3.2.2)
-  - RxCocoa (3.4.1):
-    - RxSwift (~> 3.4)
-  - RxGesture (1.0.1):
-    - RxCocoa (~> 3.4)
-    - RxSwift (~> 3.4)
-  - RxSwift (3.4.1)
-  - SideMenu (2.3.2)
+  - pop (1.0.10)
+  - ReachabilitySwift (4.1.0)
+  - Result (3.2.4)
+  - RxCocoa (3.6.1):
+    - RxSwift (~> 3.6)
+  - RxGesture (1.1.1):
+    - RxCocoa (~> 3.6)
+    - RxSwift (~> 3.6)
+  - RxSwift (3.6.1)
+  - SideMenu (3.1)
   - SnapKit (3.0.2)
   - SpinKit (1.2.0)
-  - StoryboardConstraint (0.1.0)
+  - StoryboardConstraint (0.1.1)
   - TPKeyboardAvoiding (1.3.1)
 
 DEPENDENCIES:
-  - Action (from `https://github.com/RxSwiftCommunity/Action.git`)
   - BonMot
   - Boomerang (from `https://github.com/synesthesia-it/Boomerang.git`, branch `v1`)
   - Crashlytics
@@ -67,7 +66,6 @@ DEPENDENCIES:
   - pop
   - ReachabilitySwift
   - RxGesture
-  - RxSwift
   - SideMenu
   - SnapKit (~> 3.0.2)
   - SpinKit
@@ -75,47 +73,42 @@ DEPENDENCIES:
   - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
-  Action:
-    :git: https://github.com/RxSwiftCommunity/Action.git
   Boomerang:
     :branch: v1
     :git: https://github.com/synesthesia-it/Boomerang.git
 
 CHECKOUT OPTIONS:
-  Action:
-    :commit: 0edd8bff0ce99edfe2083791d3651a548e397e65
-    :git: https://github.com/RxSwiftCommunity/Action.git
   Boomerang:
-    :commit: bca249b2d5a340e209b52b7401997e8e12f3fa3b
+    :commit: bb609f61cb9f72d7fe810204b9adc8cf5e313efa
     :git: https://github.com/synesthesia-it/Boomerang.git
 
 SPEC CHECKSUMS:
-  Action: fed388b9160ad787a58cb34b5064db6dbaae7e45
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Action: 991c9e175e04675028724868768aa08f22c85476
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
   Boomerang: eaa3faf38fea21672cc65df2c900dd4d474b4df0
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  DeviceKit: 461e525867e48e725f41699c1cab3100df1258ff
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  Gifu: 56a4d8f1092399159fa32662aa2232158b48d8ac
+  Crashlytics: 64aad5dd97249dd3ff94b979fea140144590cdd3
+  DeviceKit: fa74d97499660e88081718b16688e19217595dba
+  Fabric: e6be012366472553807dada21243c5ab8d904151
+  Gifu: 90bd26ea4d65f8322c4cca8cbb0ca1418f5457ad
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
-  KeychainSwift: 213db04dfe7244988e61f77c72a2afb2f775954a
-  Localize-Swift: 6cabc1087c0e910e77bfa87c2ed3f65c80c0b2df
-  Moya: a08bc060c7a44eee27447b239ed33a189b641e2b
-  Moya-Gloss: 59a96de0673f555e080afb381f8c4f932ae9fb1a
-  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  Result: 4edd39003fdccf281d418ee1b006571f70123250
-  RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
-  RxGesture: 1f770b247c69e8133fb8f4ef263571efd0ae91a1
-  RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
-  SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
+  KeychainSwift: 3ab1d428d0dbff59cd056f1d0bfc640b36c2b081
+  Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
+  Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
+  Moya-Gloss: d8e9adc9b055b2c4e495514b9755e57ee7aa320b
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
+  RxGesture: a297957f2940b50f7073d1e7ff0eaa3f87cd27a5
+  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  SideMenu: 0a71e53c9b64fcdccb78197bbb4de1b2a44a43f4
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
-  StoryboardConstraint: c75fb03870398a806f23068128b2970e4c6c6541
+  StoryboardConstraint: 5d4146b8df1edbca7f840d7f135ed9edf2caec9d
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: 3c55944de76f34b1925a245b1d911e327c511d2a
+PODFILE CHECKSUM: d0cd0520c16e475f12f9547c58f0f87ed3a71306
 
 COCOAPODS: 1.3.1

@@ -10,16 +10,23 @@ import Foundation
 import RxSwift
 import Boomerang
 import Action
-import ReachabilitySwift
+import Reachability
 import CoreLocation
 import KeychainSwift
 
-enum SearchBarSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum SearchBarSelectionInput: SelectionInput {
     case item(IndexPath)
     case dictated
     case reload
 }
-enum SearchBarSelectionOutput: SelectionOutput {
+
+/**
+ Enum that specifies selection output
+ */
+public enum SearchBarSelectionOutput: SelectionOutput {
     case empty
     case dictated
     case reload
@@ -27,27 +34,39 @@ enum SearchBarSelectionOutput: SelectionOutput {
     case car(Car)
 }
 
-final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
-    var dataHolder: ListDataHolderType = ListDataHolder.empty
-    var speechInProgress: Variable<Bool> = Variable(false)
-    var speechTranscription: Variable<String?> = Variable(nil)
-    var hideButton: Variable<Bool> = Variable(false)
-    var itemSelected: Bool = false
-    @available(iOS 10.0, *)
-    lazy var speechController = SpeechController()
-    
+/**
+ The SearchBarViewModel provides data related to display search data in SearchBarView
+ */
+public class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate let numberOfResults: Int = 15
-    var allCars: [Car] = []
-    var favourites: Bool = false
-    
-    lazy var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
+    /// ViewModel variable used to save data
+    public var dataHolder: ListDataHolderType = ListDataHolder.empty
+    /// Variable used to save if speech is in progress
+    public var speechInProgress: Variable<Bool> = Variable(false)
+    /// Variable used to save text speeched by user
+    public var speechTranscription: Variable<String?> = Variable(nil)
+    /// Variable used to save if buttons has to be hidden or not
+    public var hideButton: Variable<Bool> = Variable(false)
+    /// Variable used to save if item is selected
+    public var itemSelected: Bool = false
+    /// Cars array
+    public var allCars: [Car] = []
+    /// Variable used to check if search bar is showed in favourites screen or not
+    public var favourites: Bool = false
+    @available(iOS 10.0, *)
+    /// Instance of SpeechController
+    lazy public var speechController = SpeechController()
+    /// Selection variable
+    lazy public var selection:Action<SearchBarSelectionInput,SearchBarSelectionOutput> = Action { input in
         return .empty()
     }
     
-    func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
+    // MARK: - ViewModel methods
+    
+    public func itemViewModel(fromModel model: ModelType) -> ItemViewModelType? {
         if let item = model as? Address {
             return ViewModelFactory.searchBarItem(fromModel: item)
         }
@@ -60,7 +79,9 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         return nil
     }
     
-    init() {
+    // MARK: - Init methods
+    
+    public required init() {
         self.selection = Action { input in
             switch input {
             case .item(let indexPath):
@@ -124,20 +145,20 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                         self.speechController.requestSpeechAuthorization()
                         self.speechController.speechInProgress.asObservable()
                             .subscribe(onNext: {[weak self] (speechInProgress) in
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async {[weak self]  in
                                     self?.speechInProgress.value = speechInProgress
                                 }
                             }).addDisposableTo(self.disposeBag)
                         self.speechController.speechTranscription.asObservable()
                             .subscribe(onNext: {[weak self] (speechTransition) in
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async {[weak self]  in
                                     self?.itemSelected = false
                                     self?.speechTranscription.value = speechTransition ?? ""
                                 }
                             }).addDisposableTo(self.disposeBag)
                         self.speechController.speechError.asObservable()
                             .subscribe(onNext: {[weak self] (error) in
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async {[weak self]  in
                                     self?.itemSelected = false
                                     if let error = error {
                                         self?.speechInProgress.value = false
@@ -178,7 +199,10 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     // MARK: - Dictated methods
     
-    func dictatedIsAuthorized() -> Bool {
+    /**
+     This method check if speech controller is authorized or not
+     */
+    public func dictatedIsAuthorized() -> Bool {
         if #available(iOS 10.0, *) {
             return self.speechController.isAuthorized
         } else {
@@ -188,12 +212,19 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     // MARK: - Address methods
     
-    func stopRequest() {
+    /**
+     This method stop search request
+     */
+    public func stopRequest() {
         self.resultsDispose = nil
         self.resultsDispose = DisposeBag()
     }
-    
-    func reloadResults(text: String) {
+
+    /**
+     This method reload results with a new text
+     - Parameter text: new text to find
+     */
+    public func reloadResults(text: String) {
         if text.characters.count > 2 {
             let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
             let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.characters.count))
@@ -237,9 +268,11 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
         }
     }
     
-    func getHistoryAndFavorites() {
+    /**
+     This method update data holder with history and/or favorites
+     */
+    public func getHistoryAndFavorites() {
         var historyAndFavorites: [ModelType] = [ModelType]()
-        
         var favourites: Bool = false
         var numberOfResults: Int = self.numberOfResults
         if !self.favourites {

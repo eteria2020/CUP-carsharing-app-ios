@@ -10,19 +10,19 @@ import Boomerang
 import RxSwift
 
 /**
- The MenuItem  model is used to represent singular item of Menu.
+ The MenuItem model is used to represent singular item of menu
  */
 public class MenuItem: ModelType {
     /// Title
     public var title: String = ""
     /// Icon
-    var icon: String = ""
-    /// ViewModel of connected section
-    var viewModel: ViewModelType?
+    public var icon: String = ""
+    /// ViewModel related to this menu item
+    public var viewModel: ViewModelType?
     
     // MARK: - Init methods
     
-    init(title: String, icon: String, viewModel: ViewModelType?) {
+    public init(title: String, icon: String, viewModel: ViewModelType?) {
         self.title = title
         self.icon = icon
         self.viewModel = viewModel

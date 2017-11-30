@@ -140,6 +140,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
         self.view_userIcon.isHidden = true
         self.img_userIcon.isHidden = true
         self.btn_profileEco.isHidden = true
+        updateData()
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -148,7 +149,8 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
         if animated {
             CoreController.shared.currentViewController?.showMenuBackground()
         }
-    }
+        updateData()
+   }
     
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -167,16 +169,17 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
      This method is linked to a notification with name "updateData". When other methods calls this "updateData" the menu updates its options
      */
     @objc public func updateData() {
-        DispatchQueue.main.async {
-            self.viewModel?.updateData()
-            self.viewModel?.reload()
-            self.collectionView?.reloadData()
-            self.view.layoutIfNeeded()
-            self.lbl_welcome.styledText = self.viewModel?.welcome
-            if self.profileEcoStatusAvailable {
-                self.view_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
-                self.img_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
-                self.btn_profileEco.isHidden = self.viewModel?.userIconIsHidden ?? true
+        DispatchQueue.main.async {[weak self]  in
+            self?.view.layoutIfNeeded()
+            self?.viewModel?.updateData()
+            self?.viewModel?.reload()
+            self?.collectionView?.reloadData()
+            self?.view.layoutIfNeeded()
+            self?.lbl_welcome.styledText = self?.viewModel?.welcome
+            if (self?.profileEcoStatusAvailable ?? false) {
+                self?.view_userIcon.isHidden = self?.viewModel?.userIconIsHidden ?? true
+                self?.img_userIcon.isHidden = self?.viewModel?.userIconIsHidden ?? true
+                self?.btn_profileEco.isHidden = self?.viewModel?.userIconIsHidden ?? true
             }
         }
     }
@@ -208,9 +211,10 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
      This method is called from collection delegate to decide how the list interface is showed (size)
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
+        //let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let height = max(54, (UIScreen.main.bounds.height-76)/9)
-        return CGSize(width: size.width, height: height)
+        let width = collectionView.bounds.size.width
+        return CGSize(width: width, height: height)
     }
     
     /**

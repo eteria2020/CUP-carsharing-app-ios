@@ -13,7 +13,7 @@ import Boomerang
 /**
  The Setting item model provides data related to display content on the setting item
  */
-public final class SettingItemViewModel : ItemViewModelType {
+public class SettingItemViewModel : ItemViewModelType {
     /// ViewModel variable used to save data
     public var model:ItemViewModelType.Model
     /// ViewModel variable used to identify setting item cell

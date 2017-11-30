@@ -41,7 +41,7 @@ public enum HomeSelectionOutput: SelectionOutput {
 /**
  The Home model provides data related to display content on the
  */
-public final class HomeViewModel: ViewModelTypeSelectable {
+public class HomeViewModel: ViewModelTypeSelectable {
     /// Selection variable
     public lazy var selection:Action<HomeSelectionInput,HomeSelectionOutput> = Action { input in
         switch input {

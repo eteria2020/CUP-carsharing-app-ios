@@ -11,14 +11,14 @@ import RxSwift
 import Gloss
 
 /**
- The Route Step model is used to represent singular step of a route.
+ The Route Step model is used to represent singular step of a google route.
  */
 public class RouteStep: ModelType, Decodable {
-    /// Points
+    /// Polyline points (used from google to create path)
     public var points: String?
-    /// Distance
+    /// Distance from user
     public var distance: Int?
-    /// Duration of step
+    /// Walking duration from user
     public var duration: Int?
   
     // MARK: - Init methods

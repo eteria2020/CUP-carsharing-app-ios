@@ -12,6 +12,9 @@ import Boomerang
 import Action
 import KeychainSwift
 
+/**
+ Enum that specifies selection input
+ */
 public enum CarPopupInput: SelectionInput {
     case open
     case book
@@ -19,6 +22,9 @@ public enum CarPopupInput: SelectionInput {
     case car
 }
 
+/**
+ Enum that specifies selection output
+ */
 public enum CarPopupOutput: SelectionInput {
     case empty
     case open(Car)
@@ -27,36 +33,62 @@ public enum CarPopupOutput: SelectionInput {
     case car
 }
 
-enum CarPopupType {
+/**
+ Enum that specifies car popup types
+ */
+public enum CarPopupType {
     case car
     case feed
 }
 
-final class CarPopupViewModel: ViewModelTypeSelectable {
-    fileprivate var car: Car?
-    fileprivate var feed: Feed?
-    var carType: Variable<String> = Variable("")
-    var plate: String = ""
-    var capacity: String = ""
-    var distance: String = ""
-    var walkingDistance: String = ""
-    var address: Variable<String?> = Variable(nil)
-    let type: Variable<CarPopupType> = Variable(.car)
-    var date: String?
-    var claim: String?
-    var bottomText: String = ""
-    var category: String = ""
-    var icon: String?
-    var color: UIColor?
-    var advantageColor: UIColor?
-    var image: String?
-    var favourited = false
-    
+/**
+ The CarPopupViewModel provides data related to display car data in CarPopupView
+ */
+public class CarPopupViewModel: ViewModelTypeSelectable {
+    /// Variable used to save car
+    public var car: Car?
+    /// Variable used to save feed
+    public var feed: Feed?
+    /// Variable used to save car type
+    public var carType: Variable<String> = Variable("")
+    /// Car plate
+    public var plate: String = ""
+    /// Car autonomy
+    public var capacity: String = ""
+    /// Distance between user and car (meters)
+    public var distance: String = ""
+    /// Distance between user and car (seconds)
+    public var walkingDistance: String = ""
+    /// Car address
+    public var address: Variable<String?> = Variable(nil)
+    /// Car popup type
+    public let type: Variable<CarPopupType> = Variable(.car)
+    /// Feed date
+    public var date: String?
+    /// Feed claim
+    public var claim: String?
+    /// Feed bottom text composed by date, subtitle, ...
+    public var bottomText: String = ""
+    /// Feed category
+    public var category: String = ""
+    /// Feed icon
+    public var icon: String?
+    /// Feed color
+    public var color: UIColor?
+    /// Feed advantage color
+    public var advantageColor: UIColor?
+    /// Feed image
+    public var image: String?
+    /// Variable used to save if feed is added to favourites or not
+    public var favourited = false
+    /// Selection variable
     public var selection: Action<CarPopupInput, CarPopupOutput> = Action { _ in
         return .just(.empty)
     }
     
-    init(type: CarPopupType) {
+    // MARK: - Init methods
+    
+    public init(type: CarPopupType) {
         self.type.value = type
         self.selection = Action { input in
             switch input {
@@ -80,9 +112,16 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         }
     }
     
-    func updateWithCar(car: Car) {
+    // MARK: - Interface methods
+    
+    /**
+     This method update data with a car object
+     - Parameter car: car object
+     - Parameter carNearest: nearest car object
+     */
+    public func updateWithCar(car: Car, carNearest: Car?) {
         self.car = car
-        self.carType.value = car.type
+        self.carType.value = car.getType(carNearest: carNearest)
         self.plate = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
         if var capacity = car.capacity {
             if capacity < 50 {
@@ -121,7 +160,13 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
             if restultDistance.kilometers > 0 {
                 self.distance = String(format: "lbl_carPopupDistance_km".localized(), restultDistance.kilometers)
             } else if restultDistance.meters > 0 {
-                self.distance = String(format: "lbl_carPopupDistance_mt".localized(), restultDistance.meters)
+                if restultDistance.meters < 10 {
+                    self.distance = String(format: "lbl_carPopupDistance_mt1".localized(), restultDistance.meters)
+                } else if restultDistance.meters < 100 {
+                    self.distance = String(format: "lbl_carPopupDistance_mt2".localized(), restultDistance.meters)
+                } else {
+                    self.distance = String(format: "lbl_carPopupDistance_mt3".localized(), restultDistance.meters)
+                }
             }
             let minutes: Float = Float(distance.rounded(.up)/100.0)
             let restultWalkingDistance = getTimeFromMinutes(inputedMinutes: Int(minutes.rounded(.up)))
@@ -134,26 +179,16 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
             } else if restultWalkingDistance.minutes > 0 {
                 self.walkingDistance = String(format: "lbl_carPopupWalkingDistance_m".localized(), restultWalkingDistance.minutes)
             }
-        }
-    }
-    
-    func getAddress(car: Car) {
-        if let address = car.address.value {
-            self.address.value = address
         } else {
-            car.getAddress()
-            car.address.asObservable()
-                .subscribe(onNext: {[weak self] (address) in
-                    DispatchQueue.main.async {
-                        if address != nil {
-                            self?.address.value = address
-                        }
-                    }
-                }).addDisposableTo(disposeBag)
+            self.distance = "lbl_noDistance".localized()
         }
     }
     
-    func updateWithFeed(feed: Feed) {
+    /**
+     This method update data with a feed object
+     - Parameter feed: feed object
+     */
+    public func updateWithFeed(feed: Feed) {
         self.feed = feed
         
         self.category = ""
@@ -210,7 +245,31 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
     
     // MARK: - Utility methods
     
-    func getDistanceFromMeters(inputedMeters: Int) -> (kilometers: Float, meters: Int)
+    /**
+     This method set address
+     - Parameter car: car object
+     */
+    public func getAddress(car: Car) {
+        if let address = car.address.value {
+            self.address.value = address
+        } else {
+            car.getAddress()
+            car.address.asObservable()
+                .subscribe(onNext: {[weak self] (address) in
+                    DispatchQueue.main.async {[weak self]  in
+                        if address != nil {
+                            self?.address.value = address
+                        }
+                    }
+                }).addDisposableTo(disposeBag)
+        }
+    }
+    
+    /**
+     This method returns formatted distance
+     - Parameter inputedMeters: distance (meters)
+     */
+    public func getDistanceFromMeters(inputedMeters: Int) -> (kilometers: Float, meters: Int)
     {
         if (Int(inputedMeters) / 1000) == 0
         {
@@ -228,7 +287,11 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         }
     }
     
-    func getTimeFromMinutes(inputedMinutes: Int) -> (hours: Int, minutes: Int)
+    /**
+     This method returns formatted time
+     - Parameter inputedMinutes: time (minutes)
+     */
+    public func getTimeFromMinutes(inputedMinutes: Int) -> (hours: Int, minutes: Int)
     {
         let hours = (Float(inputedMinutes) / 60).rounded(.towardZero)
         let minutes = Float(inputedMinutes).truncatingRemainder(dividingBy: 60)

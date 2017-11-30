@@ -25,6 +25,10 @@ public class FeedAnnotation: NSObject, GMUClusterItem {
     public var marker: UIImage
     /// Variable used to save the feed
     public var feed: Feed
+    /// Variable used to save if the annotation can be clustered
+    public var canCluster: Bool = true
+    /// Variable used to save car plate
+    public var carPlate: String = ""
     
     // MARK: - Init methods
     

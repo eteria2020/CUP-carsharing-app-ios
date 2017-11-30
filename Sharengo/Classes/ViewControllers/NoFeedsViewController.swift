@@ -13,7 +13,10 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class NoFeedsViewController : BaseViewController, ViewModelBindable {
+/**
+ The NoFeeds class shows user that there are no feeds
+ */
+public class NoFeedsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_title: UILabel!
@@ -25,12 +28,12 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_bottomCategoriesButton: UIView!
     @IBOutlet fileprivate weak var img_top: UIImageView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
-    
-    var viewModel: NoFeedsViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: NoFeedsViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? NoFeedsViewModel else {
             return
         }
@@ -43,25 +46,21 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
         self.viewModel = viewModel
         self.lbl_title.styledText = self.viewModel?.category?.title.uppercased()
 
-        if self.viewModel?.category != nil
-        {
+        if self.viewModel?.category != nil {
             self.lbl_description.styledText = "lbl_noFeedsDescriptionWithCategory".localized()
             self.view_headerFeeds.isHidden = true
             self.view_header.isHidden = false
-        }
-        else
-        {
+        } else {
             self.lbl_description.styledText = "lbl_noFeedsDescriptionWithNoCategory".localized()
             self.view_headerFeeds.isHidden = false
             self.view_header.isHidden = true
-    }
+        }
     }
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFeedsBackground.value
         self.view_header.backgroundColor = Color.noFeedsHeaderBackground.value
         self.view_headerFeeds.backgroundColor = Color.noFeedsFeedsHeaderBackground.value
@@ -74,14 +73,12 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
         case 4:
             self.view_headerFeeds.constraint(withIdentifier: "viewHeaderFeedsHeight", searchInSubviews: true)?.constant = 46
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
-        case 4.7:
-            self.view_headerFeeds.constraint(withIdentifier: "viewHeaderFeedsHeight", searchInSubviews: true)?.constant = 48
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        case 5.5:
+        case 4.7, 5.8:
             self.view_headerFeeds.constraint(withIdentifier: "viewHeaderFeedsHeight", searchInSubviews: true)?.constant = 48
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         default:
-            break
+            self.view_headerFeeds.constraint(withIdentifier: "viewHeaderFeedsHeight", searchInSubviews: true)?.constant = 48
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         }
         
         self.lbl_title.textColor = Color.noFeedsHeaderLabel.value
@@ -93,7 +90,7 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -123,10 +120,12 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - Header buttons methods
     
-    func updateHeaderButtonsInterface()
+    /**
+     This method updates header buttons interface based on section selected
+     */
+    public func updateHeaderButtonsInterface()
     {
-        if let viewModel = self.viewModel
-        {
+        if let viewModel = self.viewModel {
             switch viewModel.sectionSelected {
             case .feed:
                 self.btn_feed.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderFeed".localized())

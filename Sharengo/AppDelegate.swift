@@ -15,10 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate let menuPadding: CGFloat = 100.0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        if UserDefaults.standard.bool(forKey: "LongIntro") == false {
+            var languageid = "en"
+            if Locale.preferredLanguages[0] == "it-IT" {
+                languageid = "it"
+            }
+            Localize.setCurrentLanguage(languageid)
+            KeychainSwift().clear()
+        } else if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             // Non sono loggato
         } else {
-            if KeychainSwift().get("PasswordClear") == nil {
+            if KeychainSwift().get("PasswordClear") == nil || KeychainSwift().get("UserFirstname") == nil  {
                 var languageid = "en"
                 if Locale.preferredLanguages[0] == "it-IT" {
                     languageid = "it"
@@ -35,8 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupPolygons()
         self.setupGoogleMaps()
         self.setupFabric()
-        _ = CoreController.shared.pulseYellow
-        _ = CoreController.shared.pulseGreen
+        CoreController.shared.updateArchivedCarTrips()
+        DispatchQueue.global(qos: .background).async {
+            _ = CoreController.shared.pulseYellow
+            _ = CoreController.shared.pulseGreen
+            if UserDefaults.standard.bool(forKey: "LongIntro") == false {
+                if let url = Bundle.main.url(forResource: "INTRO LUNGA INIZIO", withExtension: "gif") {
+                    CoreController.shared.introData = try? Data(contentsOf: url)
+                }
+            } else {
+                if let url = Bundle.main.url(forResource: "INTRO BREVE", withExtension: "gif") {
+                    CoreController.shared.introData = try? Data(contentsOf: url)
+                }
+            }
+        }
         
         TextStyle.setup()
         Router.start(self)
@@ -57,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         LocationManager.sharedInstance.locationManager?.stopUpdatingLocation()
         LocationManager.sharedInstance.locationManager?.startUpdatingLocation()
+        CoreController.shared.updateArchivedCarTrips()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -128,6 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     fileprivate func setupCities() {
+        // Cities from web
+        /*
         if let cache = UserDefaults.standard.object(forKey: "cacheCities") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: cache) as? [CityCache] {
                 var cities: [City] = [City]()
@@ -137,6 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 CoreController.shared.cities = cities
             }
         }
+        */
     }
     
     fileprivate func setupPolygons() {
@@ -154,19 +177,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     func setupSideMenu() {
-        SideMenuManager.menuPresentMode = .menuSlideIn
-        SideMenuManager.menuShadowColor = .black
-        SideMenuManager.menuFadeStatusBar = false
-        SideMenuManager.menuWidth = UIScreen.main.bounds.width-menuPadding
-        SideMenuManager.menuAnimationBackgroundColor = UIColor.red
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuShadowColor = .black
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuWidth = UIScreen.main.bounds.width-menuPadding
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.red
         
         let menuRightNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "menuNavigation") as! UISideMenuNavigationController
-        SideMenuManager.menuRightNavigationController = menuRightNavigationController
+        SideMenuManager.default.menuRightNavigationController = menuRightNavigationController
         if let menu = menuRightNavigationController.topViewController as? MenuViewController
         {
-            menu.bind(to: ViewModelFactory.menu(), afterLoad: true)
+            menu.bind(to: ViewModelFactory.menu(), afterLoad: false)
         }
         
-        SideMenuManager.menuRightNavigationController = menuRightNavigationController
+        SideMenuManager.default.menuRightNavigationController = menuRightNavigationController
     }
 }
