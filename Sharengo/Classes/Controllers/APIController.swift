@@ -481,7 +481,7 @@ extension API: TargetType {
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
-        case .searchCars(_, _, _, _, _), .searchAllCars(_, _):
+        case .searchCars(_, _, _, _, _), .searchCar(_), .searchAllCars():
             return URL(string: "https://api.sharengo.it:8023/v3")!
         case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .getCurrentTrip():
             let username = KeychainSwift().get("Username")!

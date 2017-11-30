@@ -33,7 +33,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_searchBar: SearchBarView!
     @IBOutlet fileprivate weak var mapView: GMSMapView!
     @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
-    /// User can open doors 50 meters down
+    /// User can open doors 300 meters down
     public let carPopupDistanceOpenDoors: Int = 300
     /// Map has to show cities 35000 meters up
     public let citiesRadius: Double = 35000
