@@ -13,7 +13,7 @@ import Boomerang
 /**
  The Menu item model provides data related to display content on the menu item
  */
-public final class MenuItemViewModel : ItemViewModelType {
+public class MenuItemViewModel : ItemViewModelType {
     /// ViewModel variable used to save data
     public var model:ItemViewModelType.Model
     /// ViewModel variable used to identify menu item cell

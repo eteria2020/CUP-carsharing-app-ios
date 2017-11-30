@@ -14,7 +14,10 @@ import DeviceKit
 import SnapKit
 import BonMot
 
-class TutorialViewController : BaseViewController, ViewModelBindable {
+/**
+ The TutorialViewController class shows tutorial to user
+ */
+public class TutorialViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var scrollView_main: UIScrollView!
     @IBOutlet fileprivate weak var view_scrollViewContainer: UIView!
     @IBOutlet fileprivate weak var view_scrollViewContainerWidthConstraint: NSLayoutConstraint!
@@ -27,28 +30,41 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var constraint_close: NSLayoutConstraint!
     @IBOutlet fileprivate weak var constraint_buttons: NSLayoutConstraint!
     @IBOutlet fileprivate weak var constraint_width: NSLayoutConstraint!
-    
-    var viewModel: TutorialViewModel?
-    fileprivate var stepX: CGFloat = 0.0
-    fileprivate var currentStep: Int = 0
-    fileprivate var pageWidth: CGFloat = 0
+    /// ViewModel variable used to represents the data
+    public var viewModel: TutorialViewModel?
+    /// Variable used to save step index
+    public var stepX: CGFloat = 0.0
+    /// Variable used to save current step index
+    public var currentStep: Int = 0
+    /// Variable used to page with
+    public var pageWidth: CGFloat = 0
 
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? TutorialViewModel else {
             return
         }
         self.viewModel = viewModel
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        self.scrollView_main.delegate = nil
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.scrollView_main.delegate = nil
+    }
+    
     // MARK: - View methods
     
-    override var prefersStatusBarHidden: Bool {
+    override public var prefersStatusBarHidden: Bool {
         return true
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         btn_previousStep.isHidden = true
         img_leftArrow.isHidden = true
@@ -64,7 +80,7 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
             self.constraint_buttons.constant = 120
             self.pageWidth = 320
             self.constraint_width.constant = 25
-        case 4.7:
+        case 4.7, 5.8:
             self.constraint_close.constant = 60
             self.constraint_buttons.constant = 140
             self.pageWidth = 375
@@ -73,6 +89,21 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
             self.constraint_close.constant = 65
             self.constraint_buttons.constant = 155
             self.pageWidth = 414
+            self.constraint_width.constant = 35
+        case 9.7, 7.9:
+            self.constraint_close.constant = 95
+            self.constraint_buttons.constant = 205
+            self.pageWidth = 768
+            self.constraint_width.constant = 35
+        case 10.5:
+            self.constraint_close.constant = 105
+            self.constraint_buttons.constant = 225
+            self.pageWidth = 834
+            self.constraint_width.constant = 35
+        case 12.9:
+            self.constraint_close.constant = 135
+            self.constraint_buttons.constant = 275
+            self.pageWidth = 1024
             self.constraint_width.constant = 35
         default:
             break
@@ -159,7 +190,10 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
 // MARK: - ScrollViewDelegate methods
 
 extension TutorialViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    /**
+     With this method app show next or previous tutorial's step to user
+     */
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
          if viewModel != nil {
             let page: Int = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth))
             self.currentStep = page + 1

@@ -7,9 +7,13 @@
 
 import MapKit
 
-extension MKMapView
+/**
+  MKMapView utilities
+ */
+public extension MKMapView
 {
-	var radiusBaseOnViewWidth:CLLocationDistance {
+    /// Radius based on view's width
+	public var radiusBaseOnViewWidth:CLLocationDistance {
 		
 		let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
 		let topCenterLon:Double = centerLocation.coordinate.longitude - region.span.longitudeDelta * 0.5
@@ -20,8 +24,8 @@ extension MKMapView
 
 		return radius
 	}
-	
-	var radiusBaseOnViewHeight:CLLocationDistance {
+	/// Radius based on view's height
+	public var radiusBaseOnViewHeight:CLLocationDistance {
 		
 		let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
 		let topCenterLat:Double = centerLocation.coordinate.latitude - region.span.latitudeDelta * 0.5

@@ -13,8 +13,9 @@ import Action
 import MapKit
 import Moya
 import Gloss
-import ReachabilitySwift
+import Reachability
 import GoogleMaps
+import Reachability
 
 /**
  Enum that specifies map type and features related to it. These are:
@@ -37,7 +38,7 @@ public enum MapType {
 /**
  The Map model provides data related to display content on a map
 */
-public final class MapViewModel: ViewModelType {
+public class MapViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
     fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
@@ -73,7 +74,7 @@ public final class MapViewModel: ViewModelType {
     public init(type: MapType) {
         self.type = type
         self.getAllCars()
-        self.timerCars = Timer.scheduledTimer(timeInterval: 60*5, target: self, selector: #selector(self.getAllCars), userInfo: nil, repeats: true)
+        self.timerCars = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.getAllCars), userInfo: nil, repeats: true)
     }
     
     deinit {
@@ -87,7 +88,16 @@ public final class MapViewModel: ViewModelType {
      This method gets all cars in share'ngo system and updates distance
      */
     @objc public func getAllCars() {
-        self.apiController.searchCars()
+        var userLatitude: CLLocationDegrees = 0
+        var userLongitude: CLLocationDegrees = 0
+        let locationManager = LocationManager.sharedInstance
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if let userLocation = locationManager.lastLocationCopy.value {
+                userLatitude = userLocation.coordinate.latitude
+                userLongitude = userLocation.coordinate.longitude
+            }
+        }
+        self.apiController.searchCars(userLatitude: userLatitude, userLongitude: userLongitude)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
@@ -95,29 +105,26 @@ public final class MapViewModel: ViewModelType {
                     if response.status == 200, let data = response.array_data {
                         if let cars = [Car].from(jsonArray: data) {
                             self.allCars = cars
-                            // Distance
-                            for car in self.allCars {
-                                let locationManager = LocationManager.sharedInstance
-                                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                                    if let userLocation = locationManager.lastLocationCopy.value {
-                                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                                            let index = self.cars.index(where: { (singleCar) -> Bool in
-                                                return car.plate == singleCar.plate
-                                            })
-                                            if let index = index {
-                                                self.cars[index].distance = car.distance
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            self.manageAnnotations()
+                            //self.manageAnnotations()
                             return
                         }
                     }
                     self.allCars.removeAll()
+                    if self.allCars.count == 0 {
+                        let dispatchTime = DispatchTime.now() + 1
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.getAllCars()
+                        }
+                        return
+                    }
                 default:
+                    if self.allCars.count == 0 {
+                        let dispatchTime = DispatchTime.now() + 1
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            self.getAllCars()
+                        }
+                        return
+                    }
                     break
                 }
             }.addDisposableTo(self.disposeBag)
@@ -145,53 +152,60 @@ public final class MapViewModel: ViewModelType {
      - Parameter longitude: The longitude is one of the coordinate that determines the center of the map
      - Parameter radius: The radius is the distance from the center of the map to the edge of the map
      */
-    public func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) {
+    public func reloadResults(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, rect: GMSPath, fromCircularMenu: Bool) {
         self.errorEvents = nil
         self.errorOffers = nil
         if type == .searchCars || showCars == true {
-            var userLatitude: CLLocationDegrees = 0
-            var userLongitude: CLLocationDegrees = 0
-            let locationManager = LocationManager.sharedInstance
-            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                if let userLocation = locationManager.lastLocationCopy.value {
-                    userLatitude = userLocation.coordinate.latitude
-                    userLongitude = userLocation.coordinate.longitude
-                }
-            }
-            self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude)
-                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status == 200, let data = response.array_data {
-                            if let cars = [Car].from(jsonArray: data) {
-                                self.cars = cars
-                                self.manageAnnotations()
-                                return
-                            }
-                        }
-                        self.resetCars()
-                    case .error(_):
-                        let dispatchTime = DispatchTime.now() + 0.5
-                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            var message = "alert_generalError".localized()
-                            if Reachability()?.isReachable == false {
-                                message = "alert_connectionError".localized()
-                            }
-                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                alertView.dismissAlertView()
-                            })
-                            dialog.allowTouchOutsideToDismiss = false
-                            dialog.show()
-                            self.resetCars()
-                        }
-                    default:
-                        break
+            if fromCircularMenu {
+                var userLatitude: CLLocationDegrees = 0
+                var userLongitude: CLLocationDegrees = 0
+                let locationManager = LocationManager.sharedInstance
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                    if let userLocation = locationManager.lastLocationCopy.value {
+                        userLatitude = userLocation.coordinate.latitude
+                        userLongitude = userLocation.coordinate.longitude
                     }
-                }.addDisposableTo(resultsDispose!)
+                }
+                self.apiController.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude)
+                    .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                    .subscribe { event in
+                        switch event {
+                        case .next(let response):
+                            if response.status == 200, let data = response.array_data {
+                                if let cars = [Car].from(jsonArray: data) {
+                                    self.cars = [Car]()
+                                    for car in cars {
+                                        if let coordinates = car.location?.coordinate {
+                                            if (GMSGeometryContainsLocation(coordinates, rect, true)) {
+                                               self.cars.append(car)
+                                            }
+                                        }
+                                    }
+                                    self.manageAnnotations()
+                                    return
+                                }
+                            }
+                            self.cars = [Car]()
+                            self.manageAnnotations()
+                        default:
+                            break
+                        }
+                    }.addDisposableTo(self.disposeBag)
+            } else {
+                self.cars = [Car]()
+                for car in self.allCars {
+                    if let coordinates = car.location?.coordinate {
+                        if (GMSGeometryContainsLocation(coordinates, rect, true)) {
+                            self.cars.append(car)
+                        }
+                    }
+                }
+                self.manageAnnotations()
+            }
         } else {
             self.resetCars()
         }
+        /*
         self.feeds.removeAll()
         if type == .feeds {
             self.publishersApiController.getMapOffers(latitude: latitude, longitude: longitude, radius: radius)
@@ -244,6 +258,7 @@ public final class MapViewModel: ViewModelType {
         } else {
             self.manageAnnotations()
         }
+        */
     }
     
     /**
@@ -254,18 +269,12 @@ public final class MapViewModel: ViewModelType {
         if type == .searchCars || showCars == true {
             var carBookedFounded: Bool = false
             // Distance
-            if let car = self.carBooked {
+            for car in self.allCars {
                 let locationManager = LocationManager.sharedInstance
                 if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
                     if let userLocation = locationManager.lastLocationCopy.value {
                         if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
                             car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                            let index = self.cars.index(where: { (singleCar) -> Bool in
-                                return car.plate == singleCar.plate
-                            })
-                            if let index = index {
-                                self.cars[index].distance = car.distance
-                            }
                         }
                     }
                 }
@@ -276,12 +285,6 @@ public final class MapViewModel: ViewModelType {
                     if let userLocation = locationManager.lastLocationCopy.value {
                         if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
                             car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                            let index = self.allCars.index(where: { (allCar) -> Bool in
-                                return car.plate == allCar.plate
-                            })
-                            if let index = index {
-                                self.allCars[index].distance = car.distance
-                            }
                         }
                     }
                 }
@@ -289,18 +292,12 @@ public final class MapViewModel: ViewModelType {
                     carBookedFounded = true
                 }
             }
-            for car in self.allCars {
+            if let car = self.carBooked {
                 let locationManager = LocationManager.sharedInstance
                 if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
                     if let userLocation = locationManager.lastLocationCopy.value {
                         if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
                             car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                            let index = self.cars.index(where: { (allCar) -> Bool in
-                                return car.plate == allCar.plate
-                            })
-                            if let index = index {
-                                self.cars[index].distance = car.distance
-                            }
                         }
                     }
                 }
@@ -308,13 +305,15 @@ public final class MapViewModel: ViewModelType {
             self.updateCarsProperties()
             for car in self.cars {
                 if let coordinate = car.location?.coordinate {
-                    let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked, carTrip: self.carTrip)
+                    let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked, carTrip: self.carTrip, carNearest: self.nearestCar.value)
+                    annotation.carPlate = car.plate ?? ""
                     annotations.append(annotation)
                 }
             }
             if carBookedFounded == false && self.carBooked != nil && (self.carTrip == nil || self.carTrip?.car.value?.parking == true) {
                 if let coordinate = self.carBooked!.location?.coordinate {
-                    let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked, carTrip: self.carTrip)
+                    let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked, carTrip: self.carTrip, carNearest: self.nearestCar.value)
+                    annotation.carPlate = self.carBooked!.plate ?? ""
                     annotations.append(annotation)
                 }
             }
@@ -325,14 +324,14 @@ public final class MapViewModel: ViewModelType {
         if type == .feeds {
             self.updateCarsProperties()
             if self.errorEvents == false && self.errorOffers == false {
-                DispatchQueue.main.async {
-                    for feed in self.feeds {
+                DispatchQueue.main.async {[weak self]  in
+                    for feed in self?.feeds ?? [] {
                         if let coordinate = feed.feedLocation?.coordinate {
                             let annotation = FeedAnnotation(position: coordinate, feed: feed)
                             annotations.append(annotation)
                         }
                     }
-                    self.array_annotations.value = annotations
+                    self?.array_annotations.value = annotations
                 }
             } else if self.errorEvents == true || self.errorOffers == true {
                 let dispatchTime = DispatchTime.now() + 0.5
@@ -361,7 +360,6 @@ public final class MapViewModel: ViewModelType {
     public func updateCarsProperties () {
         var nearestCarCopy: Car? = nil
         for car in self.allCars {
-            car.nearest = false
             car.booked = false
             car.opened = false
             if let carBooked = self.carBooked {
@@ -381,16 +379,41 @@ public final class MapViewModel: ViewModelType {
                     }
                 }
             }
-            let index = self.cars.index(where: { (singleCar) -> Bool in
-                return car.plate == singleCar.plate
-            })
-            if let index = index {
-                if self.cars.count > index {
-                    self.cars[index] = car
+        }
+        for car in self.cars {
+            car.booked = false
+            car.opened = false
+            if let carBooked = self.carBooked {
+                if car.plate == carBooked.plate {
+                    car.booked = true
+                    car.opened = carBooked.opened
+                }
+            }
+            if car.distance ?? 0 > 0 {
+                if nearestCarCopy == nil {
+                    nearestCarCopy = car
+                } else if let nearestCar = nearestCarCopy {
+                    if let nearestCarDistance = nearestCar.distance, let carDistance = car.distance {
+                        if nearestCarDistance > carDistance {
+                            nearestCarCopy = car
+                        }
+                    }
                 }
             }
         }
-        nearestCarCopy?.nearest = true
+        if let car = self.carBooked {
+            if car.distance ?? 0 > 0 {
+                if nearestCarCopy == nil {
+                    nearestCarCopy = car
+                } else if let nearestCar = nearestCarCopy {
+                    if let nearestCarDistance = nearestCar.distance, let carDistance = car.distance {
+                        if nearestCarDistance > carDistance {
+                            nearestCarCopy = car
+                        }
+                    }
+                }
+            }
+        }
         self.nearestCar.value = nearestCarCopy
     }
     
@@ -423,7 +446,7 @@ public final class MapViewModel: ViewModelType {
      This method book car
      - Parameter car: The car that has to be booked
      */
-    public func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?, _ data: JSON?) ->()) {
+    public func bookCar(car: Car, completionClosure: @escaping (_ success: Bool, _ reason: String?, _ error: Swift.Error?, _ data: JSON?) ->()) {
         var userLatitude: CLLocationDegrees = 0
         var userLongitude: CLLocationDegrees = 0
         let locationManager = LocationManager.sharedInstance
@@ -439,12 +462,18 @@ public final class MapViewModel: ViewModelType {
                 switch event {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
-                        completionClosure(true, nil, data)
+                        completionClosure(true, nil, nil, data)
                     } else {
-                        completionClosure(false, nil, nil)
+                        if response.reason == "Error: reservation:true - status:false - trip:false - limit:false - limit_archive:false" {
+                            completionClosure(false, "alert_carBookingPopupStrangeBooking".localized(), nil, nil)
+                        } else if response.reason == "Error: reservation:false - status:false - trip:false - limit:false - limit_archive:true" || response.reason == "Error: reservation:false - status:false - trip:false - limit:true - limit_archive:false" {
+                            completionClosure(false, "alert_carBookingPopupAlreadyBooked".localized(), nil, nil)
+                        } else {
+                            completionClosure(false, nil, nil, nil)
+                        }
                     }
                 case .error(let error):
-                    completionClosure(false, error, nil)
+                    completionClosure(false, nil, error, nil)
                 default:
                     break
                 }

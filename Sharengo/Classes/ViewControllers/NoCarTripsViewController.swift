@@ -13,7 +13,10 @@ import Boomerang
 import SideMenu
 import DeviceKit
 
-class NoCarTripsViewController : BaseViewController, ViewModelBindable {
+/**
+ The NoCarTrips class shows user that there are no car trips in his account
+ */
+public class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
@@ -22,12 +25,12 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_description: UILabel!
     @IBOutlet fileprivate weak var lbl_noCarTrips: UILabel!
     @IBOutlet fileprivate weak var btn_searchCars: UIButton!
-    
-    var viewModel: NoCarTripsViewModel?
+    /// ViewModel variable used to represents the data
+    public var viewModel: NoCarTripsViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? NoCarTripsViewModel else {
             return
         }
@@ -47,9 +50,8 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         
         self.lbl_noCarTrips.styledText = "lbl_noCarTrips".localized()
@@ -64,14 +66,12 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_searchCars.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
-        case 4.7:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-            self.btn_searchCars.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-        case 5.5:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_searchCars.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_searchCars.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
         
         self.lbl_headerTitle.styledText = "lbl_carTripsHeaderTitle".localized()
@@ -85,7 +85,7 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

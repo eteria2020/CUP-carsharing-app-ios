@@ -59,7 +59,7 @@ public enum NavigationBarOutput: SelectionInput {
 /**
  The Navigation bar model provides data related to display content on the navigation bar
  */
-public final class NavigationBarViewModel: ViewModelTypeSelectable {
+public class NavigationBarViewModel: ViewModelTypeSelectable {
     /// Left item of the navigation bar
     public let letfItem: NavigationBarItem
     /// Right item of the navigation bar

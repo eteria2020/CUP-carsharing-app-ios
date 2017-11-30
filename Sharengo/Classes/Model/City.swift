@@ -11,18 +11,18 @@ import RxSwift
 import Gloss
 
 /**
- The CityCache  model is used to represent cache of a city.
+ The CityCache model is used to represent a saved city on the device
 */
 public class CityCache: NSObject, NSCoding {
-    /// Unique identifier
+    /// Unique identifier of city
     public var identifier: String = ""
-    /// Title
+    /// City name
     public var title: String = ""
-    /// Icon
+    /// City icon
     public var icon: String = ""
-    /// Boolean determine if selected or not
+    /// Boolean used to determine if city is selected or not
     public var selected = false
-    /// Location of CityCache
+    /// Location of city
     public var location: CLLocation?
     
     // MARK: - Init methods
@@ -43,6 +43,9 @@ public class CityCache: NSObject, NSCoding {
         }
     }
     
+    /**
+     This method is used to convert this object from NSCoder
+     */
     public required init?(coder aDecoder: NSCoder) {
         if let identifier = aDecoder.decodeObject(forKey: "identifier") as? String {
             self.identifier = identifier
@@ -77,7 +80,7 @@ public class CityCache: NSObject, NSCoding {
     // MARK: - City methods
     
     /**
-     This method return City connected to CityCache
+     This method return city connected to city cache
      */
     public func getCity() -> City {
         return City(identifier: self.identifier, title: self.title, icon: self.icon, selected: self.selected, location: self.location)
@@ -85,18 +88,18 @@ public class CityCache: NSObject, NSCoding {
 }
 
 /**
- The City  model is used to represent a city.
+ The City model is used to represent a city used in settings section
  */
 public class City: ModelType, Decodable {
-    /// Unique identifier
+    /// Unique identifier of city
     public var identifier: String = ""
-    /// Title
+    /// City name
     public var title: String = ""
-    /// Icon
+    /// City icon
     public var icon: String = ""
-    /// Boolean determine if selected or not
+    /// Boolean used to determine if city is selected or not
     public var selected = false
-    /// Location of CityCache
+    /// Location of city
     public var location: CLLocation?
     
     // MARK: - Init methods
@@ -123,9 +126,9 @@ public class City: ModelType, Decodable {
     // MARK: - CityCache methods
     
     /**
-     This method return CityCache connected to City
+     This method return city cache connected to city
      */
-    func getCityCache() -> CityCache {
+    public func getCityCache() -> CityCache {
         return CityCache(identifier: self.identifier, title: self.title, icon: self.icon, selected: self.selected, location: self.location)
     }
 }

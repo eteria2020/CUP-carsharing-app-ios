@@ -29,7 +29,7 @@ public enum CarBookingCompletedOutput: SelectionInput {
 /**
  The CarBookingCompleted model provides data related to display content on the car booking completed screen
  */
-public final class CarBookingCompletedViewModel: ViewModelTypeSelectable {
+public class CarBookingCompletedViewModel: ViewModelTypeSelectable {
     /// Variable used to save car trip
     var carTrip: CarTrip
     /// Variable used to save co2 calculation

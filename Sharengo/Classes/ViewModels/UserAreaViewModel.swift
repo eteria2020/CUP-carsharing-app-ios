@@ -11,15 +11,13 @@ import RxSwift
 import Action
 import Boomerang
 
-public enum UserAreaInput: SelectionInput {
-}
-
-public enum UserAreaOutput: SelectionInput {
-    case empty
-}
-
-final class UserAreaViewModel: ViewModelTypeSelectable {
-    public var selection: Action<UserAreaInput, UserAreaOutput> = Action { input in
-        return .just(.empty)
-    }
+/**
+ The UserAreaViewModel provides data related to display content on user area
+ */
+public class UserAreaViewModel: ViewModelType {
+    
+    // MARK: - Init methods
+    
+    public required init()
+    { }
 }

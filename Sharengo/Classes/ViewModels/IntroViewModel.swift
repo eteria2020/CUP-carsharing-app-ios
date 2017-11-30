@@ -14,7 +14,7 @@ import Action
 /**
  The Intro model provides data related to display content on the intro
  */
-public final class IntroViewModel: ViewModelType {
+public class IntroViewModel: ViewModelType {
 
     // MARK: - Init methods
     

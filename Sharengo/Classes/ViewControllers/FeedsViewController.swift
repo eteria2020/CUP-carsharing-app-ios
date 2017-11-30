@@ -12,7 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
-import ReachabilitySwift
+import Reachability
 
 extension Date
 {
@@ -29,7 +29,10 @@ extension Date
     }
 }
 
-class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
+/**
+ The Feeds class shows feeds to user
+ */
+public class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_headerCategory: UIView!
     @IBOutlet fileprivate weak var lbl_titleCategory: UILabel!
@@ -41,19 +44,23 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
     @IBOutlet fileprivate weak var view_bottomCategoriesButton: UIView!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     @IBOutlet fileprivate weak var btn_aroundMe: UIButton!
+    /// Instance of PublishersApiController
+    public let publishersApiController: PublishersAPIController = PublishersAPIController()
+    /// Variable used to save if an error occurred with categories
+    public var errorCategories: Bool?
+    /// Variable used to save if an error occurred with offers
+    public var errorOffers: Bool?
+    /// Variable used to save if an error occurred with events
+    public var errorEvents: Bool?
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
-    
-    fileprivate let publishersApiController: PublishersAPIController = PublishersAPIController()
-    var viewModel: FeedsViewModel?
-    var errorCategories: Bool?
-    var errorOffers: Bool?
-    var errorEvents: Bool?
+    /// ViewModel variable used to represents the data
+    public var viewModel: FeedsViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FeedsViewModel else {
             return
         }
@@ -200,62 +207,10 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         }
     }
     
-    func checkData() {
-        if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
-            DispatchQueue.main.async {
-                if self.viewModel?.feeds.count == 0 {
-                    let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
-                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self.viewModel?.category), afterLoad: true)
-                    var array = self.navigationController?.viewControllers ?? []
-                    if self.viewModel?.category != nil {
-                        array.removeLast()
-                    }
-                    array.append(destination)
-                    self.navigationController?.viewControllers = array
-                    self.hideLoader(completionClosure: { () in
-                       // let dispatchTime = DispatchTime.now() + 0.3
-                       // DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            self.view.backgroundColor = Color.categoriesBackground.value
-                            self.viewModel?.sectionSelected = .categories
-                            self.updateHeaderButtonsInterface()
-                            self.viewModel?.updateListDataHolder()
-                            self.viewModel?.reload()
-                            self.collectionView?.reloadData()
-                       // }
-                    })
-                    return
-                }
-                self.viewModel?.updateListDataHolder()
-                self.viewModel?.reload()
-                self.collectionView?.reloadData()
-                self.hideLoader(completionClosure: { () in
-                })
-                if self.viewModel?.category == nil {
-                    self.btn_aroundMe.isHidden = false
-                }
-            }
-        } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {
-            self.hideLoader(completionClosure: { () in
-                var message = "alert_generalError".localized()
-                if Reachability()?.isReachable == false {
-                    message = "alert_connectionError".localized()
-                }
-                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                    Router.back(self)
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-                
-            })
-        }
-    }
-    
     // MARK: - View methods
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.layoutIfNeeded()
         // Views
         self.view.backgroundColor = ColorBrand.white.value
         self.btn_aroundMe.isHidden = true
@@ -272,12 +227,10 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 headerCategoryHeight = 30
             case 4:
                 headerCategoryHeight = 30
-            case 4.7:
-                headerCategoryHeight = 32
-            case 5.5:
+            case 4.7, 5.8:
                 headerCategoryHeight = 32
             default:
-                break
+                headerCategoryHeight = 32
             }
             self.view_headerCategory.constraint(withIdentifier: "viewHeaderHeightCategory", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = CGFloat(headerCategoryHeight)
@@ -295,14 +248,12 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             case 4:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 46
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 36
-            case 4.7:
-                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
-                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-            case 5.5:
+            case 4.7, 5.8:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
             default:
-                break
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
             }
         }
         
@@ -314,7 +265,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -337,15 +288,12 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                     array.append(destination)
                     self.navigationController?.viewControllers = array
                     self.hideLoader(completionClosure: { () in
-                    //let dispatchTime = DispatchTime.now() + 0.3
-                    //DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        self.view.backgroundColor = Color.categoriesBackground.value
-                        self.viewModel?.sectionSelected = .categories
-                        self.updateHeaderButtonsInterface()
-                        self.viewModel?.updateListDataHolder()
-                        self.viewModel?.reload()
-                        self.collectionView?.reloadData()
-                    //}
+                    self.view.backgroundColor = Color.categoriesBackground.value
+                    self.viewModel?.sectionSelected = .categories
+                    self.updateHeaderButtonsInterface()
+                    self.viewModel?.updateListDataHolder()
+                    self.viewModel?.reload()
+                    self.collectionView?.reloadData()
                     })
                     return
                 }
@@ -373,36 +321,48 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         self.lbl_titleCategory.textColor = Color.feedsHeaderCategoryLabel.value
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel?.reload()
         self.collectionView?.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
     // MARK: - Collection methods
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (line spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (interitem spacing)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (inset)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /**
+     This method is called from collection delegate to decide how the list interface is showed (size)
+     */
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let viewModel = self.viewModel
         {
             switch viewModel.sectionSelected {
@@ -410,8 +370,8 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
                 return size
             case .categories:
-                let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 2)
-                return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height+self.btn_aroundMe.frame.size.height))/3)
+                let width = collectionView.bounds.size.width
+                return CGSize(width: width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height+self.btn_aroundMe.frame.size.height))/3)
             }
         }
         
@@ -420,13 +380,19 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
         return size
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    /**
+     This method is called from collection delegate when an option of the list is selected
+     */
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel?.selection.execute(.item(indexPath))
     }
     
     // MARK: - Header buttons methods
     
-    func updateHeaderButtonsInterface()
+    /**
+     This method update header buttons interface based on section selected
+     */
+    public func updateHeaderButtonsInterface()
     {
         if let viewModel = self.viewModel
         {
@@ -442,6 +408,57 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 self.btn_categories.style(.headerButton(Font.feedsHeader.value, Color.feedsHeaderBackground.value, Color.feedsHeaderLabelOn.value), title: "btn_feedsHeaderCategories".localized())
                 self.view_bottomCategoriesButton.backgroundColor = Color.feedsHeaderBottomButtonOn.value
             }
+        }
+    }
+
+    /**
+     This method is used to check data relative to feeds
+     */
+    public func checkData() {
+        if self.errorCategories == false && self.errorEvents == false && self.errorOffers == false {
+            DispatchQueue.main.async {[weak self]  in
+                if self?.viewModel?.feeds.count == 0 {
+                    let destination: NoFeedsViewController = (Storyboard.main.scene(.noFeeds))
+                    destination.bind(to: ViewModelFactory.noFeeds(fromCategory: self?.viewModel?.category), afterLoad: true)
+                    var array = self?.navigationController?.viewControllers ?? []
+                    if self?.viewModel?.category != nil {
+                        array.removeLast()
+                    }
+                    array.append(destination)
+                    self?.navigationController?.viewControllers = array
+                    self?.hideLoader(completionClosure: { () in
+                        self?.view.backgroundColor = Color.categoriesBackground.value
+                        self?.viewModel?.sectionSelected = .categories
+                        self?.updateHeaderButtonsInterface()
+                        self?.viewModel?.updateListDataHolder()
+                        self?.viewModel?.reload()
+                        self?.collectionView?.reloadData()
+                    })
+                    return
+                }
+                self?.viewModel?.updateListDataHolder()
+                self?.viewModel?.reload()
+                self?.collectionView?.reloadData()
+                self?.hideLoader(completionClosure: { () in
+                })
+                if self?.viewModel?.category == nil {
+                    self?.btn_aroundMe.isHidden = false
+                }
+            }
+        } else if self.errorCategories == true || self.errorEvents == true || self.errorOffers == true {
+            self.hideLoader(completionClosure: { () in
+                var message = "alert_generalError".localized()
+                if Reachability()?.isReachable == false {
+                    message = "alert_connectionError".localized()
+                }
+                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                    Router.back(self)
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+                
+            })
         }
     }
 }

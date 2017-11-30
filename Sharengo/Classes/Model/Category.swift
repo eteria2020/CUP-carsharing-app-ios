@@ -24,20 +24,20 @@ extension String {
 }
 
 /**
- The Category model is used to represent a category of feeds.
+ The Category model is used to represent a category of feeds
  */
 public class Category: ModelType, Decodable {
-    /// Unique identifier
+    /// Unique identifier of category
     public var identifier: String = ""
-    /// Title
+    /// Category title
     public var title: String = ""
-    /// Icon
+    /// Category icon
     public var icon: String = ""
-    /// Gif path
+    /// Category icon (gif)
     public var gif: String = ""
-    /// Boolean that determine if Category is published or not
+    /// Boolean that determine if category is published or not
     public var published: Bool = false
-    /// Category's color
+    /// Category color
     public var color: String = ""
     
     // MARK: - Init methods

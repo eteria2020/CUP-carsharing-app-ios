@@ -14,7 +14,10 @@ import Action
 import CoreLocation
 import DeviceKit
 
-class CarBookingPopupView: UIView {
+/**
+ The CarBookingPopupView class is a view that shows info and actions relative to a car booking or a car tirp
+ */
+public class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
     @IBOutlet fileprivate weak var btn_openCentered: UIButton!
     @IBOutlet fileprivate weak var btn_delete: UIButton!
@@ -25,14 +28,16 @@ class CarBookingPopupView: UIView {
     @IBOutlet fileprivate weak var view_time: UIView!
     @IBOutlet fileprivate weak var view_pin: UIView!
     @IBOutlet fileprivate weak var view_info: UIView!
-    fileprivate var view: UIView!
-    fileprivate var firstLoaded: Bool = false
-    
-    var viewModel: CarBookingPopupViewModel?
+    /// Main view of the popup
+    public var view: UIView!
+    /// Variable used to check if it's the first time that tne popup is showed
+    public var firstLoaded: Bool = false
+    /// ViewModel variable used to represents the data
+    public var viewModel: CarBookingPopupViewModel?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? CarBookingPopupViewModel else {
             return
         }
@@ -46,92 +51,11 @@ class CarBookingPopupView: UIView {
     
     // MARK: - View methods
     
-    func updateWithCarBooking(carBooking: CarBooking) {
-        guard let viewModel = viewModel else {
-            return
-        }
-        viewModel.carTrip = nil
-        viewModel.updateWithCarBooking(carBooking: carBooking)
-        self.updateData()
-    }
-    
-    func updateWithCarTrip(carTrip: CarTrip) {
-        guard let viewModel = viewModel else {
-            return
-        }
-        viewModel.carBooking = nil
-        viewModel.updateWithCarTrip(carTrip: carTrip)
-        self.updateData()
-    }
-    
-    fileprivate func updateData() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        if !self.firstLoaded {
-            self.icn_time.isHidden = true
-        }
-        self.lbl_pin.styledText = viewModel.pin
-        self.btn_openCentered.isHidden = false
-        self.btn_open.isHidden = false
-        self.btn_delete.isHidden = false
-        self.updateButtons()
-        viewModel.info.asObservable()
-            .subscribe(onNext: {[weak self] (info) in
-                DispatchQueue.main.async {
-                    self?.lbl_info.styledText = info
-                }
-            }).addDisposableTo(disposeBag)
-        viewModel.time.asObservable()
-            .subscribe(onNext: {[weak self] (time) in
-                DispatchQueue.main.async {
-                    self?.firstLoaded = true
-                    if time != "" {
-                        self?.icn_time.isHidden = false
-                        self?.lbl_time.styledText = time
-                        if self?.viewModel?.carBooking != nil {
-                            self?.icn_time.image = UIImage(named: "ic_time_1")
-                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.4
-                        } else if self?.viewModel?.carTrip != nil {
-                            self?.icn_time.image = UIImage(named: "ic_time_2")
-                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.45
-                        }
-                    } else {
-                        self?.lbl_time.styledText = ""
-                        self?.icn_time.isHidden = true
-                    }
-                }
-            }).addDisposableTo(disposeBag)
-    }
-    
-    func updateButtons() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        if viewModel.hideButtons {
-            if viewModel.carTrip != nil {
-                if viewModel.carTrip?.car.value?.parking == true {
-                    self.btn_openCentered.isHidden = false
-                    self.btn_open.isHidden = true
-                    self.btn_delete.isHidden = true
-                    return
-                }
-            }
-            self.btn_openCentered.isHidden = true
-            self.btn_open.isHidden = true
-            self.btn_delete.isHidden = true
-        } else {
-            self.btn_openCentered.isHidden = true
-            self.btn_open.isHidden = false
-            self.btn_delete.isHidden = false
-        }
-    }
-    
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     
@@ -154,7 +78,12 @@ class CarBookingPopupView: UIView {
         return view
     }
     
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    // MARK: - Interface methods
+    
+    /**
+     This method is called by the system when user executes a touch on the screen
+     */
+    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         if self.view.point(inside: convert(point, to: self.view), with: event) {
             if self.viewModel?.time.value != "" && view_time.point(inside: convert(point, to: view_time), with: event) {
                 return true
@@ -167,5 +96,100 @@ class CarBookingPopupView: UIView {
             }
         }
         return false
+    }
+    
+    /**
+     This method updates interface with a car booking object
+     - Parameter carBooking: car booking object
+     */
+    public func updateWithCarBooking(carBooking: CarBooking) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.carTrip = nil
+        viewModel.updateWithCarBooking(carBooking: carBooking)
+        self.updateData()
+    }
+    
+    /**
+     This method updates interface with a car trip object
+     - Parameter carTrip: car trip object
+     */
+    public func updateWithCarTrip(carTrip: CarTrip) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.carBooking = nil
+        viewModel.updateWithCarTrip(carTrip: carTrip)
+        self.updateData()
+    }
+    
+    /**
+     This method updates interface
+     */
+    public func updateData() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        if !self.firstLoaded {
+            self.icn_time.isHidden = true
+        }
+        self.lbl_pin.styledText = viewModel.pin
+        self.btn_openCentered.isHidden = false
+        self.btn_open.isHidden = false
+        self.btn_delete.isHidden = false
+        self.updateButtons()
+        viewModel.info.asObservable()
+            .subscribe(onNext: {[weak self] (info) in
+                DispatchQueue.main.async {[weak self]  in
+                    self?.lbl_info.styledText = info
+                }
+            }).addDisposableTo(disposeBag)
+        viewModel.time.asObservable()
+            .subscribe(onNext: {[weak self] (time) in
+                DispatchQueue.main.async {[weak self]  in
+                    self?.firstLoaded = true
+                    if time != "" {
+                        self?.icn_time.isHidden = false
+                        self?.lbl_time.styledText = time
+                        if self?.viewModel?.carBooking != nil {
+                            self?.icn_time.image = UIImage(named: "ic_time_1")
+                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.4
+                        } else if self?.viewModel?.carTrip != nil {
+                            self?.icn_time.image = UIImage(named: "ic_time_2")
+                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.4
+                        }
+                    } else {
+                        self?.lbl_time.styledText = ""
+                        self?.icn_time.isHidden = true
+                    }
+                }
+            }).addDisposableTo(disposeBag)
+    }
+    
+    /**
+     This method updates buttons based on hideButtons property in viewModel and if car trip is nil or not
+     */
+    public func updateButtons() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        if viewModel.hideButtons {
+            if viewModel.carTrip != nil {
+                if viewModel.carTrip?.car.value?.parking == true {
+                    self.btn_openCentered.isHidden = false
+                    self.btn_open.isHidden = true
+                    self.btn_delete.isHidden = true
+                    return
+                }
+            }
+            self.btn_openCentered.isHidden = true
+            self.btn_open.isHidden = true
+            self.btn_delete.isHidden = true
+        } else {
+            self.btn_openCentered.isHidden = true
+            self.btn_open.isHidden = false
+            self.btn_delete.isHidden = false
+        }
     }
 }

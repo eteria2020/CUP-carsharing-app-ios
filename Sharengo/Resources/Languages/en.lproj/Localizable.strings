@@ -15,7 +15,7 @@
 "btn_yes" = "YES";
 "btn_no" = "NO";
 "alert_connectionError" = "You are offline, please try again";
-"alert_generalError" = "An error occurred, please try again";
+"alert_generalError" = "A connection error occurred, please try again";
 "alert_loginError" = "You need to log in to use this feature";
 "alert_webViewError" = "An error occurred, please check your internet connection and try again later";
 "btn_login" = "LOGIN";
@@ -44,8 +44,8 @@
 "alert_loginMissingFields" = "One or more fields are not completed";
 "alert_loginWrongEmail" = "Careful! The email address you input does not match up in our database.";
 "alert_loginWrongPassword" = "Careful! Wrong password";
-"alert_loginUserDisabled" = "Careful! The user is not enabled to access";
-"alert_loginUserNotEnabled" = "Careful! You cannot use the Share'ngo service. Please verify your data or contact our customer service. Thank you.";
+"alert_loginUserDisabled" = "You are not able to log in due to a problem with your profile. Find out on the website or contact Customer Service";
+"alert_loginUserNotEnabled" = "You are not able to log in due to a problem with your profile. Find out on the website or contact Customer Service";
 "lbl_loginFormHeader" = "Please fill out the fields to log in";
 "txt_loginEmailPlaceholder" = "email";
 "txt_loginPasswordPlaceholder" = "password";
@@ -57,6 +57,8 @@
 
 // Menu
 "lbl_menuHeaderTitleLogged" = "Hi %@, welcome back!";
+"lbl_menuHeaderTitleLoggedF" = "Hi %@, welcome back!";
+"lbl_menuHeaderTitleLoggedWithoutFirstName" = "Hi, welcome back!";
 "lbl_menuHeaderTitleGuest" = "Hi, welcome!";
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Signup";
@@ -77,6 +79,7 @@
 // Home
 "alert_homeNotAvailable" = "This feature will be released soon";
 "lbl_homeDescriptionLogged" = "<bold>Welcome back %@!</bold>";
+"lbl_homeDescriptionLoggedF" = "<bold>Welcome back %@!</bold>";
 "lbl_homeDescriptionNotLogged" = "<bold>Welcome!</bold>";
 
 // Intro
@@ -103,33 +106,37 @@
 
 // CarPopup
 "lbl_carPopupType" = "Nearest car";
-"lbl_carPopupPlate" = "<bold>%@</bold>";
+"lbl_carPopupPlate" = "<big>%@</big>";
 "lbl_carPopupCapacity" = "autonomy: <bold>%@ km</bold>";
 "lbl_carPopupDistance_km" = "%.2f km away";
-"lbl_carPopupDistance_mt" = "%.3d m away";
+"lbl_carPopupDistance_mt3" = "%.3d m away";
+"lbl_carPopupDistance_mt2" = "%.2d m away";
+"lbl_carPopupDistance_mt1" = "%.1d m away";
 "lbl_carPopupWalkingDistance_h" = "%d hours on foot";
 "lbl_carPopupWalkingDistance_m" = "%d minutes on foot";
 "lbl_carPopupWalkingDistance_h_m" = "%d hours e %@ minutes on foot";
 "lbl_carPopupAddressPlaceholder" = "Charging";
 "alert_carPopupLocalizationMessage" = "Share'ngo needs to know your position to open the doors. Would you like to open settings and enable geolocation?";
-"alert_carPopupDistanceMessage" = "You are too far from Saren'go you selected. You will be able to open it as you get closer to it.";
+"alert_carPopupDistanceMessage" = "You are too far from Share'ngo you selected. You will be able to open it as you get closer to it.";
 
 // CarBookingPopup
-"lbl_carBookingPopupPin" = "YOUR PIN NUMBER: %@";
+"lbl_carBookingPopupPin" = "<white>YOUR PIN NUMBER:</white> %@";
 "lbl_carBookingPopupInfo" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n<placeholder>Charging</placeholder>";
-"lbl_carTripPopupInfo" = "<status>ACTIVE TRIP</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
+"lbl_carTripPopupInfo" = "<status>ACTIVE TRIP</status>\n<bold>PLATE %@</bold>";
 "lbl_carBookingPopupTime" = "Expires in\n%@";
+"lbl_carTripPopupTime" = "Trip Duration:\n%@";
 "lbl_carBookingPopupTimeMinute" = "minute";
 "lbl_carBookingPopupTimeMinutes" = "minutes";
 "alert_carBookingPopupDeleteMessage" = "By canceling this booking, you will not be able to book the same car in the next 4 hours. Do you confirm the booking cancelation?";
 "alert_carBookingPopupConfirmDeleteMessage" = "Your booking has been canceled correctly";
 "alert_carBookingPopupBookedMessage" = "You already have an active booking";
 "alert_carBookingPopupAlreadyBooked" = "You cannot book this car until 4 hours have passed since your last canceled your booking";
+"alert_carBookingPopupStrangeBooking" = "An error occurred, please try again later or requeste assistance";
 
 // CarBookingCompleted
-"lbl_carBookingCompletedDescription" = "<bold>You ended your trip<bold>\n\nYou will be notified via mail the transaction confirmation within 24h.";
-"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f GRAMS OF CO2 CO2 BY THIS TRIP!";
+"lbl_carBookingCompletedDescription" = "<bold>You ended your trip</bold>\n\nYou will be notified via mail the transaction confirmation within 24h.";
+"lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f GRAMS OF CO2 BY THIS TRIP!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Trip ended. The trip lasted %@ minutes and terminated correctly. Thank you for using Share'ngo";
 "banner_carBookingDeletedTitle" = "Share'ngo";
@@ -174,7 +181,7 @@
 
 // CarTrips
 "lbl_carTripsHeaderTitle" = "TRIP HISTORY";
-"lbl_carTripsItemTitle" = "Booking n. %@";
+"lbl_carTripsItemTitle" = "Ride n. %@";
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
@@ -211,7 +218,7 @@
 "lbl_supportHeaderTitle" = "REQUEST ASSISTANCE";
 "lbl_supportTitle" = "We are here to help!";
 "lbl_supportSubtitle" = "Talk to an operator?";
-"btn_supportCall" = "Call now";
+"btn_supportCall" = "CALL NOW";
 "alert_supportCall" = "+39 0586 1975772";
 "alert_noSupportCall" = "Your device is not enabled to calling";
 "supportTelephoneNumber" = "+3905861975772";
@@ -271,3 +278,6 @@
 /////////////////////////
 
 "lbl_carPopupFreeType" = "%d minutes free drive";
+"alert_carBookingAlreadyBookedMessage" = "You already have an active booking!";
+"alert_carTripAlreadyBookedMessage" = "Your trip is already active!";
+"lbl_noDistance" = "Enable the GPS for more information";

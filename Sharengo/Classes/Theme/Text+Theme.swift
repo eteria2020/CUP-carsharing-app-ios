@@ -9,18 +9,27 @@
 import UIKit
 import BonMot
 
+/**
+ Protocol used with TextStyle enum
+ */
 public protocol TextStyleType {
     var name:String {get}
     var style:StringStyle {get}
 }
 
+/**
+ Protocol that register Text Theme for a specific label, textfield, ...
+ */
 public extension NamedStyles {
     func registerStyle(style:TextStyleType) {
         self.registerStyle(forName: style.name, style: style.style)
     }
 }
 
-enum TextStyle: String, TextStyleType {
+/**
+ Main text styles in application
+ */
+public enum TextStyle: String, TextStyleType {
     // Intro
     case introTitle = "introTitle"
 
@@ -30,6 +39,7 @@ enum TextStyle: String, TextStyleType {
 
     // Home
     case homeDescription = "homeDescription"
+    case homeVersion = "homeVersion"
     
     // SearchBar
     case searchBarTextField = "searchBarTextField"
@@ -144,12 +154,14 @@ enum TextStyle: String, TextStyleType {
     case ratesBonusTitle = "ratesBonusTitle"
     case ratesBonusDescription = "ratesBonusDescription"
     
-    static var all:[TextStyle] {
+    /// All Text Styles in a array
+    public static var all:[TextStyle] {
         return [
             // Intro
             .introTitle,
             // Home
             .homeDescription,
+            .homeVersion,
             // Menu
             .menuHeader,
             .menuItemTitle,
@@ -248,11 +260,13 @@ enum TextStyle: String, TextStyleType {
         ]
     }
     
-    var name:String {
+    /// Return name of style
+    public var name:String {
         return self.rawValue
     }
     
-    var style:StringStyle {
+    /// Return BonMot style
+    public var style:StringStyle {
         return { () -> StringStyle in
             switch self {
             // Intro
@@ -267,6 +281,8 @@ enum TextStyle: String, TextStyleType {
             case .homeDescription:
                 let boldStyle = StringStyle(.font(Font.homeDescriptionEmphasized.value), .color(Color.homeDescriptionLabel.value), .alignment(.center))
                 return StringStyle(.font(Font.homeDescription.value), .color(Color.homeDescriptionLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+            case .homeVersion:
+                return StringStyle(.font(Font.homeVersion.value), .color(Color.homeVersionLabel.value), .alignment(.center))
             // SearchBar
             case .searchBarTextField:
                 return StringStyle(.font(Font.searchBarTextField.value), .color(Color.searchBarTextField.value), .alignment(.center))
@@ -285,19 +301,22 @@ enum TextStyle: String, TextStyleType {
                 return StringStyle(.font(Font.carPopupType.value), .color(Color.carPopupLabel.value), .alignment(.center))
             case .carPopupPlate, .carPopupCapacity:
                 let boldStyle = StringStyle(.font(Font.carPopupEmphasized.value), .color(Color.carPopupLabel.value), .alignment(.center))
-                return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle)]))
+                let bigStyle = StringStyle(.font(FontWeight.bold.font(withSize: Font.carPopupEmphasized.getFontSize(size: 16))), .color(Color.carPopupLabel.value), .alignment(.center))
+                return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle), .style("big", bigStyle)]))
             case .carPopupAddressPlaceholder:
                 return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.left))
             case .carPopupAddress, .carPopupDistance, .carPopupWalkingDistance:
                 return StringStyle(.font(Font.carPopup.value), .color(Color.carPopupLabel.value), .alignment(.left))
             // CarBookingPopup
             case .carBookingPopupPin:
-                return StringStyle(.font(Font.carBookingPopupPin.value), .color(Color.carBookingPopupPin.value), .alignment(.center))
+                let whiteStyle = StringStyle(.font(Font.carBookingPopupPin.value), .color(UIColor.white), .alignment(.center))
+                return StringStyle(.font(Font.carBookingPopupPin.value), .color(Color.carBookingPopupPin.value), .alignment(.center),.xmlRules([.style("white", whiteStyle)]))
             case .carBookingPopupInfo:
-                let statusStyle = StringStyle(.font(Font.carBookingPopupStatus.value), .color(Color.carBookingPopupStatus.value), .alignment(.center))
-                let placeholderStyle = StringStyle(.font(Font.carPopup.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.center))
-                let boldStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center))
-                return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.center),.xmlRules([.style("bold", boldStyle), .style("status", statusStyle), .style("placeholder", placeholderStyle)]))
+                let statusStyle =
+                    StringStyle(.font(Font.carBookingPopupStatus.value), .color(Color.carBookingPopupStatus.value), .alignment(.center), .lineHeightMultiple(0.9))
+                let placeholderStyle = StringStyle(.font(Font.carPopup.value), .color(Color.carPopupAddressPlaceholder.value), .alignment(.center), .lineHeightMultiple(0.9))
+                let boldStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.center), .lineHeightMultiple(0.9))
+                return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.center), .lineHeightMultiple(0.9),.xmlRules([.style("bold", boldStyle), .style("status", statusStyle), .style("placeholder", placeholderStyle)]))
             case .carBookingPopupTime:
                 let boldStyle = StringStyle(.font(Font.carBookingPopupLabelEmphasized.value), .color(Color.carBookingPopupLabel.value), .alignment(.left))
                 return StringStyle(.font(Font.carBookingPopupLabel.value), .color(Color.carBookingPopupLabel.value), .alignment(.left),.xmlRules([.style("bold", boldStyle)]))
@@ -464,7 +483,10 @@ enum TextStyle: String, TextStyleType {
         }().byAdding(.lineBreakMode(.byTruncatingTail))
     }
     
-    static func setup() {
+    /**
+     This method registers all text styles used by application
+     */
+    public static func setup() {
         all.forEach { NamedStyles.shared.registerStyle(style: $0) }
     }
 }

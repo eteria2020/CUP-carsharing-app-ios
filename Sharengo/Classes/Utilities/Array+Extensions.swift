@@ -5,9 +5,16 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
-extension Array where Element: Equatable
+/**
+Array utilities
+*/
+public extension Array where Element: Equatable
 {
-    mutating func remove(_ object: Element) {
+    /**
+     This method remove an object from an array
+     - Parameter object: object to be removed
+     */
+    public mutating func remove(_ object: Element) {
         if let index = index(of: object) {
             remove(at: index)
         }

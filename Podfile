@@ -2,7 +2,6 @@ platform :ios, '9.0'
 
 def shared_pods
     use_frameworks!
-    pod 'RxSwift'
     pod 'Boomerang', :git => "https://github.com/synesthesia-it/Boomerang.git", :branch => 'v1'
     pod 'pop'
     pod 'BonMot'
@@ -11,7 +10,6 @@ def shared_pods
     pod 'Crashlytics'
     pod 'SnapKit', '~> 3.0.2'
     pod 'Localize-Swift'
-    pod 'Action', :git => "https://github.com/RxSwiftCommunity/Action.git"
     pod 'Moya/RxSwift'
     pod 'Gloss'
     pod 'Moya-Gloss/RxSwift'

@@ -11,26 +11,41 @@ import RxSwift
 import Boomerang
 import Action
 
-enum NoFeedsSelectionInput: SelectionInput {
+/**
+ Enum that specifies selection input
+ */
+public enum NoFeedsSelectionInput: SelectionInput {
     case empty
 }
 
-enum NoFeedsSelectionOutput: SelectionOutput {
+/**
+ Enum that specifies selection output
+ */
+public enum NoFeedsSelectionOutput: SelectionOutput {
     case empty
 }
 
-final class NoFeedsViewModel: ViewModelType {
-    lazy var selection:Action<NoFeedsSelectionInput,NoFeedsSelectionOutput> = Action { input in
+/**
+ The NoFeedsViewModel provides data related to display content on no feeds screen
+ */
+public class NoFeedsViewModel: ViewModelType {
+    /// Selection variable
+    lazy public var selection:Action<NoFeedsSelectionInput,NoFeedsSelectionOutput> = Action { input in
         switch input {
         default:
             return .just(.empty)
         }
     }
-    var category: Category? = nil
-    var categoryTitle: String?
-    var sectionSelected = FeedSections.feed
+    /// Variable used to save category
+    public var category: Category? = nil
+    /// Variable used to save category title
+    public var categoryTitle: String?
+    /// Variable used to save if section is feeds or categories
+    public var sectionSelected = FeedSections.feed
     
-    init(category: Category?) {
+    // MARK: Init methods
+    
+    public init(category: Category?) {
         self.category = category
         self.categoryTitle = category?.title
     }

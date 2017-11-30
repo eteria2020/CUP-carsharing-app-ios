@@ -11,24 +11,39 @@ import RxSwift
 import Boomerang
 import Action
 
-enum WebType: String {
+/**
+ Enum that specifies web type (url)
+ */
+public enum WebType: String {
     case empty = ""
     case forgotPassword = "https://www.sharengo.it/forgot-password/mobile"
     case signup = "http://www.sharengo.it/signup/mobile"
 }
 
-final class WebViewModel: ViewModelType {
-    var type: WebType = .empty
-    var urlRequest:URLRequest?
+/**
+ The WebViewModel provides data related to display share'ngo url pages to user
+ */
+public class WebViewModel: ViewModelType {
+    /// Web type
+    public var type: WebType = .empty
+    /// Url request created with page url
+    public var urlRequest: URLRequest?
   
-    init(with type: WebType) {
+    // MARK: - Init methods
+    
+    public init(with type: WebType) {
         self.type = type
         self.clearCacheCookie()
         let url = URL(string: type.rawValue)
         self.urlRequest = URLRequest(url: url!)
     }
 
-    func clearCacheCookie() {
+    // MARK: - Utilities methods
+    
+    /**
+     This method clears cache and cookie of a loaded page
+     */
+    public func clearCacheCookie() {
         URLCache.shared.removeAllCachedResponses()
         if let cookies = HTTPCookieStorage.shared.cookies {
             for cookie in cookies {

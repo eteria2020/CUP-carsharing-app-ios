@@ -152,10 +152,12 @@ public class BaseViewController: UIViewController {
                 if CoreController.shared.allCarBookings.first != nil {
                 } else if carBooking != nil {
                     if CoreController.shared.currentCarTrip == nil {
-                        CoreController.shared.notificationIsShowed = true
-                        NotificationsController.showNotification(title: "banner_carBookingDeletedTitle".localized(), description: "banner_carBookingDeletedDescription".localized(), carTrip: nil, source: self)
-                        CoreController.shared.currentCarBooking = nil
-                        CoreController.shared.allCarBookings = []
+                        if carBooking!.timer == "<bold>00:00</bold> \("lbl_carBookingPopupTimeMinutes".localized())" {
+                            CoreController.shared.notificationIsShowed = true
+                            NotificationsController.showNotification(title: "banner_carBookingDeletedTitle".localized(), description: "banner_carBookingDeletedDescription".localized(), carTrip: nil, source: self)
+                            CoreController.shared.currentCarBooking = nil
+                            CoreController.shared.allCarBookings = []
+                        }
                     }
                 }
             }
@@ -259,8 +261,8 @@ extension UIViewController {
                 self.loadingViewController!.view.alpha = 1.0
                 self.loadingStartDate = Date()
             }
+            self.loaderCount += 1
         }
-        self.loaderCount += 1
     }
     
     func hideLoader(completionClosure: @escaping () ->()) {
@@ -270,7 +272,7 @@ extension UIViewController {
             }
             self!.loaderCount = max(0, (self!.loaderCount ) - 1)
             if (self!.loaderCount == 0) {
-                if self?.loadingViewController != nil {
+                if let loadingViewController = self?.loadingViewController {
                     let start = self?.loadingStartDate
                     let enddt = Date()
                     let calendar = Calendar.current
@@ -278,10 +280,10 @@ extension UIViewController {
                     if let s = datecomponents.second {
                         if s > 2 {
                             UIView.animate(withDuration: 0.4, animations: {
-                                self?.loadingViewController!.view.alpha = 0
+                                loadingViewController.view.alpha = 0
                             }, completion: { (success) in
-                                self?.loadingViewController!.view.removeFromSuperview()
-                                self?.loadingViewController!.removeFromParentViewController()
+                                loadingViewController.view.removeFromSuperview()
+                                loadingViewController.removeFromParentViewController()
                                 completionClosure()
                             })
                         } else {
@@ -296,6 +298,26 @@ extension UIViewController {
         }
     }
     
+    func hideLoaderNow() {
+        DispatchQueue.main.async {[weak self]  in
+            if (self == nil) {
+                return
+            }
+            self!.loaderCount = max(0, (self!.loaderCount ) - 1)
+            if (self!.loaderCount == 0) {
+                if let loadingViewController = self?.loadingViewController {
+                    UIView.animate(withDuration: 0.4, animations: {
+                        loadingViewController.view.alpha = 0
+                    }, completion: { (success) in
+                        loadingViewController.view.removeFromSuperview()
+                        loadingViewController.removeFromParentViewController()
+                    })
+                    
+                }
+            }
+        }
+    }
+
     func showMenuBackground() {
         if self.menuBackgroundView == nil {
             self.menuBackgroundView = UIView(frame: self.view.frame)

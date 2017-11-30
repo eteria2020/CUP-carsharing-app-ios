@@ -13,7 +13,7 @@ import Boomerang
 /**
  The Setting language item model provides data related to display content on the setting language item
  */
-public final class SettingsLanguageItemViewModel : ItemViewModelType {
+public class SettingsLanguageItemViewModel : ItemViewModelType {
     /// ViewModel variable used to save data
     public var model:ItemViewModelType.Model
     /// ViewModel variable used to identify setting language item cell

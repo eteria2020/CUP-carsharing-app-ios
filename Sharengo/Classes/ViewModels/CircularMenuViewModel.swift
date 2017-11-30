@@ -85,7 +85,7 @@ public enum CircularMenuOutput: SelectionInput {
 /**
  The Circular menu model provides data related to display content on the circular menu
  */
-public final class CircularMenuViewModel: ViewModelTypeSelectable {
+public class CircularMenuViewModel: ViewModelTypeSelectable {
     /// Type of the circular menu
     public let type: CircularMenuType
     /// Selection variable

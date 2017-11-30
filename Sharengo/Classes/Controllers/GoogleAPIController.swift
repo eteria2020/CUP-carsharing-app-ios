@@ -15,10 +15,16 @@ import Alamofire
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class GoogleAPIController {
-    fileprivate var manager: SessionManager?
+/**
+ GoogleAPIController class is a controller that manage google services about search address and walk navigation
+ */
+public class GoogleAPIController {
+    /// Session Manager
+    public var manager: SessionManager?
    
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
         configuration.timeoutIntervalForResource = 20
@@ -27,8 +33,14 @@ final class GoogleAPIController {
             configuration: configuration
         )
     }
+
+    // MARK: - Search methods
     
-    func searchAddress(text: String) -> Observable<[Address]> {
+    /**
+     This method returns an array of address
+     - Parameter text: text to find
+     */
+    public func searchAddress(text: String) -> Observable<[Address]> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -59,7 +71,11 @@ final class GoogleAPIController {
         }
     }
     
-    func searchRoute(destination: CLLocation) -> Observable<[RouteStep]> {
+    /**
+     This method returns an array of route step
+     - Parameter destination: final location of route
+     */
+    public func searchRoute(destination: CLLocation) -> Observable<[RouteStep]> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -128,7 +144,7 @@ extension API: TargetType {
                 originString = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
             }
             let destinationString = "\(destination.coordinate.latitude),\(destination.coordinate.longitude)"
-            return ["mode": "walking", "origin": "\(originString)", "destination": "\(destinationString)", "key": "AIzaSyAnVjGP9ZCkSkBVkrX-5SBdmNW9AwE_Gew"]
+            return ["mode": "walking", "origin": "\(originString)", "destination": "\(destinationString)", "key": "AIzaSyBwHmQj5SXyKDwLaMe6KouQ9u6AFY5DUK0"]
         }
     }
     

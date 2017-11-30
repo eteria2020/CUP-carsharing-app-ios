@@ -9,13 +9,19 @@
 import UIKit
 import DeviceKit
 
-enum FontWeight {
+/**
+ Enum of FontWeight used in the application
+ */
+public enum FontWeight {
     case light
     case regular
     case medium
     case semibold
     case bold
     
+    /**
+     This method return font from font's weight
+     */
     public func font(withSize size:CGFloat) -> UIFont {
         switch self {
         case .light:
@@ -27,12 +33,15 @@ enum FontWeight {
         case .semibold:
             return UIFont(name: "Poppins-SemiBold", size: size)!
         case .bold:
-            return UIFont(name: "Poppins", size: size)!
+            return UIFont(name: "Poppins-Bold", size: size)!
         }
     }
 }
 
-enum Font {
+/**
+ Main fonts in application
+ */
+public enum Font {
     // General
     case roundedButton
     
@@ -50,6 +59,7 @@ enum Font {
     // Home
     case homeDescription
     case homeDescriptionEmphasized
+    case homeVersion
     
     // SearchCars
     case searchCarsClusterLabel
@@ -189,7 +199,10 @@ enum Font {
     case ratesBonusTitle
     case ratesBonusDescription
 
-    var value: UIFont {
+    /**
+     Value returned from font
+     */
+    public var value: UIFont {
         get {
             switch self {
             // General
@@ -213,6 +226,8 @@ enum Font {
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 14))
             case .homeDescriptionEmphasized:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+            case .homeVersion:
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 10))
             // SearchCars
             case .searchCarsClusterLabel:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
@@ -232,13 +247,13 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
             // CarBookingPopup
             case .carBookingPopupPin:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             case .carBookingPopupLabel:
-                return FontWeight.regular.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
             case .carBookingPopupLabelEmphasized:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .carBookingPopupStatus:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             // CarBookingCompleted
             case .carBookingCompletedBannerLabel:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 12))
@@ -386,7 +401,7 @@ enum Font {
             case .supportHeader:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .supportTitle:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 16))
             case .supportSubtitle:
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 14))
             // Invite Friend
@@ -424,19 +439,21 @@ enum Font {
         }
     }
     
-    func getFontSize(size: CGFloat) -> CGFloat {
+    /**
+     This method returns font size depending on device diagonal
+     - Parameter size: base font size
+     */
+    public func getFontSize(size: CGFloat) -> CGFloat {
         let device = Device()
         switch device.diagonal {
         case 3.5:
             return size * 0.9
         case 4:
             return size
-        case 4.7:
+        case 4.7, 5.8:
             return size * 1.1
-        case 5.5:
-            return size * 1.2
         default:
-            return size
+            return size * 1.2
         }
     }
 }
