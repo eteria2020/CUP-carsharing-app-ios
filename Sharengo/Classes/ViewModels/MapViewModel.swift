@@ -441,7 +441,8 @@ public final class MapViewModel: ViewModelType {
                     if response.status == 200, let data = response.dic_data {
                         completionClosure(true, nil, data)
                     } else {
-                        completionClosure(false, nil, nil)
+                        let json: JSON = ["reason": response.reason!]
+                        completionClosure(false, nil,json)
                     }
                 case .error(let error):
                     completionClosure(false, error, nil)

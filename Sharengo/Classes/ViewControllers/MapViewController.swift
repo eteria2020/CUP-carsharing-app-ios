@@ -793,10 +793,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         })
                     }
                 } else {
+                    
                     let dispatchTime = DispatchTime.now() + 0.5
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                         self.hideLoader(completionClosure: { () in
-                            let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            
+                            let dialog = ZAlertView(title: nil, message: self.splitMessage(data: data?["reason"] as? String), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
                             })
                             dialog.allowTouchOutsideToDismiss = false
@@ -808,6 +810,45 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         })
     }
     
+    public func splitMessage(data: String?) -> String{
+        
+        let array:[String]? = data!.components(separatedBy: "-")
+        var result=""
+        if let length:Int = array?.count{
+            for index in 0..<length{
+                let reason:[String]? = array?[index].components(separatedBy: ":")
+                if (reason?[reason!.count-1].trimmingCharacters(in: CharacterSet.whitespaces).toBool())!{
+             
+                    let key:String? = reason?[reason!.count-2].trimmingCharacters(in: CharacterSet.whitespaces)
+                    
+                     if  (key?.caseInsensitiveCompare("status")==ComparisonResult.orderedSame)
+                     {
+                        result = "alert_carBookingPopupStatus".localized()///[NSError errorWithDomain:@"SngRestClientManager.UnaviableCar" code:[operation.response statusCode] userInfo:nil];
+                     }
+                     else if (key?.caseInsensitiveCompare("reservation")==ComparisonResult.orderedSame)
+                     {
+                        result = "alert_carBookingPopupOnTrip".localized()// [NSError errorWithDomain:@"SngRestClientManager.AlreadyReserved" code:[operation.response statusCode] userInfo:nil];
+                     }
+                     else if (key?.caseInsensitiveCompare("trip")==ComparisonResult.orderedSame)
+                     {
+                        result = "alert_carBookingPopupOnTrip".localized()//[NSError errorWithDomain:@"SngRestClientManager.TripOn" code:[operation.response statusCode] userInfo:nil];
+                     }else if (key?.caseInsensitiveCompare("limit")==ComparisonResult.orderedSame)
+                     {
+                        result = "alert_carBookingPopupAlreadyBooked".localized()//[NSError errorWithDomain:@"SngRestClientManager.LimitReservation" code:[operation.response statusCode] userInfo:nil];
+                     }else if (key?.caseInsensitiveCompare("limit_archive")==ComparisonResult.orderedSame)
+                     {
+                        result = "alert_carBookingPopupAlreadyBooked".localized()//[NSError errorWithDomain:@"SngRestClientManager.LimitReservation" code:[operation.response statusCode] userInfo:nil];
+                     }else {
+                        result = "alert_carBookingPopupGeneric".localized()//[NSError errorWithDomain:@"SngRestClientManager.GetActiveBooking" code:kSngClientManagerInvalidBookingObject userInfo:nil];
+                    }
+                }
+            
+                }
+            }
+        
+        return result
+    }
+
     /**
      This method delete car booking
      */

@@ -98,13 +98,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     fileprivate func setupGoogleMaps() {
-        #if ISDEBUG
-            GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
-        #elseif ISRELEASE
-            GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
+       // #if ISDEBUG
+           // GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
+       // #elseif ISRELEASE
+         //   GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
         //    TODO: ripristinare per l'invio
-        //    GMSServices.provideAPIKey("AIzaSyCnHV6khPUikgREjDIaOfSOOOM8SoI6RlM")
-        #endif
+            GMSServices.provideAPIKey("AIzaSyCnHV6khPUikgREjDIaOfSOOOM8SoI6RlM")
+        //#endif
     }
     
     fileprivate func setupFavourites() {

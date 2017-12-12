@@ -126,6 +126,9 @@
 "alert_carBookingPopupConfirmDeleteMessage" = "Your booking has been canceled correctly";
 "alert_carBookingPopupBookedMessage" = "You already have an active booking";
 "alert_carBookingPopupAlreadyBooked" = "You cannot book this car until 4 hours have passed since your last canceled your booking";
+"alert_carBookingPopupOnTrip" = "Someone is already using this Share'ngo";
+"alert_carBookingPopupStatus" = "This car is not available, sorry for the incovenience";
+"alert_carBookingPopupGeneric" = "Ops, an error occurred";
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>You ended your trip<bold>\n\nYou will be notified via mail the transaction confirmation within 24h.";

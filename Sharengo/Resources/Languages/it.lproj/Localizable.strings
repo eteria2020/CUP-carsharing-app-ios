@@ -126,6 +126,9 @@
 "alert_carBookingPopupConfirmDeleteMessage" = "La tua prenotazione è stata annullata correttamente.";
 "alert_carBookingPopupBookedMessage" = "Hai già una prenotazione attiva";
 "alert_carBookingPopupAlreadyBooked" = "Non puoi prenotare questa auto fino a che non saranno passate 4 ore da quando hai annullato la prenotazione";
+"alert_carBookingPopupOnTrip" = "Qualcuno sta già utilizzando questa Share'ngo";
+"alert_carBookingPopupStatus" = "Questa auto non è disponibile, ci scusiamo per l'incoveniente";
+"alert_carBookingPopupGeneric" = "Si è verificato un errore";
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
