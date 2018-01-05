@@ -19,6 +19,7 @@ import KeychainSwift
 import SideMenu
 import GoogleMaps
 
+
 /**
  The Map class provides features related to display content on a map. These include:
  - show cars
@@ -33,7 +34,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var mapView: GMSMapView!
     @IBOutlet fileprivate weak var btn_closeCarPopup: UIButton!
     /// User can open doors 300 meters down
-    public let carPopupDistanceOpenDoors: Int = 300
+    public let carPopupDistanceOpenDoors: Int = 800
     /// Map has to show cities 35000 meters up
     public let clusteringRadius: Double = 35000
     /// Variable used to save height of popup
@@ -64,7 +65,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var lastNearestCar: Car?
     /// Variable used to save nearest car route steps
     public var nearestCarRouteSteps: [RouteStep] = []
-    
+    ///car url for external open app
+    public var carUrl : Car?
     // MARK: - ViewModel methods
     
     public func bind(to viewModel: ViewModelType?) {
@@ -203,6 +205,30 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 break
             }
         }).addDisposableTo(self.disposeBag)
+        //checkUrlCar for external open APP
+        if(selectedPlate != ""){
+            
+            CoreController.shared.apiController.searchCar(plate: selectedPlate)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.dic_data {
+                            self.carUrl = Car(json: data)
+                            self.selectedCar = self.carUrl
+                            self.view_carPopup.updateWithCar(car: self.carUrl!)
+                            
+                        }
+                        break
+                    case .error(_):
+                            selectedPlate = ""
+                        break
+                    case .completed:
+                            selectedPlate = ""
+                        break
+                    }
+                }.addDisposableTo(CoreController.shared.disposeBag)
+        }
         // CarPopup
         self.view_carPopup.bind(to: ViewModelFactory.carPopup(type: .car))
         self.view_carPopup.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -712,6 +738,16 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func bookCar(car: Car) {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             self.showLoginAlert()
+            return
+        }
+        if let bookedCar = self.viewModel?.carBooked {
+            if car.plate != bookedCar.plate {
+                let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
             return
         }
         self.showLoader()
@@ -1499,7 +1535,7 @@ extension MapViewController: GMSMapViewDelegate {
             }
         } else if let carAnnotation = marker.userData as? CarAnnotation {
             let car = carAnnotation.car
-            if let bookedCar = self.viewModel?.carBooked {
+            /*if let bookedCar = self.viewModel?.carBooked {
                 if car.plate != bookedCar.plate {
                     let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                         alertView.dismissAlertView()
@@ -1513,7 +1549,7 @@ extension MapViewController: GMSMapViewDelegate {
                     }
                 }
                 return true
-            }
+            }*/
             if car.plate != self.selectedCar?.plate {
                 self.drawRoutes(steps: self.routeSteps)
             }

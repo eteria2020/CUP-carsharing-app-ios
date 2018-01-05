@@ -62,6 +62,7 @@
 "lbl_menuSignUp" = "Signup";
 "lbl_menuFaq" = "Faq and tutorial";
 "lbl_menuRates" = "Rates";
+"lbl_menuPin" = "Pin";
 "lbl_menuHelp" = "Request assistance";
 "lbl_menuProfile" = "User area";
 "lbl_menuSearchCars" = "Book a car";
@@ -264,6 +265,13 @@
 "lbl_ratesBonusTitle" = "Your bonus minutes:";
 "lbl_ratesBonusDescription" = "%d minutes";
 "btn_ratesSignup" = "SUBSCRIBE NOW";
+
+
+// Pin
+"lbl_pinHeader" = "PIN";
+"lbl_pinPinTitle" = "Here's your pin:";
+
+/////////////////////////
 
 "alert_logoutError" = "Careful, an error occured. Please login again.";
 "btn_login" = "LOGIN";

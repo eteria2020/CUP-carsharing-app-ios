@@ -39,6 +39,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case support = "support"
     case inviteFriend = "inviteFriend"
     case rates = "rates"
+    case pin = "pin"
     
     var name: String {
         return self.rawValue

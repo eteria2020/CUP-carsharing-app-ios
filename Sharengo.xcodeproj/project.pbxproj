@@ -325,6 +325,8 @@
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
+		D1EFAA421FE8056100CE33E1 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA411FE8056100CE33E1 /* PinViewController.swift */; };
+		D1EFAA441FE8059000CE33E1 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -688,6 +690,8 @@
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
+		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
+		D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewModel.swift; path = Classes/ViewModels/PinViewModel.swift; sourceTree = "<group>"; };
 		D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1415,6 +1419,7 @@
 		4DCD1A751ECDBF7400FC8BF5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D1EFAA401FE804B900CE33E1 /* Pin */,
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
 				4DC10E001EE9AC5800A74E26 /* Loading */,
 				4D2339961EE6CD2A00780384 /* Intro */,
@@ -1523,8 +1528,8 @@
 		4DCD1A9F1ECDC22900FC8BF5 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */,
 				4DCD1AA01ECDC22900FC8BF5 /* LaunchScreen.storyboard */,
+				4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */,
 			);
 			name = Storyboards;
 			path = Resources/Storyboards;
@@ -1645,6 +1650,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D1EFAA401FE804B900CE33E1 /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				D1EFAA411FE8056100CE33E1 /* PinViewController.swift */,
+				D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */,
+			);
+			name = Pin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1685,6 +1699,9 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -2062,9 +2079,11 @@
 				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
 				4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */,
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
+				D1EFAA421FE8056100CE33E1 /* PinViewController.swift in Sources */,
 				4DCE7EEC1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift in Sources */,
 				036D922D1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift in Sources */,
 				03AF5D741EEE83FC00AC8826 /* AnimatedTextInputStyle.swift in Sources */,
+				D1EFAA441FE8059000CE33E1 /* PinViewModel.swift in Sources */,
 				4D60EA941F3E037E0085BFE3 /* GMUPolygon.m in Sources */,
 				03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
@@ -2300,7 +2319,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Iphone 5 mac livorno";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -2310,8 +2329,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Matteo Gandolfi (695C3HK8R5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CS Group SPA (F67U6XW2G4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CS Group SPA (F67U6XW2G4)";
 				DEVELOPMENT_TEAM = F67U6XW2G4;
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2319,12 +2338,12 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISRELEASE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = it.eteria.sharengo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ea72469-b1b3-473f-86fd-47c6ca6efeef";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: it.eteria.sharengo.app";
+				PROVISIONING_PROFILE = "d8de2194-cfe1-4a5b-b0a8-9226f52b7c74";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Distribution";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

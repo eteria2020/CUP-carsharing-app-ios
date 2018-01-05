@@ -37,6 +37,7 @@ enum ColorBrand {
     case gray
     case grayDisabled
     case clear
+    case red
 
     var value: UIColor {
         get {
@@ -57,6 +58,8 @@ enum ColorBrand {
                 return UIColor(red: 158/255.0, green: 153/255.0, blue: 146/255.0, alpha: 1.0)
             case .clear:
                 return UIColor.clear
+            case .red:
+                return UIColor(red: 255/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
             }
         }
     }
@@ -304,6 +307,16 @@ enum Color {
     case ratesBonusTitle
     case ratesBonusDescription
     case ratesBonusContainerBackground
+    
+    // Pin
+    case pinBackground
+    case pinHeaderBackground
+    case pinHeaderTitle
+    case pinPinTitle
+    case pinPinDescription
+    case pinBonusTitle
+    case pinBonusDescription
+    case pinDescriptionContainerBackground
     
     // Tutorial
     case tutorialBackground
@@ -701,6 +714,23 @@ enum Color {
             case .ratesBonusDescription:
                 return ColorBrand.black.value
             case .ratesBonusContainerBackground:
+                return ColorBrand.lightGray.value
+            //Pin
+            case .pinBackground:
+                return ColorBrand.white.value
+            case .pinHeaderBackground:
+                return ColorBrand.black.value
+            case .pinHeaderTitle:
+                return ColorBrand.white.value
+            case .pinPinTitle:
+                return ColorBrand.green.value
+            case .pinPinDescription:
+                return ColorBrand.red.value
+            case .pinBonusTitle:
+                return ColorBrand.green.value
+            case .pinBonusDescription:
+                return ColorBrand.black.value
+            case .pinDescriptionContainerBackground:
                 return ColorBrand.lightGray.value
             // Tutorial
             case .tutorialBackground:

@@ -91,6 +91,10 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                     let destination: RatesViewController = (Storyboard.main.scene(.rates))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                case is PinViewModel:
+                    let destination: PinViewController = (Storyboard.main.scene(.pin))
+                    destination.bind(to: viewModel, afterLoad: true)
+                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 default:
                     break
                 }

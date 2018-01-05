@@ -88,13 +88,13 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
         txt_password.delegate = self
         txt_password.placeHolderText = "txt_loginPasswordPlaceholder".localized()
         txt_password.style = CustomTextInputStyle1()
-        #if ISDEBUG
+        /*#if ISDEBUG
             //txt_email.text = "emilio.cristiano@tiscali.it"
             //txt_password.text = "Sharengo2016!"
             txt_email.text = "francesco.galatro@gmail.com"
             txt_password.text = "AppTest2017"
         #elseif ISRELEASE
-        #endif
+        #endif*/
         if self.introIsShowed {
             UIView.animate(withDuration: 0.5, animations: {
                 self.view_white.alpha = 0.0

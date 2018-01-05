@@ -9,10 +9,14 @@ import Localize_Swift
 import GoogleMaps
 import KeychainSwift
 
+//global var for URL
+public var selectedPlate = ""
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     fileprivate let menuPadding: CGFloat = 100.0
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -27,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 KeychainSwift().clear()
             }
         }
+        
         self.setupAlert()
         self.setupHistory()
         self.setupFavourites()
@@ -151,6 +156,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
+/*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+  
+    let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: false)
+    let items = (urlComponents?.queryItems)! as [NSURLQueryItem] // {name = backgroundcolor, value = red}
+    if (url.scheme == "sharengocar") {
+        //var color: UIColor? = nil
+        var plate = ""
+        if let _ = items.first, let propertyName = items.first?.name, let propertyValue = items.first?.value {
+            //vcTitle = propertyName
+            if (propertyName == "plate") {
+               plate = propertyValue
+            }
+        }
+        
+        if (plate != "") {
+            selectedPlate = plate
+            /*let vc = UIViewController()
+            vc.view.backgroundColor = color
+            vc.title = vcTitle
+            let navController = UINavigationController(rootViewController: vc)
+            let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(dismiss))
+            vc.navigationItem.leftBarButtonItem = barButtonItem
+            self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)*/
+            return true
+        }
+    }
+    // URL Scheme entered through URL example : swiftexamples://red
+    //swiftexamples://?backgroundColor=red
+    return false
+}*/
+
+
+
+
+func presentDetailViewController(plate:String) {
+    
+    selectedPlate = plate
+    
+    
+    
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    let detailVC = storyboard.instantiateViewController(withIdentifier: "NavigationController")
+        as! MapViewController
+    
+    let navigationVC = storyboard.instantiateViewController(withIdentifier: "DetailController")
+        as! UINavigationController
+    navigationVC.modalPresentationStyle = .formSheet
+    
+    navigationVC.pushViewController(detailVC, animated: true)
+}
 
 extension AppDelegate {
     func setupSideMenu() {
@@ -169,4 +225,41 @@ extension AppDelegate {
         
         SideMenuManager.menuRightNavigationController = menuRightNavigationController
     }
+    
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        //print("diocane")
+        // 1
+        /*guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+         let url = userActivity.webpageURL,
+         let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+         return true
+         }
+         
+         // 2
+         let computer = userActivity.webpageURL?.path
+         presentDetailViewController(plate: computer!)
+         return true
+         
+         
+         // 3*/
+        
+        /*let topWindow = UIWindow(frame: UIScreen.main.bounds)
+        topWindow.rootViewController = UIViewController()
+        topWindow.windowLevel = UIWindowLevelAlert + 1
+        let alert = UIAlertController(title: "UN LINK", message: "YES", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+            // continue your work
+            // important to hide the window after work completed.
+            // this also keeps a reference to the window until the action is invoked.
+            topWindow.isHidden = true
+        }))
+        topWindow.makeKeyAndVisible()
+        topWindow.rootViewController?.present(alert, animated: true, completion: { _ in })
+        
+        let webpageUrl = URL(string: "http://rw-universal-links-final.herokuapp.com")!
+        application.openURL(webpageUrl)*/
+        
+        return true
+    }
+
 }

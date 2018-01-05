@@ -62,6 +62,7 @@
 "lbl_menuSignUp" = "Iscrizione";
 "lbl_menuFaq" = "Faq e tutorial";
 "lbl_menuRates" = "Tariffe";
+"lbl_menuPin" = "Pin";
 "lbl_menuHelp" = "Richiedi assistenza";
 "lbl_menuProfile" = "Area personale";
 "lbl_menuSearchCars" = "Prenota un'auto";
@@ -264,6 +265,13 @@
 "lbl_ratesBonusTitle" = "I tuoi minuti bonus:";
 "lbl_ratesBonusDescription" = "%d minuti";
 "btn_ratesSignup" = "ISCRIVITI SUBITO";
+
+
+// Pin
+"lbl_pinHeader" = "PIN";
+"lbl_pinPinTitle" = "Ecco il tuo pin:";
+
+////////////////////////
 
 "alert_logoutError" = "Attenzione si è verificato un errore. Ti invitiamo ad accedere nuovamente.";
 "btn_login" = "ACCEDI";
