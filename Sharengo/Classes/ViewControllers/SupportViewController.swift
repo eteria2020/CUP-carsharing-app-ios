@@ -125,7 +125,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                     }
                     else
                     {
-                        let message = "alert_supportWrite".localized()
+                        let message = "alert_supportEmail".localized()
                         let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_supportAlertWrite".localized(), cancelButtonText: "btn_cancel".localized(),
                                                 okButtonHandler: { alertView in
                                                     alertView.dismissAlertView()

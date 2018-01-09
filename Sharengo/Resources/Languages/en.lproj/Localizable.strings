@@ -274,6 +274,9 @@
 "lbl_pinHeader" = "PIN";
 "lbl_pinPinTitle" = "Here's your pin:";
 
+//Logout
+"lbl_logoutMessage"="Do you want logout?";
+"lbl_logoutConfirmButton"="LOGOUT";
 /////////////////////////
 
 "alert_logoutError" = "Careful, an error occured. Please login again.";
