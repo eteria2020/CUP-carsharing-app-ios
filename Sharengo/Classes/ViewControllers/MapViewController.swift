@@ -721,15 +721,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         car2?.opened = true
                                         car2?.booked = true
                                         DispatchQueue.main.async {
-                                            //self.hideLoader(completionClosure: { () in
+                                            self.hideLoader(completionClosure: { () in
                                                 self.viewModel!.carTrip!.car.value = car2
                                                 self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
-                                            //})
+                                            })
                                         }
                                     } else {
                                         let carTrip = CarTrip(car: car2 ?? car)
                                         DispatchQueue.main.async {
-                                            //self.hideLoader(completionClosure: { () in
+                                            self.hideLoader(completionClosure: { () in
                                                 carTrip.car.value?.booked = true
                                                 carTrip.car.value?.opened = true
                                                 carTrip.timeStart = Date()
@@ -742,7 +742,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 self.getResultsWithoutLoading()
                                                 self.routeSteps = self.nearestCarRouteSteps
                                                 self.drawRoutes(steps: self.nearestCarRouteSteps)
-                                           // })
+                                        })
                                         }
                                     }
                                 }
@@ -753,7 +753,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     } else {
                         let carTrip = CarTrip(car: car)
                         DispatchQueue.main.async {
-                            //self.hideLoader(completionClosure: { () in
+                            self.hideLoader(completionClosure: { () in
                                 car.booked = true
                                 car.opened = true
                                 carTrip.car.value = car
@@ -765,13 +765,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self.viewModel?.carTrip = carTrip
                                 self.viewModel?.carBooking = nil
                                 self.getResultsWithoutLoading()
-                            //})
+                            })
                         }
                     }
                 } else {
-                    //self.hideLoader(completionClosure: { () in
+                    self.hideLoader(completionClosure: { () in
                         self.showGeneralAlert()
-                    //})
+                    })
                 }
             }
         })
@@ -820,7 +820,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             if error != nil {
                                 let dispatchTime = DispatchTime.now() + 0.5
                                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                   // self.hideLoader(completionClosure: { () in
+                                   self.hideLoader(completionClosure: { () in
                                         var message = "alert_generalError".localized()
                                         if Reachability()?.isReachable == false {
                                             message = "alert_connectionError".localized()
@@ -830,14 +830,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         })
                                         dialog.allowTouchOutsideToDismiss = false
                                         dialog.show()
-                                    //})
+                                    })
                                 }
                             } else {
                                 if success {
                                     if let carBookings = [CarBooking].from(jsonArray: data!) {
                                         if let carBooking = carBookings.first {
                                             DispatchQueue.main.async {
-                                               // self.hideLoader(completionClosure: { () in
+                                               self.hideLoader(completionClosure: { () in
                                                     car.booked = true
                                                     carBooking.car.value = car
                                                     self.closeCarPopup()
@@ -858,18 +858,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                             self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                                                         }
                                                     }
-                                               // })
+                                               })
                                             }
                                         }
                                     } else {
-                                        //self.hideLoader(completionClosure: { () in
+                                        self.hideLoader(completionClosure: { () in
                                             self.showGeneralAlert()
-                                       // })
+                                       })
                                     }
                                 } else {
-                                    //self.hideLoader(completionClosure: { () in
+                                    self.hideLoader(completionClosure: { () in
                                         self.showGeneralAlert()
-                                   // })
+                                    })
                                 }
                             }
                         })
@@ -878,15 +878,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     
                     let dispatchTime = DispatchTime.now() + 0.5
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        //self.hideLoader(completionClosure: { () in
+                        self.hideLoader(completionClosure: { () in
                             
                             let dialog = ZAlertView(title: nil, message: self.splitMessage(data: data?["reason"] as? String), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
                            })
                                 dialog.allowTouchOutsideToDismiss = false
                                 dialog.show()
-                         
-                        //})
+                        
+                        })
                     }
                 }
             }
@@ -974,13 +974,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 } else {
                                                     let dispatchTime = DispatchTime.now() + 0.5
                                                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                        //self.hideLoader(completionClosure: { () in
+                                                        self.hideLoader(completionClosure: { () in
                                                             let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                                 alertView.dismissAlertView()
                                                             })
                                                             dialog.allowTouchOutsideToDismiss = false
                                                             dialog.show()
-                                                        //})
+                                                        })
                                                     }
                                                 }
                                             }
