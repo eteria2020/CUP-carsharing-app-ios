@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchBarView" customModule="Sharengo" customModuleProvider="target">
             <connections>
+                <outlet property="btn_cleanSearch" destination="ndl-3y-x9J" id="KeW-5U-VAy"/>
                 <outlet property="btn_microphone" destination="ZJz-Zh-RZk" id="x1r-TE-5mz"/>
                 <outlet property="collectionView" destination="B5t-4g-trE" id="Xa8-Mt-bHf"/>
                 <outlet property="icn_search" destination="7i9-Rg-fVz" id="9jK-D3-WNl"/>
@@ -87,14 +89,41 @@
                                         <outlet property="delegate" destination="-1" id="Peo-2V-xOS"/>
                                     </connections>
                                 </textField>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndl-3y-x9J">
+                                    <rect key="frame" x="225" y="10" width="40" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="N7y-fv-vp3"/>
+                                        <constraint firstAttribute="width" constant="40" id="cJ5-xA-Z8U"/>
+                                    </constraints>
+                                    <state key="normal">
+                                        <attributedString key="attributedTitle">
+                                            <fragment content="X">
+                                                <attributes>
+                                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="19" name=".AppleSystemUIFont"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </state>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="6cN-EC-jcB" secondAttribute="trailing" constant="5" id="7bF-Ew-Z4p"/>
+                                <constraint firstAttribute="trailing" secondItem="ndl-3y-x9J" secondAttribute="trailing" id="8HD-0I-Dh4"/>
                                 <constraint firstItem="6cN-EC-jcB" firstAttribute="leading" secondItem="Fsc-MR-YMO" secondAttribute="leading" constant="5" id="AJ1-ej-S3m"/>
                                 <constraint firstAttribute="bottom" secondItem="6cN-EC-jcB" secondAttribute="bottom" id="HS6-W0-nFi"/>
+                                <constraint firstItem="ndl-3y-x9J" firstAttribute="leading" secondItem="Fsc-MR-YMO" secondAttribute="leading" constant="224" id="Kf0-mT-MIY"/>
+                                <constraint firstItem="ndl-3y-x9J" firstAttribute="top" secondItem="Fsc-MR-YMO" secondAttribute="top" constant="10" id="WxF-SY-Osw"/>
                                 <constraint firstItem="6cN-EC-jcB" firstAttribute="top" secondItem="Fsc-MR-YMO" secondAttribute="top" id="hQc-si-e0E"/>
+                                <constraint firstAttribute="bottom" secondItem="ndl-3y-x9J" secondAttribute="bottom" constant="9" id="zAz-LR-dxT"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Kf0-mT-MIY"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.47720116439999999" green="0.51520912549999998" blue="0.4923805846" alpha="1" colorSpace="calibratedRGB"/>
@@ -142,6 +171,7 @@
                 <constraint firstAttribute="trailing" secondItem="Dt8-8G-2Vq" secondAttribute="trailing" constant="15" id="cqm-Ih-aLn"/>
                 <constraint firstItem="B5t-4g-trE" firstAttribute="trailing" secondItem="Dt8-8G-2Vq" secondAttribute="trailing" id="wUA-7w-5uq"/>
             </constraints>
+            <point key="canvasLocation" x="26.5" y="51.5"/>
         </view>
     </objects>
     <resources>

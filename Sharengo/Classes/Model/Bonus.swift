@@ -13,7 +13,7 @@ import Gloss
 /**
  The Bonus model is used to represent a singular bonus.
  */
-public class Bonus: ModelType, Decodable {
+public class Bonus: ModelType, Gloss.Decodable {
     /// Bonus type
     public var type: String = ""
     /// Value of Bonus

@@ -14,7 +14,7 @@ import CoreLocation
 /**
  The Car model is used to represent a Car.
  */
-public class Car: ModelType, Decodable {
+public class Car: ModelType, Gloss.Decodable {
     /// Car Plate
     public var plate: String?
     /// Duration of a trip

@@ -52,7 +52,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
         viewModel.loginExecuted.asObservable()
             .subscribe(onNext: {[weak self] (loginExecuted) in
                 DispatchQueue.main.async {
-                    self?.hideLoader(completionClosure: { () in
+                    //self?.hideLoader(completionClosure: { () in
                         if loginExecuted {
                             if self != nil {
                                 if let viewModel = viewModel.nextViewModel {
@@ -68,7 +68,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
                                 }
                             }
                         }
-                    })
+                   //})
                 }
             }).addDisposableTo(disposeBag)
     }
@@ -135,16 +135,16 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
                 destination.bind(to: viewModel, afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
             case .login:
-                self?.showLoader()
+                //self?.showLoader()
                 self?.viewModel?.login(username: (self?.txt_email.text)!, password: (self?.txt_password.text)!)
             case .register:
                 let destination: SignupViewController = (Storyboard.main.scene(.signup))
                 destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
             case .continueAsNotLogged:
-                let destination: HomeViewController = (Storyboard.main.scene(.home))
+                let destination: MapViewController = (Storyboard.main.scene(.map))
                 destination.introIsShowed = true
-                destination.bind(to: ViewModelFactory.home(), afterLoad: true)
+                destination.bind(to: ViewModelFactory.map(type: MapType.searchCars), afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
             }
         }).addDisposableTo(self.disposeBag)
@@ -157,7 +157,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .home:
-                Router.exit(self!)
+                Router.back(self!)
             case .menu:
                 self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
             default:

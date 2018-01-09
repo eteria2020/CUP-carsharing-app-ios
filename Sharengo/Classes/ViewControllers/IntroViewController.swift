@@ -47,11 +47,12 @@ public class IntroViewController : UIViewController, ViewModelBindable {
         self.lbl_title2.alpha = 0.0
         self.lbl_title3.styledText = "lbl_introTitle3".localized()
         self.lbl_title3.alpha = 0.0
-        if UserDefaults.standard.bool(forKey: "LongIntro") == false {
-            self.executeLongIntro()
-        } else {
+        //Rimosso dai contadini FULVIOIVAN
+        //if UserDefaults.standard.bool(forKey: "LongIntro") == false {
+            //self.executeLongIntro()
+        //} else {
             self.executeShortIntro()
-        }
+        //}
     }
     
     // MARK: - Animation methods
@@ -124,7 +125,7 @@ public class IntroViewController : UIViewController, ViewModelBindable {
      */
     public func executeShortIntro() {
         self.img_intro.animate(withGIFNamed: "INTRO BREVE.gif", loopCount: 1)
-        let dispatchTime = DispatchTime.now() + 1.5
+        let dispatchTime = DispatchTime.now() + 3.0
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.frame.origin.y = -UIScreen.main.bounds.size.height

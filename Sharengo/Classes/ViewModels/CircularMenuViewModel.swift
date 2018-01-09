@@ -39,13 +39,15 @@ public enum CircularMenuType {
         case .searchCars:
             return [CircularMenuItem(icon: "ic_referesh", input: .refresh),
                     CircularMenuItem(icon: "ic_center", input: .center),
-                    CircularMenuItem(icon: "ic_compass", input: .compass)
+                    //CircularMenuItem(icon: "ic_compass", input: .compass)
+                    CircularMenuItem(icon: "ic_assistance_circle", input: .assistence)
             ]
         case .feeds:
             return [CircularMenuItem(icon: "ic_cars", input: .cars),
                     CircularMenuItem(icon: "ic_referesh", input: .refresh),
                     CircularMenuItem(icon: "ic_center", input: .center),
-                    CircularMenuItem(icon: "ic_compass", input: .compass)
+                    //CircularMenuItem(icon: "ic_compass", input: .compass)
+                    CircularMenuItem(icon: "ic_assistance_circle", input: .assistence)
             ]
         }
     }
@@ -69,6 +71,7 @@ public enum CircularMenuInput: SelectionInput {
     case center
     case compass
     case cars
+    case assistence
 }
 
 /**
@@ -80,6 +83,7 @@ public enum CircularMenuOutput: SelectionInput {
     case center
     case compass
     case cars
+    case assistence
 }
 
 /**
@@ -105,6 +109,8 @@ public final class CircularMenuViewModel: ViewModelTypeSelectable {
                 return .just(.center)
             case .compass:
                 return .just(.compass)
+            case .assistence:
+                return .just(.assistence)
             case .cars:
                 return .just(.cars)
             }

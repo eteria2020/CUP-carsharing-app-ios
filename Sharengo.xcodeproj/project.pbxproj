@@ -257,7 +257,6 @@
 		4DCD1A921ECDC18500FC8BF5 /* Router+Safari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A8F1ECDC18500FC8BF5 /* Router+Safari.swift */; };
 		4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */; };
 		4DCD1AA31ECDC22900FC8BF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DCD1A991ECDC22900FC8BF5 /* Assets.xcassets */; };
-		4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA01ECDC22900FC8BF5 /* LaunchScreen.storyboard */; };
 		4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */; };
 		4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */; };
 		4DCE7EEA1EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DCE7EE91EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib */; };
@@ -325,6 +324,7 @@
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
+		D1D93DA420038F2900A3B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */; };
 		D1EFAA421FE8056100CE33E1 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA411FE8056100CE33E1 /* PinViewController.swift */; };
 		D1EFAA441FE8059000CE33E1 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -622,7 +622,6 @@
 		4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerCommons.swift; path = Classes/ViewControllers/ViewControllerCommons.swift; sourceTree = "<group>"; };
 		4DCD1A991ECDC22900FC8BF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DCD1A9E1ECDC22900FC8BF5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4DCD1AA01ECDC22900FC8BF5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+Theme.swift"; path = "Classes/Theme/Image+Theme.swift"; sourceTree = "<group>"; };
 		4DCE7EE91EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchBarCollectionViewCell.xib; path = Resources/Xibs/SearchBarCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -690,6 +689,7 @@
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
+		D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
 		D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewModel.swift; path = Classes/ViewModels/PinViewModel.swift; sourceTree = "<group>"; };
 		D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1528,8 +1528,8 @@
 		4DCD1A9F1ECDC22900FC8BF5 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				4DCD1AA01ECDC22900FC8BF5 /* LaunchScreen.storyboard */,
 				4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */,
+				D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
 			path = Resources/Storyboards;
@@ -1691,7 +1691,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = Dedecube;
+				ORGANIZATIONNAME = CSGroup;
 				TargetAttributes = {
 					4DCD1A511ECDBF7400FC8BF5 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1746,7 +1746,6 @@
 				4D1658111F483F8400BEB3DB /* Pulse_Verde_004.png in Resources */,
 				032D3A871F08E79000F260A5 /* Auto-B-loop.gif in Resources */,
 				032D3A851F08E79000F260A5 /* Auto-A-uscita.gif in Resources */,
-				4DCD1AA51ECDC22900FC8BF5 /* LaunchScreen.storyboard in Resources */,
 				4D16580D1F483F8400BEB3DB /* Pulse_Verde_0036.png in Resources */,
 				4DFA39051F4835BB00DC8B20 /* Pulse_Giallo_006.png in Resources */,
 				038642021F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib in Resources */,
@@ -1764,6 +1763,7 @@
 				03AF5D6D1EEE83FC00AC8826 /* disclosure.png in Resources */,
 				4D1658001F483F8400BEB3DB /* Pulse_Verde_0024.png in Resources */,
 				4DFA39001F4835BB00DC8B20 /* Pulse_Giallo_0044.png in Resources */,
+				D1D93DA420038F2900A3B7DE /* LaunchScreen.storyboard in Resources */,
 				4D22EE651F4C699400EE2746 /* Auto_C_Uscita_eng.gif in Resources */,
 				4D1658151F483F8400BEB3DB /* Pulse_Verde_0043.png in Resources */,
 				032D3A841F08E79000F260A5 /* Auto-A-loop.gif in Resources */,

@@ -22,10 +22,10 @@ PODS:
   - Localize-Swift (1.7.1)
   - Moya (8.0.4):
     - Moya/Core (= 8.0.4)
-  - Moya-Gloss/Core (2.0.1):
+  - Moya-Gloss/Core (2.0.3):
     - Gloss (~> 1.2)
     - Moya (~> 8.0)
-  - Moya-Gloss/RxSwift (2.0.1):
+  - Moya-Gloss/RxSwift (2.0.3):
     - Moya-Gloss/Core
     - Moya/RxSwift
     - RxSwift (~> 3.4)
@@ -103,7 +103,7 @@ SPEC CHECKSUMS:
   KeychainSwift: 213db04dfe7244988e61f77c72a2afb2f775954a
   Localize-Swift: 6cabc1087c0e910e77bfa87c2ed3f65c80c0b2df
   Moya: a08bc060c7a44eee27447b239ed33a189b641e2b
-  Moya-Gloss: 59a96de0673f555e080afb381f8c4f932ae9fb1a
+  Moya-Gloss: d8e9adc9b055b2c4e495514b9755e57ee7aa320b
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 4edd39003fdccf281d418ee1b006571f70123250

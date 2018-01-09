@@ -18,6 +18,7 @@ enum SearchBarSelectionInput: SelectionInput {
     case item(IndexPath)
     case dictated
     case reload
+    case clean
 }
 enum SearchBarSelectionOutput: SelectionOutput {
     case empty
@@ -25,6 +26,7 @@ enum SearchBarSelectionOutput: SelectionOutput {
     case reload
     case address(Address)
     case car(Car)
+    case clean
 }
 
 final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
@@ -113,6 +115,9 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                 }
             case .reload:
                 return .just(.reload)
+            case .clean:
+                
+                return .just(.clean)
             case .dictated:
                 if #available(iOS 10.0, *) {
                     if self.speechInProgress.value {

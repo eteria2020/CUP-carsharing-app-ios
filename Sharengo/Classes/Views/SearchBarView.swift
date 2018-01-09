@@ -22,7 +22,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     @IBOutlet fileprivate weak var view_search: UIView!
     @IBOutlet fileprivate weak var txt_search: UITextField!
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
-    
+    @IBOutlet fileprivate weak var btn_cleanSearch: UIButton!
+   
     var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
@@ -105,7 +106,14 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
                     }
                 }
             }).addDisposableTo(self.disposeBag)
-        self.btn_microphone.rx.bind(to: viewModel.selection, input: .dictated)
+        
+        self.btn_cleanSearch.rx.tap.asObservable()
+            .subscribe(onNext:{
+                self.txt_search.text = ""
+                self.btn_cleanSearch.isHidden = true
+            }).addDisposableTo(disposeBag)
+        
+        self.btn_cleanSearch.rx.bind(to: viewModel.selection, input: .clean)
         switch Device().diagonal {
         case 3.5:
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 119
@@ -283,6 +291,11 @@ extension SearchBarView: UITextFieldDelegate {
         let text = (textField.text! as NSString).replacingCharacters(in: range, with:string)
         self.viewModel?.itemSelected = false
         self.getResults(text: text)
+        if(text.isEmpty){
+            btn_cleanSearch.isHidden = true
+        }else{
+            btn_cleanSearch.isHidden = false
+        }
         return true
     }
     

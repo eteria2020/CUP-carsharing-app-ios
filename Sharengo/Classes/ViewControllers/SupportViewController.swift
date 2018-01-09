@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import SideMenu
 import DeviceKit
+import MessageUI
 
 /**
  The Support class allows the user to call Share'ngo team if he needs help
@@ -25,6 +26,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_subtitle: UILabel!
     @IBOutlet fileprivate weak var btn_call: UIButton!
     @IBOutlet fileprivate weak var view_callArea: UIView!
+    @IBOutlet fileprivate weak var btn_writeMail: UIButton!
     /// ViewModel variable used to represents the data
     public var viewModel: SupportViewModel?
     
@@ -112,5 +114,56 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                     dialog.show()
                 }
             }).addDisposableTo(disposeBag)
+        self.btn_writeMail.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportWriteMail".localized())
+        self.btn_writeMail.rx.tap.asObservable()
+            .subscribe(onNext:{
+                let email = "ivan.raciti@sharengo.eu"
+                guard let emailUrl = URL(string: "mailto:\(email)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) else { return }
+                if (UIApplication.shared.canOpenURL(emailUrl)) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(emailUrl)
+                    }
+                    else
+                    {
+                        let message = "alert_supportWrite".localized()
+                        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_supportAlertWrite".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                okButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
+                                                    UIApplication.shared.openURL(emailUrl)
+                        },
+                                                cancelButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                } else {
+                    let message = "alert_noSupportEmail".localized()
+                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                }
+            }).addDisposableTo(disposeBag)
     }
+    
+    
+    /*func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["ivan.raciti@sharengo.eu"])
+            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }*/
+    
 }

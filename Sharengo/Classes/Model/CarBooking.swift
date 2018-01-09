@@ -13,7 +13,7 @@ import Gloss
 /**
  The CarBooking model is used to represent a Car Booking action.
  */
-public class CarBooking: ModelType, Decodable {
+public class CarBooking: ModelType, Gloss.Decodable {
     /// Unique identifier
     var id: Int?
     /// Boolean that show if CarBooking is activated or not

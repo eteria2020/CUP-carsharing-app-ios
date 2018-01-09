@@ -216,10 +216,13 @@
 "lbl_supportTitle" = "Siamo qui per aiutarti!";
 "lbl_supportSubtitle" = "Vuoi parlare con un operatore?";
 "btn_supportCall" = "CHIAMA ORA";
+"btn_supportWriteMail" = "SCRIVI UNA MAIL";
 "alert_supportCall" = "+39 0586 1975772";
+"alert_supportEmail" = "Vuoi contattare il servizio clienti?";
 "alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
 "supportTelephoneNumber" = "+3905861975772";
 "btn_supportAlertCall" = "Chiama";
+"btn_supportAlertWrite" = "Scrivi";
 
 // Invite Friend
 "lbl_inviteFriendHeader" = "INVITA UN AMICO";

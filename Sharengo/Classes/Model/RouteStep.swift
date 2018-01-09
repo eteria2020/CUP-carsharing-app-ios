@@ -13,7 +13,7 @@ import Gloss
 /**
  The Route Step model is used to represent singular step of a route.
  */
-public class RouteStep: ModelType, Decodable {
+public class RouteStep: ModelType, Gloss.Decodable {
     /// Points
     public var points: String?
     /// Distance

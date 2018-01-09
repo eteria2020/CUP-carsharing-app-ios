@@ -13,7 +13,7 @@ import Gloss
 /**
  The CarTrip model is used to represent a Car Trip.
  */
-public class CarTrip: ModelType, Decodable {
+public class CarTrip: ModelType, Gloss.Decodable {
     /// Unique identifier
     public var id: Int?
     /// Car Plate

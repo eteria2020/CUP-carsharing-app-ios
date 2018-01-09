@@ -67,7 +67,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var nearestCarRouteSteps: [RouteStep] = []
     ///car url for external open app
     public var carUrl : Car?
+    /// Variable used to save if the login is already showed
+     public var loginIsShowed: Bool = false
+    /// Variable used to save if the intro is already showed
+    public var introIsShowed: Bool = false
+    /// Variable used to save if the tutorial is already showed
+    public var tutorialIsShowed: Bool = true
     // MARK: - ViewModel methods
+    
+   
     
     public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? MapViewModel else {
@@ -161,6 +169,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.centerMap()
             case .compass:
                 self?.turnMap()
+            case .assistence:
+                self?.launchAssistence()
             case .cars:
                 if viewModel.carBooked != nil {
                     let dialog = ZAlertView(title: nil, message: "alert_showCarsDisabledMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
@@ -365,6 +375,42 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateCarData()
+        if !self.loginIsShowed {
+            self.loginIsShowed = true
+            if UserDefaults.standard.bool(forKey: "LoginShowed") == false {
+                KeychainSwift().clear()
+                let destination: OnBoardViewController = (Storyboard.main.scene(.onBoard))
+                destination.bind(to: ViewModelFactory.onBoard(), afterLoad: true)
+                self.navigationController?.pushViewController(destination, animated: false)
+                self.introIsShowed = true
+    
+                return
+            }
+        }
+        if !self.introIsShowed {
+            let destination: IntroViewController  = (Storyboard.main.scene(.intro))
+            destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
+            self.addChildViewController(destination)
+            self.view.addSubview(destination.view)
+            self.view.layoutIfNeeded()
+            let dispatchTime = DispatchTime.now() + 2.0
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+               
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                    if !self.tutorialIsShowed {
+                        self.tutorialIsShowed = true
+                        if UserDefaults.standard.bool(forKey: "TutorialShowed") == false {
+                            let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+                            let viewModel = ViewModelFactory.tutorial()
+                            destination.bind(to: viewModel, afterLoad: true)
+                            self.present(destination, animated: true, completion: nil)
+                            UserDefaults.standard.set(true, forKey: "TutorialShowed")
+                        }
+                    }
+                }
+            }
+        }
+         self.introIsShowed = true
         if let feed = self.selectedFeed {
             self.view_carPopup.updateWithFeed(feed: feed)
         }
@@ -643,12 +689,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
             return
         }
-        self.showLoader()
+        //self.showLoader()
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
             if error != nil {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    self.hideLoader(completionClosure: { () in
+                    //self.hideLoader(completionClosure: { () in
                         var message = "alert_generalError".localized()
                         if Reachability()?.isReachable == false {
                             message = "alert_connectionError".localized()
@@ -658,7 +704,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         })
                         dialog.allowTouchOutsideToDismiss = false
                         dialog.show()
-                    })
+                    //})
                 }
             } else {
                 if success {
@@ -675,15 +721,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         car2?.opened = true
                                         car2?.booked = true
                                         DispatchQueue.main.async {
-                                            self.hideLoader(completionClosure: { () in
+                                            //self.hideLoader(completionClosure: { () in
                                                 self.viewModel!.carTrip!.car.value = car2
                                                 self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
-                                            })
+                                            //})
                                         }
                                     } else {
                                         let carTrip = CarTrip(car: car2 ?? car)
                                         DispatchQueue.main.async {
-                                            self.hideLoader(completionClosure: { () in
+                                            //self.hideLoader(completionClosure: { () in
                                                 carTrip.car.value?.booked = true
                                                 carTrip.car.value?.opened = true
                                                 carTrip.timeStart = Date()
@@ -696,7 +742,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 self.getResultsWithoutLoading()
                                                 self.routeSteps = self.nearestCarRouteSteps
                                                 self.drawRoutes(steps: self.nearestCarRouteSteps)
-                                            })
+                                           // })
                                         }
                                     }
                                 }
@@ -707,7 +753,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     } else {
                         let carTrip = CarTrip(car: car)
                         DispatchQueue.main.async {
-                            self.hideLoader(completionClosure: { () in
+                            //self.hideLoader(completionClosure: { () in
                                 car.booked = true
                                 car.opened = true
                                 carTrip.car.value = car
@@ -719,13 +765,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self.viewModel?.carTrip = carTrip
                                 self.viewModel?.carBooking = nil
                                 self.getResultsWithoutLoading()
-                            })
+                            //})
                         }
                     }
                 } else {
-                    self.hideLoader(completionClosure: { () in
+                    //self.hideLoader(completionClosure: { () in
                         self.showGeneralAlert()
-                    })
+                    //})
                 }
             }
         })
@@ -750,12 +796,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             }
             return
         }
-        self.showLoader()
+        //self.showLoader()
         self.viewModel?.bookCar(car: car, completionClosure: { (success, error, data) in
             if error != nil {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    self.hideLoader(completionClosure: { () in
+                    //self.hideLoader(completionClosure: { () in
                         var message = "alert_generalError".localized()
                         if Reachability()?.isReachable == false {
                             message = "alert_connectionError".localized()
@@ -765,7 +811,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         })
                         dialog.allowTouchOutsideToDismiss = false
                         dialog.show()
-                    })
+                    //})
                 }
             } else {
                 if success {
@@ -774,7 +820,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             if error != nil {
                                 let dispatchTime = DispatchTime.now() + 0.5
                                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                    self.hideLoader(completionClosure: { () in
+                                   // self.hideLoader(completionClosure: { () in
                                         var message = "alert_generalError".localized()
                                         if Reachability()?.isReachable == false {
                                             message = "alert_connectionError".localized()
@@ -784,14 +830,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         })
                                         dialog.allowTouchOutsideToDismiss = false
                                         dialog.show()
-                                    })
+                                    //})
                                 }
                             } else {
                                 if success {
                                     if let carBookings = [CarBooking].from(jsonArray: data!) {
                                         if let carBooking = carBookings.first {
                                             DispatchQueue.main.async {
-                                                self.hideLoader(completionClosure: { () in
+                                               // self.hideLoader(completionClosure: { () in
                                                     car.booked = true
                                                     carBooking.car.value = car
                                                     self.closeCarPopup()
@@ -812,18 +858,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                             self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                                                         }
                                                     }
-                                                })
+                                               // })
                                             }
                                         }
                                     } else {
-                                        self.hideLoader(completionClosure: { () in
+                                        //self.hideLoader(completionClosure: { () in
                                             self.showGeneralAlert()
-                                        })
+                                       // })
                                     }
                                 } else {
-                                    self.hideLoader(completionClosure: { () in
+                                    //self.hideLoader(completionClosure: { () in
                                         self.showGeneralAlert()
-                                    })
+                                   // })
                                 }
                             }
                         })
@@ -832,14 +878,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     
                     let dispatchTime = DispatchTime.now() + 0.5
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        self.hideLoader(completionClosure: { () in
+                        //self.hideLoader(completionClosure: { () in
                             
                             let dialog = ZAlertView(title: nil, message: self.splitMessage(data: data?["reason"] as? String), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
-                            })
-                            dialog.allowTouchOutsideToDismiss = false
-                            dialog.show()
-                        })
+                           })
+                                dialog.allowTouchOutsideToDismiss = false
+                                dialog.show()
+                         
+                        //})
                     }
                 }
             }
@@ -893,12 +940,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 okButtonHandler: { alertView in
                                     alertView.dismissAlertView()
                                     if let carBooking = self.viewModel?.carBooking {
-                                        self.showLoader()
+                                        //self.showLoader()
                                         self.viewModel?.deleteCarBooking(carBooking: carBooking, completionClosure: { (success, error) in
                                             if error != nil {
                                                 let dispatchTime = DispatchTime.now() + 0.5
                                                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                    self.hideLoader(completionClosure: { () in
+                                                    //self.hideLoader(completionClosure: { () in
                                                         var message = "alert_generalError".localized()
                                                         if Reachability()?.isReachable == false {
                                                             message = "alert_connectionError".localized()
@@ -908,13 +955,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                         })
                                                         dialog.allowTouchOutsideToDismiss = false
                                                         dialog.show()
-                                                    })
+                                                    //})
                                                 }
                                             } else {
                                                 if success {
                                                     let dispatchTime = DispatchTime.now() + 0.5
                                                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                        self.hideLoader(completionClosure: { () in
+                                                       // self.hideLoader(completionClosure: { () in
                                                             let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                                 alertView.dismissAlertView()
                                                                 self.closeCarBookingPopupView()
@@ -922,18 +969,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                             })
                                                             confirmDialog.allowTouchOutsideToDismiss = false
                                                             confirmDialog.show()
-                                                        })
+                                                       // })
                                                     }
                                                 } else {
                                                     let dispatchTime = DispatchTime.now() + 0.5
                                                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                        self.hideLoader(completionClosure: { () in
+                                                        //self.hideLoader(completionClosure: { () in
                                                             let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                                 alertView.dismissAlertView()
                                                             })
                                                             dialog.allowTouchOutsideToDismiss = false
                                                             dialog.show()
-                                                        })
+                                                        //})
                                                     }
                                                 }
                                             }
@@ -1229,6 +1276,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.mapView.delegate = self
         self.showUserPositionVisible(false)
         self.setUserPositionButtonVisible(false)
+        self.mapView.settings.rotateGestures = false
         // User
         self.userAnnotation.icon = userAnnotation.image
         let locationManager = LocationManager.sharedInstance
@@ -1390,6 +1438,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                  bearing: 0,
                                                  viewingAngle: self.mapView.camera.viewingAngle)
         self.mapView.animate(to: newCamera)
+    }
+    /**
+    This method launch page assistence the same type of menu.
+    */
+    public func launchAssistence() {
+        let destination: SupportViewController = (Storyboard.main.scene(.support))
+        destination.bind(to: viewModel, afterLoad: true)
+        CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
     }
     
     /**

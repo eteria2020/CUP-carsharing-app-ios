@@ -35,6 +35,7 @@ struct Router : RouterType {
     public static func start(_ delegate:AppDelegate) {
         delegate.window = UIWindow(frame: UIScreen.main.bounds)
         delegate.window?.rootViewController = self.root()
+        self.pushIntro(viewController: (delegate.window?.rootViewController)!)
         delegate.window?.makeKeyAndVisible()
     }
     
@@ -146,8 +147,8 @@ struct Router : RouterType {
     }
 
     public static func root() -> UIViewController {
-        let destination: HomeViewController = (Storyboard.main.scene(.home))
-        destination.bind(to: ViewModelFactory.home(), afterLoad: true)
+        let destination: MapViewController = (Storyboard.main.scene(.map))
+        destination.bind(to: ViewModelFactory.map(type: MapType.searchCars), afterLoad: true)
         return destination.withNavigation()
     }
     
@@ -177,5 +178,12 @@ struct Router : RouterType {
             playerController.player = AVPlayer(playerItem: playerItem)
             playerController.player?.play()
         })
+    }
+    
+    public static func pushIntro(viewController : UIViewController){
+        let destination: OnBoardViewController = (Storyboard.main.scene(.onBoard))
+        destination.bind(to: ViewModelFactory.onBoard(), afterLoad: true)
+        viewController.navigationController?.pushViewController(destination, animated: false)
+    
     }
 }
