@@ -117,7 +117,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
         self.btn_writeMail.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportWriteMail".localized())
         self.btn_writeMail.rx.tap.asObservable()
             .subscribe(onNext:{
-                let email = "ivan.raciti@sharengo.eu"
+                let email = "servizioclienti@sharengo.eu"
                 guard let emailUrl = URL(string: "mailto:\(email)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) else { return }
                 if (UIApplication.shared.canOpenURL(emailUrl)) {
                     if #available(iOS 10.0, *) {
@@ -153,7 +153,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["ivan.raciti@sharengo.eu"])
+            mail.setToRecipients(["servizioclienti@sharengo.eu"])
             mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
             
             present(mail, animated: true)

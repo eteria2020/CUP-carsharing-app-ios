@@ -65,6 +65,7 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
                     return .just(.open(car))
                 }
             case .book:
+                
                 if let car = self.car {
                     return .just(.book(car))
                 }

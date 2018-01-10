@@ -689,12 +689,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
             return
         }
-        //self.showLoader()
+        self.showLoader()
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
             if error != nil {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    //self.hideLoader(completionClosure: { () in
+                    self.hideLoader(completionClosure: { () in
                         var message = "alert_generalError".localized()
                         if Reachability()?.isReachable == false {
                             message = "alert_connectionError".localized()
@@ -704,7 +704,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         })
                         dialog.allowTouchOutsideToDismiss = false
                         dialog.show()
-                    //})
+                    })
                 }
             } else {
                 if success {
@@ -796,12 +796,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             }
             return
         }
-        //self.showLoader()
+        self.showLoader()
         self.viewModel?.bookCar(car: car, completionClosure: { (success, error, data) in
             if error != nil {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    //self.hideLoader(completionClosure: { () in
+                    self.hideLoader(completionClosure: { () in
                         var message = "alert_generalError".localized()
                         if Reachability()?.isReachable == false {
                             message = "alert_connectionError".localized()
@@ -811,7 +811,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         })
                         dialog.allowTouchOutsideToDismiss = false
                         dialog.show()
-                    //})
+                    })
                 }
             } else {
                 if success {
@@ -873,6 +873,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 }
                             }
                         })
+                       /* let message = "Prenotazione inviata correttamente"
+                        let dispatchTime = DispatchTime.now() + 3000.0
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        
+                            dialog.dismissAlertView()
+                        
+                        }*/
                     }
                 } else {
                     
@@ -940,12 +952,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 okButtonHandler: { alertView in
                                     alertView.dismissAlertView()
                                     if let carBooking = self.viewModel?.carBooking {
-                                        //self.showLoader()
+                                        self.showLoader()
                                         self.viewModel?.deleteCarBooking(carBooking: carBooking, completionClosure: { (success, error) in
                                             if error != nil {
                                                 let dispatchTime = DispatchTime.now() + 0.5
                                                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                    //self.hideLoader(completionClosure: { () in
+                                                    self.hideLoader(completionClosure: { () in
                                                         var message = "alert_generalError".localized()
                                                         if Reachability()?.isReachable == false {
                                                             message = "alert_connectionError".localized()
@@ -955,13 +967,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                         })
                                                         dialog.allowTouchOutsideToDismiss = false
                                                         dialog.show()
-                                                    //})
+                                                    })
                                                 }
                                             } else {
                                                 if success {
                                                     let dispatchTime = DispatchTime.now() + 0.5
                                                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                       // self.hideLoader(completionClosure: { () in
+                                                       self.hideLoader(completionClosure: { () in
                                                             let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                                 alertView.dismissAlertView()
                                                                 self.closeCarBookingPopupView()
@@ -969,7 +981,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                             })
                                                             confirmDialog.allowTouchOutsideToDismiss = false
                                                             confirmDialog.show()
-                                                       // })
+                                                       })
                                                     }
                                                 } else {
                                                     let dispatchTime = DispatchTime.now() + 0.5
