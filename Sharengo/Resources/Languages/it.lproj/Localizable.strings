@@ -56,7 +56,7 @@
 "btn_loginContinueAsNotLogged" = "CONTINUA SENZA LOGGARTI";
 
 // Menu
-"lbl_menuHeaderTitleLogged" = "Ciao %@, bentornato!";
+"lbl_menuHeaderTitleLogged" = "Ciao %@, bentornat%@!";
 "lbl_menuHeaderTitleGuest" = "Ciao, benvenuto!";
 "lbl_menuLogin" = "Login";
 "lbl_menuSignUp" = "Iscrizione";
@@ -221,6 +221,7 @@
 "alert_supportCall" = "+39 0586 1975772";
 "alert_supportEmail" = "Vuoi contattare il servizio clienti?";
 "alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
+"alert_noSupportEmail" = "Configura la mail sul tuo dispositivo. Contattaci a servizioclienti@sharengo.eu";
 "supportTelephoneNumber" = "+3905861975772";
 "btn_supportAlertCall" = "Chiama";
 "btn_supportAlertWrite" = "Scrivi";

@@ -114,6 +114,10 @@ public final class LoginViewModel: ViewModelType {
                         if let discountRate = data["discount_rate"] {
                             KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
                         }
+                        if let gender = data["gender"] {
+                            KeychainSwift().set("\(String(describing: gender))", forKey: "UserGender")
+                        }
+                        
                         KeychainSwift().set(modifiedUsername, forKey: "Username")
                         KeychainSwift().set(modifiedPassword, forKey: "Password")
                         KeychainSwift().set(password, forKey: "PasswordClear")

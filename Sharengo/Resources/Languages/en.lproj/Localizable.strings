@@ -220,6 +220,7 @@
 "alert_supportCall" = "+39 0586 1975772";
 "alert_supportEmail" = "Would you like to send an email to customers service?";
 "alert_noSupportCall" = "Your device is not enabled to calling";
+"alert_noSupportEmail" = "Yout device is not enebled to write email please contact us at servizioclienti@sharengo.eu";
 "supportTelephoneNumber" = "+3905861975772";
 "btn_supportAlertCall" = "Call";
 "btn_supportAlertWrite" = "Write";

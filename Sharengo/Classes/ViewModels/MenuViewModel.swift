@@ -124,7 +124,7 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
      */
     public func updateData() {
         var menuItems = [MenuItem]()
-        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil  {
             self.welcome = "lbl_menuHeaderTitleGuest".localized()
             self.userIconIsHidden = true
             let menuItem1 = MenuItem(title: "lbl_menuLogin", icon: "ic_login", viewModel: ViewModelFactory.login())
@@ -138,7 +138,17 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
         } else {
-            self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), KeychainSwift().get("UserFirstname")!)
+            if let userName = KeychainSwift().get("UserFirstname"), let userGender = KeychainSwift().get("UserGender"){
+                if userGender == "male"{
+                    self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), userName,"o")
+                }else{
+                     self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), userName,"a")
+                }
+                
+            }
+            else{
+                self.welcome = String(format: "lbl_menuHeaderTitleGuest".localized())
+            }
             self.userIconIsHidden = false
             let menuItem1 = MenuItem(title: "lbl_menuProfile", icon: "ic_profilo", viewModel: ViewModelFactory.userArea())
             //let menuItem2 = MenuItem(title: "lbl_menuSearchCars", icon: "ic_prenota", viewModel: ViewModelFactory.map(type: .searchCars))

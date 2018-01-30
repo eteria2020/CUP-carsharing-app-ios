@@ -55,6 +55,27 @@ public extension Array where Element: Decodable {
         return models
     }
     
+    static func from(jsonArray: [JSON], maxLength: Int) -> [Element]? {
+        var models: [Element] = []
+        var count = 0
+        for json in jsonArray {
+            if(count > maxLength){
+                return models
+            }
+            let model = Element(json: json)
+            
+            if let model = model {
+                models.append(model)
+                count = count + 1
+            } else {
+                return nil
+            }
+            
+        }
+        
+        return models
+    }
+    
     /**
      Initializes array of model objects from provided data.
      

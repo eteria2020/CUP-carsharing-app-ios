@@ -24,7 +24,8 @@ public final class SettingsCityItemViewModel : ItemViewModelType {
     public var title: String?
     /// Icon of the setting item
     public var icon: String?
-    
+    /// Icon of the setting item
+    public var identifier: String?
     // MARK: - Init methods
     
     public init(model: City) {
@@ -32,5 +33,6 @@ public final class SettingsCityItemViewModel : ItemViewModelType {
         self.title = model.title
         self.selected = model.selected
         self.icon = model.icon
+        self.identifier = model.identifier
     }
 }

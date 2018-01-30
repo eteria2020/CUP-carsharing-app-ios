@@ -118,7 +118,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
         self.btn_writeMail.rx.tap.asObservable()
             .subscribe(onNext:{
                 let email = "servizioclienti@sharengo.eu"
-                guard let emailUrl = URL(string: "mailto:\(email)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) else { return }
+                guard let emailUrl = URL(string: "mailto:\(email)") else { return }
                 if (UIApplication.shared.canOpenURL(emailUrl)) {
                     if #available(iOS 10.0, *) {
                         UIApplication.shared.open(emailUrl)

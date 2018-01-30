@@ -58,6 +58,12 @@ final class CarTripsViewModel : ListViewModelType, ViewModelTypeSelectable {
     
     func updateData(carTrips: [CarTrip]) {
         self.carTrips = carTrips
+       /* var carTripsReduced : [CarTrip] = [CarTrip]()
+        for i in 0...10{
+            carTripsReduced.append(carTrips[i])
+        }
+        //var num: Int = carTripsReduced.count*/
+        
         self.dataHolder = ListDataHolder(data:Observable.just(carTrips).structured())
     }
 }

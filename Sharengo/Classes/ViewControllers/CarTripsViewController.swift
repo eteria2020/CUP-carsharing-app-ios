@@ -52,7 +52,8 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                     switch event {
                     case .next(let response):
                         if response.status == 200, let data = response.array_data {
-                            if let carTrips = [CarTrip].from(jsonArray: data) {
+                            //maxLeght limita il numero di corse da visualizzare in cronologia.
+                            if let carTrips = [CarTrip].from(jsonArray: data,maxLength: 100) {
                                 self.allCarTrips = carTrips
                                 /*
                                 self.apiController.getTrip(trip: carTrips[0])

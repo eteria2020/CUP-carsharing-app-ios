@@ -206,6 +206,7 @@ final class ApiController {
     }
     
     func archivedTripsList() -> Observable<Response> {
+        
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -225,6 +226,7 @@ final class ApiController {
                         observable.onCompleted()
                     case .error(let error):
                         observable.onError(error)
+                
                     default:
                         break
                     }

@@ -18,13 +18,16 @@ import Action
 public enum NavigationBarItemType {
     case home
     case menu
+    case empty
     
     public func getItem() -> NavigationBarItem {
         switch self {
         case .home:
-            return NavigationBarItem(icon: "ic_menu", input: .home)
+            return NavigationBarItem(icon: "ic_arrow_back", input: .home)
         case .menu:
             return NavigationBarItem(icon: "ic_hambugeremenu", input: .menu)
+        case .empty:
+            return NavigationBarItem(icon: "", input: .empty)
         }
     }
 }
@@ -45,6 +48,7 @@ public struct NavigationBarItem {
 public enum NavigationBarInput: SelectionInput {
     case home
     case menu
+    case empty
 }
 
 /**
@@ -80,7 +84,10 @@ public final class NavigationBarViewModel: ViewModelTypeSelectable {
                 return .just(.home)
             case .menu:
                 return .just(.menu)
+            case .empty:
+              return .just(.empty)
             }
+            
         }
     }
 }

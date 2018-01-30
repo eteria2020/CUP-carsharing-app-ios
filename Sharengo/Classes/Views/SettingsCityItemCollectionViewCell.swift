@@ -22,7 +22,7 @@ public class SettingsCityItemCollectionViewCell: UICollectionViewCell, ViewModel
     @IBOutlet fileprivate weak var btn_selected: UIButton!
     @IBOutlet fileprivate weak var view_selected: UIView!
     /// ViewModel variable used to represents the data
-    public var viewModel:ItemViewModelType?
+    public var viewModel:SettingsCityItemViewModel?
     
     // MARK: - ViewModel methods
     
@@ -32,10 +32,27 @@ public class SettingsCityItemCollectionViewCell: UICollectionViewCell, ViewModel
         }
         self.layoutIfNeeded()
         self.viewModel = viewModel
-        self.view_icon.backgroundColor = Color.settingIconBackground.value
+        switch self.viewModel!.identifier! {
+        //Milano
+        case "5":
+            self.img_icon.image = UIImage(named: "ic_cluster_milan")!
+        //Firenze
+        case "6":
+              self.img_icon.image = UIImage(named: "ic_cluster_firence")!
+        //Roma
+        case "7":
+              self.img_icon.image = UIImage(named: "ic_cluster_rome")!
+        //Modena
+        case "8":
+              self.img_icon.image = UIImage(named: "ic_cluster_modena")!
+        default:
+            break
+        }
+       
+        self.view_icon.backgroundColor = nil
         self.view_icon.layer.cornerRadius = self.view_icon.frame.size.width/2
         self.view_icon.layer.masksToBounds = true
-        self.view_icon.layer.borderWidth = 1
+        self.view_icon.layer.borderWidth = 0
         self.view_icon.layer.borderColor = Color.settingItemLabel.value.cgColor
         self.lbl_title.styledText = viewModel.title
         if let icon = viewModel.icon,
