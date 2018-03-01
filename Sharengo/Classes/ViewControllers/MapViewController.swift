@@ -246,7 +246,19 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
-                self?.openCar(car: car, action: "open")
+                let message = "aler_carPopupOpenDoorMessage".localized()
+                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                        okButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                                            self?.openCar(car: car, action: "open")
+                                            
+                },
+                                        cancelButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+               
             case .book(let car):
                 self?.bookCar(car: car)
             case .car:
@@ -273,8 +285,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.closeCarPopupHeight = 185
         case 5.5:
             self.closeCarPopupHeight = 195
+        case 5.8:
+            self.closeCarPopupHeight = 200
         default:
-            break
+           self.closeCarPopupHeight = 185
         }
         // CarBookingPopup
         self.view_carBookingPopup.bind(to: ViewModelFactory.carBookingPopup())
@@ -298,13 +312,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         case 3.5:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
         case 4:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220//195
         case 4.7:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
         case 5.5:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
+        case 5.8:
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
         default:
-            break
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
         }
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())

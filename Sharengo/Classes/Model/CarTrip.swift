@@ -34,6 +34,8 @@ public class CarTrip: ModelType, Gloss.Decodable {
     public var costComputed: Bool?
     /// Car Object Model used as Car Trip
     public var car: Variable<Car?> = Variable(nil)
+    //payable trip
+    public var payable: Bool?
     /// Timer of carTrip in action used in views
     public var timer: String? {
         get {
@@ -120,6 +122,21 @@ public class CarTrip: ModelType, Gloss.Decodable {
             return 0
         }
     }
+    //modifica ivan
+    public var second5minTrip: Int {
+        get {
+            if let timeStart = self.timeStart {
+                let start = timeStart
+                let enddt = Date()
+                let calendar = Calendar.current
+                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
+                if let sec = datecomponents.second {
+                    return Int(sec)
+                }
+            }
+            return 0
+        }
+    }
 
     // MARK: - Init methods
     
@@ -131,6 +148,7 @@ public class CarTrip: ModelType, Gloss.Decodable {
         self.id = "id" <~~ json
         self.totalCost = "total_cost" <~~ json
         self.costComputed = "cost_computed" <~~ json
+        self.payable = "payable" <~~ json
         if let latitude: String = "lat_start" <~~ json, let longitude: String = "lon_start" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
                 self.locationStart = CLLocation(latitude: lat, longitude: lon)

@@ -96,6 +96,9 @@ class FaqViewController : BaseViewController, ViewModelBindable {
         case 5.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+        case 5.8:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
+            self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 40
         default:
             break
         }

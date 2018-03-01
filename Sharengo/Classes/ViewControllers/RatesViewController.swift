@@ -61,6 +61,7 @@ class RatesViewController : BaseViewController, ViewModelBindable {
         self.view.layoutIfNeeded()
         
         // Views
+
         self.view.backgroundColor = Color.ratesBackground.value
         self.view_header.backgroundColor = Color.ratesHeaderBackground.value
         self.view_bonusContainer.backgroundColor = Color.ratesBonusContainerBackground.value
@@ -70,6 +71,7 @@ class RatesViewController : BaseViewController, ViewModelBindable {
         self.lbl_headerTitle.styledText = "lbl_ratesHeader".localized().uppercased()
         
         // NavigationBar
+    
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
@@ -102,6 +104,8 @@ class RatesViewController : BaseViewController, ViewModelBindable {
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         case 5.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+        case 5.8:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
         default:
             break
         }

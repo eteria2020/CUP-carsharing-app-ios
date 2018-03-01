@@ -145,7 +145,12 @@ public class BaseViewController: UIViewController {
                 if CoreController.shared.allCarTrips.first != nil {
                 } else if let carTrip = carTrip {
                     CoreController.shared.notificationIsShowed = true
+                   
+                    if carTrip.minutes > 1 && !carTrip.payable!{
+                         NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "prova", carTrip.time), carTrip: carTrip, source: self)
+                    }else{
                     NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescription".localized(), carTrip.time), carTrip: carTrip, source: self)
+                    }
                     CoreController.shared.currentCarTrip = nil
                     CoreController.shared.allCarTrips = []
                 }

@@ -123,6 +123,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 259
         case 5.5:
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 299
+        case 5.8:
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 300
         default:
             break
         }
@@ -207,6 +209,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 98
         case 5.5:
             self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 105
+        case 5.8:
+            self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 108
         default:
             break
         }
@@ -255,6 +259,8 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             height = 65.0
         case 5.5:
             height = 75.0
+        case 5.8:
+            height = 76.0
         default:
             break
         }

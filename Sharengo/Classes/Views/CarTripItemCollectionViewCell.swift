@@ -96,6 +96,14 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
             } else {
                 self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -52
             }
+        case 5.8:
+            self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = 12
+            self.constraint(withIdentifier: "bottomImgCollapsed", searchInSubviews: true)?.constant = 12
+            if !viewModel.selected {
+                self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = 21
+            } else {
+                self.constraint(withIdentifier: "yLblSubtitle", searchInSubviews: true)?.constant = -54
+            }
         default:
             break
         }

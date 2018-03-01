@@ -46,9 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TextStyle.setup()
         Router.start(self)
         CoreController.shared.updateData()
+        UIApplication.shared.statusBarStyle = .lightContent
+        UINavigationBar.appearance().clipsToBounds = true
         
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        
+        statusBar.backgroundColor = ColorBrand.yellow.value
         self.setupSideMenu()
-        
+       
         return true
     }
 

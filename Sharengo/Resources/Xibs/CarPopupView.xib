@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -81,7 +82,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FL8-zL-TJi">
-                    <rect key="frame" x="10" y="40" width="160" height="213"/>
+                    <rect key="frame" x="10" y="40" width="160" height="198"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_car" translatesAutoresizingMaskIntoConstraints="NO" id="GWx-hQ-REl">
                             <rect key="frame" x="32" y="10" width="96" height="72"/>
@@ -123,7 +124,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FIr-9H-XwT">
-                    <rect key="frame" x="170" y="40" width="220" height="213"/>
+                    <rect key="frame" x="170" y="40" width="220" height="198"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_location" translatesAutoresizingMaskIntoConstraints="NO" id="tEw-y2-rBa">
                             <rect key="frame" x="0.0" y="15" width="20" height="20"/>
@@ -193,16 +194,16 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2e5-ZQ-WEq">
-                    <rect key="frame" x="0.0" y="253" width="400" height="45"/>
+                    <rect key="frame" x="0.0" y="238" width="400" height="60"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0y1-aY-MhT">
-                            <rect key="frame" x="20" y="0.0" width="170" height="35"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0y1-aY-MhT">
+                            <rect key="frame" x="20" y="-8" width="170" height="48"/>
                             <color key="backgroundColor" red="1" green="0.35091145833333331" blue="0.3962131076388889" alpha="0.75679580479452058" colorSpace="calibratedRGB"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Button"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIM-os-7nn">
-                            <rect key="frame" x="210" y="0.0" width="170" height="35"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIM-os-7nn">
+                            <rect key="frame" x="210" y="-8" width="170" height="48"/>
                             <color key="backgroundColor" red="1" green="0.35091145833333331" blue="0.3962131076388889" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Button"/>
@@ -210,14 +211,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="0y1-aY-MhT" secondAttribute="bottom" constant="10" id="DxF-yt-4Gu"/>
-                        <constraint firstItem="0y1-aY-MhT" firstAttribute="top" secondItem="2e5-ZQ-WEq" secondAttribute="top" id="ETm-xg-7YL"/>
-                        <constraint firstAttribute="bottom" secondItem="hIM-os-7nn" secondAttribute="bottom" constant="10" id="Ea1-ST-p2X"/>
+                        <constraint firstAttribute="bottom" secondItem="0y1-aY-MhT" secondAttribute="bottom" constant="20" id="DxF-yt-4Gu"/>
+                        <constraint firstItem="0y1-aY-MhT" firstAttribute="top" secondItem="2e5-ZQ-WEq" secondAttribute="top" constant="-10" id="ETm-xg-7YL"/>
+                        <constraint firstAttribute="bottom" secondItem="hIM-os-7nn" secondAttribute="bottom" constant="20" id="Ea1-ST-p2X"/>
                         <constraint firstItem="0y1-aY-MhT" firstAttribute="leading" secondItem="2e5-ZQ-WEq" secondAttribute="leading" constant="20" id="PLG-dR-kFr"/>
                         <constraint firstAttribute="trailing" secondItem="hIM-os-7nn" secondAttribute="trailing" constant="20" id="XPc-gY-klp"/>
-                        <constraint firstItem="hIM-os-7nn" firstAttribute="top" secondItem="2e5-ZQ-WEq" secondAttribute="top" id="ZIz-s5-Bp2"/>
+                        <constraint firstItem="hIM-os-7nn" firstAttribute="top" secondItem="2e5-ZQ-WEq" secondAttribute="top" constant="-10" id="ZIz-s5-Bp2"/>
                         <constraint firstItem="hIM-os-7nn" firstAttribute="leading" secondItem="2e5-ZQ-WEq" secondAttribute="centerX" constant="10" id="kqG-d9-g0z"/>
-                        <constraint firstAttribute="height" constant="45" identifier="buttonsHeight" id="rjZ-Ok-KI7"/>
+                        <constraint firstAttribute="height" constant="60" identifier="buttonsHeight" id="rjZ-Ok-KI7"/>
                         <constraint firstItem="0y1-aY-MhT" firstAttribute="trailing" secondItem="2e5-ZQ-WEq" secondAttribute="centerX" constant="-10" id="yWa-nY-cTl"/>
                     </constraints>
                 </view>

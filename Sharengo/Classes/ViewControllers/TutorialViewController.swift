@@ -74,6 +74,11 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
             self.constraint_buttons.constant = 155
             self.pageWidth = 414
             self.constraint_width.constant = 35
+        case 5.8:
+            self.constraint_close.constant = 67
+            self.constraint_buttons.constant = 158
+            self.pageWidth = 416
+            self.constraint_width.constant = 37
         default:
             break
         }

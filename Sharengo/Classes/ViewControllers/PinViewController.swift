@@ -22,6 +22,7 @@ class PinViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var lbl_titlePin: UILabel!
     @IBOutlet fileprivate weak var lbl_Pin: UILabel!
     @IBOutlet fileprivate weak var view_pinContainer: UIView!
+
     //@IBOutlet fileprivate weak var lbl_titleBonus: UILabel!
     //@IBOutlet fileprivate weak var lbl_bonus: UILabel!
     //@IBOutlet fileprivate weak var btn_signup: UIButton!
@@ -63,6 +64,7 @@ class PinViewController : BaseViewController, ViewModelBindable {
         self.view_pinContainer.backgroundColor = Color.pinDescriptionContainerBackground.value
     
         
+      
         // Labels
         self.lbl_headerTitle.textColor = Color.pinHeaderTitle.value
         self.lbl_headerTitle.styledText = "lbl_pinHeader".localized().uppercased()
@@ -92,8 +94,10 @@ class PinViewController : BaseViewController, ViewModelBindable {
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         case 5.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+        case 5.8:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         }
     }
     

@@ -276,6 +276,8 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 headerCategoryHeight = 32
             case 5.5:
                 headerCategoryHeight = 32
+            case 5.8:
+                headerCategoryHeight = 34
             default:
                 break
             }
@@ -301,6 +303,9 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             case 5.5:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            case 5.5:
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 50
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 40
             default:
                 break
             }

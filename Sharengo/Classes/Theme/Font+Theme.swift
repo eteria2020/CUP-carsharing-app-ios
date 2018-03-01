@@ -435,6 +435,8 @@ enum Font {
             return size * 1.1
         case 5.5:
             return size * 1.2
+        case 5.8:
+            return size * 1.2
         default:
             return size
         }

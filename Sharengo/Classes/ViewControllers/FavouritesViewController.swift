@@ -92,6 +92,10 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
             self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+        case 5.8:
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
+            self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
+            self.btn_action.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         default:
             break
         }
@@ -336,6 +340,8 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 375
                 case 5.5:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 375
+                case 5.8:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 385
                 default:
                     break
                 }
@@ -369,6 +375,8 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 275
                 case 5.5:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 300
+                case 5.8:
+                    self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 310
                 default:
                     break
                 }

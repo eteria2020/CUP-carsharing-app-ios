@@ -46,6 +46,10 @@ public class NavigationBarView: UIView {
     }
     
     fileprivate func xibSetup() {
+        if #available(iOS 11.0, *){
+        
+        }
+        
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]

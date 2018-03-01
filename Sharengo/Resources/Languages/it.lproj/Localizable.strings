@@ -115,12 +115,14 @@
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 "alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sharen'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
+"aler_carPopupOpenDoorMessage" = "Sei sicuro di voler aprire le portiere? La corsa inizierà in questo momento";
 
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
 "lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
 "lbl_carTripPopupInfo" = "<status>CORSA ATTIVA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";
+"lbl_carTripPopupInfo5min" = "<status>CORSA ATTIVA</status>\nLa corsa si chiuderà automaticamente dopo 5 minuti se non sarà inserito il PIN\n<bold>TARGA %@</bold>\nDurata corsa:";
 "lbl_carBookingPopupTime" = "Scade tra\n%@";
 "lbl_carBookingPopupTimeMinute" = "minuto";
 "lbl_carBookingPopupTimeMinutes" = "minuti";

@@ -32,7 +32,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
     var info: Variable<String?> = Variable(nil)
     var timeTimer: Timer?
     var carBookingPopupView: CarBookingPopupView?
-    
+    var secondi: Int?
     public var selection: Action<CarBookingPopupInput, CarBookingPopupOutput> = Action { _ in
         return .just(.empty)
     }
@@ -91,7 +91,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 if self.carTrip?.car.value?.parking == true {
                     self.info.value = String(format: "lbl_carTripParkingPopupInfo".localized(), car.plate ?? "")
                 } else {
-                    self.info.value = String(format: "lbl_carTripPopupInfo".localized(), car.plate ?? "")
+                    self.info.value = String(format: "lbl_carTripPopupInfo5min".localized(), car.plate ?? "")
                 }
             } else if let address = car.address.value {
                 self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
@@ -135,6 +135,12 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0 {
                 if let timer = self.carTrip?.timer {
                     self.time.value = timer
+                }
+                if let minuti = self.carTrip?.minutes {
+                    if minuti >= 1{
+                        self.info.value = String(format: "lbl_carTripPopupInfo".localized(), (self.carTrip?.car.value?.plate)! ?? "")
+                    }
+                    
                 }
             }
         }
