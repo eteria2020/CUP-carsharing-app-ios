@@ -137,6 +137,7 @@ public class BaseViewController: UIViewController {
     // MARK: - Update methods
     
     @objc fileprivate func updateData() {
+        
         let carTrip = CoreController.shared.currentCarTrip
         let carBooking = CoreController.shared.currentCarBooking
         let dispatchTime = DispatchTime.now() + 2
@@ -144,15 +145,20 @@ public class BaseViewController: UIViewController {
             if CoreController.shared.notificationIsShowed == false {
                 if CoreController.shared.allCarTrips.first != nil {
                 } else if let carTrip = carTrip {
-                    CoreController.shared.notificationIsShowed = true
-                   
-                    if carTrip.minutes > 1 && !carTrip.payable!{
-                         NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "prova", carTrip.time), carTrip: carTrip, source: self)
-                    }else{
-                    NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescription".localized(), carTrip.time), carTrip: carTrip, source: self)
+                    if carTrip.timeEnd == nil {
+                        CoreController.shared.updateTrip(trip: carTrip)
                     }
-                    CoreController.shared.currentCarTrip = nil
-                    CoreController.shared.allCarTrips = []
+                    else{
+                        CoreController.shared.notificationIsShowed = true
+                       
+                        if carTrip.minutes > 1 && !carTrip.payable!{
+                             NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "prova", carTrip.time), carTrip: carTrip, source: self)
+                        }else{
+                        NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescription".localized(), carTrip.time), carTrip: carTrip, source: self)
+                        }
+                        CoreController.shared.currentCarTrip = nil
+                        CoreController.shared.allCarTrips = []
+                    }
                 }
                 if CoreController.shared.allCarBookings.first != nil {
                 } else if carBooking != nil {

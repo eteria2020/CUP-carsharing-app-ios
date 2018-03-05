@@ -388,7 +388,7 @@ fileprivate enum API {
 extension API: TargetType {
     var baseURL: URL {
         switch self {
-        case .tripsList(), .archivedTripsList():
+        case .tripsList(), .archivedTripsList(), .getTrip(_):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!

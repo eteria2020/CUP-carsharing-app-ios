@@ -25,6 +25,7 @@ class CoreController {
     var allCarTrips: [CarTrip] = []
     var currentCarBooking: CarBooking?
     var currentCarTrip: CarTrip?
+   
     var notificationIsShowed: Bool = false
     var cities: [City] = []
     var polygons: [Polygon] = []
@@ -59,7 +60,38 @@ class CoreController {
         self.notificationIsShowed = false
         self.updateUser()
     }
-    
+    //per chiamare aggiornamento del trip a nostra discrizione
+    func updateTrip(trip: CarTrip) {
+      
+        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+            return
+        }
+       
+        self.getTrip(trip: trip)
+    }
+    fileprivate func getTrip(trip: CarTrip) {
+        self.apiController.getTrip(trip: trip)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.dic_data {
+                        if let carTrips = CarTrip(json: data) {
+                           
+                            self.currentCarTrip = carTrips
+                            self.stopUpdateData()
+                            return
+                        }
+                    }
+                case .error(_):
+                    self.stopUpdateData()
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
+
+        
     fileprivate func updatePolygons() {
         self.sharengoApiController.getPolygons()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
