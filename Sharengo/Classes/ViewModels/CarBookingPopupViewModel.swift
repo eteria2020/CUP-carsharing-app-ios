@@ -11,6 +11,7 @@ import RxSwift
 import Boomerang
 import Action
 import KeychainSwift
+import DeviceKit
 
 public enum CarBookingPopupInput: SelectionInput {
     case open
@@ -137,7 +138,21 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     self.time.value = timer
                 }
                 if let minuti = self.carTrip?.minutes {
-                    if minuti >= 1{
+                    if minuti > 4 {
+                        switch Device().diagonal {
+                        case 3.5:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
+                        case 4:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195
+                        case 4.7:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+                        case 5.5:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
+                        case 5.8:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
+                        default:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+                        }
                         self.info.value = String(format: "lbl_carTripPopupInfo".localized(), (self.carTrip?.car.value?.plate)! ?? "")
                     }
                     
