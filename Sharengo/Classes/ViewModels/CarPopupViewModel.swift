@@ -86,7 +86,7 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         self.carType.value = car.type
         self.plate = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
         if var capacity = car.capacity {
-            if capacity < 50 {
+            if capacity < 50 && capacity >=10 {
                 capacity = capacity - 10
             }
             self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(capacity)")
@@ -105,7 +105,7 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
                         if response.status == 200, let data = response.dic_data {
                             let car = Car(json: data)
                             if var c = car?.capacity {
-                                if c < 50 {
+                                if c < 50 && c >= 10{
                                     c = c - 10
                                 }
                                 self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(c)")

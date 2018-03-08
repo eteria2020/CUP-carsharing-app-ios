@@ -136,6 +136,7 @@
 "lbl_carBookingCompletedCo2" = "<bold>Thank you!</bold>\n\nYOU SAVED %0.1f GRAMS OF CO2 CO2 BY THIS TRIP!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Trip ended. The trip lasted %@ minutes and terminated correctly. Thank you for using Share'ngo";
+"banner_carBookingCompletedDescriptionLess5min" = "Trip ended. The trip lasted %@ minutes and terminated correctly in free mode. Thank you for using Share'ngo";
 "banner_carBookingDeletedTitle" = "Share'ngo";
 "banner_carBookingDeletedDescription" = "Booking time expired, your booking has been canceled. Book another car on the map.";
 
