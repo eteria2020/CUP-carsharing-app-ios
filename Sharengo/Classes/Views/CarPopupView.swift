@@ -54,6 +54,7 @@ class CarPopupView: UIView {
         guard let viewModel = viewModel as? CarPopupViewModel else {
             return
         }
+      
         self.viewModel = viewModel
         viewModel.carType.asObservable()
             .subscribe(onNext: {[weak self] (type) in
@@ -70,6 +71,9 @@ class CarPopupView: UIView {
                         self?.view_type.constraint(withIdentifier: "typeHeight", searchInSubviews: false)?.constant = 40
                         self?.view_separator.isHidden = false
                         self?.lbl_type.styledText = type
+                        UIView.animate(withDuration: 1.0, delay: 0.2, options: [.repeat, .autoreverse], animations: {
+                            self?.lbl_type?.alpha = 0.0;
+                        }, completion: nil)
                     }
                 }
         }).addDisposableTo(disposeBag)

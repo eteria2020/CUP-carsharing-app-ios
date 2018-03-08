@@ -138,7 +138,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     self.time.value = timer
                 }
                 if let minuti = self.carTrip?.minutes {
-                    if minuti > 4 {
+                    if minuti >= 1{
                         switch Device().diagonal {
                         case 3.5:
                             self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
@@ -154,6 +154,22 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                             self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
                         }
                         self.info.value = String(format: "lbl_carTripPopupInfo".localized(), (self.carTrip?.car.value?.plate)! ?? "")
+                    }
+                    else{
+                        switch Device().diagonal {
+                        case 3.5:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                        case 4:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                        case 4.7:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                        case 5.5:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                        case 5.8:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                        default:
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                        }
                     }
                     
                 }

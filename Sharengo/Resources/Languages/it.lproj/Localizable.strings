@@ -139,7 +139,7 @@
 "lbl_carBookingCompletedCo2" = "<bold>Grazie!</bold>\n\nCON IL TUO VIAGGIO\nHAI RISPARMIATO %0.1f GRAMMI DI CO2!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
 "banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente. Ti ringraziamo per aver usato Share'ngo.";
-"banner_carBookingCompletedDescription" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente in maniera gratuita. Ti ringraziamo per aver usato Share'ngo.";
+"banner_carBookingCompletedDescriptionLess5Min" = "Corsa completata. La corsa ha avuto durata %@ e si è chiusa correttamente in maniera gratuita. Ti ringraziamo per aver usato Share'ngo.";
 "banner_carBookingDeletedTitle" = "Share'ngo";
 "banner_carBookingDeletedDescription" = "Il tempo di prenotazione è scaduto, la tua prenotazione è stata annullata. Prenota un’altra auto in mappa.";
 
@@ -271,7 +271,7 @@
 "lbl_ratesNotLoggedRatesTitle" = "Ecco le tariffe Share'ngo:";
 "lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description> <value>€ %0.2f</value>\n<description>Tariffa per 1 ora:</description> <value>€ %0.2f</value>\n<description>Tariffa giornaliera:</description> <value>€ %0.2f</value>\n<description>Tariffa di prenotazione:</description> <value>€ %0.2f</value>";
 "lbl_ratesBonusTitle" = "I tuoi minuti bonus:";
-"lbl_ratesBonusDescription" = "%d minuti";
+"lbl_ratesBonusDescription" = "Con questa auto %d minuti di guida gratis";
 "btn_ratesSignup" = "ISCRIVITI SUBITO";
 
 
@@ -293,4 +293,4 @@
 
 /////////////////////////
 
-"lbl_carPopupFreeType" = "%d minuti di guida gratuita!";
+"lbl_carPopupFreeType" = "Con questa auto %d minuti di guida gratis!";

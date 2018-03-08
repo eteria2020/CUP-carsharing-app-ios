@@ -152,7 +152,7 @@ public class BaseViewController: UIViewController {
                         CoreController.shared.notificationIsShowed = true
                        
                         if carTrip.minutes <= 5 && !carTrip.payable!{
-                             NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescriptionLess5min", carTrip.time), carTrip: carTrip, source: self)
+                             NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescriptionLess5Min".localized(), carTrip.time), carTrip: carTrip, source: self)
                         }else{
                         NotificationsController.showNotification(title: "banner_carBookingCompletedTitle".localized(), description: String(format: "banner_carBookingCompletedDescription".localized(), carTrip.time), carTrip: carTrip, source: self)
                         }
