@@ -376,6 +376,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.checkUserPositionFromForeground()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
+       // todo NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateTripData), name: NSNotification.Name(rawValue: "updateTripData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
         self.setCarsButtonVisible(false)
     }
@@ -595,6 +596,68 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         }
     }
     
+    @objc public func updateTripData() {
+        if let carTrip = CoreController.shared.allCarTrips.first {
+           // CoreController.shared.stopFetchTrip()
+            self.viewModel?.carTrip = carTrip
+            self.carTripTimeStart = carTrip.timeStart
+            carTrip.updateCar {
+                DispatchQueue.main.async {
+                    if let car = carTrip.car.value {
+                        if carTrip.id != self.viewModel?.carTrip?.id {
+                            // Show
+                            car.booked = true
+                            car.opened = true
+                            self.view_carBookingPopup.alpha = 1.0
+                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                            self.viewModel?.carBooked = car
+                            self.viewModel?.carTrip = carTrip
+                            self.getResultsWithoutLoading()
+                            if car.parking == true {
+                                if let location = car.location {
+                                    let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                                    self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                                }
+                                if let location = car.location {
+                                    self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                        self.routeSteps = steps
+                                        self.drawRoutes(steps: steps)
+                                    })
+                                }
+                            }
+                            if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
+                                DispatchQueue.main.async {
+                                    self.setCarsButtonVisible(true)
+                                    self.viewModel?.showCars = true
+                                    self.updateResults()
+                                }
+                            }
+                        } else {
+                            // Update
+                            car.booked = true
+                            car.opened = true
+                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                            self.viewModel?.carBooked = car
+                            self.viewModel?.carTrip = carTrip
+                            self.getResultsWithoutLoading()
+                            if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
+                                DispatchQueue.main.async {
+                                    self.setCarsButtonVisible(true)
+                                    self.viewModel?.showCars = true
+                                    self.updateResults()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            
+            self.viewModel?.carTrip = nil
+            
+        }
+    }
+    
     /**
      This method updates search bar speech controller
      */
@@ -725,6 +788,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
             } else {
                 if success {
+                    //todo
+                    //  CoreController.shared.fetchTrip()
                     if let plate = car.plate {
                     CoreController.shared.apiController.searchCar(plate: plate)
                         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
