@@ -181,7 +181,6 @@
 		4D23399B1EE6CF4B00780384 /* INTRO BREVE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399A1EE6CF4B00780384 /* INTRO BREVE.gif */; };
 		4D2339A01EE72F3500780384 /* INTRO LUNGA FINE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399E1EE72F3500780384 /* INTRO LUNGA FINE.gif */; };
 		4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399F1EE72F3500780384 /* INTRO LUNGA INIZIO.gif */; };
-		4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 4D2628F11ED57CCD001C4E38 /* client.p12 */; };
 		4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2628F31ED57D7B001C4E38 /* PKCS12.swift */; };
 		4D2EE30B1F05328E00EB2273 /* PublisheresAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */; };
 		4D36D7C11ED2F279005FAEB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D36D7BF1ED2F279005FAEB8 /* InfoPlist.strings */; };
@@ -324,6 +323,7 @@
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
+		D188A70E205671A20042F947 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D188A70D205671A10042F947 /* client.p12 */; };
 		D1D93DA420038F2900A3B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */; };
 		D1EFAA421FE8056100CE33E1 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA411FE8056100CE33E1 /* PinViewController.swift */; };
 		D1EFAA441FE8059000CE33E1 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */; };
@@ -505,7 +505,6 @@
 		4D23399A1EE6CF4B00780384 /* INTRO BREVE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "INTRO BREVE.gif"; sourceTree = "<group>"; };
 		4D23399E1EE72F3500780384 /* INTRO LUNGA FINE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "INTRO LUNGA FINE.gif"; sourceTree = "<group>"; };
 		4D23399F1EE72F3500780384 /* INTRO LUNGA INIZIO.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "INTRO LUNGA INIZIO.gif"; sourceTree = "<group>"; };
-		4D2628F11ED57CCD001C4E38 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
 		4D2628F31ED57D7B001C4E38 /* PKCS12.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PKCS12.swift; path = Classes/Utilities/PKCS12.swift; sourceTree = "<group>"; };
 		4D26396C1F002E6700B95585 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4D26396D1F002E6700B95585 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -689,6 +688,7 @@
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
+		D188A70D205671A10042F947 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; name = client.p12; path = "../../../../../Desktop/client_certs (1)/client.p12"; sourceTree = "<group>"; };
 		D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
 		D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewModel.swift; path = Classes/ViewModels/PinViewModel.swift; sourceTree = "<group>"; };
@@ -1089,7 +1089,7 @@
 		4D2628F01ED57CCD001C4E38 /* Certificates */ = {
 			isa = PBXGroup;
 			children = (
-				4D2628F11ED57CCD001C4E38 /* client.p12 */,
+				D188A70D205671A10042F947 /* client.p12 */,
 			);
 			name = Certificates;
 			path = Resources/Certificates;
@@ -1816,6 +1816,7 @@
 				4DFA39011F4835BB00DC8B20 /* Pulse_Giallo_0045.png in Resources */,
 				033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */,
 				032D3A891F08E79000F260A5 /* Auto-C-ingresso.gif in Resources */,
+				D188A70E205671A20042F947 /* client.p12 in Resources */,
 				4D1658161F483F8400BEB3DB /* Pulse_Verde_0044.png in Resources */,
 				4D22EE631F4C699400EE2746 /* Auto_C_Ingresso_eng.gif in Resources */,
 				4D1657FE1F483F8400BEB3DB /* Pulse_Verde_0022.png in Resources */,
@@ -1828,7 +1829,6 @@
 				4D22EE5E1F4C699400EE2746 /* Auto_A_Loop_eng.gif in Resources */,
 				4DFA38FA1F4835BB00DC8B20 /* Pulse_Giallo_0039.png in Resources */,
 				4DCD1AA61ECDC22900FC8BF5 /* Main.storyboard in Resources */,
-				4D2628F21ED57CCD001C4E38 /* client.p12 in Resources */,
 				4D1657FC1F483F8400BEB3DB /* Pulse_Verde_0020.png in Resources */,
 				4D1658101F483F8400BEB3DB /* Pulse_Verde_0039.png in Resources */,
 				4D2339A11EE72F3500780384 /* INTRO LUNGA INIZIO.gif in Resources */,

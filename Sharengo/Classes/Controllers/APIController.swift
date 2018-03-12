@@ -20,7 +20,7 @@ final class ApiController {
     fileprivate var manager: SessionManager?
    
     init() {
-        let cert = PKCS12.init(mainBundleResource: "client", resourceType: "p12", password: "oi8dmf0");
+        let cert = PKCS12.init(mainBundleResource: "client", resourceType: "p12", password: "1WC;Xen123hb|z");
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "api.sharengo.it": .disableEvaluation
         ]

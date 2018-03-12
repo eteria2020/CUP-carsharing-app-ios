@@ -20,7 +20,7 @@ class CoreController {
     let publishersApiController: PublishersAPIController = PublishersAPIController()
     let sharengoApiController: SharengoApiController = SharengoApiController()
     var updateTimer: Timer?
-    var updateTripTimer: Timer?
+    var updateTripTimer: Timer? = nil
     var updateInProgress = false
     var allCarBookings: [CarBooking] = []
     var allCarTrips: [CarTrip] = []
@@ -50,14 +50,16 @@ class CoreController {
     
     private init() {
         self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
+        //stopFetchTrip()
+        //fetchTrip()
        
     }
-    @objc func fetchTrip()  {
+    func fetchTrip()  {
         if self.updateTripTimer == nil{
-            self.updateTripTimer = Timer.scheduledTimer(timeInterval: 5*1, target: self, selector: #selector(self.updateOpeningCarTrips), userInfo: nil, repeats: true)
+            //self.updateTripTimer = Timer.scheduledTimer(timeInterval: 5*1, target: self, selector: #selector(self.startUpdateOpeningCarTrips), userInfo: nil, repeats: true)
         }
     }
-    @objc func stopFetchTrip()  {
+    func stopFetchTrip()  {
         if self.updateTripTimer != nil{
             self.updateTripTimer!.invalidate()
             self.updateTripTimer = nil
@@ -281,11 +283,17 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
-    @objc fileprivate func updateOpeningCarTrips() {
+     @objc func startUpdateOpeningCarTrips() {
+            updateOpeningCarTrips()
+        }
+     fileprivate func updateOpeningCarTrips() {
         if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
-        self.apiController.tripsList()
+        Observable< Int>.interval(5, scheduler: MainScheduler.instance)
+            .flatMap { _ in
+                self.apiController.tripsList()
+            }
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {

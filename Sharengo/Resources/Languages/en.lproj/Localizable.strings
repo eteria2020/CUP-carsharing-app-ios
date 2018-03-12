@@ -120,6 +120,7 @@
 "lbl_carBookingPopupInfo" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n<placeholder>Charging</placeholder>";
 "lbl_carTripPopupInfo" = "<status>ACTIVE TRIP</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
+"lbl_carTripPopupInfo5min" = "<status>ACTIVE TRIP</status>\n If you don't insert the PIN, trip close in free mode after 5 min\n<bold>PLATE %@</bold>\nTrip Duration:";
 "lbl_carBookingPopupTime" = "Expires in\n%@";
 "lbl_carBookingPopupTimeMinute" = "minute";
 "lbl_carBookingPopupTimeMinutes" = "minutes";

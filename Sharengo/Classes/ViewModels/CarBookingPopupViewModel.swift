@@ -92,7 +92,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 if self.carTrip?.car.value?.parking == true {
                     self.info.value = String(format: "lbl_carTripParkingPopupInfo".localized(), car.plate ?? "")
                 } else {
-                    self.info.value = String(format: "lbl_carTripPopupInfo5min".localized(), car.plate ?? "")
+                    self.info.value = String(format: "lbl_carTripPopupInfo".localized(), car.plate ?? "")
                 }
             } else if let address = car.address.value {
                 self.info.value = String(format: "lbl_carBookingPopupInfo".localized(), car.plate ?? "", address)
@@ -138,7 +138,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                     self.time.value = timer
                 }
                 if let minuti = self.carTrip?.minutes {
-                    if minuti >= 1{
+                    if minuti > 4{
                         switch Device().diagonal {
                         case 3.5:
                             self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
@@ -153,23 +153,24 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                         default:
                             self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
                         }
-                        self.info.value = String(format: "lbl_carTripPopupInfo".localized(), (self.carTrip?.car.value?.plate)! ?? "")
+                         self.info.value = String(format: "lbl_carTripPopupInfo".localized(), (self.carTrip?.car.value?.plate)! ?? "")
                     }
                     else{
                         switch Device().diagonal {
                         case 3.5:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
                         case 4:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 250
                         case 4.7:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 270
                         case 5.5:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 280
                         case 5.8:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 280
                         default:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245
+                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 250
                         }
+                        self.info.value = String(format: "lbl_carTripPopupInfo5min".localized(), (self.carTrip?.car.value?.plate)! ?? "")
                     }
                     
                 }

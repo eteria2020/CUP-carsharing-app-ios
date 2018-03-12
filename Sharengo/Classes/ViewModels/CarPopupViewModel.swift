@@ -86,8 +86,9 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
         self.carType.value = car.type
         self.plate = String(format: "lbl_carPopupPlate".localized(), car.plate ?? "")
         if var capacity = car.capacity {
-            if capacity < 50 && capacity >=10 {
+            if capacity < 50 && capacity >= 10 {
                 capacity = capacity - 10
+                
             }
             self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(capacity)")
         } else if let plate = car.plate {

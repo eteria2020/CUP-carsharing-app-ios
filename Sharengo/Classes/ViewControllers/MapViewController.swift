@@ -278,17 +278,17 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
         switch Device().diagonal {
         case 3.5:
-            self.closeCarPopupHeight = 160
+            self.closeCarPopupHeight = 160//160
         case 4:
-            self.closeCarPopupHeight = 170
+            self.closeCarPopupHeight = 170//170
         case 4.7:
-            self.closeCarPopupHeight = 185
+            self.closeCarPopupHeight = 185//185
         case 5.5:
-            self.closeCarPopupHeight = 195
+            self.closeCarPopupHeight = 195//195
         case 5.8:
-            self.closeCarPopupHeight = 200
+            self.closeCarPopupHeight = 200//200
         default:
-           self.closeCarPopupHeight = 185
+           self.closeCarPopupHeight = 185//185
         }
         // CarBookingPopup
         self.view_carBookingPopup.bind(to: ViewModelFactory.carBookingPopup())
@@ -312,15 +312,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         case 3.5:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
         case 4:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245//195
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195//195
         case 4.7:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245//205
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
         case 5.5:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245//215
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
         case 5.8:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245//220
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
         default:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 245//205
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
         }
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())
@@ -348,11 +348,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.view.layoutIfNeeded()
                 UIView.animate(withDuration: 0.2, animations: {
                     if car.type.isEmpty {
-                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0
+                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self?.closeCarPopupHeight)!  //0
                     } else if car.type.contains("\n") {
-                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0 + 55
+                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self?.closeCarPopupHeight)! + 55//55
                     } else {
-                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self?.closeCarPopupHeight ?? 0 + 40
+                        self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self?.closeCarPopupHeight)! + 40//40
                     }
                     self?.view_carPopup.alpha = 1.0
                     self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
@@ -376,7 +376,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.checkUserPositionFromForeground()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateCarData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
-       // todo NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateTripData), name: NSNotification.Name(rawValue: "updateTripData"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateTripData), name: NSNotification.Name(rawValue: "updateTripData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
         self.setCarsButtonVisible(false)
     }
@@ -598,7 +598,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     @objc public func updateTripData() {
         if let carTrip = CoreController.shared.allCarTrips.first {
-           // CoreController.shared.stopFetchTrip()
+          // CoreController.shared.stopFetchTrip()
             self.viewModel?.carTrip = carTrip
             self.carTripTimeStart = carTrip.timeStart
             carTrip.updateCar {
@@ -789,7 +789,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             } else {
                 if success {
                     //todo
-                    //  CoreController.shared.fetchTrip()
+                    //CoreController.shared.stopFetchTrip()
+                    //CoreController.shared.startUpdateOpeningCarTrips()
                     if let plate = car.plate {
                     CoreController.shared.apiController.searchCar(plate: plate)
                         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -1719,9 +1720,9 @@ extension MapViewController: GMSMapViewDelegate {
                 if car.type.isEmpty {
                     self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
                 } else if car.type.contains("\n") {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55//55
                 } else {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40
+                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40//40
                 }
                 self.view_carPopup.alpha = 1.0
                 self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
