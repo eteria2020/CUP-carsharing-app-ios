@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate let menuPadding: CGFloat = 100.0
     
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             // Non sono loggato
         } else {
@@ -53,6 +53,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         statusBar.backgroundColor = ColorBrand.yellow.value
         self.setupSideMenu()
+        
+        if let url = launchOptions?[.url] as? URL{
+           
+        
+        if url.host == nil
+        {
+            return true;
+        }
+        
+        let urlString = url.absoluteString
+        let queryArray = urlString.components(separatedBy: "/")
+        let query = queryArray[2]
+        
+        // Check if article
+        if query.range(of: "plate") != nil
+        {
+            let data = urlString.components(separatedBy: "/")
+            if data.count >= 3
+            {
+                let parameter = data[3]
+                 CoreController.shared.urlDeepLink = parameter
+                //let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
+                //self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
+            }
+        }
+        
+        }
        
         return true
     }
@@ -163,7 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 /*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
   
-    let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: false)
+   let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: false)
     let items = (urlComponents?.queryItems)! as [NSURLQueryItem] // {name = backgroundcolor, value = red}
     if (url.scheme == "sharengocar") {
         //var color: UIColor? = nil
@@ -190,8 +217,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // URL Scheme entered through URL example : swiftexamples://red
     //swiftexamples://?backgroundColor=red
     return false
-}*/
 
+}*/
+ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    
+    /*if url.host == nil
+    {
+        return true;
+    }
+    
+    let urlString = url.absoluteString
+    let queryArray = urlString!.components(separatedBy: "/")
+    let query = queryArray[2]
+    
+    // Check if article
+    if query.range(of: "plate") != nil
+    {
+        let data = urlString!.components(separatedBy: "/")
+        if data.count >= 3
+        {
+            let parameter = data[3]
+            //let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
+            //self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
+        }
+    }
+    
+  
+        CoreController.shared.urlDeepLink = url
+        print(url.host as String!)*/
+    
+    
+    
+    return true
+}
 
 
 

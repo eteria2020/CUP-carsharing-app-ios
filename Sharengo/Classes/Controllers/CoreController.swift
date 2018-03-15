@@ -26,7 +26,7 @@ class CoreController {
     var allCarTrips: [CarTrip] = []
     var currentCarBooking: CarBooking?
     var currentCarTrip: CarTrip?
-   
+    var urlDeepLink: String?
     var notificationIsShowed: Bool = false
     var cities: [City] = []
     var polygons: [Polygon] = []

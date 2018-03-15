@@ -103,6 +103,50 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     })
                 }
             })
+        viewModel.deepCar.asObservable()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] (deepCar) in
+                if let car = deepCar{
+                    //self.viewModel?.deepCar.value = nil
+                    if car.plate != self?.selectedCar?.plate {
+                        if self != nil{
+                            self!.drawRoutes(steps: self!.routeSteps)
+                        }
+                    }
+                    if let location = car.location {
+                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                    }
+                    self?.view_carPopup.updateWithCar(car: car)
+                    if (self?.routeSteps.count)! > 0{
+                            if let distance = self?.routeSteps[0].distance, let duration = self?.routeSteps[0].duration {
+                                self?.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
+                            }
+                        
+                    }
+                    self?.view_carPopup.viewModel?.type.value = .car
+                    self?.view.layoutIfNeeded()
+                    UIView .animate(withDuration: 0.2, animations: {
+                        if car.type.isEmpty {
+                            self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self?.closeCarPopupHeight)!
+                        } else if car.type.contains("\n") {
+                            self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self?.closeCarPopupHeight)! + 55//55
+                        } else {
+                            self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self?.closeCarPopupHeight)! + 40//40
+                        }
+                        self?.view_carPopup.alpha = 1.0
+                        self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                        self?.view.layoutIfNeeded()
+                        self?.selectedCar = car
+                        if let location = car.location {
+                            self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                                self?.routeSteps = steps
+                                self?.drawRoutes(steps: steps)
+                            })
+                        }
+                    })
+                }
+            }).addDisposableTo(disposeBag)
         // Annotations
         viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
@@ -379,6 +423,46 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         //NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateTripData), name: NSNotification.Name(rawValue: "updateTripData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
         self.setCarsButtonVisible(false)
+        
+
+            /*if let car = viewModel?.allCars.filter({ (car) -> Bool in
+                return car.plate?.lowercased().contains(plate) ?? false}){
+                
+                if let location = car[0].location {
+                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+                    self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+                }
+                self.view_carPopup.updateWithCar(car: car[0])
+                if self.routeSteps.count > 0 {
+                    if let distance = self.routeSteps[0].distance, let duration = self.routeSteps[0].duration {
+                        self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
+                    }
+                }
+                self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.2, animations: {
+                    if car[0].type.isEmpty {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight)  //0
+                    } else if car[0].type.contains("\n") {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight) + 55//55
+                    } else {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight) + 40//40
+                    }
+                    self.view_carPopup.alpha = 1.0
+                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+                    self.view.layoutIfNeeded()
+                    if let location = car[0].location {
+                        self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+                            self.routeSteps = steps
+                            self.drawRoutes(steps: steps)
+                        })
+                    }
+                })
+                //self.updateSpeechSearchBar()
+                
+            }*/
+            
+            
+        
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -387,6 +471,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.checkUserPosition()
         } else {
             self.checkedUserPosition = true
+        }
+        
+        if let plate = CoreController.shared.urlDeepLink {
+            
+            viewModel?.searchPlateAvailable(plate: plate)
+            CoreController.shared.urlDeepLink = nil
         }
     }
     
@@ -433,6 +523,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view_carPopup.updateWithFeed(feed: feed)
         }
     }
+    
+    
     
     // MARK: - Update methods
     

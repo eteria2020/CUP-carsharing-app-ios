@@ -53,6 +53,8 @@ public final class MapViewModel: ViewModelType {
     public var errorEvents: Bool?
     /// Variable used to save feeds
     public var feeds = [Feed]()
+    //Variable used to store deepLink car
+    public var deepCar: Variable<Car?> = Variable<Car?>(nil)
     /// Variable used to save cars
     public var cars: [Car] = []
     /// Variable used to save all cars in share'ngo system
@@ -123,6 +125,49 @@ public final class MapViewModel: ViewModelType {
             }.addDisposableTo(self.disposeBag)
     }
     
+    @objc public func searchPlateAvailable(plate: String) {
+        self.apiController.searchCars()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.array_data {
+                        if let cars = [Car].from(jsonArray: data) {
+                            self.allCars = cars
+                            var finalCar: Car? = nil
+                            let carSelcted:[Car?] = self.allCars.filter({ (car) -> Bool in
+                                return car.plate?.lowercased().contains(plate) ?? false})
+                            
+                            // Distance
+                            if let car = carSelcted[0]{
+                                
+                                let locationManager = LocationManager.sharedInstance
+                                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                                    if let userLocation = locationManager.lastLocationCopy.value {
+                                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
+                                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
+                                            let index = self.cars.index(where: { (singleCar) -> Bool in
+                                                return car.plate == singleCar.plate
+                                            })
+                                            if let index = index {
+                                                self.cars[index].distance = car.distance
+                                            }
+                                        }
+                                    }
+                                }
+                            finalCar = car
+                            }
+                            self.manageAnnotations()
+                            self.deepCar.value = finalCar
+                            return
+                        }
+                    }
+                    self.allCars.removeAll()
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
     /**
      This method resets cars variable
      */
