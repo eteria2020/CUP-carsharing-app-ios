@@ -69,7 +69,7 @@ public class Car: ModelType, Gloss.Decodable {
      */
     public func getType() -> String {
         let bonusFree = self.bonus.filter({ (bonus) -> Bool in
-            return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
+            return  bonus.status == true && bonus.value > 0
         })
         if bonusFree.count > 0 && self.nearest {
             let bonus = bonusFree[0]

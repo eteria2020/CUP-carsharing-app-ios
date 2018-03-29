@@ -302,7 +302,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 })
                 dialog.allowTouchOutsideToDismiss = false
                 dialog.show()
-               
+                //self?.openCar(car: car, action: "open")
             case .book(let car):
                 self?.bookCar(car: car)
             case .car:
@@ -845,8 +845,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.showLoginAlert()
             return
         }
-        if let distance = car.distance {
-            #if ISDEBUG
+        /*if let distance = car.distance {
+           /* #if ISDEBUG
             #elseif ISRELEASE
                 if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
                     let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
@@ -856,11 +856,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     dialog.show()
                     return
                 }
-            #endif
+            #endif*/
         } else {
             self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
             return
-        }
+        }*/
         //self.showLoader()
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
             if error != nil {

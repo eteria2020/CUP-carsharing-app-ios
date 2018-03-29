@@ -136,7 +136,7 @@ public final class MapViewModel: ViewModelType {
                             self.allCars = cars
                             var finalCar: Car? = nil
                             let carSelcted:[Car?] = self.allCars.filter({ (car) -> Bool in
-                                return car.plate?.lowercased().contains(plate) ?? false})
+                                return car.plate?.lowercased().contains(plate.lowercased()) ?? false})
                             
                             // Distance
                             if let car = carSelcted[0]{

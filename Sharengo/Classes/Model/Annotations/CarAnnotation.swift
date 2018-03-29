@@ -35,13 +35,20 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         self.uniqueIdentifier = car.plate ?? "0"
         self.marker = UIImage(named: "ic_auto")!
         super.init()
+        //viene passato un solo bonus alla volta dalle API o nouse o Unplug
         let bonusFree = car.bonus.filter({ (bonus) -> Bool in
-            return bonus.type == "nouse" && bonus.status == true && bonus.value > 0
+            return bonus.status == true && bonus.value > 0
         })
         if bonusFree.count > 0 {
             let bonus = bonusFree[0]
-            let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)
-            self.marker = image
+            if bonus.type == "nouse"{
+                let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)
+                self.marker = image
+            }else if bonus.type == "unplug"{
+                 let image = self.freeImage(image: UIImage(named: "ic_auto_unplug")!, value: bonus.value)
+                 self.marker = image
+            }
+        
         }
         if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
             self.marker = CoreController.shared.pulseYellow
@@ -49,8 +56,13 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         } else if car.nearest && carBooked == nil {
             if bonusFree.count > 0 {
                 let bonus = bonusFree[0]
-                let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)
-                self.marker = image
+                if bonus.type == "nouse"{
+                    let image = self.freeImage(image: UIImage(named: "ic_auto_free")!, value: bonus.value)
+                    self.marker = image
+                }else if bonus.type == "unplug"{
+                    let image = self.freeImage(image: UIImage(named: "ic_auto_unplug")!, value: bonus.value)
+                    self.marker = image
+                }
             } else {
                 self.marker = CoreController.shared.pulseGreen
             }

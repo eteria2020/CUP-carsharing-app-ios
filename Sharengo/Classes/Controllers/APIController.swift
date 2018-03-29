@@ -399,7 +399,7 @@ extension API: TargetType {
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
         case .getUserWith(let username, let password):
-            return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
         default:
             return URL(string: "https://api.sharengo.it:8023/v2")!
         }

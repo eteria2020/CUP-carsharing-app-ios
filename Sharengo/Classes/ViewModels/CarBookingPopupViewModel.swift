@@ -137,6 +137,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 if let timer = self.carTrip?.timer {
                     self.time.value = timer
                 }
+               
                 if let minuti = self.carTrip?.minutes {
                     if minuti > 4{
                         switch Device().diagonal {
