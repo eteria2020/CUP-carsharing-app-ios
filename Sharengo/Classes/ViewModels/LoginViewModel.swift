@@ -13,6 +13,7 @@ import Action
 import ReachabilitySwift
 import KeychainSwift
 import Localize_Swift
+import Gloss
 
 /**
  Enum that specifies selection input
@@ -88,19 +89,86 @@ public final class LoginViewModel: ViewModelType {
             .subscribe { event in
                 switch event {
                 case .next(let response):
-                    if response.status == 200, let data = response.dic_data {
+                    if response.status == 200, let data = response.dic_data{
                         if data["enabled"] as? Bool == false {
-                            self.loginExecuted.value = false
+                            //MODIFCHE PER DISABLE REASONS
+                            //self.loginExecuted.value = false
                             let dispatchTime = DispatchTime.now() + 0.5
                             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                let message = "alert_loginUserNotEnabled".localized()
-                                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                    alertView.dismissAlertView()
-                                })
-                                dialog.allowTouchOutsideToDismiss = false
-                                dialog.show()
+                                if let disableReason = data["disabled_reason"] as? [JSON]{
+                       
+                                    for json in disableReason {
+                                        
+                                        
+                                    switch json["reason"] as! String{
+                                    case "FIRST_PAYMENT_NOT_COMPLETED":
+                                           // let message = "alert_loginUserNotEnabled".localized()
+                                            let message = "FIRST_PAYMENT_NOT_COMPLETED"
+                                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                            })
+                                            dialog.allowTouchOutsideToDismiss = false
+                                            dialog.show()
+                                        break
+                                        case "FAILED PAYMENT":
+                                            //let message = "alert_loginUserNotEnabled".localized()
+                                            let message = "FAILED PAYMENT"
+                                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                            })
+                                            dialog.allowTouchOutsideToDismiss = false
+                                            dialog.show()
+                                        break
+                                        case "INVALID_DRIVERS_LICENSE":
+                                            //let message = "alert_loginUserNotEnabled".localized()
+                                            let message = "INVALID_DRIVERS_LICENSE"
+                                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                            })
+                                            dialog.allowTouchOutsideToDismiss = false
+                                            dialog.show()
+                                                break
+                                        case "DISABLED_BY_WEBUSER":
+                                            //let message = "alert_loginUserNotEnabled".localized()
+                                            let message = "DISABLE_BY_WEBUSER"
+                                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                            })
+                                            dialog.allowTouchOutsideToDismiss = false
+                                            dialog.show()
+                                        break
+                                        case "EXPIRED_DRIVERS_LICENSE":
+                                          //  let message = "alert_loginUserNotEnabled".localized()
+                                            let message = "EXPIRED_DRIVERS_LICENSE"
+                                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                            })
+                                            dialog.allowTouchOutsideToDismiss = false
+                                            dialog.show()
+                                                break
+                                        case "EXPIRED_CREDIT_CARD":
+                                          //  let message = "alert_loginUserNotEnabled".localized()
+                                            let message = "EXPIRED_CREDIT_CARD"
+                                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                            })
+                                            dialog.allowTouchOutsideToDismiss = false
+                                            dialog.show()
+                                        break
+                                            default:
+                                                let message = "alert_loginUserNotEnabled".localized()
+                                                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
+                                                })
+                                                dialog.allowTouchOutsideToDismiss = false
+                                                dialog.show()
+                                                break
+                                        }
+                                      }
+                                }
+                            
                             }
-                            return
+                            //return
                         }
                         if let pin = data["pin"] {
                             KeychainSwift().set("\(String(describing: pin))", forKey: "UserPin")
