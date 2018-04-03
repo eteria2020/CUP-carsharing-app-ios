@@ -81,6 +81,7 @@ public final class LoginViewModel: ViewModelType {
             })
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
+            return
         }
         let modifiedUsername = username.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let modifiedPassword = password.md5!
@@ -103,7 +104,7 @@ public final class LoginViewModel: ViewModelType {
                                     switch json["reason"] as! String{
                                     case "FIRST_PAYMENT_NOT_COMPLETED":
                                            // let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "FIRST_PAYMENT_NOT_COMPLETED"
+                                        let message = "Utente disabilitato: Primo pagamento non effettutato"
                                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                 alertView.dismissAlertView()
                                             })
@@ -112,7 +113,7 @@ public final class LoginViewModel: ViewModelType {
                                         break
                                         case "FAILED PAYMENT":
                                             //let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "FAILED PAYMENT"
+                                            let message = "Utente disabilitato: Pagamento fallito"
                                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                 alertView.dismissAlertView()
                                             })
@@ -121,7 +122,7 @@ public final class LoginViewModel: ViewModelType {
                                         break
                                         case "INVALID_DRIVERS_LICENSE":
                                             //let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "INVALID_DRIVERS_LICENSE"
+                                            let message = "Utente disabilitato: Patente non valida"
                                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                 alertView.dismissAlertView()
                                             })
@@ -130,7 +131,7 @@ public final class LoginViewModel: ViewModelType {
                                                 break
                                         case "DISABLED_BY_WEBUSER":
                                             //let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "DISABLE_BY_WEBUSER"
+                                            let message = "Utente disabilitato: Disabilitato manualmente"
                                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                 alertView.dismissAlertView()
                                             })
@@ -139,7 +140,7 @@ public final class LoginViewModel: ViewModelType {
                                         break
                                         case "EXPIRED_DRIVERS_LICENSE":
                                           //  let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "EXPIRED_DRIVERS_LICENSE"
+                                            let message = "Utente disabilitato: Patente scaduta"
                                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                 alertView.dismissAlertView()
                                             })
@@ -148,7 +149,7 @@ public final class LoginViewModel: ViewModelType {
                                                 break
                                         case "EXPIRED_CREDIT_CARD":
                                           //  let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "EXPIRED_CREDIT_CARD"
+                                            let message = "Utente disabilitato: Carta di credito scaduta"
                                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                 alertView.dismissAlertView()
                                             })

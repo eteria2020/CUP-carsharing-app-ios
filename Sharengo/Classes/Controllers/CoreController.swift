@@ -95,7 +95,11 @@ class CoreController {
                             self.currentCarTrip = carTrips
                             self.stopUpdateData()
                             return
-                        }
+                        }/*else{
+                            self.currentCarTrip = nil
+                            self.stopUpdateData()
+                            return
+                        }*/
                     }
                 case .error(_):
                     self.stopUpdateData()

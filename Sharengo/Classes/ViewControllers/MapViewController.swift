@@ -862,7 +862,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }*/
         //self.showLoader()
-        self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error) in
+        
+        if let tripped = self.viewModel?.carTrip {
+            let dispatchTime = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                let dialog = ZAlertView(title: nil, message: "Hai già una corsa attiva.", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
+                    alertViewTripped.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
+            return
+        }
+        
+        self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error,dataType) in
             if error != nil {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -944,8 +957,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                     }
                 } else {
-                    //self.hideLoader(completionClosure: { () in
-                        self.showGeneralAlert()
+                    let dispatchTime = DispatchTime.now() + 0.5
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        self.showGeneralAlert(type: dataType)
+                    }
                     //})
                 }
             }
@@ -969,8 +984,21 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 dialog.allowTouchOutsideToDismiss = false
                 dialog.show()
             }
+            
             return
         }
+        //check su corsa aperta e prenotazione
+       /* if let tripped = self.viewModel?.carTrip {
+            let dispatchTime = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                let dialog = ZAlertView(title: nil, message: "Non puoi prenotare una macchina mentre stai correndo.", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
+                    alertViewTripped.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
+            return
+        }*/
         //self.showLoader()
         self.viewModel?.bookCar(car: car, completionClosure: { (success, error, data) in
             if error != nil {
@@ -1038,12 +1066,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         }
                                     } else {
                                         //self.hideLoader(completionClosure: { () in
-                                            self.showGeneralAlert()
+                                            self.showGeneralAlert(type: "")
                                        //})
                                     }
                                 } else {
                                     //self.hideLoader(completionClosure: { () in
-                                        self.showGeneralAlert()
+                                         self.showGeneralAlert(type: "")
                                     //})
                                 }
                             }
@@ -1082,6 +1110,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     public func splitMessage(data: String?) -> String{
         
+        if(data == "user_disabled"){
+            
+            return "Non puoi prenotare una macchina utente disabilitato"
+            
+        }else{
+            
         let array:[String]? = data!.components(separatedBy: "-")
         var result=""
         if let length:Int = array?.count{
@@ -1115,8 +1149,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             
                 }
             }
+            return result
+        }
         
-        return result
     }
 
     /**
@@ -1663,14 +1698,21 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /**
      This method shows a general error message
      */
-    public func showGeneralAlert() {
+    public func showGeneralAlert(type: String) {
+        if type == ""{
         let dialog = ZAlertView(title: nil, message: "alert_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
             alertView.dismissAlertView()
         })
         dialog.allowTouchOutsideToDismiss = false
         dialog.show()
+        }else if type == "user_disabled"{
+            let dialog = ZAlertView(title: nil, message: "Non puoi aprire la corsa utente disabilitato", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+        }
     }
-    
     /**
      This method shows a localization alert message (user can open settings from it)
      */

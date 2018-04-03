@@ -445,19 +445,21 @@ public final class MapViewModel: ViewModelType {
      This method open car
      - Parameter car: The car that has to be opened
      */
-    public func openCar(car: Car, action: String, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?) ->()) {
+    public func openCar(car: Car, action: String, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?,_ data: String) ->()) {
         self.apiController.openCar(car: car, action: action)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
                 switch event {
                 case .next(let response):
                     if response.status == 200 {
-                        completionClosure(true, nil)
-                    } else {
-                        completionClosure(false, nil)
+                        completionClosure(true, nil,"")
+                    }else if response.status == 403{
+                        completionClosure(false, nil,response.code!)
+                    }else {
+                        completionClosure(false, nil,"")
                     }
                 case .error(let error):
-                    completionClosure(false, error)
+                    completionClosure(false, error,"")
                 default:
                     break
                 }
@@ -485,7 +487,14 @@ public final class MapViewModel: ViewModelType {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
                         completionClosure(true, nil, data)
-                    } else {
+                    } else if response.status == 403 {
+                        
+                        if let code = response.code{
+                             let json: JSON = ["reason": code]
+                            completionClosure(false, nil,json)
+                        }
+                    }
+                    else{
                         let json: JSON = ["reason": response.reason!]
                         completionClosure(false, nil,json)
                     }
