@@ -1107,12 +1107,39 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             }
         })
     }
+    public func getDisableReasonMessage() -> String{
+        
+        let disableReason = KeychainSwift().get("DisableReason")!
+        switch disableReason {
+            case "FIRST_PAYMENT_NOT_COMPLETED":
+                return  "Primo pagamento non effettuato"
+            
+             case "FAILED_PAYMENT":
+                return "Pagamento fallito"
+           
+            case "INVALID_DRIVERS_LICENSE":
+                return "Patente non valida"
+            
+            case "DISABLED_BY_WEBUSER":
+                return "Disabilitato manualmente"
+           
+            case "EXPIRED_DRIVERS_LICENSE":
+                return "Patente scaduta"
+            
+            case "EXPIRED_CREDIT_CARD":
+                return "Carta di credito scaduta"
+            
+            default:
+                return "Errore Generico"
+      
+        }
+    }
     
     public func splitMessage(data: String?) -> String{
         
         if(data == "user_disabled"){
             
-            return "Non puoi prenotare una macchina utente disabilitato"
+            return "Non puoi prenotare questa sharen'go. Utente disabilitato motivo: \(getDisableReasonMessage())"
             
         }else{
             
@@ -1706,7 +1733,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         dialog.allowTouchOutsideToDismiss = false
         dialog.show()
         }else if type == "user_disabled"{
-            let dialog = ZAlertView(title: nil, message: "Non puoi aprire la corsa utente disabilitato", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+            let dialog = ZAlertView(title: nil, message: "Non puoi aprire la corsa. Utente disabilitato motivo: \(self.getDisableReasonMessage())", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                 alertView.dismissAlertView()
             })
             dialog.allowTouchOutsideToDismiss = false

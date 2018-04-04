@@ -23,6 +23,11 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
     var viewModel: UserAreaViewModel?
     
     // MARK: - ViewModel methods
+    public func launchAssistence() {
+        let destination: SupportViewController = (Storyboard.main.scene(.support))
+        destination.bind(to: viewModel, afterLoad: true)
+        CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+    }
     
     func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? UserAreaViewModel else {
@@ -64,8 +69,38 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                         dialog.show()
                         return
                     }
-                    let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
-                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                    if KeychainSwift().get("DisableReason") != nil {
+                        let disableReason = KeychainSwift().get("DisableReason")!
+                        switch disableReason{
+                        case "FAILED_PAYMENT":
+                                let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                                self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                           case "FIRST_PAYMENT_NOT_COMPLETED":
+                                let url = URL(string: "https://www.sharengo.it/area-utente/dati-pagamento/mobile")
+                                self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                             case "INVALID_DRIVERS_LICENSE":
+                                let url = URL(string: "https://www.sharengo.it/area-utente/patente/mobile")
+                                self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                             /*case "DISABLED_BY_WEBUSER":
+                                //va nella view di assistenza gestista al click dell'okkei va nel default e apre la home al secondo click.
+                                self.launchAssistence()*/
+                            case "EXPIRED_DRIVERS_LICENSE":
+                                    let url = URL(string: "https://www.sharengo.it/area-utente/patente/mobile")
+                                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                            case "EXPIRED_CREDIT_CARD":
+                                let url = URL(string: "https://www.sharengo.it/area-utente/dati-pagamento/mobile")
+                                self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                            
+                        default:
+                            
+                            let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                            self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                        }
+                    }
+                    else{
+                        let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                        self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                    }
                 }
             }
             task.resume()

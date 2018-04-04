@@ -182,7 +182,7 @@
 
 // CarTrips
 "lbl_carTripsHeaderTitle" = "CRONOLOGIA CORSE";
-"lbl_carTripsItemTitle" = "Prenotazione n. %@";
+"lbl_carTripsItemTitle" = "Corsa n. %@";
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";

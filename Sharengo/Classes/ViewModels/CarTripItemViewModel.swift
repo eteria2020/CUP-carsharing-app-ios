@@ -41,16 +41,19 @@ final class CarTripItemViewModel : ItemViewModelType {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "lbl_carTripsDateFormatter".localized()
-        dateFormatter.locale = Locale.current
+        dateFormatter.locale = Locale(identifier: "it_IT")
+        dateFormatter.timeZone = TimeZone(identifier: "Europe/Rome")
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "lbl_carTripsTimeFormatter".localized()
-        timeFormatter.locale = Locale.current
+        timeFormatter.locale = Locale(identifier: "it_IT")
+        timeFormatter.timeZone = TimeZone(identifier: "Europe/Rome")
         var startDateText = ""
         var startTimeText = ""
 
         if let startDate = model.timeStart
         {
             startDateText = dateFormatter.string(from: startDate)
+            
             startTimeText = timeFormatter.string(from: startDate)
         }
 
