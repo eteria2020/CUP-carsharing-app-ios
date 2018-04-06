@@ -3153,14 +3153,14 @@ grazie al tuo invito</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZaP-jU-lsv" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="mTV-yh-K0O"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxZ-f3-SSi">
-                                <rect key="frame" x="0.0" y="20" width="375" height="22"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5B-Y1-vz9">
                                         <rect key="frame" x="15" y="5" width="345" height="12"/>
@@ -3182,7 +3182,7 @@ grazie al tuo invito</string>
                                 </constraints>
                             </view>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYU-fx-Zqo">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="TfB-Ue-eTa" id="aRM-gC-FTq"/>
@@ -3191,13 +3191,13 @@ grazie al tuo invito</string>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VYU-fx-Zqo" firstAttribute="top" secondItem="ZaP-jU-lsv" secondAttribute="top" id="10v-U0-i7s"/>
+                            <constraint firstItem="VYU-fx-Zqo" firstAttribute="top" secondItem="ZaP-jU-lsv" secondAttribute="top" constant="56" id="10v-U0-i7s"/>
                             <constraint firstItem="RwD-ix-Bbd" firstAttribute="trailing" secondItem="kxZ-f3-SSi" secondAttribute="trailing" id="LF0-zr-ele"/>
                             <constraint firstItem="RwD-ix-Bbd" firstAttribute="trailing" secondItem="ZaP-jU-lsv" secondAttribute="trailing" id="Uua-dj-YmJ"/>
                             <constraint firstItem="RwD-ix-Bbd" firstAttribute="trailing" secondItem="VYU-fx-Zqo" secondAttribute="trailing" id="Y0h-sX-Vdc"/>
                             <constraint firstItem="ZaP-jU-lsv" firstAttribute="leading" secondItem="RwD-ix-Bbd" secondAttribute="leading" id="dsa-CI-aBf"/>
                             <constraint firstItem="kxZ-f3-SSi" firstAttribute="top" secondItem="ZaP-jU-lsv" secondAttribute="top" id="fhA-vt-l1w"/>
-                            <constraint firstItem="ZaP-jU-lsv" firstAttribute="top" secondItem="RwD-ix-Bbd" secondAttribute="top" id="jML-rr-igJ"/>
+                            <constraint firstItem="ZaP-jU-lsv" firstAttribute="top" secondItem="RwD-ix-Bbd" secondAttribute="top" constant="-20" id="jML-rr-igJ"/>
                             <constraint firstAttribute="bottom" secondItem="VYU-fx-Zqo" secondAttribute="bottom" id="qG0-0P-Ph0"/>
                             <constraint firstItem="kxZ-f3-SSi" firstAttribute="leading" secondItem="RwD-ix-Bbd" secondAttribute="leading" id="vdx-FF-Td5"/>
                             <constraint firstItem="VYU-fx-Zqo" firstAttribute="leading" secondItem="RwD-ix-Bbd" secondAttribute="leading" id="yDA-z0-Jif"/>
