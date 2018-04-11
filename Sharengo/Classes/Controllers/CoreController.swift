@@ -12,6 +12,7 @@ import RxCocoa
 import Boomerang
 import KeychainSwift
 import Localize_Swift
+import Gloss
 
 class CoreController {
     static let shared = CoreController()
@@ -26,6 +27,7 @@ class CoreController {
     var allCarTrips: [CarTrip] = []
     var currentCarBooking: CarBooking?
     var currentCarTrip: CarTrip?
+    var lastCarTrip: CarTrip?
     var urlDeepLink: String?
     var notificationIsShowed: Bool = false
     var cities: [City] = []
@@ -93,6 +95,7 @@ class CoreController {
                         if let carTrips = CarTrip(json: data) {
                            
                             self.currentCarTrip = carTrips
+                            self.lastCarTrip = carTrips
                             self.stopUpdateData()
                             return
                         }/*else{
@@ -176,7 +179,12 @@ class CoreController {
                         if let discountRate = data["discount_rate"] {
                             KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
                         }
-                        
+                        if let disableReason = data["disabled_reason"] as? [JSON]{
+                            
+                            for json in disableReason {
+                                KeychainSwift().set("\(String(describing: json["reason"] as! String))", forKey: "DisableReason")
+                            }
+                        }
                         self.updateCarBookings()
                     }
                     else if response.status == 404, let code = response.code {
@@ -209,6 +217,7 @@ class CoreController {
         KeychainSwift().clear()
         CoreController.shared.currentCarBooking = nil
         CoreController.shared.currentCarTrip = nil
+        CoreController.shared.lastCarTrip = nil
         CoreController.shared.allCarBookings = []
         CoreController.shared.allCarTrips = []
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
@@ -321,9 +330,27 @@ class CoreController {
     }
     
     fileprivate func stopUpdateData() {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
+       //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
         self.currentCarBooking = self.allCarBookings.first
+      
+       /* if let openTrip = self.allCarTrips.first{
+               self.currentCarTrip = openTrip
+        }else{
+            if let currentTrip = self.currentCarTrip{
+                if currentTrip.fake && currentTrip.seconds < 60 {
+                    currentTrip.setFake(fake: true)
+                    return
+                }
+            }else{
+                self.currentCarTrip = self.allCarTrips.first
+            }
+        }*/
+        
         self.currentCarTrip = self.allCarTrips.first
+        if let carTrip = self.allCarTrips.first{
+            self.lastCarTrip = carTrip
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
     
     fileprivate func stopUpdateTripData() {

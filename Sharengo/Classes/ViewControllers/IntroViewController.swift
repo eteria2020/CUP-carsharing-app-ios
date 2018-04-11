@@ -47,7 +47,7 @@ public class IntroViewController : UIViewController, ViewModelBindable {
         self.lbl_title2.alpha = 0.0
         self.lbl_title3.styledText = "lbl_introTitle3".localized()
         self.lbl_title3.alpha = 0.0
-        //Rimosso dai contadini FULVIOIVAN
+        //Rimosso  FULVIOIVAN
         //if UserDefaults.standard.bool(forKey: "LongIntro") == false {
             //self.executeLongIntro()
         //} else {

@@ -87,7 +87,8 @@
 "lbl_introTitle3" = "Sotto\ncasa";
 
 // SearchBar
-"lbl_searchBarTextField" = "Cerca indirizzo o targa";
+//"lbl_searchBarTextField" = "Cerca indirizzo o targa";
+"lbl_searchBarTextField" = "Cerca targa";
 "alert_searchBarAuthSpeechAuthorizationDenied" = "Hai negato l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
 "alert_searchBarAuthSpeechAuthorizationRestricted" = "Il riconoscimento vocale non può funzionare causa limiti del dispositivo";
 "alert_searchBarAuthSpeechAuthorizationNotDetermined" = "Non è stato possibile determinare l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
@@ -271,7 +272,7 @@
 "lbl_ratesNotLoggedRatesTitle" = "Ecco le tariffe Share'ngo:";
 "lbl_ratesRatesDescription" = "<description>Tariffa base della corsa:</description> <value>€ %0.2f</value>\n<description>Tariffa per 1 ora:</description> <value>€ %0.2f</value>\n<description>Tariffa giornaliera:</description> <value>€ %0.2f</value>\n<description>Tariffa di prenotazione:</description> <value>€ %0.2f</value>";
 "lbl_ratesBonusTitle" = "I tuoi minuti bonus:";
-"lbl_ratesBonusDescription" = "Con questa auto %d minuti di guida gratis";
+"lbl_ratesBonusDescription" = " %d minuti";
 "btn_ratesSignup" = "ISCRIVITI SUBITO";
 
 
@@ -294,3 +295,13 @@
 /////////////////////////
 
 "lbl_carPopupFreeType" = "Con questa auto %d minuti di guida gratis!";
+
+
+//////////Disable reason message.
+
+"first_payment_login_alert" = "Sei disabilitato per primo pagamento non effettuato, per utilizzare Share'ngo accedi alla tua area personale e completa il pagamento";
+"failed_payment_login_alert" = "Sei disabilitato per un pagamento non effettuato, per utilizzare Share'ngo accedi alla tua area personale e procedi col pagamento";
+"invalid_driver_license_login_alert" = "Sei disabilitato perchè hai inserito una patente non valida, per utilizzare Share'ngo accedi alla tua area personale, controlla e modifica i dati inseriti";
+"disabled_webuser_login_alert" = "Sei disabilitato, contatta il servizio clienti per maggiori informazioni";
+"expired_driver_license_login_alert" = "Sei disabilitato per patente scaduta, per utilizzare Share'ngo accedi alla tua area personale ed inserisci i nuovi dati";
+"expired_credit_card_login_alert" = "Sei disabilitato perchè la carta inserita è scaduta, per utilizzare Share'ngo accedi alla tua area personale ed inserisci i nuovi dati";

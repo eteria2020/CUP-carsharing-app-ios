@@ -138,7 +138,7 @@ public class BaseViewController: UIViewController {
     
     @objc fileprivate func updateData() {
         
-        let carTrip = CoreController.shared.currentCarTrip
+        let carTrip = CoreController.shared.lastCarTrip
         let carBooking = CoreController.shared.currentCarBooking
         let dispatchTime = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
@@ -158,6 +158,7 @@ public class BaseViewController: UIViewController {
                         }
                         CoreController.shared.currentCarTrip = nil
                         CoreController.shared.allCarTrips = []
+                        CoreController.shared.lastCarTrip = nil
                     }
                 }
                 if CoreController.shared.allCarBookings.first != nil {

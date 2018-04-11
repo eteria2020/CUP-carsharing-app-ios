@@ -20,6 +20,7 @@ import Localize_Swift
 public class MenuViewController : UIViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_welcome: UILabel!
+    @IBOutlet fileprivate weak var lbl_version: UILabel!
     @IBOutlet fileprivate weak var view_userIcon: UIView!
     @IBOutlet fileprivate weak var img_userIcon: UIImageView!
     @IBOutlet fileprivate weak var view_separator: UIView!
@@ -36,6 +37,9 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
     fileprivate var flow: UICollectionViewFlowLayout? {
         return self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
     }
+    
+    let version: Any! = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+    let build: Any! = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")
 
     // MARK: - ViewModel methods
     
@@ -189,6 +193,10 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
             self.collectionView?.reloadData()
             self.view.layoutIfNeeded()
             self.lbl_welcome.styledText = self.viewModel?.welcome
+            self.lbl_version.styledText = "Ver. \(self.version!) (\(self.build!))"
+            self.lbl_version.textColor = UIColor.lightGray
+            self.lbl_version.textAlignment = NSTextAlignment.right
+            self.lbl_version.font.withSize(9.0)
             if self.profileEcoStatusAvailable {
                 self.view_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true
                 self.img_userIcon.isHidden = self.viewModel?.userIconIsHidden ?? true

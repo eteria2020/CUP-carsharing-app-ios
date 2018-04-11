@@ -111,7 +111,7 @@ public final class LoginViewModel: ViewModelType {
                                     switch json["reason"] as! String{
                                     case "FIRST_PAYMENT_NOT_COMPLETED":
                                            // let message = "alert_loginUserNotEnabled".localized()
-                                        let message = "Utente disabilitato motivo: Primo pagamento non effettuato"
+                                        let message = "first_payment_login_alert".localized()
                                         let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                                                 okButtonHandler: { alertView in
                                                                     alertView.dismissAlertView()
@@ -125,7 +125,7 @@ public final class LoginViewModel: ViewModelType {
                                         dialog.show()
                                         case "FAILED_PAYMENT":
                                             //let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "Utente disabilitato motivo: Pagamento fallito"
+                                            let message = "failed_payment_login_alert".localized()
                                             let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                                                     okButtonHandler: { alertView in
                                                                         alertView.dismissAlertView()
@@ -140,7 +140,7 @@ public final class LoginViewModel: ViewModelType {
                                         break
                                         case "INVALID_DRIVERS_LICENSE":
                                             //let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "Utente disabilitato motivo: Patente non valida"
+                                            let message = "invalid_driver_license_login_alert".localized()
                                             let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                                                     okButtonHandler: { alertView in
                                                                         alertView.dismissAlertView()
@@ -154,7 +154,7 @@ public final class LoginViewModel: ViewModelType {
                                             dialog.show()
                                         case "DISABLED_BY_WEBUSER":
                                             //let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "Utente disabilitato motivo: Disabilitato manualmente"
+                                            let message = "disabled_webuser_login_alert".localized()
                                             let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                                                     okButtonHandler: { alertView in
                                                                         alertView.dismissAlertView()
@@ -169,7 +169,7 @@ public final class LoginViewModel: ViewModelType {
                                             dialog.show()
                                         case "EXPIRED_DRIVERS_LICENSE":
                                           //  let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "Utente disabilitato motivo: Patente scaduta"
+                                            let message = "expired_driver_license_login_alert".localized()
                                             let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                                                     okButtonHandler: { alertView in
                                                                         alertView.dismissAlertView()
@@ -184,7 +184,7 @@ public final class LoginViewModel: ViewModelType {
                                         
                                         case "EXPIRED_CREDIT_CARD":
                                           //  let message = "alert_loginUserNotEnabled".localized()
-                                            let message = "Utente disabilitato motivo: Carta di credito scaduta"
+                                            let message = "expired_credit_card_login_alert".localized()
                                             let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                                                     okButtonHandler: { alertView in
                                                                         alertView.dismissAlertView()

@@ -36,6 +36,8 @@ public class CarTrip: ModelType, Gloss.Decodable {
     public var car: Variable<Car?> = Variable(nil)
     //payable trip
     public var payable: Bool?
+    /////popup fake opened
+    public var fake: Bool
     /// Timer of carTrip in action used in views
     public var timer: String? {
         get {
@@ -123,13 +125,13 @@ public class CarTrip: ModelType, Gloss.Decodable {
         }
     }
     //modifica ivan
-    public var second5minTrip: Int {
+    public var seconds: Int {
         get {
             if let timeStart = self.timeStart {
                 let start = timeStart
                 let enddt = Date()
                 let calendar = Calendar.current
-                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
+                let datecomponents = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
                 if let sec = datecomponents.second {
                     return Int(sec)
                 }
@@ -142,10 +144,12 @@ public class CarTrip: ModelType, Gloss.Decodable {
     
     public init(car: Car) {
         self.car.value = car
+        self.fake = false
     }
     
     public required init?(json: JSON) {
         self.id = "id" <~~ json
+        self.fake = false
         self.totalCost = "total_cost" <~~ json
         self.costComputed = "cost_computed" <~~ json
         self.payable = "payable" <~~ json
@@ -204,4 +208,9 @@ public class CarTrip: ModelType, Gloss.Decodable {
                 }.addDisposableTo(CoreController.shared.disposeBag)
         }
     }
+    
+    public func setFake(fake: Bool){
+        self.fake = fake
+    }
+    
 }

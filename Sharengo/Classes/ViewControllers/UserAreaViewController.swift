@@ -53,12 +53,12 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 self.hideLoader {
                     guard let _ = data, error == nil else {
-                        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
+                        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_back".localized(),
                                                 okButtonHandler: { alertView in
-                                                    let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
+                                                   /* let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
                                                     let viewModel = ViewModelFactory.tutorial()
                                                     destination.bind(to: viewModel, afterLoad: true)
-                                                    self.present(destination, animated: true, completion: nil)
+                                                    self.present(destination, animated: true, completion: nil)*/
                                                     alertView.dismissAlertView()
                         },
                                                 cancelButtonHandler: { alertView in

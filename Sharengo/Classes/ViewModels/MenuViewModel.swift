@@ -126,6 +126,7 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
         var menuItems = [MenuItem]()
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil  {
             self.welcome = "lbl_menuHeaderTitleGuest".localized()
+           
             self.userIconIsHidden = true
             let menuItem1 = MenuItem(title: "lbl_menuLogin", icon: "ic_login", viewModel: ViewModelFactory.login())
             let menuItem2 = MenuItem(title: "lbl_menuSignUp", icon: "ic_iscrizione", viewModel: ViewModelFactory.signup())
