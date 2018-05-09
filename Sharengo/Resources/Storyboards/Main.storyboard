@@ -3595,6 +3595,149 @@ grazie al tuo invito</string>
             </objects>
             <point key="canvasLocation" x="1533.5999999999999" y="3032.8335832083962"/>
         </scene>
+        <!--Legal Note View Controller-->
+        <scene sceneID="GSm-Na-x5K">
+            <objects>
+                <viewController storyboardIdentifier="legalNote" id="0EC-qI-ySb" customClass="LegalNoteViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qph-iV-gGy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhP-W9-VW6" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="WvT-LS-HR3"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4U-SN-WFY">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-DF-iMw">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="faqHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wdJ-DF-iMw" firstAttribute="top" secondItem="W4U-SN-WFY" secondAttribute="top" constant="5" id="UTc-V4-SLM"/>
+                                    <constraint firstAttribute="trailing" secondItem="wdJ-DF-iMw" secondAttribute="trailing" constant="15" id="Y9Q-no-rAy"/>
+                                    <constraint firstAttribute="bottom" secondItem="wdJ-DF-iMw" secondAttribute="bottom" constant="5" id="kpF-gI-Qcw"/>
+                                    <constraint firstItem="wdJ-DF-iMw" firstAttribute="leading" secondItem="W4U-SN-WFY" secondAttribute="leading" constant="15" id="o8Q-8P-W7j"/>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="wy5-jN-6ft"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHr-ko-Siy">
+                                <rect key="frame" x="0.0" y="78" width="375" height="589"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0EC-qI-ySb" id="Qrj-v2-myl"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pHr-ko-Siy" firstAttribute="leading" secondItem="Afo-Bw-WSS" secondAttribute="leading" id="N1V-ng-FO3"/>
+                            <constraint firstItem="W4U-SN-WFY" firstAttribute="leading" secondItem="Afo-Bw-WSS" secondAttribute="leading" id="XPL-vm-9P4"/>
+                            <constraint firstItem="QhP-W9-VW6" firstAttribute="top" secondItem="Afo-Bw-WSS" secondAttribute="top" constant="-20" id="aoS-tQ-rgr"/>
+                            <constraint firstItem="Afo-Bw-WSS" firstAttribute="trailing" secondItem="W4U-SN-WFY" secondAttribute="trailing" id="bJS-zG-MRM"/>
+                            <constraint firstItem="Afo-Bw-WSS" firstAttribute="trailing" secondItem="QhP-W9-VW6" secondAttribute="trailing" id="cbg-LA-qRi"/>
+                            <constraint firstItem="Afo-Bw-WSS" firstAttribute="trailing" secondItem="pHr-ko-Siy" secondAttribute="trailing" id="ifW-cq-II9"/>
+                            <constraint firstAttribute="bottom" secondItem="pHr-ko-Siy" secondAttribute="bottom" id="q2M-Og-5H1"/>
+                            <constraint firstItem="pHr-ko-Siy" firstAttribute="top" secondItem="W4U-SN-WFY" secondAttribute="bottom" id="yhz-Pk-TCq"/>
+                            <constraint firstItem="W4U-SN-WFY" firstAttribute="top" secondItem="QhP-W9-VW6" secondAttribute="bottom" id="yzK-sw-doZ"/>
+                            <constraint firstItem="QhP-W9-VW6" firstAttribute="leading" secondItem="Afo-Bw-WSS" secondAttribute="leading" id="zBM-yI-m75"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Afo-Bw-WSS"/>
+                    </view>
+                    <connections>
+                        <outlet property="lbl_headerTitle" destination="wdJ-DF-iMw" id="3cV-Oe-b9h"/>
+                        <outlet property="view_header" destination="W4U-SN-WFY" id="xt4-gs-LWI"/>
+                        <outlet property="view_navigationBar" destination="QhP-W9-VW6" id="ZQ2-a0-Hal"/>
+                        <outlet property="webview_main" destination="pHr-ko-Siy" id="VZM-hN-ESq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFh-nF-XOO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2260" y="1647.5262368815593"/>
+        </scene>
+        <!--Privacy Statement View Controller-->
+        <scene sceneID="hVZ-Bg-PyW">
+            <objects>
+                <viewController storyboardIdentifier="privacy" id="hnA-x3-85M" customClass="PrivacyStatementViewController" customModule="Sharengo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yU5-Um-WVS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRv-gl-PtH" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="wLv-Jg-8aG"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6A-jy-QUT">
+                                <rect key="frame" x="0.0" y="56" width="375" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSH-0y-HBw">
+                                        <rect key="frame" x="15" y="5" width="345" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="faqHeader"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="9tb-l1-QzW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZSH-0y-HBw" secondAttribute="trailing" constant="15" id="S86-jX-Vrw"/>
+                                    <constraint firstItem="ZSH-0y-HBw" firstAttribute="leading" secondItem="P6A-jy-QUT" secondAttribute="leading" constant="15" id="bia-7k-vn8"/>
+                                    <constraint firstItem="ZSH-0y-HBw" firstAttribute="top" secondItem="P6A-jy-QUT" secondAttribute="top" constant="5" id="mMd-mB-nJG"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZSH-0y-HBw" secondAttribute="bottom" constant="5" id="pzL-NE-ud9"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fxQ-SH-TKk">
+                                <rect key="frame" x="0.0" y="78" width="375" height="589"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hnA-x3-85M" id="ooW-2O-28n"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fxQ-SH-TKk" secondAttribute="bottom" id="9JA-oe-vS9"/>
+                            <constraint firstItem="fLY-q1-eVp" firstAttribute="trailing" secondItem="GRv-gl-PtH" secondAttribute="trailing" id="CZ0-SQ-Gcc"/>
+                            <constraint firstItem="GRv-gl-PtH" firstAttribute="top" secondItem="fLY-q1-eVp" secondAttribute="top" constant="-20" id="Mjc-9f-Bwn"/>
+                            <constraint firstItem="fLY-q1-eVp" firstAttribute="trailing" secondItem="P6A-jy-QUT" secondAttribute="trailing" id="PFr-GJ-sgO"/>
+                            <constraint firstItem="fLY-q1-eVp" firstAttribute="top" secondItem="GRv-gl-PtH" secondAttribute="top" constant="20" id="SRn-dc-anK"/>
+                            <constraint firstItem="fxQ-SH-TKk" firstAttribute="leading" secondItem="fLY-q1-eVp" secondAttribute="leading" id="VFa-Uv-DTv"/>
+                            <constraint firstItem="P6A-jy-QUT" firstAttribute="leading" secondItem="fLY-q1-eVp" secondAttribute="leading" id="VP2-0o-xLv"/>
+                            <constraint firstItem="GRv-gl-PtH" firstAttribute="leading" secondItem="fLY-q1-eVp" secondAttribute="leading" id="Vo4-tS-jjT"/>
+                            <constraint firstItem="fLY-q1-eVp" firstAttribute="trailing" secondItem="fxQ-SH-TKk" secondAttribute="trailing" id="aAc-L4-sJ6"/>
+                            <constraint firstItem="fxQ-SH-TKk" firstAttribute="top" secondItem="P6A-jy-QUT" secondAttribute="bottom" id="fA2-Ky-drs"/>
+                            <constraint firstItem="P6A-jy-QUT" firstAttribute="top" secondItem="GRv-gl-PtH" secondAttribute="bottom" id="rdR-Db-7rW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fLY-q1-eVp"/>
+                    </view>
+                    <connections>
+                        <outlet property="lbl_headerTitle" destination="ZSH-0y-HBw" id="Ovb-Ak-jc8"/>
+                        <outlet property="view_header" destination="P6A-jy-QUT" id="555-bp-P4P"/>
+                        <outlet property="view_navigationBar" destination="GRv-gl-PtH" id="d0E-i7-z8z"/>
+                        <outlet property="webview_main" destination="fxQ-SH-TKk" id="rri-4U-FSm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mE0-fe-Avv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2260" y="1647.5262368815593"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bg_claim" width="90" height="113"/>

@@ -29,7 +29,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_writeMail: UIButton!
     /// ViewModel variable used to represents the data
     public var viewModel: SupportViewModel?
-    
+    fileprivate let CALL_CENTER_NUMBER = "call_center_number"
     // MARK: - ViewModel methods
     
     public func bind(to viewModel: ViewModelType?) {
@@ -88,14 +88,23 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
         self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
         self.btn_call.rx.tap.asObservable()
             .subscribe(onNext:{
-                guard let phoneCallURL = URL(string: "tel://" + "supportTelephoneNumber".localized()) else { return }
+                var supportTelephoneNumber = "+3905861975772"
+                if(CoreController.shared.appConfig.count > 0 && (CoreController.shared.appConfig["30"] != nil)){
+                    supportTelephoneNumber = CoreController.shared.appConfig["call_center_number"]!
+                }
+                guard let phoneCallURL = URL(string: "tel://" + supportTelephoneNumber) else { return }
                 if (UIApplication.shared.canOpenURL(phoneCallURL)) {
                     if #available(iOS 10.0, *) {
                         UIApplication.shared.open(phoneCallURL)
                     }
                     else
                     {
-                        let message = "alert_supportCall".localized()
+                        var message = "alert_supportCall".localized()
+                        if(CoreController.shared.appConfig.count > 0 && (CoreController.shared.appConfig["call_center_number"] != nil)){
+                            message = CoreController.shared.appConfig["call_center_number"]!
+                        }/*else{
+                             message = "alert_supportCall".localized()
+                        }*/
                         let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_supportAlertCall".localized(), cancelButtonText: "btn_cancel".localized(),
                                                 okButtonHandler: { alertView in
                                                     alertView.dismissAlertView()

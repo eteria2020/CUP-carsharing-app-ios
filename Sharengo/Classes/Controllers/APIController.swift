@@ -150,6 +150,35 @@ final class ApiController {
             }
         }
     }
+    //AGGIUNTA PER DEEPLINK CALLING APP
+   // searchCarURL(let userLatitude, let userLongitude, let callingApp, let car):
+    //return ["user_lat": userLatitude, "user_lon": userLongitude, "plate": car, "calling_app": callingApp]
+    func searchCarURL(userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees, plate: String, callingApp: String) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.searchCarURL(userLatitude: userLatitude, userlLongitude: userLongitude, carPlate: plate, callingApp: callingApp))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
     
     func bookingList() -> Observable<Response> {
         return Observable.create{ observable in
@@ -368,13 +397,42 @@ final class ApiController {
             }
         }
     }
+    
+    func getConfig() -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.getConfig())
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
 }
+
 
 fileprivate enum API {
     case getUserWith(username: String, password: String)
     case searchAllCars()
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case searchCar(plate: String)
+    case searchCarURL(userLatitude: CLLocationDegrees, userlLongitude: CLLocationDegrees, carPlate: String, callingApp: String)
     case bookingList()
     case bookCar(car: Car, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case deleteCarBooking(carBooking: CarBooking)
@@ -383,6 +441,7 @@ fileprivate enum API {
     case tripsList()
     case archivedTripsList()
     case getTrip(trip: CarTrip)
+    case getConfig()
 }
 
 extension API: TargetType {
@@ -392,7 +451,7 @@ extension API: TargetType {
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
-        case .searchCars(_, _, _, _, _), .searchCar(_), .searchAllCars():
+        case .searchCars(_, _, _, _, _), .searchCar(_), .searchCarURL(_, _, _, _), .searchAllCars():
             return URL(string: "https://api.sharengo.it:8023/v3")!
         case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _):
             let username = KeychainSwift().get("Username")!
@@ -400,6 +459,8 @@ extension API: TargetType {
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
         case .getUserWith(let username, let password):
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
+        case .getConfig():
+            return URL(string: "https://corestage.sharengo.it:8023/v3")!
         default:
             return URL(string: "https://api.sharengo.it:8023/v2")!
         }
@@ -409,7 +470,7 @@ extension API: TargetType {
         switch self {
         case .getUserWith(_, _):
             return "user"
-        case .searchAllCars(), .searchCars(_, _, _, _, _), .searchCar(_):
+        case .searchAllCars(), .searchCars(_, _, _, _, _), .searchCarURL(_, _, _, _), .searchCar(_):
             return "cars"
         case .bookingList(), .bookCar(_), .getCarBooking(_):
             return "reservations"
@@ -421,6 +482,8 @@ extension API: TargetType {
             return "trips"
         case .getTrip(let trip):
             return "trips/\(trip.id ?? 0)"
+        case .getConfig():
+            return "config"
         }
     }
     
@@ -443,6 +506,8 @@ extension API: TargetType {
             return ["lat": latitude, "lon": longitude, "radius": Int(radius), "user_lat": userLatitude, "user_lon": userLongitude]
         case .searchCar(let plate):
             return ["plate": plate]
+        case .searchCarURL(let userLatitude, let userLongitude,let car,let callingApp):
+            return ["user_lat": userLatitude, "user_lon": userLongitude, "plate": car, "callingApp": callingApp]
         case .bookCar(let car, let userLatitude, let userLongitude):
             return ["plate": car.plate ?? "", "user_lat": userLatitude, "user_lon": userLongitude]
         case .getCarBooking(let id):

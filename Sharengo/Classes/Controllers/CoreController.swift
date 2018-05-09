@@ -32,6 +32,8 @@ class CoreController {
     var notificationIsShowed: Bool = false
     var cities: [City] = []
     var polygons: [Polygon] = []
+    var callingApp: NSString = ""
+    var appConfig: [String:String] = [:]
     public lazy var pulseYellow: UIImage = CoreController.shared.getPulseYellow()
     public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
 

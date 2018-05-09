@@ -71,6 +71,8 @@
 "lbl_menuInvite" = "Invite a friend";
 "lbl_menuSettings" = "Settings";
 "lbl_menuLogout" = "Logout";
+"lbl_menuPrivacy" = "Privacy Statement";
+"lbl_menuLegal" = "Legal Note";
 
 // Profilo
 "lbl_profileEcoStatus" = "Profile\nEco Status";
@@ -280,6 +282,11 @@
 //Logout
 "lbl_logoutMessage"="Do you want logout?";
 "lbl_logoutConfirmButton"="LOGOUT";
+
+//Privacy
+"lbl_privacyStatementHeader" = "PRIVACY STATEMENT";
+//Legal
+"lbl_legalNoteHeader" = "LEGAL NOTE";
 /////////////////////////
 
 "alert_logoutError" = "Careful, an error occured. Please login again.";

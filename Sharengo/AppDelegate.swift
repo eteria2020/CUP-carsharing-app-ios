@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupPolygons()
         self.setupGoogleMaps()
         self.setupFabric()
+        self.setupConfig()
         _ = CoreController.shared.pulseYellow
         _ = CoreController.shared.pulseGreen
         
@@ -53,6 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         statusBar.backgroundColor = ColorBrand.yellow.value
         self.setupSideMenu()
+        
+        if let callingAp : NSString = launchOptions?[.sourceApplication] as? NSString{
+            debugPrint(callingAp)
+            CoreController.shared.callingApp = callingAp
+        }
         
         if let url = launchOptions?[.url] as? URL{
            
@@ -187,7 +193,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    fileprivate func setupConfig(){
+        
+        CoreController.shared.apiController.getConfig()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe {event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.array_data {
+                        if let config = [AppConfig].from(jsonArray: data) {
+                            config.forEach({ (conf) in
+                                CoreController.shared.appConfig[conf.config_key!] = conf.config_value
+                            })
+               
+                        }
+                        
+                    }
+                    break
+                case .error(_):
+                    print("AppDelegate - setupConfig: error")
+                    break
+                case .completed:
+                    break
+                }}
+            .addDisposableTo(CoreController.shared.disposeBag)
+    }
 }
+
 /*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
   
    let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: false)
@@ -245,7 +277,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
         CoreController.shared.urlDeepLink = url
         print(url.host as String!)*/
+    if let url = url as? URL{
+        
+        
+        if url.host == nil
+        {
+            return true;
+        }
+        
+        let urlString = url.absoluteString
+        let queryArray = urlString.components(separatedBy: "/")
+        let query = queryArray[2]
+        
+        // Check if article
+        if query.range(of: "plate") != nil
+        {
+            let data = urlString.components(separatedBy: "/")
+            if data.count >= 3
+            {
+                let parameter = data[3]
+                CoreController.shared.urlDeepLink = parameter
+                //let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
+                //self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
+            }
+        }
+        
+    }
     
+    if let callingApp = options[.sourceApplication]{
+        debugPrint(callingApp)
+    }
     
     
     return true

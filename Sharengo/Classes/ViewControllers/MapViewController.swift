@@ -107,6 +107,34 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] (deepCar) in
                 if let car = deepCar{
+                    var userLatitude: CLLocationDegrees = 0
+                    var userLongitude: CLLocationDegrees = 0
+                    let locationManager = LocationManager.sharedInstance
+                    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                        if let userLocation = locationManager.lastLocationCopy.value {
+                            userLatitude = userLocation.coordinate.latitude
+                            userLongitude = userLocation.coordinate.longitude
+                        }
+                    }
+                    //CHIAMATA SOLO PER NOTIFICA A SERVER DELLA CALLING APP
+                    CoreController.shared.apiController.searchCarURL(userLatitude: userLatitude, userLongitude:  userLongitude, plate: car.plate!, callingApp: CoreController.shared.callingApp as String)
+                        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                        .subscribe {event in
+                        switch event {
+                        case .next(let response):
+                            if response.status == 200 {
+                                print("OK")
+                            }
+                            break
+                        case .error(_):
+                            print("errore")
+                            break
+                        case .completed:
+                            selectedPlate = ""
+                            break
+                            }}
+                        .addDisposableTo(CoreController.shared.disposeBag)
+                    
                     //self.viewModel?.deepCar.value = nil
                     if car.plate != self?.selectedCar?.plate {
                         if self != nil{

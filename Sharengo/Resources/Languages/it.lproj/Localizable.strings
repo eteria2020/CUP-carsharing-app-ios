@@ -71,6 +71,8 @@
 "lbl_menuInvite" = "Invita un amico";
 "lbl_menuSettings" = "Impostazioni";
 "lbl_menuLogout" = "Logout";
+"lbl_menuPrivacy" = "Privacy statement";
+"lbl_menuLegal" = "Note legali";
 
 
 // Profilo
@@ -283,6 +285,10 @@
 //Logout
 "lbl_logoutMessage"="Sei sicuro di voler effettuare il logout?";
 "lbl_logoutConfirmButton"="LOGOUT";
+//Privacy
+"lbl_privacyStatementHeader" = "PRIVACY STATEMENT";
+//Legal
+"lbl_legalNoteHeader" = "NOTE LEGALI";
 
 ////////////////////////
 

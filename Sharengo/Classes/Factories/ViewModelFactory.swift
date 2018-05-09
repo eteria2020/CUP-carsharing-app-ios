@@ -148,11 +148,20 @@ struct ViewModelFactory {
     static func rates() -> ViewModelType {
         return RatesViewModel()
     }
-    
+    static func ratesWebView() -> ViewModelType {   
+        return UserAreaViewModel()
+    }
     static func pin() -> ViewModelType {
         return PinViewModel()
     }
+    static func privacyStatement() -> ViewModelType {
+        return PrivacyStatementViewModel()
+    }
+    static func noteLegali() -> ViewModelType {
+        return LegalNoteViewModel()
+    }
 
+    
     static func carTripItem(fromModel model:CarTrip) -> ItemViewModelType {
         return CarTripItemViewModel(model: model)
     }
