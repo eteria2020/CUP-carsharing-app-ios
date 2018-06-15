@@ -107,10 +107,6 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
                             //UserAreaViewController.destination = "rates"
                             return .just(.viewModel(UserAreaViewModel()))
                         }
-                    case is PrivacyStatementViewModel:
-                        if !(CoreController.shared.currentViewController is PrivacyStatementViewController) {
-                            return .just(.viewModel(viewModel))
-                        }
                     case is LegalNoteViewModel:
                         if !(CoreController.shared.currentViewController is LegalNoteViewController) {
                             return .just(.viewModel(viewModel))
@@ -142,15 +138,14 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             let menuItem3 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: ViewModelFactory.faq())
             //let menuItem4 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: ViewModelFactory.rates())
             let menuItem5 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: ViewModelFactory.support())
-            let munuItem6 = MenuItem(title: "lbl_menuPrivacy", icon: "ic_faq_nero", viewModel: ViewModelFactory.privacyStatement())
-            let munuItem7 = MenuItem(title: "lbl_menuLegal", icon: "ic_faq_nero", viewModel: ViewModelFactory.noteLegali())
+            let munuItem6 = MenuItem(title: "lbl_menuLegal", icon: "ic_legal_note", viewModel: ViewModelFactory.noteLegali())
             menuItems.append(menuItem1)
             menuItems.append(menuItem2)
             menuItems.append(menuItem3)
             //menuItems.append(menuItem4)
             menuItems.append(menuItem5)
             menuItems.append(munuItem6)
-            menuItems.append(munuItem7)
+        
         } else {
             if let userName = KeychainSwift().get("UserFirstname"), let userGender = KeychainSwift().get("UserGender"){
                 if userGender == "male"{
@@ -174,8 +169,7 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             //rates rimosse perchè visualizzabili in area utente
             //let menuItem8 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: ViewModelFactory.rates())
             let menuItem9 = MenuItem(title: "lbl_menuPin", icon: "ic_lock", viewModel: ViewModelFactory.pin())
-            let munuItem10 = MenuItem(title: "lbl_menuPrivacy", icon: "ic_faq_nero", viewModel: ViewModelFactory.privacyStatement())
-            let munuItem11 = MenuItem(title: "lbl_menuLegal", icon: "ic_faq_nero", viewModel: ViewModelFactory.noteLegali())
+            let munuItem10 = MenuItem(title: "lbl_menuLegal", icon: "ic_legal_note", viewModel: ViewModelFactory.noteLegali())
             menuItems.append(menuItem1)
             menuItems.append(menuItem9)
             //menuItems.append(menuItem2)
@@ -184,9 +178,8 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             menuItems.append(menuItem4)
             menuItems.append(menuItem5)
             menuItems.append(menuItem6)
-            menuItems.append(menuItem7)
             menuItems.append(munuItem10)
-            menuItems.append(munuItem11)
+            menuItems.append(menuItem7)
             
         }
         self.dataHolder = ListDataHolder(data:Observable.just(menuItems).structured())

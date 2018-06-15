@@ -153,7 +153,7 @@ final class ApiController {
     //AGGIUNTA PER DEEPLINK CALLING APP
    // searchCarURL(let userLatitude, let userLongitude, let callingApp, let car):
     //return ["user_lat": userLatitude, "user_lon": userLongitude, "plate": car, "calling_app": callingApp]
-    func searchCarURL(userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees, plate: String, callingApp: String) -> Observable<Response> {
+    func searchCarURL(userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees, plate: String, callingApp: String, email: String?) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -163,7 +163,7 @@ final class ApiController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.searchCarURL(userLatitude: userLatitude, userlLongitude: userLongitude, carPlate: plate, callingApp: callingApp))
+            return provider.request(.searchCarURL(userLatitude: userLatitude, userlLongitude: userLongitude, carPlate: plate, callingApp: callingApp, email: email))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -432,7 +432,7 @@ fileprivate enum API {
     case searchAllCars()
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case searchCar(plate: String)
-    case searchCarURL(userLatitude: CLLocationDegrees, userlLongitude: CLLocationDegrees, carPlate: String, callingApp: String)
+    case searchCarURL(userLatitude: CLLocationDegrees, userlLongitude: CLLocationDegrees, carPlate: String, callingApp: String, email: String?)
     case bookingList()
     case bookCar(car: Car, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case deleteCarBooking(carBooking: CarBooking)
@@ -451,7 +451,9 @@ extension API: TargetType {
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
-        case .searchCars(_, _, _, _, _), .searchCar(_), .searchCarURL(_, _, _, _), .searchAllCars():
+        case .searchCars(_, _, _, _, _), .searchCar(_), .searchAllCars():
+            return URL(string: "https://api.sharengo.it:8023/v3")!
+        case  .searchCarURL(_, _, _, _,_):
             return URL(string: "https://api.sharengo.it:8023/v3")!
         case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _):
             let username = KeychainSwift().get("Username")!
@@ -460,7 +462,7 @@ extension API: TargetType {
         case .getUserWith(let username, let password):
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
         case .getConfig():
-            return URL(string: "https://corestage.sharengo.it:8023/v3")!
+            return URL(string: "https://api.sharengo.it:8023/v3")!
         default:
             return URL(string: "https://api.sharengo.it:8023/v2")!
         }
@@ -470,7 +472,7 @@ extension API: TargetType {
         switch self {
         case .getUserWith(_, _):
             return "user"
-        case .searchAllCars(), .searchCars(_, _, _, _, _), .searchCarURL(_, _, _, _), .searchCar(_):
+        case .searchAllCars(), .searchCars(_, _, _, _, _), .searchCarURL(_, _, _, _,_), .searchCar(_):
             return "cars"
         case .bookingList(), .bookCar(_), .getCarBooking(_):
             return "reservations"
@@ -506,8 +508,8 @@ extension API: TargetType {
             return ["lat": latitude, "lon": longitude, "radius": Int(radius), "user_lat": userLatitude, "user_lon": userLongitude]
         case .searchCar(let plate):
             return ["plate": plate]
-        case .searchCarURL(let userLatitude, let userLongitude,let car,let callingApp):
-            return ["user_lat": userLatitude, "user_lon": userLongitude, "plate": car, "callingApp": callingApp]
+        case .searchCarURL(let userLatitude, let userLongitude,let car,let callingApp, let email):
+            return ["user_lat": userLatitude, "user_lon": userLongitude, "plate": car, "callingApp": callingApp,"email": email ?? ""]
         case .bookCar(let car, let userLatitude, let userLongitude):
             return ["plate": car.plate ?? "", "user_lat": userLatitude, "user_lon": userLongitude]
         case .getCarBooking(let id):

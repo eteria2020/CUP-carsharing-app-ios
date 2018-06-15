@@ -42,7 +42,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
      
         URLSession.shared.reset {
 
-            let url = URL(string: "http://stats.sharengo.it/note_legali_app_sharengo.pdf")
+            let url = URL(string: "http://site.sharengo.it/note-legali-app/")
             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
         }
     }
@@ -61,7 +61,6 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
         self.webview_main.scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.webview_main.scrollView.showsHorizontalScrollIndicator = false
         self.webview_main.scrollView.showsVerticalScrollIndicator = false
-        self.webview_main.scrollView.setZoomScale(50.0, animated: false)
         self.view_header.backgroundColor = Color.userAreaHeaderBackground.value
         
         // Labels

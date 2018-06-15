@@ -71,7 +71,6 @@
 "lbl_menuInvite" = "Invita un amico";
 "lbl_menuSettings" = "Impostazioni";
 "lbl_menuLogout" = "Logout";
-"lbl_menuPrivacy" = "Privacy statement";
 "lbl_menuLegal" = "Note legali";
 
 
@@ -285,8 +284,7 @@
 //Logout
 "lbl_logoutMessage"="Sei sicuro di voler effettuare il logout?";
 "lbl_logoutConfirmButton"="LOGOUT";
-//Privacy
-"lbl_privacyStatementHeader" = "PRIVACY STATEMENT";
+
 //Legal
 "lbl_legalNoteHeader" = "NOTE LEGALI";
 
@@ -311,3 +309,5 @@
 "disabled_webuser_login_alert" = "Sei disabilitato, contatta il servizio clienti per maggiori informazioni";
 "expired_driver_license_login_alert" = "Sei disabilitato per patente scaduta, per utilizzare Share'ngo accedi alla tua area personale ed inserisci i nuovi dati";
 "expired_credit_card_login_alert" = "Sei disabilitato perchè la carta inserita è scaduta, per utilizzare Share'ngo accedi alla tua area personale ed inserisci i nuovi dati";
+"failed_extra_payment_login_alert" = "Sei disabilitato per un pagamento penale fallito, contatta il servizio clienti per maggiori informazioni";
+"registration_not_completed_login_alert" = "Sei disabilitato perchè devi completare il processo di registrazione";

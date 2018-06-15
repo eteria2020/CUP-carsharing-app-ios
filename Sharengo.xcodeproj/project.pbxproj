@@ -323,11 +323,9 @@
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
-		D17DC78420A2F04800BA3945 /* PrivacyStatementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78320A2F04800BA3945 /* PrivacyStatementViewModel.swift */; };
 		D17DC78620A2F06400BA3945 /* LegalNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */; };
 		D17DC78820A2F09000BA3945 /* LegalNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */; };
 		D17DC78A20A2F60F00BA3945 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78920A2F60E00BA3945 /* AppConfig.swift */; };
-		D17DC78D20A2F7D000BA3945 /* PrivacyStatementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78C20A2F7D000BA3945 /* PrivacyStatementViewController.swift */; };
 		D188A70E205671A20042F947 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D188A70D205671A10042F947 /* client.p12 */; };
 		D1D93DA420038F2900A3B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */; };
 		D1EFAA421FE8056100CE33E1 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA411FE8056100CE33E1 /* PinViewController.swift */; };
@@ -693,11 +691,9 @@
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
-		D17DC78320A2F04800BA3945 /* PrivacyStatementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyStatementViewModel.swift; sourceTree = "<group>"; };
 		D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewModel.swift; sourceTree = "<group>"; };
 		D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewController.swift; sourceTree = "<group>"; };
 		D17DC78920A2F60E00BA3945 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		D17DC78C20A2F7D000BA3945 /* PrivacyStatementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyStatementViewController.swift; sourceTree = "<group>"; };
 		D188A70D205671A10042F947 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; name = client.p12; path = "../../../../../Desktop/client_certs (1)/client.p12"; sourceTree = "<group>"; };
 		D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
@@ -1430,7 +1426,6 @@
 		4DCD1A751ECDBF7400FC8BF5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D17DC78B20A2F79C00BA3945 /* PrivacyStatement */,
 				D17DC78220A2EFA100BA3945 /* LegalNote */,
 				D1EFAA401FE804B900CE33E1 /* Pin */,
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
@@ -1670,15 +1665,6 @@
 				D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */,
 			);
 			name = LegalNote;
-			sourceTree = "<group>";
-		};
-		D17DC78B20A2F79C00BA3945 /* PrivacyStatement */ = {
-			isa = PBXGroup;
-			children = (
-				D17DC78320A2F04800BA3945 /* PrivacyStatementViewModel.swift */,
-				D17DC78C20A2F7D000BA3945 /* PrivacyStatementViewController.swift */,
-			);
-			name = PrivacyStatement;
 			sourceTree = "<group>";
 		};
 		D1EFAA401FE804B900CE33E1 /* Pin */ = {
@@ -2182,7 +2168,6 @@
 				D17DC78820A2F09000BA3945 /* LegalNoteViewController.swift in Sources */,
 				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,
 				4D0471B31F3F05B500C454A2 /* UserAnnotation.swift in Sources */,
-				D17DC78D20A2F7D000BA3945 /* PrivacyStatementViewController.swift in Sources */,
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
 				4D60EA8C1F3E037E0085BFE3 /* GMUGeometryRenderer.m in Sources */,
@@ -2199,7 +2184,6 @@
 				4D45BB291EE69895004C7287 /* CarBookingPopupView.swift in Sources */,
 				037BDFBF1F03947F00C95962 /* SettingsCityItemViewModel.swift in Sources */,
 				4DD9C7EC1ECDC50500BE4218 /* MapViewModel.swift in Sources */,
-				D17DC78420A2F04800BA3945 /* PrivacyStatementViewModel.swift in Sources */,
 				0366DD991F1F474C006657D9 /* SupportViewModel.swift in Sources */,
 				03E77CF41F555BBB00765852 /* RatesViewModel.swift in Sources */,
 				4D60EA8F1F3E037E0085BFE3 /* GMUGeometryCollection.m in Sources */,
@@ -2259,6 +2243,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2342,8 +2327,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Matteo Gandolfi (695C3HK8R5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matteo Gandolfi (695C3HK8R5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = F67U6XW2G4;
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2365,8 +2350,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: CS Group SPA (F67U6XW2G4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CS Group SPA (F67U6XW2G4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = F67U6XW2G4;
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -70,7 +70,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                         dialog.show()
                         return
                     }
-                    if(UserAreaViewController.destination == ""){
+                   
                         if KeychainSwift().get("DisableReason") != nil {
                             let disableReason = KeychainSwift().get("DisableReason")!
                             switch disableReason{
@@ -92,6 +92,9 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                                 case "EXPIRED_CREDIT_CARD":
                                     let url = URL(string: "https://www.sharengo.it/area-utente/dati-pagamento/mobile")
                                     self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
+                                case "REGISTRATION_NOT_COMPLETED":
+                                    let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
                                 
                             default:
                                 
@@ -103,12 +106,6 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                             let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
                             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
                         }
-                    }else{
-                        UserAreaViewController.destination = ""
-                        let url = URL(string: "https://www.sharengo.it/area-utente/tariffe/mobile")
-                        self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-                    }
-                 
                 }
             }
             task.resume()

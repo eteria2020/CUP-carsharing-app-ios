@@ -99,10 +99,6 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                     let destination: PinViewController = (Storyboard.main.scene(.pin))
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
-                case is PrivacyStatementViewModel:
-                    let destination: PrivacyStatementViewController = (Storyboard.main.scene(.privacy))
-                    destination.bind(to: viewModel, afterLoad: true)
-                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 case is LegalNoteViewModel:
                     let destination: LegalNoteViewController = (Storyboard.main.scene(.legalNote))
                     destination.bind(to: viewModel, afterLoad: true)

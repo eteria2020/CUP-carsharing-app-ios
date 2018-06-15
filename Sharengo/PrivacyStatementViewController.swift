@@ -42,7 +42,7 @@ class PrivacyStatementViewController : BaseViewController, ViewModelBindable {
         
         URLSession.shared.reset {
             
-            let url = URL(string: "http://stats.sharengo.it/privacy_statement_app_sharengo.pdf")
+            let url = URL(string: "https://www.sharengo.it/pdf/app/privacy_statement_app_sharengo.pdf")
             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
         }
     }

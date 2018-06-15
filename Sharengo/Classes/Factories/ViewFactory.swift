@@ -40,7 +40,6 @@ enum SceneIdentifier : String, ListIdentifier {
     case inviteFriend = "inviteFriend"
     case rates = "rates"
     case pin = "pin"
-    case privacy = "privacy"
     case legalNote = "legalNote"
     
     var name: String {

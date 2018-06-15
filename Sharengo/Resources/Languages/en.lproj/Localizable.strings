@@ -71,7 +71,6 @@
 "lbl_menuInvite" = "Invite a friend";
 "lbl_menuSettings" = "Settings";
 "lbl_menuLogout" = "Logout";
-"lbl_menuPrivacy" = "Privacy Statement";
 "lbl_menuLegal" = "Legal Note";
 
 // Profilo
@@ -283,9 +282,8 @@
 "lbl_logoutMessage"="Do you want logout?";
 "lbl_logoutConfirmButton"="LOGOUT";
 
-//Privacy
-"lbl_privacyStatementHeader" = "PRIVACY STATEMENT";
-//Legal
+
+//Legal note
 "lbl_legalNoteHeader" = "LEGAL NOTE";
 /////////////////////////
 
@@ -307,3 +305,5 @@
 "disabled_webuser_login_alert" = "The account is disabled, contact customer service for more information";
 "expired_driver_license_login_alert" = "You are disabled by expired driving license, to use Sharen'go access your personal area and enter the new data";
 "expired_credit_card_login_alert" = "You are disabled because the payment information you entered has expired, to use Sharen'go access your personal area and enter the new data";
+"failed_extra_payment_login_alert" = "The account is disabled by for an unpaid penalty, contact customer service for more information";
+"registration_not_completed_login_alert" = "You are disabled because you need to complete the registration process";

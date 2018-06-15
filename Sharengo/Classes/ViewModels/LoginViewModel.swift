@@ -109,20 +109,20 @@ public final class LoginViewModel: ViewModelType {
                                     KeychainSwift().set("\(String(describing: json["reason"] as! String))", forKey: "DisableReason")
                                         
                                     switch json["reason"] as! String{
-                                    case "FIRST_PAYMENT_NOT_COMPLETED":
-                                           // let message = "alert_loginUserNotEnabled".localized()
-                                        let message = "first_payment_login_alert".localized()
-                                        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                                                okButtonHandler: { alertView in
-                                                                    alertView.dismissAlertView()
-                                                                    self.launchUserArea()
-                                                                    //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                                        },
-                                                                cancelButtonHandler: { alertView in
-                                                                    alertView.dismissAlertView()
-                                        })
-                                        dialog.allowTouchOutsideToDismiss = false
-                                        dialog.show()
+                                        case "FIRST_PAYMENT_NOT_COMPLETED":
+                                               // let message = "alert_loginUserNotEnabled".localized()
+                                            let message = "first_payment_login_alert".localized()
+                                            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                                    okButtonHandler: { alertView in
+                                                                        alertView.dismissAlertView()
+                                                                        self.launchUserArea()
+                                                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+                                            },
+                                                                    cancelButtonHandler: { alertView in
+                                                                        alertView.dismissAlertView()
+                                            })
+                                            dialog.allowTouchOutsideToDismiss = false
+                                            dialog.show()
                                         case "FAILED_PAYMENT":
                                             //let message = "alert_loginUserNotEnabled".localized()
                                             let message = "failed_payment_login_alert".localized()
@@ -197,7 +197,36 @@ public final class LoginViewModel: ViewModelType {
                                             dialog.allowTouchOutsideToDismiss = false
                                             dialog.show()
                                         break
-                                            default:
+                                    case "FAILED_EXTRA_PAYMENT":
+                                        //let message = "alert_loginUserNotEnabled".localized()
+                                        let message = "failed_extra_payment_login_alert".localized()
+                                        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                                okButtonHandler: { alertView in
+                                                                    alertView.dismissAlertView()
+                                                                    let map: MapViewController = MapViewController()
+                                                                    map.launchAssistence()
+                                                                    //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+                                        },
+                                                                cancelButtonHandler: { alertView in
+                                                                    alertView.dismissAlertView()
+                                        })
+                                        dialog.allowTouchOutsideToDismiss = false
+                                        dialog.show()
+                                    case "REGISTRATION_NOT_COMPLETED":
+                                        //let message = "alert_loginUserNotEnabled".localized()
+                                        let message = "registration_not_completed_login_alert".localized()
+                                        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                                okButtonHandler: { alertView in
+                                                                    alertView.dismissAlertView()
+                                                                    self.launchUserArea()
+                                                                    //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+                                        },
+                                                                cancelButtonHandler: { alertView in
+                                                                    alertView.dismissAlertView()
+                                        })
+                                        dialog.allowTouchOutsideToDismiss = false
+                                        dialog.show()
+                                    default:
                                                 let message = "alert_loginUserNotEnabled".localized()
                                                 let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                                     alertView.dismissAlertView()

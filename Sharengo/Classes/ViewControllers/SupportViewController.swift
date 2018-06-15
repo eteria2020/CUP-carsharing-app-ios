@@ -89,7 +89,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
         self.btn_call.rx.tap.asObservable()
             .subscribe(onNext:{
                 var supportTelephoneNumber = "+3905861975772"
-                if(CoreController.shared.appConfig.count > 0 && (CoreController.shared.appConfig["30"] != nil)){
+                if(CoreController.shared.appConfig.count > 0 && (CoreController.shared.appConfig["call_center_number"] != nil)){
                     supportTelephoneNumber = CoreController.shared.appConfig["call_center_number"]!
                 }
                 guard let phoneCallURL = URL(string: "tel://" + supportTelephoneNumber) else { return }
