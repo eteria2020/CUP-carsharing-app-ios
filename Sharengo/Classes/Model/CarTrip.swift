@@ -163,11 +163,16 @@ public class CarTrip: ModelType, Gloss.Decodable {
                 self.locationEnd = CLLocation(latitude: lat, longitude: lon)
             }
         }
-        if let timestampStart: Double = "timestamp_start" <~~ json {
+        if let timestampStart: String = "timestamp_start" <~~ json {
+            if let timestampStart = Double(timestampStart){
             self.timeStart = Date(timeIntervalSince1970: timestampStart)
+            }
         }
-        if let timestampEnd: Double = "timestamp_end" <~~ json {
-            self.timeEnd = Date(timeIntervalSince1970: timestampEnd)
+        if let timestampEnd: String = "timestamp_end" <~~ json {
+            if let timestampEnd = Double(timestampEnd){
+                 self.timeEnd = Date(timeIntervalSince1970: timestampEnd)
+            }
+        
         }
         if let carPlate: String = "car_plate" <~~ json {
             self.carPlate = carPlate

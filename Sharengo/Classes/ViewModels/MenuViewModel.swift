@@ -148,10 +148,14 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
         
         } else {
             if let userName = KeychainSwift().get("UserFirstname"), let userGender = KeychainSwift().get("UserGender"){
-                if userGender == "male"{
-                    self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), userName,"o")
+                if userName != "<null>"{
+                    if userGender == "male"{
+                        self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), userName,"o")
+                    }else{
+                         self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), userName,"a")
+                    }
                 }else{
-                     self.welcome = String(format: "lbl_menuHeaderTitleLogged".localized(), userName,"a")
+                      self.welcome = String(format: "lbl_menuHeaderTitleGuest".localized())
                 }
                 
             }

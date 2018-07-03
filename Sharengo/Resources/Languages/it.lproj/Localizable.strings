@@ -88,8 +88,8 @@
 "lbl_introTitle3" = "Sotto\ncasa";
 
 // SearchBar
-//"lbl_searchBarTextField" = "Cerca indirizzo o targa";
-"lbl_searchBarTextField" = "Cerca targa";
+"lbl_searchBarTextField" = "Cerca indirizzo o targa";
+//"lbl_searchBarTextField" = "Cerca targa";
 "alert_searchBarAuthSpeechAuthorizationDenied" = "Hai negato l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";
 "alert_searchBarAuthSpeechAuthorizationRestricted" = "Il riconoscimento vocale non può funzionare causa limiti del dispositivo";
 "alert_searchBarAuthSpeechAuthorizationNotDetermined" = "Non è stato possibile determinare l'accesso al riconoscimento vocale. Vuoi aprire le impostazioni per abilitare il servizio?";

@@ -56,7 +56,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /// Variable used to save user annotation
     public var userAnnotation: UserAnnotation = UserAnnotation()
     /// Variable used to save route steps
-    public var routeSteps: [RouteStep] = []
+//    public var routeSteps: [RouteStep] = []
+    public var stepPolyline: GMSPolyline? = nil
     /// Variable used to save route polylines
     public var routePolylines: [GMSPolyline] = []
     /// Variable used to save old location
@@ -64,7 +65,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /// Variable used to save nearest car
     public var lastNearestCar: Car?
     /// Variable used to save nearest car route steps
-    public var nearestCarRouteSteps: [RouteStep] = []
+//    public var nearestCarRouteSteps: [RouteStep] = []
+    public var nearestCarRoutePolyline: GMSPolyline? = nil
     ///car url for external open app
     public var carUrl : Car?
     /// Variable used to save if the login is already showed
@@ -75,7 +77,26 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public var tutorialIsShowed: Bool = true
     // MARK: - ViewModel methods
     
-   
+    func updatePolylineInfo()
+    {
+        if stepPolyline != nil
+        {
+            //  TODO: Rewrite here
+//            if  let distance = routeSteps[0].distance,
+//                let duration = routeSteps[0].duration
+//            {
+//                view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
+//            }
+        }
+    }
+    
+    func getRoute(fromLocation location: CLLocation)
+    {
+        viewModel?.getRoute2(destination: location, completionClosure: { [weak self] polyline in
+            self?.nearestCarRoutePolyline = nil
+            self?.updateRoute(polyline)
+        })
+    }
     
     public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? MapViewModel else {
@@ -85,22 +106,23 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         // NearestCar
         viewModel.nearestCar.asObservable()
             .subscribe(onNext: {[weak self] (nearestCar) in
-                if nearestCar == nil {
-                    self?.nearestCarRouteSteps = []
-                    if self?.viewModel?.carTrip == nil && self?.viewModel?.carBooking == nil {
-                        self?.routeSteps = []
-                        self?.drawRoutes(steps: [])
+                
+                if nearestCar == nil
+                {
+                    self?.nearestCarRoutePolyline = nil
+                    if self?.viewModel?.carTrip == nil && self?.viewModel?.carBooking == nil
+                    {
+                        self?.updateRoute(nil)
                     }
                 }
                 else if self?.lastNearestCar?.location?.coordinate.latitude != nearestCar?.location?.coordinate.latitude && self?.lastNearestCar?.location?.coordinate.longitude != nearestCar?.location?.coordinate.longitude {
                     self?.lastNearestCar = nearestCar
-                    self?.viewModel?.getRoute(destination: nearestCar!.location!, completionClosure: { (steps) in
-                        self?.nearestCarRouteSteps = steps
-                        if self?.viewModel?.carTrip == nil && self?.viewModel?.carBooking == nil {
-                            self?.routeSteps = steps
-                            self?.drawRoutes(steps: steps)
-                        }
-                    })
+                    
+                    self?.nearestCarRoutePolyline = nil
+                    if self?.viewModel?.carTrip == nil && self?.viewModel?.carBooking == nil
+                    {
+                        self?.getRoute(fromLocation: nearestCar!.location!)
+                    }
                 }
             })
         viewModel.deepCar.asObservable()
@@ -127,7 +149,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             }
                             break
                         case .error(_):
-                            print("errore")
+                            print("errore bruttissimo")
                             break
                         case .completed:
                             selectedPlate = ""
@@ -136,22 +158,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         .addDisposableTo(CoreController.shared.disposeBag)
                     
                     //self.viewModel?.deepCar.value = nil
-                    if car.plate != self?.selectedCar?.plate {
-                        if self != nil{
-                            self!.drawRoutes(steps: self!.routeSteps)
-                        }
+                    if car.plate != self?.selectedCar?.plate
+                    {
+                        self?.drawRoutes(polyline: self?.stepPolyline)
                     }
-                    if let location = car.location {
+                    if let location = car.location
+                    {
                         let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                         self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
                     }
                     self?.view_carPopup.updateWithCar(car: car)
-                    if (self?.routeSteps.count)! > 0{
-                            if let distance = self?.routeSteps[0].distance, let duration = self?.routeSteps[0].duration {
-                                self?.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                            }
-                        
-                    }
+                    self?.updatePolylineInfo()
+                    
                     self?.view_carPopup.viewModel?.type.value = .car
                     self?.view.layoutIfNeeded()
                     UIView .animate(withDuration: 0.2, animations: {
@@ -166,11 +184,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                         self?.view.layoutIfNeeded()
                         self?.selectedCar = car
-                        if let location = car.location {
-                            self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                self?.routeSteps = steps
-                                self?.drawRoutes(steps: steps)
-                            })
+                        if let location = car.location
+                        {
+                            self?.getRoute(fromLocation: location)
                         }
                     })
                 }
@@ -182,9 +198,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     if self?.clusteringInProgress == true {
                         self?.mapView.clear()
                         self?.clusterManager.clearItems()
-                        if let steps = self?.routeSteps {
-                            self?.drawRoutes(steps: steps)
-                        }
+                        self?.drawRoutes(polyline: self?.stepPolyline)
+                        
                         for annotation in array {
                             if let carAnnotation = annotation as? CarAnnotation {
                                 if viewModel.carBooked?.plate == carAnnotation.car.plate && viewModel.carTrip != nil && viewModel.carTrip?.car.value?.parking == false
@@ -214,11 +229,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     }
                     if let car = self?.selectedCar {
                         self?.view_carPopup.updateWithCar(car: car)
-                        if self!.routeSteps.count > 0 {
-                            if let distance = self?.routeSteps[0].distance, let duration = self?.routeSteps[0].duration {
-                                self?.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                            }
-                        }
+                        self?.updatePolylineInfo()
                     }
                     if let allCars = self?.viewModel?.allCars {
                         self?.view_searchBar.viewModel?.allCars = allCars
@@ -412,12 +423,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self?.centerMap(on: newLocation, zoom: 18.5, animated: true)
                 }
                 self?.view_carPopup.updateWithCar(car: car)
-                if self!.routeSteps.count > 0 {
-                    if let distance = self?.routeSteps[0].distance, let duration = self?.routeSteps[0].duration {
-                        self?.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                    }
-                }
+                self?.updatePolylineInfo()
                 self?.view.layoutIfNeeded()
+                
                 UIView.animate(withDuration: 0.2, animations: {
                     if car.type.isEmpty {
                         self?.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self?.closeCarPopupHeight)!  //0
@@ -429,11 +437,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     self?.view_carPopup.alpha = 1.0
                     self?.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                     self?.view.layoutIfNeeded()
+                    
                     if let location = car.location {
-                        self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                            self?.routeSteps = steps
-                            self?.drawRoutes(steps: steps)
-                        })
+                        self?.getRoute(fromLocation: location)
                     }
                 })
                 self?.updateSpeechSearchBar()
@@ -591,10 +597,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         self.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                     }
                                     if let location = car.location {
-                                        self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                            self.routeSteps = steps
-                                            self.drawRoutes(steps: steps)
-                                        })
+                                        self.getRoute(fromLocation: location)
                                     }
                                 }
                                 if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
@@ -643,8 +646,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         CoreController.shared.allCarTrips = []
                         CoreController.shared.currentCarTrip = nil
                         self.getResultsWithoutLoading()
-                        self.routeSteps = self.nearestCarRouteSteps
-                        self.drawRoutes(steps: self.nearestCarRouteSteps)
+                        
+                        self.stepPolyline = self.nearestCarRoutePolyline        //  yes but why?
+                        self.updateRoute(self.stepPolyline)
                     }
                 }
             
@@ -670,10 +674,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         }
                                     }
                                     if let location = car.location {
-                                        self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                            self?.routeSteps = steps
-                                            self?.drawRoutes(steps: steps)
-                                        })
+                                        self?.getRoute(fromLocation: location)
                                     }
                                     if self?.viewModel?.carBooked != nil && self?.viewModel?.showCars == false {
                                         DispatchQueue.main.async {
@@ -707,11 +708,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         }
         if let car = self.selectedCar {
             self.view_carPopup.updateWithCar(car: car)
-            if routeSteps.count > 0 {
-                if let distance = routeSteps[0].distance, let duration = routeSteps[0].duration {
-                    self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                }
-            }
+            self.updatePolylineInfo()
             self.view.layoutIfNeeded()
         }
         if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
@@ -746,10 +743,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                     self.centerMap(on: newLocation, zoom: 18.5, animated: true)
                                 }
                                 if let location = car.location {
-                                    self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                        self.routeSteps = steps
-                                        self.drawRoutes(steps: steps)
-                                    })
+                                    self.getRoute(fromLocation: location)
                                 }
                             }
                             if self.viewModel?.carBooked != nil && self.viewModel?.showCars == false {
@@ -818,8 +812,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 CoreController.shared.allCarBookings = []
                 CoreController.shared.currentCarBooking = nil
                 self.getResultsWithoutLoading()
-                self.routeSteps = self.nearestCarRouteSteps
-                self.drawRoutes(steps: self.nearestCarRouteSteps)
+                
+                self.stepPolyline = self.nearestCarRoutePolyline    //  yes but why?
+                self.updateRoute(self.stepPolyline)
+                
                 DispatchQueue.main.async {
                     self.updateResults()
                 }
@@ -837,8 +833,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         UIView.animate(withDuration: 0.2, animations: {
             self.selectedCar = nil
             self.view_carPopup.alpha = 0.0
-            self.routeSteps = self.nearestCarRouteSteps
-            self.drawRoutes(steps: self.nearestCarRouteSteps)
+            
+            self.stepPolyline = self.nearestCarRoutePolyline    //  yes but why?
+            self.updateRoute(self.stepPolyline)
+            
             self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
             self.view.layoutIfNeeded()
         })
@@ -852,11 +850,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             self.view_carPopup.updateWithCar(car: self.viewModel!.nearestCar.value!)
-            if routeSteps.count > 0 {
-                if let distance = routeSteps[0].distance, let duration = routeSteps[0].duration {
-                    self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                }
-            }
+            self.updatePolylineInfo()
             self.view_carPopup.viewModel?.type.value = .car
             self.viewModel?.showCars = true
             self.setCarsButtonVisible(true)
@@ -966,8 +960,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 self.viewModel?.carTrip = carTrip
                                                 self.viewModel?.carBooking = nil
                                                 self.getResultsWithoutLoading()
-                                                self.routeSteps = self.nearestCarRouteSteps
-                                                self.drawRoutes(steps: self.nearestCarRouteSteps)
+                                            
+                                                self.stepPolyline = self.nearestCarRoutePolyline    //  yes but why?
+                                                self.updateRoute(self.stepPolyline)
                                         //})
                                         }
                                     }
@@ -1090,10 +1085,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                     self.viewModel?.carBooking = carBooking
                                                     self.getResultsWithoutLoading()
                                                     if let location = car.location {
-                                                        self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                                            self.routeSteps = steps
-                                                            self.drawRoutes(steps: steps)
-                                                        })
+                                                        self.getRoute(fromLocation: location)
                                                     }
                                                     let locationManager = LocationManager.sharedInstance
                                                     if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -1710,23 +1702,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.showUserPositionVisible(true)
                         if self?.lastLocation?.coordinate.latitude != locationManager.lastLocationCopy.value?.coordinate.latitude && self?.lastLocation?.coordinate.longitude != locationManager.lastLocationCopy.value?.coordinate.longitude {
                             if let location = self?.selectedCar?.location {
-                                self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                    self?.routeSteps = steps
-                                    self?.drawRoutes(steps: steps)
-                                })
+                                self?.getRoute(fromLocation: location)
                             } else if self?.viewModel?.carTrip != nil && self?.viewModel?.carTrip?.car.value?.parking == true {
                                 if let location = self!.viewModel?.carTrip?.car.value?.location {
-                                    self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                        self?.routeSteps = steps
-                                        self?.drawRoutes(steps: steps)
-                                    })
+                                    self?.getRoute(fromLocation: location)
                                 }
                             } else if self?.viewModel?.carBooking != nil {
                                 if let location = self!.viewModel?.carBooking?.car.value?.location {
-                                    self?.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                                        self?.routeSteps = steps
-                                        self?.drawRoutes(steps: steps)
-                                    })
+                                    self?.getRoute(fromLocation: location)
                                 }
                             }
                         }
@@ -1948,29 +1931,57 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     // MARK: - Route methods
     
-    public func drawRoutes(steps: [RouteStep]) {
+    public func updateRoute(_ polyline: GMSPolyline?)
+    {
+        //  Remove old oldlines from the map
+        stepPolyline?.map = nil
+        
+        // Needed is NOT in parking mode
+        if let parking = viewModel?.carTrip?.car.value?.parking
+        {
+            guard !parking else { return }
+        }
+        
+        //  If needed update polyline
+        stepPolyline = polyline
+        drawRoutes(polyline: stepPolyline)
+    }
+    
+//    public func drawRoutes(steps: [RouteStep]) {
+//        DispatchQueue.main.async {
+//            self.routeSteps = steps
+//            for polyline in self.routePolylines {
+//                polyline.map = nil
+//            }
+//            self.routePolylines = []
+//            if self.viewModel?.carTrip?.car.value?.parking == false {
+//                return
+//            }
+//            if steps.count > 0 {
+//                let points = steps[0].points
+//                if let distance = steps[0].distance, let duration = steps[0].duration {
+//                    self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
+//                }
+//                let path = GMSPath.init(fromEncodedPath: points!)
+//                let polyline = GMSPolyline.init(path: path)
+//                polyline.strokeColor = UIColor(hexString: "#336633")
+//                polyline.strokeWidth = 10
+//                polyline.spans = GMSStyleSpans(polyline.path!, [GMSStrokeStyle.solidColor(UIColor(hexString: "#336633")), GMSStrokeStyle.solidColor(UIColor.clear)], [5, 5], GMSLengthKind.rhumb)
+//                polyline.map = self.mapView
+//                self.routePolylines.append(polyline)
+//            }
+//        }
+//    }
+    
+    public func drawRoutes(polyline: GMSPolyline?) {
+        
+        guard let polyline = polyline else { return }
+        
         DispatchQueue.main.async {
-            self.routeSteps = steps
-            for polyline in self.routePolylines {
-                polyline.map = nil
-            }
-            self.routePolylines = []
-            if self.viewModel?.carTrip?.car.value?.parking == false {
-                return
-            }
-            if steps.count > 0 {
-                let points = steps[0].points
-                if let distance = steps[0].distance, let duration = steps[0].duration {
-                    self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                }
-                let path = GMSPath.init(fromEncodedPath: points!)
-                let polyline = GMSPolyline.init(path: path)
-                polyline.strokeColor = UIColor(hexString: "#336633")
-                polyline.strokeWidth = 10
-                polyline.spans = GMSStyleSpans(polyline.path!, [GMSStrokeStyle.solidColor(UIColor(hexString: "#336633")), GMSStrokeStyle.solidColor(UIColor.clear)], [5, 5], GMSLengthKind.rhumb)
-                polyline.map = self.mapView
-                self.routePolylines.append(polyline)
-            }
+            polyline.strokeColor = UIColor(hexString: "#336633")
+            polyline.strokeWidth = 10
+            polyline.spans = GMSStyleSpans(polyline.path!, [GMSStrokeStyle.solidColor(UIColor(hexString: "#336633")), GMSStrokeStyle.solidColor(UIColor.clear)], [5, 5], GMSLengthKind.rhumb)
+            polyline.map = self.mapView
         }
     }
 }
@@ -2010,7 +2021,7 @@ extension MapViewController: GMSMapViewDelegate {
      */
     public func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let cityAnnotation = marker as? CityAnnotation {
-            self.drawRoutes(steps: self.routeSteps)
+            self.updateRoute(self.stepPolyline)
             if let location = cityAnnotation.city?.location {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.centerMap(on: newLocation, zoom: 11.5, animated: true)
@@ -2033,18 +2044,14 @@ extension MapViewController: GMSMapViewDelegate {
                 return true
             }*/
             if car.plate != self.selectedCar?.plate {
-                self.drawRoutes(steps: self.routeSteps)
+                self.updateRoute(self.stepPolyline)
             }
             if let location = car.location {
                 let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             }
             self.view_carPopup.updateWithCar(car: car)
-            if routeSteps.count > 0 {
-                if let distance = routeSteps[0].distance, let duration = routeSteps[0].duration {
-                    self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                }
-            }
+            self.updatePolylineInfo()
             self.view_carPopup.viewModel?.type.value = .car
             self.view.layoutIfNeeded()
             UIView .animate(withDuration: 0.2, animations: {
@@ -2060,10 +2067,7 @@ extension MapViewController: GMSMapViewDelegate {
                 self.view.layoutIfNeeded()
                 self.selectedCar = car
                 if let location = car.location {
-                    self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                        self.routeSteps = steps
-                        self.drawRoutes(steps: steps)
-                    })
+                    self.getRoute(fromLocation: location)
                 }
             })
         } else if let feedAnnotation = marker.userData as? FeedAnnotation {

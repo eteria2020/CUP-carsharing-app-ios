@@ -14,6 +14,7 @@ import MapKit
 import Alamofire
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
+//per loggare aggiungere ad plugin
 
 final class SharengoApiController {
     fileprivate var manager: SessionManager?
@@ -54,19 +55,60 @@ final class SharengoApiController {
             }
         }
     }
+    
+    func getOsmAdress(text: String) -> Observable<[Address]> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                    
+                  
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.osmAddress(text: text))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapArray(type: Address.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                       observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
 }
 
 fileprivate enum API {
     case polygons()
+    case osmAddress(text: String)
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "http://www.sharengo.it")! }
+    var baseURL: URL {
+        switch self {
+        case .polygons():
+          return URL(string: "http://www.sharengo.it")!
+            
+        case .osmAddress(_):
+           return URL(string: "http://maps.sharengo.it")!
+        }
+    }
     
     var path: String {
         switch self {
         case .polygons():
             return "zone"
+        
+        case .osmAddress(_):
+            return "search"
         }
     }
     
@@ -78,6 +120,9 @@ extension API: TargetType {
         switch self {
         case .polygons():
             return ["format": "json"]
+        
+        case .osmAddress(let text):
+            return ["q": text, "format": "json" ,"polygon": "0", "addressdetails": "1", "countrycode": "it", "dedupe":"1"]
         }
     }
     

@@ -153,9 +153,11 @@ public class Address: ModelType, Gloss.Decodable {
 
     required public init?(json: JSON) {
         self.identifier = "place_id" <~~ json
-        self.name = "formatted_address" <~~ json
-        if let latitude: Double = "geometry.location.lat" <~~ json, let longitude: Double = "geometry.location.lng" <~~ json {
-            self.location = CLLocation(latitude: latitude, longitude: longitude)
+        self.name = "display_name" <~~ json
+        if let latitude: String = "lat" <~~ json, let longitude: String = "lon" <~~ json {
+            if let latitude = Double(latitude), let longitude = Double(longitude){
+                self.location = CLLocation(latitude: latitude, longitude: longitude)
+            }
         }
     }
     

@@ -208,7 +208,8 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                 })).structured())
                 self.selection.execute(.reload)
             } else {
-            self.googleApiController.searchAddress(text: text)
+//            self.googleApiController.searchAddress(text: text)
+                SharengoApiController().getOsmAdress(text: text)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
                     switch event {

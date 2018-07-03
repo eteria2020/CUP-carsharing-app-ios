@@ -323,10 +323,10 @@
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
+		D120AD4720E24C4A007A3139 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D120AD4620E24C4A007A3139 /* client.p12 */; };
 		D17DC78620A2F06400BA3945 /* LegalNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */; };
 		D17DC78820A2F09000BA3945 /* LegalNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */; };
 		D17DC78A20A2F60F00BA3945 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78920A2F60E00BA3945 /* AppConfig.swift */; };
-		D188A70E205671A20042F947 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D188A70D205671A10042F947 /* client.p12 */; };
 		D1D93DA420038F2900A3B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */; };
 		D1EFAA421FE8056100CE33E1 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA411FE8056100CE33E1 /* PinViewController.swift */; };
 		D1EFAA441FE8059000CE33E1 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */; };
@@ -691,10 +691,10 @@
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
+		D120AD4620E24C4A007A3139 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
 		D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewModel.swift; sourceTree = "<group>"; };
 		D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewController.swift; sourceTree = "<group>"; };
 		D17DC78920A2F60E00BA3945 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		D188A70D205671A10042F947 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; name = client.p12; path = "../../../../../Desktop/client_certs (1)/client.p12"; sourceTree = "<group>"; };
 		D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
 		D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewModel.swift; path = Classes/ViewModels/PinViewModel.swift; sourceTree = "<group>"; };
@@ -1092,15 +1092,6 @@
 			path = Resources/Gifs;
 			sourceTree = "<group>";
 		};
-		4D2628F01ED57CCD001C4E38 /* Certificates */ = {
-			isa = PBXGroup;
-			children = (
-				D188A70D205671A10042F947 /* client.p12 */,
-			);
-			name = Certificates;
-			path = Resources/Certificates;
-			sourceTree = "<group>";
-		};
 		4D36D7BC1ED2EF86005FAEB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1426,9 +1417,9 @@
 		4DCD1A751ECDBF7400FC8BF5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
 				D17DC78220A2EFA100BA3945 /* LegalNote */,
 				D1EFAA401FE804B900CE33E1 /* Pin */,
-				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
 				4DC10E001EE9AC5800A74E26 /* Loading */,
 				4D2339961EE6CD2A00780384 /* Intro */,
 				032D3A731F08D5FB00F260A5 /* OnBoard */,
@@ -1472,12 +1463,11 @@
 		4DCD1A961ECDC20500FC8BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D120AD4520E24C4A007A3139 /* Certificates */,
 				4D2339991EE6CF4B00780384 /* Gifs */,
-				4D2628F01ED57CCD001C4E38 /* Certificates */,
 				4DCD1A981ECDC22900FC8BF5 /* Assets */,
 				4DCD1A9A1ECDC22900FC8BF5 /* Fonts */,
 				4DCD1A9C1ECDC22900FC8BF5 /* Languages */,
-				4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */,
 				4DCD1A9D1ECDC22900FC8BF5 /* Plists */,
 				4DCD1A9F1ECDC22900FC8BF5 /* Storyboards */,
 			);
@@ -1504,14 +1494,6 @@
 			);
 			name = Fonts;
 			path = Resources/Fonts;
-			sourceTree = "<group>";
-		};
-		4DCD1A9B1ECDC22900FC8BF5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Resources/Frameworks;
 			sourceTree = "<group>";
 		};
 		4DCD1A9C1ECDC22900FC8BF5 /* Languages */ = {
@@ -1658,6 +1640,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D120AD4520E24C4A007A3139 /* Certificates */ = {
+			isa = PBXGroup;
+			children = (
+				D120AD4620E24C4A007A3139 /* client.p12 */,
+			);
+			name = Certificates;
+			path = Resources/Certificates;
+			sourceTree = "<group>";
+		};
 		D17DC78220A2EFA100BA3945 /* LegalNote */ = {
 			isa = PBXGroup;
 			children = (
@@ -1707,13 +1698,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = CSGroup;
 				TargetAttributes = {
 					4DCD1A511ECDBF7400FC8BF5 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = F67U6XW2G4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1833,7 +1824,6 @@
 				4DFA39011F4835BB00DC8B20 /* Pulse_Giallo_0045.png in Resources */,
 				033A40481F06351400B05A89 /* CarTripItemCollectionViewCell.xib in Resources */,
 				032D3A891F08E79000F260A5 /* Auto-C-ingresso.gif in Resources */,
-				D188A70E205671A20042F947 /* client.p12 in Resources */,
 				4D1658161F483F8400BEB3DB /* Pulse_Verde_0044.png in Resources */,
 				4D22EE631F4C699400EE2746 /* Auto_C_Ingresso_eng.gif in Resources */,
 				4D1657FE1F483F8400BEB3DB /* Pulse_Verde_0022.png in Resources */,
@@ -1860,6 +1850,7 @@
 				4DFA39021F4835BB00DC8B20 /* Pulse_Giallo_0046.png in Resources */,
 				03C6323A1EEFD04000BFEDA3 /* SignupStepView.xib in Resources */,
 				4D16581D1F483F8400BEB3DB /* Pulse_Verde_008.png in Resources */,
+				D120AD4720E24C4A007A3139 /* client.p12 in Resources */,
 				4D1658181F483F8400BEB3DB /* Pulse_Verde_0046.png in Resources */,
 				4D1657F21F483F8400BEB3DB /* Pulse_Verde_0011.png in Resources */,
 				4DFA38EC1F4835BB00DC8B20 /* Pulse_Giallo_0026.png in Resources */,
@@ -2231,15 +2222,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2285,19 +2284,28 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2329,15 +2337,16 @@
 				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = F67U6XW2G4;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = it.eteria.sharengo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ea72469-b1b3-473f-86fd-47c6ca6efeef";
-				PROVISIONING_PROFILE_SPECIFIER = "Iphone 5 mac livorno";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2350,17 +2359,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = F67U6XW2G4;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sharengo/Resources/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISRELEASE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = it.eteria.sharengo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0b8430aa-0f6c-49f2-b4e4-cb4d8ca0a7be";
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Distribution";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

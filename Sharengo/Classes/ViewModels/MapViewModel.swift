@@ -581,4 +581,50 @@ public final class MapViewModel: ViewModelType {
             completionClosure([])
         }
     }
+    
+    public func getRoute2(destination: CLLocation, completionClosure: @escaping (_ steps: GMSPolyline?) ->()) {
+        let locationManager = LocationManager.sharedInstance
+        if let userLocation = locationManager.lastLocationCopy.value {
+            let distance = destination.distance(from: userLocation)
+            if distance <= 10000 {
+                let dispatchTime = DispatchTime.now() + 0.3
+                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    
+                    let source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
+                    let destination = MKMapItem(placemark: MKPlacemark(coordinate: destination.coordinate, addressDictionary: nil))
+                    
+                    let request: MKDirectionsRequest = MKDirectionsRequest()
+                    
+                    request.source = source
+                    request.destination = destination
+                    request.requestsAlternateRoutes = true
+                    request.transportType = .automobile
+                    
+                    let directions = MKDirections(request: request)
+                    
+                    directions.calculate { response, error in
+                        if let route = response?.routes.first
+                        {
+                            let path = GMSMutablePath()
+                            let coordinates = route.steps.map { $0.polyline.coordinate }
+                            coordinates.forEach { coord in
+                                path.add(coord)
+                            }
+                            let polyline = GMSPolyline(path: path)
+                            completionClosure(polyline)
+                        }
+                        else
+                        {
+                            completionClosure(nil)
+                        }
+                    }
+                    
+                }
+            } else {
+                completionClosure(nil)
+            }
+        } else {
+            completionClosure(nil)
+        }
+    }
 }
