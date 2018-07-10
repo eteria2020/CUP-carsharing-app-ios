@@ -202,7 +202,6 @@ static NSString *const kGMUGeometryRegex =
 /**
  * Creates a GMSCoordinateBounds object from a set of coordinates.
  *
- * @param coordinates: The coordinates for the bounding box in the order west, south, east, north.
  * @return A bounding box with the specified coordinates.
  */
 - (GMSCoordinateBounds *)boundingBoxFromCoordinates:(NSArray *)coordinates {

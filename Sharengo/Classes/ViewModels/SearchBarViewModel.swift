@@ -40,7 +40,6 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var apiController: ApiController = ApiController()
-    fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate let numberOfResults: Int = 15
     var allCars: [Car] = []
     var favourites: Bool = false
@@ -199,16 +198,15 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     }
     
     func reloadResults(text: String) {
-        if text.characters.count > 2 {
+        if text.count > 2 {
             let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
-            let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.characters.count))
+            let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.count))
             if match != nil && !favourites {
                 self.dataHolder = ListDataHolder(data:Observable.just(self.allCars.filter({ (car) -> Bool in
                     return car.plate?.lowercased().contains(text.lowercased()) ?? false
                 })).structured())
                 self.selection.execute(.reload)
             } else {
-//            self.googleApiController.searchAddress(text: text)
                 SharengoApiController().getOsmAdress(text: text)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
@@ -235,7 +233,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                     }
                 }.addDisposableTo(resultsDispose!)
             }
-        } else if text.characters.count == 0 {
+        } else if text.isEmpty {
             self.getHistoryAndFavorites()
         } else {
             self.dataHolder = ListDataHolder.empty

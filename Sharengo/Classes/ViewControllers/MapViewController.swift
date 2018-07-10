@@ -92,7 +92,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     func getRoute(fromLocation location: CLLocation)
     {
-        viewModel?.getRoute2(destination: location, completionClosure: { [weak self] polyline in
+        viewModel?.getRoute(destination: location, completionClosure: { [weak self] polyline in
             self?.nearestCarRoutePolyline = nil
             self?.updateRoute(polyline)
         })
@@ -124,7 +124,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.getRoute(fromLocation: nearestCar!.location!)
                     }
                 }
-            })
+            }).addDisposableTo(disposeBag)
         viewModel.deepCar.asObservable()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] (deepCar) in
@@ -1010,7 +1010,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }
         
-        if let tripped = self.viewModel?.carTrip {
+        if (self.viewModel?.carTrip) != nil {
             let dispatchTime = DispatchTime.now() + 0.5
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 let dialog = ZAlertView(title: nil, message: "Non puoi prenotare una Share'ngo mentre stai correndo.", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
@@ -1718,7 +1718,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.showUserPositionVisible(false)
                     }
                 }
-            })
+            }).addDisposableTo(disposeBag)
         // Italy
         let coordinateNorthEast = CLLocationCoordinate2DMake(35.4897, 6.62672)
         let coordinateSouthWest = CLLocationCoordinate2DMake(47.092, 18.7976)

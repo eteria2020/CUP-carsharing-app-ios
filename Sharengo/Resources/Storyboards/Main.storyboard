@@ -2316,21 +2316,6 @@
             </objects>
             <point key="canvasLocation" x="-1407.2" y="3032.8335832083962"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="0Uu-ft-jhc">
-            <objects>
-                <viewController id="cRh-L7-qGA" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="My8-kV-OVx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="vTm-du-AGM"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vBx-Do-LRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1418" y="3757"/>
-        </scene>
         <!--Feed Detail View Controller-->
         <scene sceneID="Oog-B9-N2l">
             <objects>

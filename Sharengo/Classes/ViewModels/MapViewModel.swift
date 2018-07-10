@@ -39,7 +39,6 @@ public enum MapType {
 */
 public final class MapViewModel: ViewModelType {
     fileprivate var apiController: ApiController = ApiController()
-    fileprivate var googleApiController: GoogleAPIController = GoogleAPIController()
     fileprivate var publishersApiController: PublishersAPIController = PublishersAPIController()
     fileprivate var resultsDispose: DisposeBag?
     fileprivate var timerCars: Timer?
@@ -554,35 +553,7 @@ public final class MapViewModel: ViewModelType {
     
     // MARK: - Route methods
     
-    public func getRoute(destination: CLLocation, completionClosure: @escaping (_ steps: [RouteStep]) ->()) {
-        let locationManager = LocationManager.sharedInstance
-        if let userLocation = locationManager.lastLocationCopy.value {
-            let distance = destination.distance(from: userLocation)
-            if distance <= 10000 {
-                let dispatchTime = DispatchTime.now() + 0.3
-                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    self.googleApiController.searchRoute(destination: destination)
-                        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                        .subscribe { event in
-                            switch event {
-                            case .next(let steps):
-                                completionClosure(steps)
-                            case .error(_):
-                                completionClosure([])
-                            default:
-                                break
-                            }
-                        }.addDisposableTo(self.disposeBag)
-                }
-            } else {
-                completionClosure([])
-            }
-        } else {
-            completionClosure([])
-        }
-    }
-    
-    public func getRoute2(destination: CLLocation, completionClosure: @escaping (_ steps: GMSPolyline?) ->()) {
+    public func getRoute(destination: CLLocation, completionClosure: @escaping (_ steps: GMSPolyline?) ->()) {
         let locationManager = LocationManager.sharedInstance
         if let userLocation = locationManager.lastLocationCopy.value {
             let distance = destination.distance(from: userLocation)
@@ -598,7 +569,7 @@ public final class MapViewModel: ViewModelType {
                     request.source = source
                     request.destination = destination
                     request.requestsAlternateRoutes = true
-                    request.transportType = .automobile
+                    request.transportType = .walking
                     
                     let directions = MKDirections(request: request)
                     

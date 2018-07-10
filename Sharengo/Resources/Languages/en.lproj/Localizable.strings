@@ -185,7 +185,7 @@
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
-"lbl_carTripsTimeFormatter" = "HH:mm";
+"lbl_carTripsTimeFormatter" = "HH:mm:ss";
 "lbl_carTripsItemDescription" = "%@ - hours %@";
 "lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - HOURS %@</startDateAndTime>\n%@\n<endDateAndTime>END: %@ - HOURS %@</endDateAndTime>\n%@\n<kmTraveled>Minute fare: € %0.2f</kmTraveled>\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Charging</placeholder>";

@@ -95,8 +95,10 @@ public class CarTrip: ModelType, Gloss.Decodable {
                 let start = timeStart
                 let enddt = timeEnd
                 let calendar = Calendar.current
-                let datecomponents = calendar.dateComponents([Calendar.Component.minute], from: start, to: enddt)
-                if let min = datecomponents.minute {
+                let datecomponents = calendar.dateComponents([Calendar.Component.second], from: start, to: enddt)
+                if let second = datecomponents.second {
+                    //prendo i secondi li trasformo in minuti e ci aggiungo un minuto se il resto in secondi è >= di 30 
+                    let min = (second/60) + ((second % 60) >= 30 ? 1:0)
                     if min <= 0 {
                         return "0 \("lbl_carBookingPopupTimeMinutes".localized())"
                     } else if min == 1 {

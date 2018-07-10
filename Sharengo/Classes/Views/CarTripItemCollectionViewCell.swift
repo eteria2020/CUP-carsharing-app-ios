@@ -48,8 +48,8 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
         self.lbl_subtitle.styledText = viewModel.subtitle
         
         viewModel.description.asObservable()
-            .subscribe(onNext: {[weak self] (description) in
-                DispatchQueue.main.async {
+            .subscribe(onNext: { [weak self] description in
+                DispatchQueue.main.async { [weak self] in
                     if !viewModel.selected
                     {
                         self?.lbl_description.bonMotStyleName = "carTripsItemDescription"

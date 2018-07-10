@@ -29,7 +29,7 @@
 "language_english" = "Inglese";
 
 // Signup
-"lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio costa 10 euro con 30 minuti bonus (condizioni standard, salvo promozioni). Se serve aiuto durante l'iscrizione usa il pulsante chat!";
+"lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio è gratuita. Se serve aiuto durante l'iscrizione usa il pulsante chat!";
 "btn_signupSignup" = "ISCRIVITI";
 "lbl_signupStepTitle1" = "Per iscriverti devi avere\na portata di mano:";
 "lbl_signupStepDescription1" = "CARTA DI IDENTITÀ";
@@ -188,7 +188,7 @@
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
-"lbl_carTripsTimeFormatter" = "HH:mm";
+"lbl_carTripsTimeFormatter" = "HH:mm:ss";
 "lbl_carTripsItemDescription" = "%@ - ORE %@";
 "lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n%@\n<kmTraveled>Tariffa al minuto: € %0.2f</kmTraveled>\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Caricamento in corso</placeholder>";
