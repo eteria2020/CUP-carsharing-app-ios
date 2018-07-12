@@ -45,14 +45,7 @@ final class ApiController {
     
     func getUser(username: String, password: String) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.getUserWith(username: username, password: password))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -72,14 +65,7 @@ final class ApiController {
 
     func searchCars() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.searchAllCars())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -126,14 +112,7 @@ final class ApiController {
     
     func searchCar(plate: String) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.searchCar(plate: plate))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -155,14 +134,7 @@ final class ApiController {
     //return ["user_lat": userLatitude, "user_lon": userLongitude, "plate": car, "calling_app": callingApp]
     func searchCarURL(userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees, plate: String, callingApp: String, email: String?) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.searchCarURL(userLatitude: userLatitude, userlLongitude: userLongitude, carPlate: plate, callingApp: callingApp, email: email))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -182,14 +154,7 @@ final class ApiController {
     
     func bookingList() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.bookingList())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -209,14 +174,7 @@ final class ApiController {
     
     func tripsList() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.tripsList())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -237,14 +195,7 @@ final class ApiController {
     func archivedTripsList() -> Observable<Response> {
         
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.archivedTripsList())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -265,14 +216,7 @@ final class ApiController {
     
     func bookCar(car: Car, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.bookCar(car: car, userLatitude: userLatitude, userLongitude: userLongitude))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -292,14 +236,7 @@ final class ApiController {
     
     func deleteCarBooking(carBooking: CarBooking) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.deleteCarBooking(carBooking: carBooking))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -319,14 +256,7 @@ final class ApiController {
     
     func getCarBooking(id: Int) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.getCarBooking(id: id))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -346,14 +276,7 @@ final class ApiController {
     
     func openCar(car: Car, action: String) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.openCar(car: car, action: action))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -373,14 +296,7 @@ final class ApiController {
     
     func getTrip(trip: CarTrip) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.getTrip(trip: trip))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -400,14 +316,7 @@ final class ApiController {
     
     func getConfig() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.getConfig())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)

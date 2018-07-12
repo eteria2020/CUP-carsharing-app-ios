@@ -47,7 +47,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
         guard let viewModel = viewModel as? MenuViewModel else {
             return
         }
-        viewModel.selection.elements.subscribe(onNext:{ selection in
+        viewModel.selection.elements.subscribe(onNext: { selection in
             switch selection {
             case .viewModel(let viewModel):
                 switch viewModel {
@@ -172,6 +172,8 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
         if animated {
             CoreController.shared.currentViewController?.showMenuBackground()
         }
+        
+        updateData()
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
@@ -236,6 +238,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
      This method is called from collection delegate to decide how the list interface is showed (size)
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let size = collectionView.autosizeItemAt(indexPath: indexPath, constrainedToWidth: Float(collectionView.frame.size.width))
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         let height = max(54, (UIScreen.main.bounds.height-76)/9)
         return CGSize(width: size.width, height: height)

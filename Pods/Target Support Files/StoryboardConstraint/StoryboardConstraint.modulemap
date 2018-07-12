@@ -1,6 +1,0 @@
-framework module StoryboardConstraint {
-  umbrella header "StoryboardConstraint-umbrella.h"
-
-  export *
-  module * { export * }
-}

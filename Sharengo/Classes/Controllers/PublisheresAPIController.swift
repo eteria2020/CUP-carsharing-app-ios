@@ -58,14 +58,7 @@ final class PublishersAPIController {
     
     func getCategories() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.categories())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -85,14 +78,7 @@ final class PublishersAPIController {
     
     func getOffers(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.offers(category: category))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -112,14 +98,7 @@ final class PublishersAPIController {
     
     func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.mapOffers(latitude: latitude, longitude: longitude, radius: radius))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -139,14 +118,7 @@ final class PublishersAPIController {
     
     func getEvents(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.events(category: category))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -166,14 +138,7 @@ final class PublishersAPIController {
     
     func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.mapEvents(latitude: latitude, longitude: longitude, radius: radius))
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)

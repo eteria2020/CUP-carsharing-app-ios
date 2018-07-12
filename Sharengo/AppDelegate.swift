@@ -334,24 +334,24 @@ func presentDetailViewController(plate:String) {
 
 extension AppDelegate {
     func setupSideMenu() {
-        SideMenuManager.menuPresentMode = .menuSlideIn
-        SideMenuManager.menuShadowColor = .black
-        SideMenuManager.menuFadeStatusBar = false
-        SideMenuManager.menuWidth = UIScreen.main.bounds.width-menuPadding
-        SideMenuManager.menuAnimationBackgroundColor = UIColor.red
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuShadowColor = .black
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuWidth = UIScreen.main.bounds.width-menuPadding
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.red
         
         let menuRightNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "menuNavigation") as! UISideMenuNavigationController
-        SideMenuManager.menuRightNavigationController = menuRightNavigationController
+        SideMenuManager.default.menuRightNavigationController = menuRightNavigationController
+        
         if let menu = menuRightNavigationController.topViewController as? MenuViewController
         {
-            menu.bind(to: ViewModelFactory.menu(), afterLoad: true)
+            //  Use afterLoad to avoid binding problem.
+            menu.bind(to: ViewModelFactory.menu(), afterLoad: false)
         }
-        
-        SideMenuManager.menuRightNavigationController = menuRightNavigationController
     }
     
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-        //print("diocane")
+
         // 1
         /*guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
          let url = userActivity.webpageURL,

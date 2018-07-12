@@ -25,10 +25,13 @@ extension String : ListIdentifier {
     }
 }
 public protocol ListIdentifier {
-    var name : String {get }
-    var type : String? {get }
+    var name : String { get }
+    var type : String? { get }
+    var isEmbeddable : Bool { get }
 }
-
+extension ListIdentifier {
+    public var isEmbeddable : Bool { return false }
+}
 
 public protocol ResultRangeType {
     var start:IndexPath {get set}
@@ -128,7 +131,7 @@ public protocol ListViewModelType : ViewModelType {
     func itemViewModel(fromModel model:ModelType) -> ItemViewModelType?
     var listIdentifiers:[ListIdentifier] {get}
     func reload()
-    init()
+    
 }
 
 

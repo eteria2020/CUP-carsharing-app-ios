@@ -198,19 +198,24 @@ public class CarTrip: ModelType, Gloss.Decodable {
     /**
      This method is used to update car connected to Car Trip
      */
-    public func updateCar(completionClosure: @escaping () ->()) {
-        if let carPlate = self.carPlate {
+    public func updateCar(completionClosure: @escaping () ->())
+    {
+        if let carPlate = self.carPlate
+        {
             CoreController.shared.apiController.searchCar(plate: carPlate)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .subscribe { event in
-                    switch event {
-                    case .next(let response):
-                        if response.status == 200, let data = response.dic_data {
-                            self.car.value = Car(json: data)
-                            completionClosure()
+                    DispatchQueue.main.async {
+                        switch event
+                        {
+                        case .next(let response):
+                            if response.status == 200, let data = response.dic_data {
+                                self.car.value = Car(json: data)
+                                completionClosure()
+                            }
+                        default:
+                            break
                         }
-                    default:
-                        break
                     }
                 }.addDisposableTo(CoreController.shared.disposeBag)
         }

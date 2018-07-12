@@ -35,12 +35,20 @@ public class Response: ModelType, Gloss.Decodable {
     
     public required init?(json: JSON) {
         self.status = "status" <~~ json
-        self.status_bool = "status" <~~ json
+        self.status_bool = self.status != nil
         self.reason = "reason" <~~ json
         self.code = "code" <~~ json
         self.msg = "msg" <~~ json
-        self.array_data =  "data" <~~ json
-        self.dic_data = "data" <~~ json
+        
+        if let array = json["data"] as? [JSON]
+        {
+            self.array_data =  array
+        }
+
+        if let dict = json["data"] as? JSON
+        {
+            self.dic_data = dict
+        }
     }
     
     

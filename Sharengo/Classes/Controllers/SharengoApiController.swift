@@ -16,6 +16,21 @@ import Alamofire
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 //per loggare aggiungere ad plugin
 
+struct ManageNetworkLoaderUI {
+    static func update(with status: NetworkActivityChangeType)
+    {
+        DispatchQueue.main.async {
+            switch status
+            {
+            case .began:
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            case .ended:
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+        }
+    }
+}
+
 final class SharengoApiController {
     fileprivate var manager: SessionManager?
     
@@ -31,14 +46,7 @@ final class SharengoApiController {
     
     func getPolygons() -> Observable<[Polygon]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
-                switch status {
-                case .began:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                case .ended:
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.polygons())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: JSONPolygons.self)
