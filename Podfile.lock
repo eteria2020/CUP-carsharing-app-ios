@@ -1,13 +1,13 @@
 PODS:
-  - Action (3.2.0):
-    - RxCocoa (~> 3.4)
-    - RxSwift (~> 3.4)
+  - Action (3.0.0):
+    - RxCocoa (~> 3.4.0)
+    - RxSwift (~> 3.4.0)
   - Alamofire (4.7.3)
   - BonMot (4.3.1)
   - Boomerang (0.9.3):
     - Action (~> 3.0)
     - RxSwift (~> 3)
-  - Crashlytics (3.10.4):
+  - Crashlytics (3.10.5):
     - Fabric (~> 1.7.9)
   - DeviceKit (1.7.0)
   - Fabric (1.7.9)
@@ -35,22 +35,23 @@ PODS:
   - Moya/RxSwift (8.0.5):
     - Moya/Core
     - RxSwift (~> 3.0)
-  - pop (1.0.10)
+  - OneSignal (2.8.5)
+  - pop (1.0.9)
   - ReachabilitySwift (3)
   - Result (3.2.4)
-  - RxCocoa (3.6.1):
-    - RxSwift (~> 3.6)
-  - RxGesture (1.1.1):
-    - RxCocoa (~> 3.6)
-    - RxSwift (~> 3.6)
-  - RxSwift (3.6.1)
-  - SideMenu (4.0.0)
+  - RxCocoa (3.4.1):
+    - RxSwift (~> 3.4)
+  - RxGesture (1.0.1):
+    - RxCocoa (~> 3.4)
+    - RxSwift (~> 3.4)
+  - RxSwift (3.4.1)
+  - SideMenu (2.3.2)
   - SnapKit (3.0.2)
   - SpinKit (1.2.0)
   - TPKeyboardAvoiding (1.3.2)
 
 DEPENDENCIES:
-  - Action
+  - Action (from `https://github.com/RxSwiftCommunity/Action.git`, tag `3.0.0`)
   - BonMot (from `https://github.com/Raizlabs/BonMot.git`, tag `4.3.1`)
   - Boomerang (from `https://github.com/synesthesia-it/Boomerang.git`, branch `v1`)
   - Crashlytics
@@ -63,18 +64,18 @@ DEPENDENCIES:
   - Localize-Swift
   - Moya-Gloss/RxSwift
   - Moya/RxSwift
-  - pop
+  - OneSignal (< 3.0, >= 2.6.2)
+  - pop (from `https://github.com/facebook/pop.git`, tag `1.0.9`)
   - ReachabilitySwift (~> 3)
   - RxGesture
   - RxSwift
-  - SideMenu
+  - SideMenu (from `https://github.com/jonkykong/SideMenu.git`, branch `2.3.2`)
   - SnapKit (~> 3.0.2)
   - SpinKit
   - TPKeyboardAvoiding
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Action
     - Alamofire
     - Crashlytics
     - DeviceKit
@@ -86,39 +87,56 @@ SPEC REPOS:
     - Localize-Swift
     - Moya
     - Moya-Gloss
-    - pop
+    - OneSignal
     - ReachabilitySwift
     - Result
     - RxCocoa
     - RxGesture
     - RxSwift
-    - SideMenu
     - SnapKit
     - SpinKit
     - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
+  Action:
+    :git: https://github.com/RxSwiftCommunity/Action.git
+    :tag: 3.0.0
   BonMot:
     :git: https://github.com/Raizlabs/BonMot.git
     :tag: 4.3.1
   Boomerang:
     :branch: v1
     :git: https://github.com/synesthesia-it/Boomerang.git
+  pop:
+    :git: https://github.com/facebook/pop.git
+    :tag: 1.0.9
+  SideMenu:
+    :branch: 2.3.2
+    :git: https://github.com/jonkykong/SideMenu.git
 
 CHECKOUT OPTIONS:
+  Action:
+    :git: https://github.com/RxSwiftCommunity/Action.git
+    :tag: 3.0.0
   BonMot:
     :git: https://github.com/Raizlabs/BonMot.git
     :tag: 4.3.1
   Boomerang:
     :commit: bb609f61cb9f72d7fe810204b9adc8cf5e313efa
     :git: https://github.com/synesthesia-it/Boomerang.git
+  pop:
+    :git: https://github.com/facebook/pop.git
+    :tag: 1.0.9
+  SideMenu:
+    :commit: 7bf166818484d29e6247295f48fd52b89ca4d96e
+    :git: https://github.com/jonkykong/SideMenu.git
 
 SPEC CHECKSUMS:
-  Action: 991c9e175e04675028724868768aa08f22c85476
+  Action: fed388b9160ad787a58cb34b5064db6dbaae7e45
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BonMot: 8e958faa27676990d26d5b83bc853d4a2651f3ea
   Boomerang: eaa3faf38fea21672cc65df2c900dd4d474b4df0
-  Crashlytics: 915a7787b84f635fb2a81f92a90e265c2c413f76
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
   Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   Gifu: fd1e9e3a15ac5d90bae0a510e4ed9f94b485ab03
@@ -128,17 +146,18 @@ SPEC CHECKSUMS:
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   Moya-Gloss: d8e9adc9b055b2c4e495514b9755e57ee7aa320b
-  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  OneSignal: 42dae269c7eca517aee34963820e1eb922390031
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
-  RxGesture: a297957f2940b50f7073d1e7ff0eaa3f87cd27a5
-  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
-  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
+  RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
+  RxGesture: 1f770b247c69e8133fb8f4ef263571efd0ae91a1
+  RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
+  SideMenu: 44f4546fd863b912fde2f737ee3f041430601705
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 761b12d6f0d1d740ae3668e4a0cb92038695a8f8
+PODFILE CHECKSUM: b2b419dbcb8313f3e62eb832b52bc130af03f5b1
 
 COCOAPODS: 1.5.3

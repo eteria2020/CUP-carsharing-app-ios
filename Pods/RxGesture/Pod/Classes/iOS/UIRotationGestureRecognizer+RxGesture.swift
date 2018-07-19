@@ -18,29 +18,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import UIKit
 import RxSwift
 import RxCocoa
 
 /// Default values for `UIRotationGestureRecognizer` configuration
 private enum Defaults {
-    static var configuration: ((UIRotationGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = nil
+    static var configuration: ((UIRotationGestureRecognizer) -> Void)? = nil
 }
 
 /// A `GestureRecognizerFactory` for `UIRotationGestureRecognizer`
 public struct RotationGestureRecognizerFactory: GestureRecognizerFactory {
     public typealias Gesture = UIRotationGestureRecognizer
-    public let configuration: (UIRotationGestureRecognizer, RxGestureRecognizerDelegate) -> Void
+    public let configuration: (UIRotationGestureRecognizer) -> Void
 
     /**
      Initialiaze a `GestureRecognizerFactory` for `UIRotationGestureRecognizer`
      - parameter configuration: A closure that allows to fully configure the gesture recognizer
      */
     public init(
-        configuration: ((UIRotationGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = Defaults.configuration
+        configuration: ((UIRotationGestureRecognizer) -> Void)? = Defaults.configuration
         ){
-        self.configuration = { gesture, delegate in
-            configuration?(gesture, delegate)
+        self.configuration = { gesture in
+            configuration?(gesture)
         }
     }
 }
@@ -52,7 +51,7 @@ extension AnyGestureRecognizerFactory {
      - parameter configuration: A closure that allows to fully configure the gesture recognizer
      */
     public static func rotation(
-        configuration: ((UIRotationGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = Defaults.configuration
+        configuration: ((UIRotationGestureRecognizer) -> Void)? = Defaults.configuration
         ) -> AnyGestureRecognizerFactory {
         let gesture = RotationGestureRecognizerFactory(
             configuration: configuration
@@ -68,7 +67,7 @@ public extension Reactive where Base: UIView {
      - parameter configuration: A closure that allows to fully configure the gesture recognizer
      */
     public func rotationGesture(
-        configuration: ((UIRotationGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = Defaults.configuration
+        configuration: ((UIRotationGestureRecognizer) -> Void)? = Defaults.configuration
         ) -> ControlEvent<UIRotationGestureRecognizer> {
         return gesture(RotationGestureRecognizerFactory(
             configuration: configuration

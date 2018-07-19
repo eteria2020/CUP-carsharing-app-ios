@@ -60,10 +60,31 @@ public class NavigationBarView: UIView {
         guard let rightItem = viewModel?.rightItem else {
             return
         }
+        
         self.layoutIfNeeded()
+        
         self.view.backgroundColor = Color.navigationBarBackground.value
         self.btn_left.setBackgroundImage(UIImage(named: letfItem.icon), for: .normal)
         self.btn_right.setBackgroundImage(UIImage(named: rightItem.icon), for: .normal)
+        
+//        updateHambugerMenu()
+//
+//        NotificationCenter.default.addObserver(forName: .PushStatusChanged, object: nil, queue: OperationQueue.main) { notification in
+//            var showHamburger = true
+//            if PushNotificationController.pushNotificationHasPrompted && AppDelegate.isLoggedIn
+//            {
+//                if let authorized =  notification.userInfo?[PushNotificationController.pushNotificationAuthorizedKey] as? Bool
+//                {
+//                    showHamburger = authorized
+//                }
+//                else
+//                {
+//                    showHamburger = !PushNotificationController.pushNotificationIsRefused
+//                }
+//            }
+//
+//            self.updateHambugerMenu(showAlert: !showHamburger)
+//        }
     }
     
     fileprivate func loadViewFromNib() -> UIView {
@@ -71,4 +92,10 @@ public class NavigationBarView: UIView {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
+    
+//    private func updateHambugerMenu(showAlert: Bool = PushNotificationController.pushNotificationIsRefused && AppDelegate.isLoggedIn)
+//    {
+//        let hambIcon = UIImage(named: self.viewModel?.rightItem.icon ?? "")
+//        self.btn_right.setBackgroundImage(showAlert ? #imageLiteral(resourceName: "icon_alert") : hambIcon, for: .normal)
+//    }
 }

@@ -53,17 +53,27 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
             .subscribe(onNext: {[weak self] (loginExecuted) in
                 DispatchQueue.main.async {
                     //self?.hideLoader(completionClosure: { () in
-                        if loginExecuted {
-                            if self != nil {
-                                if let viewModel = viewModel.nextViewModel {
-                                    if viewModel is ProfileViewModel && self?.profileEcoStatusAvailable == false {
+                        if loginExecuted
+                        {
+                            if self != nil
+                            {
+                                if let viewModel = viewModel.nextViewModel
+                                {
+                                    if viewModel is ProfileViewModel && self?.profileEcoStatusAvailable == false
+                                    {
                                         Router.exit(self!)
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         Router.from(self!, viewModel: viewModel).execute()
                                     }
-                                } else if self?.introIsShowed == true {
+                                }
+                                else if self?.introIsShowed == true
+                                {
                                     Router.exit(self!)
-                                } else {
+                                }
+                                else
+                                {
                                     Router.back(self!)
                                 }
                             }
@@ -88,6 +98,13 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
         txt_password.delegate = self
         txt_password.placeHolderText = "txt_loginPasswordPlaceholder".localized()
         txt_password.style = CustomTextInputStyle1()
+        
+        if _isDebugAssertConfiguration()
+        {
+            txt_email.text = "itc@sharengo.eu"
+            txt_password.text = "Sharengo1"
+        }
+        
         /*#if ISDEBUG
             //txt_email.text = "emilio.cristiano@tiscali.it"
             //txt_password.text = "Sharengo2016!"

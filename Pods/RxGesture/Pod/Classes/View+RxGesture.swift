@@ -89,6 +89,8 @@ extension Reactive where Base: View {
             control.isUserInteractionEnabled = true
         #endif
 
+        gesture.delegate = gesture.delegate ?? PermissiveGestureRecognizerDelegate.shared
+
         let source: Observable<G> = Observable
             .create { observer in
                 MainScheduler.ensureExecutingOnScheduler()

@@ -18,7 +18,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import UIKit
 import RxSwift
 import RxCocoa
 
@@ -27,13 +26,13 @@ import RxCocoa
 private enum Defaults {
     static var minimumNumberOfTouches: Int = 1
     static var maximumNumberOfTouches: Int = Int.max
-    static var configuration: ((UIPanGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = nil
+    static var configuration: ((UIPanGestureRecognizer) -> Void)? = nil
 }
 
 /// A `GestureRecognizerFactory` for `UIPanGestureRecognizer`
 public struct PanGestureRecognizerFactory: GestureRecognizerFactory {
     public typealias Gesture = UIPanGestureRecognizer
-    public let configuration: (UIPanGestureRecognizer, RxGestureRecognizerDelegate) -> Void
+    public let configuration: (UIPanGestureRecognizer) -> Void
 
     /**
      Initialiaze a `GestureRecognizerFactory` for `UITapGestureRecognizer`
@@ -44,12 +43,12 @@ public struct PanGestureRecognizerFactory: GestureRecognizerFactory {
     public init(
         minimumNumberOfTouches: Int = Defaults.minimumNumberOfTouches,
         maximumNumberOfTouches: Int = Defaults.maximumNumberOfTouches,
-        configuration: ((UIPanGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = Defaults.configuration
+        configuration: ((UIPanGestureRecognizer) -> Void)? = Defaults.configuration
         ){
-        self.configuration = { gesture, delegate in
+        self.configuration = { gesture in
             gesture.minimumNumberOfTouches = minimumNumberOfTouches
             gesture.maximumNumberOfTouches = maximumNumberOfTouches
-            configuration?(gesture, delegate)
+            configuration?(gesture)
         }
     }
 }
@@ -65,7 +64,7 @@ extension AnyGestureRecognizerFactory {
     public static func pan(
         minimumNumberOfTouches: Int = Defaults.minimumNumberOfTouches,
         maximumNumberOfTouches: Int = Defaults.maximumNumberOfTouches,
-        configuration: ((UIPanGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = Defaults.configuration
+        configuration: ((UIPanGestureRecognizer) -> Void)? = Defaults.configuration
         ) -> AnyGestureRecognizerFactory {
         let gesture = PanGestureRecognizerFactory(
             minimumNumberOfTouches: minimumNumberOfTouches,
@@ -87,7 +86,7 @@ public extension Reactive where Base: UIView {
     public func panGesture(
         minimumNumberOfTouches: Int = Defaults.minimumNumberOfTouches,
         maximumNumberOfTouches: Int = Defaults.maximumNumberOfTouches,
-        configuration: ((UIPanGestureRecognizer, RxGestureRecognizerDelegate) -> Void)? = Defaults.configuration
+        configuration: ((UIPanGestureRecognizer) -> Void)? = Defaults.configuration
         ) -> ControlEvent<UIPanGestureRecognizer> {
 
         return gesture(PanGestureRecognizerFactory(

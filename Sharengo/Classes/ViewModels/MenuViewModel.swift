@@ -168,7 +168,13 @@ public final class MenuViewModel : ListViewModelType, ViewModelTypeSelectable {
             let menuItem3 = MenuItem(title: "lbl_menuRaces", icon: "ic_cron_corse", viewModel: ViewModelFactory.carTrips())
             let menuItem4 = MenuItem(title: "lbl_menuHelp", icon: "ic_assistenza", viewModel: ViewModelFactory.support())
             let menuItem5 = MenuItem(title: "lbl_menuFaq", icon: "ic_faq_nero", viewModel: ViewModelFactory.faq())
-            let menuItem6 = MenuItem(title: "lbl_menuSettings", icon: "ic_impostazioni", viewModel: ViewModelFactory.settings())
+            var settingsIcon = "ic_impostazioni"
+            if PushNotificationController.pushNotificationIsRefused && AppDelegate.isLoggedIn
+            {
+                settingsIcon = "icon_alert"
+            }
+            
+            let menuItem6 = MenuItem(title: "lbl_menuSettings", icon: settingsIcon, viewModel: ViewModelFactory.settings())
             let menuItem7 = MenuItem(title: "lbl_menuLogout", icon: "ic_logout", viewModel: ViewModelFactory.home())
             //rates rimosse perchè visualizzabili in area utente
             //let menuItem8 = MenuItem(title: "lbl_menuRates", icon: "ic_tariffe", viewModel: ViewModelFactory.rates())

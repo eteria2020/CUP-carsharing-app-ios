@@ -88,7 +88,7 @@ public class SettingsCitiesViewController : BaseViewController, ViewModelBindabl
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }

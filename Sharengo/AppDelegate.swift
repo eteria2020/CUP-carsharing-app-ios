@@ -4,43 +4,45 @@ import Crashlytics
 import Boomerang
 import RxSwift
 import Gloss
+import OneSignal
 import SideMenu
 import Localize_Swift
 import GoogleMaps
 import KeychainSwift
 
-//global var for URL
-public var selectedPlate = ""
-
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate
+{
     var window: UIWindow?
-    fileprivate let menuPadding: CGFloat = 100.0
+    private let menuPadding: CGFloat = 100.0
     
-
-    func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
-            // Non sono loggato
-        } else {
-            if KeychainSwift().get("PasswordClear") == nil {
-                var languageid = "en"
-                if Locale.preferredLanguages[0] == "it-IT" {
-                    languageid = "it"
-                }
-                Localize.setCurrentLanguage(languageid)
-                KeychainSwift().clear()
+    static var isLoggedIn: Bool {
+        return KeychainSwift().get("Username") != nil && KeychainSwift().get("Password") != nil
+    }
+    
+    func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    {
+        if AppDelegate.isLoggedIn && KeychainSwift().get("PasswordClear") == nil
+        {
+            var languageid = "en"
+            if Locale.preferredLanguages[0] == "it-IT"
+            {
+                languageid = "it"
             }
+            Localize.setCurrentLanguage(languageid)
+            KeychainSwift().clear()
         }
         
-        self.setupAlert()
-        self.setupHistory()
-        self.setupFavourites()
-        self.setupSettings()
-        self.setupCities()
-        self.setupPolygons()
-        self.setupGoogleMaps()
-        self.setupFabric()
-        self.setupConfig()
+        setupAlert()
+        setupHistory()
+        setupFavourites()
+        setupSettings()
+        setupCities()
+        setupPolygons()
+        setupGoogleMaps()
+        setupFabric()
+        setupConfig()
+        
         _ = CoreController.shared.pulseYellow
         _ = CoreController.shared.pulseGreen
         
@@ -55,62 +57,91 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         statusBar.backgroundColor = ColorBrand.yellow.value
         self.setupSideMenu()
         
-        if let callingAp : NSString = launchOptions?[.sourceApplication] as? NSString{
+        if let callingAp : NSString = launchOptions?[.sourceApplication] as? NSString
+        {
             debugPrint(callingAp)
             CoreController.shared.callingApp = callingAp
         }
         
-        if let url = launchOptions?[.url] as? URL{
-           
+        //  Enable OneSignal
         
-        if url.host == nil
+//        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        
+//        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
+//        OneSignal.initWithLaunchOptions(launchOptions,
+//                                        appId: "202ca4a0-8ec3-4db3-af38-2986a3138106",
+//                                        handleNotificationAction: nil,
+//                                        settings: onesignalInitSettings)
+//
+//        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        //  Manage launch options
+        
+        if let url = launchOptions?[.url] as? URL
         {
-            return true;
+            _ = handleURL(url)
         }
         
-        let urlString = url.absoluteString
-        let queryArray = urlString.components(separatedBy: "/")
-        let query = queryArray[2]
-        
-        // Check if article
-        if query.range(of: "plate") != nil
-        {
-            let data = urlString.components(separatedBy: "/")
-            if data.count >= 3
-            {
-                let parameter = data[3]
-                 CoreController.shared.urlDeepLink = parameter
-                //let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
-                //self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
-            }
-        }
-        
-        }
+//        if let data = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any]
+//        {
+//            PushNotificationController.shared.set(notification: data)
+//        }
+//        
+//        //    TEST Push Notification
+//        if _isDebugAssertConfiguration()
+//        {
+//            if    let data = try? Data(contentsOf: URL(fileURLWithPath: "/Users/sharengo/Desktop/fake-note.json")),
+//                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [AnyHashable: Any],
+//                let dict = json
+//            {
+//                PushNotificationController.shared.set(notification: dict)
+//            }
+//        }
        
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication)
+    {
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication)
+    {
         CoreController.shared.currentViewController?.hideMenuBackground()
     }
 
-    func applicationWillEnterForeground(_ application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication)
+    {
         LocationManager.sharedInstance.locationManager?.stopUpdatingLocation()
         LocationManager.sharedInstance.locationManager?.startUpdatingLocation()
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication)
+    {
+        
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication)
+    {
+        
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    {
+        return handleURL(url)
+    }
+    
+    //    MARK: Notifications
+    
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+//    {
+//        debugPrint("Devices registered: \(deviceToken as NSData)")
+//    }
     
     // MARK: - Utilities methods
     
-    fileprivate func setupAlert() {
+    private func setupAlert()
+    {
         UserDefaults.standard.set(false, forKey: "alertShowed")
         ZAlertView.positiveColor = Color.alertButtonsPositiveBackground.value
         ZAlertView.negativeColor = Color.alertButtonsPositiveBackground.value
@@ -127,20 +158,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ZAlertView.buttonSectionExtraGap = 20
     }
     
-    fileprivate func setupHistory() {
+    private func setupHistory()
+    {
         if UserDefaults.standard.object(forKey: "historyDic") == nil {
             UserDefaults.standard.set([String: Data](), forKey: "historyDic")
         }
     }
 
-    fileprivate func setupFabric() {
+    private func setupFabric()
+    {
         #if ISDEBUG
         #elseif ISRELEASE
             Fabric.with([Crashlytics.self])
         #endif
     }
 
-    fileprivate func setupGoogleMaps() {
+    private func setupGoogleMaps()
+    {
        // #if ISDEBUG
            // GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
        // #elseif ISRELEASE
@@ -150,7 +184,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //#endif
     }
     
-    fileprivate func setupFavourites() {
+    private func setupFavourites()
+    {
         if UserDefaults.standard.object(forKey: "favouritesAddressDic") == nil {
             UserDefaults.standard.set([String: Data](), forKey: "favouritesAddressDic")
         }
@@ -160,7 +195,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    fileprivate func setupSettings() {
+    private func setupSettings()
+    {
         if UserDefaults.standard.object(forKey: "cityDic") == nil {
             UserDefaults.standard.set([String: String](), forKey: "cityDic")
         }
@@ -170,7 +206,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    fileprivate func setupCities() {
+    private func setupCities()
+    {
         if let cache = UserDefaults.standard.object(forKey: "cacheCities") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: cache) as? [CityCache] {
                 var cities: [City] = [City]()
@@ -182,7 +219,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    fileprivate func setupPolygons() {
+    private func setupPolygons()
+    {
         if let cache = UserDefaults.standard.object(forKey: "cachePolygons") as? Data {
             if let unarchivedArray = NSKeyedUnarchiver.unarchiveObject(with: cache) as? [PolygonCache] {
                 var polygons: [Polygon] = [Polygon]()
@@ -193,8 +231,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    fileprivate func setupConfig(){
-        
+    
+    private func setupConfig()
+    {
         CoreController.shared.apiController.getConfig()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe {event in
@@ -218,68 +257,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }}
             .addDisposableTo(CoreController.shared.disposeBag)
     }
-}
-
-/*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-  
-   let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: false)
-    let items = (urlComponents?.queryItems)! as [NSURLQueryItem] // {name = backgroundcolor, value = red}
-    if (url.scheme == "sharengocar") {
-        //var color: UIColor? = nil
-        var plate = ""
-        if let _ = items.first, let propertyName = items.first?.name, let propertyValue = items.first?.value {
-            //vcTitle = propertyName
-            if (propertyName == "plate") {
-               plate = propertyValue
-            }
-        }
-        
-        if (plate != "") {
-            selectedPlate = plate
-            /*let vc = UIViewController()
-            vc.view.backgroundColor = color
-            vc.title = vcTitle
-            let navController = UINavigationController(rootViewController: vc)
-            let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(dismiss))
-            vc.navigationItem.leftBarButtonItem = barButtonItem
-            self.window?.rootViewController?.presentViewController(navController, animated: true, completion: nil)*/
-            return true
-        }
-    }
-    // URL Scheme entered through URL example : swiftexamples://red
-    //swiftexamples://?backgroundColor=red
-    return false
-
-}*/
- func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
     
-    /*if url.host == nil
+    private func handleURL(_ url: URL) -> Bool
     {
-        return true;
-    }
-    
-    let urlString = url.absoluteString
-    let queryArray = urlString!.components(separatedBy: "/")
-    let query = queryArray[2]
-    
-    // Check if article
-    if query.range(of: "plate") != nil
-    {
-        let data = urlString!.components(separatedBy: "/")
-        if data.count >= 3
-        {
-            let parameter = data[3]
-            //let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
-            //self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
-        }
-    }
-    
-  
-        CoreController.shared.urlDeepLink = url
-        print(url.host as String!)*/
-    if let url = url as? URL{
-        
-        
         if url.host == nil
         {
             return true;
@@ -297,93 +277,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             {
                 let parameter = data[3]
                 CoreController.shared.urlDeepLink = parameter
-                //let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
-                //self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
+                
+                return true
             }
         }
         
+        return false
     }
     
-    if let callingApp = options[.sourceApplication]{
-        debugPrint(callingApp)
-    }
-    
-    
-    return true
-}
-
-
-
-func presentDetailViewController(plate:String) {
-    
-    selectedPlate = plate
-    
-    
-    
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    
-    let detailVC = storyboard.instantiateViewController(withIdentifier: "NavigationController")
-        as! MapViewController
-    
-    let navigationVC = storyboard.instantiateViewController(withIdentifier: "DetailController")
-        as! UINavigationController
-    navigationVC.modalPresentationStyle = .formSheet
-    
-    navigationVC.pushViewController(detailVC, animated: true)
-}
-
-extension AppDelegate {
-    func setupSideMenu() {
-        SideMenuManager.default.menuPresentMode = .menuSlideIn
-        SideMenuManager.default.menuShadowColor = .black
-        SideMenuManager.default.menuFadeStatusBar = false
-        SideMenuManager.default.menuWidth = UIScreen.main.bounds.width-menuPadding
-        SideMenuManager.default.menuAnimationBackgroundColor = UIColor.red
+    func setupSideMenu()
+    {
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuShadowColor = .black
+        SideMenuManager.menuFadeStatusBar = false
+        SideMenuManager.menuWidth = UIScreen.main.bounds.width - menuPadding
+        SideMenuManager.menuAnimationBackgroundColor = UIColor.red
         
         let menuRightNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "menuNavigation") as! UISideMenuNavigationController
-        SideMenuManager.default.menuRightNavigationController = menuRightNavigationController
+        SideMenuManager.menuRightNavigationController = menuRightNavigationController
         
         if let menu = menuRightNavigationController.topViewController as? MenuViewController
         {
-            //  Use afterLoad to avoid binding problem.
-            menu.bind(to: ViewModelFactory.menu(), afterLoad: false)
+            menu.bind(to: ViewModelFactory.menu(), afterLoad: true)
         }
     }
-    
-    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-
-        // 1
-        /*guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-         let url = userActivity.webpageURL,
-         let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-         return true
-         }
-         
-         // 2
-         let computer = userActivity.webpageURL?.path
-         presentDetailViewController(plate: computer!)
-         return true
-         
-         
-         // 3*/
-        
-        /*let topWindow = UIWindow(frame: UIScreen.main.bounds)
-        topWindow.rootViewController = UIViewController()
-        topWindow.windowLevel = UIWindowLevelAlert + 1
-        let alert = UIAlertController(title: "UN LINK", message: "YES", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "confirm"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-            // continue your work
-            // important to hide the window after work completed.
-            // this also keeps a reference to the window until the action is invoked.
-            topWindow.isHidden = true
-        }))
-        topWindow.makeKeyAndVisible()
-        topWindow.rootViewController?.present(alert, animated: true, completion: { _ in })
-        
-        let webpageUrl = URL(string: "http://rw-universal-links-final.herokuapp.com")!
-        application.openURL(webpageUrl)*/
-        
-        return true
-    }
-
 }

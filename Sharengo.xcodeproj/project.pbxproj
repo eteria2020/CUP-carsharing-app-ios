@@ -327,6 +327,7 @@
 		D17DC78620A2F06400BA3945 /* LegalNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */; };
 		D17DC78820A2F09000BA3945 /* LegalNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */; };
 		D17DC78A20A2F60F00BA3945 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78920A2F60E00BA3945 /* AppConfig.swift */; };
+		D1A8B56A20F75B8C009EABB1 /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A8B56920F75B8C009EABB1 /* PushNotificationController.swift */; };
 		D1D93DA420038F2900A3B7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */; };
 		D1EFAA421FE8056100CE33E1 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA411FE8056100CE33E1 /* PinViewController.swift */; };
 		D1EFAA441FE8059000CE33E1 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */; };
@@ -695,6 +696,7 @@
 		D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewModel.swift; sourceTree = "<group>"; };
 		D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewController.swift; sourceTree = "<group>"; };
 		D17DC78920A2F60E00BA3945 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		D1A8B56920F75B8C009EABB1 /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 		D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
 		D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewModel.swift; path = Classes/ViewModels/PinViewModel.swift; sourceTree = "<group>"; };
@@ -1100,6 +1102,7 @@
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
 				03140E0D1F40437600F67160 /* SharengoApiController.swift */,
 				4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */,
+				D1A8B56920F75B8C009EABB1 /* PushNotificationController.swift */,
 				4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */,
 				03653E221EEADA4800AC7A93 /* NotificationsController.swift */,
 			);
@@ -1706,7 +1709,13 @@
 						DevelopmentTeam = F67U6XW2G4;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
@@ -2175,6 +2184,7 @@
 				4DD9C7EC1ECDC50500BE4218 /* MapViewModel.swift in Sources */,
 				0366DD991F1F474C006657D9 /* SupportViewModel.swift in Sources */,
 				03E77CF41F555BBB00765852 /* RatesViewModel.swift in Sources */,
+				D1A8B56A20F75B8C009EABB1 /* PushNotificationController.swift in Sources */,
 				4D60EA8F1F3E037E0085BFE3 /* GMUGeometryCollection.m in Sources */,
 				4DCE7EF01EE21B1C00442BF1 /* Favorite.swift in Sources */,
 				038642001F1762FF003AF6B1 /* Category.swift in Sources */,

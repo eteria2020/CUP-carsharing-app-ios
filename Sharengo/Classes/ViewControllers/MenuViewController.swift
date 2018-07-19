@@ -117,10 +117,13 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                                                 }
                                                 Localize.setCurrentLanguage(languageid)
                                                 KeychainSwift().clear()
+                                                PushNotificationController.shared.removePushNotifications()
                                                 CoreController.shared.currentCarBooking = nil
                                                 CoreController.shared.currentCarTrip = nil
                                                 CoreController.shared.allCarBookings = []
                                                 CoreController.shared.allCarTrips = []
+                                                
+                                                NotificationCenter.default.post(name: .PushStatusChanged, object: nil)
                                                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
                                                 let dispatchTime = DispatchTime.now() + 0.3
                                                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {

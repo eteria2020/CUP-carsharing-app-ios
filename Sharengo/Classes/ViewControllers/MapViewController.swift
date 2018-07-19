@@ -76,6 +76,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /// Variable used to save if the tutorial is already showed
     public var tutorialIsShowed: Bool = true
     
+    public var selectedPlate: String = ""
+    
     func updatePolylineInfo()
     {
         if stepPolyline != nil
@@ -151,7 +153,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             print("errore bruttissimo")
                             break
                         case .completed:
-                            selectedPlate = ""
+                            self?.selectedPlate = ""
                             break
                             }}
                         .addDisposableTo(CoreController.shared.disposeBag)
@@ -280,10 +282,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.layoutIfNeeded()
+        
         // NavigationBar
-       // self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
-      self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .empty, rightItemType: .menu))
+        // self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
+        self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .empty, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
@@ -291,13 +295,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.view_searchBar.stopSearchBar()
                 Router.exit(self!)
                 self?.closeCarPopup()
+                
             case .menu:
-                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
                 self?.closeCarPopup()
-            default:
-                break
+                
+            case .empty: break
             }
         }).addDisposableTo(self.disposeBag)
+        
         //checkUrlCar for external open APP
         if(selectedPlate != ""){
             
@@ -314,10 +320,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                         break
                     case .error(_):
-                            selectedPlate = ""
+                            self.selectedPlate = ""
                         break
                     case .completed:
-                            selectedPlate = ""
+                            self.selectedPlate = ""
                         break
                     }
                 }.addDisposableTo(CoreController.shared.disposeBag)
@@ -500,25 +506,27 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         
     }
     
-    override public func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool)
+    {
         super.viewDidAppear(animated)
-        if !self.checkedUserPosition {
+        
+        if !self.checkedUserPosition
+        {
             self.checkUserPosition()
-        } else {
+        }
+        else
+        {
             self.checkedUserPosition = true
         }
         
-        if let plate = CoreController.shared.urlDeepLink {
-            
+        if let plate = CoreController.shared.urlDeepLink
+        {
             viewModel?.searchPlateAvailable(plate: plate)
             CoreController.shared.urlDeepLink = nil
         }
-       /* if let disableReason = KeychainSwift().get("DisableReason"){
-                self.getDisableReasonMessage()
-        }else{
-            
-        }*/
         
+//        PushNotificationController.shared.requestPushNotifications()
+//        PushNotificationController.shared.evaluateLastNotification(from: self)
     }
     
     override public func viewWillAppear(_ animated: Bool)
