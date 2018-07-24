@@ -50,7 +50,7 @@ class PushNotificationController: NSObject
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             debugPrint("PushNotificationController: User accepted notifications: \(accepted)")
             
-            NotificationCenter.default.post(name: .PushStatusChanged, object: nil)
+            NotificationCenter.default.post(name: .PushStatusChanged, object: nil, userInfo: [PushNotificationController.pushNotificationAuthorizedKey: accepted])
             
             if accepted
             {

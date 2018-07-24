@@ -525,8 +525,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             CoreController.shared.urlDeepLink = nil
         }
         
-//        PushNotificationController.shared.requestPushNotifications()
-//        PushNotificationController.shared.evaluateLastNotification(from: self)
+        PushNotificationController.shared.requestPushNotifications()
+        PushNotificationController.shared.evaluateLastNotification(from: self)
     }
     
     override public func viewWillAppear(_ animated: Bool)

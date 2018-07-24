@@ -147,6 +147,7 @@
 "lbl_settingsCities" = "Set up city";
 "lbl_settingsFavourites" = "Set up favorite addresses";
 "lbl_settingsLanguages" = "Set up language";
+"lbl_settingsNotifications" = "Set up notifications";
 
 // Settings Languages
 "lbl_settingsLanguagesHeaderTitle" = "SET UP LANGUAGE";

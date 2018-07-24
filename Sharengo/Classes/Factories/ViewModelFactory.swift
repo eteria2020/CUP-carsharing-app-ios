@@ -77,6 +77,10 @@ struct ViewModelFactory {
         return SettingsLanguagesViewModel()
     }
     
+    static func settingsNotifications() -> ViewModelType {
+        return SettingsNotificationsViewModel()
+    }
+    
     static func settingsCities() -> ViewModelType {
         return SettingsCitiesViewModel()
     }

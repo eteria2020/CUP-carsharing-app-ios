@@ -65,15 +65,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         //  Enable OneSignal
         
-//        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-        
-//        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
-//        OneSignal.initWithLaunchOptions(launchOptions,
-//                                        appId: "202ca4a0-8ec3-4db3-af38-2986a3138106",
-//                                        handleNotificationAction: nil,
-//                                        settings: onesignalInitSettings)
-//
-//        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "202ca4a0-8ec3-4db3-af38-2986a3138106",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
         
         //  Manage launch options
         
@@ -82,11 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             _ = handleURL(url)
         }
         
-//        if let data = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any]
-//        {
-//            PushNotificationController.shared.set(notification: data)
-//        }
-//        
+        if let data = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any]
+        {
+            PushNotificationController.shared.set(notification: data)
+        }
+        
 //        //    TEST Push Notification
 //        if _isDebugAssertConfiguration()
 //        {
@@ -133,10 +131,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     //    MARK: Notifications
     
-//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
-//    {
-//        debugPrint("Devices registered: \(deviceToken as NSData)")
-//    }
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+        debugPrint("Devices registered: \(deviceToken as NSData)")
+    }
     
     // MARK: - Utilities methods
     

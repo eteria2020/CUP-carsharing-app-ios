@@ -85,6 +85,9 @@ struct Router : RouterType {
             let destination: SettingsViewController = (Storyboard.main.scene(.settings))
             destination.bind(to: viewModel, afterLoad: true)
             return UIViewControllerRouterAction.push(source: source, destination: destination)
+        case is SettingsNotificationsViewModel:
+            Router.openSettings()
+            return EmptyRouterAction()
         case is SettingsLanguagesViewModel:
             let destination: SettingsLanguagesViewController = (Storyboard.main.scene(.settingsLanguages))
             destination.bind(to: viewModel, afterLoad: true)
@@ -185,5 +188,18 @@ struct Router : RouterType {
         destination.bind(to: ViewModelFactory.onBoard(), afterLoad: true)
         viewController.navigationController?.pushViewController(destination, animated: false)
     
+    }
+    
+    public static func openSettings()
+    {
+        let url = URL(string: UIApplicationOpenSettingsURLString)!
+        if #available(iOS 10.0, *)
+        {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+        else
+        {
+            UIApplication.shared.openURL(url)
+        }
     }
 }

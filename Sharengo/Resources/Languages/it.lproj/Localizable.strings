@@ -150,6 +150,7 @@
 "lbl_settingsCities" = "Imposta città";
 "lbl_settingsFavourites" = "Imposta i tuoi indirizzi preferiti";
 "lbl_settingsLanguages" = "Imposta lingua";
+"lbl_settingsNotifications" = "Imposta le notifiche";
 
 // Settings Languages
 "lbl_settingsLanguagesHeaderTitle" = "IMPOSTA LINGUA";
