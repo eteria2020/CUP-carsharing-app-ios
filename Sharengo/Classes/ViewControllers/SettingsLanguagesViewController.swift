@@ -73,7 +73,6 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        // self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
         self.lbl_title.textColor = Color.settingHeaderLabel.value
         
@@ -82,14 +81,12 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
-        case 4.7:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        case 5.5:
+        case 4.7, 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         case 5.8:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         }
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
@@ -99,7 +96,7 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
@@ -117,11 +114,11 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
      This method is used to update language interface after user selection
     */
     public func updateLanguages() {
-        DispatchQueue.main.async {
-            self.viewModel?.updateData()
-            self.viewModel?.reload()
-            self.collectionView?.reloadData()
-            self.lbl_title.styledText = self.viewModel?.title
+        DispatchQueue.main.async {[weak self]  in
+            self?.viewModel?.updateData()
+            self?.viewModel?.reload()
+            self?.collectionView?.reloadData()
+            self?.lbl_title.styledText = self?.viewModel?.title
         }
     }
     
@@ -152,8 +149,8 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
      This method is called from collection delegate to decide how the list interface is showed (size)
      */
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
-        return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/4)
+        let width = collectionView.bounds.size.width
+        return CGSize(width: width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/4)
     }
     
     /**

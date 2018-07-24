@@ -8,8 +8,11 @@
 
 import UIKit
 
-extension UIColor {
-    convenience init(hexString: String) {
+/**
+ UIColor utilities
+ */
+public extension UIColor {
+    convenience public init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
         Scanner(string: hex).scanHexInt32(&int)
@@ -28,7 +31,10 @@ extension UIColor {
     }
 }
 
-enum ColorBrand {
+/**
+ Main brand colors in application
+ */
+public enum ColorBrand {
     case yellow
     case green
     case black
@@ -39,7 +45,10 @@ enum ColorBrand {
     case clear
     case red
 
-    var value: UIColor {
+    /**
+     Value returned from color
+     */
+    public var value: UIColor {
         get {
             switch self {
             case .yellow:
@@ -65,7 +74,10 @@ enum ColorBrand {
     }
 }
 
-enum Color {
+/**
+ Main colors in application
+ */
+public enum Color {
     // Alert
     case alertBackground
     case alertButtonsPositiveBackground
@@ -109,6 +121,7 @@ enum Color {
     case homeDisabledBackground
     case homeDisabledIcon
     case homeDescriptionLabel
+    case homeVersionLabel
     
     // SearchCars
     case searchCarsClusterLabel
@@ -321,6 +334,9 @@ enum Color {
     // Tutorial
     case tutorialBackground
     
+    /**
+     Value returned from color
+     */
     var value: UIColor {
         get {
             switch self {
@@ -387,6 +403,8 @@ enum Color {
             case .homeDisabledIcon:
                 return UIColor(hexString: "#b4ada7")
             case .homeDescriptionLabel:
+                return ColorBrand.black.value
+            case .homeVersionLabel:
                 return ColorBrand.black.value
             // SearchCars
             case .searchCarsClusterLabel:

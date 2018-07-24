@@ -12,16 +12,16 @@ import Gloss
 import CoreLocation
 
 /**
- The Favourite  model is used to represent user's favourites.
+ The Favourite model is used to represent empty favourites
  */
 public class Favorite: ModelType {
-    /// Favourite's name
+    /// Text that has to be shown
     public var name: String?
-    /// Empty var of type Favourite
+    /// Empty favourite used when no favorite are memorized in the settings section
     public static var empty1:Favorite {
         return Favorite(name: "lbl_searchBarNoFavorites".localized())
     }
-    /// Empty var of type Favourite
+    /// Empty favourite used when user is in settings screen
     public static var empty2:Favorite {
         return Favorite(name: "lbl_favouritesNoFavorites".localized())
     }

@@ -12,7 +12,10 @@ import Boomerang
 import Action
 import RxSwift
 
-enum SpeechErrorType {
+/**
+ Enum that specifies speech error type
+ */
+public enum SpeechErrorType {
     case empty
     case authSpeechAuthorizationDenied
     case authSpeechAuthorizationRestricted
@@ -22,7 +25,10 @@ enum SpeechErrorType {
     case notSetted
     case notAvailable
     
-    func getMessage() -> String {
+    /**
+     Get localized message from error type
+     */
+    public func getMessage() -> String {
         switch self {
         case .empty:
             return ""
@@ -43,7 +49,10 @@ enum SpeechErrorType {
         }
     }
     
-    func showSettings() -> Bool {
+    /**
+     Check if error type has to shown settings
+     */
+    public func showSettings() -> Bool {
         switch self {
         case .empty:
             return false
@@ -64,7 +73,10 @@ enum SpeechErrorType {
         }
     }
     
-    func hideButton() -> Bool {
+    /**
+     Check if error type has to hide button
+     */
+    public func hideButton() -> Bool {
         switch self {
         case .empty:
             return true
@@ -86,24 +98,37 @@ enum SpeechErrorType {
     }
 }
 
+/**
+ SpeechController class is a controller that manage speech device functionality (available only from iOS 10.0)
+ */
 @available(iOS 10.0, *)
-class SpeechController: NSObject
+public class SpeechController: NSObject
 {
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "lcl_searchBarSpeechRecognizer".localized()))
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    private var recognitionTask: SFSpeechRecognitionTask?
-    private let audioEngine = AVAudioEngine()
-    
-    var speechInProgress: Variable<Bool> = Variable(false)
-    var speechTranscription: Variable<String?> = Variable(nil)
-    var speechError: Variable<SpeechErrorType?> = Variable(nil)
-    var isAuthorized:Bool {
+    /// Speech Recognizer with user language setting
+    public let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "lcl_searchBarSpeechRecognizer".localized()))
+    /// Buffer Speech Recognizer Request
+    public var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    /// Speech Recognizer task
+    public var recognitionTask: SFSpeechRecognitionTask?
+    /// Audio engine
+    public let audioEngine = AVAudioEngine()
+    /// Boolean that determine if there is a speech in progress
+    public var speechInProgress: Variable<Bool> = Variable(false)
+    /// Speech transcription of last speech
+    public var speechTranscription: Variable<String?> = Variable(nil)
+    /// Speech error if there is one in last speech
+    public var speechError: Variable<SpeechErrorType?> = Variable(nil)
+    /// Boolean that determine if app can use speech services or not
+    public var isAuthorized:Bool {
         get {
             return SFSpeechRecognizer.authorizationStatus() == .authorized && AVAudioSession.sharedInstance().recordPermission() == AVAudioSessionRecordPermission.granted
         }
     }
     
-    func requestSpeechAuthorization() {
+    /**
+     This method request authorization to user for use speech services
+     */
+    public func requestSpeechAuthorization() {
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             UserDefaults.standard.set(true, forKey: "alertSpeechRecognizerRequestAuthorization")
             switch authStatus {
@@ -134,6 +159,9 @@ class SpeechController: NSObject
         }
     }
     
+    /**
+     This method request authorization to user for use microphone services
+     */
     func requestMicrophoneAuthorization() {
         UserDefaults.standard.set(true, forKey: "alertMicrophoneRequestAuthorization")
         AVAudioSession.sharedInstance().requestRecordPermission { (success) in
@@ -160,7 +188,10 @@ class SpeechController: NSObject
         }
     }
     
-    func manageRecording() {
+    /**
+     This method manage recording actions like start and stop
+     */
+    public func manageRecording() {
         if self.audioEngine.isRunning {
             self.speechInProgress.value = false
             // Terminiamo l'ascolto
@@ -172,7 +203,10 @@ class SpeechController: NSObject
         }
     }
     
-    fileprivate func startRecording() {
+    /**
+     This method start recording a new speech
+     */
+    public func startRecording() {
         audioEngine.inputNode?.removeTap(onBus: 0)
         self.speechRecognizer?.delegate = self
         if self.recognitionTask != nil {
@@ -228,7 +262,10 @@ class SpeechController: NSObject
 
 @available(iOS 10.0, *)
 extension SpeechController: SFSpeechRecognizerDelegate {
-    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+    /**
+     This method is called if user's authorization about speech is changed
+     */
+    public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         self.speechInProgress.value = false
         self.speechError.value = .notAvailable
         self.manageRecording()

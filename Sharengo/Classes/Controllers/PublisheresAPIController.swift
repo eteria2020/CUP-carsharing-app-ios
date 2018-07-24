@@ -16,10 +16,16 @@ import KeychainSwift
 
 // NetworkLoggerPlugin(verbose: true, cURL: true)
 
-final class PublishersAPIController {
-    fileprivate var manager: SessionManager?
+/**
+ PublishersAPIController class is a controller that manage publishers services
+ */
+public class PublishersAPIController {
+    /// Session Manager
+    public var manager: SessionManager?
    
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
         configuration.timeoutIntervalForResource = 20
@@ -29,7 +35,12 @@ final class PublishersAPIController {
         )
     }
     
-    func getCities() -> Observable<Response> {
+    // MARK: - Get methods
+    
+    /**
+     This method returns cities
+     */
+    public func getCities() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
@@ -56,7 +67,10 @@ final class PublishersAPIController {
         }
     }
     
-    func getCategories() -> Observable<Response> {
+    /**
+     This method returns categories
+     */
+    public func getCategories() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.categories())
@@ -76,7 +90,11 @@ final class PublishersAPIController {
         }
     }
     
-    func getOffers(category: Category? = nil) -> Observable<Response> {
+    /**
+     This method returns offers of a category
+     - Parameter category: category that can be nil if we want all offers
+     */
+    public func getOffers(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.offers(category: category))
@@ -96,7 +114,13 @@ final class PublishersAPIController {
         }
     }
     
-    func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
+    /**
+     This method returns offers visible in map
+     - Parameter latitude: one of the coordinate that determines the center of the map
+     - Parameter longitude: one of the coordinate that determines the center of the map
+     - Parameter radius: the distance from the center of the map to the edge of the map
+     */
+    public func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.mapOffers(latitude: latitude, longitude: longitude, radius: radius))
@@ -116,7 +140,11 @@ final class PublishersAPIController {
         }
     }
     
-    func getEvents(category: Category? = nil) -> Observable<Response> {
+    /**
+     This method returns events of a category
+     - Parameter category: category that can be nil if we want all events
+     */
+    public func getEvents(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.events(category: category))
@@ -136,7 +164,13 @@ final class PublishersAPIController {
         }
     }
     
-    func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
+    /**
+     This method returns events visible in map
+     - Parameter latitude: one of the coordinate that determines the center of the map
+     - Parameter longitude: one of the coordinate that determines the center of the map
+     - Parameter radius: the distance from the center of the map to the edge of the map
+     */
+    public func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.mapEvents(latitude: latitude, longitude: longitude, radius: radius))
@@ -167,7 +201,7 @@ fileprivate enum API {
 }
 
 extension API: TargetType {
-    var baseURL: URL { return URL(string: "http://universo-sharengo.thedigitalproject.it:universo-sharengo.thedigitalproject.it@universo-sharengo.thedigitalproject.it/feed")! }
+    var baseURL: URL { return URL(string: "https://www.sharengo.it/feed")! }
     
     var path: String {
         switch self {

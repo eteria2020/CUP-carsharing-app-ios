@@ -14,7 +14,7 @@ import Action
 /**
  The OnBoard model provides data related to display content on the onboard
  */
-public final class OnBoardViewModel: ViewModelType {
+public class OnBoardViewModel: ViewModelType {
     
     // MARK: - Init methods
     

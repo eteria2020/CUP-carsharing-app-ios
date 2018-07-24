@@ -28,6 +28,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_feeds: UIView!
     @IBOutlet fileprivate weak var view_dotted: UIView!
     @IBOutlet fileprivate weak var lbl_description: UILabel!
+    @IBOutlet fileprivate weak var lbl_version: UILabel!
     /// Variable used to save if the login is already showed
     public var loginIsShowed: Bool = false
     /// Variable used to save if the intro is already showed
@@ -121,6 +122,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
+        self.lbl_version.text = "1.0.4.1"
         self.view_searchCar.backgroundColor = Color.homeEnabledBackground.value
         self.view_searchCar.layer.cornerRadius = self.view_searchCar.frame.size.width/2
         self.view_searchCar.layer.masksToBounds = true
@@ -172,7 +174,8 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .home:
-                Router.exit(self!)
+                break
+                //Router.exit(self!)
             case .menu:
                 self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
@@ -241,11 +244,15 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
      - user's city showed in the feed button
      */
     @objc fileprivate func updateUserData() {
-        DispatchQueue.main.async {
-            if let firstname = KeychainSwift().get("UserFirstname") {
-                self.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
+        DispatchQueue.main.async {[weak self]  in
+            if let firstname: String = KeychainSwift().get("UserFirstname") {
+                if KeychainSwift().get("UserGender") == "female" {
+                    self?.lbl_description.styledText = String(format: "lbl_homeDescriptionLoggedF".localized(), firstname)
+                } else {
+                    self?.lbl_description.styledText = String(format: "lbl_homeDescriptionLogged".localized(), firstname)
+                }
             } else {
-                self.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
+                self?.lbl_description.styledText = "lbl_homeDescriptionNotLogged".localized()
             }
             var cityid = "0"
             if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
@@ -257,42 +264,55 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
             let cities = CoreController.shared.cities
             for city in cities {
                 if city.identifier == cityid {
+                    // Cities from web
+                    /*
                     if let url = URL(string: city.icon)
                     {
                         do {
                             let data = try Data(contentsOf: url)
                             if let image = UIImage(data: data) {
                                 cityFounded = true
-                                if self.feedsAvailable {
-                                    self.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
-                                    self.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                                if self?.feedsAvailable ?? false {
+                                    self?.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
+                                    self?.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
                                 } else {
-                                    self.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                                    self.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                                    self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                                    self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
                                 }
                             }
                         } catch {
                         }
                     }
+                    */
+                    if let image = UIImage(named: city.icon) {
+                        cityFounded = true
+                        if self?.feedsAvailable ?? false {
+                            self?.btn_feeds.setImage(image.tinted(UIColor.white), for: .normal)
+                            self?.btn_feeds.setImage(image.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                        } else {
+                            self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                            self?.btn_feeds.setImage(image.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                        }
+                    }
                 }
             }
             if !cityFounded {
-                if self.feedsAvailable {
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white), for: .normal)
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+                if self?.feedsAvailable ?? false {
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white), for: .normal)
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
                 } else {
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                    self.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                    self?.btn_feeds.setImage(UIImage(named: "ic_imposta_citta_big")?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
                 }
             }
-            if self.profileEcoStatusAvailable {
-                self.view_profile.backgroundColor = Color.homeEnabledBackground.value
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
+            if self?.profileEcoStatusAvailable ?? false {
+                self?.view_profile.backgroundColor = Color.homeEnabledBackground.value
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor.white), for: .normal)
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor.white.withAlphaComponent(0.5)), for: .highlighted)
             } else {
-                self.view_profile.backgroundColor = Color.homeDisabledBackground.value
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
-                self.btn_profile.setImage(self.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
+                self?.view_profile.backgroundColor = Color.homeDisabledBackground.value
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9")), for: .normal)
+                self?.btn_profile.setImage(self?.btn_profile.image(for: .normal)?.tinted(UIColor(hexString: "b6afa9").withAlphaComponent(0.5)), for: .highlighted)
             }
         }
     }

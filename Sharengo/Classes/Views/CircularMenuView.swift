@@ -221,7 +221,7 @@ public class CircularMenuView: UIView {
      This method is used to calculate distance from one point to the center of the view
      - Parameter point: Point to calculate
      */
-    func calculateDistanceFromCenter(point: CGPoint) -> Float
+    public func calculateDistanceFromCenter(point: CGPoint) -> Float
     {
         let center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
         let dx = point.x - center.x

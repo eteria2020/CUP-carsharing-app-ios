@@ -11,18 +11,23 @@ import RxSwift
 import Boomerang
 import KeychainSwift
 
-final class SearchBarItemViewModel : ItemViewModelType {
-    var model: ItemViewModelType.Model
-    var itemIdentifier: ListIdentifier = CollectionViewCell.searchBar
+/**
+ The SearchBarItemViewModel provides data related to display a single search result
+ */
+public class SearchBarItemViewModel : ItemViewModelType {
+    public var model: ItemViewModelType.Model
+    public var itemIdentifier: ListIdentifier = CollectionViewCell.searchBar
+    /// Name that has to be displayed
+    public var name: String?
+    /// Image that has to be displayed
+    public var image: String?
     
-    var name: String?
-    var image: String?
+    // MARK: - Init methods
     
-    init(model: Address) {
+    public init(model: Address) {
         self.model = model
         self.name = model.name
         self.image = "ic_location_search"
-        
         if var dictionary = UserDefaults.standard.object(forKey: "historyDic") as? [String: Data] {
             if let username = KeychainSwift().get("Username") {
                 if let array = dictionary[username] {
@@ -37,7 +42,6 @@ final class SearchBarItemViewModel : ItemViewModelType {
                 }
             }
         }
-        
         if var dictionary = UserDefaults.standard.object(forKey: "favouritesAddressDic") as? [String: Data] {
             if let username = KeychainSwift().get("Username") {
                 if let array = dictionary[username] {
@@ -54,13 +58,13 @@ final class SearchBarItemViewModel : ItemViewModelType {
         }
     }
     
-    init(model: Car) {
+    public init(model: Car) {
         self.model = model
         self.name = String(format: "lbl_searchBarPlate".localized(), model.plate ?? "")
         self.image = "ic_targa_ricerca"
     }
     
-    init(model: Favorite) {
+    public init(model: Favorite) {
         self.model = model
         self.name = model.name
         if self.name != "lbl_favouritesNoFavorites".localized() {

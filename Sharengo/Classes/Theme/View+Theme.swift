@@ -8,7 +8,10 @@
 
 import UIKit
 
-enum ViewXib: String {
+/**
+ Enum of ViewXib used in the application
+*/
+public enum ViewXib: String {
     case navigationBar = "NavigationBarView"
     case circularMenu = "CircularMenuView"
     case carPopup = "CarPopupView"
@@ -16,7 +19,10 @@ enum ViewXib: String {
     case searchBar = "SearchBarView"
     case signupStep = "SignupStepView"
     
-    func getNib() -> UINib {
+    /**
+     This method return nib object from xib's name
+     */
+    public func getNib() -> UINib {
         let bundle = Bundle.main
         return UINib(nibName: self.rawValue, bundle: bundle)
     }

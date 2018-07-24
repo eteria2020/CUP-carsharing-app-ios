@@ -30,7 +30,7 @@ public enum SettingsCitySelectionOutput : SelectionOutput {
 /**
  The Setting city model provides data related to display content on settings
  */
-public final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable {
+public class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSelectable {
     fileprivate var resultsDispose: DisposeBag?
     /// ViewModel variable used to save data
     public var dataHolder: ListDataHolderType = ListDataHolder.empty

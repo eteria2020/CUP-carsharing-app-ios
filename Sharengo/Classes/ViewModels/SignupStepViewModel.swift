@@ -13,7 +13,7 @@ import Boomerang
 /**
  The Signup step model provides data related to display content on the signup step item
  */
-public final class SignupStepViewModel: ViewModelType {
+public class SignupStepViewModel: ViewModelType {
     /// Title of the signup step item
     var title: String = ""
     /// Image of the signup step item

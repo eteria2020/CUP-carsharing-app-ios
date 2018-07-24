@@ -10,15 +10,15 @@ import Boomerang
 import RxSwift
 
 /**
- The Language  model is used to represent language used in the app.
+ The Language model is used to represent language used in settings section
  */
 public class Language: ModelType {
-    /// Title
-    var title: String = ""
-    /// Action
-    var action: SettingsLanguageSelectionOutput = SettingsLanguageSelectionOutput.empty
-    /// Boolean used to determine which language is used from User
-    var selected = false
+    /// Language name
+    public var title: String = ""
+    /// Language action
+    public var action: SettingsLanguageSelectionOutput = SettingsLanguageSelectionOutput.empty
+    /// Boolean used to determine which language is selected from user
+    public var selected = false
     
     // MARK: - Init methods
     

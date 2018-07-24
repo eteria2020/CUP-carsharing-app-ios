@@ -14,7 +14,7 @@ import KeychainSwift
 /**
  The Favourite item model provides data related to display content on the favourite item
  */
-public final class FavouriteItemViewModel : ItemViewModelType {
+public class FavouriteItemViewModel : ItemViewModelType {
     /// ViewModel variable used to save data
     public var model:ItemViewModelType.Model
     /// ViewModel variable used to identify favourite item cell

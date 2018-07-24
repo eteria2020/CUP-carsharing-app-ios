@@ -14,7 +14,7 @@ import Action
 /**
  The Profile model provides data related to display content on profile
  */
-public final class ProfileViewModel: ViewModelType {
+public class ProfileViewModel: ViewModelType {
     // MARK: - Init methods
     
     public required init()

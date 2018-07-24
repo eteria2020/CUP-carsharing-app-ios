@@ -11,12 +11,12 @@ import RxSwift
 import Gloss
 
 /**
- The PolygonCache model is used to represent cache of a polygon.
+ The PolygonCache model is used to represent a saved polygon on the device
 */
 public class PolygonCache: NSObject, NSCoding {
-    /// Type
+    /// Polygon type
     public var type: String = ""
-    /// Coordinates array of Polygon
+    /// Coordinates array of polygon
     public var coordinates: [CLLocationCoordinate2D] = []
     
     // MARK: - Init methods
@@ -26,6 +26,9 @@ public class PolygonCache: NSObject, NSCoding {
         self.coordinates = coordinates
     }
     
+    /**
+     This method is used to convert this object from NSCoder
+     */
     public required init?(coder aDecoder: NSCoder) {
         if let type = aDecoder.decodeObject(forKey: "type") as? String {
             self.type = type
@@ -57,23 +60,22 @@ public class PolygonCache: NSObject, NSCoding {
         aCoder.encode(coordinatesToEncode, forKey: "coordinates")
     }
     
-    
     // MARK: - Polygon methods
     
     /**
-     This method return Polygon connected to PolygonCache
+     This method return polygon connected to polygon cache
      */
-    func getPolygon() -> Polygon {
+    public func getPolygon() -> Polygon {
         return Polygon(type: self.type, coordinates: self.coordinates)
     }
 }
 
 /**
- The JSONPolygons model is used to represent Polygon JSON Object.
+ The JSONPolygons model is used to represent Polygon JSON Object
  */
 public class JSONPolygons: ModelType, Gloss.Decodable {
     /// Array of polygons
-    var polygons: [Polygon] = []
+    public var polygons: [Polygon] = []
     
     // Init methods
     
@@ -140,12 +142,12 @@ public class JSONPolygons: ModelType, Gloss.Decodable {
 }
 
 /**
- The Polygon model is used to represent a polygon used in the map.
+ The Polygon model is used to represent a city polygon used in the map
 */
 public class Polygon: ModelType {
-    /// Type
+    /// Polygon type
     public var type: String = ""
-    /// Coordinates array of Polygon
+    /// Coordinates array of polygon
     public var coordinates: [CLLocationCoordinate2D] = []
     
     // MARK: - Init methods
@@ -158,7 +160,7 @@ public class Polygon: ModelType {
     // MARK: - PolygonCache methods
     
     /**
-     This method return PolygonCache connected to polygon
+     This method return polygon cache connected to polygon
      */
     public func getPolygonCache() -> PolygonCache {
         return PolygonCache(type: self.type, coordinates: self.coordinates)

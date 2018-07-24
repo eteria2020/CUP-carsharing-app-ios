@@ -31,10 +31,16 @@ struct ManageNetworkLoaderUI {
     }
 }
 
-final class SharengoApiController {
-    fileprivate var manager: SessionManager?
+/**
+ SharengoAPIcontroller class is a controller that manage sharengo web services (http://www.sharengo.it)
+*/
+public class SharengoApiController {
+    /// Session Manager
+    public var manager: SessionManager?
     
-    init() {
+    // MARK: - Init methods
+    
+    public init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
         configuration.timeoutIntervalForResource = 20
@@ -44,7 +50,10 @@ final class SharengoApiController {
         )
     }
     
-    func getPolygons() -> Observable<[Polygon]> {
+    /**
+     This method returns array of polygon
+     */
+    public func getPolygons() -> Observable<[Polygon]> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.polygons())

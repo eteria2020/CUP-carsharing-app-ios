@@ -13,7 +13,10 @@ import Action
 import RxCocoa
 import BonMot
 
-class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
+/**
+ The FeedItemCollectionViewCell shows data of singular feed in a cell
+ */
+public class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var view_containerBackgroundImage: UIView!
     @IBOutlet fileprivate weak var img_background: UIImageView!
     @IBOutlet fileprivate weak var view_overlayBackgroundImage: UIView!
@@ -25,12 +28,12 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
     @IBOutlet fileprivate weak var img_favorite: UIImageView!
     @IBOutlet fileprivate weak var img_icon: UIImageView!
     @IBOutlet fileprivate weak var view_icon: UIView!
-    
-    var viewModel:ItemViewModelType?
+    /// ViewModel variable used to represents the data
+    public var viewModel:ItemViewModelType?
     
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
+    public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? FeedItemViewModel else {
             return
         }
@@ -70,10 +73,10 @@ class FeedItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
                 do {
                     let data = try Data(contentsOf: url)
                     if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.img_background.image = image
+                        DispatchQueue.main.async {[weak self]  in
+                            self?.img_background.image = image
                             UIView.animate(withDuration: 0.25, animations: {
-                                self.img_background.alpha = 1.0
+                                self?.img_background.alpha = 1.0
                             })
                         }
                     }

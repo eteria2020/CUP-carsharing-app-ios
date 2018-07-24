@@ -13,7 +13,7 @@ import Boomerang
 /**
  The Setting city item model provides data related to display content on the setting city item
  */
-public final class SettingsCityItemViewModel : ItemViewModelType {
+public class SettingsCityItemViewModel : ItemViewModelType {
     /// ViewModel variable used to save data
     public var model:ItemViewModelType.Model
     /// ViewModel variable used to identify setting city item cell

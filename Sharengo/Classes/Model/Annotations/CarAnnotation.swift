@@ -24,10 +24,14 @@ public class CarAnnotation: NSObject, GMUClusterItem {
     public var marker: UIImage
     /// Variable used to save the car
     public var car: Car
+    /// Variable used to save if the annotation can be clustered
+    public var canCluster: Bool = true
+    /// Variable used to save car plate
+    public var carPlate: String = ""
     
     // MARK: - Init methods
     
-    public init(position: CLLocationCoordinate2D, car: Car, carBooked: Car?, carTrip: CarTrip?) {
+    public init(position: CLLocationCoordinate2D, car: Car, carBooked: Car?, carTrip: CarTrip?, carNearest: Car?) {
         self.position = position
         self.car = car
         self.identifier = 1
@@ -53,7 +57,7 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         if car.booked && (carTrip == nil || carTrip?.car.value?.parking == true) {
             self.marker = CoreController.shared.pulseYellow
             self.type = 3
-        } else if car.nearest && carBooked == nil {
+        } else if car.plate == carNearest?.plate && carBooked == nil {
             if bonusFree.count > 0 {
                 let bonus = bonusFree[0]
                 if bonus.type == "nouse"{

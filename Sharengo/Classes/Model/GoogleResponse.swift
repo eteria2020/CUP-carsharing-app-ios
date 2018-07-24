@@ -10,7 +10,7 @@ import RxSwift
 import Gloss
 
 /**
- The Google Response model is used to convert api response from Google Servers in an object that have useful data
+ The Google Response model is used to convert api response from Google Servers in an object that has useful data
  */
 public class GoogleResponse: ModelType, Gloss.Decodable {
     /// Content of data as array
