@@ -202,4 +202,21 @@ struct Router : RouterType {
             UIApplication.shared.openURL(url)
         }
     }
+
+    public static func backCurrentControllerToRoot(completion: @escaping ()->())
+    {
+        CoreController.shared.currentViewController?.dismiss(animated: false, completion: nil)
+        CoreController.shared.currentViewController?.navigationController?.popToRootViewController(animated: false)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            completion()
+        }
+    }
+    
+    public static func openTripHistory()
+    {
+        let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
+        destination.bind(to: CarTripsViewModel(), afterLoad: true)
+        CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+    }
 }

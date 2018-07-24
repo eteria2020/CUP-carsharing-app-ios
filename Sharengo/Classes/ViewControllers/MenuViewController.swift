@@ -68,9 +68,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                     destination.bind(to: viewModel, afterLoad: true)
                     CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
                 case is CarTripsViewModel:
-                    let destination: CarTripsViewController = (Storyboard.main.scene(.carTrips))
-                    destination.bind(to: CarTripsViewModel(), afterLoad: true)
-                    CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+                    Router.openTripHistory()
                 case is SettingsViewModel:
                     let destination: SettingsViewController = (Storyboard.main.scene(.settings))
                     destination.bind(to: viewModel, afterLoad: true)

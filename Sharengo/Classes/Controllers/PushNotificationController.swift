@@ -19,6 +19,8 @@ class PushNotificationController: NSObject
 {
     enum PushType: Int {
         case openApp
+        case openTripHistory
+        case openMap
     }
     
 	static let shared = PushNotificationController()
@@ -72,16 +74,32 @@ class PushNotificationController: NSObject
 	
 	func evaluateLastNotification(from viewController: UIViewController? = nil)
 	{
-       if let ts = lastNotification?["t"] as? Int
-       {
-            let type = PushType(rawValue: ts) ?? .openApp
-            switch type
-            {
-            case .openApp: break
+        debugPrint("Evaluate: \(String(describing: lastNotification))")
+        
+        guard   let custom = lastNotification?["custom"] as? [String: Any],
+                let a = custom["a"] as? [String: Any],
+                let ts = a["t"] as? Int else { return }
+        
+        let type = PushType(rawValue: ts) ?? .openApp
+        
+        switch type
+        {
+        case .openApp: break
+        case .openTripHistory:
+            guard AppDelegate.isLoggedIn else { return }
+            
+            Router.backCurrentControllerToRoot() {
+                Router.openTripHistory()
             }
+            
+        case .openMap:
+            guard AppDelegate.isLoggedIn else { return }
+            
+            Router.backCurrentControllerToRoot() {}
+            
         }
         
-        debugPrint("Evaluate: \(String(describing: lastNotification))")
+        lastNotification = nil
 	}
 }
 
