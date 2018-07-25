@@ -109,6 +109,8 @@ class CarBookingPopupView: UIView {
             return
         }
         if viewModel.hideButtons {
+            //  TODO: Check here for "close trip" button management
+            
             if viewModel.carTrip != nil {
                 if viewModel.carTrip?.car.value?.parking == true {
                     self.btn_openCentered.isHidden = false
