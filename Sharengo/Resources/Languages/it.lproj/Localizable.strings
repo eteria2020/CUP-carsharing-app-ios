@@ -313,3 +313,8 @@
 "expired_credit_card_login_alert" = "Sei disabilitato perchè la carta inserita è scaduta, per utilizzare Share'ngo accedi alla tua area personale ed inserisci i nuovi dati";
 "failed_extra_payment_login_alert" = "Sei disabilitato per un pagamento penale fallito, contatta il servizio clienti per maggiori informazioni";
 "registration_not_completed_login_alert" = "Sei disabilitato perchè devi completare il processo di registrazione";
+
+//  Push request
+
+"push_request_alert_message" = "Attiva le push notification";
+"btn_go_to_settings" = "Accetta";

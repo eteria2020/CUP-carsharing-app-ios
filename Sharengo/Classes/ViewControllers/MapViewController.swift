@@ -453,16 +453,23 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             default: break
             }
         }).addDisposableTo(self.disposeBag)
+        
         // Map
         self.setupMap()
+        
         // NotificationCenter
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
-            [unowned self] notification in
+        NotificationCenter.default.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) { [unowned self] _ in
             self.checkUserPositionFromForeground()
         }
+        
+        NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: OperationQueue.main) { _ in
+            CoreController.shared.tryToShowPushRequest()
+        }
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "updateData"), object: nil, queue: OperationQueue.main) { [unowned self] _ in
             self.updateCarData()
         }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
         
         self.setCarsButtonVisible(false)
@@ -578,8 +585,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view_carPopup.updateWithFeed(feed: feed)
         }
     }
-    
-    
     
     // MARK: - Update methods
     

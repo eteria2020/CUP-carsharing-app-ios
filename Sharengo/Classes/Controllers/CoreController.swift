@@ -441,13 +441,15 @@ class CoreController
     
     func tryToShowPushRequest()
     {
+        guard AppDelegate.isLoggedIn && PushNotificationController.pushNotificationHasPrompted && PushNotificationController.pushNotificationIsRefused else { return }
+        
         let ud = UserDefaults.standard
         let date = ud.object(forKey: DefaultKeys.LastPushRequestData) as? Date
         var needsAsk = false
         
         if let date = date
         {
-            if fabs(date.timeIntervalSinceNow) > 60 * 60 * 24   //  > 1 day
+            if fabs(date.timeIntervalSinceNow) >= 60 * 60 * 24   //  >= 24 hours
             {
                 needsAsk = true
             }
@@ -459,16 +461,22 @@ class CoreController
         
         if needsAsk
         {
-            let alert = ZAlertView(title: "push_request_alert_title".localized(), message: "push_request_alert_message".localized(), alertType: .alert)
-            alert.addButton("btn_go_to_settings".localized()) { _ in
-                
+            let alert = ZAlertView(title: nil, message: "push_request_alert_message".localized(),
+                            isOkButtonLeft: false,
+                            okButtonText: "btn_go_to_settings".localized(),
+                            cancelButtonText: "btn_cancel".localized(),
+                            okButtonHandler: { alertView in
+                                DispatchQueue.main.async {
+                                    Router.openSettings()
+                                    alertView.dismissAlertView()
+                                }
+            }) { alertView in
+                alertView.dismissAlertView()
             }
-            alert.addButton("btn_cancel".localized()) { _ in  }
             alert.allowTouchOutsideToDismiss = false
             alert.show()
             
-            
-            ud.set(date, forKey: DefaultKeys.LastPushRequestData)
+            ud.set(Date(), forKey: DefaultKeys.LastPushRequestData)
             ud.synchronize()
         }
     }

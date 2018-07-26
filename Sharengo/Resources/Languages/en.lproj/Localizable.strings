@@ -309,3 +309,8 @@
 "expired_credit_card_login_alert" = "You are disabled because the payment information you entered has expired, to use Sharen'go access your personal area and enter the new data";
 "failed_extra_payment_login_alert" = "The account is disabled by for an unpaid penalty, contact customer service for more information";
 "registration_not_completed_login_alert" = "You are disabled because you need to complete the registration process";
+
+//  Push request
+
+"push_request_alert_message" = "Accept push notifications";
+"btn_go_to_settings" = "Accept";
