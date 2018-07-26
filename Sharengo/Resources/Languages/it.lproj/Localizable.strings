@@ -20,6 +20,7 @@
 "alert_webViewError" = "Si è verificato un errore, per favore controlla la tua connessione ad internet o riprova più tardi";
 "btn_login" = "LOGIN";
 "btn_open" = "APRI PORTIERE";
+"btn_close" = "CHIUDI CORSA";
 "btn_book" = "PRENOTA AUTO";
 "btn_delete" = "ELIMINA";
 "btn_carRides" = "STORICO CORSE";

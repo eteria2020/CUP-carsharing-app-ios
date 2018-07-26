@@ -20,6 +20,7 @@
 "alert_webViewError" = "An error occurred, please check your internet connection and try again later";
 "btn_login" = "LOGIN";
 "btn_open" = "OPEN DOORS";
+"btn_close" = "CLOSE TRIP";
 "btn_book" = "BOOK CAR";
 "btn_delete" = "DELETE";
 "btn_carRides" = "DRIVES HISTORY";

@@ -391,6 +391,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
             case .delete:
                 self?.deleteBookCar()
+            case .close(let car):
+                self?.closeCar(car: car, action: "close")
             default: break
             }
         }).addDisposableTo(self.disposeBag)
@@ -1057,6 +1059,68 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
             }
         })
+    }
+    
+    public func closeCar(car: Car, action: String) {
+        let dialog = ZAlertView(title: nil, message: "Sei sicuro di voler chiudere la corsa?".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(),
+                                okButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+
+                                     self.viewModel?.closeCar(car: car, action: action, completionClosure: { (success, error,dataType) in
+                                            if error != nil {
+                                                let dispatchTime = DispatchTime.now() + 0.5
+                                                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                                    //self.hideLoader(completionClosure: { () in
+                                                    var message = "alert_generalError".localized()
+                                                    if Reachability()?.isReachable == false {
+                                                        message = "alert_connectionError".localized()
+                                                    }
+                                                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                        alertView.dismissAlertView()
+                                                    })
+                                                    dialog.allowTouchOutsideToDismiss = false
+                                                    dialog.show()
+                                                    //})
+                                                }
+                                            } else {
+                                                if success {
+                                                    let dispatchTime = DispatchTime.now() + 0.5
+                                                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                                        //self.hideLoader(completionClosure: { () in
+                                                        let confirmDialog = ZAlertView(title: nil, message: "Attendi qualche secondo e assicurati che la macchina si sia chiusa correttamente".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                            
+                                                            //CoreController.shared.updateCarBookings()
+                                                            alertView.dismissAlertView()
+                                                            self.closeCarBookingPopupView()
+                                                            CoreController.shared.currentCarBooking = nil
+                                                        })
+                                                        confirmDialog.allowTouchOutsideToDismiss = false
+                                                        confirmDialog.show()
+                                                        //})
+                                                    }
+                                                } else {
+                                                    let dispatchTime = DispatchTime.now() + 0.5
+                                                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                                        //self.hideLoader(completionClosure: { () in
+                                                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                                        })
+                                                        dialog.allowTouchOutsideToDismiss = false
+                                                        dialog.show()
+                                                        //})
+                                                    }
+                                                }
+                                            }
+                                        })
+                                    
+        },
+                                cancelButtonHandler: { alertView in
+                                    alertView.dismissAlertView()
+        })
+        dialog.allowTouchOutsideToDismiss = false
+        dialog.show()
+    
+
     }
     
     /**

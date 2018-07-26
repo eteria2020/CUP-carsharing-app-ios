@@ -40,7 +40,7 @@ class CarBookingPopupView: UIView {
         self.viewModel?.carBookingPopupView = self
         xibSetup()
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
-        self.btn_openCentered.rx.bind(to: viewModel.selection, input: .open)
+        self.btn_openCentered.rx.bind(to: viewModel.selection, input: .close)
         self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
     }
     
@@ -113,19 +113,25 @@ class CarBookingPopupView: UIView {
             
             if viewModel.carTrip != nil {
                 if viewModel.carTrip?.car.value?.parking == true {
-                    self.btn_openCentered.isHidden = false
-                    self.btn_open.isHidden = true
-                    self.btn_delete.isHidden = true
+                    self.btn_openCentered.isHidden = true
+                    self.btn_open.isHidden = false
+                    self.btn_delete.isHidden = false
+                    self.btn_delete.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_close".localized())
+                    self.btn_delete.rx.bind(to: viewModel.selection, input: .close)
                     return
                 }
             }
-            self.btn_openCentered.isHidden = true
+            
+            self.btn_openCentered.isHidden = false
             self.btn_open.isHidden = true
             self.btn_delete.isHidden = true
+        
         } else {
             self.btn_openCentered.isHidden = true
             self.btn_open.isHidden = false
             self.btn_delete.isHidden = false
+            self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
+            self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
         }
     }
     
@@ -144,7 +150,7 @@ class CarBookingPopupView: UIView {
         addSubview(view)
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carBookingPopupBackground.value
-        self.btn_openCentered.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
+        self.btn_openCentered.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_close".localized())
         self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
         self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
         self.lbl_info.styledText = ""
@@ -165,6 +171,8 @@ class CarBookingPopupView: UIView {
             } else if view_info.point(inside: convert(point, to: view_info), with: event) {
                 return true
             } else if (self.viewModel?.hideButtons == false || self.viewModel?.carTrip?.car.value?.parking == true) && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event)) {
+                return true
+            } else if (self.viewModel?.hideButtons == false || btn_openCentered.point(inside: convert(point, to: btn_openCentered), with: event)) {
                 return true
             }
         }

@@ -293,7 +293,32 @@ final class ApiController {
             }
         }
     }
-    
+    func closeCar(car: Car, action: String) -> Observable<Response> {
+        return Observable.create{ observable in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+                switch status {
+                case .began:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                case .ended:
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            })])
+            return provider.request(.closeCar(car: car, action: action))
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .mapObject(type: Response.self)
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        observable.onNext(response)
+                        observable.onCompleted()
+                    case .error(let error):
+                        observable.onError(error)
+                    default:
+                        break
+                    }
+            }
+        }
+    }
     func getTrip(trip: CarTrip) -> Observable<Response> {
         return Observable.create{ observable in
             let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
@@ -347,6 +372,7 @@ fileprivate enum API {
     case deleteCarBooking(carBooking: CarBooking)
     case getCarBooking(id: Int)
     case openCar(car: Car, action: String)
+    case closeCar(car: Car, action: String)
     case tripsList()
     case archivedTripsList()
     case getTrip(trip: CarTrip)
@@ -364,7 +390,7 @@ extension API: TargetType {
             return URL(string: "https://api.sharengo.it:8023/v3")!
         case  .searchCarURL(_, _, _, _,_):
             return URL(string: "https://api.sharengo.it:8023/v3")!
-        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _):
+        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .closeCar(_, _):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
@@ -387,7 +413,7 @@ extension API: TargetType {
             return "reservations"
         case .deleteCarBooking(let carBooking):
             return "reservations/\(carBooking.id ?? 0)"
-        case .openCar(let car, _):
+        case .openCar(let car, _), .closeCar(let car, _):
             return "cars/\(car.plate ?? "")"
         case .tripsList(), .archivedTripsList():
             return "trips"
@@ -404,7 +430,7 @@ extension API: TargetType {
             return .post
         case .deleteCarBooking(_):
             return .delete
-        case .openCar(_):
+        case .openCar(_), .closeCar(_):
             return .put
         default:
             return .get
@@ -423,7 +449,7 @@ extension API: TargetType {
             return ["plate": car.plate ?? "", "user_lat": userLatitude, "user_lon": userLongitude]
         case .getCarBooking(let id):
             return ["reservation_id": id]
-        case .openCar(_, let action):
+        case .openCar(_, let action), .closeCar(_, let action):
             return ["action": action]
         case .tripsList(), .bookingList():
             return ["active": "true"]

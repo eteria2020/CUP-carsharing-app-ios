@@ -464,6 +464,27 @@ public final class MapViewModel: ViewModelType {
                 }
             }.addDisposableTo(self.disposeBag)
     }
+    // This method handle close car
+    public func closeCar(car: Car, action: String, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?,_ data: String) ->()) {
+        self.apiController.closeCar(car: car, action: action)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200 {
+                        completionClosure(true, nil,"")
+                    }else if response.status == 403{
+                        completionClosure(false, nil,response.code!)
+                    }else {
+                        completionClosure(false, nil,"")
+                    }
+                case .error(let error):
+                    completionClosure(false, error,"")
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+    }
     
     /**
      This method book car
