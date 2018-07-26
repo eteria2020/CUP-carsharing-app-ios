@@ -14,8 +14,15 @@ import KeychainSwift
 import Localize_Swift
 import Gloss
 
-class CoreController {
+struct DefaultKeys
+{
+    static let LastPushRequestData = "LastPushRequestData"
+}
+
+class CoreController
+{
     static let shared = CoreController()
+    
     var currentViewController: UIViewController?
     let apiController: ApiController = ApiController()
     let publishersApiController: PublishersAPIController = PublishersAPIController()
@@ -34,42 +41,53 @@ class CoreController {
     var polygons: [Polygon] = []
     var callingApp: NSString = ""
     var appConfig: [String:String] = [:]
+    
     public lazy var pulseYellow: UIImage = CoreController.shared.getPulseYellow()
     public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
-
+    
     private struct AssociatedKeys {
         static var disposeBag = "vc_disposeBag"
     }
     
     public var disposeBag: DisposeBag {
         var disposeBag: DisposeBag
-        if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
+        if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag
+        {
             disposeBag = lookup
-        } else {
+        }
+        else
+        {
             disposeBag = DisposeBag()
             objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, disposeBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
         return disposeBag
     }
     
-    private init() {
+    private init()
+    {
         self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
         //stopFetchTrip()
         //fetchTrip()
-       
     }
-    func fetchTrip()  {
-        if self.updateTripTimer == nil{
+    
+    func fetchTrip()
+    {
+        if self.updateTripTimer == nil
+        {
             //self.updateTripTimer = Timer.scheduledTimer(timeInterval: 5*1, target: self, selector: #selector(self.startUpdateOpeningCarTrips), userInfo: nil, repeats: true)
         }
     }
-    func stopFetchTrip()  {
+    
+    func stopFetchTrip()
+    {
         if self.updateTripTimer != nil{
             self.updateTripTimer!.invalidate()
             self.updateTripTimer = nil
         }
     }
-    @objc func updateData() {
+    
+    @objc func updateData()
+    {
         self.updateCities()
         self.updatePolygons()
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
@@ -78,16 +96,20 @@ class CoreController {
         self.notificationIsShowed = false
         self.updateUser()
     }
+    
     //per chiamare aggiornamento del trip a nostra discrizione
-    func updateTrip(trip: CarTrip) {
-      
+    func updateTrip(trip: CarTrip)
+    {
+        
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
-       
+        
         self.getTrip(trip: trip)
     }
-    fileprivate func getTrip(trip: CarTrip) {
+    
+    fileprivate func getTrip(trip: CarTrip)
+    {
         self.apiController.getTrip(trip: trip)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -95,16 +117,16 @@ class CoreController {
                 case .next(let response):
                     if response.status == 200, let data = response.dic_data {
                         if let carTrips = CarTrip(json: data) {
-                           
+                            
                             self.currentCarTrip = carTrips
                             self.lastCarTrip = carTrips
                             self.stopUpdateData()
                             return
                         }/*else{
-                            self.currentCarTrip = nil
-                            self.stopUpdateData()
-                            return
-                        }*/
+                         self.currentCarTrip = nil
+                         self.stopUpdateData()
+                         return
+                         }*/
                     }
                 case .error(_):
                     self.stopUpdateData()
@@ -113,9 +135,10 @@ class CoreController {
                 }
             }.addDisposableTo(self.disposeBag)
     }
-
-        
-    fileprivate func updatePolygons() {
+    
+    
+    fileprivate func updatePolygons()
+    {
         self.sharengoApiController.getPolygons()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -135,8 +158,9 @@ class CoreController {
                 }
             }.addDisposableTo(self.disposeBag)
     }
-
-    fileprivate func updateCities() {
+    
+    fileprivate func updateCities()
+    {
         self.publishersApiController.getCities()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -161,60 +185,64 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func updateUser() {
+    fileprivate func updateUser()
+    {
         if let username = KeychainSwift().get("Username"), let password = KeychainSwift().get("Password") {
-        self.apiController.getUser(username: username, password: password)
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    if response.status == 200, let data = response.dic_data {
-                        if let pin = data["pin"] {
-                            KeychainSwift().set("\(String(describing: pin))", forKey: "UserPin")
+            self.apiController.getUser(username: username, password: password)
+                .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                .subscribe { event in
+                    switch event {
+                    case .next(let response):
+                        if response.status == 200, let data = response.dic_data {
+                            if let pin = data["pin"] {
+                                KeychainSwift().set("\(String(describing: pin))", forKey: "UserPin")
+                            }
+                            if let firstname = data["name"] {
+                                KeychainSwift().set("\(String(describing: firstname))", forKey: "UserFirstname")
+                            }
+                            if let bonus = data["bonus"] {
+                                KeychainSwift().set("\(String(describing: bonus))", forKey: "UserBonus")
+                            }
+                            if let discountRate = data["discount_rate"] {
+                                KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
+                            }
+                            if let disableReason = data["disabled_reason"] as? [JSON]{
+                                
+                                for json in disableReason {
+                                    KeychainSwift().set("\(String(describing: json["reason"] as! String))", forKey: "DisableReason")
+                                }
+                            }
+                            self.updateCarBookings()
                         }
-                        if let firstname = data["name"] {
-                            KeychainSwift().set("\(String(describing: firstname))", forKey: "UserFirstname")
-                        }
-                        if let bonus = data["bonus"] {
-                            KeychainSwift().set("\(String(describing: bonus))", forKey: "UserBonus")
-                        }
-                        if let discountRate = data["discount_rate"] {
-                            KeychainSwift().set("\(String(describing: discountRate))", forKey: "UserDiscountRate")
-                        }
-                        if let disableReason = data["disabled_reason"] as? [JSON]{
-                            
-                            for json in disableReason {
-                                KeychainSwift().set("\(String(describing: json["reason"] as! String))", forKey: "DisableReason")
+                        else if response.status == 404, let code = response.code {
+                            if code == "not_found" {
+                                self.executeLogout()
                             }
                         }
-                        self.updateCarBookings()
-                    }
-                    else if response.status == 404, let code = response.code {
-                        if code == "not_found" {
-                            self.executeLogout()
+                        else if let msg = response.msg {
+                            if msg == "invalid_credentials" {
+                                self.executeLogout()
+                            } else if msg == "user_disabled" {
+                                self.executeLogout()
+                            }
                         }
+                    case .error(_):
+                        break
+                    default:
+                        break
                     }
-                    else if let msg = response.msg {
-                        if msg == "invalid_credentials" {
-                            self.executeLogout()
-                        } else if msg == "user_disabled" {
-                            self.executeLogout()
-                        }
-                    }
-                case .error(_):
-                    break
-                default:
-                    break
-                }
-            }.addDisposableTo(self.disposeBag)
+                }.addDisposableTo(self.disposeBag)
         }
     }
     
-    func executeLogout() {
+    func executeLogout()
+    {
         var languageid = "en"
-        if Locale.preferredLanguages[0] == "it-IT" {
+        if Locale.preferredLanguages[0] == "it-IT"
+        {
             languageid = "it"
         }
+        
         Localize.setCurrentLanguage(languageid)
         KeychainSwift().clear()
         CoreController.shared.currentCarBooking = nil
@@ -226,23 +254,24 @@ class CoreController {
         Router.exit(CoreController.shared.currentViewController ?? UIViewController())
         let dispatchTime = DispatchTime.now() + 0.5
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-        let dialog = ZAlertView(title: nil, message: "alert_logoutError".localized(), isOkButtonLeft: false, okButtonText: "btn_login".localized(), cancelButtonText: "btn_back".localized(),
-                                okButtonHandler: { alertView in
-                                    let destination: LoginViewController = (Storyboard.main.scene(.login))
-                                    let viewModel = ViewModelFactory.login()
-                                    destination.bind(to: viewModel, afterLoad: true)
-                                    (CoreController.shared.currentViewController ?? UIViewController()).navigationController?.pushViewController(destination, animated: true)
-                                    alertView.dismissAlertView()
-        },
-                                cancelButtonHandler: { alertView in
-                                    alertView.dismissAlertView()
-        })
-        dialog.allowTouchOutsideToDismiss = false
-        dialog.show()
+            let dialog = ZAlertView(title: nil, message: "alert_logoutError".localized(), isOkButtonLeft: false, okButtonText: "btn_login".localized(), cancelButtonText: "btn_back".localized(),
+                                    okButtonHandler: { alertView in
+                                        let destination: LoginViewController = (Storyboard.main.scene(.login))
+                                        let viewModel = ViewModelFactory.login()
+                                        destination.bind(to: viewModel, afterLoad: true)
+                                        (CoreController.shared.currentViewController ?? UIViewController()).navigationController?.pushViewController(destination, animated: true)
+                                        alertView.dismissAlertView()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
         }
     }
     
-    fileprivate func updateCarBookings() {
+    func updateCarBookings()
+    {
         if KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
             return
         }
@@ -271,10 +300,13 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func updateCarTrips() {
-        if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+    fileprivate func updateCarTrips()
+    {
+        if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil
+        {
             return
         }
+        
         self.apiController.tripsList()
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in
@@ -298,13 +330,18 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
-     @objc func startUpdateOpeningCarTrips() {
-            updateOpeningCarTrips()
-        }
-     fileprivate func updateOpeningCarTrips() {
-        if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil {
+    @objc func startUpdateOpeningCarTrips()
+    {
+        updateOpeningCarTrips()
+    }
+    
+    fileprivate func updateOpeningCarTrips()
+    {
+        if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil
+        {
             return
         }
+        
         Observable< Int>.interval(5, scheduler: MainScheduler.instance)
             .flatMap { _ in
                 self.apiController.tripsList()
@@ -331,22 +368,23 @@ class CoreController {
             }.addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func stopUpdateData() {
-       //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
+    fileprivate func stopUpdateData()
+    {
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
         self.currentCarBooking = self.allCarBookings.first
-      
-       /* if let openTrip = self.allCarTrips.first{
-               self.currentCarTrip = openTrip
-        }else{
-            if let currentTrip = self.currentCarTrip{
-                if currentTrip.fake && currentTrip.seconds < 60 {
-                    currentTrip.setFake(fake: true)
-                    return
-                }
-            }else{
-                self.currentCarTrip = self.allCarTrips.first
-            }
-        }*/
+        
+        /* if let openTrip = self.allCarTrips.first{
+         self.currentCarTrip = openTrip
+         }else{
+         if let currentTrip = self.currentCarTrip{
+         if currentTrip.fake && currentTrip.seconds < 60 {
+         currentTrip.setFake(fake: true)
+         return
+         }
+         }else{
+         self.currentCarTrip = self.allCarTrips.first
+         }
+         }*/
         
         self.currentCarTrip = self.allCarTrips.first
         if let carTrip = self.allCarTrips.first{
@@ -355,14 +393,16 @@ class CoreController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
     
-    fileprivate func stopUpdateTripData() {
+    fileprivate func stopUpdateTripData()
+    {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateTripData"), object: nil)
         self.currentCarTrip = self.allCarTrips.first
     }
     
     // MARK: - Pulse methods
     
-    func getPulseYellow() -> UIImage {
+    func getPulseYellow() -> UIImage
+    {
         var frames: [UIImage] = [UIImage]()
         for i in 1...47 {
             let image = self.resizeImageForPulse(image: UIImage(named: "Giallo_loop_000\(i)")!, newSize: CGSize(width: 200, height: 200))
@@ -371,7 +411,8 @@ class CoreController {
         return UIImage.animatedImage(with: frames, duration: 3)!
     }
     
-    func getPulseGreen() -> UIImage {
+    func getPulseGreen() -> UIImage
+    {
         var frames: [UIImage] = [UIImage]()
         for i in 1...47 {
             let image = self.resizeImageForPulse(image: UIImage(named: "Verde_loop_000\(i)")!, newSize: CGSize(width: 200, height: 200))
@@ -380,7 +421,8 @@ class CoreController {
         return UIImage.animatedImage(with: frames, duration: 3)!
     }
     
-    fileprivate func resizeImageForPulse(image: UIImage, newSize: CGSize) -> (UIImage) {
+    fileprivate func resizeImageForPulse(image: UIImage, newSize: CGSize) -> (UIImage)
+    {
         let scale = min(image.size.width/newSize.width, image.size.height/newSize.height)
         let newSize = CGSize(width: image.size.width/scale, height: image.size.height/scale)
         let newOrigin = CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2)
@@ -390,5 +432,41 @@ class CoreController {
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return result!
+    }
+
+    //  MARK: - Push Request checks
+    
+    func tryToShowPushRequest()
+    {
+        let ud = UserDefaults.standard
+        let date = ud.object(forKey: DefaultKeys.LastPushRequestData) as? Date
+        var needsAsk = false
+        
+        if let date = date
+        {
+            if fabs(date.timeIntervalSinceNow) > 60 * 60 * 24   //  > 1 day
+            {
+                needsAsk = true
+            }
+        }
+        else
+        {
+            needsAsk = true
+        }
+        
+        if needsAsk
+        {
+            let alert = ZAlertView(title: "push_request_alert_title".localized(), message: "push_request_alert_message".localized(), alertType: .alert)
+            alert.addButton("btn_go_to_settings".localized()) { _ in
+                
+            }
+            alert.addButton("btn_cancel".localized()) { _ in  }
+            alert.allowTouchOutsideToDismiss = false
+            alert.show()
+            
+            
+            ud.set(date, forKey: DefaultKeys.LastPushRequestData)
+            ud.synchronize()
+        }
     }
 }

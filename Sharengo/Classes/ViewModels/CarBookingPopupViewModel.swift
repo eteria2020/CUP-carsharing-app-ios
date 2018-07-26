@@ -16,12 +16,14 @@ import DeviceKit
 public enum CarBookingPopupInput: SelectionInput {
     case open
     case delete
+    case close
 }
 
 public enum CarBookingPopupOutput: SelectionInput {
     case empty
     case open(Car)
     case delete
+    case close(Car)
 }
 
 final class CarBookingPopupViewModel: ViewModelTypeSelectable {
@@ -49,6 +51,11 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable {
                 }
             case .delete:
                 return .just(.delete)
+            case .close:
+  
+               if let car = self.carTrip?.car.value {
+                    return .just(.close(car))
+                }
             }
             return .just(.empty)
         }
