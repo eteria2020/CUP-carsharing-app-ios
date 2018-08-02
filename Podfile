@@ -7,8 +7,8 @@ def shared_pods
     pod 'pop', :git => "https://github.com/facebook/pop.git", :tag => '1.0.9'
     pod 'BonMot', :git => "https://github.com/Raizlabs/BonMot.git", :tag => '4.3.1'
     pod 'SpinKit'
-    pod 'Fabric'
-    pod 'Crashlytics'
+	pod 'Fabric', '~> 1.7.9'
+	pod 'Crashlytics', '~> 3.10.5'
     pod 'SnapKit', '~> 3.0.2'
     pod 'Localize-Swift'
     pod 'Action', :git => "https://github.com/RxSwiftCommunity/Action.git", :tag => '3.0.0'
@@ -24,6 +24,7 @@ def shared_pods
     pod 'RxGesture'
     pod 'GoogleMaps'
     pod 'OneSignal', '>= 2.6.2', '< 3.0'
+	pod 'Firebase/Core'
 end
 
 target 'Sharengo' do

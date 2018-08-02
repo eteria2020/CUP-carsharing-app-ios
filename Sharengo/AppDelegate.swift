@@ -1,14 +1,13 @@
-import UIKit
-import Fabric
-import Crashlytics
 import Boomerang
-import RxSwift
 import Gloss
-import OneSignal
-import SideMenu
-import Localize_Swift
 import GoogleMaps
+import Firebase
+import Localize_Swift
 import KeychainSwift
+import OneSignal
+import RxSwift
+import SideMenu
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -22,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+        FirebaseApp.configure()
+        
         if AppDelegate.isLoggedIn && KeychainSwift().get("PasswordClear") == nil
         {
             var languageid = "en"
@@ -40,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         setupCities()
         setupPolygons()
         setupGoogleMaps()
-        setupFabric()
         setupConfig()
         
         let cc = CoreController.shared
@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 //                PushNotificationController.shared.set(notification: dict)
 //            }
 //        }
-       
+        
         return true
     }
 
@@ -161,14 +161,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         if UserDefaults.standard.object(forKey: "historyDic") == nil {
             UserDefaults.standard.set([String: Data](), forKey: "historyDic")
         }
-    }
-
-    private func setupFabric()
-    {
-        #if ISDEBUG
-        #elseif ISRELEASE
-            Fabric.with([Crashlytics.self])
-        #endif
     }
 
     private func setupGoogleMaps()

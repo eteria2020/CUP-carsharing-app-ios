@@ -11,6 +11,20 @@ PODS:
     - Fabric (~> 1.7.9)
   - DeviceKit (1.7.0)
   - Fabric (1.7.9)
+  - Firebase/Core (5.4.1):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.1)
+  - Firebase/CoreOnly (5.4.1):
+    - FirebaseCore (= 5.0.6)
+  - FirebaseAnalytics (5.0.1):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.0.6):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (3.1.1):
+    - FirebaseCore (~> 5.0)
   - Gifu (3.1.0)
   - Gloss (1.2.4)
   - GoogleMaps (2.7.0):
@@ -18,6 +32,9 @@ PODS:
   - GoogleMaps/Base (2.7.0)
   - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
   - KeychainSwift (11.0.0)
   - Localize-Swift (2.0.0)
   - Moya (8.0.5):
@@ -35,6 +52,11 @@ PODS:
   - Moya/RxSwift (8.0.5):
     - Moya/Core
     - RxSwift (~> 3.0)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
   - OneSignal (2.8.5)
   - pop (1.0.9)
   - ReachabilitySwift (3)
@@ -54,9 +76,10 @@ DEPENDENCIES:
   - Action (from `https://github.com/RxSwiftCommunity/Action.git`, tag `3.0.0`)
   - BonMot (from `https://github.com/Raizlabs/BonMot.git`, tag `4.3.1`)
   - Boomerang (from `https://github.com/synesthesia-it/Boomerang.git`, branch `v1`)
-  - Crashlytics
+  - Crashlytics (~> 3.10.5)
   - DeviceKit
-  - Fabric
+  - Fabric (~> 1.7.9)
+  - Firebase/Core
   - Gifu
   - Gloss
   - GoogleMaps
@@ -80,13 +103,19 @@ SPEC REPOS:
     - Crashlytics
     - DeviceKit
     - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
     - Gifu
     - Gloss
     - GoogleMaps
+    - GoogleToolboxForMac
     - KeychainSwift
     - Localize-Swift
     - Moya
     - Moya-Gloss
+    - nanopb
     - OneSignal
     - ReachabilitySwift
     - Result
@@ -139,13 +168,19 @@ SPEC CHECKSUMS:
   Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
   Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
+  Firebase: 355bd535bfdacaa82a7fe8d9784115edefd6fc03
+  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
+  FirebaseCore: 4c28e3b9708ba48a765e76515f913a71596eb5dd
+  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   Gifu: fd1e9e3a15ac5d90bae0a510e4ed9f94b485ab03
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   Moya-Gloss: d8e9adc9b055b2c4e495514b9755e57ee7aa320b
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   OneSignal: 42dae269c7eca517aee34963820e1eb922390031
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
@@ -158,6 +193,6 @@ SPEC CHECKSUMS:
   SpinKit: 65906a8b534a4e14cbfd3f8b0b6c329131faef4a
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: b2b419dbcb8313f3e62eb832b52bc130af03f5b1
+PODFILE CHECKSUM: 6980a69943c1fa40c43ffafe2ee7a72daf5fc8e4
 
 COCOAPODS: 1.5.3

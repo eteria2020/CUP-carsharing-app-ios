@@ -323,6 +323,7 @@
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
 		D108D80921105C9500B2E855 /* CoreController+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108D80821105C9500B2E855 /* CoreController+Operations.swift */; };
+		D108D80B2112FBCB00B2E855 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */; };
 		D11487AD20F4BB55007BB150 /* UIView+StoryboardConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */; };
 		D114A1D6210722260045712F /* SettingsNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */; };
 		D120AD4720E24C4A007A3139 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D120AD4620E24C4A007A3139 /* client.p12 */; };
@@ -696,6 +697,7 @@
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
 		D108D80821105C9500B2E855 /* CoreController+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreController+Operations.swift"; sourceTree = "<group>"; };
+		D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+StoryboardConstraint.swift"; path = "Classes/Utilities/UIView+StoryboardConstraint.swift"; sourceTree = "<group>"; };
 		D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewModel.swift; sourceTree = "<group>"; };
 		D120AD4620E24C4A007A3139 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
@@ -1355,7 +1357,6 @@
 			isa = PBXGroup;
 			children = (
 				4DFC9A011EF673D9003427F2 /* Sharengo.entitlements */,
-				4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */,
 				4DCD1A951ECDC1F600FC8BF5 /* Classes */,
 				4DCD1A961ECDC20500FC8BF5 /* Resources */,
 			);
@@ -1461,6 +1462,7 @@
 		4DCD1A951ECDC1F600FC8BF5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */,
 				4DCD1A611ECDBF7400FC8BF5 /* Factories */,
 				4DCD1A5E1ECDBF7400FC8BF5 /* Model */,
 				4DCD1A751ECDBF7400FC8BF5 /* ViewControllers */,
@@ -1523,6 +1525,7 @@
 		4DCD1A9D1ECDC22900FC8BF5 /* Plists */ = {
 			isa = PBXGroup;
 			children = (
+				D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */,
 				4DCD1A9E1ECDC22900FC8BF5 /* Info.plist */,
 			);
 			name = Plists;
@@ -1711,7 +1714,7 @@
 				4DCD1A501ECDBF7400FC8BF5 /* Resources */,
 				59A6C6551D62A8A064679543 /* [CP] Embed Pods Frameworks */,
 				83386CE137B399051CBBB402 /* [CP] Copy Pods Resources */,
-				4DA178621ED5E2E700EBD32B /* ShellScript */,
+				D108D80D211300FE00B2E855 /* Fabric Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1854,6 +1857,7 @@
 				4D16580E1F483F8400BEB3DB /* Pulse_Verde_0037.png in Resources */,
 				4D1AE82C1ED1E40E00C8A1D3 /* Poppins-Medium.ttf in Resources */,
 				037689F21F1608BB00523BAA /* FeedItemCollectionViewCell.xib in Resources */,
+				D108D80B2112FBCB00B2E855 /* GoogleService-Info.plist in Resources */,
 				032D3A791F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif in Resources */,
 				4DFA38E71F4835BB00DC8B20 /* Pulse_Giallo_0021.png in Resources */,
 				4D1657FF1F483F8400BEB3DB /* Pulse_Verde_0023.png in Resources */,
@@ -1932,19 +1936,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4DA178621ED5E2E700EBD32B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 57623239bae67668df7bbce99e5c2686c876e070 a196b51c179c0f247995aaf4fe93bcbd7e48597dcb7130f9c9388f25a8ac9a8c";
-		};
 		59A6C6551D62A8A064679543 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1959,6 +1950,7 @@
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework",
 				"${BUILT_PRODUCTS_DIR}/Gloss/Gloss.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -1972,6 +1964,7 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SpinKit/SpinKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1983,6 +1976,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gifu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gloss.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -1996,6 +1990,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpinKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2038,6 +2033,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D108D80D211300FE00B2E855 /* Fabric Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fabric Crashlytics";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
