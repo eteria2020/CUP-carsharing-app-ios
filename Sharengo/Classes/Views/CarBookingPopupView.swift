@@ -14,7 +14,8 @@ import Action
 import CoreLocation
 import DeviceKit
 
-class CarBookingPopupView: UIView {
+class CarBookingPopupView: UIView
+{
     @IBOutlet fileprivate weak var btn_open: UIButton!
     @IBOutlet fileprivate weak var btn_openCentered: UIButton!
     @IBOutlet fileprivate weak var btn_delete: UIButton!
@@ -30,15 +31,30 @@ class CarBookingPopupView: UIView {
     
     var viewModel: CarBookingPopupViewModel?
     
+    override init(frame: CGRect)
+    {
+        super.init(frame: frame)
+    }
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)!
+    }
+    
     // MARK: - ViewModel methods
     
-    func bind(to viewModel: ViewModelType?) {
-        guard let viewModel = viewModel as? CarBookingPopupViewModel else {
+    func bind(to viewModel: ViewModelType?)
+    {
+        guard let viewModel = viewModel as? CarBookingPopupViewModel else
+        {
             return
         }
+        
         self.viewModel = viewModel
         self.viewModel?.carBookingPopupView = self
+        
         xibSetup()
+        
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
         self.btn_openCentered.rx.bind(to: viewModel.selection, input: .close)
         self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
@@ -46,109 +62,143 @@ class CarBookingPopupView: UIView {
     
     // MARK: - View methods
     
-    func updateWithCarBooking(carBooking: CarBooking) {
-        guard let viewModel = viewModel else {
-            return
-        }
+    func updateWithCarBooking(carBooking: CarBooking)
+    {
+        guard let viewModel = viewModel else { return }
+        
         viewModel.carTrip = nil
         viewModel.updateWithCarBooking(carBooking: carBooking)
+        
         self.updateData()
     }
     
-    func updateWithCarTrip(carTrip: CarTrip) {
-        guard let viewModel = viewModel else {
-            return
-        }
+    func updateWithCarTrip(carTrip: CarTrip)
+    {
+        guard let viewModel = viewModel else { return }
+        
         viewModel.carBooking = nil
         viewModel.updateWithCarTrip(carTrip: carTrip)
+        
         self.updateData()
     }
     
-    fileprivate func updateData() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        if !self.firstLoaded {
+    fileprivate func updateData()
+    {
+        guard let viewModel = viewModel else { return }
+        
+        if !self.firstLoaded
+        {
             self.icn_time.isHidden = true
         }
+        
         self.lbl_pin.styledText = viewModel.pin
         self.btn_openCentered.isHidden = false
         self.btn_open.isHidden = false
         self.btn_delete.isHidden = false
         self.updateButtons()
-        viewModel.info.asObservable()
-            .subscribe(onNext: {[weak self] (info) in
-                DispatchQueue.main.async {
-                    self?.lbl_info.styledText = info
-                }
-            }).addDisposableTo(disposeBag)
-        viewModel.time.asObservable()
-            .subscribe(onNext: {[weak self] (time) in
-                DispatchQueue.main.async {
-                    self?.firstLoaded = true
-                    if time != "" {
-                        self?.icn_time.isHidden = false
-                        self?.lbl_time.styledText = time
-                        if self?.viewModel?.carBooking != nil {
-                            self?.icn_time.image = UIImage(named: "ic_time_1")
-                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.4
-                        } else if self?.viewModel?.carTrip != nil {
-                            self?.icn_time.image = UIImage(named: "ic_time_2")
-                            self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)?.constant = UIScreen.main.bounds.size.width*0.45
-                        }
-                    } else {
-                        self?.lbl_time.styledText = ""
-                        self?.icn_time.isHidden = true
+        
+        viewModel.info.asObservable().subscribe(onNext: { [weak self] info in
+            DispatchQueue.main.async {
+                self?.lbl_info.styledText = info
+            }
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.isCarClosing.asObservable().subscribe { [weak self] isCarClosing in
+            DispatchQueue.main.async {
+                self?.updateButtons()
+            }
+        }.addDisposableTo(disposeBag)
+    
+        viewModel.time.asObservable().subscribe(onNext: { [weak self] time in
+            DispatchQueue.main.async {
+                self?.firstLoaded = true
+                
+                if time != ""
+                {
+                    self?.icn_time.isHidden = false
+                    self?.lbl_time.styledText = time
+                    
+                    let screenWidth = UIScreen.main.bounds.size.width
+                    let constraint = self?.view_time.constraint(withIdentifier: "widthIcnTime", searchInSubviews: true)
+                    
+                    if self?.viewModel?.carBooking != nil
+                    {
+                        self?.icn_time.image = UIImage(named: "ic_time_1")
+                        constraint?.constant = screenWidth * 0.4
+                    }
+                    else if self?.viewModel?.carTrip != nil
+                    {
+                        self?.icn_time.image = UIImage(named: "ic_time_2")
+                        constraint?.constant = screenWidth * 0.45
                     }
                 }
-            }).addDisposableTo(disposeBag)
+                else
+                {
+                    self?.lbl_time.styledText = ""
+                    self?.icn_time.isHidden = true
+                }
+            }
+        }).addDisposableTo(disposeBag)
     }
     
-    func updateButtons() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        if viewModel.hideButtons {
-            //  TODO: Check here for "close trip" button management
-            
-            if viewModel.carTrip != nil {
-                if viewModel.carTrip?.car.value?.parking == true {
-                    self.btn_openCentered.isHidden = true
-                    self.btn_open.isHidden = false
-                    self.btn_delete.isHidden = false
-                    self.btn_delete.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_close".localized())
-                    self.btn_delete.rx.bind(to: viewModel.selection, input: .close)
+    func updateButtons()
+    {
+        guard let viewModel = viewModel else { return }
+        
+        btn_delete.isEnabled = true
+        btn_openCentered.isEnabled = true
+        
+        if viewModel.hideButtons
+        {
+            if viewModel.carTrip != nil
+            {
+                if viewModel.carTrip?.car.value?.parking == true
+                {
+                    btn_openCentered.isHidden = true
+                    btn_open.isHidden = false
+                    btn_delete.isHidden = false
+                    btn_delete.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_close".localized())
+                    btn_delete.rx.bind(to: viewModel.selection, input: .close)
+                    btn_delete.isEnabled = !viewModel.isCarClosing.value
+                    
                     return
                 }
             }
             
-            self.btn_openCentered.isHidden = false
-            self.btn_open.isHidden = true
-            self.btn_delete.isHidden = true
-        
-        } else {
-            self.btn_openCentered.isHidden = true
-            self.btn_open.isHidden = false
-            self.btn_delete.isHidden = false
-            self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
-            self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
+            
+            if CoreController.shared.currentCarTrip != nil
+            {
+                btn_openCentered.isHidden = false
+                btn_openCentered.isEnabled = !viewModel.isCarClosing.value
+                btn_open.isHidden = true
+                btn_delete.isHidden = true
+            }
+            else
+            {
+                btn_openCentered.isHidden = true
+                btn_open.isHidden = true
+                btn_delete.isHidden = true
+            }
+        }
+        else
+        {
+            btn_openCentered.isHidden = true
+            btn_open.isHidden = false
+            btn_delete.isHidden = false
+            btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
+            btn_delete.rx.bind(to: viewModel.selection, input: .delete)
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-    }
-    
-    fileprivate func xibSetup() {
+    fileprivate func xibSetup()
+    {
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
+        
         self.layoutIfNeeded()
+        
         self.view.backgroundColor = Color.carBookingPopupBackground.value
         self.btn_openCentered.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_close".localized())
         self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
@@ -156,26 +206,39 @@ class CarBookingPopupView: UIView {
         self.lbl_info.styledText = ""
     }
     
-    fileprivate func loadViewFromNib() -> UIView {
+    fileprivate func loadViewFromNib() -> UIView
+    {
         let nib = ViewXib.carBookingPopup.getNib()
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
     
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if self.view.point(inside: convert(point, to: self.view), with: event) {
-            if self.viewModel?.time.value != "" && view_time.point(inside: convert(point, to: view_time), with: event) {
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool
+    {
+        if self.view.point(inside: convert(point, to: self.view), with: event)
+        {
+            if self.viewModel?.time.value != "" && view_time.point(inside: convert(point, to: view_time), with: event)
+            {
                 return true
-            } else if view_pin.point(inside: convert(point, to: view_pin), with: event) {
+            }
+            else if view_pin.point(inside: convert(point, to: view_pin), with: event)
+            {
                 return true
-            } else if view_info.point(inside: convert(point, to: view_info), with: event) {
+            }
+            else if view_info.point(inside: convert(point, to: view_info), with: event)
+            {
                 return true
-            } else if (self.viewModel?.hideButtons == false || self.viewModel?.carTrip?.car.value?.parking == true) && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event)) {
+            }
+            else if (self.viewModel?.hideButtons == false || self.viewModel?.carTrip?.car.value?.parking == true) && (btn_open.point(inside: convert(point, to: btn_open), with: event) || btn_delete.point(inside: convert(point, to: btn_delete), with: event))
+            {
                 return true
-            } else if (self.viewModel?.hideButtons == false || btn_openCentered.point(inside: convert(point, to: btn_openCentered), with: event)) {
+            }
+            else if (self.viewModel?.hideButtons == false || btn_openCentered.point(inside: convert(point, to: btn_openCentered), with: event))
+            {
                 return true
             }
         }
+        
         return false
     }
 }

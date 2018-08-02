@@ -322,9 +322,12 @@
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
 		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
+		D108D80921105C9500B2E855 /* CoreController+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108D80821105C9500B2E855 /* CoreController+Operations.swift */; };
 		D11487AD20F4BB55007BB150 /* UIView+StoryboardConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */; };
 		D114A1D6210722260045712F /* SettingsNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */; };
 		D120AD4720E24C4A007A3139 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D120AD4620E24C4A007A3139 /* client.p12 */; };
+		D14114692110554F00FF9B52 /* ShareOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14114682110554F00FF9B52 /* ShareOperation.swift */; };
+		D141146B2110556900FF9B52 /* ShareOperationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D141146A2110556900FF9B52 /* ShareOperationController.swift */; };
 		D17DC78620A2F06400BA3945 /* LegalNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */; };
 		D17DC78820A2F09000BA3945 /* LegalNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */; };
 		D17DC78A20A2F60F00BA3945 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78920A2F60E00BA3945 /* AppConfig.swift */; };
@@ -692,9 +695,12 @@
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
+		D108D80821105C9500B2E855 /* CoreController+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreController+Operations.swift"; sourceTree = "<group>"; };
 		D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+StoryboardConstraint.swift"; path = "Classes/Utilities/UIView+StoryboardConstraint.swift"; sourceTree = "<group>"; };
 		D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewModel.swift; sourceTree = "<group>"; };
 		D120AD4620E24C4A007A3139 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
+		D14114682110554F00FF9B52 /* ShareOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareOperation.swift; sourceTree = "<group>"; };
+		D141146A2110556900FF9B52 /* ShareOperationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareOperationController.swift; sourceTree = "<group>"; };
 		D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewModel.swift; sourceTree = "<group>"; };
 		D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewController.swift; sourceTree = "<group>"; };
 		D17DC78920A2F60E00BA3945 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -1100,14 +1106,15 @@
 		4D36D7BC1ED2EF86005FAEB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4DC10E011EE9D6F000A74E26 /* CoreController.swift */,
-				4D0471B01F3EF61E00C454A2 /* LocationManager.swift */,
+				D108D80721105C8700B2E855 /* CoreController */,
 				4DCC70A01ED3106200906DA0 /* APIController.swift */,
-				03140E0D1F40437600F67160 /* SharengoApiController.swift */,
+				4D0471B01F3EF61E00C454A2 /* LocationManager.swift */,
+				03653E221EEADA4800AC7A93 /* NotificationsController.swift */,
 				4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */,
 				D1A8B56920F75B8C009EABB1 /* PushNotificationController.swift */,
+				03140E0D1F40437600F67160 /* SharengoApiController.swift */,
+				D141146A2110556900FF9B52 /* ShareOperationController.swift */,
 				4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */,
-				03653E221EEADA4800AC7A93 /* NotificationsController.swift */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -1396,6 +1403,7 @@
 				037689FB1F160C7A00523BAA /* Feed.swift */,
 				4DCFB1241F6976450015D651 /* RouteStep.swift */,
 				4D6876301F6FC4BA00CD910E /* Bonus.swift */,
+				D14114682110554F00FF9B52 /* ShareOperation.swift */,
 				4DFD982F1ED45CCE00880EA1 /* Annotations */,
 			);
 			name = Model;
@@ -1644,6 +1652,15 @@
 				DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D108D80721105C8700B2E855 /* CoreController */ = {
+			isa = PBXGroup;
+			children = (
+				4DC10E011EE9D6F000A74E26 /* CoreController.swift */,
+				D108D80821105C9500B2E855 /* CoreController+Operations.swift */,
+			);
+			path = CoreController;
 			sourceTree = "<group>";
 		};
 		D114A1D4210722090045712F /* Notifications */ = {
@@ -2064,6 +2081,7 @@
 				0333287B1F28BC2100CD3AD8 /* TutorialViewModel.swift in Sources */,
 				036D92111F0256CB0076D22D /* SettingsViewModel.swift in Sources */,
 				037689F41F1608C700523BAA /* FeedsViewController.swift in Sources */,
+				D14114692110554F00FF9B52 /* ShareOperation.swift in Sources */,
 				037689F81F1608D100523BAA /* FeedsViewModel.swift in Sources */,
 				4D60EA871F3E037E0085BFE3 /* GMUClusterManager.m in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
@@ -2094,9 +2112,11 @@
 				038A07991F1F6326007A4F46 /* InviteFriendViewModel.swift in Sources */,
 				036D92151F0256E00076D22D /* SettingsViewController.swift in Sources */,
 				4D60EA911F3E037E0085BFE3 /* GMULineString.m in Sources */,
+				D108D80921105C9500B2E855 /* CoreController+Operations.swift in Sources */,
 				03AF5D361EEE7B6C00AC8826 /* LoginViewController.swift in Sources */,
 				0366DD971F1F473E006657D9 /* SupportViewController.swift in Sources */,
 				036D92131F0256D60076D22D /* SettingItemCollectionViewCell.swift in Sources */,
+				D141146B2110556900FF9B52 /* ShareOperationController.swift in Sources */,
 				4D60EA841F3E037E0085BFE3 /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
 				4DF0EC701F077AF00003D502 /* FavouritesViewModel.swift in Sources */,
 				03856C771F28805C00DCE48D /* FaqViewModel.swift in Sources */,

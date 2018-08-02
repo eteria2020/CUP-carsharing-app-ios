@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         setupFabric()
         setupConfig()
         
-        _ = CoreController.shared.pulseYellow
-        _ = CoreController.shared.pulseGreen
+        let cc = CoreController.shared
+        cc.setup()
         
         TextStyle.setup()
         Router.start(self)

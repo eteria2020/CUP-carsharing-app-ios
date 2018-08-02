@@ -42,6 +42,9 @@ class CoreController
     var callingApp: NSString = ""
     var appConfig: [String:String] = [:]
     
+    var checkOpenTripOperation: ShareOperation!
+    var checkCloseTripOperation: ShareOperation!
+    
     public lazy var pulseYellow: UIImage = CoreController.shared.getPulseYellow()
     public lazy var pulseGreen: UIImage = CoreController.shared.getPulseGreen()
     
@@ -68,6 +71,37 @@ class CoreController
         self.updateTimer = Timer.scheduledTimer(timeInterval: 60*1, target: self, selector: #selector(self.updateData), userInfo: nil, repeats: true)
         //stopFetchTrip()
         //fetchTrip()
+    }
+    
+    func setup()
+    {
+        //  Preload PNG animations
+        
+        _ = pulseYellow
+        _ = pulseGreen
+        
+        //  Create Operations
+        
+        checkCloseTripOperation = ShareOperation(interval: 5, operation: { operation, handler in
+            CoreController.shared.updateCarTrips({ thereAreTrips in
+                if !thereAreTrips
+                {
+                    handler(true)
+                }
+                else
+                {
+                    //  Check for operation trip. I want to know if the closing trip is in list
+                    
+                    guard let plate = operation.userInfo[CoreController.CarPlateKey] as? String else { return }
+                    let trips = CoreController.shared.allCarTrips.filter { $0.carPlate == plate }
+                    handler(trips.isEmpty)
+                }
+            })
+        })
+        
+        checkOpenTripOperation = ShareOperation(interval: 5, operation: { operation, handler in
+            CoreController.shared.updateCarTrips(handler)
+        })
     }
     
     func fetchTrip()
@@ -97,7 +131,8 @@ class CoreController
         self.updateUser()
     }
     
-    //per chiamare aggiornamento del trip a nostra discrizione
+    //  Per chiamare aggiornamento del trip a nostra discrizione
+    
     func updateTrip(trip: CarTrip)
     {
         
@@ -135,7 +170,6 @@ class CoreController
                 }
             }.addDisposableTo(self.disposeBag)
     }
-    
     
     fileprivate func updatePolygons()
     {
@@ -235,7 +269,7 @@ class CoreController
         }
     }
     
-    func executeLogout()
+    func executeLogout(showingErrorAlert: Bool = true, _ completion: (()->())? = nil)
     {
         var languageid = "en"
         if Locale.preferredLanguages[0] == "it-IT"
@@ -246,30 +280,39 @@ class CoreController
         Localize.setCurrentLanguage(languageid)
         KeychainSwift().clear()
         PushNotificationController.shared.removePushNotifications()
-        CoreController.shared.currentCarBooking = nil
-        CoreController.shared.currentCarTrip = nil
-        CoreController.shared.lastCarTrip = nil
-        CoreController.shared.allCarBookings = []
-        CoreController.shared.allCarTrips = []
+        currentCarBooking = nil
+        currentCarTrip = nil
+        lastCarTrip = nil
+        allCarBookings = []
+        allCarTrips = []
+        stopCheckCloseTripOperation()
+        stopCheckOpenTripOperation()
         
         NotificationCenter.default.post(name: .PushStatusChanged, object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
         Router.exit(CoreController.shared.currentViewController ?? UIViewController())
-        let dispatchTime = DispatchTime.now() + 0.5
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            let dialog = ZAlertView(title: nil, message: "alert_logoutError".localized(), isOkButtonLeft: false, okButtonText: "btn_login".localized(), cancelButtonText: "btn_back".localized(),
-                                    okButtonHandler: { alertView in
-                                        let destination: LoginViewController = (Storyboard.main.scene(.login))
-                                        let viewModel = ViewModelFactory.login()
-                                        destination.bind(to: viewModel, afterLoad: true)
-                                        (CoreController.shared.currentViewController ?? UIViewController()).navigationController?.pushViewController(destination, animated: true)
-                                        alertView.dismissAlertView()
-            },
-                                    cancelButtonHandler: { alertView in
-                                        alertView.dismissAlertView()
-            })
-            dialog.allowTouchOutsideToDismiss = false
-            dialog.show()
+        
+        completion?()
+        
+        if showingErrorAlert
+        {
+            let dispatchTime = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                let dialog = ZAlertView(title: nil, message: "alert_logoutError".localized(), isOkButtonLeft: false, okButtonText: "btn_login".localized(), cancelButtonText: "btn_back".localized(),
+                                        okButtonHandler: { alertView in
+                                            let destination: LoginViewController = (Storyboard.main.scene(.login))
+                                            let viewModel = ViewModelFactory.login()
+                                            destination.bind(to: viewModel, afterLoad: true)
+                                            (CoreController.shared.currentViewController ?? UIViewController()).navigationController?.pushViewController(destination, animated: true)
+                                            alertView.dismissAlertView()
+                },
+                                        cancelButtonHandler: { alertView in
+                                            alertView.dismissAlertView()
+                })
+                
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
         }
     }
     
@@ -303,72 +346,39 @@ class CoreController
             }.addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func updateCarTrips()
+    fileprivate func updateCarTrips(_ completion: ((_ thereAreTrips: Bool)->())? = nil)
     {
-        if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil
+        guard AppDelegate.isLoggedIn else { return }
+        
+        func _setCarTrips(_ carTrips: [CarTrip])
         {
-            return
+            allCarTrips = carTrips
+            stopUpdateData()
+            
+            let thereAreTrips = !carTrips.isEmpty
+            completion?(thereAreTrips)
         }
         
-        self.apiController.tripsList()
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    if response.status == 200, let data = response.array_data {
-                        if let carTrips = [CarTrip].from(jsonArray: data) {
-                            self.allCarTrips = carTrips
-                            self.stopUpdateData()
-                            return
-                        }
-                    }
-                    self.allCarTrips = []
-                    self.stopUpdateData()
-                case .error(_):
-                    self.allCarTrips = []
-                    self.stopUpdateData()
-                default:
-                    break
+        apiController.tripsList().observeOn(ConcurrentDispatchQueueScheduler(qos: .background)).subscribe { event in
+            
+            switch event
+            {
+            case .next(let response):
+                if response.status == 200, let data = response.array_data, let carTrips = [CarTrip].from(jsonArray: data)
+                {
+                    _setCarTrips(carTrips)
                 }
-            }.addDisposableTo(self.disposeBag)
-    }
-    
-    @objc func startUpdateOpeningCarTrips()
-    {
-        updateOpeningCarTrips()
-    }
-    
-    fileprivate func updateOpeningCarTrips()
-    {
-        if  KeychainSwift().get("Username") == nil || KeychainSwift().get("Password") == nil
-        {
-            return
-        }
-        
-        Observable< Int>.interval(5, scheduler: MainScheduler.instance)
-            .flatMap { _ in
-                self.apiController.tripsList()
+                else
+                {
+                    _setCarTrips([])
+                }
+                
+            case .error(_): _setCarTrips([])
+                
+            default: break
             }
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { event in
-                switch event {
-                case .next(let response):
-                    if response.status == 200, let data = response.array_data {
-                        if let carTrips = [CarTrip].from(jsonArray: data) {
-                            self.allCarTrips = carTrips
-                            self.stopUpdateTripData()
-                            return
-                        }
-                    }
-                    self.allCarTrips = []
-                    self.stopUpdateTripData()
-                case .error(_):
-                    self.allCarTrips = []
-                    self.stopUpdateTripData()
-                default:
-                    break
-                }
-            }.addDisposableTo(self.disposeBag)
+            
+        }.addDisposableTo(disposeBag)
     }
     
     fileprivate func stopUpdateData()

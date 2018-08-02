@@ -106,32 +106,38 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
                 }
                 case .logout:
                     let message = "lbl_logoutMessage".localized()
-                    let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "lbl_logoutConfirmButton".localized(), cancelButtonText: "btn_cancel".localized(),
-                                            okButtonHandler: { alertView in
-                                                alertView.dismissAlertView()
-                                                var languageid = "en"
-                                                if Locale.preferredLanguages[0] == "it-IT" {
-                                                    languageid = "it"
-                                                }
-                                                Localize.setCurrentLanguage(languageid)
-                                                KeychainSwift().clear()
-                                                PushNotificationController.shared.removePushNotifications()
-                                                CoreController.shared.currentCarBooking = nil
-                                                CoreController.shared.currentCarTrip = nil
-                                                CoreController.shared.allCarBookings = []
-                                                CoreController.shared.allCarTrips = []
-                                                
-                                                NotificationCenter.default.post(name: .PushStatusChanged, object: nil)
-                                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
-                                                let dispatchTime = DispatchTime.now() + 0.3
-                                                DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                    Router.exit(CoreController.shared.currentViewController ?? self)
-                                                    self.updateData()
-                                                }
+                    let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "lbl_logoutConfirmButton".localized(), cancelButtonText: "btn_cancel".localized(), okButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                        
+                        CoreController.shared.executeLogout(showingErrorAlert: false) {
+                            let dispatchTime = DispatchTime.now() + 0.3
+                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                                self.updateData()
+                            }
+                        }
+                        
+//                        var languageid = "en"
+//                        if Locale.preferredLanguages[0] == "it-IT" {
+//                            languageid = "it"
+//                        }
+//                        Localize.setCurrentLanguage(languageid)
+//                        KeychainSwift().clear()
+//                        PushNotificationController.shared.removePushNotifications()
+//                        CoreController.shared.currentCarBooking = nil
+//                        CoreController.shared.currentCarTrip = nil
+//                        CoreController.shared.allCarBookings = []
+//                        CoreController.shared.allCarTrips = []
+//
+//                        NotificationCenter.default.post(name: .PushStatusChanged, object: nil)
+//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
+//                        let dispatchTime = DispatchTime.now() + 0.3
+//                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+//                            Router.exit(CoreController.shared.currentViewController ?? self)
+//                            self.updateData()
+//                        }
                                                
-                    },
-                                            cancelButtonHandler: { alertView in
-                                                alertView.dismissAlertView()
+                    }, cancelButtonHandler: { alertView in
+                        alertView.dismissAlertView()
                     })
                     dialog.allowTouchOutsideToDismiss = false
                     dialog.show()
