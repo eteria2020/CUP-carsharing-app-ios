@@ -25,6 +25,7 @@ class PushNotificationController: NSObject
     
 	static let shared = PushNotificationController()
     
+    static let usernameOneSignalTag = "username"
     static let pushNotificationAuthorizedKey = "pushNotificationAuthorized"
     static var pushNotificationIsRefused: Bool {
         let isRefused = !OneSignal.getPermissionSubscriptionState().subscriptionStatus.subscribed
@@ -49,15 +50,14 @@ class PushNotificationController: NSObject
         }
         
         OneSignal.add(self as OSPermissionObserver)
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
+        OneSignal.promptForPushNotifications(userResponse: { [unowned self] accepted in
             debugPrint("PushNotificationController: User accepted notifications: \(accepted)")
             
             NotificationCenter.default.post(name: .PushStatusChanged, object: nil, userInfo: [PushNotificationController.pushNotificationAuthorizedKey: accepted])
             
             if accepted
             {
-                //OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId
-                //  TODO: Send this data to Sharengo Manage
+                self.sendOneSignalTag()
             }
         })
     }
@@ -65,6 +65,7 @@ class PushNotificationController: NSObject
     func removePushNotifications()
     {
         UIApplication.shared.unregisterForRemoteNotifications()
+        removeOneSignalTag()
     }
     
 	func set(notification: [AnyHashable: Any])
@@ -101,6 +102,19 @@ class PushNotificationController: NSObject
         
         lastNotification = nil
 	}
+
+    func sendOneSignalTag()
+    {
+        if !PushNotificationController.pushNotificationIsRefused, let username = AppDelegate.username?.removingPercentEncoding
+        {
+            OneSignal.sendTags([PushNotificationController.usernameOneSignalTag: username])
+        }
+    }
+    
+    func removeOneSignalTag()
+    {
+        OneSignal.deleteTag(PushNotificationController.usernameOneSignalTag)
+    }
 }
 
 extension PushNotificationController: UNUserNotificationCenterDelegate

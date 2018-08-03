@@ -403,20 +403,20 @@
                                 <rect key="frame" x="0.0" y="643" width="375" height="169"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-kr-vdH" customClass="NavigationBarView" customModule="Sharengo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="MDJ-4u-W5d"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8SK-8L-afg" customClass="GIFImageView" customModule="Gifu">
-                                <rect key="frame" x="-77" y="56" width="529" height="550"/>
+                                <rect key="frame" x="-55.666666666666657" y="100" width="486.33333333333326" height="506"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8SK-8L-afg" secondAttribute="height" multiplier="640:665" id="WuM-eG-PWm"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fwu-GE-YBb" customClass="GIFImageView" customModule="Gifu">
-                                <rect key="frame" x="-56.333333333333343" y="76" width="488.33333333333337" height="510"/>
+                                <rect key="frame" x="-35" y="120" width="445.66666666666669" height="466"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68m-Ru-eEK">
                                 <rect key="frame" x="15" y="606" width="345" height="90"/>
@@ -452,7 +452,6 @@
                             <constraint firstItem="8SK-8L-afg" firstAttribute="trailing" secondItem="fwu-GE-YBb" secondAttribute="trailing" constant="20" identifier="constraint1" id="4Oa-mh-EHx"/>
                             <constraint firstItem="8SK-8L-afg" firstAttribute="bottom" secondItem="fwu-GE-YBb" secondAttribute="bottom" constant="20" identifier="constraint3" id="9p2-mG-HSU"/>
                             <constraint firstItem="P58-Rb-PlE" firstAttribute="trailing" secondItem="Nm4-kr-vdH" secondAttribute="trailing" id="AWh-iV-k4A"/>
-                            <constraint firstItem="Nm4-kr-vdH" firstAttribute="top" secondItem="Xmx-1K-BB5" secondAttribute="top" id="B53-Hq-Cyz"/>
                             <constraint firstItem="P58-Rb-PlE" firstAttribute="trailing" secondItem="YoU-y2-EXE" secondAttribute="trailing" id="DHs-AD-EaF"/>
                             <constraint firstItem="W9s-Rv-Rpi" firstAttribute="centerX" secondItem="P58-Rb-PlE" secondAttribute="centerX" id="HV8-kO-PfZ"/>
                             <constraint firstAttribute="bottom" secondItem="GsT-tJ-EiX" secondAttribute="bottom" id="J7Q-Ne-nuq"/>
@@ -467,6 +466,7 @@
                             <constraint firstItem="68m-Ru-eEK" firstAttribute="top" secondItem="8SK-8L-afg" secondAttribute="bottom" id="btg-d2-SXU"/>
                             <constraint firstItem="68m-Ru-eEK" firstAttribute="leading" secondItem="P58-Rb-PlE" secondAttribute="leading" constant="15" id="dZM-b5-4P3"/>
                             <constraint firstItem="W9s-Rv-Rpi" firstAttribute="top" secondItem="68m-Ru-eEK" secondAttribute="bottom" constant="15" identifier="bottomLblDescription" id="esw-FZ-7SK"/>
+                            <constraint firstItem="Nm4-kr-vdH" firstAttribute="top" secondItem="P58-Rb-PlE" secondAttribute="top" id="hag-3h-yVb"/>
                             <constraint firstItem="8SK-8L-afg" firstAttribute="centerX" secondItem="P58-Rb-PlE" secondAttribute="centerX" id="jWd-q6-2ba"/>
                             <constraint firstItem="P58-Rb-PlE" firstAttribute="trailing" secondItem="GsT-tJ-EiX" secondAttribute="trailing" id="lke-Og-so5"/>
                             <constraint firstItem="P58-Rb-PlE" firstAttribute="bottom" secondItem="W9s-Rv-Rpi" secondAttribute="bottom" constant="30" identifier="bottomPgcSteps" id="obf-ZQ-CG2"/>

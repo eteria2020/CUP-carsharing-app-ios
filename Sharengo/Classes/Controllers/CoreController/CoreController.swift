@@ -246,6 +246,7 @@ class CoreController
                                     KeychainSwift().set("\(String(describing: json["reason"] as! String))", forKey: "DisableReason")
                                 }
                             }
+                            
                             self.updateCarBookings()
                         }
                         else if response.status == 404, let code = response.code {
@@ -451,15 +452,21 @@ class CoreController
     
     func tryToShowPushRequest()
     {
-        guard AppDelegate.isLoggedIn && PushNotificationController.pushNotificationHasPrompted && PushNotificationController.pushNotificationIsRefused else { return }
-        
         let ud = UserDefaults.standard
+        
+        guard AppDelegate.isLoggedIn && PushNotificationController.pushNotificationHasPrompted && PushNotificationController.pushNotificationIsRefused else {
+            ud.set(Date(), forKey: DefaultKeys.LastPushRequestData)
+            ud.synchronize()
+            return
+        }
+        
+        let passedTime: TimeInterval = 60 * 60 * 24   //  >= 24 hours
         let date = ud.object(forKey: DefaultKeys.LastPushRequestData) as? Date
         var needsAsk = false
         
         if let date = date
         {
-            if fabs(date.timeIntervalSinceNow) >= 60 * 60 * 24   //  >= 24 hours
+            if fabs(date.timeIntervalSinceNow) >= passedTime
             {
                 needsAsk = true
             }

@@ -462,10 +462,6 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.checkUserPositionFromForeground()
         }
         
-        NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: OperationQueue.main) { _ in
-            CoreController.shared.tryToShowPushRequest()
-        }
-        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "updateData"), object: nil, queue: OperationQueue.main) { [unowned self] _ in
             self.updateCarData()
         }
@@ -533,6 +529,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             viewModel?.searchPlateAvailable(plate: plate)
             CoreController.shared.urlDeepLink = nil
         }
+        
+        CoreController.shared.tryToShowPushRequest()
         
         PushNotificationController.shared.requestPushNotifications()
         PushNotificationController.shared.evaluateLastNotification(from: self)

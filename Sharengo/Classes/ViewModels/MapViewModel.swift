@@ -54,9 +54,9 @@ public final class MapViewModel: ViewModelType {
     public var feeds = [Feed]()
     //Variable used to store deepLink car
     public var deepCar: Variable<Car?> = Variable<Car?>(nil)
-    /// Variable used to save cars
+    /// Variable used to save cars (visible car sin the map, or cars found is the radius)
     public var cars: [Car] = []
-    /// Variable used to save all cars in share'ngo system
+    /// Variable used to save all cars in share'ngo system (all the cars found by the system)
     public var allCars: [Car] = []
     /// Variable used to save nearest car
     public var nearestCar: Variable<Car?> = Variable<Car?>(nil)
@@ -293,98 +293,140 @@ public final class MapViewModel: ViewModelType {
     /**
      This method updates distance and manages cars and feeds in array of annotations
      */
-    public func manageAnnotations() {
+    public func manageAnnotations()
+    {
         var annotations: [GMUClusterItem] = []
-        if type == .searchCars || showCars == true {
+        let locationIsAuthorized = CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+        let locationManager = LocationManager.sharedInstance
+        let userLocation = locationManager.lastLocationCopy.value
+        
+        if type == .searchCars || showCars == true
+        {
             var carBookedFounded: Bool = false
-            // Distance
-            if let car = self.carBooked {
-                let locationManager = LocationManager.sharedInstance
-                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                    if let userLocation = locationManager.lastLocationCopy.value {
-                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                            let index = self.cars.index(where: { (singleCar) -> Bool in
-                                return car.plate == singleCar.plate
-                            })
-                            if let index = index {
-                                self.cars[index].distance = car.distance
-                            }
-                        }
+            
+            // Update distance from me and booked car and update the same car in the cars array
+            
+            if let carBooked = carBooked
+            {
+                if  let userLocation = userLocation,
+                    let carLocation = carBooked.location,
+                    locationIsAuthorized
+                {
+                    carBooked.distance = carLocation.distance(from: userLocation)
+                    
+                    if  let index = cars.index(where: { carBooked.plate == $0.plate })
+                    {
+                        cars[index].distance = carBooked.distance
                     }
                 }
             }
-            for car in self.cars {
-                let locationManager = LocationManager.sharedInstance
-                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                    if let userLocation = locationManager.lastLocationCopy.value {
-                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                            let index = self.allCars.index(where: { (allCar) -> Bool in
-                                return car.plate == allCar.plate
-                            })
-                            if let index = index {
-                                self.allCars[index].distance = car.distance
-                            }
-                        }
+            
+            //  Update all cars distances and updated "allCars" cars
+            
+            for car in cars
+            {
+                if  let userLocation = userLocation,
+                    let carLocation = car.location,
+                    locationIsAuthorized
+                {
+                    car.distance = carLocation.distance(from: userLocation)
+                    
+                    if let index = allCars.index(where: { car.plate == $0.plate })
+                    {
+                        allCars[index].distance = car.distance
                     }
                 }
-                if car.plate == self.carBooked?.plate {
+                
+                //  Check for car booked found
+                
+                if car.plate == carBooked?.plate
+                {
                     carBookedFounded = true
                 }
             }
-            for car in self.allCars {
-                let locationManager = LocationManager.sharedInstance
-                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                    if let userLocation = locationManager.lastLocationCopy.value {
-                        if let lat = car.location?.coordinate.latitude, let lon = car.location?.coordinate.longitude {
-                            car.distance = CLLocation(latitude: lat, longitude: lon).distance(from: userLocation)
-                            let index = self.cars.index(where: { (allCar) -> Bool in
-                                return car.plate == allCar.plate
-                            })
-                            if let index = index {
-                                self.cars[index].distance = car.distance
-                            }
-                        }
+            
+            //  Update all cars distances and then... update cars array distances.. I don't know why
+            
+            for car in allCars
+            {
+                if  let userLocation = userLocation,
+                    let carLocation = car.location,
+                    locationIsAuthorized
+                {
+                    car.distance = carLocation.distance(from: userLocation)
+                    
+                    if let index = cars.index(where: { car.plate == $0.plate })
+                    {
+                        cars[index].distance = car.distance
                     }
                 }
             }
-            self.updateCarsProperties()
-            for car in self.cars {
-                if let coordinate = car.location?.coordinate {
-                    let annotation = CarAnnotation(position: coordinate, car: car, carBooked: self.carBooked, carTrip: self.carTrip)
+            
+            //  Updated cars properties
+            
+            updateCarsProperties()
+            
+            //  Add cars annotations
+            
+            for car in cars
+            {
+                if let coordinate = car.location?.coordinate
+                {
+                    let annotation = CarAnnotation(position: coordinate, car: car, carBooked: carBooked, carTrip: carTrip)
                     annotations.append(annotation)
                 }
             }
-            if carBookedFounded == false && self.carBooked != nil && (self.carTrip == nil || self.carTrip?.car.value?.parking == true) {
-                if let coordinate = self.carBooked!.location?.coordinate {
-                    let annotation = CarAnnotation(position: coordinate, car: self.carBooked!, carBooked:  self.carBooked, carTrip: self.carTrip)
-                    annotations.append(annotation)
-                }
+            
+            //  If there is a car booked, add car bokoed annotation
+            
+            if  let carBooked = carBooked,
+                carBookedFounded == false,
+                (carTrip == nil || carTrip?.car.value?.parking == true),
+                let coordinate = carBooked.location?.coordinate
+            {
+                let annotation = CarAnnotation(position: coordinate, car: carBooked, carBooked:  carBooked, carTrip: carTrip)
+                annotations.append(annotation)
             }
-            if self.type == .searchCars {
-                self.array_annotations.value = annotations
+            
+            //  ... don't know
+            
+            if type == .searchCars
+            {
+                array_annotations.value = annotations
             }
         }
-        if type == .feeds {
-            self.updateCarsProperties()
-            if self.errorEvents == false && self.errorOffers == false {
+        
+        //  Type feeds... don't know...
+        
+        if type == .feeds
+        {
+            updateCarsProperties()
+            
+            if  errorEvents == false &&
+                errorOffers == false
+            {
                 DispatchQueue.main.async {
-                    for feed in self.feeds {
-                        if let coordinate = feed.feedLocation?.coordinate {
+                    for feed in self.feeds
+                    {
+                        if let coordinate = feed.feedLocation?.coordinate
+                        {
                             let annotation = FeedAnnotation(position: coordinate, feed: feed)
                             annotations.append(annotation)
                         }
                     }
                     self.array_annotations.value = annotations
                 }
-            } else if self.errorEvents == true || self.errorOffers == true {
+                
+            }
+            else if errorEvents == true ||
+                    errorOffers == true
+            {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                    
                     var message = "alert_generalError".localized()
-                    if Reachability()?.isReachable == false {
-                        message = "alert_connectionError".localized()
-                    }
+                    if Reachability()?.isReachable == false { message = "alert_connectionError".localized() }
+                    
                     let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                         alertView.dismissAlertView()
                     })
@@ -402,40 +444,62 @@ public final class MapViewModel: ViewModelType {
      - booked
      - opened
      */
-    public func updateCarsProperties () {
+    public func updateCarsProperties ()
+    {
         var nearestCarCopy: Car? = nil
-        for car in self.allCars {
+        
+        for car in allCars
+        {
             car.nearest = false
             car.booked = false
             car.opened = false
-            if let carBooked = self.carBooked {
-                if car.plate == carBooked.plate {
+            
+            //  Search booked car
+            
+            if let carBooked = carBooked
+            {
+                if car.plate == carBooked.plate
+                {
                     car.booked = true
                     car.opened = carBooked.opened
                 }
             }
-            if car.distance ?? 0 > 0 {
-                if nearestCarCopy == nil {
+            
+            //  Search and define nearest car
+            
+            if car.distance ?? 0 > 0
+            {
+                if nearestCarCopy == nil
+                {
                     nearestCarCopy = car
-                } else if let nearestCar = nearestCarCopy {
-                    if let nearestCarDistance = nearestCar.distance, let carDistance = car.distance {
-                        if nearestCarDistance > carDistance {
+                }
+                else if let nearestCar = nearestCarCopy
+                {
+                    if let nearestCarDistance = nearestCar.distance, let carDistance = car.distance
+                    {
+                        if nearestCarDistance > carDistance
+                        {
                             nearestCarCopy = car
                         }
                     }
                 }
             }
-            let index = self.cars.index(where: { (singleCar) -> Bool in
-                return car.plate == singleCar.plate
-            })
-            if let index = index {
-                if self.cars.count > index {
-                    self.cars[index] = car
+            
+            //  Update cars array with allCars cars... I don't know why
+            
+            if let index = cars.index(where: { car.plate == $0.plate })
+            {
+                if cars.count > index
+                {
+                    cars[index] = car
                 }
             }
         }
+        
+        //  Updated neares car
+        
         nearestCarCopy?.nearest = true
-        self.nearestCar.value = nearestCarCopy
+        nearestCar.value = nearestCarCopy
     }
     
     // MARK: - Action methods

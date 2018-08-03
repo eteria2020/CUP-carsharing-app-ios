@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     private let menuPadding: CGFloat = 100.0
     
     static var isLoggedIn: Bool {
-        return KeychainSwift().get("Username") != nil && KeychainSwift().get("Password") != nil
+        return username != nil && KeychainSwift().get("Password") != nil
+    }
+    
+    static var username: String? {
+        return KeychainSwift().get("Username")
     }
     
     func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool

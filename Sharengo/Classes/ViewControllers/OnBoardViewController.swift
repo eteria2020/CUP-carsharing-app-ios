@@ -161,6 +161,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75) {
                                 UIView.animate(withDuration: 0.5, animations: {
                                     self.view_white.alpha = 1.0
+                                    self.view_white.isHidden = false
                                 })
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                                     let destination: LoginViewController = (Storyboard.main.scene(.login))
@@ -174,6 +175,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                         }
                     }
                 }).addDisposableTo(self.disposeBag)
+                
                 self.view.rx.swipeGesture(.right).when(.recognized).subscribe(onNext: {_ in
                     if !self.gestureInProgress {
                         switch self.pgc_steps.currentPage {
@@ -235,5 +237,9 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
             }
             self.introIsShowed = true
         }
+        
+        view_white.alpha = 0.0
+        view_white.isHidden = true
+        gestureInProgress = false
     }
 }
