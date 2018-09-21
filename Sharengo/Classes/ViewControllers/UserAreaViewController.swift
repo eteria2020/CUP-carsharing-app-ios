@@ -171,8 +171,18 @@ extension UserAreaViewController: UIWebViewDelegate {
         return true
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
-        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
+    func webView(_ webView: UIWebView, didFailLoadWithError error: NSError) {
+        
+        let errorForm = -999
+        let messageError = error.code
+        if(messageError != errorForm){
+            let dialog = ZAlertView(title: nil, message:  "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+        }
+       /* let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
                                 okButtonHandler: { alertView in
                                     let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
                                     let viewModel = ViewModelFactory.tutorial()
@@ -185,6 +195,6 @@ extension UserAreaViewController: UIWebViewDelegate {
                                     alertView.dismissAlertView()
         })
         dialog.allowTouchOutsideToDismiss = false
-        dialog.show()
+        dialog.show()*/
     }
 }

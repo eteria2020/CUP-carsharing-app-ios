@@ -298,7 +298,7 @@
 /////////////////////////
 
 "lbl_carPopupFreeType" = "%d minutes free drive";
-
+"lbl_carPopupFreeTypeUnplug" = "%d minutes free drive! You must unplug the charge!";
 //Disable reason
 
 "first_payment_login_alert" = "You are disabled for the first payment not made, to use Sharen'go access your personal area and complete the payment";
@@ -314,3 +314,5 @@
 
 "push_request_alert_message" = "Accept push notifications";
 "btn_go_to_settings" = "Accept";
+
+"aler_closeCarPopoup" = "Car will be closed in few second. You'll riceve a notification after that";

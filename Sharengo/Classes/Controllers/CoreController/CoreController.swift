@@ -82,7 +82,7 @@ class CoreController
         
         //  Create Operations
         
-        checkCloseTripOperation = ShareOperation(interval: 5, operation: { operation, handler in
+        checkCloseTripOperation = ShareOperation(interval: 30, operation: { operation, handler in
             CoreController.shared.updateCarTrips({ thereAreTrips in
                 if !thereAreTrips
                 {
@@ -98,8 +98,8 @@ class CoreController
                 }
             })
         })
-        
-        checkOpenTripOperation = ShareOperation(interval: 5, operation: { operation, handler in
+        //intervallo per check della chiusura trips
+        checkOpenTripOperation = ShareOperation(interval: 35, operation: { operation, handler in
             CoreController.shared.updateCarTrips(handler)
         })
     }

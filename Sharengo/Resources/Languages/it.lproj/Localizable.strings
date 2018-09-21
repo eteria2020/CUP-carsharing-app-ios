@@ -301,7 +301,7 @@
 /////////////////////////
 
 "lbl_carPopupFreeType" = "Con questa auto %d minuti di guida gratis!";
-
+"lbl_carPopupFreeTypeUnplug" = "Con questa auto %d minuti di guida gratis! Ricordati di staccare la spina!";
 
 //////////Disable reason message.
 
@@ -318,3 +318,7 @@
 
 "push_request_alert_message" = "Attiva le push notification";
 "btn_go_to_settings" = "Accetta";
+
+// Close car popup
+
+"aler_closeCarPopoup" = "La macchina si chiuderà a breve, riceverai una notifica a processo completato.";

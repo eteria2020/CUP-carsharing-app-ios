@@ -1077,7 +1077,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self.view_carBookingPopup.viewModel?.isCarClosing.value = true
             
                 //  Control here re-enabling this button. We have no control externally
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: {
                     self.view_carBookingPopup.viewModel?.isCarClosing.value = false
                 })
             
@@ -1105,7 +1105,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             
                             let dispatchTime = DispatchTime.now() + 0.5
                             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                let confirmDialog = ZAlertView(title: nil, message: "Attendi qualche secondo e assicurati che la macchina si sia chiusa correttamente".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                let confirmDialog = ZAlertView(title: nil, message: "aler_closeCarPopoup".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                     
                                     //CoreController.shared.updateCarBookings()
                                     alertView.dismissAlertView()

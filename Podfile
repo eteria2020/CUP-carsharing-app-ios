@@ -17,7 +17,7 @@ def shared_pods
     pod 'Moya-Gloss/RxSwift'
     pod 'KeychainSwift'
     pod 'ReachabilitySwift', '~> 3'
-    pod 'DeviceKit'	
+    pod 'DeviceKit', '~> 1.2.3'
     pod 'Gifu'
     pod 'TPKeyboardAvoiding'
     pod 'SideMenu', :git => "https://github.com/jonkykong/SideMenu.git", :branch => '2.3.2'

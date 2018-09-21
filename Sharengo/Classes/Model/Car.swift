@@ -78,7 +78,11 @@ public class Car: ModelType, Gloss.Decodable {
             return "\(string1)\n\(string2)"
         } else if bonusFree.count > 0 {
             let bonus = bonusFree[0]
-            return String(format: "lbl_carPopupFreeType".localized(), bonus.value)
+            if(bonus.type == "unplug"){
+                return String(format: "lbl_carPopupFreeTypeUnplug".localized(), bonus.value)
+            }else{
+                return String(format: "lbl_carPopupFreeType".localized(), bonus.value)
+            }
         } else if self.nearest {
            return "lbl_carPopupType".localized()
         } else {
