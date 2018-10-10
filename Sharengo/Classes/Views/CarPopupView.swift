@@ -15,7 +15,7 @@ import CoreLocation
 import DeviceKit
 import BonMot
 
-class CarPopupView: UIView {
+public class CarPopupView: UIView {
     @IBOutlet fileprivate weak var btn_open: UIButton!
     @IBOutlet fileprivate weak var btn_book: UIButton!
     @IBOutlet fileprivate weak var view_type: UIView!

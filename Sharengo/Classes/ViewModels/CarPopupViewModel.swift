@@ -32,7 +32,7 @@ enum CarPopupType {
     case feed
 }
 
-final class CarPopupViewModel: ViewModelTypeSelectable {
+public final class CarPopupViewModel: ViewModelTypeSelectable {
     fileprivate var car: Car?
     fileprivate var feed: Feed?
     var carType: Variable<String> = Variable("")
@@ -111,6 +111,15 @@ final class CarPopupViewModel: ViewModelTypeSelectable {
                                 }
                                 self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(c)")
                                 UserDefaults.standard.set("\(c)", forKey: key)
+                                if let carTest = car {
+                                    if let oldCar = self.car {
+                                        if oldCar.nearest == false{
+                                        
+                                        self.carType.value = carTest.type
+                                        }
+                                    }
+                                }
+                              
                             }
                         }
                     default:

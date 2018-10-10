@@ -136,7 +136,7 @@ public class BaseViewController: UIViewController {
     
     // MARK: - Update methods
     
-    @objc fileprivate func updateData() {
+    @objc func updateData() {
         
         let carTrip = CoreController.shared.lastCarTrip
         let carBooking = CoreController.shared.currentCarBooking

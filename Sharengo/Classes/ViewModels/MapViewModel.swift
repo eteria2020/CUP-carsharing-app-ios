@@ -683,4 +683,73 @@ public final class MapViewModel: ViewModelType {
             completionClosure(nil)
         }
     }
+    
+    public func updateCarPopUp(car : Car, carPopUp : CarPopupView)
+    {
+        let nearestCar = car.nearest
+        if let plate = car.plate
+        {
+        self.apiController.searchCar(plate: plate)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.dic_data {
+
+                        if let car = Car(json: data){
+                        var arrayCar : [GMUClusterItem] = self.array_annotations.value
+
+                                            let index = arrayCar.index(where: { (singleCar) -> Bool in
+                                                if  singleCar is CarAnnotation{
+                                                    let carAnn = singleCar as! CarAnnotation
+                                                    return car.plate == carAnn.car.plate
+                                                }else {
+                                                    return false
+                                                }
+
+                                            })
+                                            if let index = index {
+                                                if let coordinate = car.location?.coordinate{
+
+                                                   
+                                                    self.array_annotations.value = arrayCar
+                                                    if let index = self.allCars.index(where: { car.plate == $0.plate })
+                                                    {
+                                                        car.nearest = nearestCar
+                                                        self.allCars[index] = car
+                                                    } else{
+                                                        self.allCars.append(car)
+                                                    }
+                                                    arrayCar[index] = CarAnnotation(position: coordinate, car: car, carBooked: nil, carTrip: nil)
+                                                    carPopUp.updateWithCar(car: car)
+                                                   
+                                                }
+                    
+                                            }
+                                            else{
+                                                if let coordinate = car.location?.coordinate{
+                                                    
+                                                  
+                                                    self.array_annotations.value = arrayCar
+                                                    if let index = self.allCars.index(where: { car.plate == $0.plate })
+                                                    {
+                                                        car.nearest = nearestCar
+                                                        self.allCars[index] = car
+                                                    }
+                                                    else{
+                                                         self.allCars.append(car)
+                                                    }
+                                                    arrayCar.append(CarAnnotation(position: coordinate, car: car, carBooked: nil, carTrip: nil))
+                                                    carPopUp.updateWithCar(car: car)
+                                                }
+                                            }
+                             }
+                    }
+                            return
+                default:
+                    break
+                }
+            }.addDisposableTo(self.disposeBag)
+        }
+    }
 }

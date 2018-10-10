@@ -105,17 +105,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func applicationWillResignActive(_ application: UIApplication)
     {
+        //CLICK home button primo
     }
 
     func applicationDidEnterBackground(_ application: UIApplication)
     {
+        //CLICK home button secondo e ultimo
         CoreController.shared.currentViewController?.hideMenuBackground()
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication)
     {
+        //CLICK app primo
         LocationManager.sharedInstance.locationManager?.stopUpdatingLocation()
         LocationManager.sharedInstance.locationManager?.startUpdatingLocation()
+     
     }
 
     func applicationDidBecomeActive(_ application: UIApplication)

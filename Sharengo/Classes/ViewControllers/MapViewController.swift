@@ -334,8 +334,21 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
-                let message = "aler_carPopupOpenDoorMessage".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                
+                var message = "aler_carPopupOpenDoorMessage".localized()
+                var title: String? = nil
+                let bonusFree = car.bonus.filter({ (bonus) -> Bool in
+                    return bonus.status == true && bonus.value > 0
+                })
+                if bonusFree.count > 0 {
+                    let bonus = bonusFree[0]
+                    if bonus.type == "unplug"{
+                    message = "aler_carPopupOpenDoorMessageUnplug".localized()
+                    title = "aler_titlePopupOpenDoorMessageUnplug".localized()
+                    }
+                }
+               
+                let dialog = ZAlertView(title: title, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                         okButtonHandler: { alertView in
                                             alertView.dismissAlertView()
                                             self?.openCar(car: car, action: "open")
@@ -376,7 +389,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         case 5.8:
             self.closeCarPopupHeight = 200//200
         default:
-           self.closeCarPopupHeight = 185//185
+           self.closeCarPopupHeight = 200//185
         }
         // CarBookingPopup
         self.view_carBookingPopup.bind(to: ViewModelFactory.carBookingPopup())
@@ -385,9 +398,46 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             switch output {
             case .open(let car):
                 if self?.viewModel?.carTrip?.car.value?.parking == true {
-                    self?.openCar(car: car, action: "unpark")
+//                    self?.openCar(car: car, action: "unpark")
+                    let message = "aler_carPopupOpenDoorUnparkMessage".localized()
+                    let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                            okButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                               self?.openCar(car: car, action: "unpark")
+                                                
+                    },
+                                            cancelButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                    
                 } else {
-                    self?.openCar(car: car, action: "open")
+                    var message = "aler_carPopupOpenDoorMessage".localized()
+                    var title: String? = nil
+                    let bonusFree = car.bonus.filter({ (bonus) -> Bool in
+                        return bonus.status == true && bonus.value > 0
+                    })
+                    if bonusFree.count > 0 {
+                        let bonus = bonusFree[0]
+                        if bonus.type == "unplug"{
+                            message = "aler_carPopupOpenDoorMessageUnplug".localized()
+                            title = "aler_titlePopupOpenDoorMessageUnplug".localized()
+                        }
+                    }
+                    
+                    let dialog = ZAlertView(title: title, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                            okButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                                                self?.openCar(car: car, action: "open")
+                                                
+                    },
+                                            cancelButtonHandler: { alertView in
+                                                alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                   // self?.openCar(car: car, action: "open")
                 }
             case .delete:
                 self?.deleteBookCar()
@@ -2156,6 +2206,7 @@ extension MapViewController: GMSMapViewDelegate
                 self.centerMap(on: newLocation, zoom: 18.5, animated: true)
             }
             self.view_carPopup.updateWithCar(car: car)
+            self.viewModel?.updateCarPopUp(car: car, carPopUp : self.view_carPopup)
             self.updatePolylineInfo()
             self.view_carPopup.viewModel?.type.value = .car
             self.view.layoutIfNeeded()
@@ -2201,3 +2252,4 @@ extension MapViewController: GMSMapViewDelegate
         return true
     }
 }
+

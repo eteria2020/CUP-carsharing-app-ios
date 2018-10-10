@@ -119,7 +119,9 @@
 "alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 "alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sharen'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
 "aler_carPopupOpenDoorMessage" = "Sei sicuro di voler aprire le portiere? La corsa inizierà in questo momento";
-
+"aler_carPopupOpenDoorMessageUnplug" = "1. Apri l'auto e attendi l'apertura delle portiere\n2. Stacca la spina blu del cavo di ricarica dall'auto facendo attenzione ad impugnare la spina e non il cavo\n3. Stacca la spina dalla colonnina di ricarica\n4. Riponi il cavo di alimentazione nel baule dell'auto\n5. Entra in auto e segui le istruzioni sul video\nSei sicuro di voler aprire le portiere?";
+"aler_titlePopupOpenDoorMessageUnplug" = "Stai aprendo una macchina unplug:";
+"aler_carPopupOpenDoorUnparkMessage" = "Sei sicuro di voler riprendere la corsa?";
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
 "lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";

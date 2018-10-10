@@ -209,8 +209,12 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
                         default:
                             self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
                         }
-                        
+                        if( self.carTrip?.car.value?.parking == true){
+                            self.info.value = String(format: "lbl_carTripParkingPopupInfo".localized(), self.carTrip?.car.value?.plate ?? "")
+                        }else
+                        {
                         self.info.value = String(format: "lbl_carTripPopupInfo".localized(), self.carTrip?.car.value?.plate ?? "")
+                        }
                     }
                     else
                     {
@@ -230,7 +234,12 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
                             self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 250
                         }
                         
-                        self.info.value = String(format: "lbl_carTripPopupInfo5min".localized(), self.carTrip?.car.value?.plate ?? "")
+                        if( self.carTrip?.car.value?.parking == true){
+                            self.info.value = String(format: "lbl_carTripParkingPopupInfo".localized(), self.carTrip?.car.value?.plate ?? "")
+                        }else
+                        {
+                            self.info.value = String(format: "lbl_carTripPopupInfo5min".localized(), self.carTrip?.car.value?.plate ?? "")
+                        }
                     }
                 }
             }
