@@ -194,55 +194,73 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
                 {
                     if minuti > 4
                     {
-                        switch Device().diagonal
-                        {
-                        case 3.5:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
-                        case 4:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195
-                        case 4.7:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
-                        case 5.5:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
-                        case 5.8:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
-                        default:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
-                        }
+                        setConstraintOnDevice(normal: true)
+                        
                         if( self.carTrip?.car.value?.parking == true){
                             self.info.value = String(format: "lbl_carTripParkingPopupInfo".localized(), self.carTrip?.car.value?.plate ?? "")
+                            setConstraintOnDevice(normal: true)
                         }else
                         {
                         self.info.value = String(format: "lbl_carTripPopupInfo".localized(), self.carTrip?.car.value?.plate ?? "")
+                        setConstraintOnDevice(normal: true)
                         }
                     }
                     else
                     {
-                        switch Device().diagonal
-                        {
-                        case 3.5:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
-                        case 4:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 250
-                        case 4.7:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 270
-                        case 5.5:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 280
-                        case 5.8:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 280
-                        default:
-                            self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 250
-                        }
+                        setConstraintOnDevice(normal: false)
                         
                         if( self.carTrip?.car.value?.parking == true){
                             self.info.value = String(format: "lbl_carTripParkingPopupInfo".localized(), self.carTrip?.car.value?.plate ?? "")
+                            setConstraintOnDevice(normal: true)
                         }else
                         {
                             self.info.value = String(format: "lbl_carTripPopupInfo5min".localized(), self.carTrip?.car.value?.plate ?? "")
+                            setConstraintOnDevice(normal: false)
                         }
                     }
                 }
             }
         }
+    }
+    
+    func setConstraintOnDevice(normal : Bool){
+        
+        if normal {
+            
+            switch Device().diagonal
+            {
+            case 3.5:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
+            case 4:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195
+            case 4.7:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+            case 5.5:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
+            case 5.8:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
+            default:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+            }
+        }
+        else{
+            switch Device().diagonal
+            {
+            case 3.5:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
+            case 4:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 250
+            case 4.7:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 270
+            case 5.5:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 280
+            case 5.8:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 280
+            default:
+                self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 250
+            }
+            
+        }
+        
     }
 }

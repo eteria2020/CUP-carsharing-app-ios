@@ -56,7 +56,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /// Variable used to save user annotation
     public var userAnnotation: UserAnnotation = UserAnnotation()
     /// Variable used to save route steps
-//    public var routeSteps: [RouteStep] = []
+    //    public var routeSteps: [RouteStep] = []
     public var stepPolyline: GMSPolyline? = nil
     /// Variable used to save route polylines
     public var routePolylines: [GMSPolyline] = []
@@ -65,12 +65,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     /// Variable used to save nearest car
     public var lastNearestCar: Car?
     /// Variable used to save nearest car route steps
-//    public var nearestCarRouteSteps: [RouteStep] = []
+    //    public var nearestCarRouteSteps: [RouteStep] = []
     public var nearestCarRoutePolyline: GMSPolyline? = nil
     ///car url for external open app
     public var carUrl : Car?
     /// Variable used to save if the login is already showed
-     public var loginIsShowed: Bool = false
+    public var loginIsShowed: Bool = false
     /// Variable used to save if the intro is already showed
     public var introIsShowed: Bool = false
     /// Variable used to save if the tutorial is already showed
@@ -83,11 +83,11 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if stepPolyline != nil
         {
             //  TODO: Rewrite here
-//            if  let distance = routeSteps[0].distance,
-//                let duration = routeSteps[0].duration
-//            {
-//                view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-//            }
+            //            if  let distance = routeSteps[0].distance,
+            //                let duration = routeSteps[0].duration
+            //            {
+            //                view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
+            //            }
         }
     }
     
@@ -143,18 +143,18 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     CoreController.shared.apiController.searchCarURL(userLatitude: userLatitude, userLongitude:  userLongitude, plate: car.plate!, callingApp: CoreController.shared.callingApp as String, email: KeychainSwift().get("Username")?.removingPercentEncoding)
                         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                         .subscribe {event in
-                        switch event {
-                        case .next(let response):
-                            if response.status == 200 {
-                                print("OK")
-                            }
-                            break
-                        case .error(_):
-                            print("errore bruttissimo")
-                            break
-                        case .completed:
-                            self?.selectedPlate = ""
-                            break
+                            switch event {
+                            case .next(let response):
+                                if response.status == 200 {
+                                    print("OK")
+                                }
+                                break
+                            case .error(_):
+                                print("errore bruttissimo")
+                                break
+                            case .completed:
+                                self?.selectedPlate = ""
+                                break
                             }}
                         .addDisposableTo(CoreController.shared.disposeBag)
                     
@@ -320,10 +320,10 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                         break
                     case .error(_):
-                            self.selectedPlate = ""
+                        self.selectedPlate = ""
                         break
                     case .completed:
-                            self.selectedPlate = ""
+                        self.selectedPlate = ""
                         break
                     }
                 }.addDisposableTo(CoreController.shared.disposeBag)
@@ -335,31 +335,115 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             switch output {
             case .open(let car):
                 
-                var message = "aler_carPopupOpenDoorMessage".localized()
-                var title: String? = nil
-                let bonusFree = car.bonus.filter({ (bonus) -> Bool in
-                    return bonus.status == true && bonus.value > 0
-                })
-                if bonusFree.count > 0 {
-                    let bonus = bonusFree[0]
-                    if bonus.type == "unplug"{
-                    message = "aler_carPopupOpenDoorMessageUnplug".localized()
-                    title = "aler_titlePopupOpenDoorMessageUnplug".localized()
+                
+                // apri corsa da prenotazione popup basso
+                var isBonus = false;
+                if let dictionary = UserDefaults.standard.object(forKey: "keyReservationCar") as? [String: String] {
+                    if car.plate == car.plate {
+                        let carOnlyPlate: Car = Car()
+                        if let bonusReservation = dictionary["bonusType"], let bonusValue = dictionary["bonusValue"]{
+                            //bonus
+                            var message = "aler_carPopupOpenDoorMessage".localized()
+                            
+                             if(bonusReservation != ""){
+                                if bonusReservation == "unplug" {
+                                    //settare messaggio con bonus
+                                    message = "aler_carPopupOpenDoorMessageUnplug".localized()
+                                }else{
+                                    message = String(format: "aler_carPopupOpenDoorMessageBonus".localized(), bonusValue)
+                                }
+                                isBonus = true
+                            }
+                            
+                            carOnlyPlate.plate = car.plate
+                            
+                            DispatchQueue.main.async {
+                                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                        okButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                                            self?.openCar(car: carOnlyPlate, action: "open")
+                                                            
+                                },
+                                                        cancelButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                if (isBonus){
+                                    dialog.alertView.backgroundColor = ColorBrand.green.value
+                                    isBonus = false
+                                }
+                                
+                                dialog.show()
+                                
+                                
+                            }
+                        }
+                        
+                    }else {
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
+                                alertViewTripped.dismissAlertView()
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                        }
+                        return
+                        
                     }
                 }
-               
-                let dialog = ZAlertView(title: title, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                            self?.openCar(car: car, action: "open")
-                                            
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-                //self?.openCar(car: car, action: "open")
+                else {
+                    
+                    var message = "aler_carPopupOpenDoorMessage".localized()
+                    
+                    if(UserDefaults.standard.object(forKey: "keyReservationCar") == nil){
+                        
+                        self?.getCarDetail(plate: car.plate!, completionClosure: { (car1) in
+                            debugPrint("Chiamata carDetail -->")
+                            if let 🚙 = car1 {
+                                let bonusFree = 🚙.bonus.filter({ (bonus) -> Bool in
+                                    return bonus.status == true && bonus.value > 0
+                                })
+                                if bonusFree.count > 0  && bonusFree[0].value > 0{
+                                    //cambiare messaggio con minuti
+                                    message = String(format: "aler_carPopupOpenDoorMessageBonus".localized(), String(bonusFree[0].value))
+                                    if bonusFree[0].type == "unplug"{
+                                        message = "aler_carPopupOpenDoorMessageUnplug".localized()
+                                        
+                                    }
+                                    isBonus = true
+                                }
+                                
+                           
+                            DispatchQueue.main.async {
+                                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                        okButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                                            self?.openCar(car: 🚙, action: "open")
+                                                            
+                                },
+                                                        cancelButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                if (isBonus){
+                                    dialog.alertView.backgroundColor = ColorBrand.green.value
+                                    
+                                    isBonus = false
+                                }
+                                // dialog.messageAttributedString = NSMutableAttributedString().justify(text: message)
+                                
+                                dialog.show()
+                            }
+                            }
+                        })
+                        
+                    }
+                    
+                }
+                
+                
+                
             case .book(let car):
                 self?.bookCar(car: car)
             case .car:
@@ -389,7 +473,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         case 5.8:
             self.closeCarPopupHeight = 200//200
         default:
-           self.closeCarPopupHeight = 200//185
+            self.closeCarPopupHeight = 200//185
         }
         // CarBookingPopup
         self.view_carBookingPopup.bind(to: ViewModelFactory.carBookingPopup())
@@ -397,13 +481,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             if (self == nil) { return }
             switch output {
             case .open(let car):
+                var isBonus = false;
+                //apri macchina dopo la sosta
                 if self?.viewModel?.carTrip?.car.value?.parking == true {
-//                    self?.openCar(car: car, action: "unpark")
+                    //                    self?.openCar(car: car, action: "unpark")
                     let message = "aler_carPopupOpenDoorUnparkMessage".localized()
                     let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                             okButtonHandler: { alertView in
                                                 alertView.dismissAlertView()
-                                               self?.openCar(car: car, action: "unpark")
+                                                self?.openCar(car: car, action: "unpark")
                                                 
                     },
                                             cancelButtonHandler: { alertView in
@@ -413,31 +499,94 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     dialog.show()
                     
                 } else {
+                    // apri porte senza prenotazione da popup alto
                     var message = "aler_carPopupOpenDoorMessage".localized()
-                    var title: String? = nil
-                    let bonusFree = car.bonus.filter({ (bonus) -> Bool in
-                        return bonus.status == true && bonus.value > 0
-                    })
-                    if bonusFree.count > 0 {
-                        let bonus = bonusFree[0]
-                        if bonus.type == "unplug"{
-                            message = "aler_carPopupOpenDoorMessageUnplug".localized()
-                            title = "aler_titlePopupOpenDoorMessageUnplug".localized()
-                        }
-                    }
                     
-                    let dialog = ZAlertView(title: title, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                            okButtonHandler: { alertView in
-                                                alertView.dismissAlertView()
-                                                self?.openCar(car: car, action: "open")
-                                                
-                    },
-                                            cancelButtonHandler: { alertView in
-                                                alertView.dismissAlertView()
-                    })
-                    dialog.allowTouchOutsideToDismiss = false
-                    dialog.show()
-                   // self?.openCar(car: car, action: "open")
+                    if(UserDefaults.standard.object(forKey: "keyReservationCar") == nil){
+                        
+                        self?.getCarDetail(plate: car.plate!, completionClosure: { (car1) in
+                            debugPrint("Chiamata carDetail -->")
+                            if let 🚙 = car1 {
+                                let bonusFree = 🚙.bonus.filter({ (bonus) -> Bool in
+                                    return bonus.status == true && bonus.value > 0
+                                })
+                                if bonusFree.count > 0  && bonusFree[0].value > 0{
+                                    //cambiare messaggio con minuti
+                                    message = String(format: "aler_carPopupOpenDoorMessageBonus".localized(), String(bonusFree[0].value))
+                                    if bonusFree[0].type == "unplug"{
+                                        message = "aler_carPopupOpenDoorMessageUnplug".localized()
+                                        
+                                    }
+                                    isBonus = true
+                                }
+                                
+                            
+                            DispatchQueue.main.async {
+                                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                        okButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                                            self?.openCar(car: 🚙, action: "open")
+                                                            
+                                },
+                                                        cancelButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                if (isBonus){
+                                    dialog.alertView.backgroundColor = ColorBrand.green.value
+                                    
+                                    isBonus = false
+                                }
+                                dialog.show()
+                                }
+                            }
+                        })
+                        
+                    }else{
+                        if let dictionary = UserDefaults.standard.object(forKey: "keyReservationCar") as? [String: String] {
+                            var message = "aler_carPopupOpenDoorMessage".localized()
+                            let carOnlyPlate: Car = Car()
+                            if car.plate == dictionary["carPlate"] {
+                                if let bonusReservation = dictionary["bonusType"],let bonusValue = dictionary["bonusValue"] {
+                                    //bonus
+                                    
+                                    if(bonusReservation != ""){
+                                        if bonusReservation == "unplug" {
+                                            //settare messaggio con bonus
+                                            message = "aler_carPopupOpenDoorMessageUnplug".localized()
+                                        }else{
+                                            message = String(format: "aler_carPopupOpenDoorMessageBonus".localized(), bonusValue)
+                                        }
+                                    
+                                        isBonus = true
+                                    }
+                                }
+                                 carOnlyPlate.plate = dictionary["carPlate"]
+                            }
+                            
+                            DispatchQueue.main.async {
+                                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                        okButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                                            self?.openCar(car: carOnlyPlate, action: "open")
+                                                            
+                                },
+                                                        cancelButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                })
+                                dialog.allowTouchOutsideToDismiss = false
+                                if (isBonus){
+                                    dialog.alertView.backgroundColor = ColorBrand.green.value
+                                    
+                                    isBonus = false
+                                }
+                                dialog.show()
+                                
+                            }
+                        }
+                        
+                    }
+                    // self?.openCar(car: car, action: "open"
                 }
             case .delete:
                 self?.deleteBookCar()
@@ -520,45 +669,70 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         
         self.setCarsButtonVisible(false)
         
-
-            /*if let car = viewModel?.allCars.filter({ (car) -> Bool in
-                return car.plate?.lowercased().contains(plate) ?? false}){
-                
-                if let location = car[0].location {
-                    let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
-                    self.centerMap(on: newLocation, zoom: 18.5, animated: true)
-                }
-                self.view_carPopup.updateWithCar(car: car[0])
-                if self.routeSteps.count > 0 {
-                    if let distance = self.routeSteps[0].distance, let duration = self.routeSteps[0].duration {
-                        self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
-                    }
-                }
-                self.view.layoutIfNeeded()
-                UIView.animate(withDuration: 0.2, animations: {
-                    if car[0].type.isEmpty {
-                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight)  //0
-                    } else if car[0].type.contains("\n") {
-                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight) + 55//55
-                    } else {
-                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight) + 40//40
-                    }
-                    self.view_carPopup.alpha = 1.0
-                    self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
-                    self.view.layoutIfNeeded()
-                    if let location = car[0].location {
-                        self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
-                            self.routeSteps = steps
-                            self.drawRoutes(steps: steps)
-                        })
-                    }
-                })
-                //self.updateSpeechSearchBar()
-                
-            }*/
-            
-            
         
+        /*if let car = viewModel?.allCars.filter({ (car) -> Bool in
+         return car.plate?.lowercased().contains(plate) ?? false}){
+         
+         if let location = car[0].location {
+         let newLocation = CLLocation(latitude: location.coordinate.latitude - 0.00015, longitude: location.coordinate.longitude)
+         self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+         }
+         self.view_carPopup.updateWithCar(car: car[0])
+         if self.routeSteps.count > 0 {
+         if let distance = self.routeSteps[0].distance, let duration = self.routeSteps[0].duration {
+         self.view_carPopup.updateWithDistanceAndDuration(distance: distance, duration: duration)
+         }
+         }
+         self.view.layoutIfNeeded()
+         UIView.animate(withDuration: 0.2, animations: {
+         if car[0].type.isEmpty {
+         self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight)  //0
+         } else if car[0].type.contains("\n") {
+         self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight) + 55//55
+         } else {
+         self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = (self.closeCarPopupHeight) + 40//40
+         }
+         self.view_carPopup.alpha = 1.0
+         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
+         self.view.layoutIfNeeded()
+         if let location = car[0].location {
+         self.viewModel?.getRoute(destination: location, completionClosure: { (steps) in
+         self.routeSteps = steps
+         self.drawRoutes(steps: steps)
+         })
+         }
+         })
+         //self.updateSpeechSearchBar()
+         
+         }*/
+        
+        
+        
+    }
+    
+    func getCarDetail(plate : String, completionClosure: @escaping (Car?) ->()) {
+        
+        CoreController.shared.apiController.searchCar(plate: plate)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe { event in
+                switch event {
+                case .next(let response):
+                    if response.status == 200, let data = response.dic_data {
+                        let car = Car(json: data)
+                        
+                        completionClosure(car)
+                        
+                    }
+                    else{
+                        completionClosure(nil)
+                        
+                    }
+                case .error(_):
+                    completionClosure(nil)
+                default:
+                    break
+                }
+            }.addDisposableTo(CoreController.shared.disposeBag)
     }
     
     override public func viewDidAppear(_ animated: Bool)
@@ -601,7 +775,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 destination.bind(to: ViewModelFactory.onBoard(), afterLoad: true)
                 self.navigationController?.pushViewController(destination, animated: false)
                 self.introIsShowed = true
-    
+                
                 return
             }
         }
@@ -613,7 +787,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view.layoutIfNeeded()
             let dispatchTime = DispatchTime.now() + 2.0
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-               
+                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
                     if !self.tutorialIsShowed {
                         self.tutorialIsShowed = true
@@ -628,7 +802,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
             }
         }
-         self.introIsShowed = true
+        self.introIsShowed = true
         if let feed = self.selectedFeed {
             self.view_carPopup.updateWithFeed(feed: feed)
         }
@@ -747,6 +921,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         
         if let carBooking = CoreController.shared.allCarBookings.first
         {
+           // if(self.view_carBookingPopup?.viewModel?.carTrip == nil){
             carBooking.car.asObservable().subscribe(onNext: {[weak self] (car) in
                 
                 DispatchQueue.main.async {
@@ -808,7 +983,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
                 
             }).addDisposableTo(self.disposeBag)
-            
+            //}
         }
         else if self.view_carBookingPopup.alpha == 1.0 &&
             self.view_carBookingPopup?.viewModel?.carBooking != nil
@@ -836,7 +1011,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     @objc public func updateTripData() {
         if let carTrip = CoreController.shared.allCarTrips.first {
-          // CoreController.shared.stopFetchTrip()
+            // CoreController.shared.stopFetchTrip()
             self.viewModel?.carTrip = carTrip
             self.carTripTimeStart = carTrip.timeStart
             carTrip.updateCar {
@@ -989,28 +1164,28 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             return
         }
         /*if let distance = car.distance {
-           /* #if ISDEBUG
-            #elseif ISRELEASE
-                if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
-                    let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                        alertView.dismissAlertView()
-                    })
-                    dialog.allowTouchOutsideToDismiss = false
-                    dialog.show()
-                    return
-                }
-            #endif*/
-        } else {
-            self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
-            return
-        }*/
+         /* #if ISDEBUG
+         #elseif ISRELEASE
+         if Int(distance.rounded()) > self.carPopupDistanceOpenDoors {
+         let dialog = ZAlertView(title: nil, message: "alert_carPopupDistanceMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+         alertView.dismissAlertView()
+         })
+         dialog.allowTouchOutsideToDismiss = false
+         dialog.show()
+         return
+         }
+         #endif*/
+         } else {
+         self.showLocalizationAlert(message: "alert_carPopupLocalizationMessage".localized())
+         return
+         }*/
         //self.showLoader()
         
         if let tripped = self.viewModel?.carTrip {
             if tripped.car.value?.plate != car.plate{
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                    let dialog = ZAlertView(title: nil, message: "Hai già una corsa attiva.", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
+                    let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupActiveTripOnOpenCar".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
                         alertViewTripped.dismissAlertView()
                     })
                     dialog.allowTouchOutsideToDismiss = false
@@ -1019,6 +1194,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 return
             }
         }
+        
+        
+        
         
         self.viewModel?.openCar(car: car, action: action, completionClosure: { (success, error,dataType) in
             
@@ -1046,48 +1224,48 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     if let plate = car.plate
                     {
                         CoreController.shared.apiController.searchCar(plate: plate)
-                        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                        .subscribe { event in
-                            switch event {
-                            case .next(let response):
-                                if response.status == 200, let data = response.dic_data
-                                {
-                                    let car2 = Car(json: data)
-                                    if action == "unpark" && self.viewModel?.carTrip != nil
+                            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+                            .subscribe { event in
+                                switch event {
+                                case .next(let response):
+                                    if response.status == 200, let data = response.dic_data
                                     {
-                                        car2?.parking = false
-                                        car2?.opened = true
-                                        car2?.booked = true
-                                        DispatchQueue.main.async {
-                                            self.viewModel!.carTrip!.car.value = car2
-                                            self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
+                                        let car2 = Car(json: data)
+                                        if action == "unpark" && self.viewModel?.carTrip != nil
+                                        {
+                                            car2?.parking = false
+                                            car2?.opened = true
+                                            car2?.booked = true
+                                            DispatchQueue.main.async {
+                                                self.viewModel!.carTrip!.car.value = car2
+                                                self.view_carBookingPopup.updateWithCarTrip(carTrip: self.viewModel!.carTrip!)
+                                            }
+                                        }
+                                        else
+                                        {
+                                            let carTrip = CarTrip(car: car2 ?? car)
+                                            carTrip.setFake(fake: true)
+                                            DispatchQueue.main.async {
+                                                carTrip.car.value?.booked = true
+                                                carTrip.car.value?.opened = true
+                                                carTrip.timeStart = Date()
+                                                self.closeCarPopup()
+                                                self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
+                                                self.view_carBookingPopup.alpha = 1.0
+                                                self.viewModel?.carBooked = car
+                                                self.viewModel?.carTrip = carTrip
+                                                self.viewModel?.carBooking = nil
+                                                self.getResultsWithoutLoading()
+                                                
+                                                self.stepPolyline = self.nearestCarRoutePolyline    //  yes but why?
+                                                self.updateRoute(self.stepPolyline)
+                                            }
                                         }
                                     }
-                                    else
-                                    {
-                                        let carTrip = CarTrip(car: car2 ?? car)
-                                        carTrip.setFake(fake: true)
-                                        DispatchQueue.main.async {
-                                            carTrip.car.value?.booked = true
-                                            carTrip.car.value?.opened = true
-                                            carTrip.timeStart = Date()
-                                            self.closeCarPopup()
-                                            self.view_carBookingPopup.updateWithCarTrip(carTrip: carTrip)
-                                            self.view_carBookingPopup.alpha = 1.0
-                                            self.viewModel?.carBooked = car
-                                            self.viewModel?.carTrip = carTrip
-                                            self.viewModel?.carBooking = nil
-                                            self.getResultsWithoutLoading()
-                                        
-                                            self.stepPolyline = self.nearestCarRoutePolyline    //  yes but why?
-                                            self.updateRoute(self.stepPolyline)
-                                        }
-                                    }
+                                default:
+                                    break
                                 }
-                            default:
-                                break
-                            }
-                        }.addDisposableTo(CoreController.shared.disposeBag)
+                            }.addDisposableTo(CoreController.shared.disposeBag)
                     }
                     else
                     {
@@ -1120,73 +1298,74 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     
     public func closeCar(car: Car, action: String)
     {
-        let dialog = ZAlertView(title: nil, message: "Sei sicuro di voler chiudere la corsa?".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(), okButtonHandler: { [unowned self] alertView in
-                                    
-                alertView.dismissAlertView()
+        let dialog = ZAlertView(title: nil, message: "alert_closeCarPopoupConfirm".localized(), isOkButtonLeft: false, okButtonText: "btn_yes".localized(), cancelButtonText: "btn_no".localized(), okButtonHandler: { [unowned self] alertView in
             
-                self.view_carBookingPopup.viewModel?.isCarClosing.value = true
+            alertView.dismissAlertView()
             
-                //  Control here re-enabling this button. We have no control externally
-                DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: {
-                    self.view_carBookingPopup.viewModel?.isCarClosing.value = false
-                })
+            self.view_carBookingPopup.viewModel?.isCarClosing.value = true
             
-                self.viewModel?.closeCar(car: car, action: action, completionClosure: { (success, error,dataType) in
-                    if error != nil
+            //  Control here re-enabling this button. We have no control externally
+            //disable closeButton
+            DispatchQueue.main.asyncAfter(deadline: .now() + 120, execute: {
+                self.view_carBookingPopup.viewModel?.isCarClosing.value = false
+            })
+            
+            self.viewModel?.closeCar(car: car, action: action, completionClosure: { (success, error,dataType) in
+                if error != nil
+                {
+                    let dispatchTime = DispatchTime.now() + 0.5
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                        var message = "alert_generalError".localized()
+                        if Reachability()?.isReachable == false {
+                            message = "alert_connectionError".localized()
+                        }
+                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                }
+                else
+                {
+                    if success
+                    {
+                        CoreController.shared.startCheckCloseTripOperation(withCar: car)
+                        
+                        let dispatchTime = DispatchTime.now() + 0.5
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            let confirmDialog = ZAlertView(title: nil, message: "alert_closeCarPopoup".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                
+                                //CoreController.shared.updateCarBookings()
+                                alertView.dismissAlertView()
+                                self.closeCarBookingPopupView()
+                                CoreController.shared.currentCarBooking = nil
+                            })
+                            confirmDialog.allowTouchOutsideToDismiss = false
+                            confirmDialog.show()
+                        }
+                    }
+                    else
                     {
                         let dispatchTime = DispatchTime.now() + 0.5
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            var message = "alert_generalError".localized()
-                            if Reachability()?.isReachable == false {
-                                message = "alert_connectionError".localized()
-                            }
-                            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                            let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
                             })
                             dialog.allowTouchOutsideToDismiss = false
                             dialog.show()
                         }
                     }
-                    else
-                    {
-                        if success
-                        {
-                            CoreController.shared.startCheckCloseTripOperation(withCar: car)
-                            
-                            let dispatchTime = DispatchTime.now() + 0.5
-                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                let confirmDialog = ZAlertView(title: nil, message: "aler_closeCarPopoup".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                    
-                                    //CoreController.shared.updateCarBookings()
-                                    alertView.dismissAlertView()
-                                    self.closeCarBookingPopupView()
-                                    CoreController.shared.currentCarBooking = nil
-                                })
-                                confirmDialog.allowTouchOutsideToDismiss = false
-                                confirmDialog.show()
-                            }
-                        }
-                        else
-                        {
-                            let dispatchTime = DispatchTime.now() + 0.5
-                            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                    alertView.dismissAlertView()
-                                })
-                                dialog.allowTouchOutsideToDismiss = false
-                                dialog.show()
-                            }
-                        }
-                    }
-                })
-                                    
-        },  cancelButtonHandler: { alertView in
-            alertView.dismissAlertView()
+                }
+            })
+            
+            },  cancelButtonHandler: { alertView in
+                alertView.dismissAlertView()
         })
         dialog.allowTouchOutsideToDismiss = false
         dialog.show()
-    
-
+        
+        
     }
     
     /**
@@ -1202,7 +1381,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if (self.viewModel?.carTrip) != nil {
             let dispatchTime = DispatchTime.now() + 0.5
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                let dialog = ZAlertView(title: nil, message: "Non puoi prenotare una Share'ngo mentre stai correndo.", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
+                let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupActiveTripOnReservation".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertViewTripped in
                     alertViewTripped.dismissAlertView()
                 })
                 dialog.allowTouchOutsideToDismiss = false
@@ -1229,15 +1408,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 let dispatchTime = DispatchTime.now() + 0.5
                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                     //self.hideLoader(completionClosure: { () in
-                        var message = "alert_generalError".localized()
-                        if Reachability()?.isReachable == false {
-                            message = "alert_connectionError".localized()
-                        }
-                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
+                    var message = "alert_generalError".localized()
+                    if Reachability()?.isReachable == false {
+                        message = "alert_connectionError".localized()
+                    }
+                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
                     //})
                 }
             } else {
@@ -1247,16 +1426,16 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                             if error != nil {
                                 let dispatchTime = DispatchTime.now() + 0.5
                                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                   //self.hideLoader(completionClosure: { () in
-                                        var message = "alert_generalError".localized()
-                                        if Reachability()?.isReachable == false {
-                                            message = "alert_connectionError".localized()
-                                        }
-                                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                        })
-                                        dialog.allowTouchOutsideToDismiss = false
-                                        dialog.show()
+                                    //self.hideLoader(completionClosure: { () in
+                                    var message = "alert_generalError".localized()
+                                    if Reachability()?.isReachable == false {
+                                        message = "alert_connectionError".localized()
+                                    }
+                                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                    })
+                                    dialog.allowTouchOutsideToDismiss = false
+                                    dialog.show()
                                     //})
                                 }
                             } else {
@@ -1264,68 +1443,86 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                     if let carBookings = [CarBooking].from(jsonArray: data!) {
                                         if let carBooking = carBookings.first {
                                             DispatchQueue.main.async {
-                                               //self.hideLoader(completionClosure: { () in
-                                                    car.booked = true
-                                                    carBooking.car.value = car
-                                                    self.closeCarPopup()
-                                                    self.view_carBookingPopup.alpha = 1.0
-                                                    self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
-                                                    self.viewModel?.carBooked = car
-                                                    self.viewModel?.carBooking = carBooking
-                                                    self.getResultsWithoutLoading()
-                                                    if let location = car.location {
-                                                        self.getRoute(fromLocation: location)
+                                                //self.hideLoader(completionClosure: { () in
+                                                // salvo la car per userdefault.
+                                                
+                                                let bonusFree = car.bonus.filter({ (bonus) -> Bool in
+                                                    return bonus.status == true && bonus.value > 0
+                                                })
+                                                if bonusFree.count > 0 {
+                                                    let bonus = bonusFree[0]
+                                                    let dict: [String: String] = ["carPlate" : car.plate!, "bonusType": bonus.type, "bonusValue": String(bonus.value)]
+                                                    UserDefaults.standard.set(dict, forKey: "keyReservationCar")
+                                                 
+                                                }
+                                                if( UserDefaults.standard.object(forKey: "keyReservationCar") == nil){
+                                                    let dict: [String: String] = ["carPlate" : car.plate!, "bonusType": "", "bonusValue": ""]
+                                                    UserDefaults.standard.set(dict, forKey: "keyReservationCar")
+                                                   
+                                                }
+                                                
+                                                //UserDefaults.standard.set(Int((carBooking.timeStart?.timeIntervalSince1970)!) + carBooking.timeLength, forKey: "timeStampReservation"  )
+                                                car.booked = true
+                                                carBooking.car.value = car
+                                                self.closeCarPopup()
+                                                self.view_carBookingPopup.alpha = 1.0
+                                                self.view_carBookingPopup.updateWithCarBooking(carBooking: carBooking)
+                                                self.viewModel?.carBooked = car
+                                                self.viewModel?.carBooking = carBooking
+                                                self.getResultsWithoutLoading()
+                                                if let location = car.location {
+                                                    self.getRoute(fromLocation: location)
+                                                }
+                                                let locationManager = LocationManager.sharedInstance
+                                                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                                                    if let userLocation = locationManager.lastLocationCopy.value {
+                                                        self.centerMap(on: userLocation, zoom: 16.5, animated: false)
                                                     }
-                                                    let locationManager = LocationManager.sharedInstance
-                                                    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                                                        if let userLocation = locationManager.lastLocationCopy.value {
-                                                            self.centerMap(on: userLocation, zoom: 16.5, animated: false)
-                                                        }
-                                                    }
-                                               //})
+                                                }
+                                                //})
                                             }
                                         }
                                     } else {
                                         //self.hideLoader(completionClosure: { () in
-                                            self.showGeneralAlert(type: "")
-                                       //})
+                                        self.showGeneralAlert(type: "")
+                                        //})
                                     }
                                 } else {
                                     //self.hideLoader(completionClosure: { () in
-                                         self.showGeneralAlert(type: "")
+                                    self.showGeneralAlert(type: "")
                                     //})
                                 }
                             }
                         })
-                       /* let message = "Prenotazione inviata correttamente"
-                        let dispatchTime = DispatchTime.now() + 3000.0
-                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                            alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
-                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                        
-                            dialog.dismissAlertView()
-                        
-                        }*/
+                        /* let message = "Prenotazione inviata correttamente"
+                         let dispatchTime = DispatchTime.now() + 3000.0
+                         let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                         alertView.dismissAlertView()
+                         })
+                         dialog.allowTouchOutsideToDismiss = false
+                         dialog.show()
+                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                         
+                         dialog.dismissAlertView()
+                         
+                         }*/
                     }
                 } else {
-                   
+                    
                     let dispatchTime = DispatchTime.now() + 0.5
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                         //self.hideLoader(completionClosure: { () in
-                    let disableData =  data?["reason"] as? String
+                        let disableData =  data?["reason"] as? String
                         if disableData == "user_disabled"{
                             self.getDisableReasonMessage()
                         }else{
                             let dialog = ZAlertView(title: nil, message: self.splitMessage(data: data?["reason"] as? String), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                                 alertView.dismissAlertView()
-                           })
-                                dialog.allowTouchOutsideToDismiss = false
-                                dialog.show()
-                        
-                        //})
+                            })
+                            dialog.allowTouchOutsideToDismiss = false
+                            dialog.show()
+                            
+                            //})
                         }
                         
                     }
@@ -1336,112 +1533,112 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func getDisableReasonMessage(){
         
         let disableReason = KeychainSwift().get("DisableReason")!
-       
+        
         switch disableReason {
-            case "FIRST_PAYMENT_NOT_COMPLETED":
-                // let message = "alert_loginUserNotEnabled".localized()
-                let message = "first_payment_login_alert".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                            LoginViewModel().launchUserArea()
-                                            
-                                            //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-            case "FAILED_PAYMENT":
-                //let message = "alert_loginUserNotEnabled".localized()
-                let message = "failed_payment_login_alert".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                             LoginViewModel().launchUserArea()
-                                            //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-    
-                case "INVALID_DRIVERS_LICENSE":
-                //let message = "alert_loginUserNotEnabled".localized()
-                let message = "invalid_driver_license_login_alert".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                            LoginViewModel().launchUserArea()
-                                            //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-            case "DISABLED_BY_WEBUSER":
-                //let message = "alert_loginUserNotEnabled".localized()
-                let message = "disabled_webuser_login_alert".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                           alertView.dismissAlertView()
-                                            MapViewController().launchAssistence()
-                                          
-                                            //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
-            case "EXPIRED_DRIVERS_LICENSE":
-                //  let message = "alert_loginUserNotEnabled".localized()
-                let message = "expired_driver_license_login_alert".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                             LoginViewModel().launchUserArea()
-                                            //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
+        case "FIRST_PAYMENT_NOT_COMPLETED":
+            // let message = "alert_loginUserNotEnabled".localized()
+            let message = "first_payment_login_alert".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        LoginViewModel().launchUserArea()
+                                        
+                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+        case "FAILED_PAYMENT":
+            //let message = "alert_loginUserNotEnabled".localized()
+            let message = "failed_payment_login_alert".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        LoginViewModel().launchUserArea()
+                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
             
-            case "EXPIRED_CREDIT_CARD":
-                //  let message = "alert_loginUserNotEnabled".localized()
-                let message = "expired_credit_card_login_alert".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                             LoginViewModel().launchUserArea()
-                                            //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
+        case "INVALID_DRIVERS_LICENSE":
+            //let message = "alert_loginUserNotEnabled".localized()
+            let message = "invalid_driver_license_login_alert".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        LoginViewModel().launchUserArea()
+                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+        case "DISABLED_BY_WEBUSER":
+            //let message = "alert_loginUserNotEnabled".localized()
+            let message = "disabled_webuser_login_alert".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        MapViewController().launchAssistence()
+                                        
+                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+        case "EXPIRED_DRIVERS_LICENSE":
+            //  let message = "alert_loginUserNotEnabled".localized()
+            let message = "expired_driver_license_login_alert".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        LoginViewModel().launchUserArea()
+                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
             
-            case "FAILED_EXTRA_PAYMENT":
-                //let message = "alert_loginUserNotEnabled".localized()
-                let message = "failed_extra_payment_login_alert".localized()
-                let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
-                                        okButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                                            MapViewController().launchAssistence()
-                                            
-                                            //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
-                },
-                                        cancelButtonHandler: { alertView in
-                                            alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
+        case "EXPIRED_CREDIT_CARD":
+            //  let message = "alert_loginUserNotEnabled".localized()
+            let message = "expired_credit_card_login_alert".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        LoginViewModel().launchUserArea()
+                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+            
+        case "FAILED_EXTRA_PAYMENT":
+            //let message = "alert_loginUserNotEnabled".localized()
+            let message = "failed_extra_payment_login_alert".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        MapViewController().launchAssistence()
+                                        
+                                        //Router.from(self,viewModel: ViewModelFactory.userArea()).execute()
+            },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
         case "REGISTRATION_NOT_COMPLETED":
             //let message = "alert_loginUserNotEnabled".localized()
             let message = "registration_not_completed_login_alert".localized()
@@ -1456,13 +1653,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             })
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
-            default:
-                let message = "alert_loginUserNotEnabled".localized()
-                let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                    alertView.dismissAlertView()
-                })
-                dialog.allowTouchOutsideToDismiss = false
-                dialog.show()
+        default:
+            let message = "alert_loginUserNotEnabled".localized()
+            let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
             
         }
         /*switch disableReason {
@@ -1493,49 +1690,49 @@ public class MapViewController : BaseViewController, ViewModelBindable {
     public func splitMessage(data: String?) -> String{
         
         /*if(data == "user_disabled"){
-            
-            return "Non puoi prenotare questa sharen'go. Utente disabilitato motivo: \(getDisableReasonMessage())"
-            
-        }else{*/
-            
+         
+         return "Non puoi prenotare questa sharen'go. Utente disabilitato motivo: \(getDisableReasonMessage())"
+         
+         }else{*/
+        
         let array:[String]? = data!.components(separatedBy: "-")
         var result=""
         if let length:Int = array?.count{
             for index in 0..<length{
                 let reason:[String]? = array?[index].components(separatedBy: ":")
                 if (reason?[reason!.count-1].trimmingCharacters(in: CharacterSet.whitespaces).toBool())!{
-             
+                    
                     let key:String? = reason?[reason!.count-2].trimmingCharacters(in: CharacterSet.whitespaces)
                     
-                     if  (key?.caseInsensitiveCompare("status")==ComparisonResult.orderedSame)
-                     {
+                    if  (key?.caseInsensitiveCompare("status")==ComparisonResult.orderedSame)
+                    {
                         result = "alert_carBookingPopupStatus".localized()///[NSError errorWithDomain:@"SngRestClientManager.UnaviableCar" code:[operation.response statusCode] userInfo:nil];
-                     }
-                     else if (key?.caseInsensitiveCompare("reservation")==ComparisonResult.orderedSame)
-                     {
+                    }
+                    else if (key?.caseInsensitiveCompare("reservation")==ComparisonResult.orderedSame)
+                    {
                         result = "alert_carBookingPopupOnTrip".localized()// [NSError errorWithDomain:@"SngRestClientManager.AlreadyReserved" code:[operation.response statusCode] userInfo:nil];
-                     }
-                     else if (key?.caseInsensitiveCompare("trip")==ComparisonResult.orderedSame)
-                     {
+                    }
+                    else if (key?.caseInsensitiveCompare("trip")==ComparisonResult.orderedSame)
+                    {
                         result = "alert_carBookingPopupOnTrip".localized()//[NSError errorWithDomain:@"SngRestClientManager.TripOn" code:[operation.response statusCode] userInfo:nil];
-                     }else if (key?.caseInsensitiveCompare("limit")==ComparisonResult.orderedSame)
-                     {
+                    }else if (key?.caseInsensitiveCompare("limit")==ComparisonResult.orderedSame)
+                    {
                         result = "alert_carBookingPopupAlreadyBooked".localized()//[NSError errorWithDomain:@"SngRestClientManager.LimitReservation" code:[operation.response statusCode] userInfo:nil];
-                     }else if (key?.caseInsensitiveCompare("limit_archive")==ComparisonResult.orderedSame)
-                     {
+                    }else if (key?.caseInsensitiveCompare("limit_archive")==ComparisonResult.orderedSame)
+                    {
                         result = "alert_carBookingPopupAlreadyBooked".localized()//[NSError errorWithDomain:@"SngRestClientManager.LimitReservation" code:[operation.response statusCode] userInfo:nil];
-                     }else {
+                    }else {
                         result = "alert_carBookingPopupGeneric".localized()//[NSError errorWithDomain:@"SngRestClientManager.GetActiveBooking" code:kSngClientManagerInvalidBookingObject userInfo:nil];
                     }
                 }
-            
-                }
+                
             }
-            return result
-      //  }
+        }
+        return result
+        //  }
         
     }
-
+    
     /**
      This method delete car booking
      */
@@ -1550,40 +1747,41 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                                 let dispatchTime = DispatchTime.now() + 0.5
                                                 DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                                                     //self.hideLoader(completionClosure: { () in
-                                                        var message = "alert_generalError".localized()
-                                                        if Reachability()?.isReachable == false {
-                                                            message = "alert_connectionError".localized()
-                                                        }
-                                                        let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                                            alertView.dismissAlertView()
-                                                        })
-                                                        dialog.allowTouchOutsideToDismiss = false
-                                                        dialog.show()
+                                                    var message = "alert_generalError".localized()
+                                                    if Reachability()?.isReachable == false {
+                                                        message = "alert_connectionError".localized()
+                                                    }
+                                                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                        alertView.dismissAlertView()
+                                                    })
+                                                    dialog.allowTouchOutsideToDismiss = false
+                                                    dialog.show()
                                                     //})
                                                 }
                                             } else {
                                                 if success {
                                                     let dispatchTime = DispatchTime.now() + 0.5
                                                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                                                       //self.hideLoader(completionClosure: { () in
-                                                            let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                                                alertView.dismissAlertView()
-                                                                self.closeCarBookingPopupView()
-                                                                CoreController.shared.currentCarBooking = nil
-                                                            })
-                                                            confirmDialog.allowTouchOutsideToDismiss = false
-                                                            confirmDialog.show()
-                                                       //})
+                                                        //self.hideLoader(completionClosure: { () in
+                                                        let confirmDialog = ZAlertView(title: nil, message: "alert_carBookingPopupConfirmDeleteMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                                            self.closeCarBookingPopupView()
+                                                            CoreController.shared.currentCarBooking = nil
+                                                            UserDefaults.standard.removeObject(forKey: "keyReservationCar")
+                                                        })
+                                                        confirmDialog.allowTouchOutsideToDismiss = false
+                                                        confirmDialog.show()
+                                                        //})
                                                     }
                                                 } else {
                                                     let dispatchTime = DispatchTime.now() + 0.5
                                                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                                                         //self.hideLoader(completionClosure: { () in
-                                                            let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                                                                alertView.dismissAlertView()
-                                                            })
-                                                            dialog.allowTouchOutsideToDismiss = false
-                                                            dialog.show()
+                                                        let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupAlreadyBooked".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                                                            alertView.dismissAlertView()
+                                                        })
+                                                        dialog.allowTouchOutsideToDismiss = false
+                                                        dialog.show()
                                                         //})
                                                     }
                                                 }
@@ -1762,23 +1960,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 for city in CoreController.shared.cities {
                     if viewModel?.carTrip != nil {
                         if viewModel?.carTrip?.car.value?.parking == false {
-                        let locationManager = LocationManager.sharedInstance
-                        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                            if let location = city.location, let location2 = locationManager.lastLocationCopy.value {
-                                let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
-                                if bookedDistance == nil {
-                                    bookedDistance = distance
-                                    bookedCity = city
-                                } else {
-                                    if bookedDistance ?? 0 > distance {
-                                        bookedDistance = distance
-                                        bookedCity = city
-                                    }
-                                }
-                            }
-                        }
-                        } else {
-                                if let location = city.location, let location2 = viewModel?.carTrip?.car.value?.location {
+                            let locationManager = LocationManager.sharedInstance
+                            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+                                if let location = city.location, let location2 = locationManager.lastLocationCopy.value {
                                     let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
                                     if bookedDistance == nil {
                                         bookedDistance = distance
@@ -1790,6 +1974,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                         }
                                     }
                                 }
+                            }
+                        } else {
+                            if let location = city.location, let location2 = viewModel?.carTrip?.car.value?.location {
+                                let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude).distance(from:  CLLocation(latitude: location2.coordinate.latitude, longitude: location2.coordinate.longitude))
+                                if bookedDistance == nil {
+                                    bookedDistance = distance
+                                    bookedCity = city
+                                } else {
+                                    if bookedDistance ?? 0 > distance {
+                                        bookedDistance = distance
+                                        bookedCity = city
+                                    }
+                                }
+                            }
                         }
                     } else {
                         if let location = city.location, let location2 = carBooked.location {
@@ -1943,7 +2141,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 else {
                     self.centerMap(on: location!, zoom: 16.5, animated: false)
                 }
-
+                
             }
         })
     }
@@ -2035,8 +2233,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         self.mapView.animate(to: newCamera)
     }
     /**
-    This method launch page assistence the same type of menu.
-    */
+     This method launch page assistence the same type of menu.
+     */
     public func launchAssistence() {
         let destination: SupportViewController = (Storyboard.main.scene(.support))
         destination.bind(to: viewModel, afterLoad: true)
@@ -2073,13 +2271,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
      */
     public func showGeneralAlert(type: String) {
         if type == ""{
-        let dialog = ZAlertView(title: nil, message: "alert_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-            alertView.dismissAlertView()
-        })
-        dialog.allowTouchOutsideToDismiss = false
-        dialog.show()
+            let dialog = ZAlertView(title: nil, message: "alert_generalError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                alertView.dismissAlertView()
+            })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
         }else if type == "user_disabled"{
-             getDisableReasonMessage()
+            getDisableReasonMessage()
         }
     }
     /**
@@ -2148,7 +2346,34 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         }
     }
 }
-
+extension NSMutableAttributedString {
+    @discardableResult func bold( text:String) -> NSMutableAttributedString {
+        let attrs:[String:AnyObject] = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 15)]
+        let boldString = NSMutableAttributedString(string: text, attributes:attrs)
+        self.append(boldString)
+        return self
+    }
+    
+    @discardableResult func normal( text:String)->NSMutableAttributedString {
+        let normal =  NSAttributedString(string: text)
+        self.append(normal)
+        return self
+    }
+    
+    @discardableResult func justify( text:String) -> NSMutableAttributedString {
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .left
+        
+        let attrs: [String : AnyObject] = [NSParagraphStyleAttributeName: paragraph]
+        let justifyString = NSMutableAttributedString(string: text, attributes:attrs)
+        self.append(justifyString)
+        return self
+    }
+    
+    
+    
+    
+}
 extension MapViewController: GMSMapViewDelegate
 {
     public func mapView(_ mapView: GMSMapView, willMove gesture: Bool)
@@ -2160,13 +2385,13 @@ extension MapViewController: GMSMapViewDelegate
             self.setUpdateButtonAnimated(true)
         }
     }
-
+    
     public func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition)
     {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
         self.view_searchBar.stopSearchBar()
     }
-
+    
     public func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition)
     {
         self.setTurnButtonDegrees(CGFloat(self.mapView.camera.bearing))
@@ -2184,20 +2409,20 @@ extension MapViewController: GMSMapViewDelegate
         } else if let carAnnotation = marker.userData as? CarAnnotation {
             let car = carAnnotation.car
             /*if let bookedCar = self.viewModel?.carBooked {
-                if car.plate != bookedCar.plate {
-                    let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                        alertView.dismissAlertView()
-                    })
-                    dialog.allowTouchOutsideToDismiss = false
-                    dialog.show()
-                } else {
-                    if let location = car.location {
-                        let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                        self.centerMap(on: newLocation, zoom: 18.5, animated: true)
-                    }
-                }
-                return true
-            }*/
+             if car.plate != bookedCar.plate {
+             let dialog = ZAlertView(title: nil, message: "alert_carBookingPopupBookedMessage".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+             alertView.dismissAlertView()
+             })
+             dialog.allowTouchOutsideToDismiss = false
+             dialog.show()
+             } else {
+             if let location = car.location {
+             let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+             self.centerMap(on: newLocation, zoom: 18.5, animated: true)
+             }
+             }
+             return true
+             }*/
             if car.plate != self.selectedCar?.plate {
                 self.updateRoute(self.stepPolyline)
             }

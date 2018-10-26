@@ -108,7 +108,9 @@ public class CarPopupView: UIView {
         if viewModel.capacity == String(format: "lbl_carPopupCapacity".localized(), "") {
             self.lbl_capacity.isHidden = true
         } else {
+             DispatchQueue.main.async {
             self.lbl_capacity.isHidden = false
+            }
         }
         self.lbl_walkingDistance.styledText = viewModel.walkingDistance
         if viewModel.distance.isEmpty {
@@ -117,10 +119,12 @@ public class CarPopupView: UIView {
             self.icn_distance.isHidden = true
             self.lbl_distance.isHidden = true
         } else {
+             DispatchQueue.main.async {
             self.icn_walkingDistance.isHidden = false
             self.lbl_walkingDistance.isHidden = false
             self.icn_distance.isHidden = false
             self.lbl_distance.isHidden = false
+            }
         }
         if let location = car.location {
             let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"

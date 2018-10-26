@@ -337,9 +337,11 @@ class CoreController
                         }
                     }
                     self.allCarBookings = []
+                    UserDefaults.standard.removeObject(forKey: "keyReservationCar")
                     self.updateCarTrips()
                 case .error(_):
                     self.allCarBookings = []
+                    UserDefaults.standard.removeObject(forKey: "keyReservationCar")
                     self.updateCarTrips()
                 default:
                     break

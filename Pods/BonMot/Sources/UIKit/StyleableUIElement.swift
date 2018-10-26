@@ -15,15 +15,19 @@ extension UILabel {
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
-        set { bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font) }
+        set {
+            bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font)
+        }
     }
 
     /// A string style. Stored via associated objects.
     public final var bonMotStyle: StringStyle? {
         get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
+            
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
-            styledText = text
+               styledText = self.text
+            
         }
     }
 
@@ -32,7 +36,10 @@ extension UILabel {
     @objc(bon_styledText)
     public var styledText: String? {
         get { return attributedText?.string }
-        set { attributedText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection) }
+        set {
+            self.attributedText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection)
+          
+            }
     }
 
 }

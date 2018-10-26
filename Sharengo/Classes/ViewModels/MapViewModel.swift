@@ -218,7 +218,7 @@ public final class MapViewModel: ViewModelType {
                     case .error(_):
                         let dispatchTime = DispatchTime.now() + 0.5
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            var message = "alert_generalError".localized()
+                            /*var message = "alert_generalError".localized()
                             if Reachability()?.isReachable == false {
                                 message = "alert_connectionError".localized()
                             }
@@ -226,7 +226,7 @@ public final class MapViewModel: ViewModelType {
                                 alertView.dismissAlertView()
                             })
                             dialog.allowTouchOutsideToDismiss = false
-                            dialog.show()
+                            dialog.show()*/
                             self.resetCars()
                         }
                     default:

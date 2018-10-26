@@ -136,6 +136,10 @@
 "aler_carPopupOpenDoorMessageUnplug" = "1. Open the car and wait for the doors to open \ n2. Unplug the blue plug of the charging cable from the car, taking care to hold the plug and not the cable \ n3. Unplug the charging column \ n4. Store the power cord in the trunk of the car \ n5. Get in the car and follow the instructions on the video \ N Are you sure you want to open the doors?";
 "aler_titlePopupOpenDoorMessageUnplug" = "You are opening an unplug car:";
 "aler_carPopupOpenDoorUnparkMessage" = "Are you sure you want to resume the trip?";
+"alert_carBookingPopupActiveTripOnReservation" = "You don't open trips on reservation";
+"alert_carBookingPopupActiveTripOnOpenCar" =  "You have an open trip yet.";
+"aler_carPopupOpenDoorMessageBonus" = "Are you sure you want to open the doors? The race will start right now.\nThe race will have %@ free minutes!";
+
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>You ended your trip<bold>\n\nYou will be notified via mail the transaction confirmation within 24h.";
@@ -318,4 +322,10 @@
 "push_request_alert_message" = "Accept push notifications";
 "btn_go_to_settings" = "Accept";
 
-"aler_closeCarPopoup" = "Car will be closed in few second. You'll riceve a notification after that";
+
+
+
+//close car
+
+"alert_closeCarPopoup" = "Car will be closed in few second. You'll riceve a notification after that";
+"alert_closeCarPopoupConfirm" = "Are you sure you want to close the race?";

@@ -29,6 +29,7 @@
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
 
+
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio è gratuita. Se serve aiuto durante l'iscrizione usa il pulsante chat!";
 "btn_signupSignup" = "ISCRIVITI";
@@ -118,8 +119,9 @@
 "lbl_carPopupAddressPlaceholder" = "Caricamento in corso";
 "alert_carPopupLocalizationMessage" = "Share'ngo ha bisogno di sapere la tua posizione per aprire le portiere. Vuoi aprire le impostazioni per abilitare la localizzazione?";
 "alert_carPopupDistanceMessage" = "Sei troppo distante dalla Sharen'go che hai selezionato. Potrai aprirla quando sarai in prossimità dell’auto.";
-"aler_carPopupOpenDoorMessage" = "Sei sicuro di voler aprire le portiere? La corsa inizierà in questo momento";
-"aler_carPopupOpenDoorMessageUnplug" = "1. Apri l'auto e attendi l'apertura delle portiere\n2. Stacca la spina blu del cavo di ricarica dall'auto facendo attenzione ad impugnare la spina e non il cavo\n3. Stacca la spina dalla colonnina di ricarica\n4. Riponi il cavo di alimentazione nel baule dell'auto\n5. Entra in auto e segui le istruzioni sul video\nSei sicuro di voler aprire le portiere?";
+"aler_carPopupOpenDoorMessage" = "Sei sicuro di voler aprire le portiere?\nLa corsa inizierà in questo momento.\nLa corsa avrà tariffa standard.";
+"aler_carPopupOpenDoorMessageBonus" = "Sei sicuro di voler aprire le portiere? La corsa inizierà in questo momento.\nLa corsa avrà %@ minuti gratuiti!";
+"aler_carPopupOpenDoorMessageUnplug" = "1. Apri l'auto e attendi l'apertura delle portiere\n2. Stacca la spina blu del cavo di ricarica dall'auto facendo attenzione ad impugnare la spina e non il cavo\n3. Stacca la spina dalla colonnina di ricarica\n4. Riponi il cavo di alimentazione nel baule dell'auto\n5. Entra in auto e segui le istruzioni sul video\n\nSei sicuro di voler aprire le portiere?";
 "aler_titlePopupOpenDoorMessageUnplug" = "Stai aprendo una macchina unplug:";
 "aler_carPopupOpenDoorUnparkMessage" = "Sei sicuro di voler riprendere la corsa?";
 // CarBookingPopup
@@ -138,6 +140,8 @@
 "alert_carBookingPopupOnTrip" = "Qualcuno sta già utilizzando questa Share'ngo";
 "alert_carBookingPopupStatus" = "Questa auto non è disponibile, ci scusiamo per l'incoveniente";
 "alert_carBookingPopupGeneric" = "Si è verificato un errore";
+"alert_carBookingPopupActiveTripOnReservation" = "Non puoi prenotare una Share'ngo mentre stai correndo.";
+"alert_carBookingPopupActiveTripOnOpenCar" =  "Hai già una corsa attiva";
 
 // CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>Hai completato il tuo noleggio</bold>\n\nRiceverai via mail la conferma di transazione avvenuta entro 24 ore.";
@@ -323,4 +327,5 @@
 
 // Close car popup
 
-"aler_closeCarPopoup" = "La macchina si chiuderà a breve, riceverai una notifica a processo completato.";
+"alert_closeCarPopoup" = "La macchina si chiuderà a breve, riceverai una notifica a processo completato.";
+"alert_closeCarPopoupConfirm" = "Sei sicuro di voler chiudere la corsa?";
