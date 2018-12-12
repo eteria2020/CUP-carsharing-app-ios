@@ -38,6 +38,7 @@ enum ColorBrand {
     case grayDisabled
     case clear
     case red
+    case darkRed
 
     var value: UIColor {
         get {
@@ -60,6 +61,8 @@ enum ColorBrand {
                 return UIColor.clear
             case .red:
                 return UIColor(red: 255/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
+            case .darkRed:
+                return UIColor(red: 240/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
             }
         }
     }
@@ -73,6 +76,8 @@ enum Color {
     case alertMessage
     case alertButton
     case alertLightButton
+    case alertButtonsGreenBackground
+    case alertButtonsRedBackground
     
     // NavigationBar
     case navigationBarBackground
@@ -337,6 +342,12 @@ enum Color {
                 return ColorBrand.black.value
             case .alertLightButton:
                 return ColorBrand.white.value
+            case .alertButtonsGreenBackground:
+                return ColorBrand.green.value
+            case .alertButtonsRedBackground:
+                return ColorBrand.darkRed.value
+                
+            
             // NavigationBar
             case .navigationBarBackground:
                 return ColorBrand.yellow.value

@@ -601,15 +601,15 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         case 3.5:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
         case 4:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 195//195
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 200//195
         case 4.7:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 210
         case 5.5:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 215
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
         case 5.8:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 220
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
         default:
-            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 205
+            self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
         }
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())
@@ -2341,7 +2341,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         DispatchQueue.main.async {
             polyline.strokeColor = UIColor(hexString: "#336633")
             polyline.strokeWidth = 10
-            polyline.spans = GMSStyleSpans(polyline.path!, [GMSStrokeStyle.solidColor(UIColor(hexString: "#336633")), GMSStrokeStyle.solidColor(UIColor.clear)], [5, 5], GMSLengthKind.rhumb)
+            polyline.spans = GMSStyleSpans(polyline.path!, [GMSStrokeStyle.solidColor(UIColor(hexString: "#336633")), GMSStrokeStyle.solidColor(UIColor.clear)], [5, 5], GMSLengthKind.projected)
             polyline.map = self.mapView
         }
     }
@@ -2400,6 +2400,8 @@ extension MapViewController: GMSMapViewDelegate
     
     public func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool
     {
+        let plateOfPopUp =  self.view_carBookingPopup.viewModel?.carBooking?.carPlate//self.view_carPopup.viewModel?.plate.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+
         if let cityAnnotation = marker as? CityAnnotation {
             self.updateRoute(self.stepPolyline)
             if let location = cityAnnotation.city?.location {
@@ -2436,16 +2438,21 @@ extension MapViewController: GMSMapViewDelegate
             self.view_carPopup.viewModel?.type.value = .car
             self.view.layoutIfNeeded()
             UIView .animate(withDuration: 0.2, animations: {
-                if car.type.isEmpty {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
-                } else if car.type.contains("\n") {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55//55
-                } else {
-                    self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40//40
-                }
+                if car.plate != plateOfPopUp {
+                    if car.type.isEmpty {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight
+                    } else if car.type.contains("\n") {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 55//55
+                    } else {
+                        self.view_carPopup.constraint(withIdentifier: "carPopupHeight", searchInSubviews: false)?.constant = self.closeCarPopupHeight + 40//40
+                    }
+              
+               
                 self.view_carPopup.alpha = 1.0
+            
                 self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = 0
                 self.view.layoutIfNeeded()
+                }
                 self.selectedCar = car
                 if let location = car.location {
                     self.getRoute(fromLocation: location)

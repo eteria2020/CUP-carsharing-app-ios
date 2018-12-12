@@ -158,7 +158,7 @@ class CarBookingPopupView: UIView
                     btn_openCentered.isHidden = true
                     btn_open.isHidden = false
                     btn_delete.isHidden = false
-                    btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_close".localized())
+                    btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
                     btn_delete.rx.bind(to: viewModel.selection, input: .close)
                     btn_delete.isEnabled = !viewModel.isCarClosing.value
 
@@ -186,7 +186,7 @@ class CarBookingPopupView: UIView
             btn_openCentered.isHidden = true
             btn_open.isHidden = false
             btn_delete.isHidden = false
-            btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
+            btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_delete".localized())
             btn_delete.rx.bind(to: viewModel.selection, input: .delete)
         }
     }
@@ -226,10 +226,10 @@ class CarBookingPopupView: UIView
         
         self.view.backgroundColor = Color.carBookingPopupBackground.value
 //        scommentare in caso di rimozione bottone chiudi corsa
-        self.btn_openCentered.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_close".localized())
+        self.btn_openCentered.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
 //        self.btn_openCentered.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_open".localized())
-        self.btn_open.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_open".localized())
-        self.btn_delete.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_delete".localized())
+        self.btn_open.style(.roundedButton(Color.alertButtonsGreenBackground.value), title: "btn_open".localized())
+        self.btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_delete".localized())
         self.lbl_info.styledText = ""
     }
     

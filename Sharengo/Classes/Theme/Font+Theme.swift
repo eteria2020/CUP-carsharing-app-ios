@@ -194,7 +194,7 @@ enum Font {
             switch self {
             // General
             case .roundedButton:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 15))
             // Alert
             case .alertMessage:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 13))
@@ -232,7 +232,7 @@ enum Font {
                 return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
             // CarBookingPopup
             case .carBookingPopupPin:
-                return FontWeight.bold.font(withSize: self.getFontSize(size: 11))
+                return FontWeight.bold.font(withSize: self.getFontSize(size: 13))
             case .carBookingPopupLabel:
                 return FontWeight.regular.font(withSize: self.getFontSize(size: 11))
             case .carBookingPopupLabelEmphasized:
@@ -438,7 +438,7 @@ enum Font {
         case 5.8:
             return size * 1.2
         default:
-            return size
+            return size * 1.2
         }
     }
 }

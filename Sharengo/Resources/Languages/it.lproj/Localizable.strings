@@ -125,7 +125,7 @@
 "aler_titlePopupOpenDoorMessageUnplug" = "Stai aprendo una macchina unplug:";
 "aler_carPopupOpenDoorUnparkMessage" = "Sei sicuro di voler riprendere la corsa?";
 // CarBookingPopup
-"lbl_carBookingPopupPin" = "IL TUO PIN UTENTE: %@";
+"lbl_carBookingPopupPin" = "PIN: %@";
 "lbl_carBookingPopupInfo" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>PRENOTAZIONE ATTIVA</status>\n<bold>TARGA %@</bold>\n<placeholder>Caricamento in corso</placeholder>";
 "lbl_carTripPopupInfo" = "<status>CORSA ATTIVA</status>\n<bold>TARGA %@</bold>\nDurata corsa:";

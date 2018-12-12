@@ -118,7 +118,7 @@
 "alert_carPopupDistanceMessage" = "You are too far from Saren'go you selected. You will be able to open it as you get closer to it.";
 "aler_carPopupOpenDoorMessage" = "Are you sure you want to open the doors? The race will start right now.";
 // CarBookingPopup
-"lbl_carBookingPopupPin" = "YOUR PIN NUMBER: %@";
+"lbl_carBookingPopupPin" = "PIN: %@";
 "lbl_carBookingPopupInfo" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>BOOKING ACTIVE</status>\n<bold>PLATE %@</bold>\n<placeholder>Charging</placeholder>";
 "lbl_carTripPopupInfo" = "<status>ACTIVE TRIP</status>\n<bold>PLATE %@</bold>\nTrip Duration:";
