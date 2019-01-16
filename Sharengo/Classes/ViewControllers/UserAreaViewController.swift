@@ -44,8 +44,9 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
         }).addDisposableTo(self.disposeBag)
         
         self.showLoader()
-        URLSession.shared.reset { 
-            var request = URLRequest(url: URL(string: "https://www.sharengo.it/user/login")!)
+        
+        URLSession.shared.reset {
+            var request = URLRequest(url: URL(string: "url_webView_UserArea".localized())!)
             request.httpMethod = "POST"
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("PasswordClear")!
@@ -72,7 +73,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                     }
                    
                         if KeychainSwift().get("DisableReason") != nil {
-                            let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                            let url = URL(string: "https://public.sharengo.sk/area-utente/mobile")
                             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
 //                            let disableReason = KeychainSwift().get("DisableReason")!
 //                            switch disableReason{
@@ -105,7 +106,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
 //                            }
                         }
                         else{
-                            let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
+                            let url = URL(string: "https://public.sharengo.sk/area-utente/mobile")
                             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
                         }
                 }

@@ -2106,9 +2106,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     }
                 }
             }).addDisposableTo(disposeBag)
-        // Italy
-        let coordinateNorthEast = CLLocationCoordinate2DMake(35.4897, 6.62672)
-        let coordinateSouthWest = CLLocationCoordinate2DMake(47.092, 18.7976)
+        // slovacchia
+        let coordinateNorthEast = CLLocationCoordinate2DMake(49.565087, 17.159337)
+        let coordinateSouthWest = CLLocationCoordinate2DMake(47.693671, 22.096995)
         let bounds = GMSCoordinateBounds(coordinate: coordinateNorthEast, coordinate: coordinateSouthWest)
         let cameraUpdate = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
         self.mapView.moveCamera(cameraUpdate)

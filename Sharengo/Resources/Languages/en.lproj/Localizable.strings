@@ -28,6 +28,7 @@
 "btn_car" = "BOOK CAR";
 "language_italian" = "Italian";
 "language_english" = "English";
+"language_slovack" = "Slovak";
 
 // Signup
 "lbl_signupHeader" = "<title>Sign up to Share'ngo</title>\nThe subscription to the service costs 10 € per 30 minutes (standard conditions, unless promotions). If your need help in the sign-up process please use the chat button!";
@@ -329,3 +330,10 @@
 
 "alert_closeCarPopoup" = "Car will be closed in few second. You'll riceve a notification after that";
 "alert_closeCarPopoupConfirm" = "Are you sure you want to close the race?";
+
+
+//webView
+
+"url_webView_UserArea" = "https://public.sharengo.sk/user/login?lang=en_US";
+"url_webView_SignUp" = "https://public.sharengo.sk/signup/mobile?lang=en_US";
+"url_webView_SignUpForgotPassword" = "https://public.sharengo.sk/signup/mobile?lang=en_US";

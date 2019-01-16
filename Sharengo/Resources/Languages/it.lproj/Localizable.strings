@@ -28,6 +28,7 @@
 "btn_car" = "PRENOTA AUTO";
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
+"language_slovack" = "Slovak";
 
 
 // Signup
@@ -329,3 +330,10 @@
 
 "alert_closeCarPopoup" = "La macchina si chiuderà a breve, riceverai una notifica a processo completato.";
 "alert_closeCarPopoupConfirm" = "Sei sicuro di voler chiudere la corsa?";
+
+
+//webView
+
+"url_webView_UserArea" = "https://public.sharengo.sk/user/login?lang=it_IT";
+"url_webView_SignUp" = "https://public.sharengo.sk/signup/mobile?lang=it_IT";
+"url_webView_SignUpForgotPassword" = "https://public.sharengo.sk/signup/mobile?lang=it_IT";

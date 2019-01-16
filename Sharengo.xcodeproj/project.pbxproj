@@ -708,6 +708,8 @@
 		D17DC78920A2F60E00BA3945 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		D1A8B56920F75B8C009EABB1 /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 		D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D1E28AB521C1462A005D266B /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D1E28AB621C1462B005D266B /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
 		D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewModel.swift; path = Classes/ViewModels/PinViewModel.swift; sourceTree = "<group>"; };
 		D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1764,6 +1766,7 @@
 				en,
 				Base,
 				it,
+				sk,
 			);
 			mainGroup = 4DCD1A491ECDBF7400FC8BF5;
 			productRefGroup = 4DCD1A531ECDBF7400FC8BF5 /* Products */;
@@ -2244,6 +2247,7 @@
 			children = (
 				4D1AE81F1ED1E1A800C8A1D3 /* en */,
 				4D26396C1F002E6700B95585 /* it */,
+				D1E28AB521C1462A005D266B /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2253,6 +2257,7 @@
 			children = (
 				4D36D7C01ED2F279005FAEB8 /* en */,
 				4D26396D1F002E6700B95585 /* it */,
+				D1E28AB621C1462B005D266B /* sk */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

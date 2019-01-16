@@ -13,8 +13,8 @@ import Action
 
 enum WebType: String {
     case empty = ""
-    case forgotPassword = "https://www.sharengo.it/forgot-password/mobile"
-    case signup = "http://www.sharengo.it/signup/mobile"
+    case forgotPassword = "https://public.sharengo.sk/forgot-password/mobile?lang=sk_SK"
+    case signup = "https://public.sharengo.sk/signup/mobile?lang=sk_SK"
 }
 
 final class WebViewModel: ViewModelType {

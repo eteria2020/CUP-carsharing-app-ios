@@ -272,10 +272,10 @@ class CoreController
     
     func executeLogout(showingErrorAlert: Bool = true, _ completion: (()->())? = nil)
     {
-        var languageid = "en"
-        if Locale.preferredLanguages[0] == "it-IT"
+        var languageid = "sk"
+        if Locale.preferredLanguages[0] == "sk-SK"
         {
-            languageid = "it"
+            languageid = "sk"
         }
         
         Localize.setCurrentLanguage(languageid)

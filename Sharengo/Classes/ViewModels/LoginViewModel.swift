@@ -90,7 +90,7 @@ public final class LoginViewModel: ViewModelType {
         }
         let modifiedUsername = username.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let modifiedPassword = password.md5!
-//        let modifiedPassword = password
+        //let modifiedPassword = "a5f2528e34b3949610b2b3cde387c84c"
         self.apiController.getUser(username: modifiedUsername, password: modifiedPassword)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { event in

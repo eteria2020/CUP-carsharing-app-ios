@@ -31,7 +31,7 @@ final class FaqViewModel: ViewModelTypeSelectable {
     
     init()
     {
-        let url = URL(string: "http://support.sharengo.it/home")
+        let url = URL(string: "https://site.sharengo.sk/faq")
         self.urlRequest = URLRequest(url: url!)
     }    
 }

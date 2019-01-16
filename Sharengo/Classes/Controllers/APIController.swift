@@ -23,7 +23,7 @@ final class ApiController {
     {
         let cert = PKCS12.init(mainBundleResource: "client", resourceType: "p12", password: "1WC;Xen123hb|z");
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
-            "api.sharengo.it": .disableEvaluation
+            "api.sharengo.sk": .disableEvaluation
         ]
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
@@ -68,7 +68,7 @@ final class ApiController {
     func searchCars() -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true),NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
             return provider.request(.searchAllCars())
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
@@ -397,21 +397,21 @@ extension API: TargetType
         case .tripsList(), .archivedTripsList(), .getTrip(_):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
-            return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.sk:8201/v3")!
         case .searchCars(_, _, _, _, _), .searchCar(_), .searchAllCars():
-            return URL(string: "https://api.sharengo.it:8023/v3")!
+            return URL(string: "https://api.sharengo.sk:8201/v3")!
         case  .searchCarURL(_, _, _, _,_):
-            return URL(string: "https://api.sharengo.it:8023/v3")!
+            return URL(string: "https://api.sharengo.sk:8201/v3")!
         case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .closeCar(_, _):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
-            return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v2")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.sk:8201/v2")!
         case .getUserWith(let username, let password):
-            return URL(string: "https://\(username):\(password)@api.sharengo.it:8023/v3")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.sk:8201/v3")!
         case .getConfig():
-            return URL(string: "https://api.sharengo.it:8023/v3")!
+            return URL(string: "https://api.sharengo.sk:8201/v3")!
         default:
-            return URL(string: "https://api.sharengo.it:8023/v2")!
+            return URL(string: "https://api.sharengo.sk:8201/v2")!
         }
     }
     
