@@ -8,7 +8,7 @@
 	<array/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)it.sharengo.development</string>
+		<string>$(AppIdentifierPrefix)sk.sharengo.development</string>
 	</array>
 </dict>
 </plist>
