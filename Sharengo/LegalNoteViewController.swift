@@ -42,7 +42,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
      
         URLSession.shared.reset {
 
-            let url = URL(string: "https://site.sharengo.it/note-legali-app/?app")
+            let url = URL(string: "url_ita_noteLegali".localized())
             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
         }
     }

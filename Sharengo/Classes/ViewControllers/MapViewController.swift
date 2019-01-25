@@ -1305,8 +1305,8 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view_carBookingPopup.viewModel?.isCarClosing.value = true
             
             //  Control here re-enabling this button. We have no control externally
-            //disable closeButton
-            DispatchQueue.main.asyncAfter(deadline: .now() + 120, execute: {
+            //disable closeButton ivan
+            DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: {
                 self.view_carBookingPopup.viewModel?.isCarClosing.value = false
             })
             

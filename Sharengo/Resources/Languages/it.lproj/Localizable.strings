@@ -329,3 +329,8 @@
 
 "alert_closeCarPopoup" = "La macchina si chiuderà a breve, riceverai una notifica a processo completato.";
 "alert_closeCarPopoupConfirm" = "Sei sicuro di voler chiudere la corsa?";
+
+"url_ita_noteLegali" = "https://site.sharengo.it/note-legali-app/?app";
+"url_ita_userArea" = "https://www.sharengo.it/user/login";
+
+"url_ita_disableReason"= "https://www.sharengo.it/area-utente/mobile";
