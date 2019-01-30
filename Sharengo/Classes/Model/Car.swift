@@ -37,6 +37,8 @@ public class Car: ModelType, Gloss.Decodable {
     public var address: Variable<String?> = Variable(nil)
     /// Array used to show if there are bonus with this car
     public var bonus: [Bonus] = []
+    /// Version on board
+    public var versionOBC: String?
     
     // MARK: - Init methods
     
@@ -45,6 +47,7 @@ public class Car: ModelType, Gloss.Decodable {
     
     public required init?(json: JSON) {
         self.plate = "plate" <~~ json
+        self.versionOBC = "software_version" <~~ json
         self.capacity = "battery" <~~ json
         if let latitude: String = "lat" <~~ json, let longitude: String = "lon" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
@@ -60,6 +63,7 @@ public class Car: ModelType, Gloss.Decodable {
         if let bonus = [Bonus].from(jsonArray: json["bonus"] as! [JSON]) {
             self.bonus = bonus
         }
+        
     }
     
     // MARK: - Lazy methods

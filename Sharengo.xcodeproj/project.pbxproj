@@ -327,6 +327,8 @@
 		D11487AD20F4BB55007BB150 /* UIView+StoryboardConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */; };
 		D114A1D6210722260045712F /* SettingsNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */; };
 		D120AD4720E24C4A007A3139 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D120AD4620E24C4A007A3139 /* client.p12 */; };
+		D13D0D8521FB595400D5365D /* GenericWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8421FB595400D5365D /* GenericWebViewModel.swift */; };
+		D13D0D8721FB596700D5365D /* GenericWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8621FB596700D5365D /* GenericWebViewController.swift */; };
 		D14114692110554F00FF9B52 /* ShareOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14114682110554F00FF9B52 /* ShareOperation.swift */; };
 		D141146B2110556900FF9B52 /* ShareOperationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D141146A2110556900FF9B52 /* ShareOperationController.swift */; };
 		D17DC78620A2F06400BA3945 /* LegalNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */; };
@@ -701,6 +703,8 @@
 		D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+StoryboardConstraint.swift"; path = "Classes/Utilities/UIView+StoryboardConstraint.swift"; sourceTree = "<group>"; };
 		D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewModel.swift; sourceTree = "<group>"; };
 		D120AD4620E24C4A007A3139 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
+		D13D0D8421FB595400D5365D /* GenericWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericWebViewModel.swift; sourceTree = "<group>"; };
+		D13D0D8621FB596700D5365D /* GenericWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericWebViewController.swift; sourceTree = "<group>"; };
 		D14114682110554F00FF9B52 /* ShareOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareOperation.swift; sourceTree = "<group>"; };
 		D141146A2110556900FF9B52 /* ShareOperationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareOperationController.swift; sourceTree = "<group>"; };
 		D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalNoteViewModel.swift; sourceTree = "<group>"; };
@@ -1433,8 +1437,9 @@
 			isa = PBXGroup;
 			children = (
 				4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */,
-				D17DC78220A2EFA100BA3945 /* LegalNote */,
 				D1EFAA401FE804B900CE33E1 /* Pin */,
+				D13D0D8321FB573B00D5365D /* GenericWebView */,
+				D17DC78220A2EFA100BA3945 /* LegalNote */,
 				4DC10E001EE9AC5800A74E26 /* Loading */,
 				4D2339961EE6CD2A00780384 /* Intro */,
 				032D3A731F08D5FB00F260A5 /* OnBoard */,
@@ -1681,6 +1686,15 @@
 			);
 			name = Certificates;
 			path = Resources/Certificates;
+			sourceTree = "<group>";
+		};
+		D13D0D8321FB573B00D5365D /* GenericWebView */ = {
+			isa = PBXGroup;
+			children = (
+				D13D0D8421FB595400D5365D /* GenericWebViewModel.swift */,
+				D13D0D8621FB596700D5365D /* GenericWebViewController.swift */,
+			);
+			name = GenericWebView;
 			sourceTree = "<group>";
 		};
 		D17DC78220A2EFA100BA3945 /* LegalNote */ = {
@@ -2070,6 +2084,7 @@
 				033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */,
 				03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */,
 				032D3A751F08D61900F260A5 /* OnBoardViewController.swift in Sources */,
+				D13D0D8721FB596700D5365D /* GenericWebViewController.swift in Sources */,
 				03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */,
 				037BDFC11F03949A00C95962 /* City.swift in Sources */,
 				4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */,
@@ -2164,6 +2179,7 @@
 				D17DC78620A2F06400BA3945 /* LegalNoteViewModel.swift in Sources */,
 				4DCD1A941ECDC1EC00FC8BF5 /* ViewControllerCommons.swift in Sources */,
 				4DFD98311ED45CCE00880EA1 /* CarAnnotation.swift in Sources */,
+				D13D0D8521FB595400D5365D /* GenericWebViewModel.swift in Sources */,
 				4D377AB61ECEDAB0005DF900 /* CircularMenuView.swift in Sources */,
 				4D60EA8B1F3E037E0085BFE3 /* GMUGeoJSONParser.m in Sources */,
 				4D60EA8D1F3E037E0085BFE3 /* GMUKMLParser.m in Sources */,

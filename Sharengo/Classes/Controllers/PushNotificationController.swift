@@ -21,10 +21,13 @@ class PushNotificationController: NSObject
         case openApp
         case openTripHistory
         case openMap
+        case openGenericWebView
     }
     
 	static let shared = PushNotificationController()
     
+    
+    public var externalUrl: String?
     static let usernameOneSignalTag = "username"
     static let pushNotificationAuthorizedKey = "pushNotificationAuthorized"
     static var pushNotificationIsRefused: Bool {
@@ -83,6 +86,9 @@ class PushNotificationController: NSObject
         
         let type = PushType(rawValue: ts) ?? .openApp
         
+        externalUrl = a["l"] as? String
+      
+        
         switch type
         {
         case .openApp: break
@@ -98,7 +104,14 @@ class PushNotificationController: NSObject
             
             Router.backCurrentControllerToRoot() {}
             
+          case .openGenericWebView:
+            Router.backCurrentControllerToRoot() {
+                Router.openGenericWebView()
+            }
         }
+        
+      
+        
         
         lastNotification = nil
 	}

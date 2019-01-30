@@ -155,6 +155,28 @@ class CarBookingPopupView: UIView
             {
                 if viewModel.carTrip?.car.value?.parking == true
                 {
+                    if let version = viewModel.carTrip?.car.value?.versionOBC{
+                        var versionObc = version
+                        versionObc.remove(at: version.firstIndex(of: ".")!)
+                        if Int(Double(versionObc)!) >= 109{
+                            btn_openCentered.isHidden = true
+                            btn_open.isHidden = false
+                            btn_delete.isHidden = false
+                            btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
+                            btn_delete.rx.bind(to: viewModel.selection, input: .close)
+                            btn_delete.isEnabled = !viewModel.isCarClosing.value
+                        }
+                        else{
+                            btn_openCentered.isHidden = false
+                            btn_open.isHidden = true
+                            btn_delete.isHidden = true
+                            btn_openCentered.style(.roundedButton(Color.alertButtonsGreenBackground.value), title: "btn_open".localized())
+                            btn_openCentered.rx.bind(to: viewModel.selection, input: .open)
+                          
+                            
+                        }
+                        
+                    }else{
                     btn_openCentered.isHidden = true
                     btn_open.isHidden = false
                     btn_delete.isHidden = false
@@ -162,27 +184,53 @@ class CarBookingPopupView: UIView
                     btn_delete.rx.bind(to: viewModel.selection, input: .close)
                     btn_delete.isEnabled = !viewModel.isCarClosing.value
 
-                    return
+                  
+                    }
+                     return
                 }
+               
+               
             }
 
 
             if CoreController.shared.currentCarTrip != nil
             {
+                //case: open Trips
+                btn_openCentered.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
+                btn_openCentered.rx.bind(to: viewModel.selection, input: .close)
+                
+                if let version = viewModel.carTrip?.car.value?.versionOBC{
+                    var versionObc = version
+                    versionObc.remove(at: version.firstIndex(of: ".")!)
+                    if Int(Double(versionObc)!) >= 109{
+                        btn_openCentered.isHidden = false
+                        btn_openCentered.isEnabled = !viewModel.isCarClosing.value
+                    }
+                    else{
+                        btn_openCentered.isHidden = true
+
+                    }
+                    
+                }else{
                 btn_openCentered.isHidden = false
                 btn_openCentered.isEnabled = !viewModel.isCarClosing.value
+                    
+                }
                 btn_open.isHidden = true
                 btn_delete.isHidden = true
             }
             else
             {
+                
                 btn_openCentered.isHidden = true
                 btn_open.isHidden = true
                 btn_delete.isHidden = true
+                
             }
         }
         else
         {
+            //case: Reservation
             btn_openCentered.isHidden = true
             btn_open.isHidden = false
             btn_delete.isHidden = false
@@ -267,5 +315,13 @@ class CarBookingPopupView: UIView
         }
         
         return false
+    }
+}
+
+extension String {
+    var westernArabicNumeralsOnly: String {
+        let pattern = UnicodeScalar("0")..."9"
+        return String(unicodeScalars
+            .flatMap { pattern ~= $0 ? Character($0) : nil })
     }
 }

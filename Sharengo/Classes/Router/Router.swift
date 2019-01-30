@@ -219,4 +219,11 @@ struct Router : RouterType {
         destination.bind(to: CarTripsViewModel(), afterLoad: true)
         CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
     }
+    
+    public static func openGenericWebView()
+    {
+        let destination: GenericWebViewController = (Storyboard.main.scene(.genericWebView))
+        destination.bind(to: GenericWebViewModel(), afterLoad: true)
+        CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+    }
 }

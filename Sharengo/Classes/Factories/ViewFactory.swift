@@ -41,6 +41,7 @@ enum SceneIdentifier : String, ListIdentifier {
     case rates = "rates"
     case pin = "pin"
     case legalNote = "legalNote"
+    case genericWebView = "genericWebView"
     
     var name: String {
         return self.rawValue
