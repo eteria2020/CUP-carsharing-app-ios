@@ -157,8 +157,11 @@ class CarBookingPopupView: UIView
                 {
                     if let version = viewModel.carTrip?.car.value?.versionOBC{
                         var versionObc = version
-                        versionObc.remove(at: version.firstIndex(of: ".")!)
-                        if Int(Double(versionObc)!) >= 109{
+                        versionObc =  versionObc.stringByReplacingFirstOccurrenceOfString(target: ".", withString: ",")
+                        versionObc = versionObc.substring(to: versionObc.firstIndex(of: ".")!)
+                        versionObc = versionObc.stringByReplacingFirstOccurrenceOfString(target: ",", withString: "")
+                        
+                        if Int(versionObc)! >= 109{
                             btn_openCentered.isHidden = true
                             btn_open.isHidden = false
                             btn_delete.isHidden = false
@@ -201,8 +204,11 @@ class CarBookingPopupView: UIView
                 
                 if let version = viewModel.carTrip?.car.value?.versionOBC{
                     var versionObc = version
-                    versionObc.remove(at: version.firstIndex(of: ".")!)
-                    if Int(Double(versionObc)!) >= 109{
+                    versionObc =  versionObc.stringByReplacingFirstOccurrenceOfString(target: ".", withString: ",")
+                    versionObc = versionObc.substring(to: versionObc.firstIndex(of: ".")!)
+                    versionObc = versionObc.stringByReplacingFirstOccurrenceOfString(target: ",", withString: "")
+
+                    if Int(versionObc)! >= 109{
                         btn_openCentered.isHidden = false
                         btn_openCentered.isEnabled = !viewModel.isCarClosing.value
                     }
@@ -318,10 +324,14 @@ class CarBookingPopupView: UIView
     }
 }
 
-extension String {
-    var westernArabicNumeralsOnly: String {
-        let pattern = UnicodeScalar("0")..."9"
-        return String(unicodeScalars
-            .flatMap { pattern ~= $0 ? Character($0) : nil })
+extension String
+{
+    func stringByReplacingFirstOccurrenceOfString(
+        target: String, withString replaceString: String) -> String
+    {
+        if let range = self.range(of: target) {
+            return self.replacingCharacters(in: range, with: replaceString)
+        }
+        return self
     }
 }
