@@ -45,7 +45,7 @@ class GenericWebViewController : BaseViewController, ViewModelBindable {
                 let url = URL(string: urlPush)
                 self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
             }else{
-                let url = URL(string: "www.sharengo.it")
+                let url = URL(string: "https://www.sharengo.it")
                 self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
             }
            
@@ -116,7 +116,7 @@ extension GenericWebViewController: UIWebViewDelegate {
         let errorForm = -999
         let messageError = error.code
         if(messageError != errorForm){
-            let dialog = ZAlertView(title: nil, message:  "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+            let dialog = ZAlertView(title: nil, message:  "La pagina non è al momento disponibile riprova più tardi.", closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                 alertView.dismissAlertView()
             })
             dialog.allowTouchOutsideToDismiss = false

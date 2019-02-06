@@ -173,6 +173,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
         
         if self.carBooking != nil
         {
+            setConstraintOnDevice(normal: true)
             if self.carBookingPopupView?.alpha ?? 0.0 > 0.0
             {
                 if let timer = self.carBooking?.timer
@@ -189,7 +190,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
                 {
                     self.time.value = timer
                 }
-               
+                setConstraintOnDevice(normal: true)
                 if let minuti = self.carTrip?.minutes
                 {
                     if minuti > 4
@@ -221,6 +222,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
                 }
             }
         }
+        
     }
     
     func setConstraintOnDevice(normal : Bool){
