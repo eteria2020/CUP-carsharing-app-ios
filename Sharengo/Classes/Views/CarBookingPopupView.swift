@@ -57,7 +57,7 @@ class CarBookingPopupView: UIView
         
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
         self.btn_openCentered.rx.bind(to: viewModel.selection, input: .close)
-//        self.btn_openCentered.rx.bind(to: viewModel.selection, input: .open)
+        //        self.btn_openCentered.rx.bind(to: viewModel.selection, input: .open)
         self.btn_delete.rx.bind(to: viewModel.selection, input: .delete)
     }
     
@@ -108,8 +108,8 @@ class CarBookingPopupView: UIView
             DispatchQueue.main.async {
                 self?.updateButtons()
             }
-        }.addDisposableTo(disposeBag)
-    
+            }.addDisposableTo(disposeBag)
+        
         viewModel.time.asObservable().subscribe(onNext: { [weak self] time in
             DispatchQueue.main.async {
                 self?.firstLoaded = true
@@ -145,44 +145,98 @@ class CarBookingPopupView: UIView
     func updateButtons()
     {
         guard let viewModel = viewModel else { return }
-
+        
         btn_delete.isEnabled = true
         btn_openCentered.isEnabled = true
-
+        
         if viewModel.hideButtons
         {
             if viewModel.carTrip != nil
             {
                 if viewModel.carTrip?.car.value?.parking == true
                 {
-                    btn_openCentered.isHidden = true
-                    btn_open.isHidden = false
-                    btn_delete.isHidden = false
-                    btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
-                    btn_delete.rx.bind(to: viewModel.selection, input: .close)
-                    btn_delete.isEnabled = !viewModel.isCarClosing.value
-
+                    if let version = viewModel.carTrip?.car.value?.versionOBC{
+                        var versionObc = version
+                        versionObc =  versionObc.stringByReplacingFirstOccurrenceOfString(target: ".", withString: ",")
+                        versionObc = versionObc.substring(to: versionObc.firstIndex(of: ".")!)
+                        versionObc = versionObc.stringByReplacingFirstOccurrenceOfString(target: ",", withString: "")
+                        
+                        if Int(versionObc)! >= 109{
+                            btn_openCentered.isHidden = true
+                            btn_open.isHidden = false
+                            btn_delete.isHidden = false
+                            btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
+                            btn_delete.rx.bind(to: viewModel.selection, input: .close)
+                            btn_delete.isEnabled = !viewModel.isCarClosing.value
+                        }
+                        else{
+                            btn_openCentered.isHidden = false
+                            btn_open.isHidden = true
+                            btn_delete.isHidden = true
+                            btn_openCentered.style(.roundedButton(Color.alertButtonsGreenBackground.value), title: "btn_open".localized())
+                            btn_openCentered.rx.bind(to: viewModel.selection, input: .open)
+                            
+                            
+                        }
+                        
+                    }else{
+                        btn_openCentered.isHidden = true
+                        btn_open.isHidden = false
+                        btn_delete.isHidden = false
+                        btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
+                        btn_delete.rx.bind(to: viewModel.selection, input: .close)
+                        btn_delete.isEnabled = !viewModel.isCarClosing.value
+                        
+                        
+                    }
                     return
                 }
+                
+                
             }
-
-
+            
+            
             if CoreController.shared.currentCarTrip != nil
             {
-                btn_openCentered.isHidden = false
-                btn_openCentered.isEnabled = !viewModel.isCarClosing.value
+                //case: open Trips
+                btn_openCentered.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
+                btn_openCentered.rx.bind(to: viewModel.selection, input: .close)
+                
+                if let version = viewModel.carTrip?.car.value?.versionOBC{
+                    var versionObc = version
+                    versionObc =  versionObc.stringByReplacingFirstOccurrenceOfString(target: ".", withString: ",")
+                    versionObc = versionObc.substring(to: versionObc.firstIndex(of: ".")!)
+                    versionObc = versionObc.stringByReplacingFirstOccurrenceOfString(target: ",", withString: "")
+                    
+                    if Int(versionObc)! >= 109{
+                        btn_openCentered.isHidden = false
+                        btn_openCentered.isEnabled = !viewModel.isCarClosing.value
+                    }
+                    else{
+                        btn_openCentered.isHidden = true
+                        
+                    }
+                    
+                }else{
+                    btn_openCentered.isHidden = false
+                    btn_openCentered.isEnabled = !viewModel.isCarClosing.value
+                    
+                }
                 btn_open.isHidden = true
                 btn_delete.isHidden = true
             }
             else
             {
+                
                 btn_openCentered.isHidden = true
                 btn_open.isHidden = true
                 btn_delete.isHidden = true
+                
             }
         }
         else
         {
+            //case: Reservation
             btn_openCentered.isHidden = true
             btn_open.isHidden = false
             btn_delete.isHidden = false
@@ -191,29 +245,29 @@ class CarBookingPopupView: UIView
         }
     }
     
-//    func updateButtons() {
-//        guard let viewModel = viewModel else {
-//            return
-//        }
-//        if viewModel.hideButtons {
-//            if viewModel.carTrip != nil {
-//                if viewModel.carTrip?.car.value?.parking == true {
-//                    self.btn_openCentered.isHidden = false
-//                    self.btn_open.isHidden = true
-//                    self.btn_delete.isHidden = true
-//                    return
-//                }
-//            }
-//            self.btn_openCentered.isHidden = true
-//            self.btn_open.isHidden = true
-//            self.btn_delete.isHidden = true
-//        } else {
-//            self.btn_openCentered.isHidden = true
-//            self.btn_open.isHidden = false
-//            self.btn_delete.isHidden = false
-//        }
-//    }
-
+    //    func updateButtons() {
+    //        guard let viewModel = viewModel else {
+    //            return
+    //        }
+    //        if viewModel.hideButtons {
+    //            if viewModel.carTrip != nil {
+    //                if viewModel.carTrip?.car.value?.parking == true {
+    //                    self.btn_openCentered.isHidden = false
+    //                    self.btn_open.isHidden = true
+    //                    self.btn_delete.isHidden = true
+    //                    return
+    //                }
+    //            }
+    //            self.btn_openCentered.isHidden = true
+    //            self.btn_open.isHidden = true
+    //            self.btn_delete.isHidden = true
+    //        } else {
+    //            self.btn_openCentered.isHidden = true
+    //            self.btn_open.isHidden = false
+    //            self.btn_delete.isHidden = false
+    //        }
+    //    }
+    
     
     fileprivate func xibSetup()
     {
@@ -225,9 +279,9 @@ class CarBookingPopupView: UIView
         self.layoutIfNeeded()
         
         self.view.backgroundColor = Color.carBookingPopupBackground.value
-//        scommentare in caso di rimozione bottone chiudi corsa
+        //        scommentare in caso di rimozione bottone chiudi corsa
         self.btn_openCentered.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_close".localized())
-//        self.btn_openCentered.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_open".localized())
+        //        self.btn_openCentered.style(.roundedButton(Color.alertButtonsNegativeBackground.value), title: "btn_open".localized())
         self.btn_open.style(.roundedButton(Color.alertButtonsGreenBackground.value), title: "btn_open".localized())
         self.btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_delete".localized())
         self.lbl_info.styledText = ""
@@ -267,5 +321,17 @@ class CarBookingPopupView: UIView
         }
         
         return false
+    }
+}
+
+extension String
+{
+    func stringByReplacingFirstOccurrenceOfString(
+        target: String, withString replaceString: String) -> String
+    {
+        if let range = self.range(of: target) {
+            return self.replacingCharacters(in: range, with: replaceString)
+        }
+        return self
     }
 }

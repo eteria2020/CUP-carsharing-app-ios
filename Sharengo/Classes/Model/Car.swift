@@ -38,6 +38,7 @@ public class Car: ModelType, Gloss.Decodable {
     /// Array used to show if there are bonus with this car
     public var bonus: [Bonus] = []
     
+    public var versionOBC: String?
     // MARK: - Init methods
     
     public init() {
@@ -45,6 +46,7 @@ public class Car: ModelType, Gloss.Decodable {
     
     public required init?(json: JSON) {
         self.plate = "plate" <~~ json
+        self.versionOBC = "software_version" <~~ json
         self.capacity = "battery" <~~ json
         if let latitude: String = "lat" <~~ json, let longitude: String = "lon" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
