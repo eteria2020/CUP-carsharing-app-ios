@@ -129,6 +129,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
         self.webview_main.scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.webview_main.scrollView.showsHorizontalScrollIndicator = false
         self.webview_main.scrollView.showsVerticalScrollIndicator = false
+        
         self.view_header.backgroundColor = Color.userAreaHeaderBackground.value
         
         // Labels

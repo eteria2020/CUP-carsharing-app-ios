@@ -235,8 +235,8 @@
 "alert_supportCall" = "+39 0586 1975772";
 "alert_supportEmail" = "Vuoi contattare il servizio clienti?";
 "alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
-"alert_noSupportEmail" = "Configura la mail sul tuo dispositivo. Contattaci a servizioclienti@sharengo.eu";
-"supportTelephoneNumber" = "+3905861975772";
+"alert_noSupportEmail" = "Configura la mail sul tuo dispositivo. Contattaci a  zakaznickyservis@sharengo.sk";
+"supportTelephoneNumber" = "+421911050099";
 "btn_supportAlertCall" = "Chiama";
 "btn_supportAlertWrite" = "Scrivi";
 
