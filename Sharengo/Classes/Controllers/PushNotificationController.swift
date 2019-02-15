@@ -78,7 +78,7 @@ class PushNotificationController: NSObject
 	
 	func evaluateLastNotification(from viewController: UIViewController? = nil)
 	{
-        debugPrint("Evaluate: \(String(describing: lastNotification))")
+      //  debugPrint("Evaluate: \(String(describing: lastNotification))")
         
         guard   let custom = lastNotification?["custom"] as? [String: Any],
                 let a = custom["a"] as? [String: Any],

@@ -168,9 +168,9 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
 
 extension UserAreaViewController: UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        print(webView.request?.description)
         return true
     }
-    
     func webView(_ webView: UIWebView, didFailLoadWithError error: NSError) {
         
         let errorForm = -999
@@ -197,4 +197,6 @@ extension UserAreaViewController: UIWebViewDelegate {
         dialog.allowTouchOutsideToDismiss = false
         dialog.show()*/
     }
+    
+    
 }

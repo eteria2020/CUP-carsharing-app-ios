@@ -66,7 +66,7 @@ final class SharengoApiController {
     
     func getOsmAdress(text: String) -> Observable<[Address]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true),NetworkActivityPlugin(networkActivityClosure: { (status) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true

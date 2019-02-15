@@ -96,7 +96,7 @@ public final class CarPopupViewModel: ViewModelTypeSelectable {
             if let c = UserDefaults.standard.object(forKey: key) as? String {
                 self.capacity = String(format: "lbl_carPopupCapacity".localized(), "\(c)")
             } else {
-                self.capacity = String(format: "lbl_carPopupCapacity".localized(), "")
+                self.capacity = String(format: "lbl_carPopupCapacity".localized(),"\(car.soc ?? 20)")
             }
             CoreController.shared.apiController.searchCar(plate: plate)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))

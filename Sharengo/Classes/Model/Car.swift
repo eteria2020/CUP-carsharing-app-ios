@@ -39,7 +39,8 @@ public class Car: ModelType, Gloss.Decodable {
     public var bonus: [Bonus] = []
     /// Version on board
     public var versionOBC: String?
-    
+    //soc the some of battery but in short response this is full
+    public var soc: Int?
     // MARK: - Init methods
     
     public init() {
@@ -49,6 +50,7 @@ public class Car: ModelType, Gloss.Decodable {
         self.plate = "plate" <~~ json
         self.versionOBC = "software_version" <~~ json
         self.capacity = "battery" <~~ json
+        self.soc = "soc" <~~ json
         if let latitude: String = "lat" <~~ json, let longitude: String = "lon" <~~ json {
             if let lat: CLLocationDegrees = Double(latitude), let lon: CLLocationDegrees = Double(longitude) {
                 self.location = CLLocation(latitude: lat, longitude: lon)

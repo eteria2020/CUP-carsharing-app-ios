@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -38,6 +38,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>"We use the camera to allow you to register by sending photos directly"</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>"Your current location will be displayed on the map and used for directions , nearby search results, and estimated time travel"</string>
 	<key>NSLocationUsageDescription</key>

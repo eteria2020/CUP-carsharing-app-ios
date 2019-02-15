@@ -102,51 +102,55 @@ public class CarPopupView: UIView {
             return
         }
         viewModel.updateWithCar(car: car)
-        self.lbl_plate.styledText = viewModel.plate
-        self.lbl_capacity.styledText = viewModel.capacity
-        self.lbl_distance.styledText = viewModel.distance
-        if viewModel.capacity == String(format: "lbl_carPopupCapacity".localized(), "") {
-            self.lbl_capacity.isHidden = true
-        } else {
-             DispatchQueue.main.async {
-            self.lbl_capacity.isHidden = false
-            }
-        }
-        self.lbl_walkingDistance.styledText = viewModel.walkingDistance
-        if viewModel.distance.isEmpty {
-            self.icn_walkingDistance.isHidden = true
-            self.lbl_walkingDistance.isHidden = true
-            self.icn_distance.isHidden = true
-            self.lbl_distance.isHidden = true
-        } else {
-             DispatchQueue.main.async {
-            self.icn_walkingDistance.isHidden = false
-            self.lbl_walkingDistance.isHidden = false
-            self.icn_distance.isHidden = false
-            self.lbl_distance.isHidden = false
-            }
-        }
-        if let location = car.location {
-            let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
-            if let address = UserDefaults.standard.object(forKey: key) as? String {
-                self.lbl_address.bonMotStyleName = "carPopupAddress"
-                self.lbl_address.styledText = address
+            self.lbl_plate.styledText = viewModel.plate
+            self.lbl_capacity.styledText = viewModel.capacity
+            self.lbl_distance.styledText = viewModel.distance
+        
+            if viewModel.capacity == String(format: "lbl_carPopupCapacity".localized(), "") {
+                self.lbl_capacity.isHidden = true
             } else {
-                self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
-                self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
-                viewModel.getAddress(car: car)
-                viewModel.address.asObservable()
-                    .subscribe(onNext: {[weak self] (address) in
-                        DispatchQueue.main.async {
-                            if address != nil {
-                                self?.lbl_address.bonMotStyleName = "carPopupAddress"
-                                self?.lbl_address.styledText = address!
-                                UserDefaults.standard.set(address!, forKey: key)
-                            }
-                        }
-                    }).addDisposableTo(disposeBag)
+                DispatchQueue.main.async {
+                    self.lbl_capacity.isHidden = false
+                }
             }
-        }
+            
+            
+            self.lbl_walkingDistance.styledText = viewModel.walkingDistance
+            if viewModel.distance.isEmpty {
+                self.icn_walkingDistance.isHidden = true
+                self.lbl_walkingDistance.isHidden = true
+                self.icn_distance.isHidden = true
+                self.lbl_distance.isHidden = true
+            } else {
+                DispatchQueue.main.async {
+                    self.icn_walkingDistance.isHidden = false
+                    self.lbl_walkingDistance.isHidden = false
+                    self.icn_distance.isHidden = false
+                    self.lbl_distance.isHidden = false
+                }
+            }
+            if let location = car.location {
+                let key = "address-\(location.coordinate.latitude)-\(location.coordinate.longitude)"
+                if let address = UserDefaults.standard.object(forKey: key) as? String {
+                    self.lbl_address.bonMotStyleName = "carPopupAddress"
+                    self.lbl_address.styledText = address
+                } else {
+                    self.lbl_address.bonMotStyleName = "carPopupAddressPlaceholder"
+                    self.lbl_address.styledText = "lbl_carPopupAddressPlaceholder".localized()
+                    viewModel.getAddress(car: car)
+                    viewModel.address.asObservable()
+                        .subscribe(onNext: {[weak self] (address) in
+                            DispatchQueue.main.async {
+                                if address != nil {
+                                    self?.lbl_address.bonMotStyleName = "carPopupAddress"
+                                    self?.lbl_address.styledText = address!
+                                    UserDefaults.standard.set(address!, forKey: key)
+                                }
+                            }
+                        }).addDisposableTo(disposeBag)
+                }
+            }
+       
     }
     
     func updateWithDistanceAndDuration(distance: Int, duration: Int) {

@@ -612,12 +612,17 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
         }
         // SearchBar
+        if(Device().diagonal > 5.5 || Device().diagonal < 0){
+            self.view_searchBar.isHidden = true
+        }
+ 
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())
         self.view_searchBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
             switch output {
             case .reload:
                 self?.view_searchBar.updateCollectionView(show: true)
+                
             case .address(let address):
                 if let location = address.location {
                     self?.centerMap(on: location, zoom: 16.5, animated: true)
@@ -2436,6 +2441,7 @@ extension MapViewController: GMSMapViewDelegate
             self.viewModel?.updateCarPopUp(car: car, carPopUp : self.view_carPopup)
             self.updatePolylineInfo()
             self.view_carPopup.viewModel?.type.value = .car
+           
             self.view.layoutIfNeeded()
             UIView .animate(withDuration: 0.2, animations: {
                 if car.plate != plateOfPopUp {
