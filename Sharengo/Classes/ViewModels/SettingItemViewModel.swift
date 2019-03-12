@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import Boomerang
+
 
 /**
  The Setting item model provides data related to display content on the setting item

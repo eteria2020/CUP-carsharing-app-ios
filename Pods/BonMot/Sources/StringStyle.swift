@@ -44,6 +44,9 @@ public struct StringStyle {
     public var speaksPunctuation: Bool?
     public var speakingLanguage: String?
     public var speakingPitch: Double?
+    public var speakingPronunciation: String?
+    public var shouldQueueSpeechAnnouncement: Bool?
+    public var headingLevel: HeadingLevel?
     #endif
 
     public var ligatures: Ligatures?
@@ -68,10 +71,13 @@ public struct StringStyle {
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
     #endif
+
+    public var emphasis: Emphasis?
     public var tracking: Tracking?
     public var xmlStyler: XMLStyler?
     public var transform: Transform?
 
+    public init() {}
 }
 
 extension StringStyle {
@@ -80,21 +86,26 @@ extension StringStyle {
     public var attributes: StyleAttributes {
         var theAttributes = extraAttributes
 
-        theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
-        theAttributes.update(possibleValue: link, forKey: NSLinkAttributeName)
-        theAttributes.update(possibleValue: backgroundColor, forKey: NSBackgroundColorAttributeName)
-        theAttributes.update(possibleValue: color, forKey: NSForegroundColorAttributeName)
-        theAttributes.update(possibleValue: underline?.0.rawValue, forKey: NSUnderlineStyleAttributeName)
-        theAttributes.update(possibleValue: underline?.1, forKey: NSUnderlineColorAttributeName)
-        theAttributes.update(possibleValue: strikethrough?.0.rawValue, forKey: NSStrikethroughStyleAttributeName)
-        theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
-        theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
-        theAttributes.update(possibleValue: ligatures?.rawValue, forKey: NSLigatureAttributeName)
+        theAttributes.update(possibleValue: font, forKey: .font)
+        theAttributes.update(possibleValue: link, forKey: .link)
+        theAttributes.update(possibleValue: backgroundColor, forKey: .backgroundColor)
+        theAttributes.update(possibleValue: color, forKey: .foregroundColor)
+        theAttributes.update(possibleValue: underline?.0.rawValue, forKey: .underlineStyle)
+        theAttributes.update(possibleValue: underline?.1, forKey: .underlineColor)
+        theAttributes.update(possibleValue: strikethrough?.0.rawValue, forKey: .strikethroughStyle)
+        theAttributes.update(possibleValue: strikethrough?.1, forKey: .strikethroughColor)
+        theAttributes.update(possibleValue: baselineOffset, forKey: .baselineOffset)
+        theAttributes.update(possibleValue: ligatures?.rawValue, forKey: .ligature)
 
         #if os(iOS) || os(tvOS) || os(watchOS)
-            theAttributes.update(possibleValue: speaksPunctuation, forKey: UIAccessibilitySpeechAttributePunctuation)
-            theAttributes.update(possibleValue: speakingLanguage, forKey: UIAccessibilitySpeechAttributeLanguage)
-            theAttributes.update(possibleValue: speakingPitch, forKey: UIAccessibilitySpeechAttributePitch)
+        theAttributes.update(possibleValue: speaksPunctuation, forKey: .accessibilitySpeechPunctuation)
+        theAttributes.update(possibleValue: speakingLanguage, forKey: .accessibilitySpeechLanguage)
+        theAttributes.update(possibleValue: speakingPitch, forKey: .accessibilitySpeechPitch)
+            if #available(iOS 11, tvOS 11, watchOS 4, *) {
+                theAttributes.update(possibleValue: speakingPronunciation, forKey: .accessibilitySpeechIPANotation)
+                theAttributes.update(possibleValue: shouldQueueSpeechAnnouncement as NSNumber?, forKey: .accessibilitySpeechQueueAnnouncement)
+                theAttributes.update(possibleValue: headingLevel?.rawValue as NSNumber?, forKey: .accessibilityTextHeadingLevel)
+            }
         #endif
 
         let paragraph = StringStyle.paragraph(from: theAttributes)
@@ -112,29 +123,43 @@ extension StringStyle {
         paragraph.paragraphSpacingBefore = paragraphSpacingBefore ?? paragraph.paragraphSpacingBefore
         paragraph.hyphenationFactor = hyphenationFactor ?? paragraph.hyphenationFactor
 
-        if paragraph != NSParagraphStyle.bon_default {
-            theAttributes.update(possibleValue: paragraph, forKey: NSParagraphStyleAttributeName)
+        if paragraph != NSParagraphStyle.default {
+            theAttributes.update(possibleValue: paragraph, forKey: .paragraphStyle)
         }
 
         #if os(iOS) || os(tvOS) || os(OSX)
             // Apply the features to the font present
-            let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
+            let preFeaturedFont = theAttributes[.font] as? BONFont
             var featureProviders = fontFeatureProviders
 
-            featureProviders += [numberCase].flatMap { $0 }
-            featureProviders += [numberSpacing].flatMap { $0 }
-            featureProviders += [fractions].flatMap { $0 }
-            featureProviders += [superscript].flatMap { $0 }.map { ($0 ? VerticalPosition.superscript : VerticalPosition.normal) } as [FontFeatureProvider]
-            featureProviders += [`subscript`].flatMap { $0 }.map { ($0 ? VerticalPosition.`subscript` : VerticalPosition.normal) } as [FontFeatureProvider]
-            featureProviders += [ordinals].flatMap { $0 }.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal } as [FontFeatureProvider]
-            featureProviders += [scientificInferiors].flatMap { $0 }.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal } as [FontFeatureProvider]
+            featureProviders += [numberCase].compactMap { $0 } as [FontFeatureProvider]
+            featureProviders += [numberSpacing].compactMap { $0 } as [FontFeatureProvider]
+            featureProviders += [fractions].compactMap { $0 } as [FontFeatureProvider]
+            featureProviders += [superscript].compactMap { $0 }.map { ($0 ? VerticalPosition.superscript : VerticalPosition.normal) } as [FontFeatureProvider]
+            featureProviders += [`subscript`].compactMap { $0 }.map { ($0 ? VerticalPosition.`subscript` : VerticalPosition.normal) } as [FontFeatureProvider]
+            featureProviders += [ordinals].compactMap { $0 }.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal } as [FontFeatureProvider]
+            featureProviders += [scientificInferiors].compactMap { $0 }.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal } as [FontFeatureProvider]
             featureProviders += smallCaps.map { $0 as FontFeatureProvider }
             featureProviders += [stylisticAlternates as FontFeatureProvider]
             featureProviders += [contextualAlternates as FontFeatureProvider]
 
             let featuredFont = preFeaturedFont?.font(withFeatures: featureProviders)
-            theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
+            theAttributes.update(possibleValue: featuredFont, forKey: .font)
         #endif
+
+        if let font = theAttributes[.font] as? BONFont, let emphasis = emphasis {
+            let descriptor = font.fontDescriptor
+            let existingTraits = descriptor.symbolicTraits
+            let newTraits = existingTraits.union(emphasis.symbolicTraits)
+
+            // Explicit cast to optional because withSymbolicTraits returns an
+            // optional on Mac, but not on iOS.
+            let newDescriptor: BONFontDescriptor? = descriptor.withSymbolicTraits(newTraits)
+            if let newDesciptor = newDescriptor {
+                let newFont = BONFont(descriptor: newDesciptor, size: 0)
+                theAttributes.update(possibleValue: newFont, forKey: .font)
+            }
+        }
 
         #if os(iOS) || os(tvOS)
             // Apply any adaptations
@@ -145,8 +170,8 @@ extension StringStyle {
 
         // Apply tracking
         if let tracking = tracking {
-            let styledFont = theAttributes[NSFontAttributeName] as? BONFont
-            theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: NSKernAttributeName)
+            let styledFont = theAttributes[.font] as? BONFont
+            theAttributes.update(possibleValue: tracking.kerning(for: styledFont), forKey: .kern)
             #if os(iOS) || os(tvOS)
                 // Add the tracking as an adaptation
                 theAttributes = EmbeddedTransformationHelpers.embed(transformation: tracking, to: theAttributes)
@@ -228,6 +253,11 @@ extension StringStyle {
         speaksPunctuation = theStringStyle.speaksPunctuation ?? speaksPunctuation
         speakingLanguage = theStringStyle.speakingLanguage ?? speakingLanguage
         speakingPitch = theStringStyle.speakingPitch ?? speakingPitch
+            if #available(iOS 11, tvOS 11, watchOS 4, *) {
+                speakingPronunciation = theStringStyle.speakingPronunciation ?? speakingPronunciation
+                shouldQueueSpeechAnnouncement = theStringStyle.shouldQueueSpeechAnnouncement ?? shouldQueueSpeechAnnouncement
+                headingLevel = theStringStyle.headingLevel ?? headingLevel
+            }
         #endif
 
         lineSpacing = theStringStyle.lineSpacing ?? lineSpacing
@@ -261,6 +291,16 @@ extension StringStyle {
             stylisticAlternates.add(other: theStringStyle.stylisticAlternates)
             contextualAlternates.add(other: theStringStyle.contextualAlternates)
         #endif
+
+        if let newEmphasis = theStringStyle.emphasis, let existingEmphasis = emphasis {
+            // If we have both new and existing, merge them
+            emphasis = existingEmphasis.union(newEmphasis)
+        }
+        else if let newEmphasis = theStringStyle.emphasis {
+            // If we have only new, just replace existing
+            emphasis = newEmphasis
+        }
+
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)
         #endif
@@ -291,11 +331,11 @@ public extension StringStyle {
         }
         for (key, value) in self.attributes {
             switch (key, value, attributes[key]) {
-            case (NSParagraphStyleAttributeName, let paragraph as NSParagraphStyle, let otherParagraph as NSParagraphStyle):
-                attributes[NSParagraphStyleAttributeName] = paragraph.supplyDefaults(for: otherParagraph)
+            case (.paragraphStyle, let paragraph as NSParagraphStyle, let otherParagraph as NSParagraphStyle):
+                attributes[.paragraphStyle] = paragraph.supplyDefaults(for: otherParagraph)
             case (BonMotTransformationsAttributeName,
-                var transformations as [StyleAttributeValue],
-                let otherTransformations as [StyleAttributeValue]):
+                var transformations as [Any],
+                let otherTransformations as [Any]):
                 transformations.append(contentsOf: otherTransformations)
                 attributes[BonMotTransformationsAttributeName] = transformations
             case let (key, value, nil):
@@ -314,7 +354,7 @@ public extension StringStyle {
     /// - returns: A mutable copy of an `NSParagraphStyle`, or a new
     ///            `NSMutableParagraphStyle` if the value is `nil`.
     static func paragraph(from styleAttributes: StyleAttributes) -> NSMutableParagraphStyle {
-        let theObject = styleAttributes[NSParagraphStyleAttributeName]
+        let theObject = styleAttributes[.paragraphStyle]
         let result: NSMutableParagraphStyle
         if let paragraphStyle = theObject as? NSMutableParagraphStyle {
             result = paragraphStyle
@@ -340,7 +380,7 @@ extension NSParagraphStyle {
     /// - Parameter paragraphStyle: The paragraph style to update.
     /// - Returns: The updated paragraph style.
     func supplyDefaults(for paragraphStyle: NSParagraphStyle) -> NSParagraphStyle {
-        let defaults = NSParagraphStyle.bon_default
+        let defaults = NSParagraphStyle.default
         let paragraph = paragraphStyle.mutableParagraphStyleCopy()
         if paragraph.lineSpacing == defaults.lineSpacing { paragraph.lineSpacing = lineSpacing }
         if paragraph.paragraphSpacing == defaults.paragraphSpacing { paragraph.paragraphSpacing = paragraphSpacing }

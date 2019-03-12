@@ -1,5 +1,5 @@
 import QuickLook
-import Boomerang
+
 
 extension QLPreviewController {
     private struct AssociatedKeys {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Boomerang
+
 import RxSwift
 import Action
 import RxCocoa

@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import Action
-import Boomerang
+
 import DeviceKit
 
 public enum TutorialInput: SelectionInput {

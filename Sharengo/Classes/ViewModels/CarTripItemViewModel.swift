@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import Boomerang
+
 import KeychainSwift
 
 final class CarTripItemViewModel : ItemViewModelType {

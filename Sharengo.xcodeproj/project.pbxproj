@@ -106,6 +106,7 @@
 		03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */; };
 		03E77CF21F555B8E00765852 /* RatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E77CF11F555B8E00765852 /* RatesViewController.swift */; };
 		03E77CF41F555BBB00765852 /* RatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E77CF31F555BBB00765852 /* RatesViewModel.swift */; };
+		22BD3808B13503C1B166EE29 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE36457E621FE0CE1FA9F74 /* Pods_Sharengo.framework */; };
 		4D0471B11F3EF61E00C454A2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0471B01F3EF61E00C454A2 /* LocationManager.swift */; };
 		4D0471B31F3F05B500C454A2 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0471B21F3F05B500C454A2 /* UserAnnotation.swift */; };
 		4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */; };
@@ -321,11 +322,29 @@
 		4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98361ED471F500880EA1 /* HomeViewModel.swift */; };
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
-		81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */; };
 		D108D80921105C9500B2E855 /* CoreController+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108D80821105C9500B2E855 /* CoreController+Operations.swift */; };
 		D108D80B2112FBCB00B2E855 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */; };
 		D11487AD20F4BB55007BB150 /* UIView+StoryboardConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */; };
 		D114A1D6210722260045712F /* SettingsNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */; };
+		D11E64B42237BA1B007AB4FC /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11E64B32237BA1B007AB4FC /* Reachability.swift */; };
+		D11E64B52237BB1F007AB4FC /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46B2237B578007DA942 /* FormViewModel.swift */; };
+		D11E64B62237BB1F007AB4FC /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46C2237B578007DA942 /* ItemViewModel.swift */; };
+		D11E64B72237BB1F007AB4FC /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46D2237B578007DA942 /* ListViewModel.swift */; };
+		D11E64B82237BB1F007AB4FC /* MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46E2237B578007DA942 /* MKMapView.swift */; };
+		D11E64B92237BB1F007AB4FC /* ModelStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46F2237B578007DA942 /* ModelStructure.swift */; };
+		D11E64BA2237BB1F007AB4FC /* BoomerangRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4702237B578007DA942 /* BoomerangRouter.swift */; };
+		D11E64BB2237BB1F007AB4FC /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4712237B578007DA942 /* UIButton.swift */; };
+		D11E64BC2237BB1F007AB4FC /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4722237B578007DA942 /* UICollectionView.swift */; };
+		D11E64BD2237BB1F007AB4FC /* UIPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4732237B578007DA942 /* UIPagerViewController.swift */; };
+		D11E64BE2237BB1F007AB4FC /* UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4742237B578007DA942 /* UIPickerView.swift */; };
+		D11E64BF2237BB1F007AB4FC /* UIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4752237B578007DA942 /* UIRouter.swift */; };
+		D11E64C02237BB1F007AB4FC /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4762237B578007DA942 /* UIScrollView.swift */; };
+		D11E64C12237BB1F007AB4FC /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4772237B578007DA942 /* UITableView.swift */; };
+		D11E64C22237BB1F007AB4FC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4782237B578007DA942 /* UITextField.swift */; };
+		D11E64C32237BB1F007AB4FC /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4792237B578007DA942 /* UIView.swift */; };
+		D11E64C42237BB1F007AB4FC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47A2237B578007DA942 /* UIViewController.swift */; };
+		D11E64C52237BB1F007AB4FC /* BoomerangUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47B2237B578007DA942 /* BoomerangUtilities.swift */; };
+		D11E64C62237BB1F007AB4FC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47C2237B578007DA942 /* ViewModel.swift */; };
 		D120AD4720E24C4A007A3139 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D120AD4620E24C4A007A3139 /* client.p12 */; };
 		D13D0D8521FB595400D5365D /* GenericWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8421FB595400D5365D /* GenericWebViewModel.swift */; };
 		D13D0D8721FB596700D5365D /* GenericWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8621FB596700D5365D /* GenericWebViewController.swift */; };
@@ -440,7 +459,8 @@
 		03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Classes/ViewModels/ProfileViewModel.swift; sourceTree = "<group>"; };
 		03E77CF11F555B8E00765852 /* RatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatesViewController.swift; path = Classes/ViewControllers/RatesViewController.swift; sourceTree = "<group>"; };
 		03E77CF31F555BBB00765852 /* RatesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RatesViewModel.swift; path = Classes/ViewModels/RatesViewModel.swift; sourceTree = "<group>"; };
-		21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
+		12BD9A4E8CC3790D275FA4CE /* Pods-Sharengo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.debug.xcconfig"; sourceTree = "<group>"; };
+		361C1EE550F3B9319FCE3EC9 /* Pods-Sharengo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.release.xcconfig"; sourceTree = "<group>"; };
 		4D0471B01F3EF61E00C454A2 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4D0471B21F3F05B500C454A2 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Theme.swift"; path = "Classes/Theme/UIButton+Theme.swift"; sourceTree = "<group>"; };
@@ -698,11 +718,31 @@
 		4DFD98361ED471F500880EA1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = Classes/ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
+		5DE36457E621FE0CE1FA9F74 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D108D80821105C9500B2E855 /* CoreController+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreController+Operations.swift"; sourceTree = "<group>"; };
 		D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+StoryboardConstraint.swift"; path = "Classes/Utilities/UIView+StoryboardConstraint.swift"; sourceTree = "<group>"; };
 		D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewModel.swift; sourceTree = "<group>"; };
+		D11E64B32237BA1B007AB4FC /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D120AD4620E24C4A007A3139 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
+		D127E46B2237B578007DA942 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormViewModel.swift; path = Sources/FormViewModel.swift; sourceTree = "<group>"; };
+		D127E46C2237B578007DA942 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ItemViewModel.swift; path = Sources/ItemViewModel.swift; sourceTree = "<group>"; };
+		D127E46D2237B578007DA942 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListViewModel.swift; path = Sources/ListViewModel.swift; sourceTree = "<group>"; };
+		D127E46E2237B578007DA942 /* MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MKMapView.swift; path = Sources/UIKit/MKMapView.swift; sourceTree = "<group>"; };
+		D127E46F2237B578007DA942 /* ModelStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelStructure.swift; path = Sources/ModelStructure.swift; sourceTree = "<group>"; };
+		D127E4702237B578007DA942 /* BoomerangRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoomerangRouter.swift; path = Sources/BoomerangRouter.swift; sourceTree = "<group>"; };
+		D127E4712237B578007DA942 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIButton.swift; path = Sources/UIKit/UIButton.swift; sourceTree = "<group>"; };
+		D127E4722237B578007DA942 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UICollectionView.swift; path = Sources/UIKit/UICollectionView.swift; sourceTree = "<group>"; };
+		D127E4732237B578007DA942 /* UIPagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIPagerViewController.swift; path = Sources/UIKit/UIPagerViewController.swift; sourceTree = "<group>"; };
+		D127E4742237B578007DA942 /* UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIPickerView.swift; path = Sources/UIKit/ios/UIPickerView.swift; sourceTree = "<group>"; };
+		D127E4752237B578007DA942 /* UIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIRouter.swift; path = Sources/UIKit/UIRouter.swift; sourceTree = "<group>"; };
+		D127E4762237B578007DA942 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIScrollView.swift; path = Sources/UIKit/UIScrollView.swift; sourceTree = "<group>"; };
+		D127E4772237B578007DA942 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITableView.swift; path = Sources/UIKit/UITableView.swift; sourceTree = "<group>"; };
+		D127E4782237B578007DA942 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = Sources/UIKit/UITextField.swift; sourceTree = "<group>"; };
+		D127E4792237B578007DA942 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = Sources/UIKit/UIView.swift; sourceTree = "<group>"; };
+		D127E47A2237B578007DA942 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Sources/UIKit/UIViewController.swift; sourceTree = "<group>"; };
+		D127E47B2237B578007DA942 /* BoomerangUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoomerangUtilities.swift; path = Sources/UIKit/BoomerangUtilities.swift; sourceTree = "<group>"; };
+		D127E47C2237B578007DA942 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = Sources/ViewModel.swift; sourceTree = "<group>"; };
 		D13D0D8421FB595400D5365D /* GenericWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericWebViewModel.swift; sourceTree = "<group>"; };
 		D13D0D8621FB596700D5365D /* GenericWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericWebViewController.swift; sourceTree = "<group>"; };
 		D14114682110554F00FF9B52 /* ShareOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareOperation.swift; sourceTree = "<group>"; };
@@ -714,8 +754,6 @@
 		D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EFAA411FE8056100CE33E1 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = Classes/ViewControllers/PinViewController.swift; sourceTree = "<group>"; };
 		D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewModel.swift; path = Classes/ViewModels/PinViewModel.swift; sourceTree = "<group>"; };
-		D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sharengo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -723,7 +761,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C37E37CA1BE404C15D4724 /* Pods_Sharengo.framework in Frameworks */,
+				22BD3808B13503C1B166EE29 /* Pods_Sharengo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +798,15 @@
 				033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */,
 			);
 			name = CarTripsList;
+			sourceTree = "<group>";
+		};
+		03406DDD2813F085AA23ABDF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				12BD9A4E8CC3790D275FA4CE /* Pods-Sharengo.debug.xcconfig */,
+				361C1EE550F3B9319FCE3EC9 /* Pods-Sharengo.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		03653E1D1EEA76A200AC7A93 /* CarBookingCompleted */ = {
@@ -980,7 +1027,8 @@
 		0725785E328265441F78D09B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D1FF88DEA4B02A2379E80AD6 /* Pods_Sharengo.framework */,
+				D127E4832237B578007DA942 /* Boomerang */,
+				5DE36457E621FE0CE1FA9F74 /* Pods_Sharengo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1344,8 +1392,8 @@
 			children = (
 				4DCD1A541ECDBF7400FC8BF5 /* Sharengo */,
 				4DCD1A531ECDBF7400FC8BF5 /* Products */,
-				906843C62B31F2F1D555438B /* Pods */,
 				0725785E328265441F78D09B /* Frameworks */,
+				03406DDD2813F085AA23ABDF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1653,15 +1701,6 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
-		906843C62B31F2F1D555438B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */,
-				DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		D108D80721105C8700B2E855 /* CoreController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1686,6 +1725,33 @@
 			);
 			name = Certificates;
 			path = Resources/Certificates;
+			sourceTree = "<group>";
+		};
+		D127E4832237B578007DA942 /* Boomerang */ = {
+			isa = PBXGroup;
+			children = (
+				D11E64B32237BA1B007AB4FC /* Reachability.swift */,
+				D127E46B2237B578007DA942 /* FormViewModel.swift */,
+				D127E46C2237B578007DA942 /* ItemViewModel.swift */,
+				D127E46D2237B578007DA942 /* ListViewModel.swift */,
+				D127E46E2237B578007DA942 /* MKMapView.swift */,
+				D127E46F2237B578007DA942 /* ModelStructure.swift */,
+				D127E4702237B578007DA942 /* BoomerangRouter.swift */,
+				D127E4712237B578007DA942 /* UIButton.swift */,
+				D127E4722237B578007DA942 /* UICollectionView.swift */,
+				D127E4732237B578007DA942 /* UIPagerViewController.swift */,
+				D127E4742237B578007DA942 /* UIPickerView.swift */,
+				D127E4752237B578007DA942 /* UIRouter.swift */,
+				D127E4762237B578007DA942 /* UIScrollView.swift */,
+				D127E4772237B578007DA942 /* UITableView.swift */,
+				D127E4782237B578007DA942 /* UITextField.swift */,
+				D127E4792237B578007DA942 /* UIView.swift */,
+				D127E47A2237B578007DA942 /* UIViewController.swift */,
+				D127E47B2237B578007DA942 /* BoomerangUtilities.swift */,
+				D127E47C2237B578007DA942 /* ViewModel.swift */,
+			);
+			name = Boomerang;
+			path = Pods/../Boomerang;
 			sourceTree = "<group>";
 		};
 		D13D0D8321FB573B00D5365D /* GenericWebView */ = {
@@ -1722,13 +1788,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DCD1A7E1ECDBF7400FC8BF5 /* Build configuration list for PBXNativeTarget "Sharengo" */;
 			buildPhases = (
-				BB0E697B2411FD248615F58F /* [CP] Check Pods Manifest.lock */,
+				70836387D91DE24C4E8108F3 /* [CP] Check Pods Manifest.lock */,
 				4DCD1A4E1ECDBF7400FC8BF5 /* Sources */,
 				4DCD1A4F1ECDBF7400FC8BF5 /* Frameworks */,
 				4DCD1A501ECDBF7400FC8BF5 /* Resources */,
-				59A6C6551D62A8A064679543 /* [CP] Embed Pods Frameworks */,
-				83386CE137B399051CBBB402 /* [CP] Copy Pods Resources */,
 				D108D80D211300FE00B2E855 /* Fabric Crashlytics */,
+				7115404EDF4EB69DEBA2E3E3 /* [CP] Embed Pods Frameworks */,
+				CA3D13671DFFD2401D53831C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1950,87 +2016,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		59A6C6551D62A8A064679543 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
-				"${BUILT_PRODUCTS_DIR}/Boomerang/Boomerang.framework",
-				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework",
-				"${BUILT_PRODUCTS_DIR}/Gloss/Gloss.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya-Gloss/Moya_Gloss.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SpinKit/SpinKit.framework",
-				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BonMot.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Boomerang.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gifu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gloss.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_Gloss.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpinKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		83386CE137B399051CBBB402 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BB0E697B2411FD248615F58F /* [CP] Check Pods Manifest.lock */ = {
+		70836387D91DE24C4E8108F3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2046,6 +2032,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7115404EDF4EB69DEBA2E3E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework",
+				"${BUILT_PRODUCTS_DIR}/Gloss/Gloss.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-Gloss/Moya_Gloss.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SpinKit/SpinKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BonMot.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gifu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gloss.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_Gloss.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpinKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA3D13671DFFD2401D53831C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D108D80D211300FE00B2E855 /* Fabric Crashlytics */ = {
@@ -2077,12 +2141,14 @@
 				4D6876311F6FC4BA00CD910E /* Bonus.swift in Sources */,
 				037BDFBB1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift in Sources */,
 				4DFD98351ED471B800880EA1 /* HomeViewController.swift in Sources */,
+				D11E64B62237BB1F007AB4FC /* ItemViewModel.swift in Sources */,
 				4D45BB301EE69F49004C7287 /* CarBooking.swift in Sources */,
 				037689F71F1608D100523BAA /* FeedItemViewModel.swift in Sources */,
 				4D2628F41ED57D7B001C4E38 /* PKCS12.swift in Sources */,
 				037BDFB91F03944700C95962 /* SettingsCitiesViewController.swift in Sources */,
 				033A404B1F06351B00B05A89 /* CarTripItemViewModel.swift in Sources */,
 				03653E1F1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift in Sources */,
+				D11E64C02237BB1F007AB4FC /* UIScrollView.swift in Sources */,
 				032D3A751F08D61900F260A5 /* OnBoardViewController.swift in Sources */,
 				D13D0D8721FB596700D5365D /* GenericWebViewController.swift in Sources */,
 				03653E211EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift in Sources */,
@@ -2091,8 +2157,10 @@
 				4D0EFF651EDA124900B1A8EE /* UIButton+Theme.swift in Sources */,
 				4D60EA881F3E037E0085BFE3 /* GMUStaticCluster.m in Sources */,
 				03A86FA21EF9713D009C72F4 /* MenuItemViewModel.swift in Sources */,
+				D11E64C52237BB1F007AB4FC /* BoomerangUtilities.swift in Sources */,
 				4D377ABC1ECEE442005DF900 /* Color+Theme.swift in Sources */,
 				D114A1D6210722260045712F /* SettingsNotificationsViewModel.swift in Sources */,
+				D11E64C62237BB1F007AB4FC /* ViewModel.swift in Sources */,
 				4D72B3491ED964CD002C2375 /* CarPopupView.swift in Sources */,
 				4D7335AD1F4F479000B58EB4 /* UserAreaViewModel.swift in Sources */,
 				4DC10E021EE9D6F000A74E26 /* CoreController.swift in Sources */,
@@ -2107,16 +2175,19 @@
 				037689F41F1608C700523BAA /* FeedsViewController.swift in Sources */,
 				D14114692110554F00FF9B52 /* ShareOperation.swift in Sources */,
 				037689F81F1608D100523BAA /* FeedsViewModel.swift in Sources */,
+				D11E64B82237BB1F007AB4FC /* MKMapView.swift in Sources */,
 				4D60EA871F3E037E0085BFE3 /* GMUClusterManager.m in Sources */,
 				4DCD1A8C1ECDC17A00FC8BF5 /* Car.swift in Sources */,
 				4D965B6E1EEAF3780006294E /* CarTrip.swift in Sources */,
 				4D36D7C51ED2F604005FAEB8 /* MKMapKit+Extensions.swift in Sources */,
+				D11E64BA2237BB1F007AB4FC /* BoomerangRouter.swift in Sources */,
 				4D43DDE21F078556001E41F8 /* FavouriteItemCollectionViewCell.swift in Sources */,
 				03C632381EEFD02C00BFEDA3 /* SignupStepViewModel.swift in Sources */,
 				037689FC1F160C7A00523BAA /* Feed.swift in Sources */,
 				4D60EA8E1F3E037E0085BFE3 /* GMUFeature.m in Sources */,
 				4DCFB1251F6976450015D651 /* RouteStep.swift in Sources */,
 				037BDFC61F03B2EC00C95962 /* NoFavouritesViewController.swift in Sources */,
+				D11E64C32237BB1F007AB4FC /* UIView.swift in Sources */,
 				03AF5D731EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
 				4D2339951EE6CCE300780384 /* IntroViewController.swift in Sources */,
 				4D60EA951F3E037E0085BFE3 /* GMUStyle.m in Sources */,
@@ -2126,9 +2197,11 @@
 				03ADD29C1F1CFDAC00AEB504 /* CircularMenuButton.swift in Sources */,
 				4D60EA891F3E037E0085BFE3 /* GMUDefaultClusterIconGenerator.m in Sources */,
 				036D92191F0258540076D22D /* Setting.swift in Sources */,
+				D11E64C12237BB1F007AB4FC /* UITableView.swift in Sources */,
 				4D3BF1251ED76EAF00E595E7 /* UIView+Extensions.swift in Sources */,
 				4DCD1A841ECDC16400FC8BF5 /* Operators.swift in Sources */,
 				4DF0EC6E1F077AE00003D502 /* FavouritesViewController.swift in Sources */,
+				D11E64BB2237BB1F007AB4FC /* UIButton.swift in Sources */,
 				036D922A1F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift in Sources */,
 				4DCD1A891ECDC17100FC8BF5 /* ViewFactory.swift in Sources */,
 				4DCD1AA91ECDC27F00FC8BF5 /* Image+Theme.swift in Sources */,
@@ -2146,6 +2219,7 @@
 				03856C771F28805C00DCE48D /* FaqViewModel.swift in Sources */,
 				4DC4D4A71EF46F7100330F23 /* WebViewController.swift in Sources */,
 				4DEBEE711EED373800AEF617 /* Banner.swift in Sources */,
+				D11E64B92237BB1F007AB4FC /* ModelStructure.swift in Sources */,
 				4DCE7EEE1EE12BC200442BF1 /* SearchBarItemViewModel.swift in Sources */,
 				4D36D7C31ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift in Sources */,
 				4DCD1A8A1ECDC17100FC8BF5 /* ViewModelFactory.swift in Sources */,
@@ -2157,6 +2231,7 @@
 				4D60EA941F3E037E0085BFE3 /* GMUPolygon.m in Sources */,
 				03C632311EEFC86100BFEDA3 /* SignupViewController.swift in Sources */,
 				03653E231EEADA4800AC7A93 /* NotificationsController.swift in Sources */,
+				D11E64BC2237BB1F007AB4FC /* UICollectionView.swift in Sources */,
 				037BDFCA1F03E47D00C95962 /* NewFavouriteViewController.swift in Sources */,
 				037BDFC81F03B30500C95962 /* NoFavouritesViewModel.swift in Sources */,
 				036D92281F028E960076D22D /* SettingsLanguagesViewController.swift in Sources */,
@@ -2186,6 +2261,7 @@
 				4D6ACAD11ECF33F700D58948 /* NavigationBarViewModel.swift in Sources */,
 				4D72B34B1ED96533002C2375 /* CarPopupViewModel.swift in Sources */,
 				4DCD1A861ECDC16400FC8BF5 /* Utilities.swift in Sources */,
+				D11E64BE2237BB1F007AB4FC /* UIPickerView.swift in Sources */,
 				4D60EA8A1F3E037E0085BFE3 /* GMUDefaultClusterRenderer.m in Sources */,
 				036D92301F028EF30076D22D /* Language.swift in Sources */,
 				4D1AE8241ED1E37700C8A1D3 /* Font+Theme.swift in Sources */,
@@ -2197,8 +2273,11 @@
 				4DECFD411F69B5F6006ED6CB /* GoogleResponse.swift in Sources */,
 				4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */,
 				032D3A771F08D62E00F260A5 /* OnBoardViewModel.swift in Sources */,
+				D11E64C42237BB1F007AB4FC /* UIViewController.swift in Sources */,
 				D17DC78A20A2F60F00BA3945 /* AppConfig.swift in Sources */,
+				D11E64BF2237BB1F007AB4FC /* UIRouter.swift in Sources */,
 				03B5960F1F1B5AB000811A36 /* NoFeedsViewController.swift in Sources */,
+				D11E64B52237BB1F007AB4FC /* FormViewModel.swift in Sources */,
 				03C632611EF02E9100BFEDA3 /* ProfileViewModel.swift in Sources */,
 				036D922E1F028EAA0076D22D /* SettingsLanguagesViewModel.swift in Sources */,
 				4D2339981EE6CDFC00780384 /* IntroViewModel.swift in Sources */,
@@ -2219,12 +2298,15 @@
 				03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */,
 				D11487AD20F4BB55007BB150 /* UIView+StoryboardConstraint.swift in Sources */,
 				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,
+				D11E64C22237BB1F007AB4FC /* UITextField.swift in Sources */,
 				03AF5D751EEE83FC00AC8826 /* AnimatedTextView.swift in Sources */,
 				D17DC78820A2F09000BA3945 /* LegalNoteViewController.swift in Sources */,
 				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,
 				4D0471B31F3F05B500C454A2 /* UserAnnotation.swift in Sources */,
 				4DA178681ED63C4D00EBD32B /* UIImage.swift in Sources */,
 				4DCD1A911ECDC18500FC8BF5 /* Router+Preview.swift in Sources */,
+				D11E64B72237BB1F007AB4FC /* ListViewModel.swift in Sources */,
+				D11E64BD2237BB1F007AB4FC /* UIPagerViewController.swift in Sources */,
 				4D60EA8C1F3E037E0085BFE3 /* GMUGeometryRenderer.m in Sources */,
 				4D7335AF1F4F47A500B58EB4 /* UserAreaViewController.swift in Sources */,
 				4D0471B11F3EF61E00C454A2 /* LocationManager.swift in Sources */,
@@ -2248,6 +2330,7 @@
 				4D164BE01F091F5100D4EAB7 /* NoCarTripsViewController.swift in Sources */,
 				4D9400D71EDF4BFE00AD0EC6 /* Address.swift in Sources */,
 				4DF27F041EDD7EEB00D2FAAF /* SpeechController.swift in Sources */,
+				D11E64B42237BA1B007AB4FC /* Reachability.swift in Sources */,
 				03B596111F1B5AC000811A36 /* NoFeedsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2396,7 +2479,7 @@
 		};
 		4DCD1A7F1ECDBF7400FC8BF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21CC90C4B93E73E78E63AA7D /* Pods-Sharengo.debug.xcconfig */;
+			baseConfigurationReference = 12BD9A4E8CC3790D275FA4CE /* Pods-Sharengo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
@@ -2413,14 +2496,14 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		4DCD1A801ECDBF7400FC8BF5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE40A0AEF9D68E90D3A2F69B /* Pods-Sharengo.release.xcconfig */;
+			baseConfigurationReference = 361C1EE550F3B9319FCE3EC9 /* Pods-Sharengo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
@@ -2438,7 +2521,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

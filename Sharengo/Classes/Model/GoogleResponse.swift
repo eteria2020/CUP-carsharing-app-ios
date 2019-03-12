@@ -5,7 +5,7 @@
 //  Copyright © 2017 Dedecube. All rights reserved.
 //
 
-import Boomerang
+
 import RxSwift
 import Gloss
 

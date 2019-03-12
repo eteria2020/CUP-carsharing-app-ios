@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import Action
-import Boomerang
+
 
 public enum LegalNoteInput: SelectionInput {
 }

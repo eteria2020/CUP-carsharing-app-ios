@@ -6,7 +6,7 @@
 //  Copyright © 2018 CSGroup. All rights reserved.
 //
 
-import Boomerang
+
 import RxSwift
 import Gloss
 import Foundation

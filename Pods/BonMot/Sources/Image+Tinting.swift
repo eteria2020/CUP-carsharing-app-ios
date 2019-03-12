@@ -48,7 +48,7 @@ public extension BONImage {
 
         image.lockFocus()
 
-        let context = NSGraphicsContext.current()!.cgContext
+        let context = NSGraphicsContext.current!.cgContext
 
         context.setBlendMode(.normal)
         let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)!
@@ -112,7 +112,7 @@ public extension BONImage {
 
         // Restore original properties
         image = image.withAlignmentRectInsets(originalAlignmentRectInsets)
-        if !UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode {
+        if originalCapInsets != image.capInsets || originalResizingMode != image.resizingMode {
             image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
         }
 

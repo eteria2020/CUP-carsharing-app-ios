@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import Boomerang
+
 
 final class CategoryItemViewModel : ItemViewModelType {
     var model:ItemViewModelType.Model

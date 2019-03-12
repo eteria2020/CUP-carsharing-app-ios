@@ -14,9 +14,10 @@
 
     public typealias BONFont = NSFont
     public typealias BONFontDescriptor = NSFontDescriptor
-    let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
-    let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
-    let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
+    public typealias BONSymbolicTraits = NSFontDescriptor.SymbolicTraits
+    let BONFontDescriptorFeatureSettingsAttribute = NSFontDescriptor.AttributeName.featureSettings
+    let BONFontFeatureTypeIdentifierKey = NSFontDescriptor.FeatureKey.typeIdentifier
+    let BONFontFeatureSelectorIdentifierKey = NSFontDescriptor.FeatureKey.selectorIdentifier
 #else
     import UIKit
     public typealias BONColor = UIColor
@@ -24,32 +25,61 @@
 
     public typealias BONFont = UIFont
     public typealias BONFontDescriptor = UIFontDescriptor
-    let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
-    let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
-    let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
+    public typealias BONSymbolicTraits = UIFontDescriptor.SymbolicTraits
+    let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptor.AttributeName.featureSettings
+    let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.featureIdentifier
+    let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
 
     #if os(iOS) || os(tvOS)
         public typealias BONTextField = UITextField
     #endif
 #endif
 
-#if swift(>=3.0)
-    public typealias StyleAttributeValue = Any
-#else
-    public typealias StyleAttributeValue = AnyObject
-#endif
-
-public typealias StyleAttributes = [String: StyleAttributeValue]
+public typealias StyleAttributes = [NSAttributedString.Key: Any]
 
 #if os(iOS) || os(tvOS)
-    #if swift(>=3.0)
-        public typealias BonMotTextStyle = UIFontTextStyle
-        public typealias BonMotContentSizeCategory = UIContentSizeCategory
-    #else
-        public typealias BonMotTextStyle = String
-        public typealias BonMotContentSizeCategory = String
-    #endif
+    public typealias BonMotTextStyle = UIFont.TextStyle
+    public typealias BonMotContentSizeCategory = UIContentSizeCategory
 #endif
 
 // This key is defined here because it needs to be used in non-adaptive code.
-public let BonMotTransformationsAttributeName = "BonMotTransformations"
+public let BonMotTransformationsAttributeName = NSAttributedString.Key("BonMotTransformations")
+
+extension BONSymbolicTraits {
+    #if os(iOS) || os(tvOS) || os(watchOS)
+        static var italic: BONSymbolicTraits {
+            return .traitItalic
+        }
+        static var bold: BONSymbolicTraits {
+            return .traitBold
+        }
+        static var expanded: BONSymbolicTraits {
+            return .traitExpanded
+        }
+        static var condensed: BONSymbolicTraits {
+            return .traitCondensed
+        }
+        static var vertical: BONSymbolicTraits {
+            return .traitVertical
+        }
+        static var uiOptimized: BONSymbolicTraits {
+            return .traitUIOptimized
+        }
+        static var tightLineSpacing: BONSymbolicTraits {
+            return .traitTightLeading
+        }
+        static var looseLineSpacing: BONSymbolicTraits {
+            return .traitLooseLeading
+        }
+    #else
+        static var uiOptimized: BONSymbolicTraits {
+            return .UIOptimized
+        }
+        static var tightLineSpacing: BONSymbolicTraits {
+            return .tightLeading
+        }
+        static var looseLineSpacing: BONSymbolicTraits {
+            return .looseLeading
+        }
+    #endif
+}

@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import Action
-import Boomerang
+
 
 /**
  Enum that specifies selection input

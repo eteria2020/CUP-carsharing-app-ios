@@ -9,11 +9,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Boomerang
+
 import Action
 import MapKit
 import DeviceKit
-import ReachabilitySwift
 import KeychainSwift
 import SideMenu
 import GoogleMaps

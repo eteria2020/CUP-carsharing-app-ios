@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import Boomerang
+
 
 /**
  The Setting city item model provides data related to display content on the setting city item

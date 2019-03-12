@@ -8,12 +8,12 @@
 
 import Foundation
 import RxSwift
-import Boomerang
+
 import Action
 import MapKit
 import Moya
 import Gloss
-import ReachabilitySwift
+//import ReachabilitySwift
 import GoogleMaps
 
 /**

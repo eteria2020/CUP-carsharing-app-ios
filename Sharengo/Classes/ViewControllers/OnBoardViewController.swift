@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxGesture
-import Boomerang
+
 import Gifu
 import SideMenu
 import DeviceKit

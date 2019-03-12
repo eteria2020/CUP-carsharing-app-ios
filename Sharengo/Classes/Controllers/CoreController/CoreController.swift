@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import Boomerang
+
 import KeychainSwift
 import Localize_Swift
 import Gloss

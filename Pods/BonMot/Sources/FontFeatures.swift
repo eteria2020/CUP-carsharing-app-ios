@@ -30,13 +30,23 @@
         ///                           font.
         /// - returns: a new font with the specified features enabled.
         public func font(withFeatures featureProviders: [FontFeatureProvider]) -> BONFont {
-            var fontAttributes = fontDescriptor.fontAttributes
-            var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
-            if featureProviders.count > 0 {
-                let newFeatures = featureProviders.map { $0.featureAttributes() }.flatMap { $0 }
-                features.append(contentsOf: newFeatures)
-                fontAttributes[BONFontDescriptorFeatureSettingsAttribute] = features
+
+            guard featureProviders.count > 0 else {
+                return self
             }
+
+            let newFeatures = featureProviders.flatMap { $0.featureAttributes() }
+
+            guard newFeatures.count > 0 else {
+                return self
+            }
+
+            var fontAttributes = fontDescriptor.fontAttributes
+            var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [[BONFontDescriptor.FeatureKey: Any]] ?? []
+
+            features.append(contentsOf: newFeatures)
+            fontAttributes[BONFontDescriptorFeatureSettingsAttribute] = features
+
             let descriptor = BONFontDescriptor(fontAttributes: fontAttributes)
             #if os(OSX)
                 return BONFont(descriptor: descriptor, size: pointSize)!
@@ -195,7 +205,7 @@
 
         /// - returns: an array of dictionaries, each representing one feature
         ///            for the attributes key in the font attributes dictionary.
-        func featureAttributes() -> [StyleAttributes] {
+        func featureAttributes() -> [[BONFontDescriptor.FeatureKey: Any]] {
             let featureSettings = self.featureSettings()
             return featureSettings.map {
                 return [

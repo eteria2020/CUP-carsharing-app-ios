@@ -8,9 +8,9 @@
 
 import Foundation
 import RxSwift
-import Boomerang
+
 import Action
-import ReachabilitySwift
+//import ReachabilitySwift
 import KeychainSwift
 import Localize_Swift
 import Gloss

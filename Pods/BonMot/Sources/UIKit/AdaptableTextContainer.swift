@@ -41,7 +41,7 @@ extension UILabel {
 
         if let bonMotStyle = bonMotStyle {
             let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
-            font = attributes[NSFontAttributeName] as? BONFont
+            font = attributes[.font] as? BONFont
         }
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapted(to: traitCollection)
@@ -61,7 +61,11 @@ extension UITextView {
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapted(to: traitCollection)
         }
-        typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
+        #if swift(>=4.2)
+            typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
+        #else
+            typingAttributes = NSAttributedString.adapt(attributes: typingAttributes.withTypedKeys(), to: traitCollection).withStringKeys
+        #endif
     }
 
 }
@@ -81,19 +85,44 @@ extension UITextField {
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         if let attributedText = attributedText?.adapted(to: traitCollection) {
             if attributedText.length > 0 {
-                font = attributedText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
+                font = attributedText.attribute(.font, at: 0, effectiveRange: nil) as? UIFont
             }
             self.attributedText = attributedText
         }
         if let attributedPlaceholder = attributedPlaceholder {
             self.attributedPlaceholder = attributedPlaceholder.adapted(to: traitCollection)
         }
-        defaultTextAttributes = NSAttributedString.adapt(attributes: defaultTextAttributes, to: traitCollection)
+        #if swift(>=4.2)
+            defaultTextAttributes = NSAttributedString.adapt(attributes: defaultTextAttributes, to: traitCollection)
+        #else
+            defaultTextAttributes = NSAttributedString.adapt(attributes: defaultTextAttributes.withTypedKeys(), to: traitCollection).withStringKeys
+        #endif
         // Fix an issue where shrinking or growing text would stay the same width, but add whitespace.
         setNeedsDisplay()
     }
 
 }
+
+// Extension is here to work around [SR-631](https://bugs.swift.org/browse/SR-631),
+// which requires new types declared in extensions to be built before they can
+// themselves be extended. This is fixed in Xcode 10, so we can revert this when
+// we stop supporting Xcode 9. (Another workaround is to reorder the files in
+// the Compile Sources build phase, but since this is a library, we do not own
+// that build phase in all projects that we are used in. We could have renamed
+// Compatibility.swift to _Compatibility.swift and trusted CocoaPods to sort
+// built files alphabetically, but we're opting to use the more reliable method
+// of just putting the extension in the file where it's used.
+
+#if os(iOS) || os(tvOS)
+    #if swift(>=4.2)
+    #else
+        extension UIControl {
+
+            typealias State = UIControlState
+
+        }
+    #endif
+#endif
 
 // MARK: - AdaptableTextContainer for UIButton
 extension UIButton {
@@ -103,14 +132,9 @@ extension UIButton {
     /// - parameter traitCollection: The new trait collection.
     @objc(bon_updateTextForTraitCollection:)
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
-        for state in UIControlState.commonStates {
-            #if swift(>=3.0)
-                let attributedText = attributedTitle(for: state)?.adapted(to: traitCollection)
-                setAttributedTitle(attributedText, for: state)
-            #else
-                let attributedText = attributedTitleForState(state)?.adapted(to: traitCollection)
-                setAttributedTitle(attributedText, forState: state)
-            #endif
+        for state in UIControl.State.commonStates {
+            let attributedText = attributedTitle(for: state)?.adapted(to: traitCollection)
+            setAttributedTitle(attributedText, for: state)
         }
     }
 
@@ -119,38 +143,33 @@ extension UIButton {
 // MARK: - AdaptableTextContainer for UISegmentedControl
 extension UISegmentedControl {
 
-    // `UISegmentedControl` has terrible generics ([NSObject: AnyObject]?) on
-    /// `titleTextAttributes`, so use a helper in Swift 3.0.
-    #if swift(>=3.0)
-    @nonobjc final func bon_titleTextAttributes(for state: UIControlState) -> StyleAttributes {
+    // `UISegmentedControl` has terrible generics ([NSObject: AnyObject]? or [AnyHashable: Any]?) on
+    /// `titleTextAttributes`, so use a helper in Swift 3+
+    @nonobjc final func bon_titleTextAttributes(for state: UIControl.State) -> StyleAttributes {
         let attributes = titleTextAttributes(for: state) ?? [:]
         var result: StyleAttributes = [:]
         for value in attributes {
-            guard let string = value.key as? String else {
-                fatalError("Can not convert key \(value.key) to String")
-            }
+            #if swift(>=4.2)
+                result[value.key] = value
+            #else
+                guard let string = value.key as? StyleAttributes.Key else {
+                    fatalError("Can not convert key \(value.key) to String")
+                }
             result[string] = value
+            #endif
         }
         return result
     }
-    #endif
 
     /// Adapt `attributedTitle`, for all control states, to the specified trait collection.
     ///
     /// - parameter traitCollection: The new trait collection.
     @objc(bon_updateTextForTraitCollection:)
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
-        for state in UIControlState.commonStates {
-            #if swift(>=3.0)
-                let attributes = bon_titleTextAttributes(for: state)
-                let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
-                setTitleTextAttributes(newAttributes, for: state)
-            #else
-                if let attributes = titleTextAttributesForState(state) as? StyleAttributes {
-                    let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
-                    setTitleTextAttributes(newAttributes, forState: state)
-                }
-            #endif
+        for state in UIControl.State.commonStates {
+            let attributes = bon_titleTextAttributes(for: state)
+            let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
+            setTitleTextAttributes(newAttributes, for: state)
         }
     }
 
@@ -230,34 +249,29 @@ extension UIBarItem {
     /// - parameter traitCollection: the new trait collection.
     @objc(bon_updateTextForTraitCollection:)
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
-        for state in UIControlState.commonStates {
-            #if swift(>=3.0)
-                let attributes = titleTextAttributes(for: state) ?? [:]
+        for state in UIControl.State.commonStates {
+            let attributes = titleTextAttributes(for: state) ?? [:]
+            #if swift(>=4.2)
                 let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
                 setTitleTextAttributes(newAttributes, for: state)
             #else
-                let attributes = titleTextAttributesForState(state) ?? [:]
-                let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
-                setTitleTextAttributes(newAttributes, forState: state)
+                let newAttributes = NSAttributedString.adapt(attributes: attributes.withTypedKeys(), to: traitCollection)
+                setTitleTextAttributes(newAttributes, for: state)
             #endif
         }
     }
 
 }
 
-extension UIControlState {
+extension UIControl.State {
 
     /// The most common states that are used in apps. Using this defined set of
     /// attributes is far simpler than trying to build a system that will
     /// iterate through only the permutations that are currently configured. If
     /// you use a valid `UIControlState` in your app that is not represented
     /// here, please open a pull request to add it.
-    @nonobjc static var commonStates: [UIControlState] {
-        #if swift(>=3.0)
-            return [.normal, .highlighted, .disabled, .selected, [.highlighted, .selected]]
-        #else
-            return [.Normal, .Highlighted, .Disabled, .Selected, [.Highlighted, .Selected]]
-        #endif
+    @nonobjc static var commonStates: [UIControl.State] {
+        return [.normal, .highlighted, .disabled, .selected, [.highlighted, .selected]]
     }
 
 }

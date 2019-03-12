@@ -9,10 +9,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Boomerang
+
 import SideMenu
 import DeviceKit
-import ReachabilitySwift
+//import ReachabilitySwift
 
 class CarTripsViewController : BaseViewController, ViewModelBindable, UICollectionViewDelegateFlowLayout {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!

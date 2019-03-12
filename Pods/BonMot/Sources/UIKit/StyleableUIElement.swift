@@ -15,19 +15,15 @@ extension UILabel {
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
-        set {
-            bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font)
-        }
+        set { bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font) }
     }
 
     /// A string style. Stored via associated objects.
     public final var bonMotStyle: StringStyle? {
         get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
-            
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
-               styledText = self.text
-            
+            styledText = text
         }
     }
 
@@ -36,10 +32,7 @@ extension UILabel {
     @objc(bon_styledText)
     public var styledText: String? {
         get { return attributedText?.string }
-        set {
-            self.attributedText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection)
-          
-            }
+        set { attributedText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection) }
     }
 
 }
@@ -70,7 +63,12 @@ extension UITextField {
         set {
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
             styledText = text
-            defaultTextAttributes = bonMotStyle?.attributes(adaptedTo: traitCollection) ?? [:]
+            let attributes = (bonMotStyle?.attributes(adaptedTo: traitCollection) ?? [:])
+            #if swift(>=4.2)
+                defaultTextAttributes = attributes
+            #else
+                defaultTextAttributes = attributes.withStringKeys
+            #endif
         }
     }
 
@@ -84,7 +82,7 @@ extension UITextField {
             // Set the font first to avoid a bug that causes UITextField to hang
             if let styledText = styledText {
                 if styledText.length > 0 {
-                    font = styledText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
+                    font = styledText.attribute(.font, at: 0, effectiveRange: nil) as? UIFont
                 }
             }
             attributedText = styledText
@@ -132,7 +130,11 @@ extension UITextView {
         get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
-            typingAttributes = newValue?.attributes(adaptedTo: traitCollection) ?? typingAttributes
+            #if swift(>=4.2)
+                typingAttributes = newValue?.attributes(adaptedTo: traitCollection) ?? typingAttributes
+            #else
+                typingAttributes = newValue?.attributes(adaptedTo: traitCollection).withStringKeys ?? typingAttributes
+            #endif
             styledText = text
         }
     }
@@ -194,7 +196,7 @@ private enum StyleableUIElementHelpers {
     }
 
     static func setAssociatedStyle(on object: AnyObject, style: StringStyle?) {
-        var adaptiveFunction: StringStyleHolder? = nil
+        var adaptiveFunction: StringStyleHolder?
         if let bonMotStyle = style {
             adaptiveFunction = StringStyleHolder(style: bonMotStyle)
         }
@@ -228,6 +230,34 @@ internal class StringStyleHolder: NSObject {
     let style: StringStyle
     init(style: StringStyle) {
         self.style = style
+    }
+
+}
+
+extension Dictionary where Key: RawRepresentable, Key.RawValue == String {
+
+    var withStringKeys: [String: Value] {
+        var newDict: [String: Value] = [:]
+        for (key, value) in self {
+            newDict[key.rawValue] = value
+        }
+
+        return newDict
+    }
+
+}
+
+extension Dictionary where Key == String {
+
+    func withTypedKeys<KeyType>() -> [KeyType: Value] where KeyType: RawRepresentable, KeyType.RawValue == String {
+        var newDict: [KeyType: Value] = [:]
+        for (key, value) in self {
+            if let newKey = KeyType(rawValue: key) {
+                newDict[newKey] = value
+            }
+        }
+
+        return newDict
     }
 
 }

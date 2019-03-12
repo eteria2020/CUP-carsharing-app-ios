@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import Boomerang
+
 import Action
 import KeychainSwift
 import DeviceKit

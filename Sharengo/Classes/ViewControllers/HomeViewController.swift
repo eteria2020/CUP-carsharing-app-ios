@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Boomerang
+
 import KeychainSwift
 import pop
 import SideMenu

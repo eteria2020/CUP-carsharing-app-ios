@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import Action
-import Boomerang
+
 import KeychainSwift
 
 public enum RatesInput: SelectionInput {

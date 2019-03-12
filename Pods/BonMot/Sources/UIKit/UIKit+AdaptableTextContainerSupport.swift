@@ -19,13 +19,8 @@ extension UIApplication {
     /// `AdaptableTextContainer`, which can be a good place to update appearance
     /// proxies and invalidate any hard-wired caches that less responsive code may have.
     public final func enableAdaptiveContentSizeMonitor() {
-        #if swift(>=3.0)
-            let notificationCenter = NotificationCenter.default
-            let notificationName = NSNotification.Name.UIContentSizeCategoryDidChange
-        #else
-            let notificationCenter = NSNotificationCenter.defaultCenter()
-            let notificationName = UIContentSizeCategoryDidChangeNotification
-        #endif
+        let notificationCenter = NotificationCenter.default
+        let notificationName = UIContentSizeCategory.didChangeNotification
         notificationCenter.addObserver(
             self,
             selector: #selector(UIApplication.bon_notifyContainedAdaptiveContentSizeContainers(fromNotification:)),
@@ -64,7 +59,7 @@ extension UIViewController {
                 view.notifyContainedAdaptiveContentSizeContainers()
             }
         }
-        for viewController in childViewControllers {
+        for viewController in children {
             viewController.notifyContainedAdaptiveContentSizeContainers()
         }
         presentedViewController?.notifyContainedAdaptiveContentSizeContainers()
