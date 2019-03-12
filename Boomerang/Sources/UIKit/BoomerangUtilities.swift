@@ -20,7 +20,7 @@ import UIKit
             return []
         }
         
-        let applyInset: (NSLayoutAttribute, UIEdgeInsets) -> CGFloat = {
+        let applyInset: (NSLayoutConstraint.Attribute, UIEdgeInsets) -> CGFloat = {
             switch $0 {
             case .top: return $1.top
             case .bottom: return -$1.bottom
@@ -33,7 +33,7 @@ import UIKit
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        let attributes = [NSLayoutAttribute.top, .left, .right, .bottom]
+        let attributes = [NSLayoutConstraint.Attribute.top, .left, .right, .bottom]
         let constraints = attributes.map {
             return NSLayoutConstraint(item: self,
                                       attribute: $0,
@@ -50,7 +50,7 @@ import UIKit
     func addConstraintsToPinHorizontalEdgesToSuperView(with padding: CGFloat = 0) {
         prepareForConstraints()
         self.superview!.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(padding)-[view]-(padding)-|",
-                                                                                      options: NSLayoutFormatOptions(rawValue: 0),
+                                                                      options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                                                                                       metrics: ["padding":padding],
                                                                                       views: ["view":self]))
     }
@@ -58,7 +58,7 @@ import UIKit
     func addConstraintsToPinVerticalEdgesToSuperView(with padding: CGFloat = 0) {
         prepareForConstraints()
         self.superview!.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(padding)-[view]-(padding)-|",
-                                                                                      options: NSLayoutFormatOptions(rawValue: 0),
+                                                                      options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                                                                                       metrics: ["padding":padding],
                                                                                       views: ["view":self]))
     }

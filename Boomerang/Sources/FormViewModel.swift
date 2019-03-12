@@ -66,7 +66,7 @@ public typealias FormData<T> = Variable<T>
 //    }
 //}
 
-public protocol TextInput : ViewModelType {
+public protocol BoomerangTextInput : ViewModelType {
     var title:String? {get}
     var string:Variable<String> {get set}
 }
@@ -145,7 +145,7 @@ public typealias ObservableError = Observable<Swift.Error?>
 extension String :FormValueEquatable {
     public static var empty: String = ""
 }
-open class StringFormItemViewModel : FormItemViewModel , TextInput{
+open class StringFormItemViewModel : FormItemViewModel , BoomerangTextInput{
 
 
     public typealias DataValue = String

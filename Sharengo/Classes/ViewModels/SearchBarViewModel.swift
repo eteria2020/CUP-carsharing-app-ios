@@ -159,7 +159,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                                                 let dialog = ZAlertView(title: nil, message: error.getMessage(), isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_cancel".localized(),
                                                                         okButtonHandler: { alertView in
                                                                             alertView.dismissAlertView()
-                                                                            UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+                                                                            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
                                                 },
                                                                         cancelButtonHandler: { alertView in
                                                                             alertView.dismissAlertView()

@@ -26,9 +26,9 @@ public protocol ErrorReceiver {
 }
 
 public protocol ViewControllerActionBindable {
-     func showLoader()
-     func hideLoader()
-     func showError(_ error:ActionError)
+//     func showLoader()
+//     func hideLoader()
+//     func showError(_ error:ActionError)
 }
 
 public extension ViewControllerActionBindable where Self: UIViewController {

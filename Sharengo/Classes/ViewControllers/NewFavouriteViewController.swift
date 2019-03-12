@@ -83,19 +83,19 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
                     destination.fromNoFavourites = true
                     self.navigationController?.pushViewController(destination, animated: true)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_address.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.view_searchBar.endEditing(true)
                 self.view_searchBar.showSearchBar()
                 self.view.endEditing(true)
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_undo.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.view_searchBar.endEditing(true)
                 self.view.endEditing(true)
                 Router.back(self)
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - View methods
@@ -150,11 +150,11 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
             case .home:
                 Router.exit(self!)
             case .menu:
-                self?.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+                self?.present(SideMenuManager.default.menuRightNavigationController!, animated: true, completion: nil)
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         // SearchBar
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())
         self.view_searchBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -174,7 +174,7 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
                 }
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.view_searchBar.setupForFavourites()
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
@@ -182,9 +182,9 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
                 self.view.endEditing(true)
                 self.view_searchBar.endEditing(true)
                 Router.back(self)
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         NotificationCenter.default.addObserver(forName:
-        NSNotification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) {
+        UIApplication.willEnterForegroundNotification, object: nil, queue: OperationQueue.main) {
             [unowned self] notification in
             self.view_searchBar.updateInterface()
         }

@@ -149,7 +149,7 @@ private class ViewModelCollectionViewDataSource : NSObject, UICollectionViewData
         let cell = self.staticCellForSize(at:indexPath, width: width) as? EmbeddableView
         cell?.customContentView.setNeedsLayout()
         cell?.customContentView.layoutIfNeeded()
-        let size = cell?.customContentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize) ?? CGSize.zero
+        let size = cell?.customContentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize) ?? CGSize.zero
         return size
     }
     
@@ -157,7 +157,7 @@ private class ViewModelCollectionViewDataSource : NSObject, UICollectionViewData
         let cell = self.staticCellForSize(at:indexPath, height: height) as? EmbeddableView
         cell?.customContentView.setNeedsLayout()
         cell?.customContentView.layoutIfNeeded()
-        let size = cell?.customContentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize) ?? CGSize.zero
+        let size = cell?.customContentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize) ?? CGSize.zero
         return size
     }
     
@@ -183,7 +183,7 @@ fileprivate class EmptyReusableView : UICollectionViewCell {
 
 open class ContentCollectionViewCell : UICollectionViewCell, ViewModelBindable {
     public var viewModel: ViewModelType?
-    public var disposeBag: DisposeBag = DisposeBag()
+    //public var disposeBag: DisposeBag = DisposeBag()
     weak var internalView:UIView?
     public var insetConstraints: [NSLayoutConstraint] = []
     
@@ -214,23 +214,23 @@ extension UICollectionView : ViewModelBindable {
         set { objc_setAssociatedObject(self, &AssociatedKeys.viewModel, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
     }
     
-    public var disposeBag: DisposeBag {
-        get {
-            var disposeBag: DisposeBag
-            
-            if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
-                disposeBag = lookup
-            } else {
-                disposeBag = DisposeBag()
-                objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, disposeBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
-            
-            return disposeBag
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
+//    public var disposeBag: DisposeBag {
+//        get {
+//            var disposeBag: DisposeBag
+//            
+//            if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
+//                disposeBag = lookup
+//            } else {
+//                disposeBag = DisposeBag()
+//                objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, disposeBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//            }
+//            
+//            return disposeBag
+//        }
+//        set {
+//            objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//        }
+//    }
     
     public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? ListViewModelType else {
@@ -252,15 +252,15 @@ extension UICollectionView : ViewModelBindable {
         }
         (viewModel as? ListViewModelTypeSectionable)?.sectionIdentifiers.forEach {[weak self] ( value) in
             if value.isEmbeddable {
-                self?.register(ContentCollectionViewCell.self, forSupplementaryViewOfKind: value.type?.name ?? UICollectionElementKindSectionHeader, withReuseIdentifier: value.name)
+                self?.register(ContentCollectionViewCell.self, forSupplementaryViewOfKind: value.type?.name ?? UICollectionView.elementKindSectionHeader, withReuseIdentifier: value.name)
             }
             else {
-                self?.register(UINib(nibName: value.name, bundle: nil), forSupplementaryViewOfKind: value.type?.name ?? UICollectionElementKindSectionHeader, withReuseIdentifier: value.name)
+                self?.register(UINib(nibName: value.name, bundle: nil), forSupplementaryViewOfKind: value.type?.name ?? UICollectionView.elementKindSectionHeader, withReuseIdentifier: value.name)
             }
         }
         
-        self.register(EmptyReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader , withReuseIdentifier: EmptyReusableView.emptyReuseIdentifier)
-        self.register(EmptyReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionFooter , withReuseIdentifier: EmptyReusableView.emptyReuseIdentifier)
+        self.register(EmptyReusableView.self, forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader , withReuseIdentifier: EmptyReusableView.emptyReuseIdentifier)
+        self.register(EmptyReusableView.self, forSupplementaryViewOfKind:UICollectionView.elementKindSectionFooter , withReuseIdentifier: EmptyReusableView.emptyReuseIdentifier)
         if (viewModel.collectionViewDataSource == nil) {
             viewModel.collectionViewDataSource = ViewModelCollectionViewDataSource(viewModel: viewModel)
         }

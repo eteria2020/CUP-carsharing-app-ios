@@ -121,7 +121,7 @@ private class ViewModelTableViewDataSource : NSObject, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return (tableView.viewModel as? EditableViewModel)?.canEditItem(atIndexPath: indexPath) ?? false
     }
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let viewModel = tableView.viewModel as? EditableViewModel else {
             return
         }
@@ -153,7 +153,7 @@ private class ViewModelTableViewDataSource : NSObject, UITableViewDataSource {
         let cell = self.staticCellForSizeAtIndexPath(indexPath, width: width) as? EmbeddableView
         cell?.customContentView.setNeedsLayout()
         cell?.customContentView.layoutIfNeeded()
-        let size = cell?.customContentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize) ?? CGSize.zero
+        let size = cell?.customContentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize) ?? CGSize.zero
         return size
     }
     
@@ -179,7 +179,7 @@ fileprivate class EmptyReusableView : UICollectionViewCell {
 
 open class ContentTableViewCell : UITableViewCell, ViewModelBindable {
     public var viewModel: ViewModelType?
-    public var disposeBag: DisposeBag = DisposeBag()
+//    public var disposeBag: DisposeBag = DisposeBag()
     weak var internalView:UIView?
     public var insetConstraints: [NSLayoutConstraint] = []
     
@@ -203,7 +203,7 @@ open class ContentTableViewCell : UITableViewCell, ViewModelBindable {
 }
 open class ContentTableHeaderFooterView : UITableViewHeaderFooterView, ViewModelBindable {
     public var viewModel: ViewModelType?
-    public var disposeBag: DisposeBag = DisposeBag()
+//    public var disposeBag: DisposeBag = DisposeBag()
     weak var internalView:UIView?
     public var insetConstraints: [NSLayoutConstraint] = []
     
@@ -267,23 +267,23 @@ extension UITableView : ViewModelBindable {
         (cell as? ViewModelBindableType)?.bind(to:viewModel)
         return cell
     }
-    public var disposeBag: DisposeBag {
-        get {
-            var disposeBag: DisposeBag
-            
-            if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
-                disposeBag = lookup
-            } else {
-                disposeBag = DisposeBag()
-                objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, disposeBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
-            
-            return disposeBag
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
+//    public var disposeBag: DisposeBag {
+//        get {
+//            var disposeBag: DisposeBag
+//            
+//            if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
+//                disposeBag = lookup
+//            } else {
+//                disposeBag = DisposeBag()
+//                objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, disposeBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//            }
+//            
+//            return disposeBag
+//        }
+//        set {
+//            objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//        }
+//    }
     
     public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? ListViewModelType else {

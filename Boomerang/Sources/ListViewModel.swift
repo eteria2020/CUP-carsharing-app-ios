@@ -14,7 +14,7 @@ import Action
 import RxCocoa
 
 
-let defaultListIdentifier = "default_list_identifier"
+public let defaultListIdentifier = "default_list_identifier"
 
 extension String : ListIdentifier {
     public var name : String {

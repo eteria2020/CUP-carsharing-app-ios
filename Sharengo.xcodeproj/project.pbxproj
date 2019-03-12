@@ -340,7 +340,6 @@
 		D11E64BF2237BB1F007AB4FC /* UIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4752237B578007DA942 /* UIRouter.swift */; };
 		D11E64C02237BB1F007AB4FC /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4762237B578007DA942 /* UIScrollView.swift */; };
 		D11E64C12237BB1F007AB4FC /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4772237B578007DA942 /* UITableView.swift */; };
-		D11E64C22237BB1F007AB4FC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4782237B578007DA942 /* UITextField.swift */; };
 		D11E64C32237BB1F007AB4FC /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4792237B578007DA942 /* UIView.swift */; };
 		D11E64C42237BB1F007AB4FC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47A2237B578007DA942 /* UIViewController.swift */; };
 		D11E64C52237BB1F007AB4FC /* BoomerangUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47B2237B578007DA942 /* BoomerangUtilities.swift */; };
@@ -2298,7 +2297,6 @@
 				03AF5D711EEE83FC00AC8826 /* AnimatedTextField.swift in Sources */,
 				D11487AD20F4BB55007BB150 /* UIView+StoryboardConstraint.swift in Sources */,
 				03AF5D701EEE83FC00AC8826 /* AnimatedLine.swift in Sources */,
-				D11E64C22237BB1F007AB4FC /* UITextField.swift in Sources */,
 				03AF5D751EEE83FC00AC8826 /* AnimatedTextView.swift in Sources */,
 				D17DC78820A2F09000BA3945 /* LegalNoteViewController.swift in Sources */,
 				4D1AE8221ED1E26800C8A1D3 /* Text+Theme.swift in Sources */,

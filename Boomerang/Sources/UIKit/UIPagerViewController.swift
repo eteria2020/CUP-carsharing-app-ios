@@ -96,18 +96,18 @@ extension UIPageViewController : ViewModelBindable {
         get { return objc_getAssociatedObject(self, &AssociatedKeys.viewModel) as? ViewModelType}
         set { objc_setAssociatedObject(self, &AssociatedKeys.viewModel, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
     }
-    public var disposeBag: DisposeBag {
-        var disposeBag: DisposeBag
-        
-        if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
-            disposeBag = lookup
-        } else {
-            disposeBag = DisposeBag()
-            objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, disposeBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-        
-        return disposeBag
-    }
+//  public var disposeBag: DisposeBag {
+//        var disposeBag: DisposeBag
+//
+//        if let lookup = objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag {
+//            disposeBag = lookup
+//        } else {
+//            disposeBag = DisposeBag()
+//            objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, disposeBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//        }
+//
+//        return disposeBag
+//    }
     public func presentationCount() -> Int {
         return (self.viewModel as? ListViewModelType)?.dataHolder.modelStructure.value.models?.count ?? 0
     }

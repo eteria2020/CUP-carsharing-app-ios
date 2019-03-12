@@ -55,10 +55,10 @@ extension UIPickerView : ViewModelBindable {
         set { objc_setAssociatedObject(self, &AssociatedKeys.viewModel, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
     }
     
-    public var disposeBag: DisposeBag {
-        get { return objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag ?? DisposeBag()}
-        set { objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
-    }
+//    public var disposeBag: DisposeBag {
+//        get { return objc_getAssociatedObject(self, &AssociatedKeys.disposeBag) as? DisposeBag ?? DisposeBag()}
+//        set { objc_setAssociatedObject(self, &AssociatedKeys.disposeBag, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
+//    }
     public func bind(to viewModel: ViewModelType?) {
         
         guard let vm = viewModel as? ListViewModelType else {
