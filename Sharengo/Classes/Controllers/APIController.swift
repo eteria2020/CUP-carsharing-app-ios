@@ -47,8 +47,8 @@ final class ApiController {
     func getUser(username: String, password: String) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.getUserWith(username: username, password: password))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.getUserWith(username: username, password: password)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -68,8 +68,8 @@ final class ApiController {
     func searchCars() -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.searchAllCars())
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status, _  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.searchAllCars()).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -89,7 +89,7 @@ final class ApiController {
     func searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status, _ in
                 switch status {
                 case .began:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -97,7 +97,8 @@ final class ApiController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude))
+            return provider.rx.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude))
+                .asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -117,8 +118,8 @@ final class ApiController {
     func searchCar(plate: String) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true) , NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.searchCar(plate: plate))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true) , NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.searchCar(plate: plate)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -141,8 +142,8 @@ final class ApiController {
     func searchCarURL(userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees, plate: String, callingApp: String, email: String?) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.searchCarURL(userLatitude: userLatitude, userlLongitude: userLongitude, carPlate: plate, callingApp: callingApp, email: email))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status, _   in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.searchCarURL(userLatitude: userLatitude, userlLongitude: userLongitude, carPlate: plate, callingApp: callingApp, email: email)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -162,8 +163,8 @@ final class ApiController {
     func bookingList() -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.bookingList())
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.bookingList()).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -183,8 +184,8 @@ final class ApiController {
     func tripsList() -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.tripsList())
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.tripsList()).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -205,8 +206,8 @@ final class ApiController {
     {
         
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.archivedTripsList())
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.archivedTripsList()).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -227,8 +228,8 @@ final class ApiController {
     func bookCar(car: Car, userLatitude: CLLocationDegrees = 0, userLongitude: CLLocationDegrees = 0) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.bookCar(car: car, userLatitude: userLatitude, userLongitude: userLongitude))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.bookCar(car: car, userLatitude: userLatitude, userLongitude: userLongitude)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -248,8 +249,8 @@ final class ApiController {
     func deleteCarBooking(carBooking: CarBooking) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.deleteCarBooking(carBooking: carBooking))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.deleteCarBooking(carBooking: carBooking)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -269,8 +270,8 @@ final class ApiController {
     func getCarBooking(id: Int) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.getCarBooking(id: id))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.getCarBooking(id: id)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -290,8 +291,8 @@ final class ApiController {
     func openCar(car: Car, action: String) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.openCar(car: car, action: action))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.openCar(car: car, action: action)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -311,8 +312,8 @@ final class ApiController {
     func closeCar(car: Car, action: String) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.closeCar(car: car, action: action))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.closeCar(car: car, action: action)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -332,8 +333,8 @@ final class ApiController {
     func getTrip(trip: CarTrip) -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.getTrip(trip: trip))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.getTrip(trip: trip)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -353,8 +354,8 @@ final class ApiController {
     func getConfig() -> Observable<Response>
     {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.getConfig())
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.getConfig()).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -392,6 +393,10 @@ fileprivate enum API {
 
 extension API: TargetType
 {
+    var headers: [String : String]? {
+        return nil
+    }
+    
     var baseURL: URL {
         switch self {
         case .tripsList(), .archivedTripsList(), .getTrip(_):
@@ -449,7 +454,7 @@ extension API: TargetType
         }
     }
     
-    var parameters: [String: Any]? {
+    var parameters: [String: Any] {
         switch self {
         case .searchCars(let latitude, let longitude, let radius, let userLatitude, let userLongitude):
             return ["lat": latitude, "lon": longitude, "radius": Int(radius), "user_lat": userLatitude, "user_lon": userLongitude]
@@ -481,6 +486,10 @@ extension API: TargetType
     }
     
     var task: Task {
-        return .request
+        switch method {
+        case .post, .put: return Task.requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        default: return Task.requestParameters(parameters: parameters, encoding: URLEncoding.methodDependent)
+        }
+        
     }
 }

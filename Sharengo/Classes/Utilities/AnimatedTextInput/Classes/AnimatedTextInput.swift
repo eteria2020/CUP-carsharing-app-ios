@@ -14,7 +14,7 @@ open class AnimatedTextInput: UIControl {
 
     public typealias AnimatedTextInputType = AnimatedTextInputFieldConfigurator.AnimatedTextInputType
 
-    open var tapAction: ((Void) -> Void)?
+    open var tapAction: (() -> Void)?
     open  weak var delegate: AnimatedTextInputDelegate?
     open fileprivate(set) var isActive = false
 
@@ -100,7 +100,7 @@ open class AnimatedTextInput: UIControl {
 
     override open var intrinsicContentSize: CGSize {
         let normalHeight = textInput.view.intrinsicContentSize.height
-        return CGSize(width: UIViewNoIntrinsicMetric, height: normalHeight + style.topMargin + style.bottomMargin)
+        return CGSize(width: UIView.noIntrinsicMetric, height: normalHeight + style.topMargin + style.bottomMargin)
     }
 
     open override func updateConstraints() {
@@ -228,7 +228,7 @@ open class AnimatedTextInput: UIControl {
         layoutPlaceholderLayer()
     }
 
-    fileprivate func animatePlaceholder(to applyConfiguration: (Void) -> Void) {
+    fileprivate func animatePlaceholder(to applyConfiguration: () -> Void) {
         let duration = 0.2
         let function = CAMediaTimingFunction(controlPoints: 0.3, 0.0, 0.5, 0.95)
         transactionAnimation(with: duration, timingFuncion: function, animations: applyConfiguration)
@@ -432,7 +432,7 @@ public protocol TextInput {
     var currentText: String? { get set }
     var font: UIFont? { get set }
     var textColor: UIColor? { get set }
-    weak var textInputDelegate: TextInputDelegate? { get set }
+    var textInputDelegate: TextInputDelegate? { get set }
     var currentSelectedTextRange: UITextRange? { get set }
     var currentBeginningOfDocument: UITextPosition? { get }
 

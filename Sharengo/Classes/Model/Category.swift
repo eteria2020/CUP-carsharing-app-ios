@@ -26,7 +26,7 @@ extension String {
 /**
  The Category model is used to represent a category of feeds.
  */
-public class Category: ModelType, Gloss.Decodable {
+public class Category: ModelType, Gloss.JSONDecodable {
     /// Unique identifier
     public var identifier: String = ""
     /// Title

@@ -71,7 +71,7 @@ public class PolygonCache: NSObject, NSCoding {
 /**
  The JSONPolygons model is used to represent Polygon JSON Object.
  */
-public class JSONPolygons: ModelType, Gloss.Decodable {
+public class JSONPolygons: ModelType, Gloss.JSONDecodable {
     /// Array of polygons
     var polygons: [Polygon] = []
     

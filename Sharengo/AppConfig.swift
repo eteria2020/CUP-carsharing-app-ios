@@ -11,7 +11,7 @@ import RxSwift
 import Gloss
 import Foundation
 
-public class AppConfig: ModelType,Gloss.Decodable {
+public class AppConfig: ModelType,Gloss.JSONDecodable {
     
     public var config_key: String?
     

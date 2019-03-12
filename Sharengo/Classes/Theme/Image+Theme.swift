@@ -2,7 +2,7 @@ import UIKit
 
 extension UIImage {
     static func navbar() -> UIImage {
-        return UIImage(named:"bkg_topBar")?.resizableImage(withCapInsets: UIEdgeInsetsMake(1, 1, 1, 1), resizingMode: .stretch) ?? UIImage()
+        return UIImage(named:"bkg_topBar")?.resizableImage(withCapInsets: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1), resizingMode: .stretch) ?? UIImage()
     }
     
     static func rectangle(ofSize size:CGSize, color:UIColor, borderColor:UIColor? = nil , borderWidth:CGFloat = 0, cornerRadius:CGFloat = 0) -> UIImage{

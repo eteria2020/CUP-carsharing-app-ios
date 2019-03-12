@@ -84,8 +84,8 @@ public class CarAnnotation: NSObject, GMUClusterItem {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
-        let attrs = [NSFontAttributeName: UIFont(name: "Poppins-SemiBold", size: 25)!, NSForegroundColorAttributeName: UIColor.white, NSStrokeWidthAttributeName: -6.0,
-                     NSStrokeColorAttributeName: ColorBrand.green.value,NSParagraphStyleAttributeName: paragraphStyle] as [String : Any]
+        let attrs = [NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 25)!, NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.strokeWidth: -6.0,
+                     NSAttributedString.Key.strokeColor: ColorBrand.green.value,NSAttributedString.Key.paragraphStyle: paragraphStyle] as [NSAttributedString.Key : Any]
         let string = "\(value)"
         let thumbRect2 = CGRect(origin: CGPoint(x: (newSize.width - newSize.width)/2, y: (newSize.height - newSize.height)/2 + 0), size: newSize).integral
         string.draw(in: thumbRect2, withAttributes: attrs)

@@ -37,7 +37,7 @@ class GenericWebViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         
         URLSession.shared.reset {
@@ -86,7 +86,7 @@ class GenericWebViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Other
         switch Device().diagonal {
@@ -107,7 +107,7 @@ class GenericWebViewController : BaseViewController, ViewModelBindable {
 }
 
 extension GenericWebViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         return true
     }
     

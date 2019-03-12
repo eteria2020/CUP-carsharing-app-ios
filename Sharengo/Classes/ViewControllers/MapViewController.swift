@@ -124,7 +124,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.getRoute(fromLocation: nearestCar!.location!)
                     }
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         viewModel.deepCar.asObservable()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] (deepCar) in
@@ -155,7 +155,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 self?.selectedPlate = ""
                                 break
                             }}
-                        .addDisposableTo(CoreController.shared.disposeBag)
+                        .disposed(by: CoreController.shared.disposeBag)
                     
                     //self.viewModel?.deepCar.value = nil
                     if car.plate != self?.selectedCar?.plate
@@ -190,7 +190,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         }
                     })
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         // Annotations
         viewModel.array_annotations.asObservable()
             .subscribe(onNext: {[weak self] (array) in
@@ -235,12 +235,12 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.view_searchBar.viewModel?.allCars = allCars
                     }
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         // CarPopup
         self.btn_closeCarPopup.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.closeCarPopup()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         // CircularMenu
         self.view_circularMenu.bind(to: ViewModelFactory.circularMenu(type: viewModel.type.getCircularMenuType()))
         self.view_circularMenu.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
@@ -274,7 +274,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 }
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
     
     // MARK: - View methods
@@ -301,7 +301,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 
             case .empty: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         //checkUrlCar for external open APP
         if(selectedPlate != ""){
@@ -325,7 +325,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self.selectedPlate = ""
                         break
                     }
-                }.addDisposableTo(CoreController.shared.disposeBag)
+                }.disposed(by: CoreController.shared.disposeBag)
         }
         // CarPopup
         self.view_carPopup.bind(to: ViewModelFactory.carPopup(type: .car))
@@ -457,7 +457,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.showNearestCar()
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.view_carPopup.alpha = 0.0
         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
         switch Device().diagonal {
@@ -593,7 +593,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.closeCar(car: car, action: "close")
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.view_carBookingPopup.backgroundColor = Color.carBookingPopupBackground.value
         self.view_carBookingPopup.alpha = 0.0
         switch Device().diagonal {
@@ -655,13 +655,13 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 self?.updateSpeechSearchBar()
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Map
         self.setupMap()
         
         // NotificationCenter
-        NotificationCenter.default.addObserver(forName: .UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) { [unowned self] _ in
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: OperationQueue.main) { [unowned self] _ in
             self.checkUserPositionFromForeground()
         }
         
@@ -736,7 +736,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                 default:
                     break
                 }
-            }.addDisposableTo(CoreController.shared.disposeBag)
+            }.disposed(by: CoreController.shared.disposeBag)
     }
     
     override public func viewDidAppear(_ animated: Bool)
@@ -786,7 +786,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         if !self.introIsShowed {
             let destination: IntroViewController  = (Storyboard.main.scene(.intro))
             destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
-            self.addChildViewController(destination)
+            self.addChild(destination)
             self.view.addSubview(destination.view)
             self.view.layoutIfNeeded()
             let dispatchTime = DispatchTime.now() + 2.0
@@ -986,7 +986,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                     }
                 }
                 
-            }).addDisposableTo(self.disposeBag)
+            }).disposed(by: self.disposeBag)
             //}
         }
         else if self.view_carBookingPopup.alpha == 1.0 &&
@@ -1269,7 +1269,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 default:
                                     break
                                 }
-                            }.addDisposableTo(CoreController.shared.disposeBag)
+                            }.disposed(by: CoreController.shared.disposeBag)
                     }
                     else
                     {
@@ -2109,7 +2109,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                         self?.showUserPositionVisible(false)
                     }
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         // Italy
         let coordinateNorthEast = CLLocationCoordinate2DMake(35.4897, 6.62672)
         let coordinateSouthWest = CLLocationCoordinate2DMake(47.092, 18.7976)
@@ -2292,9 +2292,9 @@ public class MapViewController : BaseViewController, ViewModelBindable {
                                 okButtonHandler: { alertView in
                                     alertView.dismissAlertView()
                                     if #available(iOS 10.0, *) {
-                                        UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
+                                        UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
                                     } else {
-                                        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                                        UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
                                     }
         },
                                 cancelButtonHandler: { alertView in
@@ -2352,7 +2352,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
 }
 extension NSMutableAttributedString {
     @discardableResult func bold( text:String) -> NSMutableAttributedString {
-        let attrs:[String:AnyObject] = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 15)]
+        let attrs:[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]
         let boldString = NSMutableAttributedString(string: text, attributes:attrs)
         self.append(boldString)
         return self
@@ -2368,7 +2368,7 @@ extension NSMutableAttributedString {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .left
         
-        let attrs: [String : AnyObject] = [NSParagraphStyleAttributeName: paragraph]
+        let attrs: [NSAttributedString.Key : AnyObject] = [NSAttributedString.Key.paragraphStyle: paragraph]
         let justifyString = NSMutableAttributedString(string: text, attributes:attrs)
         self.append(justifyString)
         return self

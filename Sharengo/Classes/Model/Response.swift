@@ -12,7 +12,7 @@ import Gloss
 /**
  The Response model is used to convert api response in an object that have useful data from server like code
 */
-public class Response: ModelType, Gloss.Decodable {
+public class Response: ModelType, Gloss.JSONDecodable {
     /// HTTP Status code of response (200, 404, ...)
     public var status: Int?
     /// Boolean that determine if status is present or not

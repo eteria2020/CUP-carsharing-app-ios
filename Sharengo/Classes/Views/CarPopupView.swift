@@ -76,7 +76,7 @@ public class CarPopupView: UIView {
                         }, completion: nil)
                     }
                 }
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         viewModel.type.asObservable()
             .subscribe(onNext: {[weak self] (type) in
                 DispatchQueue.main.async {
@@ -87,7 +87,7 @@ public class CarPopupView: UIView {
                         self?.view_feed.isHidden = false
                     }
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         xibSetup()
         self.btn_open.rx.bind(to: viewModel.selection, input: .open)
         self.btn_book.rx.bind(to: viewModel.selection, input: .book)
@@ -147,7 +147,7 @@ public class CarPopupView: UIView {
                                     UserDefaults.standard.set(address!, forKey: key)
                                 }
                             }
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                 }
             }
        
@@ -259,7 +259,7 @@ public class CarPopupView: UIView {
     fileprivate func xibSetup() {
         view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         addSubview(view)
         self.layoutIfNeeded()
         self.view.backgroundColor = Color.carPopupBackground.value

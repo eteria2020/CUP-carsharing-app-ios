@@ -176,7 +176,7 @@ public class FavouriteFeed: NSObject, NSCoding {
 /**
  The  Feed model is used to represent a singular feed.
 */
-public class Feed: ModelType, Gloss.Decodable {
+public class Feed: ModelType, Gloss.JSONDecodable {
     /// Unique identifier
     public var identifier: String?
     /// Category's title

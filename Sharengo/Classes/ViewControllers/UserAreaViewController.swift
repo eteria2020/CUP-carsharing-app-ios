@@ -41,7 +41,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         self.showLoader()
         URLSession.shared.reset { 
@@ -146,7 +146,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Other
         switch Device().diagonal {
@@ -167,7 +167,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
 }
 
 extension UserAreaViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         print(webView.request?.description)
         return true
     }

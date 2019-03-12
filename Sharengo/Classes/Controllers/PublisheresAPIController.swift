@@ -31,7 +31,7 @@ final class PublishersAPIController {
     
     func getCities() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in
                 switch status {
                 case .began:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -39,7 +39,7 @@ final class PublishersAPIController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.cities())
+            return provider.rx.request(.cities()).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -58,8 +58,8 @@ final class PublishersAPIController {
     
     func getCategories() -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.categories())
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.categories()).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -78,8 +78,8 @@ final class PublishersAPIController {
     
     func getOffers(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.offers(category: category))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.offers(category: category)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -98,8 +98,8 @@ final class PublishersAPIController {
     
     func getMapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.mapOffers(latitude: latitude, longitude: longitude, radius: radius))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.mapOffers(latitude: latitude, longitude: longitude, radius: radius)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -118,8 +118,8 @@ final class PublishersAPIController {
     
     func getEvents(category: Category? = nil) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.events(category: category))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.events(category: category)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -138,8 +138,8 @@ final class PublishersAPIController {
     
     func getMapEvents(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance) -> Observable<Response> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.mapEvents(latitude: latitude, longitude: longitude, radius: radius))
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.mapEvents(latitude: latitude, longitude: longitude, radius: radius)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: Response.self)
                 .subscribe { event in
@@ -167,6 +167,10 @@ fileprivate enum API {
 }
 
 extension API: TargetType {
+    var headers: [String : String]? {
+        return nil
+    }
+    
     var baseURL: URL { return URL(string: "http://universo-sharengo.thedigitalproject.it:universo-sharengo.thedigitalproject.it@universo-sharengo.thedigitalproject.it/feed")! }
     
     var path: String {
@@ -220,6 +224,6 @@ extension API: TargetType {
     }
     
     var task: Task {
-        return .request
+        return .requestPlain
     }
 }

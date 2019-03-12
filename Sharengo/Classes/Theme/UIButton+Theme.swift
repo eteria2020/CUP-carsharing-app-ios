@@ -21,7 +21,7 @@ public extension UIButton {
         case .clearButton(let font, let color):
             self.backgroundColor = .clear
             self.setBackgroundImage(UIImage.imageWithSolidColor(UIColor.clear, size: self.frame.size), for: .normal)
-            self.setTitle(title, for: UIControlState())
+            self.setTitle(title, for: UIControl.State())
             self.titleLabel?.font = font
             self.setTitleColor(color, for: .normal)
         case .roundedButton(let backgroundColor):
@@ -29,19 +29,19 @@ public extension UIButton {
             self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
             self.layer.cornerRadius = 4
             self.clipsToBounds = true
-            self.setTitle(title, for: UIControlState())
+            self.setTitle(title, for: UIControl.State())
             self.titleLabel?.font = Font.roundedButton.value
             self.setTitleColor(Color.alertButton.value, for: .normal)
         case .squaredButton(let backgroundColor):
             self.backgroundColor = .clear
             self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
-            self.setTitle(title, for: UIControlState())
+            self.setTitle(title, for: UIControl.State())
             self.titleLabel?.font = Font.roundedButton.value
             self.setTitleColor(Color.alertLightButton.value, for: .normal)
         case .headerButton(let font, let backgroundColor, let textColor):
             self.backgroundColor = .clear
             self.setBackgroundImage(UIImage.imageWithSolidColor(backgroundColor, size: self.frame.size), for: .normal)
-            self.setTitle(title, for: UIControlState())
+            self.setTitle(title, for: UIControl.State())
             self.titleLabel?.font = font
             self.setTitleColor(textColor, for: .normal)
         }

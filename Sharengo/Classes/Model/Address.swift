@@ -132,7 +132,7 @@ public class HistoryAddress: NSObject, NSCoding {
 /**
  The Address model is used to represent an address.
 */
-public class Address: ModelType, Gloss.Decodable {
+public class Address: ModelType, Gloss.JSONDecodable {
     /// Unique identifier
     public var identifier: String?
     /// Name that user used to remember this address

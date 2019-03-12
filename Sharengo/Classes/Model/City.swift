@@ -87,7 +87,7 @@ public class CityCache: NSObject, NSCoding {
 /**
  The City  model is used to represent a city.
  */
-public class City: ModelType, Gloss.Decodable {
+public class City: ModelType, Gloss.JSONDecodable {
     /// Unique identifier
     public var identifier: String = ""
     /// Title

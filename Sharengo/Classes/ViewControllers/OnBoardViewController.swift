@@ -73,7 +73,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         // Labels
         self.lbl_description.alpha = 0.0
         self.view_white.alpha = 0.0
@@ -89,7 +89,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                 destination.bind(to: ViewModelFactory.login(), afterLoad: true)
                 destination.introIsShowed = true
                 self.navigationController?.pushViewController(destination, animated: true)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         // Images
         self.img_background.animate(withGIFNamed: "ONBOARD_sfondo_loop.gif", loopCount: 0)
         let language = "language".localized()
@@ -174,7 +174,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                             break
                         }
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
                 
                 self.view.rx.swipeGesture(.right).when(.recognized).subscribe(onNext: {_ in
                     if !self.gestureInProgress {
@@ -219,7 +219,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
                             break
                         }
                     }
-                }).addDisposableTo(self.disposeBag)
+                }).disposed(by: self.disposeBag)
             }
         }
     }
@@ -231,7 +231,7 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
             if !self.introIsShowed {
                 let destination: IntroViewController  = (Storyboard.main.scene(.intro))
                 destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
-                self.addChildViewController(destination)
+                self.addChild(destination)
                 self.view.addSubview(destination.view)
                 self.view.layoutIfNeeded()
             }

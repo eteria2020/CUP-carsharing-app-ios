@@ -102,13 +102,13 @@ class CarBookingPopupView: UIView
             DispatchQueue.main.async {
                 self?.lbl_info.styledText = info
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         viewModel.isCarClosing.asObservable().subscribe { [weak self] isCarClosing in
             DispatchQueue.main.async {
                 self?.updateButtons()
             }
-        }.addDisposableTo(disposeBag)
+            }.disposed(by: disposeBag)
     
         viewModel.time.asObservable().subscribe(onNext: { [weak self] time in
             DispatchQueue.main.async {
@@ -139,7 +139,7 @@ class CarBookingPopupView: UIView
                     self?.icn_time.isHidden = true
                 }
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     func updateButtons()
@@ -273,7 +273,7 @@ class CarBookingPopupView: UIView
     {
         view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         addSubview(view)
         
         self.layoutIfNeeded()

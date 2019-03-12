@@ -32,7 +32,7 @@ extension AnimatedTextView: TextInput {
         set { self.text = newValue }
     }
 
-    var textAttributes: [String: Any] {
+    var textAttributes: [NSAttributedString.Key: Any] {
         get { return typingAttributes }
         set { self.typingAttributes = textAttributes }
     }

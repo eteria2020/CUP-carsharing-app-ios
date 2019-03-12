@@ -46,8 +46,9 @@ final class SharengoApiController {
     
     func getPolygons() -> Observable<[Polygon]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.request(.polygons())
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status, _) in ManageNetworkLoaderUI.update(with: status) })])
+            return provider.rx.request(.polygons())
+                .asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapObject(type: JSONPolygons.self)
                 .subscribe { event in
@@ -66,7 +67,7 @@ final class SharengoApiController {
     
     func getOsmAdress(text: String) -> Observable<[Address]> {
         return Observable.create{ observable in
-            let provider = RxMoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true),NetworkActivityPlugin(networkActivityClosure: { (status) in
+            let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true),NetworkActivityPlugin(networkActivityClosure: { (status, _) in
                 switch status {
                 case .began:
                     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -76,7 +77,8 @@ final class SharengoApiController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.request(.osmAddress(text: text))
+            return provider.rx.request(.osmAddress(text: text))
+                .asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .mapArray(type: Address.self)
                 .subscribe { event in
@@ -100,6 +102,10 @@ fileprivate enum API {
 }
 
 extension API: TargetType {
+    var headers: [String : String]? {
+        return nil
+    }
+    
     var baseURL: URL {
         switch self {
         case .polygons():
@@ -124,7 +130,7 @@ extension API: TargetType {
         return .get
     }
     
-    var parameters: [String: Any]? {
+    var parameters: [String: Any] {
         switch self {
         case .polygons():
             return ["format": "json"]
@@ -143,6 +149,10 @@ extension API: TargetType {
     }
     
     var task: Task {
-        return .request
+        switch method {
+        case .post, .put: return Task.requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        default: return Task.requestParameters(parameters: parameters, encoding: URLEncoding.methodDependent)
+        }
+        
     }
 }

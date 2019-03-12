@@ -121,7 +121,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     @objc public func searchPlateAvailable(plate: String) {
@@ -165,7 +165,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     /**
      This method resets cars variable
@@ -232,7 +232,7 @@ public final class MapViewModel: ViewModelType {
                     default:
                         break
                     }
-                }.addDisposableTo(resultsDispose!)
+                }.disposed(by: resultsDispose!)
         } else {
             self.resetCars()
         }
@@ -260,7 +260,7 @@ public final class MapViewModel: ViewModelType {
                     default:
                         break
                     }
-                }.addDisposableTo(resultsDispose!)
+                }.disposed(by: resultsDispose!)
             
             self.publishersApiController.getMapEvents(latitude: latitude, longitude: longitude, radius: radius)
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -284,7 +284,7 @@ public final class MapViewModel: ViewModelType {
                     default:
                         break
                     }
-                }.addDisposableTo(resultsDispose!)
+                }.disposed(by: resultsDispose!)
         } else {
             self.manageAnnotations()
         }
@@ -526,7 +526,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     // This method handle close car
     public func closeCar(car: Car, action: String, completionClosure: @escaping (_ success: Bool, _ error: Swift.Error?,_ data: String) ->()) {
@@ -547,7 +547,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     /**
@@ -587,7 +587,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     /**
@@ -610,7 +610,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     /**
@@ -633,7 +633,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     // MARK: - Route methods
@@ -649,7 +649,7 @@ public final class MapViewModel: ViewModelType {
                     let source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation.coordinate, addressDictionary: nil))
                     let destination = MKMapItem(placemark: MKPlacemark(coordinate: destination.coordinate, addressDictionary: nil))
                     
-                    let request: MKDirectionsRequest = MKDirectionsRequest()
+                    let request: MKDirections.Request = MKDirections.Request()
                     
                     request.source = source
                     request.destination = destination
@@ -749,7 +749,7 @@ public final class MapViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
         }
     }
 }

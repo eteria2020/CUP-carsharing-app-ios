@@ -58,7 +58,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     fileprivate func xibSetup() {
         view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         addSubview(view)
         self.layoutIfNeeded()
         self.view_black.alpha = 0.0
@@ -68,7 +68,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         self.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophone.value
         self.btn_microphone.layer.cornerRadius = self.btn_microphone.frame.size.width/2
         self.btn_microphone.layer.masksToBounds = true
-        self.txt_search.attributedPlaceholder = NSAttributedString(string:"lbl_searchBarTextField".localized(), attributes:[NSForegroundColorAttributeName: Color.searchBarTextFieldPlaceholder.value, NSFontAttributeName: Font.searchBarTextFieldPlaceholder.value])
+        self.txt_search.attributedPlaceholder = NSAttributedString(string:"lbl_searchBarTextField".localized(), attributes:[NSAttributedString.Key.foregroundColor: Color.searchBarTextFieldPlaceholder.value, NSAttributedString.Key.font: Font.searchBarTextFieldPlaceholder.value])
         guard let viewModel = viewModel else {
             return
         }
@@ -83,7 +83,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
                         self?.btn_microphone.backgroundColor = Color.searchBarBackgroundMicrophone.value
                     }
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         viewModel.speechTranscription.asObservable()
             .subscribe(onNext: {[weak self] (speechTransition) in
                 DispatchQueue.main.async {
@@ -95,7 +95,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
                         }
                     }
                 }
-            }).addDisposableTo(self.disposeBag)
+            }).disposed(by: self.disposeBag)
         viewModel.hideButton.asObservable()
             .subscribe(onNext: {[weak self] (hideButton) in
                 DispatchQueue.main.async {
@@ -105,13 +105,13 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
                         self?.view_microphone.alpha = 1.0
                     }
                 }
-            }).addDisposableTo(self.disposeBag)
+            }).disposed(by: self.disposeBag)
         
         self.btn_cleanSearch.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.txt_search.text = ""
                 self.btn_cleanSearch.isHidden = true
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         self.btn_cleanSearch.rx.bind(to: viewModel.selection, input: .clean)
         switch Device().diagonal {

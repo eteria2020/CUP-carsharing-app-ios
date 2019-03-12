@@ -80,7 +80,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
                         }
                    //})
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - View methods
@@ -138,7 +138,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
                 self.btn_continueAsNotLogged.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
         }
         self.btn_forgotPassword.style(.clearButton(Font.loginForgotPassword.value, Color.alertButton.value), title: "btn_loginForgotPassword".localized())
-        self.btn_forgotPassword.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
+        self.btn_forgotPassword.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         self.btn_login.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_loginLogin".localized())
         self.btn_register.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_loginRegister".localized())
         self.btn_continueAsNotLogged.style(.squaredButton(Color.loginContinueAsNotLoggedButton.value), title: "btn_loginContinueAsNotLogged".localized())
@@ -164,7 +164,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
                 destination.bind(to: ViewModelFactory.map(type: MapType.searchCars), afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         // Labels
         self.lbl_formHeader.styledText = "lbl_loginFormHeader".localized()
         self.lbl_notYetRegistered.styledText = "lbl_loginNotYetRegistered".localized()
@@ -180,7 +180,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 }
 

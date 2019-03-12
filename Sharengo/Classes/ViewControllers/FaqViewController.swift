@@ -41,7 +41,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
                 destination.bind(to: viewModel, afterLoad: true)
                 self?.present(destination, animated: true, completion: nil)
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_appTutorial.rx.bind(to: viewModel.selection, input: .tutorial)
     }
     
@@ -80,7 +80,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Other
         switch Device().diagonal {
@@ -106,7 +106,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
 }
 
 extension FaqViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         return true
     }
     

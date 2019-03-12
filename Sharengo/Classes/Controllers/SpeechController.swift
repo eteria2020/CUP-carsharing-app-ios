@@ -99,7 +99,7 @@ class SpeechController: NSObject
     var speechError: Variable<SpeechErrorType?> = Variable(nil)
     var isAuthorized:Bool {
         get {
-            return SFSpeechRecognizer.authorizationStatus() == .authorized && AVAudioSession.sharedInstance().recordPermission() == AVAudioSessionRecordPermission.granted
+            return SFSpeechRecognizer.authorizationStatus() == .authorized && AVAudioSession.sharedInstance().recordPermission == AVAudioSession.RecordPermission.granted
         }
     }
     
@@ -137,17 +137,17 @@ class SpeechController: NSObject
     func requestMicrophoneAuthorization() {
         UserDefaults.standard.set(true, forKey: "alertMicrophoneRequestAuthorization")
         AVAudioSession.sharedInstance().requestRecordPermission { (success) in
-            switch AVAudioSession.sharedInstance().recordPermission() {
-            case AVAudioSessionRecordPermission.granted:
+            switch AVAudioSession.sharedInstance().recordPermission {
+            case AVAudioSession.RecordPermission.granted:
                 self.manageRecording()
-            case AVAudioSessionRecordPermission.denied:
+            case AVAudioSession.RecordPermission.denied:
                 if UserDefaults.standard.bool(forKey: "alertMicrophone") {
                     self.speechError.value = .authMicrophoneDenied
                 } else {
                     UserDefaults.standard.set(true, forKey: "alertMicrophone")
                     self.speechError.value = .empty
                 }
-            case AVAudioSessionRecordPermission.undetermined:
+            case AVAudioSession.RecordPermission.undetermined:
                 if UserDefaults.standard.bool(forKey: "alertMicrophone") {
                     self.speechError.value = .authMicrophoneUndetermined
                 } else {
@@ -173,7 +173,7 @@ class SpeechController: NSObject
     }
     
     fileprivate func startRecording() {
-        audioEngine.inputNode?.removeTap(onBus: 0)
+        audioEngine.inputNode.removeTap(onBus: 0)
         self.speechRecognizer?.delegate = self
         if self.recognitionTask != nil {
             self.recognitionTask?.cancel()
@@ -181,18 +181,15 @@ class SpeechController: NSObject
         }
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryRecord)
-            try audioSession.setMode(AVAudioSessionModeMeasurement)
-            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+            try audioSession.setCategory(.record, mode: .measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             self.speechError.value = .notSetted
         }
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let inputNode = audioEngine.inputNode else {
-            self.speechError.value = .notSetted
-            return
-        }
-        guard let recognitionRequest = recognitionRequest else {
+         let inputNode = audioEngine.inputNode
+        
+            guard let recognitionRequest = recognitionRequest else {
             self.speechError.value = .notSetted
             return
         }

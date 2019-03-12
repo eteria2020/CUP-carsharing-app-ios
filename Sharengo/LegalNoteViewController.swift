@@ -37,7 +37,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
      
         URLSession.shared.reset {
@@ -79,7 +79,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Other
         switch Device().diagonal {
@@ -100,7 +100,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
 }
 
 extension LegalNoteViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         return true
     }
     

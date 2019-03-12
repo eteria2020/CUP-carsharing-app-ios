@@ -12,7 +12,7 @@ import Gloss
 /**
  The Google Response model is used to convert api response from Google Servers in an object that have useful data
  */
-public class GoogleResponse: ModelType, Gloss.Decodable {
+public class GoogleResponse: ModelType, Gloss.JSONDecodable {
     /// Content of data as array
     public var array_data: [JSON]?
     

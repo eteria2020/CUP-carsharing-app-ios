@@ -344,6 +344,7 @@
 		D11E64C42237BB1F007AB4FC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47A2237B578007DA942 /* UIViewController.swift */; };
 		D11E64C52237BB1F007AB4FC /* BoomerangUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47B2237B578007DA942 /* BoomerangUtilities.swift */; };
 		D11E64C62237BB1F007AB4FC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47C2237B578007DA942 /* ViewModel.swift */; };
+		D11E64C72237CE8A007AB4FC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4782237B578007DA942 /* UITextField.swift */; };
 		D120AD4720E24C4A007A3139 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D120AD4620E24C4A007A3139 /* client.p12 */; };
 		D13D0D8521FB595400D5365D /* GenericWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8421FB595400D5365D /* GenericWebViewModel.swift */; };
 		D13D0D8721FB596700D5365D /* GenericWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8621FB596700D5365D /* GenericWebViewController.swift */; };
@@ -2171,6 +2172,7 @@
 				037689FA1F1608D900523BAA /* FeedItemCollectionViewCell.swift in Sources */,
 				0333287B1F28BC2100CD3AD8 /* TutorialViewModel.swift in Sources */,
 				036D92111F0256CB0076D22D /* SettingsViewModel.swift in Sources */,
+				D11E64C72237CE8A007AB4FC /* UITextField.swift in Sources */,
 				037689F41F1608C700523BAA /* FeedsViewController.swift in Sources */,
 				D14114692110554F00FF9B52 /* ShareOperation.swift in Sources */,
 				037689F81F1608D100523BAA /* FeedsViewModel.swift in Sources */,

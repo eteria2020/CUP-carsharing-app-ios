@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         return KeychainSwift().get("Username")
     }
     
-    func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         FirebaseApp.configure()
         
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             _ = handleURL(url)
         }
         
-        if let data = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any]
+        if let data = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any]
         {
             PushNotificationController.shared.set(notification: data)
         }
@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool
+    private func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
         return handleURL(url)
     }
@@ -254,7 +254,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                 case .completed:
                     break
                 }}
-            .addDisposableTo(CoreController.shared.disposeBag)
+            .disposed(by: CoreController.shared.disposeBag)
     }
     
     private func handleURL(_ url: URL) -> Bool

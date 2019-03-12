@@ -107,10 +107,10 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
                     dialog.show()
                 }
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_searchCar.rx.tap.asObservable()
             .subscribe(onNext:{
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_searchCar.rx.bind(to: viewModel.selection, input: .searchCars)
         self.btn_profile.rx.bind(to: viewModel.selection, input: .profile)
         self.btn_feeds.rx.bind(to: viewModel.selection, input: .feeds)
@@ -157,13 +157,13 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = strokeColor
         shapeLayer.lineWidth = 2
-        shapeLayer.lineJoin = kCALineJoinRound
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
         shapeLayer.lineDashPattern = [2,2]
         shapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: CGFloat(self.view_dotted.frame.size.width/2), y: CGFloat(self.view_dotted.frame.size.width/2)), radius: CGFloat(self.view_dotted.frame.size.width/2), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true).cgPath
         self.view_dotted.layer.addSublayer(shapeLayer)
-        self.view.bringSubview(toFront: self.view_searchCar)
-        self.view.bringSubview(toFront: self.view_profile)
-        self.view.bringSubview(toFront: self.view_feeds)
+        self.view.bringSubviewToFront(self.view_searchCar)
+        self.view.bringSubviewToFront(self.view_profile)
+        self.view.bringSubviewToFront(self.view_feeds)
         self.view_dotted.alpha = 0.0
         self.lbl_description.alpha = 0.0
         // NavigationBar
@@ -178,7 +178,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateUserData), name: NSNotification.Name(rawValue: "updateData"), object: nil)
     }
     
@@ -203,7 +203,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
         if !self.introIsShowed {
             let destination: IntroViewController  = (Storyboard.main.scene(.intro))
             destination.bind(to: ViewModelFactory.intro(), afterLoad: true)
-            self.addChildViewController(destination)
+            self.addChild(destination)
             self.view.addSubview(destination.view)
             self.view.layoutIfNeeded()
             let dispatchTime = DispatchTime.now() + 2.0
@@ -341,7 +341,7 @@ public class HomeViewController : BaseViewController, ViewModelBindable {
         popAnimation1.duration = 0.5
         UIView.animate(withDuration: 0.3,
                        delay: 0.1,
-                       options: UIViewAnimationOptions.curveEaseInOut,
+                       options: UIView.AnimationOptions.curveEaseInOut,
                        animations: { () -> Void in
                         switch homeItem {
                         case .searchCar:

@@ -30,7 +30,7 @@ extension UITextField : ViewModelBindable {
     
     public func bind(to viewModel: ViewModelType?) {
         self.viewModel = viewModel
-        guard let viewModel = viewModel as? TextInput else {
+        guard let viewModel = viewModel as? BoomerangTextInput else {
             return
         }
         self.placeholder = viewModel.title
@@ -60,7 +60,7 @@ extension UITextView : ViewModelBindable {
     
     public func bind(to viewModel: ViewModelType?) {
         self.viewModel = viewModel
-        guard let viewModel = viewModel as? TextInput else {
+        guard let viewModel = viewModel as? BoomerangTextInput else {
             return
         }
         self.disposeBag = DisposeBag()

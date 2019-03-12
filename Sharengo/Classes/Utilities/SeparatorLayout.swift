@@ -57,7 +57,7 @@ class SeparatorLayout : UICollectionViewFlowLayout {
         var attributes = super.layoutAttributesForElements(in: rect)
         let newAttributes = attributes!.filter({[weak self] (attribute:UICollectionViewLayoutAttributes) -> Bool in
             var contained = true
-            if (attribute.representedElementCategory != UICollectionElementCategory.cell) {
+            if (attribute.representedElementCategory != UICollectionView.ElementCategory.cell) {
                 return false
             }
             if (self?.separatorIndexPaths != nil) {

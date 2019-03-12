@@ -80,7 +80,7 @@ enum CollectionViewCell : String, ListIdentifier {
         ]
     }
     static func headers() -> [CollectionViewCell] {
-        return self.all().filter{ $0.type == UICollectionElementKindSectionHeader}
+        return self.all().filter{ $0.type == UICollectionView.elementKindSectionHeader}
     }
     var name: String {return self.rawValue}
     var type: String? {

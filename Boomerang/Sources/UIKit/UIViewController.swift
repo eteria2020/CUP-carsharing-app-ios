@@ -46,8 +46,10 @@ public extension ViewControllerActionBindable where Self: UIViewController {
         return disposable
     }
     public func bindTo(observable:Observable<Bool>) -> Disposable {
+        
         return observable.subscribe(onNext: {[weak self] isLoading in
-             isLoading ? self?.showLoader() : self?.hideLoader()
+            print(isLoading) //TODO
+             //isLoading ? self?.showLoader() : self?.hideLoader()
         })
     }
 }
@@ -56,9 +58,10 @@ public extension ViewModelBindableType where Self : UIViewController {
     
     public func bind(to viewModel: ViewModelType? , afterLoad:Bool) {
         if (afterLoad) {
-            (self as UIViewController).rx.sentMessage(#selector(viewDidLoad)).take(1).subscribe(onCompleted: {[weak self] _ in
+            let vc = self as UIViewController
+            (self as UIViewController).rx.sentMessage(#selector(UIViewController.viewDidLoad)).take(1).subscribe({[weak self] _ in
                 self?.bind(to:viewModel)
-            }).addDisposableTo(self.disposeBag)
+            }).addDisposableTo(vc.disposeBag)
         }
         
         else {

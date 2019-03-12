@@ -17,7 +17,7 @@ enum SharedSelectionOutput : SelectionOutput {
     case url(URL?)
     case preview(URL?)
     case playVideo(URL?)
-    case confirm(title:String,message:String,confirmTitle:String,action:((Void)->()))
+    case confirm(title:String,message:String,confirmTitle:String,action:(()->()))
 }
 
 class NavigationController : UINavigationController, UINavigationBarDelegate {
@@ -64,8 +64,8 @@ extension KeyboardResizable where Self : UIViewController {
         self.scrollView.keyboardDismissMode = .onDrag
         let original:CGFloat = self.bottomConstraint.constant
         var currentBottomSpace:CGFloat = 0.0
-        let willShow = NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow)
-        let willHide = NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide)
+        let willShow = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+        let willHide = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
         let merged = Observable.of(willShow,willHide).merge()
         
         let vc = self as UIViewController
@@ -77,10 +77,10 @@ extension KeyboardResizable where Self : UIViewController {
                     if self == nil {
                         return 0
                     }
-                    let isShowing = notification.name == .UIKeyboardWillShow
-                    currentBottomSpace = isShowing ? self!.finalConstraintValueValueForKeyboardOpen(frame: (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect(x:0,y:0,width:0,height:0) ) : original
+                    let isShowing = notification.name == UIResponder.keyboardWillShowNotification
+                    currentBottomSpace = isShowing ? self!.finalConstraintValueValueForKeyboardOpen(frame: (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect(x:0,y:0,width:0,height:0) ) : original
                     
-                    let duration:Double = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
+                    let duration:Double = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
                     
                     let animation = POPBasicAnimation(propertyNamed: kPOPLayoutConstraintConstant)!
                     animation.duration = duration
@@ -105,7 +105,7 @@ extension KeyboardResizable where Self : UIViewController {
 }
 
 protocol Collectionable {
-    weak var collectionView:UICollectionView! {get}
+    var collectionView:UICollectionView! {get}
     func setupCollectionView()
 }
 
@@ -213,7 +213,7 @@ extension UIViewController {
         return self
     }
     
-    func back() {
+    @objc func back() {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -256,11 +256,11 @@ extension UIViewController {
             DispatchQueue.main.async {[unowned self] in
                 if self.loadingViewController != nil {
                     self.loadingViewController!.view.removeFromSuperview()
-                    self.loadingViewController!.removeFromParentViewController()
+                    self.loadingViewController!.removeFromParent()
                 }
                 self.loadingViewController = (Storyboard.main.scene(.loading))
                 self.loadingViewController!.view.alpha = 0.0
-                self.addChildViewController(self.loadingViewController!)
+                self.addChild(self.loadingViewController!)
                 self.loaderContentView().addSubview(self.loadingViewController!.view)
                 self.loadingViewController!.view.snp.makeConstraints { (make) -> Void in
                     make.left.equalTo(self.loaderContentView().snp.left)
@@ -293,7 +293,7 @@ extension UIViewController {
                                 self?.loadingViewController!.view.alpha = 0
                             }, completion: { (success) in
                                 self?.loadingViewController!.view.removeFromSuperview()
-                                self?.loadingViewController!.removeFromParentViewController()
+                                self?.loadingViewController!.removeFromParent()
                                 completionClosure()
                             })
                         } else {

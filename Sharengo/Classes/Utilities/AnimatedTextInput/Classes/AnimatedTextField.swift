@@ -15,7 +15,7 @@ final internal class AnimatedTextField: UITextField {
     var rightViewPadding: CGFloat
     weak var textInputDelegate: TextInputDelegate?
 
-    fileprivate var disclosureButtonAction: ((Void) -> Void)?
+    fileprivate var disclosureButtonAction: (() -> Void)?
 
     override init(frame: CGRect) {
         self.rightViewPadding = defaultPadding
@@ -46,7 +46,7 @@ final internal class AnimatedTextField: UITextField {
         return super.clearButtonRect(forBounds: bounds).offsetBy(dx: clearButtonPadding, dy: 0)
     }
 
-    func add(disclosureButton button: UIButton, action: @escaping ((Void) -> Void)) {
+    func add(disclosureButton button: UIButton, action: @escaping (() -> Void)) {
         let selector = #selector(disclosureButtonPressed)
         if disclosureButtonAction != nil, let previousButton = rightView as? UIButton {
             previousButton.removeTarget(self, action: selector, for: .touchUpInside)
@@ -80,7 +80,7 @@ extension AnimatedTextField: TextInput {
         set { self.text = newValue }
     }
 
-    var textAttributes: [String: Any] {
+    var textAttributes: [NSAttributedString.Key: Any] {
         get { return typingAttributes ?? [:] }
         set { self.typingAttributes = textAttributes }
     }
@@ -90,7 +90,7 @@ extension AnimatedTextField: TextInput {
         set { self.selectedTextRange = newValue }
     }
 
-    open var currentBeginningOfDocument: UITextPosition? {
+    public var currentBeginningOfDocument: UITextPosition? {
         get { return self.beginningOfDocument }
     }
 }

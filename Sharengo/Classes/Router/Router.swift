@@ -39,7 +39,7 @@ struct Router : RouterType {
         delegate.window?.makeKeyAndVisible()
     }
     
-    public static func confirm<Source:UIViewController>(title:String,message:String,confirmationTitle:String, from source:Source, action:@escaping ((Void)->())) -> RouterAction {
+    public static func confirm<Source:UIViewController>(title:String,message:String,confirmationTitle:String, from source:Source, action:@escaping (()->())) -> RouterAction {
         let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: confirmationTitle, style: .default, handler: {_ in action()}))
@@ -192,7 +192,7 @@ struct Router : RouterType {
     
     public static func openSettings()
     {
-        let url = URL(string: UIApplicationOpenSettingsURLString)!
+        let url = URL(string: UIApplication.openSettingsURLString)!
         if #available(iOS 10.0, *)
         {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
