@@ -47,6 +47,11 @@ public class SignupViewController : BaseViewController, ViewModelBindable {
         self.btn_signup.rx.bind(to: viewModel.selection, input: .signup)
     }
     
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        
+        let map: MapViewController = MapViewController()
+        map.launchAssistence()
+    }
     // MARK: - View methods
     
     override public func viewDidLoad() {
@@ -85,11 +90,16 @@ public class SignupViewController : BaseViewController, ViewModelBindable {
             }
         }).addDisposableTo(self.disposeBag)
         // Labels
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+        self.lbl_header.isUserInteractionEnabled = true
+        self.lbl_header.addGestureRecognizer(tap)
+        
         self.lbl_header.attributedText = NSAttributedString.composed(of: [
             "lbl_signupHeader".localized().styled(with: TextStyle.signupHeader.style),
             Special.noBreakSpace,
             UIImage(named: "ic_chat")!,
             ])
+      
         // Buttons
         switch Device().diagonal {
         case 3.5:
