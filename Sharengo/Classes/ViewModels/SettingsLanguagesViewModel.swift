@@ -26,6 +26,7 @@ public enum SettingsLanguageSelectionOutput : SelectionOutput {
     case english
     case italian
     case slovak
+    case dutch
     case empty
 }
 
@@ -71,11 +72,12 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
      This method updates settings languages options
      */
     public func updateData() {
-        self.title = "lbl_settingsLanguagesHeaderTitle".localized()
+        self.title = "lbl_settingsLanguagesHead2erTitle".localized()
         languages.removeAll()
         var italian: Bool = false
         var english: Bool = false
         var slovakia: Bool = false
+        var dutch: Bool = false
         var languageid = "0"
         if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
             if let username = KeychainSwift().get("Username") {
@@ -94,9 +96,16 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
         {
             slovakia = true
         }
+        else if languageid == "nl"
+        {
+            dutch = true
+        }
         let languageItem1 = Language(title: "language_italian", action: .italian, selected: italian)
         let languageItem2 = Language(title: "language_english", action: .english, selected: english)
         let languageItem3 = Language(title: "language_slovack", action: .slovak, selected: slovakia)
+        let languageItem4 = Language(title: "language_dutch", action: .dutch, selected: dutch)
+        
+        languages.append(languageItem4)
         languages.append(languageItem3)
         languages.append(languageItem2)
         languages.append(languageItem1)

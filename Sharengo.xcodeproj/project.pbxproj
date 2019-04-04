@@ -700,6 +700,8 @@
 		D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+StoryboardConstraint.swift"; path = "Classes/Utilities/UIView+StoryboardConstraint.swift"; sourceTree = "<group>"; };
 		D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewModel.swift; sourceTree = "<group>"; };
+		D11812A52255E8E2004F3B27 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D11812A62255E8E2004F3B27 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D120AD4620E24C4A007A3139 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
 		D14114682110554F00FF9B52 /* ShareOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareOperation.swift; sourceTree = "<group>"; };
 		D141146A2110556900FF9B52 /* ShareOperationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareOperationController.swift; sourceTree = "<group>"; };
@@ -1767,6 +1769,7 @@
 				Base,
 				it,
 				sk,
+				nl,
 			);
 			mainGroup = 4DCD1A491ECDBF7400FC8BF5;
 			productRefGroup = 4DCD1A531ECDBF7400FC8BF5 /* Products */;
@@ -2248,6 +2251,7 @@
 				4D1AE81F1ED1E1A800C8A1D3 /* en */,
 				4D26396C1F002E6700B95585 /* it */,
 				D1E28AB521C1462A005D266B /* sk */,
+				D11812A52255E8E2004F3B27 /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2258,6 +2262,7 @@
 				4D36D7C01ED2F279005FAEB8 /* en */,
 				4D26396D1F002E6700B95585 /* it */,
 				D1E28AB621C1462B005D266B /* sk */,
+				D11812A62255E8E2004F3B27 /* nl */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

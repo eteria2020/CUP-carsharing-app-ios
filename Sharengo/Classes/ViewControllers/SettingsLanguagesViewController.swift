@@ -65,6 +65,15 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
                 }
                 Localize.setCurrentLanguage("sk")
                 self.updateLanguages()
+            case .dutch:
+                if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+                    if let username = KeychainSwift().get("Username") {
+                        dictionary[username] = "nl"
+                        UserDefaults.standard.set(dictionary, forKey: "languageDic")
+                    }
+                }
+                Localize.setCurrentLanguage("nl")
+                self.updateLanguages()
             default: break
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)

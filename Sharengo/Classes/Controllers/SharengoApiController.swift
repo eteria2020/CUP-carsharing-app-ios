@@ -103,7 +103,7 @@ extension API: TargetType {
     var baseURL: URL {
         switch self {
         case .polygons():
-          return URL(string: "https://public.sharengo.sk")!
+          return URL(string: "https://www.sharengo.nl")!
             
         case .osmAddress(_):
            return URL(string: "http://maps.sharengo.it")!

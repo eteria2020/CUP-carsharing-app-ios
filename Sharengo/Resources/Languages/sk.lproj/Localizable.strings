@@ -2,11 +2,6 @@
 "language" = "sk";
 
 
-
-
-
-
-
 //General
 "btn_ok" = "OK";
 "btn_cancel" = "ZRUŠIŤ";
@@ -29,6 +24,7 @@
 "language_italian" = "Taliančina";
 "language_english" = "Angličtina";
 "language_slovack" = "Slovak";
+"language_dutch" = "Dutch";
 
 
 //Signup

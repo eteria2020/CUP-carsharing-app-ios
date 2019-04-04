@@ -23,7 +23,7 @@ final class ApiController {
     {
         let cert = PKCS12.init(mainBundleResource: "client", resourceType: "p12", password: "1WC;Xen123hb|z");
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
-            "api.sharengo.sk": .disableEvaluation
+            "api.sharengo.nl": .disableEvaluation
         ]
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
@@ -397,21 +397,21 @@ extension API: TargetType
         case .tripsList(), .archivedTripsList(), .getTrip(_):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
-            return URL(string: "https://\(username):\(password)@api.sharengo.sk:8201/v3")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.nl:8033/v3")!
         case .searchCars(_, _, _, _, _), .searchCar(_), .searchAllCars():
-            return URL(string: "https://api.sharengo.sk:8201/v3")!
+            return URL(string: "https://api.sharengo.nl:8033/v3")!
         case  .searchCarURL(_, _, _, _,_):
-            return URL(string: "https://api.sharengo.sk:8201/v3")!
+            return URL(string: "https://api.sharengo.nl:8033/v3")!
         case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .closeCar(_, _):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
-            return URL(string: "https://\(username):\(password)@api.sharengo.sk:8201/v2")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.nl:8033/v2")!
         case .getUserWith(let username, let password):
-            return URL(string: "https://\(username):\(password)@api.sharengo.sk:8201/v3")!
+            return URL(string: "https://\(username):\(password)@api.sharengo.nl:8033/v3")!
         case .getConfig():
-            return URL(string: "https://api.sharengo.sk:8201/v3")!
+            return URL(string: "https://api.sharengo.nl:8033/v3")!
         default:
-            return URL(string: "https://api.sharengo.sk:8201/v2")!
+            return URL(string: "https://api.sharengo.nl:8033/v2")!
         }
     }
     
