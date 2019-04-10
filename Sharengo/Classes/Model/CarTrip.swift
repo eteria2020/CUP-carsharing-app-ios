@@ -189,7 +189,7 @@ public class CarTrip: ModelType, Gloss.JSONDecodable {
                     default:
                         break
                     }
-                }.addDisposableTo(CoreController.shared.disposeBag)
+                }.disposed(by: CoreController.shared.disposeBag)
         }
     }
 
@@ -217,7 +217,7 @@ public class CarTrip: ModelType, Gloss.JSONDecodable {
                             break
                         }
                     }
-                }.addDisposableTo(CoreController.shared.disposeBag)
+                }.disposed(by: CoreController.shared.disposeBag)
         }
     }
     

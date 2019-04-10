@@ -83,7 +83,7 @@ public class SignupViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         // Labels
         self.lbl_header.attributedText = NSAttributedString.composed(of: [
             "lbl_signupHeader".localized().styled(with: TextStyle.signupHeader.style),
@@ -110,7 +110,7 @@ public class SignupViewController : BaseViewController, ViewModelBindable {
                     self!.pgc_steps.currentPage = self!.pgc_steps.currentPage - 1
                 }
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_nextStep.rx.tap.subscribe(onNext:{[weak self] output in
             if self != nil {
                 if self!.pgc_steps.currentPage != self!.viewModel?.stepsArray.count {
@@ -120,7 +120,7 @@ public class SignupViewController : BaseViewController, ViewModelBindable {
                     self!.pgc_steps.currentPage = self!.pgc_steps.currentPage + 1
                 }
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_previousStep.isHidden = true
         self.img_leftArrow.isHidden = true
         self.btn_signup.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_signupSignup".localized())
@@ -133,7 +133,7 @@ public class SignupViewController : BaseViewController, ViewModelBindable {
                 destination.bind(to: viewModel, afterLoad: true)
                 self?.navigationController?.pushViewController(destination, animated: true)
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 }
 

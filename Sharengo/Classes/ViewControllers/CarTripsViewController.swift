@@ -113,7 +113,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
                     default:
                         break
                     }
-                }.addDisposableTo(self.disposeBag)
+                }.disposed(by: self.disposeBag)
         }
     }
     
@@ -134,7 +134,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         switch Device().diagonal {
         case 3.5:
@@ -163,7 +163,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
     
     // MARK: - Collection methods

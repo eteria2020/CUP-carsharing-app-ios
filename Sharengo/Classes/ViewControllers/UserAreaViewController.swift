@@ -168,11 +168,11 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
 
 extension UserAreaViewController: UIWebViewDelegate {
     private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        print(webView.request?.description)
+        print(webView.request?.description ?? "")
         return true
     }
-    func webView(_ webView: UIWebView, didFailLoadWithError error: NSError) {
-        
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+        guard let error: NSError = error as? NSError else { return }
         let errorForm = -999
         let messageError = error.code
         if(messageError != errorForm){

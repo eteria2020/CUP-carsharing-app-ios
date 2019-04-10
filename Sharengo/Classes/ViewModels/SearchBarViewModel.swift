@@ -131,14 +131,14 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                                 DispatchQueue.main.async {
                                     self?.speechInProgress.value = speechInProgress
                                 }
-                            }).addDisposableTo(self.disposeBag)
+                            }).disposed(by: self.disposeBag)
                         self.speechController.speechTranscription.asObservable()
                             .subscribe(onNext: {[weak self] (speechTransition) in
                                 DispatchQueue.main.async {
                                     self?.itemSelected = false
                                     self?.speechTranscription.value = speechTransition ?? ""
                                 }
-                            }).addDisposableTo(self.disposeBag)
+                            }).disposed(by: self.disposeBag)
                         self.speechController.speechError.asObservable()
                             .subscribe(onNext: {[weak self] (error) in
                                 DispatchQueue.main.async {
@@ -170,7 +170,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                                         }
                                     }
                                 }
-                            }).addDisposableTo(self.disposeBag)
+                            }).disposed(by: self.disposeBag)
                     }
                 }
                 return .just(.dictated)
@@ -198,7 +198,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
     }
     
     func reloadResults(text: String) {
-        if text.count > 2 {
+         if text.count > 2 {
             let regex = try? NSRegularExpression(pattern: "^[a-zA-Z]{2}[0-9]")
             let match = regex?.firstMatch(in: text, options: .reportCompletion, range: NSRange(location: 0, length: text.count))
             if match != nil && !favourites {
@@ -219,7 +219,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                         let dispatchTime = DispatchTime.now() + 0.5
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                             var message = "alert_generalError".localized()
-                            if Reachability()?.isReachable == false {
+                            if Reachability()?.connection == .none {
                                 message = "alert_connectionError".localized()
                             }
                             let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
@@ -231,7 +231,7 @@ final class SearchBarViewModel: ListViewModelType, ViewModelTypeSelectable {
                     default:
                         break
                     }
-                }.addDisposableTo(resultsDispose!)
+                    }.disposed(by: resultsDispose!)
             }
         } else if text.isEmpty {
             self.getHistoryAndFavorites()

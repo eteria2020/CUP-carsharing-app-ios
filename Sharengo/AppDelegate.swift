@@ -297,7 +297,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         if let menu = menuRightNavigationController.topViewController as? MenuViewController
         {
-            menu.bind(to: ViewModelFactory.menu(), afterLoad: true)
+            menu.bind(to: ViewModelFactory.menu())
         }
     }
 }

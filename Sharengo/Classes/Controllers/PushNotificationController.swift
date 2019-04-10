@@ -175,7 +175,7 @@ extension PushNotificationController: OSPermissionObserver
         }
         
         // prints out all properties
-        debugPrint("PermissionStateChanges: \n\(stateChanges)")
+        //debugPrint("PermissionStateChanges: \n\(stateChanges)")
         
         NotificationCenter.default.post(name: .PushStatusChanged, object: nil, userInfo: [
             PushNotificationController.pushNotificationAuthorizedKey: stateChanges.to.status == .authorized

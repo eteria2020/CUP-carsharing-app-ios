@@ -147,7 +147,7 @@ public class MenuViewController : UIViewController, ViewModelBindable, UICollect
             self.executeAnimation = false
             CoreController.shared.currentViewController?.hideMenuBackground()
             self.dismiss(animated: true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self

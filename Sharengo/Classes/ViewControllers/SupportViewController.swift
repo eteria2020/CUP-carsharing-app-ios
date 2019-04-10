@@ -40,7 +40,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
             switch selection {
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
     }
     
@@ -83,7 +83,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         // Buttons
         self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
         self.btn_call.rx.tap.asObservable()
@@ -124,7 +124,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                     dialog.allowTouchOutsideToDismiss = false
                     dialog.show()
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_writeMail.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportWriteMail".localized())
         self.btn_writeMail.rx.tap.asObservable()
             .subscribe(onNext:{
@@ -156,7 +156,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                     dialog.allowTouchOutsideToDismiss = false
                     dialog.show()
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     

@@ -188,7 +188,7 @@ public extension Reachability {
     }
 
     // MARK: - *** Connection test methods ***
-    @available(*, deprecated: 4.0, message: "Please use `connection != .none`")
+    //@available(*, deprecated: 4.0, message: "Please use `connection != .none`")
     var isReachable: Bool {
         return connection != .none
     }

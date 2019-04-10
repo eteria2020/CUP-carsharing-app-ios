@@ -51,7 +51,7 @@ public class SettingsCitiesViewController : BaseViewController, ViewModelBindabl
             default: break
             }
             self.dismiss(animated: true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
@@ -92,12 +92,12 @@ public class SettingsCitiesViewController : BaseViewController, ViewModelBindabl
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         if viewModel?.nextViewModel != nil {
             self.btn_back.isHidden = true
         }

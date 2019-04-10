@@ -102,10 +102,10 @@ extension ListDataHolderType {
             }
         }
         
-        reloadAction.elements.bind(to: self.modelStructure).addDisposableTo(self.disposeBag)
-        self.modelStructure.asObservable().map{_ in return [IndexPath:ItemViewModelType]()}.bind(to: viewModels).addDisposableTo(self.disposeBag)
-        self.modelStructure.asObservable().map { return $0.count}.bind(to: resultsCount).addDisposableTo(self.disposeBag)
-        reloadAction.executing.bind(to: self.isLoading).addDisposableTo(self.disposeBag)
+        reloadAction.elements.bind(to: self.modelStructure).disposed(by: self.disposeBag)
+        self.modelStructure.asObservable().map{_ in return [IndexPath:ItemViewModelType]()}.bind(to: viewModels).disposed(by: self.disposeBag)
+        self.modelStructure.asObservable().map { return $0.count}.bind(to: resultsCount).disposed(by: self.disposeBag)
+        reloadAction.executing.bind(to: self.isLoading).disposed(by: self.disposeBag)
     }
 }
 public final class ListDataHolder : ListDataHolderType {

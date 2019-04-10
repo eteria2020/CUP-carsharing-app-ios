@@ -35,14 +35,14 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
             switch selection {
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
 
         self.viewModel = viewModel
         
         self.btn_searchCars.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.from(self,viewModel: ViewModelFactory.map(type: .searchCars)).execute()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - View methods
@@ -92,6 +92,6 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 }

@@ -43,7 +43,7 @@ public class InviteFriendViewController : BaseViewController, ViewModelBindable 
             switch selection {
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
     }
     
@@ -86,7 +86,7 @@ public class InviteFriendViewController : BaseViewController, ViewModelBindable 
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         // Buttons
         self.btn_invite.style(.roundedButton(Color.inviteFriendInviteBackgroundButton.value), title: "btn_inviteFriendInvite".localized().uppercased())
         self.btn_invite.rx.tap.asObservable()
@@ -94,6 +94,6 @@ public class InviteFriendViewController : BaseViewController, ViewModelBindable 
                 let textToShare = [ "lbl_inviteFriendInviteDescription".localized() ]
                 let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
 }

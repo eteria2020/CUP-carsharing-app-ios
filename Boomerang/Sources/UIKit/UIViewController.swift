@@ -61,7 +61,7 @@ public extension ViewModelBindableType where Self : UIViewController {
             let vc = self as UIViewController
             (self as UIViewController).rx.sentMessage(#selector(UIViewController.viewDidLoad)).take(1).subscribe({[weak self] _ in
                 self?.bind(to:viewModel)
-            }).addDisposableTo(vc.disposeBag)
+            }).disposed(by: vc.disposeBag)
         }
         
         else {

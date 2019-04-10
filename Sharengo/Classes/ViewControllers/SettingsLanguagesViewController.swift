@@ -60,7 +60,7 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
             self.dismiss(animated: true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
@@ -103,12 +103,12 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
-        }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - Update methods

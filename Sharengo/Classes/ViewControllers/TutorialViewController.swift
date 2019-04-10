@@ -106,10 +106,10 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
         // Buttons
         self.btn_previousStep.rx.tap.subscribe(onNext:{[weak self] output in
             self?.previousStep()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_nextStep.rx.tap.subscribe(onNext:{[weak self] output in
             self?.nextStep()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_close.rx.tap.subscribe(onNext:{output in
             let dialog = ZAlertView(title: nil, message: "alert_closeTutorial".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorialAlertStay".localized(), cancelButtonText: "btn_tutorialAlertClose".localized(),
                 okButtonHandler: { alertView in
@@ -121,15 +121,15 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
             })
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
       
         // Gesture recognizers
         self.view.rx.swipeGesture(.left).when(.recognized).subscribe(onNext: {_ in
             self.nextStep()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.view.rx.swipeGesture(.right).when(.recognized).subscribe(onNext: {_ in
             self.previousStep()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
     
     // MARK: - Other methods

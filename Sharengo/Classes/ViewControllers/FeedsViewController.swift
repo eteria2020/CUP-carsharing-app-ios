@@ -64,7 +64,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             default: break
             }
             self.dismiss(animated: true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
         
         self.btn_aroundMe.rx.bind(to: viewModel.selection, input: .aroundMe)
@@ -100,7 +100,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         default:
                             break
                         }
-                    }.addDisposableTo(self.disposeBag)
+                    }.disposed(by: self.disposeBag)
                 self.publishersApiController.getEvents(category: viewModel.category!)
                     .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                     .subscribe { event in
@@ -119,7 +119,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         default:
                             break
                         }
-                    }.addDisposableTo(self.disposeBag)
+                    }.disposed(by: self.disposeBag)
             }
             else
             {
@@ -141,7 +141,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         default:
                             break
                         }
-                    }.addDisposableTo(self.disposeBag)
+                    }.disposed(by: self.disposeBag)
                 self.publishersApiController.getOffers()
                     .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                     .subscribe { event in
@@ -169,7 +169,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         default:
                             break
                         }
-                    }.addDisposableTo(self.disposeBag)
+                    }.disposed(by: self.disposeBag)
                 self.publishersApiController.getEvents()
                     .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                     .subscribe { event in
@@ -195,7 +195,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                         default:
                             break
                         }
-                    }.addDisposableTo(self.disposeBag)
+                    }.disposed(by: self.disposeBag)
             }
         }
     }
@@ -303,11 +303,12 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             case 5.5:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 48
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 38
-            case 5.5:
+            case 5.8:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 50
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 40
             default:
-                break
+                self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 50
+                self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 40
             }
         }
         
@@ -323,7 +324,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     
         // Buttons
         self.updateHeaderButtonsInterface()
@@ -357,7 +358,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 self.viewModel?.updateListDataHolder()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_categories.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.view.backgroundColor = Color.categoriesBackground.value
@@ -366,13 +367,13 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
                 self.viewModel?.updateListDataHolder()
                 self.viewModel?.reload()
                 self.collectionView?.reloadData()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_aroundMe.style(.squaredButton(Color.feedsAroundMeButtonBackground.value), title: "btn_feedsAroundMe".localized())
         self.btn_backCategory.setImage(self.btn_backCategory.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_backCategory.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         // Labels
         self.lbl_titleCategory.textColor = Color.feedsHeaderCategoryLabel.value

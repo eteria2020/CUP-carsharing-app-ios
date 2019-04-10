@@ -126,6 +126,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         case 5.8:
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 300
         default:
+            self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 300
             break
         }
         let dispatchTime = DispatchTime.now() + 0.3
@@ -262,6 +263,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
         case 5.8:
             height = 76.0
         default:
+            height = 76.0
             break
         }
         let newSize = CGSize(width: size.width, height: height)

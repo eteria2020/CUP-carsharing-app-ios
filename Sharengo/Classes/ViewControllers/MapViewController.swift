@@ -612,7 +612,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         }
         // SearchBar
         if(Device().diagonal > 5.5 || Device().diagonal < 0){
-            self.view_searchBar.isHidden = true
+            //self.view_searchBar.isHidden = true
         }
  
         self.view_searchBar.bind(to: ViewModelFactory.searchBar())

@@ -344,7 +344,7 @@ extension UICollectionView : ViewModelBindable {
         
     }
     
-    @available(*, deprecated, message: "use autosizeItemConstrainedToWidth instead")
+    //@available(*, deprecated, message: "use autosizeItemConstrainedToWidth instead")
     public func autosizeItemAt(indexPath:IndexPath, itemsPerLine:Int = 1) -> CGSize {
        
         return self.autosizeItemAt(indexPath: indexPath, constrainedToWidth: floor(Float(self.autoWidthForItemAt(indexPath: indexPath, itemsPerLine: itemsPerLine))))

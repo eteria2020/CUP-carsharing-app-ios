@@ -38,7 +38,7 @@ class PinViewController : BaseViewController, ViewModelBindable {
         self.viewModel = viewModel
         self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         viewModel.PinDescription.asObservable()
             .subscribe(onNext: {[weak self] (value) in
@@ -47,7 +47,7 @@ class PinViewController : BaseViewController, ViewModelBindable {
                     self?.lbl_Pin.textColor = Color.pinPinDescription.value
                     self?.lbl_Pin.font = self?.lbl_Pin.font.withSize(25)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         
     }
@@ -82,7 +82,7 @@ class PinViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
                 // Other
         switch Device().diagonal {

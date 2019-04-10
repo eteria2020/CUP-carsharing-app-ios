@@ -60,7 +60,7 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
                     }
                     self?.lbl_description.styledText = description
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         switch Device().diagonal {
         case 3.5:

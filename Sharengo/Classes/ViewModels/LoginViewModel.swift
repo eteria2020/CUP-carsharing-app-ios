@@ -325,7 +325,7 @@ public final class LoginViewModel: ViewModelType {
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     // MARK: - Setup methods

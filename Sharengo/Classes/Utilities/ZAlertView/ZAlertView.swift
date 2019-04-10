@@ -119,7 +119,9 @@ import UIKit
                 weakSelf?.tapOutsideTouchGestureRecognizer.removeTarget(weakSelf, action: #selector(ZAlertView.dismissAlertView))
             }
             else {
-                weakSelf?.tapOutsideTouchGestureRecognizer.addTarget(weakSelf, action: #selector(ZAlertView.dismissAlertView))
+                if let wself = weakSelf {
+                weakSelf?.tapOutsideTouchGestureRecognizer.addTarget(wself, action: #selector(ZAlertView.dismissAlertView))
+            }
             }
         }
     }

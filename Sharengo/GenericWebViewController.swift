@@ -111,8 +111,8 @@ extension GenericWebViewController: UIWebViewDelegate {
         return true
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: NSError) {
-        
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+        guard let error = error as? NSError else { return }
         let errorForm = -999
         let messageError = error.code
         if(messageError != errorForm){

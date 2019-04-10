@@ -322,7 +322,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Swift.Error) {
         print(error.localizedDescription)
         self.didComplete(location: nil, error: error as NSError?)
     }
