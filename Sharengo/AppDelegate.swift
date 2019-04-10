@@ -29,15 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         if AppDelegate.isLoggedIn && KeychainSwift().get("PasswordClear") == nil
         {
-            var languageid = "sk"
-            if Locale.preferredLanguages[0] == "sk-SK"
+            var languageid = "nl"
+            if Locale.preferredLanguages[0] == "nl-US"
             {
-                languageid = "sk"
+                languageid = "nl"
             }
             Localize.setCurrentLanguage(languageid)
             KeychainSwift().clear()
         }else{
-            Localize.setCurrentLanguage("sk")
+            Localize.setCurrentLanguage("nl")
         }
     
         

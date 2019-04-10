@@ -48,7 +48,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
             else if (Locale.preferredLanguages[0] == "sk-US"){
                 url = URL(string: "https://site.sharengo.sk/legal-notes/")
             }
-            else if (Locale.preferredLanguages[0] == "nl-NL"){
+            else if (Locale.preferredLanguages[0] == "nl-US"){
                 url = URL(string: "https://site.sharengo.nl/privacy/")
             }
             else{

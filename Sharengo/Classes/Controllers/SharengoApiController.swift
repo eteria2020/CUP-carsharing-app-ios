@@ -130,7 +130,7 @@ extension API: TargetType {
             return ["format": "json"]
         
         case .osmAddress(let text):
-            return ["q": text, "format": "json" ,"polygon": "0", "addressdetails": "1", "countrycode": "sk", "dedupe":"1"]
+            return ["q": text, "format": "json" ,"polygon": "0", "addressdetails": "1", "countrycode": "nl", "dedupe":"1"]
         }
     }
     

@@ -72,7 +72,7 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
      This method updates settings languages options
      */
     public func updateData() {
-        self.title = "lbl_settingsLanguagesHead2erTitle".localized()
+        self.title = "lbl_settingsLanguagesHeaderTitle".localized()
         languages.removeAll()
         var italian: Bool = false
         var english: Bool = false
