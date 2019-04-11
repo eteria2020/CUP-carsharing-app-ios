@@ -40,7 +40,7 @@ public class NoFavouritesViewController : BaseViewController, ViewModelBindable 
                 Router.from(self,viewModel: ViewModelFactory.newFavourite()).execute()
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
 
         self.viewModel = viewModel
         
@@ -88,11 +88,11 @@ public class NoFavouritesViewController : BaseViewController, ViewModelBindable 
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
 }

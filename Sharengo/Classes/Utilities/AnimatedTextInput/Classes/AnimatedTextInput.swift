@@ -183,7 +183,7 @@ open class AnimatedTextInput: UIControl {
     fileprivate func updateCounter() {
         guard let counterText = counterLabel.text else { return }
         let components = counterText.components(separatedBy: "/")
-        let characters = (text != nil) ? text!.characters.count : 0
+        let characters = (text != nil) ? text!.count : 0
         counterLabel.text = "\(characters)/\(components[1])"
     }
 
@@ -344,7 +344,7 @@ open class AnimatedTextInput: UIControl {
     }
 
     open func showCharacterCounterLabel(with maximum: Int) {
-        let characters = (text != nil) ? text!.characters.count : 0
+        let characters = (text != nil) ? text!.count : 0
         counterLabel.text = "\(characters)/\(maximum)"
         counterLabel.textColor = isActive ? style.activeColor : style.inactiveColor
         counterLabel.font = style.counterLabelFont

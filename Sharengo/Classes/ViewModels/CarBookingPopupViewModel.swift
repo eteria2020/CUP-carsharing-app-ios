@@ -98,7 +98,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
                                     UserDefaults.standard.set(address!, forKey: key)
                                 }
                             }
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                 }
             }
             

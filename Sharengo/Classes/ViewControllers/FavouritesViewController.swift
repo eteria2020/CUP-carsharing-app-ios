@@ -58,7 +58,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                 self.navigationController?.pushViewController(destination, animated: true)
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
@@ -112,7 +112,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
@@ -127,12 +127,12 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                 } else {
                     Router.back(self)
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_undo.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.view.endEditing(true)
                 self.view_popup.isHidden = true
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_action.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.view.endEditing(true)
@@ -262,7 +262,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                         }
                     }
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.view_popup.isHidden = true
         self.txt_address.delegate = self
         self.txt_address.returnKeyType = UIReturnKeyType.done
@@ -360,7 +360,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                 }
                 self.selectedAddress = itemViewModel.model as? Address
                 self.view_popup.isHidden = false
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         favCell.btn_action2.rx.tap.asObservable()
             .subscribe(onNext:{
                 guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
@@ -392,7 +392,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                 }
                 self.selectedAddress = itemViewModel.model as? Address
                 self.view_popup.isHidden = false
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = Color.settingEvenCellBackground.value
         } else {

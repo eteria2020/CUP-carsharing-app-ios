@@ -43,7 +43,7 @@ public class SettingsViewController : BaseViewController, ViewModelBindable, UIC
             default: break
             }
             self.dismiss(animated: true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.viewModel = viewModel
         self.collectionView?.bind(to: viewModel)
         self.collectionView?.delegate = self
@@ -85,7 +85,7 @@ public class SettingsViewController : BaseViewController, ViewModelBindable, UIC
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
     
     override public func viewWillAppear(_ animated: Bool) {

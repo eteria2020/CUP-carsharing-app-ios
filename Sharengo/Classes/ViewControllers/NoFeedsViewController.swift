@@ -38,7 +38,7 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
             switch selection {
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         self.viewModel = viewModel
         self.lbl_title.styledText = self.viewModel?.category?.title.uppercased()
@@ -100,7 +100,7 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Buttons
         self.updateHeaderButtonsInterface()
@@ -108,7 +108,7 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
             .subscribe(onNext:{
                 self.viewModel?.sectionSelected = .feed
                 self.updateHeaderButtonsInterface()
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_categories.rx.tap.asObservable()
             .subscribe(onNext:{
                 self.viewModel?.sectionSelected = .categories
@@ -116,12 +116,12 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
                 var array = self.navigationController?.viewControllers ?? []
                 array.removeLast()
                 self.navigationController?.viewControllers = array
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - Header buttons methods

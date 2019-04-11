@@ -322,6 +322,356 @@
 		4DFD98371ED471F500880EA1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98361ED471F500880EA1 /* HomeViewModel.swift */; };
 		4DFD983B1ED4838600880EA1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
 		4DFF02171F1EA8A000133B33 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
+		D1047523225DFA4500F89E54 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC70A01ED3106200906DA0 /* APIController.swift */; };
+		D1047524225DFA4500F89E54 /* NoCarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BE11F091F6500D4EAB7 /* NoCarTripsViewModel.swift */; };
+		D1047525225DFA4500F89E54 /* SharengoApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03140E0D1F40437600F67160 /* SharengoApiController.swift */; };
+		D1047526225DFA4500F89E54 /* InviteFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A07961F1F6306007A4F46 /* InviteFriendViewController.swift */; };
+		D1047527225DFA4500F89E54 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A8D1ECDC18500FC8BF5 /* Router.swift */; };
+		D1047528225DFA4500F89E54 /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6876301F6FC4BA00CD910E /* Bonus.swift */; };
+		D1047529225DFA4500F89E54 /* SettingsCityItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBA1F03946500C95962 /* SettingsCityItemCollectionViewCell.swift */; };
+		D104752A225DFA4500F89E54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98341ED471B800880EA1 /* HomeViewController.swift */; };
+		D104752B225DFA4500F89E54 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46C2237B578007DA942 /* ItemViewModel.swift */; };
+		D104752C225DFA4500F89E54 /* CarBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB2F1EE69F49004C7287 /* CarBooking.swift */; };
+		D104752D225DFA4500F89E54 /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689F51F1608D100523BAA /* FeedItemViewModel.swift */; };
+		D104752E225DFA4500F89E54 /* PKCS12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2628F31ED57D7B001C4E38 /* PKCS12.swift */; };
+		D104752F225DFA4500F89E54 /* SettingsCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFB81F03944700C95962 /* SettingsCitiesViewController.swift */; };
+		D1047530225DFA4500F89E54 /* CarTripItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A40491F06351B00B05A89 /* CarTripItemViewModel.swift */; };
+		D1047531225DFA4500F89E54 /* CarBookingCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E1E1EEA76C200AC7A93 /* CarBookingCompletedViewController.swift */; };
+		D1047532225DFA4500F89E54 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4762237B578007DA942 /* UIScrollView.swift */; };
+		D1047533225DFA4500F89E54 /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A741F08D61900F260A5 /* OnBoardViewController.swift */; };
+		D1047534225DFA4500F89E54 /* GenericWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8621FB596700D5365D /* GenericWebViewController.swift */; };
+		D1047535225DFA4500F89E54 /* CarBookingCompletedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E201EEA76D300AC7A93 /* CarBookingCompletedViewModel.swift */; };
+		D1047536225DFA4500F89E54 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC01F03949A00C95962 /* City.swift */; };
+		D1047537225DFA4500F89E54 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98361ED471F500880EA1 /* HomeViewModel.swift */; };
+		D1047538225DFA4500F89E54 /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EFF641EDA124900B1A8EE /* UIButton+Theme.swift */; };
+		D1047539225DFA4500F89E54 /* GMUStaticCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA561F3E037E0085BFE3 /* GMUStaticCluster.m */; };
+		D104753A225DFA4500F89E54 /* MenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA11EF9713D009C72F4 /* MenuItemViewModel.swift */; };
+		D104753B225DFA4500F89E54 /* BoomerangUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47B2237B578007DA942 /* BoomerangUtilities.swift */; };
+		D104753C225DFA4500F89E54 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377ABB1ECEE442005DF900 /* Color+Theme.swift */; };
+		D104753D225DFA4500F89E54 /* SettingsNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D114A1D5210722260045712F /* SettingsNotificationsViewModel.swift */; };
+		D104753E225DFA4500F89E54 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47C2237B578007DA942 /* ViewModel.swift */; };
+		D104753F225DFA4500F89E54 /* CarPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B3481ED964CD002C2375 /* CarPopupView.swift */; };
+		D1047540225DFA4500F89E54 /* UserAreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7335AC1F4F479000B58EB4 /* UserAreaViewModel.swift */; };
+		D1047541225DFA4500F89E54 /* CoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10E011EE9D6F000A74E26 /* CoreController.swift */; };
+		D1047542225DFA4500F89E54 /* PublisheresAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EE30A1F05328E00EB2273 /* PublisheresAPIController.swift */; };
+		D1047543225DFA4500F89E54 /* SettingsCitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBC1F03947F00C95962 /* SettingsCitiesViewModel.swift */; };
+		D1047544225DFA4500F89E54 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7DE1ECDC48B00BE4218 /* MapViewController.swift */; };
+		D1047545225DFA4500F89E54 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D771EEEBED300AC8826 /* String+Extensions.swift */; };
+		D1047546225DFA4500F89E54 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F9F1EF9700A009C72F4 /* MenuViewModel.swift */; };
+		D1047547225DFA4500F89E54 /* FeedItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689F91F1608D900523BAA /* FeedItemCollectionViewCell.swift */; };
+		D1047548225DFA4500F89E54 /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333287A1F28BC2100CD3AD8 /* TutorialViewModel.swift */; };
+		D1047549225DFA4500F89E54 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D920F1F0256CB0076D22D /* SettingsViewModel.swift */; };
+		D104754A225DFA4500F89E54 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4782237B578007DA942 /* UITextField.swift */; };
+		D104754B225DFA4500F89E54 /* FeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689F31F1608C700523BAA /* FeedsViewController.swift */; };
+		D104754C225DFA4500F89E54 /* ShareOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14114682110554F00FF9B52 /* ShareOperation.swift */; };
+		D104754D225DFA4500F89E54 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689F61F1608D100523BAA /* FeedsViewModel.swift */; };
+		D104754E225DFA4500F89E54 /* MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46E2237B578007DA942 /* MKMapView.swift */; };
+		D104754F225DFA4500F89E54 /* GMUClusterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA531F3E037E0085BFE3 /* GMUClusterManager.m */; };
+		D1047550225DFA4500F89E54 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A8B1ECDC17A00FC8BF5 /* Car.swift */; };
+		D1047551225DFA4500F89E54 /* CarTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D965B6D1EEAF3780006294E /* CarTrip.swift */; };
+		D1047552225DFA4500F89E54 /* MKMapKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7C41ED2F604005FAEB8 /* MKMapKit+Extensions.swift */; };
+		D1047553225DFA4500F89E54 /* BoomerangRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4702237B578007DA942 /* BoomerangRouter.swift */; };
+		D1047554225DFA4500F89E54 /* FavouriteItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D43DDE11F078556001E41F8 /* FavouriteItemCollectionViewCell.swift */; };
+		D1047555225DFA4500F89E54 /* SignupStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632371EEFD02C00BFEDA3 /* SignupStepViewModel.swift */; };
+		D1047556225DFA4500F89E54 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037689FB1F160C7A00523BAA /* Feed.swift */; };
+		D1047557225DFA4500F89E54 /* GMUFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA6A1F3E037E0085BFE3 /* GMUFeature.m */; };
+		D1047558225DFA4500F89E54 /* RouteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFB1241F6976450015D651 /* RouteStep.swift */; };
+		D1047559225DFA4500F89E54 /* NoFavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC51F03B2EC00C95962 /* NoFavouritesViewController.swift */; };
+		D104755A225DFA4500F89E54 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4792237B578007DA942 /* UIView.swift */; };
+		D104755B225DFA4500F89E54 /* AnimatedTextInputFieldConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D651EEE83FC00AC8826 /* AnimatedTextInputFieldConfigurator.swift */; };
+		D104755C225DFA4500F89E54 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2339941EE6CCE300780384 /* IntroViewController.swift */; };
+		D104755D225DFA4500F89E54 /* GMUStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA7A1F3E037E0085BFE3 /* GMUStyle.m */; };
+		D104755E225DFA4500F89E54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A5C1ECDBF7400FC8BF5 /* AppDelegate.swift */; };
+		D104755F225DFA4500F89E54 /* View+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377AB91ECEE01A005DF900 /* View+Theme.swift */; };
+		D1047560225DFA4500F89E54 /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178661ED63C4D00EBD32B /* ZAlertView.swift */; };
+		D1047561225DFA4500F89E54 /* CircularMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADD29B1F1CFDAC00AEB504 /* CircularMenuButton.swift */; };
+		D1047562225DFA4500F89E54 /* GMUDefaultClusterIconGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA5C1F3E037E0085BFE3 /* GMUDefaultClusterIconGenerator.m */; };
+		D1047563225DFA4500F89E54 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92181F0258540076D22D /* Setting.swift */; };
+		D1047564225DFA4500F89E54 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4772237B578007DA942 /* UITableView.swift */; };
+		D1047565225DFA4500F89E54 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BF1241ED76EAF00E595E7 /* UIView+Extensions.swift */; };
+		D1047566225DFA4500F89E54 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A811ECDC16400FC8BF5 /* Operators.swift */; };
+		D1047567225DFA4500F89E54 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0EC6D1F077AE00003D502 /* FavouritesViewController.swift */; };
+		D1047568225DFA4500F89E54 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4712237B578007DA942 /* UIButton.swift */; };
+		D1047569225DFA4500F89E54 /* SettingsLanguageItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92291F028E9F0076D22D /* SettingsLanguageItemCollectionViewCell.swift */; };
+		D104756A225DFA4500F89E54 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A871ECDC17100FC8BF5 /* ViewFactory.swift */; };
+		D104756B225DFA4500F89E54 /* Image+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA81ECDC27F00FC8BF5 /* Image+Theme.swift */; };
+		D104756C225DFA4500F89E54 /* GMUPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA761F3E037E0085BFE3 /* GMUPoint.m */; };
+		D104756D225DFA4500F89E54 /* InviteFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A07981F1F6326007A4F46 /* InviteFriendViewModel.swift */; };
+		D104756E225DFA4500F89E54 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92141F0256E00076D22D /* SettingsViewController.swift */; };
+		D104756F225DFA4500F89E54 /* GMULineString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA721F3E037E0085BFE3 /* GMULineString.m */; };
+		D1047570225DFA4500F89E54 /* CoreController+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108D80821105C9500B2E855 /* CoreController+Operations.swift */; };
+		D1047571225DFA4500F89E54 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D351EEE7B6C00AC8826 /* LoginViewController.swift */; };
+		D1047572225DFA4500F89E54 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366DD961F1F473E006657D9 /* SupportViewController.swift */; };
+		D1047573225DFA4500F89E54 /* SettingItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92121F0256D60076D22D /* SettingItemCollectionViewCell.swift */; };
+		D1047574225DFA4500F89E54 /* ShareOperationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D141146A2110556900FF9B52 /* ShareOperationController.swift */; };
+		D1047575225DFA4500F89E54 /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA4A1F3E037E0085BFE3 /* GMUNonHierarchicalDistanceBasedAlgorithm.m */; };
+		D1047576225DFA4500F89E54 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0EC6F1F077AF00003D502 /* FavouritesViewModel.swift */; };
+		D1047577225DFA4500F89E54 /* FaqViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03856C761F28805C00DCE48D /* FaqViewModel.swift */; };
+		D1047578225DFA4500F89E54 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D4A61EF46F7100330F23 /* WebViewController.swift */; };
+		D1047579225DFA4500F89E54 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBEE701EED373800AEF617 /* Banner.swift */; };
+		D104757A225DFA4500F89E54 /* ModelStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46F2237B578007DA942 /* ModelStructure.swift */; };
+		D104757B225DFA4500F89E54 /* SearchBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EED1EE12BC200442BF1 /* SearchBarItemViewModel.swift */; };
+		D104757C225DFA4500F89E54 /* NotificationCenter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D36D7C21ED2F35C005FAEB8 /* NotificationCenter+Extensions.swift */; };
+		D104757D225DFA4500F89E54 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A881ECDC17100FC8BF5 /* ViewModelFactory.swift */; };
+		D104757E225DFA4500F89E54 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA411FE8056100CE33E1 /* PinViewController.swift */; };
+		D104757F225DFA4500F89E54 /* SearchBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEB1EE12B2200442BF1 /* SearchBarCollectionViewCell.swift */; };
+		D1047580225DFA4500F89E54 /* SettingsLanguageItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922B1F028EAA0076D22D /* SettingsLanguageItemViewModel.swift */; };
+		D1047581225DFA4500F89E54 /* AnimatedTextInputStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D661EEE83FC00AC8826 /* AnimatedTextInputStyle.swift */; };
+		D1047582225DFA4500F89E54 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFAA431FE8059000CE33E1 /* PinViewModel.swift */; };
+		D1047583225DFA4500F89E54 /* GMUPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA781F3E037E0085BFE3 /* GMUPolygon.m */; };
+		D1047584225DFA4500F89E54 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632301EEFC86100BFEDA3 /* SignupViewController.swift */; };
+		D1047585225DFA4500F89E54 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03653E221EEADA4800AC7A93 /* NotificationsController.swift */; };
+		D1047586225DFA4500F89E54 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4722237B578007DA942 /* UICollectionView.swift */; };
+		D1047587225DFA4500F89E54 /* NewFavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC91F03E47D00C95962 /* NewFavouriteViewController.swift */; };
+		D1047588225DFA4500F89E54 /* NoFavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFC71F03B30500C95962 /* NoFavouritesViewModel.swift */; };
+		D1047589225DFA4500F89E54 /* SettingsLanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D92271F028E960076D22D /* SettingsLanguagesViewController.swift */; };
+		D104758A225DFA4500F89E54 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8171ED1BA2200C8A1D3 /* SearchBarViewModel.swift */; };
+		D104758B225DFA4500F89E54 /* CategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FD1F17629D003AF6B1 /* CategoryItemViewModel.swift */; };
+		D104758C225DFA4500F89E54 /* GMUPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA741F3E037E0085BFE3 /* GMUPlacemark.m */; };
+		D104758D225DFA4500F89E54 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C6325E1EF02E8400BFEDA3 /* ProfileViewController.swift */; };
+		D104758E225DFA4500F89E54 /* SettingItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D920E1F0256CB0076D22D /* SettingItemViewModel.swift */; };
+		D104758F225DFA4500F89E54 /* FeedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */; };
+		D1047590225DFA4500F89E54 /* GMUSimpleClusterAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA4C1F3E037E0085BFE3 /* GMUSimpleClusterAlgorithm.m */; };
+		D1047591225DFA4500F89E54 /* AnimatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D641EEE83FC00AC8826 /* AnimatedTextInput.swift */; };
+		D1047592225DFA4500F89E54 /* CarTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404D1F06353500B05A89 /* CarTripsViewController.swift */; };
+		D1047593225DFA4500F89E54 /* CityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA554501EE56337001627E7 /* CityAnnotation.swift */; };
+		D1047594225DFA4500F89E54 /* CarBookingPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB2A1EE698A9004C7287 /* CarBookingPopupViewModel.swift */; };
+		D1047595225DFA4500F89E54 /* GMUGroundOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA701F3E037E0085BFE3 /* GMUGroundOverlay.m */; };
+		D1047596225DFA4500F89E54 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA71EF9726D009C72F4 /* MenuItem.swift */; };
+		D1047597225DFA4500F89E54 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E11F18A9FA0068A026 /* FeedDetailViewController.swift */; };
+		D1047598225DFA4500F89E54 /* GMUGridBasedClusterAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA481F3E037E0085BFE3 /* GMUGridBasedClusterAlgorithm.m */; };
+		D1047599225DFA4500F89E54 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D681EEE83FC00AC8826 /* UIViewExtensions.swift */; };
+		D104759A225DFA4500F89E54 /* LegalNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78520A2F06400BA3945 /* LegalNoteViewModel.swift */; };
+		D104759B225DFA4500F89E54 /* ViewControllerCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A931ECDC1EC00FC8BF5 /* ViewControllerCommons.swift */; };
+		D104759C225DFA4500F89E54 /* CarAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD98301ED45CCE00880EA1 /* CarAnnotation.swift */; };
+		D104759D225DFA4500F89E54 /* GenericWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D0D8421FB595400D5365D /* GenericWebViewModel.swift */; };
+		D104759E225DFA4500F89E54 /* CircularMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D377AB51ECEDAB0005DF900 /* CircularMenuView.swift */; };
+		D104759F225DFA4500F89E54 /* GMUGeoJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA621F3E037E0085BFE3 /* GMUGeoJSONParser.m */; };
+		D10475A0225DFA4500F89E54 /* GMUKMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA671F3E037E0085BFE3 /* GMUKMLParser.m */; };
+		D10475A1225DFA4500F89E54 /* NavigationBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACAD01ECF33F700D58948 /* NavigationBarViewModel.swift */; };
+		D10475A2225DFA4500F89E54 /* CarPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72B34A1ED96533002C2375 /* CarPopupViewModel.swift */; };
+		D10475A3225DFA4500F89E54 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A831ECDC16400FC8BF5 /* Utilities.swift */; };
+		D10475A4225DFA4500F89E54 /* UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4742237B578007DA942 /* UIPickerView.swift */; };
+		D10475A5225DFA4500F89E54 /* GMUDefaultClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA5F1F3E037E0085BFE3 /* GMUDefaultClusterRenderer.m */; };
+		D10475A6225DFA4500F89E54 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922F1F028EF30076D22D /* Language.swift */; };
+		D10475A7225DFA4500F89E54 /* Font+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8231ED1E37700C8A1D3 /* Font+Theme.swift */; };
+		D10475A8225DFA4500F89E54 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A36E41F18AA220068A026 /* FeedDetailViewModel.swift */; };
+		D10475A9225DFA4500F89E54 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACE1ECF33CE00D58948 /* NavigationBarView.swift */; };
+		D10475AA225DFA4500F89E54 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86FA31EF97171009C72F4 /* MenuItemCollectionViewCell.swift */; };
+		D10475AB225DFA4500F89E54 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC10DFE1EE9AA3300A74E26 /* LoadingViewController.swift */; };
+		D10475AC225DFA4500F89E54 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A86F931EF96FAD009C72F4 /* MenuViewController.swift */; };
+		D10475AD225DFA4500F89E54 /* GoogleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DECFD401F69B5F6006ED6CB /* GoogleResponse.swift */; };
+		D10475AE225DFA4500F89E54 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */; };
+		D10475AF225DFA4500F89E54 /* OnBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D3A761F08D62E00F260A5 /* OnBoardViewModel.swift */; };
+		D10475B0225DFA4500F89E54 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E47A2237B578007DA942 /* UIViewController.swift */; };
+		D10475B1225DFA4500F89E54 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78920A2F60E00BA3945 /* AppConfig.swift */; };
+		D10475B2225DFA4500F89E54 /* UIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4752237B578007DA942 /* UIRouter.swift */; };
+		D10475B3225DFA4500F89E54 /* NoFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5960E1F1B5AB000811A36 /* NoFeedsViewController.swift */; };
+		D10475B4225DFA4500F89E54 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46B2237B578007DA942 /* FormViewModel.swift */; };
+		D10475B5225DFA4500F89E54 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632601EF02E9100BFEDA3 /* ProfileViewModel.swift */; };
+		D10475B6225DFA4500F89E54 /* SettingsLanguagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D922C1F028EAA0076D22D /* SettingsLanguagesViewModel.swift */; };
+		D10475B7225DFA4500F89E54 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2339971EE6CDFC00780384 /* IntroViewModel.swift */; };
+		D10475B8225DFA4500F89E54 /* SeparatorLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A821ECDC16400FC8BF5 /* SeparatorLayout.swift */; };
+		D10475B9225DFA4500F89E54 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03140E0F1F4043BB00F67160 /* Polygon.swift */; };
+		D10475BA225DFA4500F89E54 /* FaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03856C741F28804C00DCE48D /* FaqViewController.swift */; };
+		D10475BB225DFA4500F89E54 /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA7F1F3E037E0085BFE3 /* GQTPointQuadTree.m */; };
+		D10475BC225DFA4500F89E54 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC59F981EDADC6200DD658A /* Response.swift */; };
+		D10475BD225DFA4500F89E54 /* FavouriteItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D43DDE31F078564001E41F8 /* FavouriteItemViewModel.swift */; };
+		D10475BE225DFA4500F89E54 /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA811F3E037E0085BFE3 /* GQTPointQuadTreeChild.m */; };
+		D10475BF225DFA4500F89E54 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178641ED63C4D00EBD32B /* UIColor.swift */; };
+		D10475C0225DFA4500F89E54 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632321EEFC87600BFEDA3 /* SignupViewModel.swift */; };
+		D10475C1225DFA4500F89E54 /* CircularMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6ACACA1ECF2FC000D58948 /* CircularMenuViewModel.swift */; };
+		D10475C2225DFA4500F89E54 /* Router+Safari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A8F1ECDC18500FC8BF5 /* Router+Safari.swift */; };
+		D10475C3225DFA4500F89E54 /* CarTripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404A1F06351B00B05A89 /* CarTripsViewModel.swift */; };
+		D10475C4225DFA4500F89E54 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033328781F28BBF300CD3AD8 /* TutorialViewController.swift */; };
+		D10475C5225DFA4500F89E54 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D4A81EF46F9000330F23 /* WebViewModel.swift */; };
+		D10475C6225DFA4500F89E54 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D631EEE83FC00AC8826 /* AnimatedTextField.swift */; };
+		D10475C7225DFA4500F89E54 /* UIView+StoryboardConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */; };
+		D10475C8225DFA4500F89E54 /* AnimatedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D621EEE83FC00AC8826 /* AnimatedLine.swift */; };
+		D10475C9225DFA4500F89E54 /* AnimatedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D671EEE83FC00AC8826 /* AnimatedTextView.swift */; };
+		D10475CA225DFA4500F89E54 /* LegalNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17DC78720A2F09000BA3945 /* LegalNoteViewController.swift */; };
+		D10475CB225DFA4500F89E54 /* Text+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1AE8211ED1E26800C8A1D3 /* Text+Theme.swift */; };
+		D10475CC225DFA4500F89E54 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0471B21F3F05B500C454A2 /* UserAnnotation.swift */; };
+		D10475CD225DFA4500F89E54 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA178651ED63C4D00EBD32B /* UIImage.swift */; };
+		D10475CE225DFA4500F89E54 /* Router+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCD1A8E1ECDC18500FC8BF5 /* Router+Preview.swift */; };
+		D10475CF225DFA4500F89E54 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E46D2237B578007DA942 /* ListViewModel.swift */; };
+		D10475D0225DFA4500F89E54 /* UIPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127E4732237B578007DA942 /* UIPagerViewController.swift */; };
+		D10475D1225DFA4500F89E54 /* GMUGeometryRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA651F3E037E0085BFE3 /* GMUGeometryRenderer.m */; };
+		D10475D2225DFA4500F89E54 /* UserAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7335AE1F4F47A500B58EB4 /* UserAreaViewController.swift */; };
+		D10475D3225DFA4500F89E54 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0471B01F3EF61E00C454A2 /* LocationManager.swift */; };
+		D10475D4225DFA4500F89E54 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF5D371EEE7B7900AC8826 /* LoginViewModel.swift */; };
+		D10475D5225DFA4500F89E54 /* CategoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FB1F17628E003AF6B1 /* CategoryItemCollectionViewCell.swift */; };
+		D10475D6225DFA4500F89E54 /* NewFavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFCB1F03E4D700C95962 /* NewFavouriteViewModel.swift */; };
+		D10475D7225DFA4500F89E54 /* CarTripItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A404F1F06354B00B05A89 /* CarTripItemCollectionViewCell.swift */; };
+		D10475D8225DFA4500F89E54 /* SignupStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C632351EEFD01100BFEDA3 /* SignupStepView.swift */; };
+		D10475D9225DFA4500F89E54 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93514E1EE0346B008C65C3 /* SearchBarView.swift */; };
+		D10475DA225DFA4500F89E54 /* GMUWrappingDictionaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA4E1F3E037E0085BFE3 /* GMUWrappingDictionaryKey.m */; };
+		D10475DB225DFA4500F89E54 /* RatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E77CF11F555B8E00765852 /* RatesViewController.swift */; };
+		D10475DC225DFA4500F89E54 /* CarBookingPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45BB281EE69895004C7287 /* CarBookingPopupView.swift */; };
+		D10475DD225DFA4500F89E54 /* SettingsCityItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BDFBD1F03947F00C95962 /* SettingsCityItemViewModel.swift */; };
+		D10475DE225DFA4500F89E54 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9C7EA1ECDC50500BE4218 /* MapViewModel.swift */; };
+		D10475DF225DFA4500F89E54 /* SupportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366DD981F1F474C006657D9 /* SupportViewModel.swift */; };
+		D10475E0225DFA4500F89E54 /* RatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E77CF31F555BBB00765852 /* RatesViewModel.swift */; };
+		D10475E1225DFA4500F89E54 /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A8B56920F75B8C009EABB1 /* PushNotificationController.swift */; };
+		D10475E2225DFA4500F89E54 /* GMUGeometryCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D60EA6D1F3E037E0085BFE3 /* GMUGeometryCollection.m */; };
+		D10475E3225DFA4500F89E54 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE7EEF1EE21B1C00442BF1 /* Favorite.swift */; };
+		D10475E4225DFA4500F89E54 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038641FF1F1762FF003AF6B1 /* Category.swift */; };
+		D10475E5225DFA4500F89E54 /* NoCarTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D164BDF1F091F5100D4EAB7 /* NoCarTripsViewController.swift */; };
+		D10475E6225DFA4500F89E54 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9400D61EDF4BFE00AD0EC6 /* Address.swift */; };
+		D10475E7225DFA4500F89E54 /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF27F031EDD7EEB00D2FAAF /* SpeechController.swift */; };
+		D10475E8225DFA4500F89E54 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11E64B32237BA1B007AB4FC /* Reachability.swift */; };
+		D10475E9225DFA4500F89E54 /* NoFeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B596101F1B5AC000811A36 /* NoFeedsViewModel.swift */; };
+		D10475EB225DFA4500F89E54 /* Pods_Sharengo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE36457E621FE0CE1FA9F74 /* Pods_Sharengo.framework */; };
+		D10475ED225DFA4500F89E54 /* cm_icon_input_eye_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5D1EEE83FC00AC8826 /* cm_icon_input_eye_selected@3x.png */; };
+		D10475EE225DFA4500F89E54 /* Pulse_Verde_0014.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C61F483F8400BEB3DB /* Pulse_Verde_0014.png */; };
+		D10475EF225DFA4500F89E54 /* Pulse_Verde_0010.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C21F483F8400BEB3DB /* Pulse_Verde_0010.png */; };
+		D10475F0225DFA4500F89E54 /* Pulse_Giallo_0035.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C71F4835BB00DC8B20 /* Pulse_Giallo_0035.png */; };
+		D10475F1225DFA4500F89E54 /* Pulse_Verde_0012.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C41F483F8400BEB3DB /* Pulse_Verde_0012.png */; };
+		D10475F2225DFA4500F89E54 /* Pulse_Verde_0032.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657DA1F483F8400BEB3DB /* Pulse_Verde_0032.png */; };
+		D10475F3225DFA4500F89E54 /* Pulse_Verde_0013.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C51F483F8400BEB3DB /* Pulse_Verde_0013.png */; };
+		D10475F4225DFA4500F89E54 /* Pulse_Giallo_0024.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38BB1F4835BB00DC8B20 /* Pulse_Giallo_0024.png */; };
+		D10475F5225DFA4500F89E54 /* Pulse_Verde_0040.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E31F483F8400BEB3DB /* Pulse_Verde_0040.png */; };
+		D10475F6225DFA4500F89E54 /* cm_icon_input_eye_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5A1EEE83FC00AC8826 /* cm_icon_input_eye_normal@2x.png */; };
+		D10475F7225DFA4500F89E54 /* Pulse_Giallo_0041.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38CE1F4835BB00DC8B20 /* Pulse_Giallo_0041.png */; };
+		D10475F8225DFA4500F89E54 /* Pulse_Verde_004.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E21F483F8400BEB3DB /* Pulse_Verde_004.png */; };
+		D10475F9225DFA4500F89E54 /* Auto-B-loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7E1F08E79000F260A5 /* Auto-B-loop.gif */; };
+		D10475FA225DFA4500F89E54 /* Auto-A-uscita.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7C1F08E79000F260A5 /* Auto-A-uscita.gif */; };
+		D10475FB225DFA4500F89E54 /* Pulse_Verde_0036.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657DE1F483F8400BEB3DB /* Pulse_Verde_0036.png */; };
+		D10475FC225DFA4500F89E54 /* Pulse_Giallo_006.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D61F4835BB00DC8B20 /* Pulse_Giallo_006.png */; };
+		D10475FD225DFA4500F89E54 /* CategoryItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038642011F17670A003AF6B1 /* CategoryItemCollectionViewCell.xib */; };
+		D10475FE225DFA4500F89E54 /* Pulse_Verde_0019.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657CB1F483F8400BEB3DB /* Pulse_Verde_0019.png */; };
+		D10475FF225DFA4500F89E54 /* Pulse_Giallo_0028.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38BF1F4835BB00DC8B20 /* Pulse_Giallo_0028.png */; };
+		D1047600225DFA4500F89E54 /* Pulse_Giallo_0034.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C61F4835BB00DC8B20 /* Pulse_Giallo_0034.png */; };
+		D1047601225DFA4500F89E54 /* FavouriteItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D43DDE51F07857B001E41F8 /* FavouriteItemCollectionViewCell.xib */; };
+		D1047602225DFA4500F89E54 /* Pulse_Verde_0018.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657CA1F483F8400BEB3DB /* Pulse_Verde_0018.png */; };
+		D1047603225DFA4500F89E54 /* Pulse_Giallo_001.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38AB1F4835BB00DC8B20 /* Pulse_Giallo_001.png */; };
+		D1047604225DFA4500F89E54 /* Pulse_Giallo_0036.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C81F4835BB00DC8B20 /* Pulse_Giallo_0036.png */; };
+		D1047605225DFA4500F89E54 /* cm_icon_input_eye_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5B1EEE83FC00AC8826 /* cm_icon_input_eye_normal@3x.png */; };
+		D1047606225DFA4500F89E54 /* Pulse_Giallo_0027.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38BE1F4835BB00DC8B20 /* Pulse_Giallo_0027.png */; };
+		D1047607225DFA4500F89E54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D36D7BF1ED2F279005FAEB8 /* InfoPlist.strings */; };
+		D1047608225DFA4500F89E54 /* Pulse_Verde_0017.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C91F483F8400BEB3DB /* Pulse_Verde_0017.png */; };
+		D1047609225DFA4500F89E54 /* disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5E1EEE83FC00AC8826 /* disclosure.png */; };
+		D104760A225DFA4500F89E54 /* Pulse_Verde_0024.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D11F483F8400BEB3DB /* Pulse_Verde_0024.png */; };
+		D104760B225DFA4500F89E54 /* Pulse_Giallo_0044.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D11F4835BB00DC8B20 /* Pulse_Giallo_0044.png */; };
+		D104760C225DFA4500F89E54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DA320038F2800A3B7DE /* LaunchScreen.storyboard */; };
+		D104760D225DFA4500F89E54 /* Auto_C_Uscita_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE5C1F4C699400EE2746 /* Auto_C_Uscita_eng.gif */; };
+		D104760E225DFA4500F89E54 /* Pulse_Verde_0043.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E61F483F8400BEB3DB /* Pulse_Verde_0043.png */; };
+		D104760F225DFA4500F89E54 /* Auto-A-loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7B1F08E79000F260A5 /* Auto-A-loop.gif */; };
+		D1047610225DFA4500F89E54 /* INTRO BREVE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399A1EE6CF4B00780384 /* INTRO BREVE.gif */; };
+		D1047611225DFA4500F89E54 /* Pulse_Verde_0015.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C71F483F8400BEB3DB /* Pulse_Verde_0015.png */; };
+		D1047612225DFA4500F89E54 /* Pulse_Giallo_0033.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C51F4835BB00DC8B20 /* Pulse_Giallo_0033.png */; };
+		D1047613225DFA4500F89E54 /* CarPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D72B34D1ED96736002C2375 /* CarPopupView.xib */; };
+		D1047614225DFA4500F89E54 /* Pulse_Giallo_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C11F4835BB00DC8B20 /* Pulse_Giallo_003.png */; };
+		D1047615225DFA4500F89E54 /* Pulse_Giallo_002.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B61F4835BB00DC8B20 /* Pulse_Giallo_002.png */; };
+		D1047616225DFA4500F89E54 /* Pulse_Verde_002.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657CC1F483F8400BEB3DB /* Pulse_Verde_002.png */; };
+		D1047617225DFA4500F89E54 /* Pulse_Verde_0041.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E41F483F8400BEB3DB /* Pulse_Verde_0041.png */; };
+		D1047618225DFA4500F89E54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE81E1ED1E1A800C8A1D3 /* Localizable.strings */; };
+		D1047619225DFA4500F89E54 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8291ED1E40E00C8A1D3 /* Poppins-SemiBold.ttf */; };
+		D104761A225DFA4500F89E54 /* Pulse_Giallo_0018.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B41F4835BB00DC8B20 /* Pulse_Giallo_0018.png */; };
+		D104761B225DFA4500F89E54 /* Pulse_Verde_0035.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657DD1F483F8400BEB3DB /* Pulse_Verde_0035.png */; };
+		D104761C225DFA4500F89E54 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8251ED1E40E00C8A1D3 /* Poppins-Bold.ttf */; };
+		D104761D225DFA4500F89E54 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9351501EE03497008C65C3 /* SearchBarView.xib */; };
+		D104761E225DFA4500F89E54 /* Pulse_Verde_005.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657EB1F483F8400BEB3DB /* Pulse_Verde_005.png */; };
+		D104761F225DFA4500F89E54 /* Pulse_Giallo_0023.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38BA1F4835BB00DC8B20 /* Pulse_Giallo_0023.png */; };
+		D1047620225DFA4500F89E54 /* Pulse_Giallo_0031.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C31F4835BB00DC8B20 /* Pulse_Giallo_0031.png */; };
+		D1047621225DFA4500F89E54 /* Auto_A_Ingresso_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE541F4C699400EE2746 /* Auto_A_Ingresso_eng.gif */; };
+		D1047622225DFA4500F89E54 /* Auto_C_Loop_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE5B1F4C699400EE2746 /* Auto_C_Loop_eng.gif */; };
+		D1047623225DFA4500F89E54 /* Pulse_Verde_0038.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E01F483F8400BEB3DB /* Pulse_Verde_0038.png */; };
+		D1047624225DFA4500F89E54 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8261ED1E40E00C8A1D3 /* Poppins-Light.ttf */; };
+		D1047625225DFA4500F89E54 /* Auto-B-ingresso.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7D1F08E79000F260A5 /* Auto-B-ingresso.gif */; };
+		D1047626225DFA4500F89E54 /* Pulse_Giallo_0032.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C41F4835BB00DC8B20 /* Pulse_Giallo_0032.png */; };
+		D1047627225DFA4500F89E54 /* Pulse_Giallo_0043.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D01F4835BB00DC8B20 /* Pulse_Giallo_0043.png */; };
+		D1047628225DFA4500F89E54 /* SettingsLanguageItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D92251F028E8A0076D22D /* SettingsLanguageItemCollectionViewCell.xib */; };
+		D1047629225DFA4500F89E54 /* Pulse_Giallo_0019.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B51F4835BB00DC8B20 /* Pulse_Giallo_0019.png */; };
+		D104762A225DFA4500F89E54 /* Auto_A_Uscita_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE561F4C699400EE2746 /* Auto_A_Uscita_eng.gif */; };
+		D104762B225DFA4500F89E54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DCD1A991ECDC22900FC8BF5 /* Assets.xcassets */; };
+		D104762C225DFA4500F89E54 /* Pulse_Verde_0045.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E81F483F8400BEB3DB /* Pulse_Verde_0045.png */; };
+		D104762D225DFA4500F89E54 /* Pulse_Verde_001.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C11F483F8400BEB3DB /* Pulse_Verde_001.png */; };
+		D104762E225DFA4500F89E54 /* Pulse_Giallo_0017.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B31F4835BB00DC8B20 /* Pulse_Giallo_0017.png */; };
+		D104762F225DFA4500F89E54 /* Pulse_Giallo_0013.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38AF1F4835BB00DC8B20 /* Pulse_Giallo_0013.png */; };
+		D1047630225DFA4500F89E54 /* CircularMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D377AB71ECEDB6F005DF900 /* CircularMenuView.xib */; };
+		D1047631225DFA4500F89E54 /* Auto-B-uscita.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7F1F08E79000F260A5 /* Auto-B-uscita.gif */; };
+		D1047632225DFA4500F89E54 /* Auto-A-ingresso.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A7A1F08E79000F260A5 /* Auto-A-ingresso.gif */; };
+		D1047633225DFA4500F89E54 /* disclosure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5F1EEE83FC00AC8826 /* disclosure@2x.png */; };
+		D1047634225DFA4500F89E54 /* Pulse_Giallo_0037.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C91F4835BB00DC8B20 /* Pulse_Giallo_0037.png */; };
+		D1047635225DFA4500F89E54 /* Pulse_Verde_006.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657EC1F483F8400BEB3DB /* Pulse_Verde_006.png */; };
+		D1047636225DFA4500F89E54 /* Pulse_Verde_0028.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D51F483F8400BEB3DB /* Pulse_Verde_0028.png */; };
+		D1047637225DFA4500F89E54 /* Pulse_Verde_0037.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657DF1F483F8400BEB3DB /* Pulse_Verde_0037.png */; };
+		D1047638225DFA4500F89E54 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */; };
+		D1047639225DFA4500F89E54 /* FeedItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037689F11F1608BB00523BAA /* FeedItemCollectionViewCell.xib */; };
+		D104763A225DFA4500F89E54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */; };
+		D104763B225DFA4500F89E54 /* ONBOARD_sfondo_loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A781F08DDCE00F260A5 /* ONBOARD_sfondo_loop.gif */; };
+		D104763C225DFA4500F89E54 /* Pulse_Giallo_0021.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B81F4835BB00DC8B20 /* Pulse_Giallo_0021.png */; };
+		D104763D225DFA4500F89E54 /* Pulse_Verde_0023.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D01F483F8400BEB3DB /* Pulse_Verde_0023.png */; };
+		D104763E225DFA4500F89E54 /* Pulse_Verde_007.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657ED1F483F8400BEB3DB /* Pulse_Verde_007.png */; };
+		D104763F225DFA4500F89E54 /* Pulse_Giallo_0045.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D21F4835BB00DC8B20 /* Pulse_Giallo_0045.png */; };
+		D1047640225DFA4500F89E54 /* CarTripItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A40471F06351400B05A89 /* CarTripItemCollectionViewCell.xib */; };
+		D1047641225DFA4500F89E54 /* Auto-C-ingresso.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A801F08E79000F260A5 /* Auto-C-ingresso.gif */; };
+		D1047642225DFA4500F89E54 /* Pulse_Verde_0044.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E71F483F8400BEB3DB /* Pulse_Verde_0044.png */; };
+		D1047643225DFA4500F89E54 /* Auto_C_Ingresso_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE5A1F4C699400EE2746 /* Auto_C_Ingresso_eng.gif */; };
+		D1047644225DFA4500F89E54 /* Pulse_Verde_0022.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657CF1F483F8400BEB3DB /* Pulse_Verde_0022.png */; };
+		D1047645225DFA4500F89E54 /* Auto_B_Loop_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE581F4C699400EE2746 /* Auto_B_Loop_eng.gif */; };
+		D1047646225DFA4500F89E54 /* Pulse_Verde_0016.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C81F483F8400BEB3DB /* Pulse_Verde_0016.png */; };
+		D1047647225DFA4500F89E54 /* Auto-C-Uscita.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A821F08E79000F260A5 /* Auto-C-Uscita.gif */; };
+		D1047648225DFA4500F89E54 /* Pulse_Giallo_0012.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38AE1F4835BB00DC8B20 /* Pulse_Giallo_0012.png */; };
+		D1047649225DFA4500F89E54 /* Pulse_Giallo_0020.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B71F4835BB00DC8B20 /* Pulse_Giallo_0020.png */; };
+		D104764A225DFA4500F89E54 /* Auto-C-Loop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 032D3A811F08E79000F260A5 /* Auto-C-Loop.gif */; };
+		D104764B225DFA4500F89E54 /* Auto_A_Loop_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE551F4C699400EE2746 /* Auto_A_Loop_eng.gif */; };
+		D104764C225DFA4500F89E54 /* Pulse_Giallo_0039.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38CB1F4835BB00DC8B20 /* Pulse_Giallo_0039.png */; };
+		D104764D225DFA4500F89E54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DCD1AA11ECDC22900FC8BF5 /* Main.storyboard */; };
+		D104764E225DFA4500F89E54 /* Pulse_Verde_0020.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657CD1F483F8400BEB3DB /* Pulse_Verde_0020.png */; };
+		D104764F225DFA4500F89E54 /* Pulse_Verde_0039.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E11F483F8400BEB3DB /* Pulse_Verde_0039.png */; };
+		D1047650225DFA4500F89E54 /* INTRO LUNGA INIZIO.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399F1EE72F3500780384 /* INTRO LUNGA INIZIO.gif */; };
+		D1047651225DFA4500F89E54 /* Pulse_Giallo_0025.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38BC1F4835BB00DC8B20 /* Pulse_Giallo_0025.png */; };
+		D1047652225DFA4500F89E54 /* Pulse_Verde_0047.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657EA1F483F8400BEB3DB /* Pulse_Verde_0047.png */; };
+		D1047653225DFA4500F89E54 /* Pulse_Giallo_004.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38CC1F4835BB00DC8B20 /* Pulse_Giallo_004.png */; };
+		D1047654225DFA4500F89E54 /* Pulse_Giallo_0022.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B91F4835BB00DC8B20 /* Pulse_Giallo_0022.png */; };
+		D1047655225DFA4500F89E54 /* Pulse_Verde_0029.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D61F483F8400BEB3DB /* Pulse_Verde_0029.png */; };
+		D1047656225DFA4500F89E54 /* Pulse_Verde_0030.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D81F483F8400BEB3DB /* Pulse_Verde_0030.png */; };
+		D1047657225DFA4500F89E54 /* Pulse_Giallo_009.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D91F4835BB00DC8B20 /* Pulse_Giallo_009.png */; };
+		D1047658225DFA4500F89E54 /* Auto_B_Ingresso_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE571F4C699400EE2746 /* Auto_B_Ingresso_eng.gif */; };
+		D1047659225DFA4500F89E54 /* Pulse_Giallo_0046.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D31F4835BB00DC8B20 /* Pulse_Giallo_0046.png */; };
+		D104765A225DFA4500F89E54 /* SignupStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C632391EEFD04000BFEDA3 /* SignupStepView.xib */; };
+		D104765B225DFA4500F89E54 /* Pulse_Verde_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657EE1F483F8400BEB3DB /* Pulse_Verde_008.png */; };
+		D104765C225DFA4500F89E54 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = D120AD4620E24C4A007A3139 /* client.p12 */; };
+		D104765D225DFA4500F89E54 /* Pulse_Verde_0046.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E91F483F8400BEB3DB /* Pulse_Verde_0046.png */; };
+		D104765E225DFA4500F89E54 /* Pulse_Verde_0011.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657C31F483F8400BEB3DB /* Pulse_Verde_0011.png */; };
+		D104765F225DFA4500F89E54 /* Pulse_Giallo_0026.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38BD1F4835BB00DC8B20 /* Pulse_Giallo_0026.png */; };
+		D1047660225DFA4500F89E54 /* Pulse_Giallo_0042.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38CF1F4835BB00DC8B20 /* Pulse_Giallo_0042.png */; };
+		D1047661225DFA4500F89E54 /* MenuItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A86FA51EF971D9009C72F4 /* MenuItemCollectionViewCell.xib */; };
+		D1047662225DFA4500F89E54 /* Pulse_Giallo_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D81F4835BB00DC8B20 /* Pulse_Giallo_008.png */; };
+		D1047663225DFA4500F89E54 /* Pulse_Verde_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D71F483F8400BEB3DB /* Pulse_Verde_003.png */; };
+		D1047664225DFA4500F89E54 /* SettingsCityItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037BDFB61F03943E00C95962 /* SettingsCityItemCollectionViewCell.xib */; };
+		D1047665225DFA4500F89E54 /* Pulse_Verde_0021.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657CE1F483F8400BEB3DB /* Pulse_Verde_0021.png */; };
+		D1047666225DFA4500F89E54 /* Pulse_Verde_0034.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657DC1F483F8400BEB3DB /* Pulse_Verde_0034.png */; };
+		D1047667225DFA4500F89E54 /* Auto_B_Uscita_eng.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D22EE591F4C699400EE2746 /* Auto_B_Uscita_eng.gif */; };
+		D1047668225DFA4500F89E54 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D6ACACC1ECF333700D58948 /* NavigationBarView.xib */; };
+		D1047669225DFA4500F89E54 /* Pulse_Giallo_0030.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C21F4835BB00DC8B20 /* Pulse_Giallo_0030.png */; };
+		D104766A225DFA4500F89E54 /* Pulse_Verde_0026.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D31F483F8400BEB3DB /* Pulse_Verde_0026.png */; };
+		D104766B225DFA4500F89E54 /* Pulse_Giallo_0010.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38AC1F4835BB00DC8B20 /* Pulse_Giallo_0010.png */; };
+		D104766C225DFA4500F89E54 /* CarBookingPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D45BB2C1EE698C2004C7287 /* CarBookingPopupView.xib */; };
+		D104766D225DFA4500F89E54 /* Pulse_Giallo_0047.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D41F4835BB00DC8B20 /* Pulse_Giallo_0047.png */; };
+		D104766E225DFA4500F89E54 /* cm_icon_input_eye_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D5C1EEE83FC00AC8826 /* cm_icon_input_eye_selected@2x.png */; };
+		D104766F225DFA4500F89E54 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D1AE8281ED1E40E00C8A1D3 /* Poppins-Regular.ttf */; };
+		D1047670225DFA4500F89E54 /* Pulse_Verde_0031.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D91F483F8400BEB3DB /* Pulse_Verde_0031.png */; };
+		D1047671225DFA4500F89E54 /* Pulse_Giallo_0016.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B21F4835BB00DC8B20 /* Pulse_Giallo_0016.png */; };
+		D1047672225DFA4500F89E54 /* Pulse_Verde_0027.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D41F483F8400BEB3DB /* Pulse_Verde_0027.png */; };
+		D1047673225DFA4500F89E54 /* Pulse_Verde_0033.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657DB1F483F8400BEB3DB /* Pulse_Verde_0033.png */; };
+		D1047674225DFA4500F89E54 /* Pulse_Verde_0042.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657E51F483F8400BEB3DB /* Pulse_Verde_0042.png */; };
+		D1047675225DFA4500F89E54 /* Pulse_Giallo_0011.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38AD1F4835BB00DC8B20 /* Pulse_Giallo_0011.png */; };
+		D1047676225DFA4500F89E54 /* SettingItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D92161F0256F00076D22D /* SettingItemCollectionViewCell.xib */; };
+		D1047677225DFA4500F89E54 /* Pulse_Giallo_0040.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38CD1F4835BB00DC8B20 /* Pulse_Giallo_0040.png */; };
+		D1047678225DFA4500F89E54 /* Pulse_Giallo_0014.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B01F4835BB00DC8B20 /* Pulse_Giallo_0014.png */; };
+		D1047679225DFA4500F89E54 /* Pulse_Giallo_007.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D71F4835BB00DC8B20 /* Pulse_Giallo_007.png */; };
+		D104767A225DFA4500F89E54 /* Pulse_Verde_0025.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657D21F483F8400BEB3DB /* Pulse_Verde_0025.png */; };
+		D104767B225DFA4500F89E54 /* Pulse_Verde_009.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D1657EF1F483F8400BEB3DB /* Pulse_Verde_009.png */; };
+		D104767C225DFA4500F89E54 /* SearchBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DCE7EE91EE12A4C00442BF1 /* SearchBarCollectionViewCell.xib */; };
+		D104767D225DFA4500F89E54 /* INTRO LUNGA FINE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4D23399E1EE72F3500780384 /* INTRO LUNGA FINE.gif */; };
+		D104767E225DFA4500F89E54 /* disclosure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AF5D601EEE83FC00AC8826 /* disclosure@3x.png */; };
+		D104767F225DFA4500F89E54 /* Pulse_Giallo_005.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38D51F4835BB00DC8B20 /* Pulse_Giallo_005.png */; };
+		D1047680225DFA4500F89E54 /* Pulse_Giallo_0029.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38C01F4835BB00DC8B20 /* Pulse_Giallo_0029.png */; };
+		D1047681225DFA4500F89E54 /* Pulse_Giallo_0038.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38CA1F4835BB00DC8B20 /* Pulse_Giallo_0038.png */; };
+		D1047682225DFA4500F89E54 /* Pulse_Giallo_0015.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DFA38B11F4835BB00DC8B20 /* Pulse_Giallo_0015.png */; };
 		D108D80921105C9500B2E855 /* CoreController+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108D80821105C9500B2E855 /* CoreController+Operations.swift */; };
 		D108D80B2112FBCB00B2E855 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */; };
 		D11487AD20F4BB55007BB150 /* UIView+StoryboardConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */; };
@@ -719,6 +1069,8 @@
 		4DFD983A1ED4838600880EA1 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Extensions.swift"; path = "Classes/Utilities/Array+Extensions.swift"; sourceTree = "<group>"; };
 		4DFF02161F1EA8A000133B33 /* FeedAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedAnnotation.swift; sourceTree = "<group>"; };
 		5DE36457E621FE0CE1FA9F74 /* Pods_Sharengo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sharengo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1047689225DFA4500F89E54 /* SharengoNL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharengoNL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D104768A225DFA4500F89E54 /* SharengoNL-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SharengoNL-Info.plist"; path = "/Users/sharengo/Desktop/iOS workspace 10/carsharing-app-ios/SharengoNL-Info.plist"; sourceTree = "<absolute>"; };
 		D108D80821105C9500B2E855 /* CoreController+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreController+Operations.swift"; sourceTree = "<group>"; };
 		D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D11487AC20F4BB54007BB150 /* UIView+StoryboardConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+StoryboardConstraint.swift"; path = "Classes/Utilities/UIView+StoryboardConstraint.swift"; sourceTree = "<group>"; };
@@ -762,6 +1114,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				22BD3808B13503C1B166EE29 /* Pods_Sharengo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D10475EA225DFA4500F89E54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D10475EB225DFA4500F89E54 /* Pods_Sharengo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1401,6 +1761,7 @@
 			isa = PBXGroup;
 			children = (
 				4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */,
+				D1047689225DFA4500F89E54 /* SharengoNL.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1532,6 +1893,7 @@
 		4DCD1A961ECDC20500FC8BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D104768B225F227000F89E54 /* Configuration */,
 				D120AD4520E24C4A007A3139 /* Certificates */,
 				4D2339991EE6CF4B00780384 /* Gifs */,
 				4DCD1A981ECDC22900FC8BF5 /* Assets */,
@@ -1580,6 +1942,7 @@
 			children = (
 				D108D80A2112FBCA00B2E855 /* GoogleService-Info.plist */,
 				4DCD1A9E1ECDC22900FC8BF5 /* Info.plist */,
+				D104768A225DFA4500F89E54 /* SharengoNL-Info.plist */,
 			);
 			name = Plists;
 			path = Resources/Plists;
@@ -1701,6 +2064,13 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		D104768B225F227000F89E54 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		D108D80721105C8700B2E855 /* CoreController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1805,6 +2175,27 @@
 			productReference = 4DCD1A521ECDBF7400FC8BF5 /* Sharengo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D1047520225DFA4500F89E54 /* SharengoNL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1047686225DFA4500F89E54 /* Build configuration list for PBXNativeTarget "SharengoNL" */;
+			buildPhases = (
+				D1047521225DFA4500F89E54 /* [CP] Check Pods Manifest.lock */,
+				D1047522225DFA4500F89E54 /* Sources */,
+				D10475EA225DFA4500F89E54 /* Frameworks */,
+				D10475EC225DFA4500F89E54 /* Resources */,
+				D1047683225DFA4500F89E54 /* Fabric Crashlytics */,
+				D1047684225DFA4500F89E54 /* [CP] Embed Pods Frameworks */,
+				D1047685225DFA4500F89E54 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SharengoNL;
+			productName = Sharengo;
+			productReference = D1047689225DFA4500F89E54 /* SharengoNL.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1834,6 +2225,9 @@
 							};
 						};
 					};
+					D1047520225DFA4500F89E54 = {
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 4DCD1A4D1ECDBF7400FC8BF5 /* Build configuration list for PBXProject "Sharengo" */;
@@ -1851,6 +2245,7 @@
 			projectRoot = "";
 			targets = (
 				4DCD1A511ECDBF7400FC8BF5 /* Sharengo */,
+				D1047520225DFA4500F89E54 /* SharengoNL */,
 			);
 		};
 /* End PBXProject section */
@@ -2013,6 +2408,163 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D10475EC225DFA4500F89E54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D10475ED225DFA4500F89E54 /* cm_icon_input_eye_selected@3x.png in Resources */,
+				D10475EE225DFA4500F89E54 /* Pulse_Verde_0014.png in Resources */,
+				D10475EF225DFA4500F89E54 /* Pulse_Verde_0010.png in Resources */,
+				D10475F0225DFA4500F89E54 /* Pulse_Giallo_0035.png in Resources */,
+				D10475F1225DFA4500F89E54 /* Pulse_Verde_0012.png in Resources */,
+				D10475F2225DFA4500F89E54 /* Pulse_Verde_0032.png in Resources */,
+				D10475F3225DFA4500F89E54 /* Pulse_Verde_0013.png in Resources */,
+				D10475F4225DFA4500F89E54 /* Pulse_Giallo_0024.png in Resources */,
+				D10475F5225DFA4500F89E54 /* Pulse_Verde_0040.png in Resources */,
+				D10475F6225DFA4500F89E54 /* cm_icon_input_eye_normal@2x.png in Resources */,
+				D10475F7225DFA4500F89E54 /* Pulse_Giallo_0041.png in Resources */,
+				D10475F8225DFA4500F89E54 /* Pulse_Verde_004.png in Resources */,
+				D10475F9225DFA4500F89E54 /* Auto-B-loop.gif in Resources */,
+				D10475FA225DFA4500F89E54 /* Auto-A-uscita.gif in Resources */,
+				D10475FB225DFA4500F89E54 /* Pulse_Verde_0036.png in Resources */,
+				D10475FC225DFA4500F89E54 /* Pulse_Giallo_006.png in Resources */,
+				D10475FD225DFA4500F89E54 /* CategoryItemCollectionViewCell.xib in Resources */,
+				D10475FE225DFA4500F89E54 /* Pulse_Verde_0019.png in Resources */,
+				D10475FF225DFA4500F89E54 /* Pulse_Giallo_0028.png in Resources */,
+				D1047600225DFA4500F89E54 /* Pulse_Giallo_0034.png in Resources */,
+				D1047601225DFA4500F89E54 /* FavouriteItemCollectionViewCell.xib in Resources */,
+				D1047602225DFA4500F89E54 /* Pulse_Verde_0018.png in Resources */,
+				D1047603225DFA4500F89E54 /* Pulse_Giallo_001.png in Resources */,
+				D1047604225DFA4500F89E54 /* Pulse_Giallo_0036.png in Resources */,
+				D1047605225DFA4500F89E54 /* cm_icon_input_eye_normal@3x.png in Resources */,
+				D1047606225DFA4500F89E54 /* Pulse_Giallo_0027.png in Resources */,
+				D1047607225DFA4500F89E54 /* InfoPlist.strings in Resources */,
+				D1047608225DFA4500F89E54 /* Pulse_Verde_0017.png in Resources */,
+				D1047609225DFA4500F89E54 /* disclosure.png in Resources */,
+				D104760A225DFA4500F89E54 /* Pulse_Verde_0024.png in Resources */,
+				D104760B225DFA4500F89E54 /* Pulse_Giallo_0044.png in Resources */,
+				D104760C225DFA4500F89E54 /* LaunchScreen.storyboard in Resources */,
+				D104760D225DFA4500F89E54 /* Auto_C_Uscita_eng.gif in Resources */,
+				D104760E225DFA4500F89E54 /* Pulse_Verde_0043.png in Resources */,
+				D104760F225DFA4500F89E54 /* Auto-A-loop.gif in Resources */,
+				D1047610225DFA4500F89E54 /* INTRO BREVE.gif in Resources */,
+				D1047611225DFA4500F89E54 /* Pulse_Verde_0015.png in Resources */,
+				D1047612225DFA4500F89E54 /* Pulse_Giallo_0033.png in Resources */,
+				D1047613225DFA4500F89E54 /* CarPopupView.xib in Resources */,
+				D1047614225DFA4500F89E54 /* Pulse_Giallo_003.png in Resources */,
+				D1047615225DFA4500F89E54 /* Pulse_Giallo_002.png in Resources */,
+				D1047616225DFA4500F89E54 /* Pulse_Verde_002.png in Resources */,
+				D1047617225DFA4500F89E54 /* Pulse_Verde_0041.png in Resources */,
+				D1047618225DFA4500F89E54 /* Localizable.strings in Resources */,
+				D1047619225DFA4500F89E54 /* Poppins-SemiBold.ttf in Resources */,
+				D104761A225DFA4500F89E54 /* Pulse_Giallo_0018.png in Resources */,
+				D104761B225DFA4500F89E54 /* Pulse_Verde_0035.png in Resources */,
+				D104761C225DFA4500F89E54 /* Poppins-Bold.ttf in Resources */,
+				D104761D225DFA4500F89E54 /* SearchBarView.xib in Resources */,
+				D104761E225DFA4500F89E54 /* Pulse_Verde_005.png in Resources */,
+				D104761F225DFA4500F89E54 /* Pulse_Giallo_0023.png in Resources */,
+				D1047620225DFA4500F89E54 /* Pulse_Giallo_0031.png in Resources */,
+				D1047621225DFA4500F89E54 /* Auto_A_Ingresso_eng.gif in Resources */,
+				D1047622225DFA4500F89E54 /* Auto_C_Loop_eng.gif in Resources */,
+				D1047623225DFA4500F89E54 /* Pulse_Verde_0038.png in Resources */,
+				D1047624225DFA4500F89E54 /* Poppins-Light.ttf in Resources */,
+				D1047625225DFA4500F89E54 /* Auto-B-ingresso.gif in Resources */,
+				D1047626225DFA4500F89E54 /* Pulse_Giallo_0032.png in Resources */,
+				D1047627225DFA4500F89E54 /* Pulse_Giallo_0043.png in Resources */,
+				D1047628225DFA4500F89E54 /* SettingsLanguageItemCollectionViewCell.xib in Resources */,
+				D1047629225DFA4500F89E54 /* Pulse_Giallo_0019.png in Resources */,
+				D104762A225DFA4500F89E54 /* Auto_A_Uscita_eng.gif in Resources */,
+				D104762B225DFA4500F89E54 /* Assets.xcassets in Resources */,
+				D104762C225DFA4500F89E54 /* Pulse_Verde_0045.png in Resources */,
+				D104762D225DFA4500F89E54 /* Pulse_Verde_001.png in Resources */,
+				D104762E225DFA4500F89E54 /* Pulse_Giallo_0017.png in Resources */,
+				D104762F225DFA4500F89E54 /* Pulse_Giallo_0013.png in Resources */,
+				D1047630225DFA4500F89E54 /* CircularMenuView.xib in Resources */,
+				D1047631225DFA4500F89E54 /* Auto-B-uscita.gif in Resources */,
+				D1047632225DFA4500F89E54 /* Auto-A-ingresso.gif in Resources */,
+				D1047633225DFA4500F89E54 /* disclosure@2x.png in Resources */,
+				D1047634225DFA4500F89E54 /* Pulse_Giallo_0037.png in Resources */,
+				D1047635225DFA4500F89E54 /* Pulse_Verde_006.png in Resources */,
+				D1047636225DFA4500F89E54 /* Pulse_Verde_0028.png in Resources */,
+				D1047637225DFA4500F89E54 /* Pulse_Verde_0037.png in Resources */,
+				D1047638225DFA4500F89E54 /* Poppins-Medium.ttf in Resources */,
+				D1047639225DFA4500F89E54 /* FeedItemCollectionViewCell.xib in Resources */,
+				D104763A225DFA4500F89E54 /* GoogleService-Info.plist in Resources */,
+				D104763B225DFA4500F89E54 /* ONBOARD_sfondo_loop.gif in Resources */,
+				D104763C225DFA4500F89E54 /* Pulse_Giallo_0021.png in Resources */,
+				D104763D225DFA4500F89E54 /* Pulse_Verde_0023.png in Resources */,
+				D104763E225DFA4500F89E54 /* Pulse_Verde_007.png in Resources */,
+				D104763F225DFA4500F89E54 /* Pulse_Giallo_0045.png in Resources */,
+				D1047640225DFA4500F89E54 /* CarTripItemCollectionViewCell.xib in Resources */,
+				D1047641225DFA4500F89E54 /* Auto-C-ingresso.gif in Resources */,
+				D1047642225DFA4500F89E54 /* Pulse_Verde_0044.png in Resources */,
+				D1047643225DFA4500F89E54 /* Auto_C_Ingresso_eng.gif in Resources */,
+				D1047644225DFA4500F89E54 /* Pulse_Verde_0022.png in Resources */,
+				D1047645225DFA4500F89E54 /* Auto_B_Loop_eng.gif in Resources */,
+				D1047646225DFA4500F89E54 /* Pulse_Verde_0016.png in Resources */,
+				D1047647225DFA4500F89E54 /* Auto-C-Uscita.gif in Resources */,
+				D1047648225DFA4500F89E54 /* Pulse_Giallo_0012.png in Resources */,
+				D1047649225DFA4500F89E54 /* Pulse_Giallo_0020.png in Resources */,
+				D104764A225DFA4500F89E54 /* Auto-C-Loop.gif in Resources */,
+				D104764B225DFA4500F89E54 /* Auto_A_Loop_eng.gif in Resources */,
+				D104764C225DFA4500F89E54 /* Pulse_Giallo_0039.png in Resources */,
+				D104764D225DFA4500F89E54 /* Main.storyboard in Resources */,
+				D104764E225DFA4500F89E54 /* Pulse_Verde_0020.png in Resources */,
+				D104764F225DFA4500F89E54 /* Pulse_Verde_0039.png in Resources */,
+				D1047650225DFA4500F89E54 /* INTRO LUNGA INIZIO.gif in Resources */,
+				D1047651225DFA4500F89E54 /* Pulse_Giallo_0025.png in Resources */,
+				D1047652225DFA4500F89E54 /* Pulse_Verde_0047.png in Resources */,
+				D1047653225DFA4500F89E54 /* Pulse_Giallo_004.png in Resources */,
+				D1047654225DFA4500F89E54 /* Pulse_Giallo_0022.png in Resources */,
+				D1047655225DFA4500F89E54 /* Pulse_Verde_0029.png in Resources */,
+				D1047656225DFA4500F89E54 /* Pulse_Verde_0030.png in Resources */,
+				D1047657225DFA4500F89E54 /* Pulse_Giallo_009.png in Resources */,
+				D1047658225DFA4500F89E54 /* Auto_B_Ingresso_eng.gif in Resources */,
+				D1047659225DFA4500F89E54 /* Pulse_Giallo_0046.png in Resources */,
+				D104765A225DFA4500F89E54 /* SignupStepView.xib in Resources */,
+				D104765B225DFA4500F89E54 /* Pulse_Verde_008.png in Resources */,
+				D104765C225DFA4500F89E54 /* client.p12 in Resources */,
+				D104765D225DFA4500F89E54 /* Pulse_Verde_0046.png in Resources */,
+				D104765E225DFA4500F89E54 /* Pulse_Verde_0011.png in Resources */,
+				D104765F225DFA4500F89E54 /* Pulse_Giallo_0026.png in Resources */,
+				D1047660225DFA4500F89E54 /* Pulse_Giallo_0042.png in Resources */,
+				D1047661225DFA4500F89E54 /* MenuItemCollectionViewCell.xib in Resources */,
+				D1047662225DFA4500F89E54 /* Pulse_Giallo_008.png in Resources */,
+				D1047663225DFA4500F89E54 /* Pulse_Verde_003.png in Resources */,
+				D1047664225DFA4500F89E54 /* SettingsCityItemCollectionViewCell.xib in Resources */,
+				D1047665225DFA4500F89E54 /* Pulse_Verde_0021.png in Resources */,
+				D1047666225DFA4500F89E54 /* Pulse_Verde_0034.png in Resources */,
+				D1047667225DFA4500F89E54 /* Auto_B_Uscita_eng.gif in Resources */,
+				D1047668225DFA4500F89E54 /* NavigationBarView.xib in Resources */,
+				D1047669225DFA4500F89E54 /* Pulse_Giallo_0030.png in Resources */,
+				D104766A225DFA4500F89E54 /* Pulse_Verde_0026.png in Resources */,
+				D104766B225DFA4500F89E54 /* Pulse_Giallo_0010.png in Resources */,
+				D104766C225DFA4500F89E54 /* CarBookingPopupView.xib in Resources */,
+				D104766D225DFA4500F89E54 /* Pulse_Giallo_0047.png in Resources */,
+				D104766E225DFA4500F89E54 /* cm_icon_input_eye_selected@2x.png in Resources */,
+				D104766F225DFA4500F89E54 /* Poppins-Regular.ttf in Resources */,
+				D1047670225DFA4500F89E54 /* Pulse_Verde_0031.png in Resources */,
+				D1047671225DFA4500F89E54 /* Pulse_Giallo_0016.png in Resources */,
+				D1047672225DFA4500F89E54 /* Pulse_Verde_0027.png in Resources */,
+				D1047673225DFA4500F89E54 /* Pulse_Verde_0033.png in Resources */,
+				D1047674225DFA4500F89E54 /* Pulse_Verde_0042.png in Resources */,
+				D1047675225DFA4500F89E54 /* Pulse_Giallo_0011.png in Resources */,
+				D1047676225DFA4500F89E54 /* SettingItemCollectionViewCell.xib in Resources */,
+				D1047677225DFA4500F89E54 /* Pulse_Giallo_0040.png in Resources */,
+				D1047678225DFA4500F89E54 /* Pulse_Giallo_0014.png in Resources */,
+				D1047679225DFA4500F89E54 /* Pulse_Giallo_007.png in Resources */,
+				D104767A225DFA4500F89E54 /* Pulse_Verde_0025.png in Resources */,
+				D104767B225DFA4500F89E54 /* Pulse_Verde_009.png in Resources */,
+				D104767C225DFA4500F89E54 /* SearchBarCollectionViewCell.xib in Resources */,
+				D104767D225DFA4500F89E54 /* INTRO LUNGA FINE.gif in Resources */,
+				D104767E225DFA4500F89E54 /* disclosure@3x.png in Resources */,
+				D104767F225DFA4500F89E54 /* Pulse_Giallo_005.png in Resources */,
+				D1047680225DFA4500F89E54 /* Pulse_Giallo_0029.png in Resources */,
+				D1047681225DFA4500F89E54 /* Pulse_Giallo_0038.png in Resources */,
+				D1047682225DFA4500F89E54 /* Pulse_Giallo_0015.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2095,6 +2647,116 @@
 			showEnvVarsInLog = 0;
 		};
 		CA3D13671DFFD2401D53831C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1047521225DFA4500F89E54 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sharengo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1047683225DFA4500F89E54 /* Fabric Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fabric Crashlytics";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+		};
+		D1047684225DFA4500F89E54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework",
+				"${BUILT_PRODUCTS_DIR}/Gloss/Gloss.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-Gloss/Moya_Gloss.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SpinKit/SpinKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BonMot.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gifu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gloss.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_Gloss.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpinKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sharengo/Pods-Sharengo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1047685225DFA4500F89E54 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2335,6 +2997,212 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1047522225DFA4500F89E54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1047523225DFA4500F89E54 /* APIController.swift in Sources */,
+				D1047524225DFA4500F89E54 /* NoCarTripsViewModel.swift in Sources */,
+				D1047525225DFA4500F89E54 /* SharengoApiController.swift in Sources */,
+				D1047526225DFA4500F89E54 /* InviteFriendViewController.swift in Sources */,
+				D1047527225DFA4500F89E54 /* Router.swift in Sources */,
+				D1047528225DFA4500F89E54 /* Bonus.swift in Sources */,
+				D1047529225DFA4500F89E54 /* SettingsCityItemCollectionViewCell.swift in Sources */,
+				D104752A225DFA4500F89E54 /* HomeViewController.swift in Sources */,
+				D104752B225DFA4500F89E54 /* ItemViewModel.swift in Sources */,
+				D104752C225DFA4500F89E54 /* CarBooking.swift in Sources */,
+				D104752D225DFA4500F89E54 /* FeedItemViewModel.swift in Sources */,
+				D104752E225DFA4500F89E54 /* PKCS12.swift in Sources */,
+				D104752F225DFA4500F89E54 /* SettingsCitiesViewController.swift in Sources */,
+				D1047530225DFA4500F89E54 /* CarTripItemViewModel.swift in Sources */,
+				D1047531225DFA4500F89E54 /* CarBookingCompletedViewController.swift in Sources */,
+				D1047532225DFA4500F89E54 /* UIScrollView.swift in Sources */,
+				D1047533225DFA4500F89E54 /* OnBoardViewController.swift in Sources */,
+				D1047534225DFA4500F89E54 /* GenericWebViewController.swift in Sources */,
+				D1047535225DFA4500F89E54 /* CarBookingCompletedViewModel.swift in Sources */,
+				D1047536225DFA4500F89E54 /* City.swift in Sources */,
+				D1047537225DFA4500F89E54 /* HomeViewModel.swift in Sources */,
+				D1047538225DFA4500F89E54 /* UIButton+Theme.swift in Sources */,
+				D1047539225DFA4500F89E54 /* GMUStaticCluster.m in Sources */,
+				D104753A225DFA4500F89E54 /* MenuItemViewModel.swift in Sources */,
+				D104753B225DFA4500F89E54 /* BoomerangUtilities.swift in Sources */,
+				D104753C225DFA4500F89E54 /* Color+Theme.swift in Sources */,
+				D104753D225DFA4500F89E54 /* SettingsNotificationsViewModel.swift in Sources */,
+				D104753E225DFA4500F89E54 /* ViewModel.swift in Sources */,
+				D104753F225DFA4500F89E54 /* CarPopupView.swift in Sources */,
+				D1047540225DFA4500F89E54 /* UserAreaViewModel.swift in Sources */,
+				D1047541225DFA4500F89E54 /* CoreController.swift in Sources */,
+				D1047542225DFA4500F89E54 /* PublisheresAPIController.swift in Sources */,
+				D1047543225DFA4500F89E54 /* SettingsCitiesViewModel.swift in Sources */,
+				D1047544225DFA4500F89E54 /* MapViewController.swift in Sources */,
+				D1047545225DFA4500F89E54 /* String+Extensions.swift in Sources */,
+				D1047546225DFA4500F89E54 /* MenuViewModel.swift in Sources */,
+				D1047547225DFA4500F89E54 /* FeedItemCollectionViewCell.swift in Sources */,
+				D1047548225DFA4500F89E54 /* TutorialViewModel.swift in Sources */,
+				D1047549225DFA4500F89E54 /* SettingsViewModel.swift in Sources */,
+				D104754A225DFA4500F89E54 /* UITextField.swift in Sources */,
+				D104754B225DFA4500F89E54 /* FeedsViewController.swift in Sources */,
+				D104754C225DFA4500F89E54 /* ShareOperation.swift in Sources */,
+				D104754D225DFA4500F89E54 /* FeedsViewModel.swift in Sources */,
+				D104754E225DFA4500F89E54 /* MKMapView.swift in Sources */,
+				D104754F225DFA4500F89E54 /* GMUClusterManager.m in Sources */,
+				D1047550225DFA4500F89E54 /* Car.swift in Sources */,
+				D1047551225DFA4500F89E54 /* CarTrip.swift in Sources */,
+				D1047552225DFA4500F89E54 /* MKMapKit+Extensions.swift in Sources */,
+				D1047553225DFA4500F89E54 /* BoomerangRouter.swift in Sources */,
+				D1047554225DFA4500F89E54 /* FavouriteItemCollectionViewCell.swift in Sources */,
+				D1047555225DFA4500F89E54 /* SignupStepViewModel.swift in Sources */,
+				D1047556225DFA4500F89E54 /* Feed.swift in Sources */,
+				D1047557225DFA4500F89E54 /* GMUFeature.m in Sources */,
+				D1047558225DFA4500F89E54 /* RouteStep.swift in Sources */,
+				D1047559225DFA4500F89E54 /* NoFavouritesViewController.swift in Sources */,
+				D104755A225DFA4500F89E54 /* UIView.swift in Sources */,
+				D104755B225DFA4500F89E54 /* AnimatedTextInputFieldConfigurator.swift in Sources */,
+				D104755C225DFA4500F89E54 /* IntroViewController.swift in Sources */,
+				D104755D225DFA4500F89E54 /* GMUStyle.m in Sources */,
+				D104755E225DFA4500F89E54 /* AppDelegate.swift in Sources */,
+				D104755F225DFA4500F89E54 /* View+Theme.swift in Sources */,
+				D1047560225DFA4500F89E54 /* ZAlertView.swift in Sources */,
+				D1047561225DFA4500F89E54 /* CircularMenuButton.swift in Sources */,
+				D1047562225DFA4500F89E54 /* GMUDefaultClusterIconGenerator.m in Sources */,
+				D1047563225DFA4500F89E54 /* Setting.swift in Sources */,
+				D1047564225DFA4500F89E54 /* UITableView.swift in Sources */,
+				D1047565225DFA4500F89E54 /* UIView+Extensions.swift in Sources */,
+				D1047566225DFA4500F89E54 /* Operators.swift in Sources */,
+				D1047567225DFA4500F89E54 /* FavouritesViewController.swift in Sources */,
+				D1047568225DFA4500F89E54 /* UIButton.swift in Sources */,
+				D1047569225DFA4500F89E54 /* SettingsLanguageItemCollectionViewCell.swift in Sources */,
+				D104756A225DFA4500F89E54 /* ViewFactory.swift in Sources */,
+				D104756B225DFA4500F89E54 /* Image+Theme.swift in Sources */,
+				D104756C225DFA4500F89E54 /* GMUPoint.m in Sources */,
+				D104756D225DFA4500F89E54 /* InviteFriendViewModel.swift in Sources */,
+				D104756E225DFA4500F89E54 /* SettingsViewController.swift in Sources */,
+				D104756F225DFA4500F89E54 /* GMULineString.m in Sources */,
+				D1047570225DFA4500F89E54 /* CoreController+Operations.swift in Sources */,
+				D1047571225DFA4500F89E54 /* LoginViewController.swift in Sources */,
+				D1047572225DFA4500F89E54 /* SupportViewController.swift in Sources */,
+				D1047573225DFA4500F89E54 /* SettingItemCollectionViewCell.swift in Sources */,
+				D1047574225DFA4500F89E54 /* ShareOperationController.swift in Sources */,
+				D1047575225DFA4500F89E54 /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
+				D1047576225DFA4500F89E54 /* FavouritesViewModel.swift in Sources */,
+				D1047577225DFA4500F89E54 /* FaqViewModel.swift in Sources */,
+				D1047578225DFA4500F89E54 /* WebViewController.swift in Sources */,
+				D1047579225DFA4500F89E54 /* Banner.swift in Sources */,
+				D104757A225DFA4500F89E54 /* ModelStructure.swift in Sources */,
+				D104757B225DFA4500F89E54 /* SearchBarItemViewModel.swift in Sources */,
+				D104757C225DFA4500F89E54 /* NotificationCenter+Extensions.swift in Sources */,
+				D104757D225DFA4500F89E54 /* ViewModelFactory.swift in Sources */,
+				D104757E225DFA4500F89E54 /* PinViewController.swift in Sources */,
+				D104757F225DFA4500F89E54 /* SearchBarCollectionViewCell.swift in Sources */,
+				D1047580225DFA4500F89E54 /* SettingsLanguageItemViewModel.swift in Sources */,
+				D1047581225DFA4500F89E54 /* AnimatedTextInputStyle.swift in Sources */,
+				D1047582225DFA4500F89E54 /* PinViewModel.swift in Sources */,
+				D1047583225DFA4500F89E54 /* GMUPolygon.m in Sources */,
+				D1047584225DFA4500F89E54 /* SignupViewController.swift in Sources */,
+				D1047585225DFA4500F89E54 /* NotificationsController.swift in Sources */,
+				D1047586225DFA4500F89E54 /* UICollectionView.swift in Sources */,
+				D1047587225DFA4500F89E54 /* NewFavouriteViewController.swift in Sources */,
+				D1047588225DFA4500F89E54 /* NoFavouritesViewModel.swift in Sources */,
+				D1047589225DFA4500F89E54 /* SettingsLanguagesViewController.swift in Sources */,
+				D104758A225DFA4500F89E54 /* SearchBarViewModel.swift in Sources */,
+				D104758B225DFA4500F89E54 /* CategoryItemViewModel.swift in Sources */,
+				D104758C225DFA4500F89E54 /* GMUPlacemark.m in Sources */,
+				D104758D225DFA4500F89E54 /* ProfileViewController.swift in Sources */,
+				D104758E225DFA4500F89E54 /* SettingItemViewModel.swift in Sources */,
+				D104758F225DFA4500F89E54 /* FeedAnnotation.swift in Sources */,
+				D1047590225DFA4500F89E54 /* GMUSimpleClusterAlgorithm.m in Sources */,
+				D1047591225DFA4500F89E54 /* AnimatedTextInput.swift in Sources */,
+				D1047592225DFA4500F89E54 /* CarTripsViewController.swift in Sources */,
+				D1047593225DFA4500F89E54 /* CityAnnotation.swift in Sources */,
+				D1047594225DFA4500F89E54 /* CarBookingPopupViewModel.swift in Sources */,
+				D1047595225DFA4500F89E54 /* GMUGroundOverlay.m in Sources */,
+				D1047596225DFA4500F89E54 /* MenuItem.swift in Sources */,
+				D1047597225DFA4500F89E54 /* FeedDetailViewController.swift in Sources */,
+				D1047598225DFA4500F89E54 /* GMUGridBasedClusterAlgorithm.m in Sources */,
+				D1047599225DFA4500F89E54 /* UIViewExtensions.swift in Sources */,
+				D104759A225DFA4500F89E54 /* LegalNoteViewModel.swift in Sources */,
+				D104759B225DFA4500F89E54 /* ViewControllerCommons.swift in Sources */,
+				D104759C225DFA4500F89E54 /* CarAnnotation.swift in Sources */,
+				D104759D225DFA4500F89E54 /* GenericWebViewModel.swift in Sources */,
+				D104759E225DFA4500F89E54 /* CircularMenuView.swift in Sources */,
+				D104759F225DFA4500F89E54 /* GMUGeoJSONParser.m in Sources */,
+				D10475A0225DFA4500F89E54 /* GMUKMLParser.m in Sources */,
+				D10475A1225DFA4500F89E54 /* NavigationBarViewModel.swift in Sources */,
+				D10475A2225DFA4500F89E54 /* CarPopupViewModel.swift in Sources */,
+				D10475A3225DFA4500F89E54 /* Utilities.swift in Sources */,
+				D10475A4225DFA4500F89E54 /* UIPickerView.swift in Sources */,
+				D10475A5225DFA4500F89E54 /* GMUDefaultClusterRenderer.m in Sources */,
+				D10475A6225DFA4500F89E54 /* Language.swift in Sources */,
+				D10475A7225DFA4500F89E54 /* Font+Theme.swift in Sources */,
+				D10475A8225DFA4500F89E54 /* FeedDetailViewModel.swift in Sources */,
+				D10475A9225DFA4500F89E54 /* NavigationBarView.swift in Sources */,
+				D10475AA225DFA4500F89E54 /* MenuItemCollectionViewCell.swift in Sources */,
+				D10475AB225DFA4500F89E54 /* LoadingViewController.swift in Sources */,
+				D10475AC225DFA4500F89E54 /* MenuViewController.swift in Sources */,
+				D10475AD225DFA4500F89E54 /* GoogleResponse.swift in Sources */,
+				D10475AE225DFA4500F89E54 /* Array+Extensions.swift in Sources */,
+				D10475AF225DFA4500F89E54 /* OnBoardViewModel.swift in Sources */,
+				D10475B0225DFA4500F89E54 /* UIViewController.swift in Sources */,
+				D10475B1225DFA4500F89E54 /* AppConfig.swift in Sources */,
+				D10475B2225DFA4500F89E54 /* UIRouter.swift in Sources */,
+				D10475B3225DFA4500F89E54 /* NoFeedsViewController.swift in Sources */,
+				D10475B4225DFA4500F89E54 /* FormViewModel.swift in Sources */,
+				D10475B5225DFA4500F89E54 /* ProfileViewModel.swift in Sources */,
+				D10475B6225DFA4500F89E54 /* SettingsLanguagesViewModel.swift in Sources */,
+				D10475B7225DFA4500F89E54 /* IntroViewModel.swift in Sources */,
+				D10475B8225DFA4500F89E54 /* SeparatorLayout.swift in Sources */,
+				D10475B9225DFA4500F89E54 /* Polygon.swift in Sources */,
+				D10475BA225DFA4500F89E54 /* FaqViewController.swift in Sources */,
+				D10475BB225DFA4500F89E54 /* GQTPointQuadTree.m in Sources */,
+				D10475BC225DFA4500F89E54 /* Response.swift in Sources */,
+				D10475BD225DFA4500F89E54 /* FavouriteItemViewModel.swift in Sources */,
+				D10475BE225DFA4500F89E54 /* GQTPointQuadTreeChild.m in Sources */,
+				D10475BF225DFA4500F89E54 /* UIColor.swift in Sources */,
+				D10475C0225DFA4500F89E54 /* SignupViewModel.swift in Sources */,
+				D10475C1225DFA4500F89E54 /* CircularMenuViewModel.swift in Sources */,
+				D10475C2225DFA4500F89E54 /* Router+Safari.swift in Sources */,
+				D10475C3225DFA4500F89E54 /* CarTripsViewModel.swift in Sources */,
+				D10475C4225DFA4500F89E54 /* TutorialViewController.swift in Sources */,
+				D10475C5225DFA4500F89E54 /* WebViewModel.swift in Sources */,
+				D10475C6225DFA4500F89E54 /* AnimatedTextField.swift in Sources */,
+				D10475C7225DFA4500F89E54 /* UIView+StoryboardConstraint.swift in Sources */,
+				D10475C8225DFA4500F89E54 /* AnimatedLine.swift in Sources */,
+				D10475C9225DFA4500F89E54 /* AnimatedTextView.swift in Sources */,
+				D10475CA225DFA4500F89E54 /* LegalNoteViewController.swift in Sources */,
+				D10475CB225DFA4500F89E54 /* Text+Theme.swift in Sources */,
+				D10475CC225DFA4500F89E54 /* UserAnnotation.swift in Sources */,
+				D10475CD225DFA4500F89E54 /* UIImage.swift in Sources */,
+				D10475CE225DFA4500F89E54 /* Router+Preview.swift in Sources */,
+				D10475CF225DFA4500F89E54 /* ListViewModel.swift in Sources */,
+				D10475D0225DFA4500F89E54 /* UIPagerViewController.swift in Sources */,
+				D10475D1225DFA4500F89E54 /* GMUGeometryRenderer.m in Sources */,
+				D10475D2225DFA4500F89E54 /* UserAreaViewController.swift in Sources */,
+				D10475D3225DFA4500F89E54 /* LocationManager.swift in Sources */,
+				D10475D4225DFA4500F89E54 /* LoginViewModel.swift in Sources */,
+				D10475D5225DFA4500F89E54 /* CategoryItemCollectionViewCell.swift in Sources */,
+				D10475D6225DFA4500F89E54 /* NewFavouriteViewModel.swift in Sources */,
+				D10475D7225DFA4500F89E54 /* CarTripItemCollectionViewCell.swift in Sources */,
+				D10475D8225DFA4500F89E54 /* SignupStepView.swift in Sources */,
+				D10475D9225DFA4500F89E54 /* SearchBarView.swift in Sources */,
+				D10475DA225DFA4500F89E54 /* GMUWrappingDictionaryKey.m in Sources */,
+				D10475DB225DFA4500F89E54 /* RatesViewController.swift in Sources */,
+				D10475DC225DFA4500F89E54 /* CarBookingPopupView.swift in Sources */,
+				D10475DD225DFA4500F89E54 /* SettingsCityItemViewModel.swift in Sources */,
+				D10475DE225DFA4500F89E54 /* MapViewModel.swift in Sources */,
+				D10475DF225DFA4500F89E54 /* SupportViewModel.swift in Sources */,
+				D10475E0225DFA4500F89E54 /* RatesViewModel.swift in Sources */,
+				D10475E1225DFA4500F89E54 /* PushNotificationController.swift in Sources */,
+				D10475E2225DFA4500F89E54 /* GMUGeometryCollection.m in Sources */,
+				D10475E3225DFA4500F89E54 /* Favorite.swift in Sources */,
+				D10475E4225DFA4500F89E54 /* Category.swift in Sources */,
+				D10475E5225DFA4500F89E54 /* NoCarTripsViewController.swift in Sources */,
+				D10475E6225DFA4500F89E54 /* Address.swift in Sources */,
+				D10475E7225DFA4500F89E54 /* SpeechController.swift in Sources */,
+				D10475E8225DFA4500F89E54 /* Reachability.swift in Sources */,
+				D10475E9225DFA4500F89E54 /* NoFeedsViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -2527,6 +3395,56 @@
 			};
 			name = Release;
 		};
+		D1047687225DFA4500F89E54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12BD9A4E8CC3790D275FA4CE /* Pods-Sharengo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/SharengoNL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISDEBUG\"";
+				PRODUCT_BUNDLE_IDENTIFIER = it.eteria.sharengo.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D1047688225DFA4500F89E54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 361C1EE550F3B9319FCE3EC9 /* Pods-Sharengo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sharengo/Sharengo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/SharengoNL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISRELEASE\"";
+				PRODUCT_BUNDLE_IDENTIFIER = it.eteria.sharengo.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sharengo/Classes/Various/Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2544,6 +3462,15 @@
 			buildConfigurations = (
 				4DCD1A7F1ECDBF7400FC8BF5 /* Debug */,
 				4DCD1A801ECDBF7400FC8BF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1047686225DFA4500F89E54 /* Build configuration list for PBXNativeTarget "SharengoNL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1047687225DFA4500F89E54 /* Debug */,
+				D1047688225DFA4500F89E54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

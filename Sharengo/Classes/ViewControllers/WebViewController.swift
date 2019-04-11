@@ -96,13 +96,9 @@ extension WebViewController: UIWebViewDelegate {
     
     
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: NSError) {
-        
-        /*let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-            alertView.dismissAlertView()
-            //Router.back(self)
-            webView.reload()
-        })*/
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+
+        guard let error: NSError = error as? NSError else { return }
         let errorForm = -999
         let messageError = error.code
         if(messageError != errorForm){

@@ -168,7 +168,7 @@ class CoreController
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     fileprivate func updatePolygons()
@@ -190,7 +190,7 @@ class CoreController
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     fileprivate func updateCities()
@@ -216,7 +216,7 @@ class CoreController
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     fileprivate func updateUser()
@@ -266,7 +266,7 @@ class CoreController
                     default:
                         break
                     }
-                }.addDisposableTo(self.disposeBag)
+                }.disposed(by: self.disposeBag)
         }
     }
     
@@ -346,7 +346,7 @@ class CoreController
                 default:
                     break
                 }
-            }.addDisposableTo(self.disposeBag)
+            }.disposed(by: self.disposeBag)
     }
     
     fileprivate func updateCarTrips(_ completion: ((_ thereAreTrips: Bool)->())? = nil)
@@ -381,7 +381,7 @@ class CoreController
             default: break
             }
             
-        }.addDisposableTo(disposeBag)
+            }.disposed(by: disposeBag)
     }
     
     fileprivate func stopUpdateData()

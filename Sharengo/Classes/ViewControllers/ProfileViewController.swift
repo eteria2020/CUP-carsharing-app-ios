@@ -49,6 +49,6 @@ public class ProfileViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 }

@@ -84,7 +84,7 @@ public class CarBooking: ModelType, Gloss.JSONDecodable {
                     default:
                         break
                     }
-                }.addDisposableTo(CoreController.shared.disposeBag)
+                }.disposed(by: CoreController.shared.disposeBag)
         }
     }
 }

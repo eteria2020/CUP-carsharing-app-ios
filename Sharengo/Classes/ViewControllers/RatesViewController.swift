@@ -37,21 +37,21 @@ class RatesViewController : BaseViewController, ViewModelBindable {
         self.viewModel = viewModel
         self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         viewModel.ratesDescription.asObservable()
             .subscribe(onNext: {[weak self] (value) in
                 DispatchQueue.main.async {
                     self?.lbl_rates.styledText = value
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         viewModel.bonusDescription.asObservable()
             .subscribe(onNext: {[weak self] (value) in
                 DispatchQueue.main.async {
                     self?.lbl_bonus.styledText = value
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - View methods
@@ -83,7 +83,7 @@ class RatesViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Buttons
         self.btn_signup.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_ratesSignup".localized())
@@ -92,7 +92,7 @@ class RatesViewController : BaseViewController, ViewModelBindable {
                 let destination: SignupViewController = (Storyboard.main.scene(.signup))
                 destination.bind(to: ViewModelFactory.signup(), afterLoad: true)
                 self.navigationController?.pushViewController(destination, animated: true)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         // Other
         switch Device().diagonal {

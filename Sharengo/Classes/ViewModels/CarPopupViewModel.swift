@@ -125,7 +125,7 @@ public final class CarPopupViewModel: ViewModelTypeSelectable {
                     default:
                         break
                     }
-                }.addDisposableTo(CoreController.shared.disposeBag)
+                }.disposed(by: CoreController.shared.disposeBag)
         }
         if let distance = car.distance {
             let restultDistance = getDistanceFromMeters(inputedMeters: Int(distance.rounded(.up)))
@@ -160,7 +160,7 @@ public final class CarPopupViewModel: ViewModelTypeSelectable {
                             self?.address.value = address
                         }
                     }
-                }).addDisposableTo(disposeBag)
+                }).disposed(by: disposeBag)
         }
     }
     

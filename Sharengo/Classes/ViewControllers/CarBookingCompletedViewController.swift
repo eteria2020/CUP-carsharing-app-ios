@@ -42,7 +42,7 @@ public class CarBookingCompletedViewController : BaseViewController, ViewModelBi
                 CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
             default: break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.lbl_thanks.styledText = String(format: "lbl_carBookingCompletedCo2".localized(), viewModel.co2)
     }
 
@@ -75,6 +75,6 @@ public class CarBookingCompletedViewController : BaseViewController, ViewModelBi
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 }

@@ -179,7 +179,7 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
                         }
                     }
                 }
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - View methods
@@ -203,14 +203,14 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
             default:
                 break
             }
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         
         // Buttons
         self.btn_back.setImage(self.btn_back.image(for: .normal)?.tinted(UIColor.white), for: .normal)
         self.btn_back.rx.tap.asObservable()
             .subscribe(onNext:{
                 Router.back(self)
-            }).addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         // Labels
         self.lbl_title.textColor = Color.settingsCitiesHeaderLabel.value

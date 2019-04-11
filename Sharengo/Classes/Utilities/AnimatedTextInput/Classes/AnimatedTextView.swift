@@ -42,7 +42,7 @@ extension AnimatedTextView: TextInput {
         set { self.selectedTextRange = newValue }
     }
 
-    open var currentBeginningOfDocument: UITextPosition? {
+    public var currentBeginningOfDocument: UITextPosition? {
         return self.beginningOfDocument
     }
 
