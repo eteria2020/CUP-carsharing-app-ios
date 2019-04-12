@@ -25,6 +25,8 @@ public enum SettingsLanguageSelectionInput : SelectionInput {
 public enum SettingsLanguageSelectionOutput : SelectionOutput {
     case english
     case italian
+    case slovack
+    case dutch
     case empty
 }
 
@@ -74,6 +76,8 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
         languages.removeAll()
         var italian: Bool = false
         var english: Bool = false
+        var slovak: Bool = false
+        var dutch: Bool = false
         var languageid = "0"
         if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
             if let username = KeychainSwift().get("Username") {
@@ -88,10 +92,34 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
         {
             english = true
         }
+        else if languageid == "sk"
+        {
+            slovak = true
+        }
+        else if languageid == "nl"
+        {
+            dutch = true
+        }
         let languageItem1 = Language(title: "language_italian", action: .italian, selected: italian)
         let languageItem2 = Language(title: "language_english", action: .english, selected: english)
-        languages.append(languageItem1)
-        languages.append(languageItem2)
+        let languageItem3 = Language(title: "language_slovack", action: .slovack, selected: slovak)
+        let languageItem4 = Language(title: "language_dutch", action: .dutch, selected: dutch)
+        if(Config().language == "it")
+        {
+            languages.append(languageItem1)
+            languages.append(languageItem2)
+        }
+        else if(Config().language == "sk")
+        {
+            languages.append(languageItem3)
+            languages.append(languageItem2)
+        }
+        else if(Config().language == "nl")
+        {
+            languages.append(languageItem4)
+            languages.append(languageItem2)
+        }
+       
         self.dataHolder = ListDataHolder(data:Observable.just(languages).structured())
     }
 }

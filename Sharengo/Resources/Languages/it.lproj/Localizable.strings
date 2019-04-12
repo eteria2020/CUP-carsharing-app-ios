@@ -28,6 +28,8 @@
 "btn_car" = "PRENOTA AUTO";
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
+"language_slovack" = "Slovacchia";
+"language_dutch" = "Olandese";
 
 
 // Signup

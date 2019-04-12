@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Action
 
- extension UIViewController : RouterSource {
+extension UIViewController : RouterSource {
     
 }
 
@@ -26,15 +26,15 @@ public protocol ErrorReceiver {
 }
 
 public protocol ViewControllerActionBindable {
-//     func showLoader()
-//     func hideLoader()
-//     func showError(_ error:ActionError)
+    //     func showLoader()
+    //     func hideLoader()
+    //     func showError(_ error:ActionError)
 }
 
 public extension ViewControllerActionBindable where Self: UIViewController {
     public func bindTo(observable:Observable<ActionError>) -> Disposable {
         return observable.subscribe(onNext: {[weak self] error in
-                self?.showError(error)
+            self?.showError(error)
         })
     }
     
@@ -49,7 +49,7 @@ public extension ViewControllerActionBindable where Self: UIViewController {
         
         return observable.subscribe(onNext: {[weak self] isLoading in
             print(isLoading) //TODO
-             //isLoading ? self?.showLoader() : self?.hideLoader()
+            //isLoading ? self?.showLoader() : self?.hideLoader()
         })
     }
 }
@@ -63,11 +63,11 @@ public extension ViewModelBindableType where Self : UIViewController {
                 self?.bind(to:viewModel)
             }).disposed(by: vc.disposeBag)
         }
-        
+            
         else {
             self.bind(to: viewModel)
         }
     }
-   
+    
     
 }

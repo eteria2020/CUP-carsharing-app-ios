@@ -56,6 +56,24 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
                 }
                 Localize.setCurrentLanguage("en")
                 self.updateLanguages()
+            case .slovack:
+                if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+                    if let username = KeychainSwift().get("Username") {
+                        dictionary[username] = "sk"
+                        UserDefaults.standard.set(dictionary, forKey: "languageDic")
+                    }
+                }
+                Localize.setCurrentLanguage("sk")
+                self.updateLanguages()
+            case .dutch:
+                if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+                    if let username = KeychainSwift().get("Username") {
+                        dictionary[username] = "nl"
+                        UserDefaults.standard.set(dictionary, forKey: "languageDic")
+                    }
+                }
+                Localize.setCurrentLanguage("nl")
+                self.updateLanguages()
             default: break
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateData"), object: nil)
@@ -86,10 +104,8 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
         case 5.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 32
-        case 5.8:
-            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
         }
         // NavigationBar
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))

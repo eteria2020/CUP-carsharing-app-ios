@@ -75,7 +75,7 @@ extension WebViewController: UIWebViewDelegate {
                     }
                 }
             case .signup:
-                if request.url?.absoluteString == "http://www.sharengo.it/signup-3/mobile" {
+                if request.url?.absoluteString == Config().signup3_EndPoint {
                     let dispatchTime = DispatchTime.now() + 3
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                         if let viewControllers = self.navigationController?.viewControllers {

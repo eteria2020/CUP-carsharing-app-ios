@@ -10,11 +10,16 @@ import Foundation
 import RxSwift
 
 import Action
+var config = Config()
+
 
 enum WebType: String {
+    //link modificati in extension
     case empty = ""
     case forgotPassword = "https://www.sharengo.it/forgot-password/mobile"
     case signup = "http://www.sharengo.it/signup/mobile"
+    
+    
 }
 
 final class WebViewModel: ViewModelType {
@@ -34,6 +39,20 @@ final class WebViewModel: ViewModelType {
             for cookie in cookies {
                 HTTPCookieStorage.shared.deleteCookie(cookie)
             }
+        }
+    }
+}
+extension WebType:RawRepresentable {
+    
+    public typealias RawValue = String
+    
+    
+    /// Backing raw value
+    public var rawValue: RawValue {
+        switch self {
+        case .empty:     return ""
+        case .forgotPassword:     return Config().forgetPsw_EndPoint
+        case .signup:   return Config().signup_EndPoint
         }
     }
 }

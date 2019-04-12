@@ -45,7 +45,7 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
         
         self.showLoader()
         URLSession.shared.reset { 
-            var request = URLRequest(url: URL(string: "url_ita_userArea".localized())!)
+            var request = URLRequest(url: URL(string: Config().userArea_EndPoint)!)
             request.httpMethod = "POST"
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("PasswordClear")!
@@ -72,40 +72,11 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                     }
                    
                         if KeychainSwift().get("DisableReason") != nil {
-                            let url = URL(string: "url_ita_disableReason".localized())
+                            let url = URL(string: Config().disableReason_EndPoint)
                             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//                            let disableReason = KeychainSwift().get("DisableReason")!
-//                            switch disableReason{
-//                            case "FAILED_PAYMENT":
-//                                    let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
-//                                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//                               case "FIRST_PAYMENT_NOT_COMPLETED":
-//                                    let url = URL(string: "https://www.sharengo.it/area-utente/dati-pagamento/mobile")
-//                                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//                                 case "INVALID_DRIVERS_LICENSE":
-//                                    let url = URL(string: "https://www.sharengo.it/area-utente/patente/mobile")
-//                                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//                                 /*case "DISABLED_BY_WEBUSER":
-//                                    //va nella view di assistenza gestista al click dell'okkei va nel default e apre la home al secondo click.
-//                                    self.launchAssistence()*/
-//                                case "EXPIRED_DRIVERS_LICENSE":
-//                                        let url = URL(string: "https://www.sharengo.it/area-utente/patente/mobile")
-//                                        self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//                                case "EXPIRED_CREDIT_CARD":
-//                                    let url = URL(string: "https://www.sharengo.it/area-utente/dati-pagamento/mobile")
-//                                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//                                case "REGISTRATION_NOT_COMPLETED":
-//                                    let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
-//                                    self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//
-//                            default:
-//
-//                                let url = URL(string: "https://www.sharengo.it/area-utente/mobile")
-//                                self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-//                            }
                         }
                         else{
-                            let url = URL(string: "url_ita_disableReason".localized())
+                            let url = URL(string: Config().disableReason_EndPoint)
                             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
                         }
                 }
@@ -182,20 +153,7 @@ extension UserAreaViewController: UIWebViewDelegate {
             dialog.allowTouchOutsideToDismiss = false
             dialog.show()
         }
-       /* let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
-                                okButtonHandler: { alertView in
-                                    let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
-                                    let viewModel = ViewModelFactory.tutorial()
-                                    destination.bind(to: viewModel, afterLoad: true)
-                                    self.present(destination, animated: true, completion: nil)
-                                    alertView.dismissAlertView()
-        },
-                                cancelButtonHandler: { alertView in
-                                    Router.back(self)
-                                    alertView.dismissAlertView()
-        })
-        dialog.allowTouchOutsideToDismiss = false
-        dialog.show()*/
+       
     }
     
     

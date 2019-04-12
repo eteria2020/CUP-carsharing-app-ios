@@ -45,7 +45,7 @@ class GenericWebViewController : BaseViewController, ViewModelBindable {
                 let url = URL(string: urlPush)
                 self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
             }else{
-                let url = URL(string: "https://www.sharengo.it")
+                let url = URL(string: Config().site_Endpoint)
                 self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
             }
            

@@ -42,7 +42,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
      
         URLSession.shared.reset {
 
-            let url = URL(string: "url_ita_noteLegali".localized())
+            let url = URL(string: Config().legalNote_EndPoit)
             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
         }
     }
@@ -104,31 +104,20 @@ extension LegalNoteViewController: UIWebViewDelegate {
         return true
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
-//        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_tutorial".localized(), cancelButtonText: "btn_back".localized(),
-//                                okButtonHandler: { alertView in
-//                                    let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
-//                                    let viewModel = ViewModelFactory.tutorial()
-//                                    destination.bind(to: viewModel, afterLoad: true)
-//                                    self.present(destination, animated: true, completion: nil)
-//                                    alertView.dismissAlertView()
-//        },
-//                                cancelButtonHandler: { alertView in
-//                                    Router.back(self)
-//                                    alertView.dismissAlertView()
-//        })
-//        dialog.allowTouchOutsideToDismiss = false
-//        dialog.show()
-        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_back".localized(),
-                                okButtonHandler: { alertView in
-                                    alertView.dismissAlertView() },
-                                
-                                cancelButtonHandler: { alertView in
-                                Router.back(self)
-                                 alertView.dismissAlertView()
-        })
-        dialog.allowTouchOutsideToDismiss = false
-        dialog.show()
-    }
+     
+        func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+            guard let error: NSError = error as? NSError else { return }
+            let errorForm = -999
+            let messageError = error.code
+            if(messageError != errorForm){
+                let dialog = ZAlertView(title: nil, message:  "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
+            
+        }
+
 }
 

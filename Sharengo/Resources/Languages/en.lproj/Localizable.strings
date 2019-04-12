@@ -28,6 +28,8 @@
 "btn_car" = "BOOK CAR";
 "language_italian" = "Italian";
 "language_english" = "English";
+"language_slovack" = "Slovack";
+"language_dutch" = "Dutch";
 
 // Signup
 "lbl_signupHeader" = "<title>Sign up to Share'ngo</title>\nThe subscription to the service costs 10 € per 30 minutes (standard conditions, unless promotions). If your need help in the sign-up process please use the chat button!";

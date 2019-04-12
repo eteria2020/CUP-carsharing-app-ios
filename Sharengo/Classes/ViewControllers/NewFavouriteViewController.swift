@@ -134,7 +134,8 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
             self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 40
         default:
-            break
+            self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 34
+            self.btn_saveFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 40
         }
         self.txt_address.placeHolderText = "txt_newFavouriteAddressPlaceholder".localized()
         self.txt_address.style = CustomTextInputStyle1()

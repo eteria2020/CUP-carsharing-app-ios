@@ -101,8 +101,8 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
         
         if _isDebugAssertConfiguration()
         {
-            txt_email.text = "itc@sharengo.eu"
-            txt_password.text = "Sharengo1"
+            txt_email.text = Config().emailTest
+            txt_password.text = Config().pswTest
         }
         
         /*#if ISDEBUG

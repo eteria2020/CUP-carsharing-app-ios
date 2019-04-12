@@ -1,0 +1,322 @@
+//
+//  Localizable.swift
+//
+//  Created by Dedecube on 21/05/17.
+//  Copyright © 2017 Dedecube. All rights reserved.
+//
+"language" = "sk";
+
+
+//General
+"btn_ok" = "OK";
+"btn_cancel" = "ZRUŠIŤ";
+"btn_back" = "SPÄŤ";
+"btn_tutorial" = "NÁVOD";
+"btn_yes" = "ÁNO";
+"btn_no" = "NIE";
+"alert_connectionError" = "Nie sI pripojený na internet, skús to znova";
+"alert_generalError" = "Vyskytla sa chyba, skús to znova";
+"alert_loginError" = "Na používanie tejto funkcie musíš byť prihlásený";
+"alert_webViewError" = "Vyskytla sa chyba, skontroluj pripojenie k internetu alebo skús neskôr";
+"btn_login" = "PRIHLÁSENIE";
+"btn_open" = "OTVORIŤ DVERE";
+"btn_close" = "UKONČIŤ JAZDU";
+"btn_book" = "REZERVÁCIA AUTA";
+"btn_delete" = "VYMAZAŤ";
+"btn_carRides" = "HISTÓRIA JÁZD";
+"btn_detail" = "OBJAV VIAC";
+"btn_car" = "REZERVÁCIA AUTA";
+"language_italian" = "Taliančina";
+"language_english" = "Angličtina";
+"language_slovack" = "Slovak";
+"language_dutch" = "Dutch";
+
+
+//Signup
+"lbl_signupHeader" = "<title>Prihlásiť sa k službe Share'ngo </title>\nRegistrácia do služby je bezplatná. Ak potrebujete pomoc pri registrácii, použite tlačidlo chat!";
+"btn_signupSignup" = "REGISTRÁCIA";
+"lbl_signupStepTitle1" = "Ak sa chceš zaregistrovať, budeš potrebovať:";
+"lbl_signupStepDescription1" = "OBČIANSKY PREUKAZ";
+"lbl_signupStepTitle2" = "Ak sa chceš zaregistrovať, budeš potrebovať:";
+"lbl_signupStepDescription2" = "DAŇOVÝ KÓD";
+"lbl_signupStepTitle3" = "Ak sa chceš zaregistrovať, budeš potrebovať:";
+"lbl_signupStepDescription3" = "VODIČSKÝ PREUKAZ";
+"lbl_signupStepTitle4" = "Ak sa chceš zaregistrovať, budeš potrebovať:";
+"lbl_signupStepDescription4" = "KREDITNÚ KARTU";
+
+//Login
+"alert_loginMissingFields" = "Nie je vyplnené jedno alebo viac polí.";
+"alert_loginWrongEmail" = "Upozornenie! Zadaná e-mailová adresa nie je v našej databáze.";
+"alert_loginWrongPassword" = "Upozornenie! Nesprávne heslo.";
+"alert_loginUserDisabled" = "Upozornenie! Používateľovi nie je povolené prihlásenie.";
+"alert_loginUserNotEnabled" = "Upozornenie! Službu Share'ngo nemôžete používať. Skontrolujte svoje údaje alebo kontaktujte zákaznícku podporu.";
+"lbl_loginFormHeader" = "Vyplňte polia na prihlásenie";
+"txt_loginEmailPlaceholder" = "e-mail";
+"txt_loginPasswordPlaceholder" = "heslo";
+"btn_loginForgotPassword" = "Zabudol som heslo";
+"btn_loginLogin" = "PRIHLÁSENIE";
+"lbl_loginNotYetRegistered" = "Ešte si sa nezaregistroval?";
+"btn_loginRegister" = "REGISTRÁCIA";
+"btn_loginContinueAsNotLogged" = "POKRAČUJ BEZ PRIHLÁSENIA";
+
+//Menu
+"lbl_menuHeaderTitleLogged" = "Ahoj %@, vitaj späť%@!";
+"lbl_menuHeaderTitleGuest" = "Ahoj, vitaj!";
+"lbl_menuLogin" = "Prihlásenie";
+"lbl_menuSignUp" = "Registrácia";
+"lbl_menuFaq" = "Časté otázky a návody";
+"lbl_menuRates" = "Sadzby";
+"lbl_menuPin" = "Pin";
+"lbl_menuHelp" = "Požiadaj o pomoc";
+"lbl_menuProfile" = "Osobná zóna";
+"lbl_menuSearchCars" = "Objednaj si auto";
+"lbl_menuRaces" = "História jázd";
+"lbl_menuBuyMinutes" = "Kúpiť minúty";
+"lbl_menuInvite" = "Pozvi priateľa";
+"lbl_menuSettings" = "Nastavenia";
+"lbl_menuLogout" = "Odhlásenie";
+"lbl_menuLegal" = "Právne poznámky";
+
+
+//Profile
+"lbl_profileEcoStatus" = "Profil\nEko Status";
+
+//Home
+"alert_homeNotAvailable" = "Táto funkcia bude čoskoro k dispozícii.";
+"lbl_homeDescriptionLogged" = "<bold> Vitajte späť %@!</bold>";
+"lbl_homeDescriptionNotLogged" = "<bold>Vitajte!</Bold>";
+
+//Intro
+"lbl_introTitle1" = "Elektrické";
+"lbl_introTitle2" = "Zdieľané";
+"lbl_introTitle3" = "Pod\ndomom";
+
+//SearchBar
+"lbl_searchBarTextField" = "Vyhľadaj adresu alebo značku ŠPZ";
+//"lbl_searchBarTextField" = "Vyhľadaj značku ŠPZ";
+"alert_searchBarAuthSpeechAuthorizationDenied" = "Zamietol si prístup k rozpoznávaniu reči. Chceš povoliť túto službu?";
+"alert_searchBarAuthSpeechAuthorizationRestricted" = "Rozpoznávanie reči nefunguje kvôli obmedzeniam zariadenia";
+"alert_searchBarAuthSpeechAuthorizationNotDetermined" = "Prístup k rozpoznávaniu reči nieje nastavený. Chceš povoliť túto službu?";
+"alert_searchBarAuthMicrophoneDenied" = "Zamietol si prístup k mikrofónu. Chceš povoliť túto službu?";
+"alert_searchBarAuthMicrophoneUndetermined" = "Prístup k mikrofónu nieje nastavený. Chceš povoliť túto službu?";
+"alert_searchBarNotSetted" = "Vyskytla sa chyba pri používaní rozpoznávania reči";
+"alert_searchBarNotAvailable" = "Vyskytla sa chyba pri používaní rozpoznávania reči";
+"lbl_searchBarNoFavorites" = "Žiadne obľúbené\nuložiť do sekcie nastavení";
+"lbl_searchBarPlate" = "%@\nZnačka Share'ngo";
+"lcl_searchBarSpeechRecognizer" = "it-IT";
+
+//Cars
+"alert_centerMapMessage" = "Sharen'go potrebuje povolenie na prístup k Tvojej pozícii. Chceš otvoriť nastavenia na povolenie lokalizácie?";
+"alert_showCarsDisabledMessage" = "Upozornennie! Túto funkciu budeš môcť používať až po dokončení jazdy alebo aktívnej rezervácie";
+
+//CarPopup
+"lbl_carPopupType" = "Najbližšie auto";
+"lbl_carPopupPlate" = "<bold>%@</bold>";
+"lbl_carPopupCapacity" = "dojazd: <bold>%@ km</bold>";
+"lbl_carPopupDistance_km" = "%.2f km vzdialené";
+"lbl_carPopupDistance_mt" = "%.3d mt vzdialené";
+"lbl_carPopupWalkingDistance_h" = "%d hodín pešo";
+"lbl_carPopupWalkingDistance_m" = "%d minút pešo";
+"lbl_carPopupWalkingDistance_h_m" = "%d hodín a%@ minút pešo";
+"lbl_carPopupAddressPlaceholder" = "Prebieha načítavanie";
+"alert_carPopupLocalizationMessage" = "Share'ngo potrebuje poznať Tvoju pozíciu, aby otvorila dvere. Chceš otvoriť nastavenia na povolenie lokalizácie?";
+"alert_carPopupDistanceMessage" = "Si príliš ďaleko od Sharen’go auta, ktoré si si vybral. Môžeš ho otvoriť ak si v blízkosti auta.";
+"aler_carPopupOpenDoorMessage" = "Si si istý, že chceš otvoriť dvere?\nJazda sa začne hneď teraz.\nJazda bude za štandardnú sadzbu.";
+"aler_carPopupOpenDoorMessageBonus" = "Naozaj chcete otvoriť dvere? Jazda sa začne hneď teraz. \nPre túto jazdu máš %d minút zadarmo!";
+"aler_carPopupOpenDoorMessageUnplug" = "1. Otvor vozidlo a počkaj, kým sa dvere otvoria.\n2. Odpoj modrý konektor nabíjacieho kábla od auta, ale dbaj na to, aby si držal konektor a nie kábel.\n3. Odpoj kábel od nabíjacej stanice.\n4. Sieťový kábel ulož do kufra auta.\n5. Nastúp do auta a postupuj podľa pokynov na videu.\n\nUrčite chceš otvoriť dvere?";
+"aler_titlePopupOpenDoorMessageUnplug" = "Otváraš zariadenie na odpojenie:";
+"aler_carPopupOpenDoorUnparkMessage" = "Naozaj chceš pokračovať v jazde?";
+//CarBookingPopup
+"lbl_carBookingPopupPin" = "PIN: %@";
+"lbl_carBookingPopupInfo" = "<status>AKTÍVNA REZERVÁCIA</status>\n<bold>ZNAČKA ŠPZ %@</bold>\n%@";
+"lbl_carBookingPopupInfoPlaceholder" = "<status>AKTÍVNA REZERVÁCIA </status>\n<bold>ZNAČKA ŠPZ %@ </bold>\n<placeholder> Načítavanie </placeholder>";
+"lbl_carTripPopupInfo" = "<status> JAZDA AKTÍVNA </status>\n<bold>ZNAČKA ŠPZ %@</bold>\nTrvanie jazdy:";
+"lbl_carTripPopupInfo5min" = "<status> JAZDA AKTÍVNA </status>\nJazda bude automaticky ukončená po 5 minútach v prípade, že nebude zadaný kód PIN \n<bold>ZNAČKA ŠPZ %@</bold>\nTrvanie jazdy:";
+"lbl_carBookingPopupTime" = "Platnosť vyprší \n%@";
+"lbl_carBookingPopupTimeMinute" = "minúta";
+"lbl_carBookingPopupTimeMinutes" = "minúty";
+"alert_carBookingPopupDeleteMessage" = "Zrušením tejto rezervácie nebudeš môcť rezervovať ten istý automobil v nasledujúcich 4 hodinách. Naozaj chceš zrušiť svoju rezerváciu?";
+"alert_carBookingPopupConfirmDeleteMessage" = "Tvoja rezervácia bola úspešne zrušená.";
+"alert_carBookingPopupBookedMessage" = "Už máš aktívnu rezerváciu";
+"alert_carBookingPopupAlreadyBooked" = "Toto auto nemôžeš rezervovať až do uplynutia 4 hodín od zrušenia rezervácie";
+"alert_carBookingPopupOnTrip" = "Niekto používa tento Share'ngo";
+"alert_carBookingPopupStatus" = "Toto auto nie je k dispozícii, ospravedlňujeme sa za nepríjemnosti";
+"alert_carBookingPopupGeneric" = "Vyskytla sa chyba";
+"alert_carBookingPopupActiveTripOnReservation" = "Nieje možné rezervovať Share’ngo počas používania";
+"alert_carBookingPopupActiveTripOnOpenCar" = "Jazda je už aktívna";
+
+//CarBookingCompleted
+"lbl_carBookingCompletedDescription" = "<bold> Ukončil si prenájom </bold>\n\nV priebehu 24 hodín dostaneš potvrdenie transakcie e-mailom.";
+"lbl_carBookingCompletedCo2" = "<bold>Ďakujeme!</bold>\n\n SVOJOU CESTOU SI ZNÍŽIL ŠKODLIVÉ EMISIE CO2 O %0.1f GRAMOV!";
+"banner_carBookingCompletedTitle" = "Share'ngo";
+"banner_carBookingCompletedDescription" = "Jazda bola ukoncená. Jazda trvala %@ a v poriadku sa ukončila. Ďakujeme za používanie Share'ngo.";
+"banner_carBookingCompletedDescriptionLess5Min" = "Jazda bola ukoncená. Jazda trvala %@ a v poriadku sa ukončila bezplatne. Ďakujeme za používanie Share'ngo.";
+"banner_carBookingDeletedTitle" = "Share'ngo";
+"banner_carBookingDeletedDescription" = "Doba rezervácie vypršala, vaša rezervácia bola zrušená. Zvoľte iné auto na mape.";
+
+//Setting
+"lbl_settingsHeaderTitle" = "NASTAVENIA";
+"lbl_settingsCities" = "Nastaviť mesto";
+"lbl_settingsFavourites" = "Nastavte svoje obľúbené adresy";
+"lbl_settingsLanguages" = "Nastavte jazyk";
+"lbl_settingsNotifications" = "Nastavte upozornenia";
+
+//Setting Languages
+"lbl_settingsLanguagesHeaderTitle" = "NASTAVENIE JAZYKA";
+
+//Setting Cities
+"lbl_settingsCitiesHeaderTitle" = "NASTAVENIE MESTA";
+
+//Setting Favourites
+"lbl_noFavouritesHeaderTitle" = "NASTAVIŤ OBLÚBENÉ ADRESY";
+"lbl_noFavouritesTitle" = "Škoda!";
+"lbl_noFavouritesDescription" = "Nemáš ešte žiadnu obľúbenú ani nedávnu adresu! Nastav najčastejšie ciele a ušetríš čas pri výbere miesta.";
+"btn_noFavouritesNewFavourite" = "NASTAVIŤ NOVÚ ADRESU";
+"lbl_newFavouriteHeaderTitle" = "NOVÁ OBĽÚBENÁ ADRESA";
+"lbl_newFavouriteTitle" = "Nastav novú adresu";
+"lbl_newFavouriteDescription" = "pridať ju do obľúbených";
+"txt_newFavouriteAddressPlaceholder" = "nastaviť adresu";
+"txt_newFavouriteNamePlaceholder" = "obľúbené meno";
+"btn_newFavouriteSaveFavourite" = "ULOŽIŤ OBĽÚBENÉ";
+"btn_newFavouriteUndo" = "Zrušiť";
+"alert_newFavouriteMissingFields" = "Nie je dokončené jedno alebo viac polí.";
+"lbl_favouritesHeaderTitle" = "NASTAVIŤ OBLÚBENÉ ADRESY";
+"lbl_favouritesTitle" = "<bold>Nastav svoje obľúbené adresy </bold>\npre rýchlejšie vyhľadávanie";
+"lbl_favouritesItemTitle1" = "<bold>%@</bold>\n%@";
+"lbl_favouritesItemTitle2" = "%@";
+"btn_favouritesUndo" = "Zrušiť";
+"btn_favouritesDelete" = "VYMAZAŤ";
+"lbl_favouritesDeleteFav" = "Chceš túto adresu odstrániť zo zoznamu obľúbených adries?";
+"lbl_favouritesDeleteHis" = "Chceš túto adresu odstrániť zo zoznamu posledných adries?";
+"lbl_favouritesModify" = "Chceš zmeniť túto obľúbenú adresu?";
+"lbl_favouritesAdd" = "Chceš pridať túto nedávnu adresu do zoznamu Tvojich obľúbených adries?";
+"lbl_favouritesNoFavorites" = "Zadaj adresu, ktorú chceš pridať do obľúbených položiek";
+
+//CarTrip
+"lbl_carTripsHeaderTitle" = "PORADIE JÁZD";
+"lbl_carTripsItemTitle" = "Jazda č. %@";
+"lbl_carTripsItemSubtitle" = "%@";
+"lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0.2f";
+"lbl_carTripsDateFormatter" = "dd MMMM rrrr";
+"lbl_carTripsTimeFormatter" = "HH: mm: ss";
+"lbl_carTripsItemDescription" = "%@ - HODINY %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime> %@ - HODÍN %@</startDateAndTime>\n%@\n<endDateAndTime>KONIEC: %@ - HODÍN %@</endDateAndTime>\n%@\n<kmTraveled> Sadzba za minútu: € %0.2f</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Načítanie</placeholder>";
+"lbl_noCarTripsTitle" = "Škoda!";
+"lbl_noCarTripsDescription" = "Zatiaľ nemáš žiadnu jazdu s SHARE'Ngo!";
+"lbl_noCarTrips" = "Na čo ešte čakáš? ";
+"btn_searchCars" = "PREJDI NA MAPU";
+
+//OnBoard
+"lbl_onBoardStep1Description" = "Jednoduché a\nzábavné jazdy";
+"lbl_onBoardStep2Description" = "Čím viac minút potrebuješ,\ntým je to lacnejšie";
+"lbl_onBoardStep3Description" = "Každá jazda je prekvapením a objavom";
+"btn_onBoardSkip" = "Preskočiť >>";
+
+//Feed
+"btn_feedsHeaderFeed" = "FEED";
+"btn_feedsHeaderCategories" = "KATEGÓRIE";
+"btn_feedsAroundMe" = "POZRI NA MAPE";
+
+
+//Feed Detail
+"alert_categoryNotPublished" = "Táto kategória bude čoskoro k dispozícii.";
+"btn_feedDetailFavourite" = "MÁM ZÁUJEM";
+"btn_feedDetailNotFavourite" = "NEMÁM ZÁUJEM";
+"lbl_noFeedsDescriptionWithCategory" = "<title>Chyba!</title>\n\n<description>Momentálne pre Tvoje mesto nie je vo zvolenej kategórii k dispozícii žiadny obsah. Skús to znova znova v najbližších dňoch</description>";
+"btn_feed lbl_noFeedsDescriptionWithNoCategoryDetailNotFavourite" = "<title>Chyba!</title>\n\n<description>V súčasnosti nie je pre Tvoje mesto k dispozícii žiadny obsah. Skús to znova v najbližších dňoch</description>";
+
+
+//Support
+"lbl_supportHeaderTitle" = "POŽIADAJ O POMOC";
+"lbl_supportTitle" = "Sme tu, aby sme Ti pomohli!";
+"lbl_supportSubtitle" = "Chceš hovoriť s operátorom?";
+"btn_supportCall" = "ZAVOLAJ";
+"btn_supportWriteMail" = "NAPÍŠ MAIL";
+"alert_supportCall" = "+421 905 333 109";
+"alert_supportEmail" = "Chceš sa obrátiť na zákaznícky servis?";
+"alert_noSupportCall" = "Váš prístroj nepovoľuje hovory";
+"alert_noSupportEmail" = "Konfiguruj e-maily v zariadení. Kontaktuj nás na zakaznickyservis@sharengo.sk";
+"supportTelephoneNumber" = "+421905333109";
+"btn_supportAlertCall" = "Volaj";
+"btn_supportAlertWrite" = "Napíš";
+
+//Invite Friend
+"lbl_inviteFriendHeader" = "POZVI PRIATEĽOV";
+"lbl_inviteFriendDescriptionFirstPart" = "<title>Pozvi priateľa a získaj minúty!</title>\n<subtitle>Pri registrácii</subtitle>";
+"lbl_inviteFriendDescriptionSecondPart" = "dostanete 10 minút voľnej jazdy";
+"lbl_inviteFriendDescriptionThirdPart" = "<firstPart>ako darček na privítanie</firstPart>\n\n<secondPart>Za každého priateľa, ktorý sa zaregistruje\nvďaka Tvojej pozvánke</secondPart>";
+"lbl_inviteFriendDescriptionFourthPart" = "dostanete 20 minút voľnej jazdy!";
+"btn_inviteFriendInvite" = "POŠLI POZVÁNKU";
+"lbl_inviteFriendInviteDescription" = "Ahoj! Použi aplikáciu Share'ngo";
+"lbl_faqHeader" = "FAQ - často kladené otázky";
+"btn_faqAppTutorial" = "NÁVOD NA APLIKÁCIU";
+
+//Faq
+"img_tutorial01" = "tutorial_01";
+"img_tutorial02" = "tutorial_02";
+"img_tutorial03" = "tutorial_03";
+"img_tutorial04" = "tutorial_04";
+"img_tutorial05" = "tutorial_05";
+"img_tutorial06" = "tutorial_06";
+"img_tutorial07" = "tutorial_07";
+"img_tutorial08" = "tutorial_08";
+"img_tutorial640x960_01" = "tutorial_640x960_01";
+"img_tutorial640x960_02" = "tutorial_640x960_02";
+"img_tutorial640x960_03" = "tutorial_640x960_03";
+"img_tutorial640x960_04" = "tutorial_640x960_04";
+"img_tutorial640x960_05" = "tutorial_640x960_05";
+"img_tutorial640x960_06" = "tutorial_640x960_06";
+"img_tutorial640x960_07" = "tutorial_640x960_07";
+"img_tutorial640x960_08" = "tutorial_640x960_08";
+"alert_closeTutorial" = "Chceš ukončiť výukový program?\nMôžeš sa k tomu vrátiť kedykoľvek, v časti \"Faq a návod\".";
+"btn_tutorialAlertStay" = "OSTAŤ";
+"btn_tutorialAlertClose" = "ODÍSŤ";
+
+
+"lbl_ratesHeader" = "SADZBY A BONUSY";
+"lbl_ratesLoggedRatesTitle" = "Tu je vaša sadzba:";
+"lbl_ratesNotLoggedRatesTitle" = "Tu sú sadzby Share'ngo:";
+"lbl_ratesRatesDescription" = "<description>Základná sadzba jazdy: </description> <value> € 0.2f </value>\n<description>Sadzba za 1 hodinu: </description> <value> € 0.2f </value>\n<description> Denná sadzba: </description> <value>€% 0.2f</value>\n<description>";
+"lbl_ratesBonusTitle" = "Vaše bonusové minúty:";
+"lbl_ratesBonusDescription" = "  %d minút";
+"btn_ratesSignup" = "PRIHLÁSIŤ TERAZ";
+
+//PIN
+"lbl_pinHeader" = "PIN";
+"lbl_pinPinTitle" = "Tu je Tvoj pin:";
+
+//Logout
+"lbl_logoutMessage" = "Naozaj sa chceš odhlásiť?";
+"lbl_logoutConfirmButton" = "ODHLÁSIŤ";
+"lbl_legalNoteHeader" = "PRÁVNE POZNÁMKY";
+"alert_logoutError" = "Pozor, došlo k chybe. Skús sa znova prihlásiť.";
+"btn_login" = "PRIHLÁSENIE";
+"lbl_buyMinutesHeader" = "KÚPIŤ MINÚTY";
+"lbl_userAreaHeader" = "OSOBNÁ ZÓNA";
+"lbl_carTripParkingPopupInfo" = "<status>ZAPARKOVANÉ AUTO</status>\n<bold>ZNAČKA ŠPZ %@</bold>\nTrvanie cesty:";
+
+//Disable reason message
+"lbl_carPopupFreeType" = "S týmto vozidlom %d minút jazdy zadarmo!";
+"lbl_carPopupFreeTypeUnplug" = "S týmto vozidlom %d minút jazdy zadarmo! Nezabudnite odpojiť!";
+"first_payment_login_alert" = "Si zablokovaný za neuhradenie prvého poplatku, ak chceš používať Share'ngo prihlás sa vo svojej osobnej zóne pokračuj v úhrade poplatku.";
+"failed_payment_login_alert" = "Si zablokovaný za neuhradenie poplatku, ak chceš používať Share'ngo prihlás sa vo svojej osobnej zóne pokračuj v úhrade poplatku.";
+"invalid_driver_license_login_alert" = " Tvoj účet je zablokovaný. Počkaj kým Tvoj profil verifikujeme. O aktivácii účtu dostaneš potvrdzovací e-mail.";
+"disabled_webuser_login_alert" = "Tvoj profil je zablokovaný, pre bližšie informácie sa obráť na zákaznícky servis";
+"expired_driver_license_login_alert" = "Si vyradený z dôvodu neplatného vodičského preukazu. Aby si mohol používať Share'ngo vstúp do svojho osobného profilu a aktualizuj údaje";
+"expired_credit_card_login_alert" = "Si vyradený, pretože platnosť zadanej platobnej karty vypršala. Aby si mohol použiť Share'ngo vstúp do svojho osobného profilu a aktualizuj údaje";
+"failed_extra_payment_login_alert" = "Si vyradený z dôvodu zlyhania úhrady pokuty, pre viac informácií kontaktuj zákaznícky servis.";
+"registration_not_completed_login_alert" = "Si vyradený, pretože je potrebné dokončiť proces registrácie.";
+//Push request
+"push_request_alert_message" = "Aktivovať upozornenie push";
+"btn_go_to_settings" = "Prijať";
+//close car popup
+"alert_closeCarPopoup" = "Auto sa zakrátko uzatvorí, obdržíte upozornenie o ukončení procesu.";
+"alert_closeCarPopoupConfirm" = "Naozaj chceš ukončiť jazdu?";
+
+
+//webView
+
+"url_webView_UserArea" = "https://public.sharengo.sk/user/login?lang=sk_SK";
+"url_webView_SignUp" = "https://public.sharengo.sk/signup/mobile?lang=sk_SK";
+"url_webView_SignUpForgotPassword" = "https://public.sharengo.sk/signup/mobile?lang=sk_SK";

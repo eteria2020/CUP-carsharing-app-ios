@@ -33,6 +33,10 @@ target 'SharengoNL' do
     use_frameworks!
     shared_pods
 end
+target 'SharengoSK' do
+    use_frameworks!
+    shared_pods
+end
 
 
 post_install do |installer|
