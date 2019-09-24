@@ -60,7 +60,7 @@ class WebViewController : BaseViewController, ViewModelBindable {
 }
 
 extension WebViewController: UIWebViewDelegate {
-    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         if let type = viewModel?.type {
             switch type {
             case .forgotPassword:

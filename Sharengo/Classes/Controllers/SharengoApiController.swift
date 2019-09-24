@@ -8,7 +8,6 @@
 import Foundation
 import Moya
 import Gloss
-import Moya_Gloss
 import RxSwift
 import MapKit
 import Alamofire
@@ -47,10 +46,10 @@ final class SharengoApiController {
     func getPolygons() -> Observable<[Polygon]> {
         return Observable.create{ observable in
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { (status, _) in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.rx.request(.polygons())
+            return provider.rx.request(.polygons)
                 .asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: JSONPolygons.self)
+                .mapJSONObject(type: JSONPolygons.self)
                 .subscribe { event in
                     switch event {
                     case .next(let JSONPolygons):
@@ -80,7 +79,7 @@ final class SharengoApiController {
             return provider.rx.request(.osmAddress(text: text))
                 .asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapArray(type: Address.self)
+                .mapJSONArray(type: Address.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -97,7 +96,7 @@ final class SharengoApiController {
 }
 
 fileprivate enum API {
-    case polygons()
+    case polygons
     case osmAddress(text: String)
 }
 
@@ -108,7 +107,7 @@ extension API: TargetType {
     
     var baseURL: URL {
         switch self {
-        case .polygons():
+        case .polygons:
           return URL(string: Config().site_Endpoint)!
             
         case .osmAddress(_):
@@ -118,7 +117,7 @@ extension API: TargetType {
     
     var path: String {
         switch self {
-        case .polygons():
+        case .polygons:
             return "zone"
         
         case .osmAddress(_):
@@ -132,7 +131,7 @@ extension API: TargetType {
     
     var parameters: [String: Any] {
         switch self {
-        case .polygons():
+        case .polygons:
             return ["format": "json"]
         
         case .osmAddress(let text):

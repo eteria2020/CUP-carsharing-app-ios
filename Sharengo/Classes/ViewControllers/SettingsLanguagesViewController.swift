@@ -95,7 +95,7 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
         self.view_header.backgroundColor = Color.settingHeaderBackground.value
         self.lbl_title.textColor = Color.settingHeaderLabel.value
         
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:

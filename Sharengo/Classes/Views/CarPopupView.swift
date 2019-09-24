@@ -270,7 +270,7 @@ public class CarPopupView: UIView {
         self.btn_detail.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_detail".localized())
         self.btn_car.style(.roundedButton(Color.alertButtonsPositiveBackground.value), title: "btn_car".localized())
         self.view_separator.constraint(withIdentifier: "separatorHeight", searchInSubviews: false)?.constant = 1
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.constraint(withIdentifier: "buttonsHeight", searchInSubviews: true)?.constant = 35
             self.constraint(withIdentifier: "buttonHeight1", searchInSubviews: true)?.constant = 28

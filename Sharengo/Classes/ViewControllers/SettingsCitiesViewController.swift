@@ -66,7 +66,7 @@ public class SettingsCitiesViewController : BaseViewController, ViewModelBindabl
         // self.view.layoutIfNeeded()
         self.view_header.backgroundColor = Color.settingsCitiesHeaderBackground.value
         self.lbl_title.textColor = Color.settingsCitiesHeaderLabel.value
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:

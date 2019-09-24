@@ -229,7 +229,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
         
         if normal {
             
-            switch Device().diagonal
+            switch Device.current.diagonal
             {
             case 3.5:
                 self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
@@ -246,7 +246,7 @@ final class CarBookingPopupViewModel: ViewModelTypeSelectable
             }
         }
         else{
-            switch Device().diagonal
+            switch Device.current.diagonal
             {
             case 3.5:
                 self.carBookingPopupView?.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180

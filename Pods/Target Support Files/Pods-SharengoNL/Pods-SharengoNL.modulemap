@@ -1,0 +1,6 @@
+framework module Pods_SharengoNL {
+  umbrella header "Pods-SharengoNL-umbrella.h"
+
+  export *
+  module * { export * }
+}

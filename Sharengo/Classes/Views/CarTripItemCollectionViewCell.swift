@@ -62,7 +62,7 @@ class CarTripItemCollectionViewCell: UICollectionViewCell, ViewModelBindable {
                 }
             }).disposed(by: disposeBag)
         
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.constraint(withIdentifier: "topImgIcon", searchInSubviews: true)?.constant = -3
             self.constraint(withIdentifier: "bottomLblTitle", searchInSubviews: true)?.constant = 1

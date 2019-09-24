@@ -8,7 +8,6 @@
 import Foundation
 import Moya
 import Gloss
-import Moya_Gloss
 import RxSwift
 import MapKit
 import Alamofire
@@ -39,9 +38,9 @@ final class PublishersAPIController {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             })])
-            return provider.rx.request(.cities()).asObservable()
+            return provider.rx.request(.cities).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                 switch event {
                 case .next(let response):
@@ -59,9 +58,9 @@ final class PublishersAPIController {
     func getCategories() -> Observable<Response> {
         return Observable.create{ observable in
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.rx.request(.categories()).asObservable()
+            return provider.rx.request(.categories).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -81,7 +80,7 @@ final class PublishersAPIController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.offers(category: category)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -101,7 +100,7 @@ final class PublishersAPIController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.mapOffers(latitude: latitude, longitude: longitude, radius: radius)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -121,7 +120,7 @@ final class PublishersAPIController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.events(category: category)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -141,7 +140,7 @@ final class PublishersAPIController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.mapEvents(latitude: latitude, longitude: longitude, radius: radius)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -158,8 +157,8 @@ final class PublishersAPIController {
 }
 
 fileprivate enum API {
-    case cities()
-    case categories()
+    case cities
+    case categories
     case offers(category: Category?)
     case mapOffers(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance)
     case events(category: Category?)
@@ -175,9 +174,9 @@ extension API: TargetType {
     
     var path: String {
         switch self {
-        case .cities():
+        case .cities:
             return "cities/list"
-        case .categories():
+        case .categories:
             return "categories/list"
         case .offers(let category):
             let cid = category?.identifier ?? "0"

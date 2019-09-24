@@ -33,7 +33,7 @@ final class TutorialViewModel: ViewModelTypeSelectable {
     
     init()
     {
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             steps = [TutorialStep(stepNumber: 0, image: "img_tutorial640x960_01".localized()),
                      TutorialStep(stepNumber: 1, image: "img_tutorial640x960_02".localized()),

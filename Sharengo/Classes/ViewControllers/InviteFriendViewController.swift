@@ -54,7 +54,7 @@ public class InviteFriendViewController : BaseViewController, ViewModelBindable 
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.inviteFriendBackground.value
         self.view_header.backgroundColor = Color.inviteFriendHeaderBackground.value
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.img_top.constraint(withIdentifier: "imageHeight", searchInSubviews: false)?.constant = 130

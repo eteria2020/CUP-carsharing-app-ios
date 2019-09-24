@@ -221,7 +221,7 @@ class FeedDetailViewController : BaseViewController, ViewModelBindable {
         self.view_icon.layer.borderWidth = 1
         self.view_icon.layer.borderColor = Color.feedsItemIconBorderBackground.value.cgColor
 
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_favourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33

@@ -425,7 +425,7 @@ enum Font {
     }
     
     func getFontSize(size: CGFloat) -> CGFloat {
-        let device = Device()
+        let device = Device.current
         switch device.diagonal {
         case 3.5:
             return size * 0.9

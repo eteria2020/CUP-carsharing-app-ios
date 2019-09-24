@@ -109,7 +109,7 @@ public class NewFavouriteViewController : BaseViewController, ViewModelBindable 
         self.lbl_headerTitle.styledText = "lbl_newFavouriteHeaderTitle".localized()
         self.lbl_title.styledText = "lbl_newFavouriteTitle".localized()
         self.lbl_description.styledText = "lbl_newFavouriteDescription".localized()
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.img_top.constraint(withIdentifier: "imageHeight", searchInSubviews: false)?.constant = 130

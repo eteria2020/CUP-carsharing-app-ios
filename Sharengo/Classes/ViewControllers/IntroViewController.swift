@@ -64,7 +64,7 @@ public class IntroViewController : UIViewController, ViewModelBindable {
         var bottomTitle1: CGFloat = 120.0
         var bottomTitle2: CGFloat = 70.0
         var bottomTitle3: CGFloat = 80.0
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             bottomTitle1 = 90.0
             bottomTitle2 = 40.0

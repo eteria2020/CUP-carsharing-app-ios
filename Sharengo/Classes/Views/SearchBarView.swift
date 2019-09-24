@@ -114,7 +114,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
             }).disposed(by: disposeBag)
         
         self.btn_cleanSearch.rx.bind(to: viewModel.selection, input: .clean)
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.collectionView.constraint(withIdentifier: "searchBarHeight", searchInSubviews: false)?.constant = 119
         case 4:
@@ -201,7 +201,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     
     func showSearchBar() {
         self.viewModel?.reloadResults(text: self.txt_search.text ?? "")
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view.constraint(withIdentifier: "topBackgroundView", searchInSubviews: true)?.constant = 70
         case 4:
@@ -251,7 +251,7 @@ class SearchBarView : UIView, ViewModelBindable, UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         var height: CGFloat = 0.0
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             height = 60.0
         case 4:

@@ -53,7 +53,7 @@ public class CarBookingCompletedViewController : BaseViewController, ViewModelBi
         self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.carBookingCompletedBackground.value
         self.lbl_warning.styledText = "lbl_carBookingCompletedDescription".localized()
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.btn_carRides.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
             self.img_completed.constraint(withIdentifier: "imageHeight", searchInSubviews: false)?.constant = 130

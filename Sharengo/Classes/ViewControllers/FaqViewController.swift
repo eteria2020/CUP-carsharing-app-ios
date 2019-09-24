@@ -86,7 +86,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
         }).disposed(by: self.disposeBag)
         
         // Other
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_appTutorial.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
@@ -109,7 +109,7 @@ class FaqViewController : BaseViewController, ViewModelBindable {
 }
 
 extension FaqViewController: UIWebViewDelegate {
-    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         return true
     }
     

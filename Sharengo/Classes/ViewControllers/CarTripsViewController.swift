@@ -136,7 +136,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
             }
         }).disposed(by: self.disposeBag)
         
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:
@@ -184,7 +184,7 @@ class CarTripsViewController : BaseViewController, ViewModelBindable, UICollecti
         guard let model = self.viewModel?.model(atIndex: indexPath) as?  CarTrip else { return CGSize.zero }
         let size = collectionView.autosizeItemAt(indexPath: indexPath, itemsPerLine: 1)
         if model.selected {
-            switch Device().diagonal {
+            switch Device.current.diagonal {
             case 3.5:
                 return CGSize(width: size.width, height: (UIScreen.main.bounds.height-(56+self.view_header.frame.size.height))/1.75)
             default:

@@ -267,7 +267,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             self.lbl_titleCategory.styledText = self.viewModel?.category?.title.uppercased()
             self.view_headerCategory.backgroundColor = Color.feedsHeaderCategoryBackground.value
             var headerCategoryHeight: Int = 0
-            switch Device().diagonal {
+            switch Device.current.diagonal {
             case 3.5:
                 headerCategoryHeight = 30
             case 4:
@@ -290,7 +290,7 @@ class FeedsViewController : BaseViewController, ViewModelBindable, UICollectionV
             self.view_headerCategory.isHidden = true
             self.view_header.isHidden = false
             self.view_header.backgroundColor = Color.feedsHeaderBackground.value
-            switch Device().diagonal {
+            switch Device.current.diagonal {
             case 3.5:
                 self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 43
                 self.btn_aroundMe.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33

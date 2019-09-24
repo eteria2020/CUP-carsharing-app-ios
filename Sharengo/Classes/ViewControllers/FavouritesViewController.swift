@@ -75,7 +75,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
         self.view_title.backgroundColor = Color.favouritesTitle.value
         self.btn_newFavourite.style(.squaredButton(Color.loginContinueAsNotLoggedButton.value), title: "btn_noFavouritesNewFavourite".localized())
         self.btn_undo.style(.clearButton(Font.favouritesUndoButton.value, ColorBrand.white.value), title: "btn_favouritesUndo".localized())
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
@@ -331,7 +331,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                 guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
                     return
                 }
-                switch Device().diagonal {
+                switch Device.current.diagonal {
                 case 3.5:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 325
                 case 4:
@@ -366,7 +366,7 @@ public class FavouritesViewController : BaseViewController, ViewModelBindable, U
                 guard let itemViewModel = favCell.viewModel as? FavouriteItemViewModel else {
                     return
                 }
-                switch Device().diagonal {
+                switch Device.current.diagonal {
                 case 3.5:
                     self.view.constraint(withIdentifier: "viewPopupHeight", searchInSubviews: true)?.constant = 250
                 case 4:

@@ -257,67 +257,67 @@ public class FormModel : FormModelType {
         self.model = model
     }
 }
-open class MultiselectionItemViewModel<DataValue:FormModel> : FormItemViewModel, ListViewModelType, ViewModelTypeSelectable, ViewModelTypeActionSelectable {
-    public typealias DataValue = FormModel
-    
-    public var string: Variable<String> = Variable("")
-    public var title:String?
-    public var itemIdentifier: ListIdentifier  = defaultListIdentifier
-    public var dataHolder: ListDataHolderType = ListDataHolder()
-    public var model:ItemViewModelType.Model = FormData<DataValue>(DataValue.empty)
-    public var itemViewModelClosure: (ModelType) -> (ItemViewModelType?)  = {_ in return nil}
-    private var identifiers:[ListIdentifier] = []
-    public var error: ObservableError?
-    public var listIdentifiers : [ListIdentifier] {
-        return identifiers
-    }
-    public lazy var selection: Action<IndexPath, DataValue> = Action {[unowned self] input in
-        
-        guard let output = ((self.model(atIndex:input) ) as? DataValue) else {
-            return .empty()
-        }
-        return .just(output)
-    }
-    public required init (data: Variable<DataValue>) {
-        self.model = data
-    }
-    required public init() {
-        
-    }
-    public required convenience init (data:FormData<DataValue>, title:String? = nil , itemIdentifier:ListIdentifier , dataHolder:ListDataHolderType, innerIdentifier:ListIdentifier = defaultListIdentifier, error:ObservableError? , converting itemViewModelClosure:@escaping (ModelType) -> (ItemViewModelType?)) {
-        self.init(data:data)
-        self.title = title
-        self.itemIdentifier = itemIdentifier
-        self.error = error
-        self.dataHolder = dataHolder
-        self.identifiers = [innerIdentifier]
-        self.itemViewModelClosure = itemViewModelClosure
-    }
-    public func itemViewModel(fromModel model: FormModel) -> ItemViewModelType? {
-        return self.itemViewModelClosure(model.model)
-    }
-//    public func toString(_ v: DataValue) -> String {
-//        return (v.title ?? "")
+//open class MultiselectionItemViewModel<DataValue:FormModel> : FormItemViewModel, ListViewModelType, ViewModelTypeSelectable, ViewModelTypeActionSelectable {
+//    public typealias DataValue = FormModel
+//    
+//    public var string: Variable<String> = Variable("")
+//    public var title:String?
+//    public var itemIdentifier: ListIdentifier  = defaultListIdentifier
+//    public var dataHolder: ListDataHolderType = ListDataHolder()
+//    public var model:ItemViewModelType.Model = FormData<DataValue>(DataValue.empty)
+//    public var itemViewModelClosure: (ModelType) -> (ItemViewModelType?)  = {_ in return nil}
+//    private var identifiers:[ListIdentifier] = []
+//    public var error: ObservableError?
+//    public var listIdentifiers : [ListIdentifier] {
+//        return identifiers
 //    }
-//    public func toValue(_ value: String) -> DataValue {
-//        return DataValue.empty
-//    }
-//    func setup(data:FormData<DataValue>) {
+//    public lazy var selection: Action<IndexPath, DataValue> = Action {[unowned self] input in
 //        
-//        
-//        data.value.asObservable().map {[weak self] in self?.toString($0) ?? ""}.distinctUntilChanged().bindTo(string).addDisposableTo(self.disposeBag)
-//        self.selection.executionObservables.switchLatest().delay(0.0, scheduler: MainScheduler.instance).bindTo(data.value).addDisposableTo(self.disposeBag)
+//        guard let output = ((self.model(atIndex:input) ) as? DataValue) else {
+//            return .empty()
+//        }
+//        return .just(output)
 //    }
-    
-    public func select(withInput selection: SelectionInput) {
-        guard let ip = selection as? IndexPath else {
-            return
-        }
-        self.selection.execute(ip)
-        
-    }
-    
-}
+//    public required init (data: Variable<DataValue>) {
+//        self.model = data
+//    }
+//    required public init() {
+//        
+//    }
+//    public required convenience init (data:FormData<DataValue>, title:String? = nil , itemIdentifier:ListIdentifier , dataHolder:ListDataHolderType, innerIdentifier:ListIdentifier = defaultListIdentifier, error:ObservableError? , converting itemViewModelClosure:@escaping (ModelType) -> (ItemViewModelType?)) {
+//        self.init(data:data)
+//        self.title = title
+//        self.itemIdentifier = itemIdentifier
+//        self.error = error
+//        self.dataHolder = dataHolder
+//        self.identifiers = [innerIdentifier]
+//        self.itemViewModelClosure = itemViewModelClosure
+//    }
+//    public func itemViewModel(fromModel model: FormModel) -> ItemViewModelType? {
+//        return self.itemViewModelClosure(model.model)
+//    }
+////    public func toString(_ v: DataValue) -> String {
+////        return (v.title ?? "")
+////    }
+////    public func toValue(_ value: String) -> DataValue {
+////        return DataValue.empty
+////    }
+////    func setup(data:FormData<DataValue>) {
+////        
+////        
+////        data.value.asObservable().map {[weak self] in self?.toString($0) ?? ""}.distinctUntilChanged().bindTo(string).addDisposableTo(self.disposeBag)
+////        self.selection.executionObservables.switchLatest().delay(0.0, scheduler: MainScheduler.instance).bindTo(data.value).addDisposableTo(self.disposeBag)
+////    }
+//    
+//    public func select(withInput selection: SelectionInput) {
+//        guard let ip = selection as? IndexPath else {
+//            return
+//        }
+//        self.selection.execute(ip)
+//        
+//    }
+//    
+//}
 
 
 

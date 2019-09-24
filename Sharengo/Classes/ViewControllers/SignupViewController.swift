@@ -101,7 +101,7 @@ public class SignupViewController : BaseViewController, ViewModelBindable {
             ])
 
         // Buttons
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.btn_signup.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
             self.view.constraint(withIdentifier: "bottomPgcSteps", searchInSubviews: false)?.constant = 5

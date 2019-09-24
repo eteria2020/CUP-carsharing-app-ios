@@ -8,7 +8,6 @@
 import Foundation
 import Moya
 import Gloss
-import Moya_Gloss
 import RxSwift
 import MapKit
 import Alamofire
@@ -50,7 +49,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.getUserWith(username: username, password: password)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -69,9 +68,9 @@ final class ApiController {
     {
         return Observable.create{ observable in
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status, _  in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.rx.request(.searchAllCars()).asObservable()
+            return provider.rx.request(.searchAllCars).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -100,7 +99,7 @@ final class ApiController {
             return provider.rx.request(.searchCars(latitude: latitude, longitude: longitude, radius: radius, userLatitude: userLatitude, userLongitude: userLongitude))
                 .asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                 switch event {
                 case .next(let response):
@@ -121,7 +120,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkLoggerPlugin(verbose: true, cURL: true) , NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.searchCar(plate: plate)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -145,7 +144,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status, _   in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.searchCarURL(userLatitude: userLatitude, userlLongitude: userLongitude, carPlate: plate, callingApp: callingApp, email: email)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -164,9 +163,9 @@ final class ApiController {
     {
         return Observable.create{ observable in
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.rx.request(.bookingList()).asObservable()
+            return provider.rx.request(.bookingList).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -185,9 +184,9 @@ final class ApiController {
     {
         return Observable.create{ observable in
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.rx.request(.tripsList()).asObservable()
+            return provider.rx.request(.tripsList).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -207,9 +206,9 @@ final class ApiController {
         
         return Observable.create{ observable in
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.rx.request(.archivedTripsList()).asObservable()
+            return provider.rx.request(.archivedTripsList).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -231,7 +230,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_  in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.bookCar(car: car, userLatitude: userLatitude, userLongitude: userLongitude)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -252,7 +251,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.deleteCarBooking(carBooking: carBooking)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -273,7 +272,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.getCarBooking(id: id)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -294,7 +293,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.openCar(car: car, action: action)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -315,7 +314,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.closeCar(car: car, action: action)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -336,7 +335,7 @@ final class ApiController {
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
             return provider.rx.request(.getTrip(trip: trip)).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -355,9 +354,9 @@ final class ApiController {
     {
         return Observable.create{ observable in
             let provider = MoyaProvider<API>(manager: self.manager!, plugins: [NetworkActivityPlugin(networkActivityClosure: { status,_ in ManageNetworkLoaderUI.update(with: status) })])
-            return provider.rx.request(.getConfig()).asObservable()
+            return provider.rx.request(.getConfig).asObservable()
                 .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-                .mapObject(type: Response.self)
+                .mapJSONObject(type: Response.self)
                 .subscribe { event in
                     switch event {
                     case .next(let response):
@@ -375,20 +374,20 @@ final class ApiController {
 
 fileprivate enum API {
     case getUserWith(username: String, password: String)
-    case searchAllCars()
+    case searchAllCars
     case searchCars(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: CLLocationDistance, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case searchCar(plate: String)
     case searchCarURL(userLatitude: CLLocationDegrees, userlLongitude: CLLocationDegrees, carPlate: String, callingApp: String, email: String?)
-    case bookingList()
+    case bookingList
     case bookCar(car: Car, userLatitude: CLLocationDegrees, userLongitude: CLLocationDegrees)
     case deleteCarBooking(carBooking: CarBooking)
     case getCarBooking(id: Int)
     case openCar(car: Car, action: String)
     case closeCar(car: Car, action: String)
-    case tripsList()
-    case archivedTripsList()
+    case tripsList
+    case archivedTripsList
     case getTrip(trip: CarTrip)
-    case getConfig()
+    case getConfig
 }
 
 extension API: TargetType
@@ -399,21 +398,21 @@ extension API: TargetType
     
     var baseURL: URL {
         switch self {
-        case .tripsList(), .archivedTripsList(), .getTrip(_):
+        case .tripsList, .archivedTripsList, .getTrip(_):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)\(Config().apiNoHttp_EndPoint)/v3")!
-        case .searchCars(_, _, _, _, _), .searchCar(_), .searchAllCars():
+        case .searchCars(_, _, _, _, _), .searchCar(_), .searchAllCars:
             return URL(string: "\(Config().apiFull_EndPoint)/v3")!
         case  .searchCarURL(_, _, _, _,_):
             return URL(string:  "\(Config().apiFull_EndPoint)/v3")!
-        case .bookingList(), .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .closeCar(_, _):
+        case .bookingList, .bookCar(_), .deleteCarBooking(_), .openCar(_, _), .closeCar(_, _):
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("Password")!
             return URL(string: "https://\(username):\(password)\(Config().apiNoHttp_EndPoint)/v2")!
         case .getUserWith(let username, let password):
             return URL(string: "https://\(username):\(password)\(Config().apiNoHttp_EndPoint)/v3")!
-        case .getConfig():
+        case .getConfig:
             return URL(string:  "\(Config().apiFull_EndPoint)/v3")!
         default:
             return URL(string:  "\(Config().apiFull_EndPoint)/v2")!
@@ -424,19 +423,19 @@ extension API: TargetType
         switch self {
         case .getUserWith(_, _):
             return "user"
-        case .searchAllCars(), .searchCars(_, _, _, _, _), .searchCarURL(_, _, _, _,_), .searchCar(_):
+        case .searchAllCars, .searchCars(_, _, _, _, _), .searchCarURL(_, _, _, _,_), .searchCar(_):
             return "cars"
-        case .bookingList(), .bookCar(_), .getCarBooking(_):
+        case .bookingList, .bookCar(_), .getCarBooking(_):
             return "reservations"
         case .deleteCarBooking(let carBooking):
             return "reservations/\(carBooking.id ?? 0)"
         case .openCar(let car, _), .closeCar(let car, _):
             return "cars/\(car.plate ?? "")"
-        case .tripsList(), .archivedTripsList():
+        case .tripsList, .archivedTripsList:
             return "trips"
         case .getTrip(let trip):
             return "trips/\(trip.id ?? 0)"
-        case .getConfig():
+        case .getConfig:
             return "config"
         }
     }
@@ -468,9 +467,9 @@ extension API: TargetType
             return ["reservation_id": id]
         case .openCar(_, let action), .closeCar(_, let action):
             return ["action": action]
-        case .tripsList(), .bookingList():
+        case .tripsList, .bookingList:
             return ["active": "true"]
-        case .archivedTripsList():
+        case .archivedTripsList:
             return ["active": "false"]
         default:
             return [:]

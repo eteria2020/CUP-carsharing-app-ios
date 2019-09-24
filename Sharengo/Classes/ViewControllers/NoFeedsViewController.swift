@@ -66,7 +66,7 @@ class NoFeedsViewController : BaseViewController, ViewModelBindable {
         self.view_header.backgroundColor = Color.noFeedsHeaderBackground.value
         self.view_headerFeeds.backgroundColor = Color.noFeedsFeedsHeaderBackground.value
 
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_headerFeeds.constraint(withIdentifier: "viewHeaderFeedsHeight", searchInSubviews: true)?.constant = 43
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30

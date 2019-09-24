@@ -460,7 +460,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         }).disposed(by: self.disposeBag)
         self.view_carPopup.alpha = 0.0
         self.view.constraint(withIdentifier: "carPopupBottom", searchInSubviews: false)?.constant = -self.view_carPopup.frame.size.height-self.btn_closeCarPopup.frame.size.height
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.closeCarPopupHeight = 160//160
         case 4:
@@ -596,7 +596,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         }).disposed(by: self.disposeBag)
         self.view_carBookingPopup.backgroundColor = Color.carBookingPopupBackground.value
         self.view_carBookingPopup.alpha = 0.0
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 180
         case 4:
@@ -611,7 +611,7 @@ public class MapViewController : BaseViewController, ViewModelBindable {
             self.view_carBookingPopup.constraint(withIdentifier: "carBookingPopupHeight", searchInSubviews: false)?.constant = 230
         }
         // SearchBar
-        if(Device().diagonal > 5.5 || Device().diagonal < 0){
+        if(Device.current.diagonal > 5.5 || Device.current.diagonal < 0){
             //self.view_searchBar.isHidden = true
         }
  

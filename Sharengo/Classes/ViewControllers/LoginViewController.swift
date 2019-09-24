@@ -120,7 +120,7 @@ public class LoginViewController : BaseViewController, ViewModelBindable {
             self.view_white.alpha = 0.0
         }
         // Buttons
-        switch Device().diagonal {
+        switch Device.current.diagonal {
             case 3.5:
                 self.btn_login.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
                 self.btn_register.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33

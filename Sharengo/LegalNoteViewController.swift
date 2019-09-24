@@ -82,7 +82,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
         }).disposed(by: self.disposeBag)
         
         // Other
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:
@@ -100,7 +100,7 @@ class LegalNoteViewController : BaseViewController, ViewModelBindable {
 }
 
 extension LegalNoteViewController: UIWebViewDelegate {
-    private func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         return true
     }
     

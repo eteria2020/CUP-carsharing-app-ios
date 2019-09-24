@@ -13,7 +13,7 @@ def shared_pods
     pod 'Action'
     pod 'Moya/RxSwift'
     pod 'Gloss'
-    pod 'Moya-Gloss/RxSwift'
+#    pod 'Moya-Gloss/RxSwift'
     pod 'KeychainSwift'
     pod 'DeviceKit'
     pod 'Gifu'
@@ -42,10 +42,10 @@ target 'SharengoSL' do
     shared_pods
 end
 
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '4.2'
-        end
-    end
-end
+#post_install do |installer|
+#    installer.pods_project.targets.each do |target|
+#        target.build_configurations.each do |config|
+#            config.build_settings['SWIFT_VERSION'] = '5'
+#        end
+#    end
+#end

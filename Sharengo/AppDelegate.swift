@@ -56,12 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         TextStyle.setup()
         Router.start(self)
         CoreController.shared.updateData()
-        UIApplication.shared.statusBarStyle = .lightContent
+        //UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().clipsToBounds = true
         
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        //let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         
-        statusBar.backgroundColor = ColorBrand.yellow.value
+        //statusBar.backgroundColor = ColorBrand.yellow.value
         self.setupSideMenu()
         
         if let callingAp : NSString = launchOptions?[.sourceApplication] as? NSString
@@ -136,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
     }
     
-    private func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
     {
         return handleURL(url)
     }

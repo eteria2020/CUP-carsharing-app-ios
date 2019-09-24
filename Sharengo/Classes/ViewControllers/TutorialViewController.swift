@@ -53,7 +53,7 @@ class TutorialViewController : BaseViewController, ViewModelBindable {
         btn_previousStep.isHidden = true
         img_leftArrow.isHidden = true
         self.view.backgroundColor = Color.signupBackground.value
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.constraint_close.constant = 50
             self.constraint_buttons.constant = -10

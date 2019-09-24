@@ -56,7 +56,7 @@ class NoCarTripsViewController : BaseViewController, ViewModelBindable {
         
         self.btn_searchCars.style(.roundedButton(Color.noCarTripsSearchCarsButton.value), title: "btn_searchCars".localized())
    
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_searchCars.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33

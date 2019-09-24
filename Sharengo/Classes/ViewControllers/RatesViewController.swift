@@ -95,7 +95,7 @@ class RatesViewController : BaseViewController, ViewModelBindable {
             }).disposed(by: disposeBag)
         
         // Other
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
         case 4:

@@ -48,7 +48,8 @@ public class OnBoardViewController : UIViewController, ViewModelBindable {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
-        switch Device().diagonal {
+        self.view.backgroundColor = ColorBrand.yellow.value
+        switch Device.current.diagonal {
         case 3.5:
             self.view.constraint(withIdentifier: "constraint1", searchInSubviews: true)?.constant = 0
             self.view.constraint(withIdentifier: "constraint2", searchInSubviews: true)?.constant = 0

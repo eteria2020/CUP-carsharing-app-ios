@@ -54,7 +54,7 @@ public class NoFavouritesViewController : BaseViewController, ViewModelBindable 
         //self.view.layoutIfNeeded()
         self.view.backgroundColor = Color.noFavouritesBackground.value
         self.btn_newFavourite.style(.squaredButton(Color.loginContinueAsNotLoggedButton.value), title: "btn_noFavouritesNewFavourite".localized())
-        switch Device().diagonal {
+        switch Device.current.diagonal {
         case 3.5:
             self.view_header.constraint(withIdentifier: "viewHeaderHeight", searchInSubviews: true)?.constant = 30
             self.btn_newFavourite.constraint(withIdentifier: "buttonHeight", searchInSubviews: false)?.constant = 33
