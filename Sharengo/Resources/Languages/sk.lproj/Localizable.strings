@@ -26,11 +26,12 @@
 "btn_carRides" = "HISTÓRIA JÁZD";
 "btn_detail" = "OBJAV VIAC";
 "btn_car" = "REZERVÁCIA AUTA";
+
 "language_italian" = "Taliančina";
 "language_english" = "Angličtina";
-"language_slovack" = "Slovak";
-"language_dutch" = "Dutch";
-
+"language_slovack" = "Slovaški";
+"language_dutch" = "Nizozemski";
+"language_slovenian" = "Slovenščina";
 
 //Signup
 "lbl_signupHeader" = "<title>Prihlásiť sa k službe Share'ngo </title>\nRegistrácia do služby je bezplatná. Ak potrebujete pomoc pri registrácii, použite tlačidlo chat!";
@@ -76,7 +77,6 @@
 "lbl_menuSettings" = "Nastavenia";
 "lbl_menuLogout" = "Odhlásenie";
 "lbl_menuLegal" = "Právne poznámky";
-
 
 //Profile
 "lbl_profileEcoStatus" = "Profil\nEko Status";
@@ -126,6 +126,7 @@
 "aler_carPopupOpenDoorMessageUnplug" = "1. Otvor vozidlo a počkaj, kým sa dvere otvoria.\n2. Odpoj modrý konektor nabíjacieho kábla od auta, ale dbaj na to, aby si držal konektor a nie kábel.\n3. Odpoj kábel od nabíjacej stanice.\n4. Sieťový kábel ulož do kufra auta.\n5. Nastúp do auta a postupuj podľa pokynov na videu.\n\nUrčite chceš otvoriť dvere?";
 "aler_titlePopupOpenDoorMessageUnplug" = "Otváraš zariadenie na odpojenie:";
 "aler_carPopupOpenDoorUnparkMessage" = "Naozaj chceš pokračovať v jazde?";
+
 //CarBookingPopup
 "lbl_carBookingPopupPin" = "PIN: %@";
 "lbl_carBookingPopupInfo" = "<status>AKTÍVNA REZERVÁCIA</status>\n<bold>ZNAČKA ŠPZ %@</bold>\n%@";
@@ -218,14 +219,12 @@
 "btn_feedsHeaderCategories" = "KATEGÓRIE";
 "btn_feedsAroundMe" = "POZRI NA MAPE";
 
-
 //Feed Detail
 "alert_categoryNotPublished" = "Táto kategória bude čoskoro k dispozícii.";
 "btn_feedDetailFavourite" = "MÁM ZÁUJEM";
 "btn_feedDetailNotFavourite" = "NEMÁM ZÁUJEM";
 "lbl_noFeedsDescriptionWithCategory" = "<title>Chyba!</title>\n\n<description>Momentálne pre Tvoje mesto nie je vo zvolenej kategórii k dispozícii žiadny obsah. Skús to znova znova v najbližších dňoch</description>";
 "btn_feed lbl_noFeedsDescriptionWithNoCategoryDetailNotFavourite" = "<title>Chyba!</title>\n\n<description>V súčasnosti nie je pre Tvoje mesto k dispozícii žiadny obsah. Skús to znova v najbližších dňoch</description>";
-
 
 //Support
 "lbl_supportHeaderTitle" = "POŽIADAJ O POMOC";

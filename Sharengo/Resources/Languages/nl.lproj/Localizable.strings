@@ -7,6 +7,7 @@
 
 "language" = "nl";
 
+//General
 "btn_ok" = "OK";
 "btn_cancel" = "ANNULEREN";
 "btn_back" = "TERUG";
@@ -28,10 +29,11 @@
 
 "language_italian" = "Italiaans";
 "language_english" = "Engels";
-"language_dutch" = "Dutch";
-"language_slovack" = "Slovak";
+"language_dutch" = "Nederlandse";
+"language_slovack" = "Slowaaks";
+"language_slovenian" = "Sloveens";
 
-
+//Signup
 "lbl_signupHeader" = "<title>Schrijf je in bij Share'ngo</title>\nDe inschrijving is gratis. Als je hulp nodig hebt tijdens de inschrijving, gebruikt dan de chat knop!";
 "btn_signupSignup" = "SCHRIJF JE IN";
 "lbl_signupStepTitle1" = "Om je in te schrijven moet je\nbij de hand hebben:";
@@ -42,6 +44,8 @@
 "lbl_signupStepDescription3" = "RIJBEWIJS";
 "lbl_signupStepTitle4" = "Om je in te schrijven moet je\nbij de hand hebben:";
 "lbl_signupStepDescription4" = "CREDITCARD";
+
+//Login
 "alert_loginMissingFields" = "Eén of meerdere velden zijn niet ingevuld.";
 "alert_loginWrongEmail" = "Let op! Het e-mailadres dat je hebt ingevoerd, is niet aanwezig in onze database.";
 "alert_loginWrongPassword" = "Let op! Wachtwoord onjuist.";
@@ -55,11 +59,13 @@
 "lbl_loginNotYetRegistered" = "Ben je nog niet ingeschreven?";
 "btn_loginRegister" = "SCHRIJF JE IN";
 "btn_loginContinueAsNotLogged" = "GA DOOR ZONDER IN TE LOGGEN";
+
+//Menu
 "lbl_menuHeaderTitleLogged" = "Hallo %@, welkom terug%@!";
 "lbl_menuHeaderTitleGuest" = "Hallo, welkom!";
 "lbl_menuLogin" = "Inloggen";
 "lbl_menuSignUp" = "Inschrijving";
-"lbl_menuFaq" = "Faq e tutorial";
+"lbl_menuFaq" = "Faq & Tutorial";
 "lbl_menuRates" = "Tarieven";
 "lbl_menuPin" = "Pin";
 "lbl_menuHelp" = "Vraag assistentie";
@@ -71,15 +77,24 @@
 "lbl_menuSettings" = "Instellingen";
 "lbl_menuLogout" = "Uitloggen";
 "lbl_menuLegal" = "Juridisch";
+
+//Profile
 "lbl_profileEcoStatus" = "Profiel\nEco-status";
+
+// Home
 "alert_homeNotAvailable" = "Deze functie is binnenkort beschikbaar.";
 "lbl_homeDescriptionLogged" = "<bold>Welkom terug %@!</bold>";
 "lbl_homeDescriptionNotLogged" = "<bold>Welkom!</bold>";
 "lbl_introTitle1" = "Elektrisch";
+
+// Intro
 "lbl_introTitle2" = "Delen";
 "lbl_introTitle3" = "Om de\nhoek";
 "lbl_searchBarTextField" = "Zoek adres of kenteken";
+
+// SearchBar
 "//lbl_searchBarTextField" = "Zoek kenteken";
+
 "alert_searchBarAuthSpeechAuthorizationDenied" = "Je hebt de toegang tot spraakherkenning geweigerd. Wil je Instellingen openen om de dienst te activeren?";
 "alert_searchBarAuthSpeechAuthorizationRestricted" = "Spraakherkenning werkt niet vanwege beperkingen van je toestel";
 "alert_searchBarAuthSpeechAuthorizationNotDetermined" = "Toegang tot stemherkenning kon niet worden vastgesteld. Wil je Instellingen openen om de dienst te activeren?";
@@ -90,8 +105,12 @@
 "lbl_searchBarNoFavorites" = "Geen favorieten\nsla ze op bij Instellingen";
 "lbl_searchBarPlate" = "%@\nKenteken Share'ngo";
 "lcl_searchBarSpeechRecognizer" = "nl-US";
+
+// SearchCars
 "alert_centerMapMessage" = "Sharen'go heeft toestemming nodig om toegang te krijgen tot jouw locatie. Wil je Instellingen openen om de lokalisatie te activeren?";
 "alert_showCarsDisabledMessage" = "Let op! Je kunt deze functie alleen gebruiken na het voltooien van de rit of de actieve reservering";
+
+// CarPopup
 "lbl_carPopupType" = "Dichtstbijzijnde auto";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
 "lbl_carPopupCapacity" = "bereik: <bold>%@ km</bold>";
@@ -108,6 +127,8 @@
 "aler_carPopupOpenDoorMessageUnplug" = "1. Open de auto en wacht tot de deuren open gaan\n2. Koppel de blauwe stekker van de oplaadkabel los van de auto en zorg ervoor dat je de stekker vasthoudt en niet de kabel\n3. Haal de stekker uit de oplaadpaal\n4. Leg het netsnoer weer terug in de kofferbak van de auto\n5. Stap in de auto en volg de instructies in de video\n\nWeet je zeker dat je de deuren wilt openen?";
 "aler_titlePopupOpenDoorMessageUnplug" = "Je opent nu een auto unplugged:";
 "aler_carPopupOpenDoorUnparkMessage" = "Weet je zeker dat je de rit wilt hervatten?";
+
+//CarBookingPopup
 "lbl_carBookingPopupPin" = "PIN: %@";
 "lbl_carBookingPopupInfo" = "<status>ACTIEVE RESERVERING</status>\n<bold>KENTEKEN %@</bold>\n%@";
 "lbl_carBookingPopupInfoPlaceholder" = "<status>ACTIEVE RESERVERING</status>\n<bold>KENTEKEN %@</bold>\n<placeholder>Bezig met laden</placeholder>";
@@ -125,6 +146,8 @@
 "alert_carBookingPopupGeneric" = "Er is een fout opgetreden.";
 "alert_carBookingPopupActiveTripOnReservation" = "Je kunt tijdens het rijden geen Share'ngo reserveren.";
 "alert_carBookingPopupActiveTripOnOpenCar" = " Je hebt al een actieve rit";
+
+//CarBookingCompleted
 "lbl_carBookingCompletedDescription" = "<bold>Je hebt de huur voltooid</bold>\n\nJe ontvangt binnen 24 uur per e-mail een bevestiging van de transactie.";
 "lbl_carBookingCompletedCo2" = "<bold>Bedankt!</bold>\n\nMET JE RIT\nHEB JE %0.1f GRAM CO2 BESPAARD!";
 "banner_carBookingCompletedTitle" = "Share'ngo";
@@ -133,12 +156,20 @@
 "banner_carBookingDeletedTitle" = "Share'ngo";
 "banner_carBookingDeletedDescription" = "De reserveringstijd is verlopen, je reservering is geannuleerd. Reserveer een andere auto op de kaart";
 "lbl_settingsHeaderTitle" = "INSTELLINGEN";
+
+//Setting
 "lbl_settingsCities" = "Stel plaats in";
 "lbl_settingsFavourites" = "Stel je favoriete adres in";
 "lbl_settingsLanguages" = "Stel taal in";
 "lbl_settingsNotifications" = "Stel berichten in";
+
+// Settings Languages
 "lbl_settingsLanguagesHeaderTitle" = "STEL TAAL IN";
+
+//Setting Cities
 "lbl_settingsCitiesHeaderTitle" = "STEL PLAATS IN";
+
+// Settings Favourites
 "lbl_noFavouritesHeaderTitle" = "STEL FAVORIETE ADRES IN";
 "lbl_noFavouritesTitle" = "Helaas!";
 "lbl_noFavouritesDescription" = "Je hebt nog geen favoriete of recente adressen! Stel je meest voorkomende bestemmingen in en bespaar tijd bij het kiezen van waar je naartoe wilt.";
@@ -162,6 +193,8 @@
 "lbl_favouritesModify" = "Wil je dit voorkeursadres wijzigen?";
 "lbl_favouritesAdd" = "Wil je dit recente adres toevoegen aan de lijst met je favoriete adressen?";
 "lbl_favouritesNoFavorites" = "Voer het adres in dat je aan je favorieten wilt toevoegen";
+
+//CarTrip
 "lbl_carTripsHeaderTitle" = "RITTENGESCHIEDENIS";
 "lbl_carTripsItemTitle" = "Rit nr. %@";
 "lbl_carTripsItemSubtitle" = "%@";
@@ -175,18 +208,28 @@
 "lbl_noCarTripsDescription" = "Je hebt nog geen ritten met een Share'ngo gemaakt!";
 "lbl_noCarTrips" = "Waar wacht je nog op om het te proberen?";
 "btn_searchCars" = "GA NAAR DE PLATTEGROND, OF TERUG NAAR DE LIJST MET BESTEMMINGEN";
+
+//OnBoard
 "lbl_onBoardStep1Description" = "Eenvoudig en leuk\nom te rijden!";
 "lbl_onBoardStep2Description" = "Hoe meer je hem nodig hebt\n hoe lager het tarief";
 "lbl_onBoardStep3Description" = "Elke rit een verrassing\nen een ontdekking";
 "btn_onBoardSkip" = "Skip >>";
+
+//Feeds
 "btn_feedsHeaderFeed" = "FEED";
 "btn_feedsHeaderCategories" = "CATEGORIEËN";
 "btn_feedsAroundMe" = "ZOEK OP DE KAART";
+
+//Feed Detail
 "alert_categoryNotPublished" = "Deze categorie is binnenkort beschikbaar.";
 "btn_feedDetailFavourite" = "IK HEB INTERESSE";
 "btn_feedDetailNotFavourite" = "IK HEB GEEN INTERESSE";
+
+// No feeds
 "lbl_noFeedsDescriptionWithCategory" = "<title>Helaas!</title>\n\n<description>Op dit moment is er geen informatie beschikbaar voor jouw stad in de geselecteerde categorie. Probeer het de komende dagen opnieuw</description>";
 "btn_feed lbl_noFeedsDescriptionWithNoCategoryDetailNotFavourite" = "<title>Helaas!</title>\n\n<description>Op dit moment is er geen informatie beschikbaar voor jouw stad. Probeer het de komende dagen opnieuw</description>";
+
+// Support
 "lbl_supportHeaderTitle" = "VRAAG ASSISTENTIE";
 "lbl_supportTitle" = "We helpen je graag!";
 "lbl_supportSubtitle" = "Wil je met een medewerker spreken?";
@@ -199,6 +242,8 @@
 "supportTelephoneNumber" = "3,90586E+12";
 "btn_supportAlertCall" = "Bel";
 "btn_supportAlertWrite" = "Schrijf";
+
+// Invite Friend
 "lbl_inviteFriendHeader" = "NODIG EEN VRIEND UIT";
 "lbl_inviteFriendDescriptionFirstPart" = "<title>Nodig een vriend uit en verdien minuten!</title>\n<subtitle>Tijdens de inschrijving</subtitle>";
 "lbl_inviteFriendDescriptionSecondPart" = "krijg je 10 minuten gratis rijden";
@@ -206,8 +251,12 @@
 "lbl_inviteFriendDescriptionFourthPart" = "krijg je 20 minuten gratis rijden!";
 "btn_inviteFriendInvite" = "VERSTUUR METEEN";
 "lbl_inviteFriendInviteDescription" = "Hey! Gebruik zelf ook de Share'ngo-app";
+
+// Faq
 "lbl_faqHeader" = "FAQ";
-"btn_faqAppTutorial" = "APP TUTORIAL";
+"btn_faqAppTutorial" = "--";
+
+// Tutorial
 "img_tutorial01" = "tutorial_01";
 "img_tutorial02" = "tutorial_02";
 "img_tutorial03" = "tutorial_03";
@@ -227,6 +276,10 @@
 "alert_closeTutorial" = "Wil je de tutorial afsluiten?\nJe kunt deze op elk gewenst moment opnieuw bekijken in het menu bij \FAQ en tutorial\.";
 "btn_tutorialAlertStay" = "DOORGAAN";
 "btn_tutorialAlertClose" = "AFSLUITEN";
+
+/////////////////////////
+
+// Rates
 "lbl_ratesHeader" = "TARIEVEN EN BONUS";
 "lbl_ratesLoggedRatesTitle" = "Hier is jouw tarief:";
 "lbl_ratesNotLoggedRatesTitle" = "Hier zijn de tarieven van Share'ngo:";
@@ -234,18 +287,30 @@
 "lbl_ratesBonusTitle" = "Jouw bonusminuten";
 "lbl_ratesBonusDescription" = " %d minuten";
 "btn_ratesSignup" = "SCHRIJF JE METEEN IN";
+
+// Pin
 "lbl_pinHeader" = "PIN";
 "lbl_pinPinTitle" = "Hier is jouw pin:";
+
+//Logout
 "lbl_logoutMessage" = "Weet je zeker dat je wilt uitloggen?";
 "lbl_logoutConfirmButton" = "LOGOUT";
+
+//Legal note
 "lbl_legalNoteHeader" = "JURIDISCH";
+/////////////////////////
+
 "alert_logoutError" = "Let op, er is een fout opgetreden. We verzoeken je om opnieuw in te loggen.";
 "btn_login" = "INLOGGEN";
 "lbl_buyMinutesHeader" = "KOOP MINUTEN";
 "lbl_userAreaHeader" = "PERSOONLIJKE OMGEVING";
 "lbl_carTripParkingPopupInfo" = "<status>AUTO GEPARKEERD</status>\n<bold>KENTEKEN %@</bold>\nTijdsduur rit:";
+/////////////////////////
+
 "lbl_carPopupFreeType" = "Met deze auto %d minuten gratis rijden!";
 "lbl_carPopupFreeTypeUnplug" = "Met deze auto %d minuten gratis rijden! Vergeet niet om de stekker eruit te trekken!";
+
+//Disable reason
 "first_payment_login_alert" = "Je bent gedeactiveerd omdat de eerste betaling niet is uitgevoerd; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en de betaling voltooien";
 "failed_payment_login_alert" = "Je bent gedeactiveerd omdat er een betaling niet is uitgevoerd; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en doorgaan naar de betaling";
 "invalid_driver_license_login_alert" = "Je bent gedeactiveerd omdat je een ongeldig rijbewijs hebt ingevoerd; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en de ingevoerde gegevens controleren en aanpassen";
@@ -254,8 +319,12 @@
 "expired_credit_card_login_alert" = "Je bent gedeactiveerd omdat je ID is verlopen; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en de nieuwe gegevens invoeren";
 "failed_extra_payment_login_alert" = "Je bent gedeactiveerd omdat je een boete niet hebt betaald; neem contact op met de klantenservice voor meer informatie";
 "registration_not_completed_login_alert" = "Je bent gedeactiveerd omdat je de inschrijvingsprocedure moet voltooien";
+
+// Push request
 "push_request_alert_message" = "Schakel pushmelding in";
 "btn_go_to_settings" = "Accepteren";
+
+// Close car
 "alert_closeCarPopoup" = "De auto wordt zometeen gesloten; je ontvangt een melding wanneer het proces is voltooid.";
 "alert_closeCarPopoupConfirm" = "Weet je zeker dat je de rit wilt afsluiten?";
 

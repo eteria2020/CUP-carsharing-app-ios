@@ -26,11 +26,12 @@
 "btn_carRides" = "STORICO CORSE";
 "btn_detail" = "SCOPRI DI PIÙ";
 "btn_car" = "PRENOTA AUTO";
+
 "language_italian" = "Italiano";
 "language_english" = "Inglese";
 "language_slovack" = "Slovacchia";
 "language_dutch" = "Olandese";
-
+"language_slovenian" = "Sloveno";
 
 // Signup
 "lbl_signupHeader" = "<title>Iscriviti a Share'ngo</title>\nL'iscrizione al servizio è gratuita. Se serve aiuto durante l'iscrizione usa il pulsante chat!";

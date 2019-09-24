@@ -25,8 +25,8 @@ class Config {
     let signup_EndPoint = "https://public.sharengo.sk/signup/mobile?lang=sk_SK"
     let osm_EndPoint = "http://maps.sharengo.it"
     let assistence_email = "zakaznickyservis@sharengo.sk"
-    //TEST USER
     
+    //TEST USER
     let emailTest = "ivan.raciti@sharengo.eu"
     let pswTest = "Sharengo1"
 }

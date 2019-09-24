@@ -63,6 +63,9 @@ class FaqViewController : BaseViewController, ViewModelBindable {
         
         // Buttons
         self.btn_appTutorial.style(.squaredButton(Color.faqAppTutorialButton.value), title: "btn_faqAppTutorial".localized())
+        if (self.btn_appTutorial.currentTitle == "--") {
+            self.btn_appTutorial.isHidden = true
+        }
         
         // Labels
         self.lbl_headerTitle.textColor = Color.faqHeaderTitle.value

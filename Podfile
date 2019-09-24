@@ -37,7 +37,10 @@ target 'SharengoSK' do
     use_frameworks!
     shared_pods
 end
-
+target 'SharengoSL' do
+    use_frameworks!
+    shared_pods
+end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
