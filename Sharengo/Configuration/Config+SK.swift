@@ -27,6 +27,6 @@ class Config {
     let assistence_email = "zakaznickyservis@sharengo.sk"
     
     //TEST USER
-    let emailTest = "ivan.raciti@sharengo.eu"
-    let pswTest = "Sharengo1"
+    let emailTest = "enrico.taddei@sharengo.eu"
+    let pswTest = "123456789Aa"
 }
