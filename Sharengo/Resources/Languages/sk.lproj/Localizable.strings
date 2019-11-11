@@ -300,7 +300,7 @@
 "lbl_carPopupFreeTypeUnplug" = "S týmto vozidlom %d minút jazdy zadarmo! Nezabudnite odpojiť!";
 "first_payment_login_alert" = "Si zablokovaný za neuhradenie prvého poplatku, ak chceš používať Share'ngo prihlás sa vo svojej osobnej zóne pokračuj v úhrade poplatku.";
 "failed_payment_login_alert" = "Si zablokovaný za neuhradenie poplatku, ak chceš používať Share'ngo prihlás sa vo svojej osobnej zóne pokračuj v úhrade poplatku.";
-"invalid_driver_license_login_alert" = " Tvoj účet je zablokovaný. Počkaj kým Tvoj profil verifikujeme. O aktivácii účtu dostaneš potvrdzovací e-mail.";
+"invalid_driver_license_login_alert" = "Tvoj účet je zablokovaný. Počkaj kým Tvoj profil verifikujeme. O aktivácii účtu dostaneš potvrdzovací e-mail";
 "disabled_webuser_login_alert" = "Tvoj profil je zablokovaný, pre bližšie informácie sa obráť na zákaznícky servis";
 "expired_driver_license_login_alert" = "Si vyradený z dôvodu neplatného vodičského preukazu. Aby si mohol používať Share'ngo vstúp do svojho osobného profilu a aktualizuj údaje";
 "expired_credit_card_login_alert" = "Si vyradený, pretože platnosť zadanej platobnej karty vypršala. Aby si mohol použiť Share'ngo vstúp do svojho osobného profilu a aktualizuj údaje";
