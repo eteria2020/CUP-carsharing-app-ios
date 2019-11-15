@@ -26,10 +26,11 @@
 "btn_carRides" = "ZGODOVINA VOŽENJ";
 "btn_detail" = "IZVEDITE VEČ";
 "btn_car" = "REZERVIRAJTE VOZILO";
-"language_italian" = "italijanščina";
-"language_english" = "angleščina";
-"language_slovack" = "slovaščina";
-"language_dutch" = "nizozemščina";
+"language_italian" = "Italijanščina";
+"language_english" = "Angleščina";
+"language_slovack" = "Slovaščina";
+"language_dutch" = "Nizozemščina";
+"language_slovenian" = "Slovenian";
 
 // Signup
 "lbl_signupHeader" = "<title>Prijavite se v Share'ngo</title>\nNaročnina za storitev je 10 € za 30 minut (standardni pogoji, razen promocij). Če potrebujete pomoč pri prijavi, uporabite gumb za klepet!";
@@ -309,7 +310,7 @@
 "lbl_carPopupFreeTypeUnplug" = "%d minut brezplačne vožnje! Odklopiti morate polnjenje!";
 
 // Disable reason
-"first_payment_login_alert" = "Onemogočeni ste, ker niste izvedli prvega plačila; za uporabo Sharen'go dostopite do svojega osebnega področja in zaključite plačilo";
+"first_payment_login_alert" = "Račun še ni aktiviran. Pojdite na svoj profil in izberite paket, ki vam ustreza";
 "failed_payment_login_alert" = "Onemogočeni ste zaradi neporavnanega plačila; za uporabo Sharen'go dostopite do svojega osebnega področja in nadaljujte s plačilom";
 "invalid_driver_license_login_alert" = "Onemogočeni ste, ker ste vnesli neveljavno licenco; za uporabo Sharen'go dostopite do svojega osebnega področja in preverite vnesene podatke";
 "disabled_webuser_login_alert" = "Račun je onemogočen, za več informacij se obrnite na službo za stranke";

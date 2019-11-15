@@ -56,6 +56,15 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
                 }
                 Localize.setCurrentLanguage("en")
                 self.updateLanguages()
+            case .slovenian:
+                    if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+                        if let username = KeychainSwift().get("Username") {
+                            dictionary[username] = "sl"
+                            UserDefaults.standard.set(dictionary, forKey: "languageDic")
+                        }
+                    }
+                    Localize.setCurrentLanguage("sk")
+                    self.updateLanguages()
             case .slovack:
                 if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
                     if let username = KeychainSwift().get("Username") {
