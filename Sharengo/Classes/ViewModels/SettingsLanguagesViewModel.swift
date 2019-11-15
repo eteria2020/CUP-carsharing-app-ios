@@ -25,6 +25,7 @@ public enum SettingsLanguageSelectionInput : SelectionInput {
 public enum SettingsLanguageSelectionOutput : SelectionOutput {
     case english
     case italian
+    case slovenian
     case slovack
     case dutch
     case empty
@@ -76,10 +77,11 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
         languages.removeAll()
         var italian: Bool = false
         var english: Bool = false
+        var slovenian: Bool = false
         var slovak: Bool = false
         var dutch: Bool = false
         var languageid = "0"
-        if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
+        if let dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
             if let username = KeychainSwift().get("Username") {
                 languageid = dictionary[username] ?? "0"
             }
@@ -91,6 +93,10 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
         else if languageid == "en"
         {
             english = true
+        }
+        else if languageid == "sl"
+        {
+            slovenian = true
         }
         else if languageid == "sk"
         {
@@ -104,9 +110,15 @@ public final class SettingsLanguagesViewModel : ListViewModelType, ViewModelType
         let languageItem2 = Language(title: "language_english", action: .english, selected: english)
         let languageItem3 = Language(title: "language_slovack", action: .slovack, selected: slovak)
         let languageItem4 = Language(title: "language_dutch", action: .dutch, selected: dutch)
+        let languageItem5 = Language(title: "language_slovenian", action: .slovenian, selected: slovenian)
         if(Config().language == "it")
         {
             languages.append(languageItem1)
+            languages.append(languageItem2)
+        }
+        else if(Config().language == "sl")
+        {
+            languages.append(languageItem5)
             languages.append(languageItem2)
         }
         else if(Config().language == "sk")
