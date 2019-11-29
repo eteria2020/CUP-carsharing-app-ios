@@ -20,7 +20,7 @@ class Config {
      let userArea_EndPoint = "https://public.sharengo.si/user/login?lang=sl_SI"
      let disableReason_EndPoint = "https://public.sharengo.si/user/login?lang=sl_SI"
      let site_Endpoint = "https://public.sharengo.si"
-     let signup3_EndPoint = "http://public.sharengo.si/signup-3/mobile?lang=sl_SI";
+     let signup3_EndPoint = "https://public.sharengo.si/signup-3/mobile?lang=sl_SI";
      let forgetPsw_EndPoint = "https://public.sharengo.si/forgot-password?lang=sl_SI"
      let signup_EndPoint = "https://public.sharengo.si/signup/mobile?lang=sl_SI"
      let osm_EndPoint = "http://maps.sharengo.it"
