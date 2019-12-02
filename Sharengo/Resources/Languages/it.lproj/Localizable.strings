@@ -201,7 +201,7 @@
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm:ss";
 "lbl_carTripsItemDescription" = "%@ - ORE %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n%@\n<kmTraveled>Tariffa al minuto: € %0.2f</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - ORE %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - ORE %@</endDateAndTime>\n%@\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Caricamento in corso</placeholder>";
 "lbl_noCarTripsTitle" = "Peccato!";
 "lbl_noCarTripsDescription" = "Non hai ancora effettuato nessuna corsa con una Share'ngo!";
