@@ -202,7 +202,7 @@
 "lbl_carTripsDateFormatter" = "dd MMMM yyyy";
 "lbl_carTripsTimeFormatter" = "HH:mm:ss";
 "lbl_carTripsItemDescription" = "%@ - UUR %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - UUR %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - UUR %@</endDateAndTime>\n%@\n<kmTraveled>Tarief per minuut: € %0.2f</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - UUR %@</startDateAndTime>\n%@\n<endDateAndTime>FINE: %@ - UUR %@</endDateAndTime>\n%@\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Bezig met laden</placeholder>";
 "lbl_noCarTripsTitle" = "Helaas!";
 "lbl_noCarTripsDescription" = "Je hebt nog geen ritten met een Share'ngo gemaakt!";

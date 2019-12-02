@@ -24,7 +24,7 @@ class Config {
      let forgetPsw_EndPoint = "https://public.sharengo.si/forgot-password?lang=sl_SI"
      let signup_EndPoint = "https://public.sharengo.si/signup/mobile?lang=sl_SI"
      let osm_EndPoint = "http://maps.sharengo.it"
-     let assistence_email = ""
+     let assistence_email = "support@sharengo.si"
     
      //TEST USER
      let emailTest = "enrico.taddei@gmail.com"

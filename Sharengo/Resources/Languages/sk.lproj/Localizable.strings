@@ -201,7 +201,7 @@
 "lbl_carTripsDateFormatter" = "dd MMMM rrrr";
 "lbl_carTripsTimeFormatter" = "HH: mm: ss";
 "lbl_carTripsItemDescription" = "%@ - HODINY %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime> %@ - HODÍN %@</startDateAndTime>\n%@\n<endDateAndTime>KONIEC: %@ - HODÍN %@</endDateAndTime>\n%@\n<kmTraveled> Sadzba za minútu: € %0.2f</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime> %@ - HODÍN %@</startDateAndTime>\n%@\n<endDateAndTime>KONIEC: %@ - HODÍN %@</endDateAndTime>\n%@\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Načítanie</placeholder>";
 "lbl_noCarTripsTitle" = "Škoda!";
 "lbl_noCarTripsDescription" = "Zatiaľ nemáš žiadnu jazdu s SHARE'Ngo!";

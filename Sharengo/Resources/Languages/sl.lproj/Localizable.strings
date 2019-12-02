@@ -199,7 +199,7 @@
 "lbl_carTripsDateFormatter" = "dd MMMM llll";
 "lbl_carTripsTimeFormatter" = "HH:mm:ss";
 "lbl_carTripsItemDescription" = "%@ - ur %@";
-"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - UR %@</startDateAndTime>\n%@\n<endDateAndTime>ZAKLJUČEK: %@ - UR %@</endDateAndTime>\n%@\n<kmTraveled>Minutna voznina: € %0,2f</kmTraveled>\nSHARE'NGO %@";
+"lbl_carTripsItemExtendedDescription" = "<startDateAndTime>%@ - UR %@</startDateAndTime>\n%@\n<endDateAndTime>ZAKLJUČEK: %@ - UR %@</endDateAndTime>\n%@\nSHARE'NGO %@";
 "lbl_carTripsItemExtendedDescriptionPlaceholder" = "<placeholder>Polnjenje</placeholder>";
 "lbl_noCarTripsTitle" = "Škoda";
 "lbl_noCarTripsDescription" = "S Share'ngo še niste opravili nobenega potovanja!";
@@ -232,11 +232,11 @@
 "lbl_supportSubtitle" = "Govorite z operaterjem?";
 "btn_supportCall" = "Pokličite zdaj";
 "btn_supportWriteMail" = "Napišite pošto";
-"alert_supportCall" = "+39 0586 1975772";
+"alert_supportCall" = "+386 080 4448";
 "alert_supportEmail" = "Bi radi poslali e-pošto službi za stranke?";
 "alert_noSupportCall" = "Vaša naprava nima omogočenih klicev";
-"alert_noSupportEmail" = "Vaša naprava nima omogočeno pisanje e-pošte, z nami stopite v stik preko servizioclienti@sharengo.eu";
-"supportTelephoneNumber" = "+3905861975772";
+"alert_noSupportEmail" = "Vaša naprava nima omogočeno pisanje e-pošte, z nami stopite v stik preko support@sharengo.si";
+"supportTelephoneNumber" = "+386 080 4448";
 "btn_supportAlertCall" = "Pokličite";
 "btn_supportAlertWrite" = "Pišite";
 
