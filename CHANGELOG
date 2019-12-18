@@ -5,9 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2019-12-18 - SL - v.1.0.4(1)  
+### Changed
+- Fix translations (#476)
+
 ## 2019-12-18 - SK - v.1.1.4(1)  
 ### Changed
-- Fix translations (#372)
+- Fix translations (#472)
 
 ## 2019-12-02 - SK - v.1.1.4
               - NL - v.1.0.4
