@@ -5,24 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2019-12-18 - SK - v.1.1.4(1)  
+### Changed
+- Fix translations (#372)
+
+## 2019-12-02 - SK - v.1.1.4
+              - NL - v.1.0.4
+              - SL - v.1.0.4
+### Changed
+- Fix bug basic rate (#341)
+
 ## [1.0.4] - 2019-11-29
 ### Changed
-
 - SL: changed app name (#351)
 
 ## [1.0.3] - 2019-11-15
 ### Changed
-
 - SL: updated translations
 
 ## [1.0.3] - 2019-11-11
 ### Changed
-
 - hidden app tutorial
 
 ## [1.0.3] - 2019-09-30
 ### Changed
-
 - migration to swift5
 
 ## [1.0.3] - 2019-09-24
