@@ -8,37 +8,37 @@
 "language" = "sl";
 
 // General
-"btn_ok" = "V REDU";
+"btn_ok" = "OK";
 "btn_cancel" = "PREKLIC";
 "btn_back" = "NAZAJ";
-"btn_tutorial" = "VODNIK";
+"btn_tutorial" = "TUTORIAL";
 "btn_yes" = "DA";
 "btn_no" = "NE";
 "alert_connectionError" = "Ste brez povezave, prosimo poskusite ponovno";
 "alert_generalError" = "Prišlo je do napake, prosimo poskusite znova";
 "alert_loginError" = "Za uporabo te funkcije se morate prijaviti";
 "alert_webViewError" = "Prišlo je do napake, prosimo preverite internetno povezavo in poskusite pozneje";
-"btn_login" = "PRIJAVA";
-"btn_open" = "ODPRITE VRATA";
-"btn_close" = "ZAKLJUČITE POTOVANJE";
-"btn_book" = "REZERVIRAJTE VOZILO";
+"btn_login" = "LOGIN";
+"btn_open" = "UNLOCK DOORS";
+"btn_close" = "END TRIP";
+"btn_book" = "BOOK CAR";
 "btn_delete" = "IZBRIŠITE";
 "btn_carRides" = "ZGODOVINA VOŽENJ";
 "btn_detail" = "IZVEDITE VEČ";
-"btn_car" = "REZERVIRAJTE VOZILO";
+"btn_car" = "BOOK CAR";
 "language_italian" = "Italijanščina";
 "language_english" = "Angleščina";
 "language_slovack" = "Slovaščina";
 "language_dutch" = "Nizozemščina";
-"language_slovenian" = "Slovenian";
+"language_slovenian" = "Slovenščina";
 
 // Signup
-"lbl_signupHeader" = "<title>Prijavite se v Share'ngo</title>\nNaročnina za storitev je 10 € za 30 minut (standardni pogoji, razen promocij). Če potrebujete pomoč pri prijavi, uporabite gumb za klepet!";
-"btn_signupSignup" = "PRIJAVA";
+"lbl_signupHeader" = "<title>Prijavite se v Share'ngo</title>\nRegistracija je brezplačna! Če potrebujete pomoč pri prijavi, uporabite gumb za klepet!";
+"btn_signupSignup" = "SIGN UP";
 "lbl_signupStepTitle1" = "Za prijavo morate imeti\npri roki:";
-"lbl_signupStepDescription1" = "OSEBNA IZKAZNICA";
+"lbl_signupStepDescription1" = "OSEBNI DOKUMENT";
 "lbl_signupStepTitle2" = "Za prijavo morate imeti\npri roki:";
-"lbl_signupStepDescription2" = "DAVČNA ŠTEVILKA";
+"lbl_signupStepDescription2" = "DAVČNO ŠTEVILKO";
 "lbl_signupStepTitle3" = "Za prijavo morate imeti\npri roki:";
 "lbl_signupStepDescription3" = "VOZNIŠKO DOVOLJENJE";
 "lbl_signupStepTitle4" = "Za prijavo morate imeti\npri roki:";
@@ -46,36 +46,36 @@
 
 // Login
 "alert_loginMissingFields" = "Eno ali več polj ni izpolnjeno";
-"alert_loginWrongEmail" = "Previdno! E-poštni naslov, ki ste ga vnesli, se ne ujema z našo bazo podatkov.";
+"alert_loginWrongEmail" = "Previdno! E-poštni naslov, ki ste ga vnesli, ni v našem sistemu.";
 "alert_loginWrongPassword" = "Previdno! Napačno geslo";
-"alert_loginUserDisabled" = "Previdno! Uporabniku ni omogočen dostop ";
-"alert_loginUserNotEnabled" = "Previdno! Ne morete uporabljati storitve Share'ngo. Preverite svoje podatke ali se obrnite na našo službo za stranke. Hvala.";
+"alert_loginUserDisabled" = "Imate onemogočen račun, prosimo obrnite se na podporni center.";
+"alert_loginUserNotEnabled" = "Prosimo dokončajte registracijo, ali se pa obrnite na podporni center";
 "lbl_loginFormHeader" = "Prosimo izpolnite polja za prijavo";
 "txt_loginEmailPlaceholder" = "e-pošta";
 "txt_loginPasswordPlaceholder" = "geslo";
 "btn_loginForgotPassword" = "Pozabil sem geslo";
-"btn_loginLogin" = "PRIJAVA";
-"lbl_loginNotYetRegistered" = "Se še niste prijavili?";
-"btn_loginRegister" = "NAROČITE SE";
-"btn_loginContinueAsNotLogged" = "NADALJUJETE BREZ PRIJAVE";
+"btn_loginLogin" = "LOGIN";
+"lbl_loginNotYetRegistered" = "Se še niste registrirali?";
+"btn_loginRegister" = "Registriraj se";
+"btn_loginContinueAsNotLogged" = "DEMO";
 
 // Menu
 "lbl_menuHeaderTitleLogged" = "Pozdravljeni %@, dobrodošli nazaj!";
 "lbl_menuHeaderTitleGuest" = "Dobrodošli!";
 "lbl_menuLogin" = "Prijava";
-"lbl_menuSignUp" = "Prijava";
-"lbl_menuFaq" = "FAQ in vodnik";
-"lbl_menuRates" = "Cene";
+"lbl_menuSignUp" = "Registriraj se";
+"lbl_menuFaq" = "FAQ in TUTORIAL";
+"lbl_menuRates" = "Cene in paketi";
 "lbl_menuPin" = "Pin";
-"lbl_menuHelp" = "Zahtevajte pomoč";
-"lbl_menuProfile" = "Območje uporabnika";
-"lbl_menuSearchCars" = "Rezervirajte vozilo";
-"lbl_menuRaces" = "Zgodovina potovanja";
+"lbl_menuHelp" = "Pomoč";
+"lbl_menuProfile" = "Moj profil";
+"lbl_menuSearchCars" = "Poišči vozilo";
+"lbl_menuRaces" = "Zgodovina potovanj";
 "lbl_menuBuyMinutes" = "Kupite minute";
 "lbl_menuInvite" = "Povabite prijatelja";
 "lbl_menuSettings" = "Nastavitve";
 "lbl_menuLogout" = "Odjava";
-"lbl_menuLegal" = "Pravno pojasnilo";
+"lbl_menuLegal" = "Splošni pogoji";
 
 // Profilo
 "lbl_profileEcoStatus" = "Profile\nEco Status";
@@ -100,7 +100,7 @@
 "alert_searchBarNotSetted" = "Pri postopku prepoznavanja glasu je prišlo do napake";
 "alert_searchBarNotAvailable" = "Pri postopku prepoznavanja glasu je prišlo do napake";
 "lbl_searchBarNoFavorites" = "V razdelku z nastavitvami\nni shranjenih priljubljenih";
-"lbl_searchBarPlate" = "%@\nTablica Share'ngo";
+"lbl_searchBarPlate" = "%@\nREG. ŠT.: Share'ngo";
 "lcl_searchBarSpeechRecognizer" = "en-EN";
 
 // SearchCars
@@ -110,46 +110,46 @@
 // CarPopup
 "lbl_carPopupType" = "Najbližje vozilo";
 "lbl_carPopupPlate" = "<bold>%@</bold>";
-"lbl_carPopupCapacity" = "avtonomija: <bold>%@ km</bold>";
+"lbl_carPopupCapacity" = "Domet vozila: <bold>%@ km</bold>";
 "lbl_carPopupDistance_km" = "%.2f km stran";
 "lbl_carPopupDistance_mt" = "%.3d m stran";
 "lbl_carPopupWalkingDistance_h" = "%d ur peš";
 "lbl_carPopupWalkingDistance_m" = "%d minut peš";
 "lbl_carPopupWalkingDistance_h_m" = "%d ur e %@ minut peš";
 "lbl_carPopupAddressPlaceholder" = "Polnjenje";
-"alert_carPopupLocalizationMessage" = "Share'ngo mora poznati vaš položaj, da odpre vrata. Ali želite odpreti nastavitve in omogočiti geolokacijo?";
+"alert_carPopupLocalizationMessage" = "Share'ngo mora poznati vaš položaj, da lahko odpre vrata. Ali želite odpreti nastavitve in omogočiti geolokacijo?";
 "alert_carPopupDistanceMessage" = "Predaleč ste od Saren'go, ki ste ga izbrali. Odprli ga boste lahko, ko se boste še bolj približali.";
-"aler_carPopupOpenDoorMessage" = "Ali ste prepričani, da želite odpreti vrata? Vožnja se bo pravkar začela.";
+"aler_carPopupOpenDoorMessage" = "Ali ste pri vozilu, s potrditvijo se bodo vrata odklenila.";
 
 // CarBookingPopup
 "lbl_carBookingPopupPin" = "PIN: %@";
-"lbl_carBookingPopupInfo" = "<status>REZERVACIJA AKTIVNA</status>\n<bold>TABLICA%@</bold>\n%@";
-"lbl_carBookingPopupInfoPlaceholder" = "<status>REZERVACIJA AKTIVNA</status>\n<bold>TABLICA%@</bold>\n<placeholder>Polnjenje</placeholder>";
-"lbl_carTripPopupInfo" = "<status>AKTIVNO POTOVANJE</status>\n<bold>TABLICA%@</bold>\nTrajanje potovanja:";
-"lbl_carTripPopupInfo5min" = "<status>AKTIVNO POTOVANJE</status>\n Če PIN-a ne vnesete, se po 5 minutah potovanje konča v prostem načinu\n<bold>TABLICA%@</bold>\nTrajanje potovanja:";
+"lbl_carBookingPopupInfo" = "<status>AKTIVNA REZERVACIJA</status>\n<bold>REG. ŠT.:%@</bold>\n%@";
+"lbl_carBookingPopupInfoPlaceholder" = "<status>AKTIVNA REZERVACIJA</status>\n<bold>REG. ŠT.:%@</bold>\n<placeholder>Polnjenje</placeholder>";
+"lbl_carTripPopupInfo" = "<status>AKTIVNI NAJEM</status>\n<bold>REG. ŠT.:%@</bold>\nTrajanje potovanja:";
+"lbl_carTripPopupInfo5min" = "<status>AKTIVNI NAJEM</status>\n Če PIN-a ne vnesete v 5 minutah, se najem avtomatsko zaključi.\n<bold>REG. ŠT.:%@</bold>\nTrajanje najema:";
 "lbl_carBookingPopupTime" = "Poteče v\n%@";
 "lbl_carBookingPopupTimeMinute" = "minuta";
 "lbl_carBookingPopupTimeMinutes" = "minute";
-"alert_carBookingPopupDeleteMessage" = "Če odpoveste rezervacijo, istega avtomobila ne boste mogli rezervirati naslednje 4 ure. Ali potrjujete odpoved rezervacije?";
-"alert_carBookingPopupConfirmDeleteMessage" = "Vaša rezervacija je bila pravilno odpovedana";
+"alert_carBookingPopupDeleteMessage" = "Če prekličete rezervacijo, istega avtomobila ne boste mogli rezervirati v naslednjih 4 urah. Ali potrjujete preklic rezervacije?";
+"alert_carBookingPopupConfirmDeleteMessage" = "Vaša rezervacija je bila preklicana";
 "alert_carBookingPopupBookedMessage" = "Že imate aktivno rezervacijo";
-"alert_carBookingPopupAlreadyBooked" = "Tega avtomobila ne morete rezervirati, dokler ne minejo 4 ure od vaše zadnje odpovedi rezervacije";
+"alert_carBookingPopupAlreadyBooked" = "Tega avtomobila ne morete rezervirati, dokler ne minejo 4 ure od vašega preklica zadnje rezervacije";
 "alert_carBookingPopupOnTrip" = "Nekdo že uporablja ta Share'ngo";
 "alert_carBookingPopupStatus" = "To vozilo ni na voljo, oprostite za nevšečnosti";
 "alert_carBookingPopupGeneric" = "Ups, prišlo je do napake";
-"aler_carPopupOpenDoorMessageUnplug" = "1. Odprite avto in počakajte, da se vrata odprejo \ n2. Modri vtič polnilnega kabla izklopite iz avtomobila, pri tem pazite, da držite vtič in ne kabla \ n3. Odklopite polnilno postajo \ n4. Polnilni kabel shranite v prtljažnik avtomobila \ n5. Sedite v avto in sledite navodilom na videu \ N Ali ste prepričani, da želite odpreti vrata?";
+"aler_carPopupOpenDoorMessageUnplug" = "1. Uporabite ukaz UNLOCK DOORS na telefonu ali uporabite SHARENGO RFID kartico za odklep vozila.  \ n2. Polnilni kabel izklopite iz avtomobila, pri tem pazite, da držite vtič in ne kabla \ n3. Odklopite kabel iz polnilne postaje. \ n4. Polnilni kabel pospravite v prtljažnik avtomobila \ n5. Sedite v avto in sledite navodilom na videu \ N Ali ste prepričani, da želite odpreti vrata?";
 "aler_titlePopupOpenDoorMessageUnplug" = "Odpirate nepriključen avtomobil:";
 "aler_carPopupOpenDoorUnparkMessage" = "Ali ste prepričani, da želite nadaljevati potovanje?";
 "alert_carBookingPopupActiveTripOnReservation" = "Pri rezervaciji ne odpirate potovanj";
-"alert_carBookingPopupActiveTripOnOpenCar" =  "Imate že odprto potovanje.";
-"aler_carPopupOpenDoorMessageBonus" = "Ste prepričani, da želite odpreti vrata? Vožnja se bo pravkar začela.\nVožnja bo imela %@ prostih minut!";
+"alert_carBookingPopupActiveTripOnOpenCar" =  "Imate že odprt najem.";
+"aler_carPopupOpenDoorMessageBonus" = "Ali ste pri vozilu, s potrditvijo se bodo vrata odklenila.\nNajem bo imel %@ bonus minut!";
 
 // CarBookingCompleted
-"lbl_carBookingCompletedDescription" = "<bold>Vašo vožnjo ste končali<bold>\n\nO potrditvi transakcije boste obveščeni po pošti v 24 urah.";
+"lbl_carBookingCompletedDescription" = "<bold>Vaš najem ste zaključili<bold>\n\nO potrditvi transakcije boste obveščeni po e-pošti v 24h.";
 "lbl_carBookingCompletedCo2" = "<bold>Najlepša hvala!</bold>\n\nPRIHRANILI STE %0.1f GRAMOV CO2 CO2 V TEM POTOVANJU";
 "banner_carBookingCompletedTitle" = "Share'ngo";
-"banner_carBookingCompletedDescription" = "Potovanje končano. Potovanje je trajalo %@ minut in se pravilno zaključilo. Hvala, ker uporabljate Share'ngo ";
-"banner_carBookingCompletedDescriptionLess5min" = "Potovanje končano. Potovanje je trajalo %@ minutes in se pravilno zaključilo v prostem načinu. Hvala, ker uporabljate Share'ngo ";
+"banner_carBookingCompletedDescription" = "Najem je končan. Najem je trajal %@ minut. Hvala, ker uporabljate Share'ngo ";
+"banner_carBookingCompletedDescriptionLess5min" = "Najem je končan. Najem je trajal %@ minut. Hvala, ker uporabljate Share'ngo ";
 "banner_carBookingDeletedTitle" = "Share'ngo";
 "banner_carBookingDeletedDescription" = "Čas rezervacije je potekel, vaša rezervacija je bila preklicana. Rezervirajte drug avto na zemljevidu.";
 
@@ -192,7 +192,7 @@
 "lbl_favouritesNoFavorites" = "Vnesite naslov, ki ga želite \ndodati med priljubljene";
 
 // CarTrips
-"lbl_carTripsHeaderTitle" = "ZGODOVINA POTOVANJA";
+"lbl_carTripsHeaderTitle" = "ZGODOVINA NAJEMOV";
 "lbl_carTripsItemTitle" = "Rezervacija št. %@";
 "lbl_carTripsItemSubtitle" = "%@";
 "lbl_carTripsItemSubtitleTotalCost" = "%@ - € %0,2f";
@@ -208,7 +208,7 @@
 
 // OnBoard
 "lbl_onBoardStep1Description" = "Preprosta in zabavna\n vožnja";
-"lbl_onBoardStep2Description" = "Bolj ko jih potrebujete,\nmanj vas bodo stali";
+"lbl_onBoardStep2Description" = "Več kot ga uporabljate,\ncenejši je";
 "lbl_onBoardStep3Description" = "Vsako potovanje je presenečenje\nin odkritje";
 "btn_onBoardSkip" = "Preskoči >>";
 
@@ -219,39 +219,39 @@
 "alert_categoryNotPublished" = "Ta kategorija bo kmalu na voljo";
 
 // Feed Detail
-"btn_feedDetailFavourite" = "ZANIMANJE";
-"btn_feedDetailNotFavourite" = "NI ZANIMANJA";
+"btn_feedDetailFavourite" = "PRILJUBLJENE";
+"btn_feedDetailNotFavourite" = "NI PRILJUBLJENIH";
 
 // No feeds
 "lbl_noFeedsDescriptionWithCategory" = "<title>Škoda!</title>\n\n<description>Trenutno v vašem mestu ni na voljo nobene vsebine za vneseno kategorijo. V naslednjih dneh se vrnite </description>";
 "btn_feed lbl_noFeedsDescriptionWithNoCategory DetailNotFavourite" = "<title>Škoda!</title>\n\n<description>Trenutno v vašem mestu ni na voljo nobene vsebine. V naslednjih dneh se vrnite </description>";
 
 // Support
-"lbl_supportHeaderTitle" = "ZAHTEVA POMOČI";
+"lbl_supportHeaderTitle" = "POMOČ";
 "lbl_supportTitle" = "Tu smo, da pomagamo!";
-"lbl_supportSubtitle" = "Govorite z operaterjem?";
+"lbl_supportSubtitle" = "Želite govoriti z operaterjem?";
 "btn_supportCall" = "Pokličite zdaj";
-"btn_supportWriteMail" = "Napišite pošto";
-"alert_supportCall" = "+386 080 4448";
+"btn_supportWriteMail" = "Napišite e-pošto";
+"alert_supportCall" = "080 4448";
 "alert_supportEmail" = "Bi radi poslali e-pošto službi za stranke?";
 "alert_noSupportCall" = "Vaša naprava nima omogočenih klicev";
 "alert_noSupportEmail" = "Vaša naprava nima omogočeno pisanje e-pošte, z nami stopite v stik preko support@sharengo.si";
-"supportTelephoneNumber" = "+386 080 4448";
+"supportTelephoneNumber" = "080 4448";
 "btn_supportAlertCall" = "Pokličite";
 "btn_supportAlertWrite" = "Pišite";
 
 // Invite Friend
 "lbl_inviteFriendHeader" = "POVABITE PRIJATELJA";
-"lbl_inviteFriendDescriptionFirstPart" = "<title>Povabite prijatelja in zaslužite minuto!</title>\n<subtitle>Ob naročnini</subtitle>";
-"lbl_inviteFriendDescriptionSecondPart" = "bodo prejeli 10 minut brezplačne vožnje";
+"lbl_inviteFriendDescriptionFirstPart" = "<title>Povabite prijatelja dobite 30 minut!</title>\n<subtitle>Ob naročnini</subtitle>";
+"lbl_inviteFriendDescriptionSecondPart" = "bodo prejeli 30 minut brezplačne vožnje";
 "lbl_inviteFriendDescriptionThirdPart" = "<firstPart>kot darilo dobrodošlice</firstPart>\n\n<secondPart>Za vsakega prijatelja, ki se prijavi \nz vašim povabilom</secondPart>";
-"lbl_inviteFriendDescriptionFourthPart" = "boste prejeli 20 minut brezplačne vožnje";
-"btn_inviteFriendInvite" = "POVABITE SEDAJ";
+"lbl_inviteFriendDescriptionFourthPart" = "boste prejeli 30 minut brezplačne vožnje";
+"btn_inviteFriendInvite" = "POŠLJI POVABILA";
 "lbl_inviteFriendInviteDescription" = "Hej! Uporabite aplikacijo Share'ngo";
 
 // Faq
 "lbl_faqHeader" = "FAQ";
-"btn_faqAppTutorial" = "VODNIK PO APLIKACIJI";
+"btn_faqAppTutorial" = "TUTORIAL PO APLIKACIJI";
 
 // Vodnik
 "img_tutorial01" = "vodnik_01-ANG";
@@ -270,20 +270,20 @@
 "img_tutorial640x960_06" = "vodnik_640x960_06-ANG";
 "img_tutorial640x960_07" = "vodnik_640x960_07-ANG";
 "img_tutorial640x960_08" = "vodnik_640x960_08-ANG";
-"alert_closeTutorial" = "Ali želite zapustiti vodnika?\nKadarkoli si ga boste lahko spet ogledali v razdelku \"FAQ in vodnik\" v meniju";
-"btn_tutorialAlertStay" = "OSTANI";
+"alert_closeTutorial" = "Ali želite zapustiti TUTORIAL?\nKadarkoli si ga boste lahko spet ogledali v razdelku \"FAQ in TUTORIAL\" v meniju";
+"btn_tutorialAlertStay" = "NAZAJ";
 "btn_tutorialAlertClose" = "IZHOD";
 
 /////////////////////////
 
 // Rates
-"lbl_ratesHeader" = "VOZNINE IN BONUSI";
-"lbl_ratesLoggedRatesTitle" = "Tu je vaša voznina:";
-"lbl_ratesNotLoggedRatesTitle" = "Tu so voznine Share’ngo:";
-"lbl_ratesRatesDescription" = "<description>Osnovna voznina za potovanje:</description> <value>€ %0.2f</value>\n<description>Voznina 1h:</description> <value>€ %0.2f</value>\n<description>Dnevna voznina:</description> <value>€ %0.2f</value>\n<description>Voznina za rezervacijo:</description> <value>€ %0.2f</value>";
+"lbl_ratesHeader" = "PAKETI IN PROMOCIJE";
+"lbl_ratesLoggedRatesTitle" = "Tukaj se nahajajo vaši paketi in promocije:";
+"lbl_ratesNotLoggedRatesTitle" = "Tukaj se nahajajo paketi in promocije:";
+"lbl_ratesRatesDescription" = "<description>Osnovna cena najema:</description> <value>€ %0.2f</value>\n<description>Voznina 1h:</description> <value>€ %0.2f</value>\n<description>Dnevni najem:</description> <value>€ %0.2f</value>\n<description>Cena rezervacije:</description> <value>€ %0.2f</value>";
 "lbl_ratesBonusTitle" = "Vaše bonus minute:";
 "lbl_ratesBonusDescription" = "%d minut";
-"btn_ratesSignup" = "NAROČITE SE ZDAJ";
+"btn_ratesSignup" = "KUPITE SEDAJ";
 
 // Pin
 "lbl_pinHeader" = "PIN";
@@ -294,30 +294,30 @@
 "lbl_logoutConfirmButton"="ODJAVA";
 
 // Legal note
-"lbl_legalNoteHeader" = "PRAVNO POJASNILO";
+"lbl_legalNoteHeader" = "SPLOŠNI POGOJI";
 
 /////////////////////////
 
-"alert_logoutError" = "Previdno, prišlo je do napake. Prosimo, prijavite se še enkrat.";
+"alert_logoutError" = "Prišlo je do napake. Prosimo, poizkusite ponovno.";
 "btn_login" = "PRIJAVA";
-"lbl_buyMinutesHeader" = "KUPITE MINUTE";
-"lbl_userAreaHeader" = "UPORABNIKOVO OBMOČJE";
-"lbl_carTripParkingPopupInfo" = "<status>PARKIRANO VOZILO</status>\n<bold>TABLICA%@</bold>\nTrajanje potovanja:";
+"lbl_buyMinutesHeader" = "NAKUP MINUT";
+"lbl_userAreaHeader" = "MOJ PROFIL";
+"lbl_carTripParkingPopupInfo" = "<status>PARKIRANO VOZILO</status>\n<bold>REG. ŠT.:%@</bold>\nTrajanje potovanja:";
 
 /////////////////////////
 
 "lbl_carPopupFreeType" = "%d minut brezplačne vožnje";
-"lbl_carPopupFreeTypeUnplug" = "%d minut brezplačne vožnje! Odklopiti morate polnjenje!";
+"lbl_carPopupFreeTypeUnplug" = "%d minut brezplačne vožnje! Odklopiti morate polnilni kabel!";
 
 // Disable reason
 "first_payment_login_alert" = "Račun še ni aktiviran. Pojdite na svoj profil in izberite paket, ki vam ustreza";
-"failed_payment_login_alert" = "Onemogočeni ste zaradi neporavnanega plačila; za uporabo Sharen'go dostopite do svojega osebnega področja in nadaljujte s plačilom";
-"invalid_driver_license_login_alert" = "Onemogočeni ste, ker ste vnesli neveljavno licenco; za uporabo Sharen'go dostopite do svojega osebnega področja in preverite vnesene podatke";
+"failed_payment_login_alert" = "Račun je onemogočen zaradi neporavnanega plačila; za uporabo Sharen'go dostopite do svojega profila in nadaljujte s plačilom";
+"invalid_driver_license_login_alert" = "Račun je onemogočen, ker ste vnesli neveljavno vozniško dovoljenje; za uporabo Sharen'go dostopite do svojega profila in preverite vnesene podatke";
 "disabled_webuser_login_alert" = "Račun je onemogočen, za več informacij se obrnite na službo za stranke";
-"expired_driver_license_login_alert" = "Onemogočeni ste, ker vam je poteklo vozniško dovoljenje; za uporabo Sharen'go dostopite do svojega osebnega področja in vnesite nove podatke";
-"expired_credit_card_login_alert" = "Onemogočeni ste, ker je potekla informacija, ki ste jo vnesli za plačilo; za uporabo Sharen'go dostopite do svojega osebnega področja in vnesite nove podatke";
+"expired_driver_license_login_alert" = "Račun je onemogočen, ker vam je poteklo vozniško dovoljenje; za uporabo Sharen'go dostopite do svojega profila in vnesite nove podatke";
+"expired_credit_card_login_alert" = "Račun je onemogočen, ker vam je potekla kreditna kartica, ki ste jo vnesli za plačilo; za uporabo Sharen'go dostopite do svojega profila in vnesite nove podatke";
 "failed_extra_payment_login_alert" = "Račun je onemogočen zaradi neplačane kazni; za več informacij se obrnite na službo za stranke";
-"registration_not_completed_login_alert" = "Onemogočeni ste, ker morate dokončati postopek registracije";
+"registration_not_completed_login_alert" = "Račun je onemogočen, ker morate dokončati postopek registracije";
 
 // Push request
 "push_request_alert_message" = "Sprejmite potisna obvestila";
@@ -325,9 +325,4 @@
 
 // Close car
 "alert_closeCarPopoup" = "Vozilo se bo zaprlo v nekaj sekundah. Po tem boste prejeli obvestilo";
-"alert_closeCarPopoupConfirm" = "Ali ste prepričani, da želite končati potovanje?";
-
-//  User area link (webView)
-"url_ita_noteLegali" = "https://site.sharengo.it/en/legal-note/?app";
-"url_ita_userArea" = "https://www.sharengo.it/user/login?lang=en";
-"url_ita_disableReason"= "https://www.sharengo.it/area-utente/mobile?lang=en";
+"alert_closeCarPopoupConfirm" = "Ali ste prepričani, da želite končati najem?";
