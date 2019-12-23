@@ -15,7 +15,7 @@ class Config {
     let apiGeneral_EndPoint = "api.sharengo.nl"
     let apiNoHttp_EndPoint = "@api.sharengo.nl:8033"
     let apiFull_EndPoint = "https://api.sharengo.nl:8033"
-    let support_EndPoint = "https://site.sharengo.nl/hoe-werkt-het/"
+    let support_EndPoint = "https://site.sharengo.nl/faq/?app"
     let legalNote_EndPoit = "https://site.sharengo.nl/privacy/"
     let userArea_EndPoint = "https://www.sharengo.nl/user/login?lang=nl_NL"
     let disableReason_EndPoint = "https://www.sharengo.nl/area-utente/mobile?lang=nl_NL"
