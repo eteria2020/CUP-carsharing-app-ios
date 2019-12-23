@@ -15,7 +15,7 @@ class Config {
     let apiGeneral_EndPoint = "api.sharengo.sk"
     let apiNoHttp_EndPoint = "@api.sharengo.sk:8201"
     let apiFull_EndPoint = "https://api.sharengo.sk:8201"
-    let support_EndPoint = "https://site.sharengo.sk/faq/?mobile"
+    let support_EndPoint = "https://site.sharengo.sk/faq/?app"
     let legalNote_EndPoit = "https://baliky.sharengo.sk/wp-content/uploads/2019/02/SUKROMIE-Sharengo.sk_.pdf"
     let userArea_EndPoint = "https://public.sharengo.sk/user/login?lang=sk_SK"
     let disableReason_EndPoint = "https://public.sharengo.sk/user/login?lang=sk_SK"
