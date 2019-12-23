@@ -13,6 +13,7 @@
 "btn_back" = "NAZAJ";
 "btn_tutorial" = "TUTORIAL";
 "btn_yes" = "DA";
+
 "btn_no" = "NE";
 "alert_connectionError" = "Ste brez povezave, prosimo poskusite ponovno";
 "alert_generalError" = "Prišlo je do napake, prosimo poskusite znova";

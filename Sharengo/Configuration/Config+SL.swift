@@ -15,7 +15,7 @@ class Config {
      let apiGeneral_EndPoint = "api.sharengo.si"
      let apiNoHttp_EndPoint = "@api.sharengo.si:8323"
      let apiFull_EndPoint = "https://api.sharengo.si:8323"
-     let support_EndPoint = "https://site.sharengo.si/faq/?mobile"
+     let support_EndPoint = "https://site.sharengo.si/faq/?app"
      let legalNote_EndPoit = "https://public.sharengo.si/pdf/si/contract.pdf"
      let userArea_EndPoint = "https://public.sharengo.si/user/login?lang=sl_SI"
      let disableReason_EndPoint = "https://public.sharengo.si/user/login?lang=sl_SI"
@@ -28,5 +28,5 @@ class Config {
     
      //TEST USER
      let emailTest = "enrico.taddei@gmail.com"
-     let pswTest = "enrcio_1971"
+     let pswTest = "123456789Aa"
 }

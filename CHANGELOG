@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 2019-12-18 - SL - v.1.0.4(1)  
+## 2019-12-23 - NL - v.1.0.5
+### Changed
+- Fix GoogleMaps API key (#519)
+
+## 2019-12-23 - SK - v.1.1.5
+### Changed
+- Fix GoogleMaps API key (#515)
+
+## 2019-12-23 - SL - v.1.0.6
+### Changed
+- Fix GoogleMaps API key (#510)
+
+## 2019-12-18 - SL - v.1.0.5
 ### Changed
 - Fix translations (#476)
 
