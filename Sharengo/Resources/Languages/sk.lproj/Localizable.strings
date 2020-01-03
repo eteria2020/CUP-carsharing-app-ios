@@ -122,7 +122,7 @@
 "alert_carPopupLocalizationMessage" = "Share'ngo potrebuje poznať Tvoju pozíciu, aby otvorila dvere. Chceš otvoriť nastavenia na povolenie lokalizácie?";
 "alert_carPopupDistanceMessage" = "Si príliš ďaleko od Sharen’go auta, ktoré si si vybral. Môžeš ho otvoriť ak si v blízkosti auta.";
 "aler_carPopupOpenDoorMessage" = "Si si istý, že chceš otvoriť dvere?\nJazda sa začne hneď teraz.\nJazda bude za štandardnú sadzbu.";
-"aler_carPopupOpenDoorMessageBonus" = "Naozaj chcete otvoriť dvere? Jazda sa začne hneď teraz. \nPre túto jazdu máš %d minút zadarmo!";
+"aler_carPopupOpenDoorMessageBonus" = "Naozaj chcete otvoriť dvere? Jazda sa začne hneď teraz. \nPre túto jazdu máš %@ minút zadarmo!";
 "aler_carPopupOpenDoorMessageUnplug" = "1. Otvor vozidlo a počkaj, kým sa dvere otvoria.\n2. Odpoj modrý konektor nabíjacieho kábla od auta, ale dbaj na to, aby si držal konektor a nie kábel.\n3. Odpoj kábel od nabíjacej stanice.\n4. Sieťový kábel ulož do kufra auta.\n5. Nastúp do auta a postupuj podľa pokynov na videu.\n\nUrčite chceš otvoriť dvere?";
 "aler_titlePopupOpenDoorMessageUnplug" = "Otváraš zariadenie na odpojenie:";
 "aler_carPopupOpenDoorUnparkMessage" = "Naozaj chceš pokračovať v jazde?";
