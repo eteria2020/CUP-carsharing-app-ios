@@ -180,12 +180,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
        #if ISDEBUG
             GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
        #elseif ISRELEASE
-            GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
+            //GMSServices.provideAPIKey("AIzaSyCrFe8JoIela-xxbetLVbb1VbTsxz88mA8")
             //TODO: ripristinare per l'invio
             GMSServices.provideAPIKey("AIzaSyCnHV6khPUikgREjDIaOfSOOOM8SoI6RlM")
-        #endif
-        
-        //GMSServices.provideAPIKey("AIzaSyDQTwHSswfQ5nbjYB2qjfnqf0-HKmNqEUY")
+       #endif
     }
     
     private func setupFavourites()
