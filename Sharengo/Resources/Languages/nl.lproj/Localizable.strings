@@ -313,7 +313,7 @@
 //Disable reason
 "first_payment_login_alert" = "Je bent gedeactiveerd omdat de eerste betaling niet is uitgevoerd; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en de betaling voltooien";
 "failed_payment_login_alert" = "Je bent gedeactiveerd omdat er een betaling niet is uitgevoerd; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en doorgaan naar de betaling";
-"invalid_driver_license_login_alert" = "Je bent gedeactiveerd omdat je een ongeldig rijbewijs hebt ingevoerd; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en de ingevoerde gegevens controleren en aanpassen";
+"invalid_driver_license_login_alert" = "Uw account is nog niet geactiveerd. Onze administratie afdeling zal de geldigheid van uw legitimatie en rijbewijs controleren, na goedkeuring wordt uw account automatisch geactiveerd. U hoeft verder niets te doen, u ontvangt hierover een e-mail";
 "disabled_webuser_login_alert" = "Je bent gedeactiveerd; neem contact op met de klantenservice voor meer informatie";
 "expired_driver_license_login_alert" = "Je bent gedeactiveerd omdat je rijbewijs is verlopen; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en de nieuwe gegevens invoeren";
 "expired_credit_card_login_alert" = "Je bent gedeactiveerd omdat je ID is verlopen; om Share'ngo te gebruiken moet je naar je persoonlijke omgeving gaan en de nieuwe gegevens invoeren";

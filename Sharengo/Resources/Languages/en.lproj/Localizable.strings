@@ -314,7 +314,7 @@
 
 "first_payment_login_alert" = "You are disabled for the first payment not made, to use Sharen'go access your personal area and complete the payment";
 "failed_payment_login_alert" = "You are disabled for an unpaid payment, to use Sharen'go access your personal area and proceed with payment";
-"invalid_driver_license_login_alert" = "You are disabled because you have entered an invalid license, to use Sharen'go access your personal area and check the data entered";
+"invalid_driver_license_login_alert" = "Your account has not yet been activated. Our administration department will check the validity of your ID and driver\'s license. After approval your account will be activated automatically. You do not have to do anything else. ";
 "disabled_webuser_login_alert" = "The account is disabled, contact customer service for more information";
 "expired_driver_license_login_alert" = "You are disabled by expired driving license, to use Sharen'go access your personal area and enter the new data";
 "expired_credit_card_login_alert" = "You are disabled because the payment information you entered has expired, to use Sharen'go access your personal area and enter the new data";
