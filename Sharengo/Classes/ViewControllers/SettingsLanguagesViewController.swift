@@ -63,7 +63,7 @@ public class SettingsLanguagesViewController : BaseViewController, ViewModelBind
                             UserDefaults.standard.set(dictionary, forKey: "languageDic")
                         }
                     }
-                    Localize.setCurrentLanguage("sk")
+                    Localize.setCurrentLanguage("sl")
                     self.updateLanguages()
             case .slovack:
                 if var dictionary = UserDefaults.standard.object(forKey: "languageDic") as? [String: String] {
