@@ -5295,7 +5295,7 @@
 				INFOPLIST_FILE = "SharengoSK-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.8;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.eteria.sharengo.app;
 				PRODUCT_NAME = Sharengo;
@@ -5321,7 +5321,7 @@
 				INFOPLIST_FILE = "SharengoSK-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.8;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DISRELEASE\"";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.eteria.sharengo.app;
 				PRODUCT_NAME = Sharengo;

@@ -85,7 +85,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
             }
         }).disposed(by: self.disposeBag)
         // Buttons
-        self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
+        //self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
         self.btn_call.rx.tap.asObservable()
             .subscribe(onNext:{
                 var supportTelephoneNumber = "+3905861975772"
@@ -125,10 +125,10 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                     dialog.show()
                 }
             }).disposed(by: disposeBag)
-        self.btn_writeMail.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportWriteMail".localized())
+        //self.btn_writeMail.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportWriteMail".localized())
         self.btn_writeMail.rx.tap.asObservable()
             .subscribe(onNext:{
-                let email = "servizioclienti@sharengo.eu"
+                let email = Config().assistence_email
                 guard let emailUrl = URL(string: "mailto:\(email)") else { return }
                 if (UIApplication.shared.canOpenURL(emailUrl)) {
                     if #available(iOS 10.0, *) {
