@@ -44,8 +44,8 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
         }).disposed(by: self.disposeBag)
         
         self.showLoader()
-        URLSession.shared.reset { 
-            var request = URLRequest(url: URL(string: Config().userArea_EndPoint)!)
+        URLSession.shared.reset {
+            var request = URLRequest(url: URL(string: Config().userArea_EndPoint + "url_lang".localized())!)
             request.httpMethod = "POST"
             let username = KeychainSwift().get("Username")!
             let password = KeychainSwift().get("PasswordClear")!
@@ -72,11 +72,11 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                     }
                    
                         if KeychainSwift().get("DisableReason") != nil {
-                            let url = URL(string: Config().disableReason_EndPoint)
+                            let url = URL(string: Config().disableReason_EndPoint + "url_lang".localized())
                             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
                         }
                         else{
-                            let url = URL(string: Config().disableReason_EndPoint)
+                            let url = URL(string: Config().disableReason_EndPoint + "url_lang".localized())
                             self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
                         }
                 }

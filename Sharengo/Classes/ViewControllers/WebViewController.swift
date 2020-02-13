@@ -75,7 +75,7 @@ extension WebViewController: UIWebViewDelegate {
                     }
                 }
             case .signup:
-                if request.url?.absoluteString == Config().signup3_EndPoint {
+                if request.url?.absoluteString == Config().signup3_EndPoint + "url_lang".localized() {
                     let dispatchTime = DispatchTime.now() + 3
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                         if let viewControllers = self.navigationController?.viewControllers {

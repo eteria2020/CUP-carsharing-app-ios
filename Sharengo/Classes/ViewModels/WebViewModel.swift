@@ -50,9 +50,12 @@ extension WebType:RawRepresentable {
     /// Backing raw value
     public var rawValue: RawValue {
         switch self {
-        case .empty:     return ""
-        case .forgotPassword:     return Config().forgetPsw_EndPoint
-        case .signup:   return Config().signup_EndPoint
+        case .empty:
+            return ""
+        case .forgotPassword:
+            return Config().forgetPsw_EndPoint + "url_lang".localized()
+        case .signup:
+            return Config().signup_EndPoint + "url_lang".localized()
         }
     }
 }

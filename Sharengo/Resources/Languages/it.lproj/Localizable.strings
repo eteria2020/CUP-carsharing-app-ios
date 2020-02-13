@@ -237,7 +237,7 @@
 "alert_supportCall" = "+39 0586 1975772";
 "alert_supportEmail" = "Vuoi contattare il servizio clienti?";
 "alert_noSupportCall" = "Il tuo dispositivo non è abilitato alle chiamate";
-"alert_noSupportEmail" = "Configura la mail sul tuo dispositivo. Contattaci a servizioclienti@sharengo.eu";
+"alert_noSupportEmail" = "Configura la mail sul tuo dispositivo. Contattaci a ";
 "supportTelephoneNumber" = "+3905861975772";
 "btn_supportAlertCall" = "Chiama";
 "btn_supportAlertWrite" = "Scrivi";
@@ -329,11 +329,8 @@
 "btn_go_to_settings" = "Accetta";
 
 // Close car popup
-
 "alert_closeCarPopoup" = "La macchina si chiuderà a breve, riceverai una notifica a processo completato.";
 "alert_closeCarPopoupConfirm" = "Sei sicuro di voler chiudere la corsa?";
 
-"url_ita_noteLegali" = "https://site.sharengo.it/note-legali-app/?app";
-"url_ita_userArea" = "https://www.sharengo.it/user/login";
-
-"url_ita_disableReason"= "https://www.sharengo.it/area-utente/mobile";
+//webView
+"url_lang" = "lang=it_IT";

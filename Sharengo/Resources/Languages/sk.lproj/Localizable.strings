@@ -235,7 +235,7 @@
 "alert_supportCall" = "+421 905 333 109";
 "alert_supportEmail" = "Chceš sa obrátiť na zákaznícky servis?";
 "alert_noSupportCall" = "Váš prístroj nepovoľuje hovory";
-"alert_noSupportEmail" = "Konfiguruj e-maily v zariadení. Kontaktuj nás na zakaznickyservis@sharengo.sk";
+"alert_noSupportEmail" = "Konfiguruj e-maily v zariadení. Kontaktuj nás na ";
 "supportTelephoneNumber" = "+421905333109";
 "btn_supportAlertCall" = "Volaj";
 "btn_supportAlertWrite" = "Napíš";
@@ -315,7 +315,4 @@
 
 
 //webView
-
-"url_webView_UserArea" = "https://public.sharengo.sk/user/login?lang=sk_SK";
-"url_webView_SignUp" = "https://public.sharengo.sk/signup/mobile?lang=sk_SK";
-"url_webView_SignUpForgotPassword" = "https://public.sharengo.sk/signup/mobile?lang=sk_SK";
+"url_lang" = "lang=sk_SK";
