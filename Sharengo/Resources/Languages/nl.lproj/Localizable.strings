@@ -238,7 +238,7 @@
 "alert_supportCall" = "+31 85 6200300";
 "alert_supportEmail" = "Wil je contact opnemen met de klantenservice?";
 "alert_noSupportCall" = "Je toestel is niet geschikt voor oproepen";
-"alert_noSupportEmail" = "Configureer de e-mail op uw toestel. Neem contact met ons op via klantenservice@sharengo.nl";
+"alert_noSupportEmail" = "Configureer de e-mail op uw toestel. Neem contact met ons op via ";
 "supportTelephoneNumber" = "3,90586E+12";
 "btn_supportAlertCall" = "Bel";
 "btn_supportAlertWrite" = "Schrijf";
@@ -329,7 +329,4 @@
 "alert_closeCarPopoupConfirm" = "Weet je zeker dat je de rit wilt afsluiten?";
 
 //webView
-
-"url_webView_UserArea" = "https://www.sharengo.nl/user/login";
-"url_webView_SignUp" = "https://www.sharengo.nl/signup";
-"url_webView_SignUpForgotPassword" = "https://www.sharengo.nl/signup";
+"url_lang" = "lang=nl_NL";

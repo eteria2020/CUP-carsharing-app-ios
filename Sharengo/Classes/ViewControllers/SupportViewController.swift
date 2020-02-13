@@ -149,7 +149,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                         dialog.show()
                     }
                 } else {
-                    let message = "alert_noSupportEmail".localized()
+                    let message = "alert_noSupportEmail".localized() + email
                     let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
                         alertView.dismissAlertView()
                     })
