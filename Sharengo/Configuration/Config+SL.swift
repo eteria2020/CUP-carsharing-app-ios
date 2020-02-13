@@ -17,12 +17,12 @@ class Config {
      let apiFull_EndPoint = "https://api.sharengo.si:8323"
      let support_EndPoint = "https://site.sharengo.si/faq/?app"
      let legalNote_EndPoit = "https://public.sharengo.si/pdf/si/contract.pdf"
-     let userArea_EndPoint = "https://public.sharengo.si/user/login?lang=sl_SI"
-     let disableReason_EndPoint = "https://public.sharengo.si/area-utente/mobile?lang=sl_SI"
+     let userArea_EndPoint = "https://public.sharengo.si/user/login?"
+     let disableReason_EndPoint = "https://public.sharengo.si/area-utente/mobile?"
      let site_Endpoint = "https://public.sharengo.si"
-     let signup3_EndPoint = "https://public.sharengo.si/signup-3/mobile?lang=sl_SI";
-     let forgetPsw_EndPoint = "https://public.sharengo.si/forgot-password?lang=sl_SI"
-     let signup_EndPoint = "https://public.sharengo.si/signup/mobile?lang=sl_SI"
+     let signup3_EndPoint = "https://public.sharengo.si/signup-3/mobile?";
+     let forgetPsw_EndPoint = "https://public.sharengo.si/forgot-password?"
+     let signup_EndPoint = "https://public.sharengo.si/signup/mobile?"
      let osm_EndPoint = "http://maps.sharengo.it"
      let assistence_email = "support@sharengo.si"
     

@@ -236,7 +236,7 @@
 "alert_supportCall" = "080 4448";
 "alert_supportEmail" = "Bi radi poslali e-pošto službi za stranke?";
 "alert_noSupportCall" = "Vaša naprava nima omogočenih klicev";
-"alert_noSupportEmail" = "Vaša naprava nima omogočeno pisanje e-pošte, z nami stopite v stik preko support@sharengo.si";
+"alert_noSupportEmail" = "Vaša naprava nima omogočeno pisanje e-pošte, z nami stopite v stik preko ";
 "supportTelephoneNumber" = "080 4448";
 "btn_supportAlertCall" = "Pokličite";
 "btn_supportAlertWrite" = "Pišite";
@@ -327,3 +327,6 @@
 // Close car
 "alert_closeCarPopoup" = "Vozilo se bo zaprlo v nekaj sekundah. Po tem boste prejeli obvestilo";
 "alert_closeCarPopoupConfirm" = "Ali ste prepričani, da želite končati najem?";
+
+//webView
+"url_lang" = "lang=sl_SI";
