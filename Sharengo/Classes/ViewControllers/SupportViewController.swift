@@ -27,11 +27,13 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var btn_call: UIButton!
     @IBOutlet fileprivate weak var view_callArea: UIView!
     @IBOutlet fileprivate weak var btn_writeMail: UIButton!
+    @IBOutlet fileprivate weak var btn_sos: UIButton!
+    
     /// ViewModel variable used to represents the data
     public var viewModel: SupportViewModel?
     fileprivate let CALL_CENTER_NUMBER = "call_center_number"
-    // MARK: - ViewModel methods
     
+    // MARK: - ViewModel methods
     public func bind(to viewModel: ViewModelType?) {
         guard let viewModel = viewModel as? SupportViewModel else {
             return
@@ -72,6 +74,21 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
         self.lbl_title.styledText = "lbl_supportTitle".localized()
         self.lbl_subtitle.textColor = Color.supportSubtitle.value
         self.lbl_subtitle.styledText = "lbl_supportSubtitle".localized()
+        
+        //Get current hour
+        if(Config().language == "it") {
+            let hour = Calendar.current.component(.hour, from: Date())
+            if (hour > 0) && (hour < 7) {
+                self.lbl_title.styledText = "lbl_supportSos".localized()
+                self.lbl_title.textColor = UIColor.red
+                let redTapImage = UIImage(named: "support_grey_phone.png")
+                btn_call.setImage(redTapImage, for: UIControlState.normal)
+                btn_call.isEnabled = false
+            }
+        } else {
+            btn_sos.isHidden = true
+        }
+        
         self.view_navigationBar.bind(to: ViewModelFactory.navigationBar(leftItemType: .home, rightItemType: .menu))
         self.view_navigationBar.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
@@ -84,8 +101,49 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                 break
             }
         }).disposed(by: self.disposeBag)
+        
         // Buttons
-        //self.btn_call.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportCall".localized())
+        self.btn_sos.rx.tap.asObservable()
+            .subscribe(onNext:{
+                var supportTelephoneNumber = "+3905861975772"
+                if(CoreController.shared.appConfig.count > 0 && (CoreController.shared.appConfig["call_center_number"] != nil)){
+                    supportTelephoneNumber = CoreController.shared.appConfig["call_center_number"]!
+                }
+                guard let phoneCallURL = URL(string: "tel://" + supportTelephoneNumber) else { return }
+                if (UIApplication.shared.canOpenURL(phoneCallURL)) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(phoneCallURL)
+                    }
+                    else
+                    {
+                        var message = "alert_supportCall".localized()
+                        if(CoreController.shared.appConfig.count > 0 && (CoreController.shared.appConfig["call_center_number"] != nil)){
+                            message = CoreController.shared.appConfig["call_center_number"]!
+                        }/*else{
+                             message = "alert_supportCall".localized()
+                        }*/
+                        let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "btn_supportAlertCall".localized(), cancelButtonText: "btn_cancel".localized(),
+                                                okButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
+                                                    UIApplication.shared.openURL(phoneCallURL)
+                        },
+                                                cancelButtonHandler: { alertView in
+                                                    alertView.dismissAlertView()
+                        })
+                        dialog.allowTouchOutsideToDismiss = false
+                        dialog.show()
+                    }
+                } else {
+                    let message = "alert_noSupportCall".localized()
+                    let dialog = ZAlertView(title: nil, message: message, closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                        alertView.dismissAlertView()
+                    })
+                    dialog.allowTouchOutsideToDismiss = false
+                    dialog.show()
+                }
+            }).disposed(by: disposeBag)
+
+        
         self.btn_call.rx.tap.asObservable()
             .subscribe(onNext:{
                 var supportTelephoneNumber = "+3905861975772"
@@ -125,7 +183,7 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                     dialog.show()
                 }
             }).disposed(by: disposeBag)
-        //self.btn_writeMail.style(.roundedButton(Color.supportCallBackgroundButton.value), title: "btn_supportWriteMail".localized())
+        
         self.btn_writeMail.rx.tap.asObservable()
             .subscribe(onNext:{
                 let email = Config().assistence_email
@@ -158,8 +216,5 @@ public class SupportViewController : BaseViewController, ViewModelBindable {
                 }
             }).disposed(by: disposeBag)
     }
-    
-    
-
     
 }

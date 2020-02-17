@@ -2764,8 +2764,8 @@ Corsa!</string>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" identifier="imageHeight" id="9Z0-8V-hSw"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siamo qui per aiutarti!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-Tb-EjZ">
-                                <rect key="frame" x="15" y="375.66666666666669" width="345" height="129"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Siamo qui per aiutarti!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-Tb-EjZ">
+                                <rect key="frame" x="15" y="375.66666666666663" width="345" height="100"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2776,8 +2776,8 @@ Corsa!</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYS-HS-hLR" userLabel="View call area">
                                 <rect key="frame" x="10" y="524.66666666666663" width="355" height="253.33333333333337"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vuoi parlare con un operatore?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1N-gI-NVh">
-                                        <rect key="frame" x="25" y="38.333333333333371" width="305" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vuoi parlare con un operatore?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1N-gI-NVh">
+                                        <rect key="frame" x="25" y="186.33333333333337" width="305" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2785,43 +2785,55 @@ Corsa!</string>
                                             <userDefinedRuntimeAttribute type="string" keyPath="bonMotStyleName" value="supportSubtitle"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13J-v3-tT5">
-                                        <rect key="frame" x="205" y="91.666666666666742" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" identifier="buttonHeight" id="8Wm-Xq-QfF"/>
-                                            <constraint firstAttribute="width" constant="100" id="gSb-Fe-ky2"/>
-                                        </constraints>
-                                        <state key="normal" title="SCRIVI UNA MAIL" image="support_mail">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVe-9W-fGy">
-                                        <rect key="frame" x="50" y="91.666666666666742" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" identifier="buttonHeight" id="H9D-lE-YAy"/>
-                                            <constraint firstAttribute="width" constant="100" id="seD-VY-fST"/>
-                                        </constraints>
-                                        <state key="normal" title="CHIAMA ORA" image="support_phone">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="VAb-HG-IRO">
+                                        <rect key="frame" x="18.666666666666657" y="26.666666666666742" width="318" height="100"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfn-bZ-0R3" userLabel="Btn sos">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="FJB-qi-dfF"/>
+                                                    <constraint firstAttribute="height" constant="100" identifier="buttonHeight" id="fgb-1k-22I"/>
+                                                </constraints>
+                                                <state key="normal" title="CHIAMA ORA" image="support_sos">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVe-9W-fGy">
+                                                <rect key="frame" x="109" y="0.0" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" identifier="buttonHeight" id="H9D-lE-YAy"/>
+                                                    <constraint firstAttribute="width" constant="100" id="seD-VY-fST"/>
+                                                </constraints>
+                                                <state key="normal" title="CHIAMA ORA" image="support_phone">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13J-v3-tT5">
+                                                <rect key="frame" x="218" y="0.0" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" identifier="buttonHeight" id="8Wm-Xq-QfF"/>
+                                                    <constraint firstAttribute="width" constant="100" id="gSb-Fe-ky2"/>
+                                                </constraints>
+                                                <state key="normal" title="SCRIVI UNA MAIL" image="support_mail">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="fVe-9W-fGy" firstAttribute="top" secondItem="DYS-HS-hLR" secondAttribute="centerY" constant="-35" id="5bb-8g-7XX"/>
-                                    <constraint firstItem="fVe-9W-fGy" firstAttribute="leading" secondItem="DYS-HS-hLR" secondAttribute="leading" constant="50" id="EF8-jp-iJX"/>
-                                    <constraint firstItem="U1N-gI-NVh" firstAttribute="bottom" secondItem="DYS-HS-hLR" secondAttribute="centerY" constant="-67.5" id="Jag-Zq-gCO"/>
+                                    <constraint firstItem="VAb-HG-IRO" firstAttribute="centerX" secondItem="DYS-HS-hLR" secondAttribute="centerX" id="7vz-Ai-a7f"/>
+                                    <constraint firstItem="U1N-gI-NVh" firstAttribute="bottom" secondItem="DYS-HS-hLR" secondAttribute="centerY" constant="80" id="Jag-Zq-gCO"/>
                                     <constraint firstAttribute="trailing" secondItem="U1N-gI-NVh" secondAttribute="trailing" constant="25" id="Vgo-vu-Rfl"/>
-                                    <constraint firstItem="13J-v3-tT5" firstAttribute="top" secondItem="DYS-HS-hLR" secondAttribute="centerY" constant="-35" id="i7z-Zh-QTL"/>
+                                    <constraint firstItem="VAb-HG-IRO" firstAttribute="top" secondItem="DYS-HS-hLR" secondAttribute="top" constant="26.670000000000002" id="jdb-Be-62e"/>
                                     <constraint firstItem="U1N-gI-NVh" firstAttribute="leading" secondItem="DYS-HS-hLR" secondAttribute="leading" constant="25" id="oJa-Jj-cL0"/>
-                                    <constraint firstAttribute="trailing" secondItem="13J-v3-tT5" secondAttribute="trailing" constant="50" id="vck-h1-7ee"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.91764705879999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="1" green="0.91764705879999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DYS-HS-hLR" firstAttribute="leading" secondItem="mJ9-mq-pj1" secondAttribute="leading" constant="10" id="4RW-0i-Uvw"/>
                             <constraint firstItem="2xl-Li-hne" firstAttribute="leading" secondItem="mJ9-mq-pj1" secondAttribute="leading" id="A3z-ES-rit"/>
                             <constraint firstItem="mJ9-mq-pj1" firstAttribute="trailing" secondItem="HcG-NR-tNs" secondAttribute="trailing" constant="15" id="AcR-pM-SiE"/>
                             <constraint firstItem="mJ9-mq-pj1" firstAttribute="trailing" secondItem="DYS-HS-hLR" secondAttribute="trailing" constant="10" id="BXR-9d-lP9"/>
@@ -2840,7 +2852,6 @@ Corsa!</string>
                             <constraint firstItem="DYS-HS-hLR" firstAttribute="height" secondItem="EBL-XL-ApY" secondAttribute="height" multiplier="0.25" constant="50.25" id="ZkV-UX-dBU"/>
                             <constraint firstItem="mJ9-mq-pj1" firstAttribute="trailing" secondItem="DYS-HS-hLR" secondAttribute="trailing" constant="10" id="ebW-40-0jq"/>
                             <constraint firstItem="mJ9-mq-pj1" firstAttribute="bottom" secondItem="DYS-HS-hLR" secondAttribute="bottom" id="kUF-Kz-JKJ"/>
-                            <constraint firstItem="DYS-HS-hLR" firstAttribute="top" secondItem="jL3-Tb-EjZ" secondAttribute="bottom" constant="20" id="qGh-2o-Fmx"/>
                             <constraint firstItem="HcG-NR-tNs" firstAttribute="top" secondItem="2xl-Li-hne" secondAttribute="bottom" constant="15" id="t5b-xW-PnP"/>
                             <constraint firstItem="bEr-z1-a6u" firstAttribute="leading" secondItem="mJ9-mq-pj1" secondAttribute="leading" id="vf7-jd-wne"/>
                         </constraints>
@@ -2850,6 +2861,7 @@ Corsa!</string>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="btn_call" destination="fVe-9W-fGy" id="ajN-Hk-PQB"/>
+                        <outlet property="btn_sos" destination="Xfn-bZ-0R3" id="KJ0-bf-Pv4"/>
                         <outlet property="btn_writeMail" destination="13J-v3-tT5" id="9Iw-F7-LqL"/>
                         <outlet property="img_top" destination="HcG-NR-tNs" id="KUK-Qn-7Jw"/>
                         <outlet property="lbl_headerTitle" destination="80F-DB-MZm" id="7x5-JJ-F4G"/>
@@ -3814,5 +3826,6 @@ grazie al tuo invito</string>
         <image name="mizzie_06_pianificazione" width="300" height="190"/>
         <image name="support_mail" width="100" height="100"/>
         <image name="support_phone" width="100" height="100"/>
+        <image name="support_sos" width="100" height="100"/>
     </resources>
 </document>
