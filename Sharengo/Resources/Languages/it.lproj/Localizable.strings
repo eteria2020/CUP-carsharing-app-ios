@@ -231,7 +231,8 @@
 // Support
 "lbl_supportHeaderTitle" = "RICHIEDI ASSISTENZA";
 "lbl_supportTitle" = "Siamo qui per aiutarti!";
-"lbl_supportSubtitle" = "Vuoi parlare con un operatore?";
+"lbl_supportSubtitle" = "Risponderemo alla tua mail solo in orario di ufficio";
+"lbl_supportSos" = "Dall'1 alle 6 del mattino il Servizio Clienti è attivo SOLO PER SOS";
 "btn_supportCall" = "CHIAMA ORA";
 "btn_supportWriteMail" = "SCRIVI UNA MAIL";
 "alert_supportCall" = "+39 0586 1975772";
