@@ -74,7 +74,7 @@ public final class SettingsCitiesViewModel : ListViewModelType, ViewModelTypeSel
     public func updateData()
     {
         var cityid = "0"
-        if var dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
+        if let dictionary = UserDefaults.standard.object(forKey: "cityDic") as? [String: String] {
             if let username = KeychainSwift().get("Username") {
                 cityid = dictionary[username] ?? "0"
             }
