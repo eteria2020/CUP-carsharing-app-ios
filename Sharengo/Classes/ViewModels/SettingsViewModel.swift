@@ -98,12 +98,14 @@ public final class SettingsViewModel : ListViewModelType, ViewModelTypeSelectabl
             let item = Setting(title: "lbl_settingsNotifications", icon: "icon_alert_white", viewModel: ViewModelFactory.settingsNotifications())
             settings.append(item)
         }
-        if(Config().language == "it"){
+        
+        //if(Config().language == "it"){
             //let settingItem1 = Setting(title: "lbl_settingsCities", icon: "ic_imposta_citta", viewModel: ViewModelFactory.settingsCities())
             //settings.append(settingItem1)
-            let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.noFavourites())
-            settings.append(settingItem2)
-        }
+            //let settingItem2 = Setting(title: "lbl_settingsFavourites", icon: "ic_imposta_indirizzi", viewModel: ViewModelFactory.noFavourites())
+            //settings.append(settingItem2)
+        //}
+        
         let settingItem3 = Setting(title: "lbl_settingsLanguages", icon: "ic_imposta_lingua", viewModel: ViewModelFactory.settingsLanguages())
         settings.append(settingItem3)
         
