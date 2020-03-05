@@ -690,7 +690,11 @@ public final class MapViewModel: ViewModelType {
         if let plate = car.plate
         {
         self.apiController.searchCar(plate: plate)
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            
+//BugFix [#882]
+//          .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+//
+            .observeOn(MainScheduler.instance)
             .subscribe { event in
                 switch event {
                 case .next(let response):
@@ -699,7 +703,7 @@ public final class MapViewModel: ViewModelType {
                         if let car = Car(json: data){
                         var arrayCar : [GMUClusterItem] = self.array_annotations.value
 
-                                            let index = arrayCar.index(where: { (singleCar) -> Bool in
+                            let index = arrayCar.firstIndex(where: { (singleCar) -> Bool in
                                                 if  singleCar is CarAnnotation{
                                                     let carAnn = singleCar as! CarAnnotation
                                                     return car.plate == carAnn.car.plate

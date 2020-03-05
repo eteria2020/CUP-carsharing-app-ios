@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2020-03-03 - SK - v.1.2.0
+              - SL - v.1.1.0
+              - NL - v.1.0.9
+              - IT - v.2.9.4
+### Changed
+- Bugfix for app crash on update car popup (#882)
+
 ## 2020-02-17 - IT - v.2.9.3
 ### Changed
 - Added SOS button on Support Area (#734)
