@@ -12,13 +12,16 @@ import RxCocoa
 
 import SideMenu
 import DeviceKit
+import WebKit
 
 class FaqViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
-    @IBOutlet fileprivate weak var webview_main: UIWebView!
+    //@IBOutlet fileprivate weak var webview_main: UIWebView!
     @IBOutlet fileprivate weak var btn_appTutorial: UIButton!
+    @IBOutlet weak var webview_container: UIView!
+    @IBOutlet fileprivate var webview_main: WKWebView!
     
     var viewModel: FaqViewModel?
     
@@ -28,9 +31,21 @@ class FaqViewController : BaseViewController, ViewModelBindable {
         guard let viewModel = viewModel as? FaqViewModel else {
             return
         }
+        
+        let config = WKWebViewConfiguration()
+        config.processPool = WKProcessPool()
+            
+        self.webview_main = WKWebView(frame: .zero, configuration: config)
+        self.webview_main.navigationDelegate = self
+        self.webview_container.backgroundColor = .clear
+        self.webview_container.addSubview(self.webview_main)
+        self.webview_main.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+          
         self.viewModel = viewModel
         if let request = viewModel.urlRequest {
-            self.webview_main.loadRequest(request)
+            self.webview_main.load(request)
         }
         self.viewModel?.selection.elements.subscribe(onNext:{[weak self] output in
             if (self == nil) { return }
@@ -108,22 +123,27 @@ class FaqViewController : BaseViewController, ViewModelBindable {
     }
 }
 
-extension FaqViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        return true
+extension FaqViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Swift.Error) {
+        guard let error: NSError = error as? NSError else { return }
+            let errorForm = -999
+            let messageError = error.code
+            if(messageError != errorForm){
+                let dialog = ZAlertView(title: nil, message:  "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.hideLoader {
+            
+        }
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
-        guard let error: NSError = error as? NSError else { return }
-        let errorForm = -999
-        let messageError = error.code
-        if(messageError != errorForm){
-            let dialog = ZAlertView(title: nil, message:  "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                alertView.dismissAlertView()
-            })
-            dialog.allowTouchOutsideToDismiss = false
-            dialog.show()
-        }
-        
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        decisionHandler(.allow)
     }
 }

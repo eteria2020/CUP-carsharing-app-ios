@@ -327,7 +327,7 @@
 //  Push request
 
 "push_request_alert_message" = "Attiva le push notification";
-"btn_go_to_settings" = "Accetta";
+"btn_go_to_settings" = "ACCETTA";
 
 // Close car popup
 "alert_closeCarPopoup" = "La macchina si chiuderà a breve, riceverai una notifica a processo completato.";

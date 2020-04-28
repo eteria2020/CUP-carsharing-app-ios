@@ -2644,11 +2644,11 @@
 		4DCD1A961ECDC20500FC8BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4DCD1A9A1ECDC22900FC8BF5 /* Fonts */,
 				D104768B225F227000F89E54 /* Configuration */,
 				D120AD4520E24C4A007A3139 /* Certificates */,
 				4D2339991EE6CF4B00780384 /* Gifs */,
 				4DCD1A981ECDC22900FC8BF5 /* Assets */,
-				4DCD1A9A1ECDC22900FC8BF5 /* Fonts */,
 				4DCD1A9C1ECDC22900FC8BF5 /* Languages */,
 				4DCD1A9D1ECDC22900FC8BF5 /* Plists */,
 				4DCD1A9F1ECDC22900FC8BF5 /* Storyboards */,
@@ -2674,8 +2674,7 @@
 				4D1AE8271ED1E40E00C8A1D3 /* Poppins-Medium.ttf */,
 				4D1AE8251ED1E40E00C8A1D3 /* Poppins-Bold.ttf */,
 			);
-			name = Fonts;
-			path = Resources/Fonts;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		4DCD1A9C1ECDC22900FC8BF5 /* Languages */ = {

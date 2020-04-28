@@ -239,6 +239,7 @@ class CarBookingPopupView: UIView
             //case: Reservation
             btn_openCentered.isHidden = true
             btn_open.isHidden = false
+            btn_open.style(.roundedButton(Color.alertButtonsGreenBackground.value), title: "btn_open".localized())
             btn_delete.isHidden = false
             btn_delete.style(.roundedButton(Color.alertButtonsRedBackground.value), title: "btn_delete".localized())
             btn_delete.rx.bind(to: viewModel.selection, input: .delete)

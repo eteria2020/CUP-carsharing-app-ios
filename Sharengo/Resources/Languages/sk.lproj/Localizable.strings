@@ -308,7 +308,7 @@
 "registration_not_completed_login_alert" = "Si vyradený, pretože je potrebné dokončiť proces registrácie.";
 //Push request
 "push_request_alert_message" = "Aktivovať upozornenie push";
-"btn_go_to_settings" = "Prijať";
+"btn_go_to_settings" = "PRIJAŤ";
 //close car popup
 "alert_closeCarPopoup" = "Auto sa zakrátko uzatvorí, obdržíte upozornenie o ukončení procesu.";
 "alert_closeCarPopoupConfirm" = "Naozaj chceš ukončiť jazdu?";

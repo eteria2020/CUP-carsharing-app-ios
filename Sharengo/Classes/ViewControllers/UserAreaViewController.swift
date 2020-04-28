@@ -13,12 +13,15 @@ import RxCocoa
 import SideMenu
 import DeviceKit
 import KeychainSwift
+import WebKit
 
 class UserAreaViewController : BaseViewController, ViewModelBindable {
     @IBOutlet fileprivate weak var view_navigationBar: NavigationBarView!
     @IBOutlet fileprivate weak var view_header: UIView!
     @IBOutlet fileprivate weak var lbl_headerTitle: UILabel!
-    @IBOutlet fileprivate weak var webview_main: UIWebView!
+//    @IBOutlet fileprivate weak var webview_main: UIWebView!
+    @IBOutlet weak var webview_container: UIView!
+    @IBOutlet fileprivate var webview_main: WKWebView!
     
     var viewModel: UserAreaViewModel?
     static var destination = ""
@@ -42,53 +45,40 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
                 break
             }
         }).disposed(by: self.disposeBag)
-        
-        self.showLoader()
+                
         URLSession.shared.reset {
-            var request = URLRequest(url: URL(string: Config().userArea_EndPoint + "url_lang".localized())!)
-            request.httpMethod = "POST"
-            let username = KeychainSwift().get("Username")!
-            let password = KeychainSwift().get("PasswordClear")!
-            let postString = "identity=\(username)&credential=\(password)"
-            request.httpBody = postString.data(using: .utf8)
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                self.hideLoader {
-                    guard let _ = data, error == nil else {
-                        let dialog = ZAlertView(title: nil, message: "alert_webViewError".localized(), isOkButtonLeft: false, okButtonText: "btn_ok".localized(), cancelButtonText: "btn_back".localized(),
-                                                okButtonHandler: { alertView in
-                                                   /* let destination: TutorialViewController = (Storyboard.main.scene(.tutorial))
-                                                    let viewModel = ViewModelFactory.tutorial()
-                                                    destination.bind(to: viewModel, afterLoad: true)
-                                                    self.present(destination, animated: true, completion: nil)*/
-                                                    alertView.dismissAlertView()
-                        },
-                                                cancelButtonHandler: { alertView in
-                                                    Router.back(self)
-                                                    alertView.dismissAlertView()
-                        })
-                        dialog.allowTouchOutsideToDismiss = false
-                        dialog.show()
-                        return
-                    }
-                   
-                        if KeychainSwift().get("DisableReason") != nil {
-                            let url = URL(string: Config().disableReason_EndPoint + "url_lang".localized())
-                            self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-                        }
-                        else{
-                            let url = URL(string: Config().disableReason_EndPoint + "url_lang".localized())
-                            self.webview_main.loadRequest(URLRequest(url: url!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30.0))
-                        }
-                }
+            DispatchQueue.main.async {
+                
+                var request = URLRequest(url: URL(string: Config().userArea_EndPoint + "url_lang".localized())!)
+                request.httpMethod = "POST"
+                let username = KeychainSwift().get("Username")!.removingPercentEncoding ?? ""
+                let password = KeychainSwift().get("PasswordClear")!
+                let postString = "identity=\(username)&credential=\(password)"
+                request.httpShouldHandleCookies = true
+                request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.httpBody = postString.data(using: .utf8)
+                self.webview_main.load(request)
+                
             }
-            task.resume()
         }
+        
     }
     
     // MARK: - View methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let config = WKWebViewConfiguration()
+        config.processPool = WKProcessPool()
+    
+        self.webview_main = WKWebView(frame: .zero, configuration: config)
+        self.webview_main.navigationDelegate = self
+        self.webview_container.backgroundColor = .clear
+        self.webview_container.addSubview(self.webview_main)
+        self.webview_main.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
         self.view.layoutIfNeeded()
         
         // Views
@@ -137,24 +127,56 @@ class UserAreaViewController : BaseViewController, ViewModelBindable {
     }
 }
 
-extension UserAreaViewController: UIWebViewDelegate {
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        print(webView.request?.description ?? "")
-        return true
-    }
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Swift.Error) {
+// MARK: - WKNavigationDelegate
+extension UserAreaViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Swift.Error) {
+        //print("didFail")
         guard let error: NSError = error as? NSError else { return }
-        let errorForm = -999
-        let messageError = error.code
-        if(messageError != errorForm){
-            let dialog = ZAlertView(title: nil, message:  "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
-                alertView.dismissAlertView()
-            })
-            dialog.allowTouchOutsideToDismiss = false
-            dialog.show()
-        }
-       
+            let errorForm = -999
+            let messageError = error.code
+            if(messageError != errorForm){
+                let dialog = ZAlertView(title: nil, message:  "alert_webViewError".localized(), closeButtonText: "btn_ok".localized(), closeButtonHandler: { alertView in
+                    alertView.dismissAlertView()
+                })
+                dialog.allowTouchOutsideToDismiss = false
+                dialog.show()
+            }
     }
     
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        //print("didFinish")
+        self.hideLoader {
+        }
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        //print("decidePolicyForNavigation")
+        print(navigationAction.request.url as Any)
+        decisionHandler(.allow)
+    }
+    
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        //print("didReceiveServerRedirectForProvisionalNavigation")
+        if (self.webview_main!.url?.absoluteString == Config().disableReason_EndPoint)
+        {
+            print("AREA-UTENTE")
+            self.webview_main!.stopLoading()
+            let request = URLRequest(url: URL(string: Config().disableReason_EndPoint + "/mobile?url_lang".localized())!)
+            self.webview_main.load(request)
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        //print("didCommitNavigation - content arriving?")
+    }
+
+    func webView(_ webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+        //print("didFailNavigation")
+    }
+
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("didStartProvisionalNavigation \(String(describing: navigation))")
+    }
     
 }
+
