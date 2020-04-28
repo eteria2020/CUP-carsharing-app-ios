@@ -324,7 +324,7 @@
 //  Push request
 
 "push_request_alert_message" = "Accept push notifications";
-"btn_go_to_settings" = "Accept";
+"btn_go_to_settings" = "ACCEPT";
 
 //close car
 

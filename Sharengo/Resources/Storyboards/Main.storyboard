@@ -281,7 +281,7 @@
                                 <rect key="frame" x="0.0" y="24" width="375" height="76"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk8-yT-tGS">
-                                        <rect key="frame" x="15" y="45" width="297" height="0.0"/>
+                                        <rect key="frame" x="15" y="45" width="313.33333333333331" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -290,17 +290,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zi-t0-SwU">
-                                        <rect key="frame" x="317" y="23.666666666666664" width="43" height="42.999999999999993"/>
+                                        <rect key="frame" x="333.33333333333331" y="31.666666666666664" width="26.666666666666686" height="26.666666666666664"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_user" translatesAutoresizingMaskIntoConstraints="NO" id="qIE-Sm-dc5">
-                                        <rect key="frame" x="322" y="28.666666666666664" width="33" height="33"/>
+                                        <rect key="frame" x="338.33333333333331" y="36.666666666666664" width="16.666666666666686" height="16.666666666666664"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qIE-Sm-dc5" secondAttribute="height" multiplier="1:1" id="zjS-Tn-aA9"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5x8-dj-VD7">
-                                        <rect key="frame" x="312" y="18.666666666666664" width="53" height="52.999999999999993"/>
+                                        <rect key="frame" x="328.33333333333331" y="26.666666666666668" width="36.666666666666686" height="36.666666666666657"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZV-Xg-5mS">
                                         <rect key="frame" x="0.0" y="75" width="375" height="1"/>
@@ -3101,13 +3101,10 @@ grazie al tuo invito</string>
                                     <constraint firstItem="hTc-io-W5e" firstAttribute="leading" secondItem="9hv-Th-TTX" secondAttribute="leading" constant="15" id="yLc-zp-l1q"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GD5-RX-oNK">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5h-2H-5Od">
                                 <rect key="frame" x="0.0" y="102" width="375" height="636"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="1RQ-yh-8p9" id="fdM-Kx-2Ht"/>
-                                </connections>
-                            </webView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-1R-dkw">
                                 <rect key="frame" x="0.0" y="738" width="375" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3119,19 +3116,19 @@ grazie al tuo invito</string>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.91764705879999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="dmB-1R-dkw" firstAttribute="top" secondItem="e5h-2H-5Od" secondAttribute="bottom" id="3C9-CS-rf2"/>
                             <constraint firstItem="vPY-hg-voi" firstAttribute="trailing" secondItem="9hv-Th-TTX" secondAttribute="trailing" id="3FI-Xo-ebU"/>
-                            <constraint firstItem="dmB-1R-dkw" firstAttribute="top" secondItem="GD5-RX-oNK" secondAttribute="bottom" id="4WX-Q9-LCQ"/>
                             <constraint firstItem="9hv-Th-TTX" firstAttribute="leading" secondItem="vPY-hg-voi" secondAttribute="leading" id="5ld-zB-NlH"/>
                             <constraint firstItem="dmB-1R-dkw" firstAttribute="leading" secondItem="vPY-hg-voi" secondAttribute="leading" id="A0R-7D-KuO"/>
                             <constraint firstItem="vPY-hg-voi" firstAttribute="trailing" secondItem="dmB-1R-dkw" secondAttribute="trailing" id="Ghz-Jh-7zl"/>
                             <constraint firstItem="dmB-1R-dkw" firstAttribute="bottom" secondItem="vPY-hg-voi" secondAttribute="bottom" id="KpG-q8-V3F"/>
-                            <constraint firstItem="vPY-hg-voi" firstAttribute="trailing" secondItem="GD5-RX-oNK" secondAttribute="trailing" id="Vtp-gf-37r"/>
-                            <constraint firstItem="GD5-RX-oNK" firstAttribute="leading" secondItem="vPY-hg-voi" secondAttribute="leading" id="Xn4-lI-8FE"/>
+                            <constraint firstItem="e5h-2H-5Od" firstAttribute="top" secondItem="9hv-Th-TTX" secondAttribute="bottom" id="NaW-yw-0SD"/>
                             <constraint firstItem="vqM-QM-bWh" firstAttribute="leading" secondItem="vPY-hg-voi" secondAttribute="leading" id="ZKo-Jk-PJI"/>
+                            <constraint firstItem="e5h-2H-5Od" firstAttribute="trailing" secondItem="vPY-hg-voi" secondAttribute="trailing" id="ac6-Pm-edL"/>
                             <constraint firstItem="vqM-QM-bWh" firstAttribute="top" secondItem="vPY-hg-voi" secondAttribute="top" constant="-20" id="oLv-JA-jNZ"/>
-                            <constraint firstItem="GD5-RX-oNK" firstAttribute="top" secondItem="9hv-Th-TTX" secondAttribute="bottom" id="rJA-QK-bCF"/>
                             <constraint firstItem="vPY-hg-voi" firstAttribute="bottom" secondItem="dmB-1R-dkw" secondAttribute="bottom" id="sTK-7h-Otg"/>
                             <constraint firstItem="vPY-hg-voi" firstAttribute="trailing" secondItem="vqM-QM-bWh" secondAttribute="trailing" id="xzH-ne-qY5"/>
+                            <constraint firstItem="e5h-2H-5Od" firstAttribute="leading" secondItem="vPY-hg-voi" secondAttribute="leading" id="yZS-02-QhS"/>
                             <constraint firstItem="9hv-Th-TTX" firstAttribute="top" secondItem="vqM-QM-bWh" secondAttribute="bottom" id="zAe-ot-kCM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vPY-hg-voi"/>
@@ -3141,12 +3138,12 @@ grazie al tuo invito</string>
                         <outlet property="lbl_headerTitle" destination="hTc-io-W5e" id="0nN-2g-ukG"/>
                         <outlet property="view_header" destination="9hv-Th-TTX" id="ZM5-g9-yZC"/>
                         <outlet property="view_navigationBar" destination="vqM-QM-bWh" id="Jvi-W8-O10"/>
-                        <outlet property="webview_main" destination="GD5-RX-oNK" id="Bdr-ye-Gfy"/>
+                        <outlet property="webview_container" destination="e5h-2H-5Od" id="gqA-99-LF8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nW6-BH-SiY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="769" y="1649"/>
+            <point key="canvasLocation" x="768.79999999999995" y="1648.5221674876848"/>
         </scene>
         <!--User Area View Controller-->
         <scene sceneID="Msg-gt-2Ix">
@@ -3185,26 +3182,23 @@ grazie al tuo invito</string>
                                     <constraint firstAttribute="bottom" secondItem="h5B-Y1-vz9" secondAttribute="bottom" constant="5" id="oCh-Vc-qU9"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYU-fx-Zqo">
-                                <rect key="frame" x="0.0" y="80" width="375" height="732"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="TfB-Ue-eTa" id="aRM-gC-FTq"/>
-                                </connections>
-                            </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ByC-gR-oVI">
+                                <rect key="frame" x="0.0" y="100" width="375" height="712"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VYU-fx-Zqo" firstAttribute="top" secondItem="ZaP-jU-lsv" secondAttribute="top" constant="56" id="10v-U0-i7s"/>
+                            <constraint firstItem="ByC-gR-oVI" firstAttribute="trailing" secondItem="RwD-ix-Bbd" secondAttribute="trailing" id="0Ay-gY-jYv"/>
+                            <constraint firstAttribute="bottom" secondItem="ByC-gR-oVI" secondAttribute="bottom" id="J4i-N1-gJB"/>
                             <constraint firstItem="RwD-ix-Bbd" firstAttribute="trailing" secondItem="kxZ-f3-SSi" secondAttribute="trailing" id="LF0-zr-ele"/>
                             <constraint firstItem="RwD-ix-Bbd" firstAttribute="trailing" secondItem="ZaP-jU-lsv" secondAttribute="trailing" id="Uua-dj-YmJ"/>
-                            <constraint firstItem="RwD-ix-Bbd" firstAttribute="trailing" secondItem="VYU-fx-Zqo" secondAttribute="trailing" id="Y0h-sX-Vdc"/>
+                            <constraint firstItem="ByC-gR-oVI" firstAttribute="top" secondItem="RwD-ix-Bbd" secondAttribute="top" constant="56" id="Wdo-p6-Onp"/>
                             <constraint firstItem="ZaP-jU-lsv" firstAttribute="leading" secondItem="RwD-ix-Bbd" secondAttribute="leading" id="dsa-CI-aBf"/>
                             <constraint firstItem="kxZ-f3-SSi" firstAttribute="top" secondItem="ZaP-jU-lsv" secondAttribute="top" id="fhA-vt-l1w"/>
                             <constraint firstItem="ZaP-jU-lsv" firstAttribute="top" secondItem="RwD-ix-Bbd" secondAttribute="top" constant="-20" id="jML-rr-igJ"/>
-                            <constraint firstAttribute="bottom" secondItem="VYU-fx-Zqo" secondAttribute="bottom" id="qG0-0P-Ph0"/>
+                            <constraint firstItem="ByC-gR-oVI" firstAttribute="leading" secondItem="RwD-ix-Bbd" secondAttribute="leading" id="nOa-te-dYB"/>
                             <constraint firstItem="kxZ-f3-SSi" firstAttribute="leading" secondItem="RwD-ix-Bbd" secondAttribute="leading" id="vdx-FF-Td5"/>
-                            <constraint firstItem="VYU-fx-Zqo" firstAttribute="leading" secondItem="RwD-ix-Bbd" secondAttribute="leading" id="yDA-z0-Jif"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RwD-ix-Bbd"/>
                     </view>
@@ -3212,12 +3206,12 @@ grazie al tuo invito</string>
                         <outlet property="lbl_headerTitle" destination="h5B-Y1-vz9" id="HI3-nc-cUP"/>
                         <outlet property="view_header" destination="kxZ-f3-SSi" id="6Ad-sq-ZbP"/>
                         <outlet property="view_navigationBar" destination="ZaP-jU-lsv" id="uer-Tk-oOL"/>
-                        <outlet property="webview_main" destination="VYU-fx-Zqo" id="tGl-4w-zr8"/>
+                        <outlet property="webview_container" destination="ByC-gR-oVI" id="LcS-rV-c66"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vt7-9M-Aj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260" y="1647.5262368815593"/>
+            <point key="canvasLocation" x="2260" y="1647.0443349753696"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="bA6-5r-hYh">
@@ -3621,24 +3615,21 @@ grazie al tuo invito</string>
                                     <constraint firstAttribute="height" constant="22" identifier="viewHeaderHeight" id="wy5-jN-6ft"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHr-ko-Siy">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6o-yU-tqB">
                                 <rect key="frame" x="0.0" y="102" width="375" height="710"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="0EC-qI-ySb" id="Qrj-v2-myl"/>
-                                </connections>
-                            </webView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pHr-ko-Siy" firstAttribute="leading" secondItem="Afo-Bw-WSS" secondAttribute="leading" id="N1V-ng-FO3"/>
+                            <constraint firstItem="E6o-yU-tqB" firstAttribute="trailing" secondItem="Afo-Bw-WSS" secondAttribute="trailing" id="JHb-uQ-5GJ"/>
                             <constraint firstItem="W4U-SN-WFY" firstAttribute="leading" secondItem="Afo-Bw-WSS" secondAttribute="leading" id="XPL-vm-9P4"/>
                             <constraint firstItem="QhP-W9-VW6" firstAttribute="top" secondItem="Afo-Bw-WSS" secondAttribute="top" constant="-20" id="aoS-tQ-rgr"/>
                             <constraint firstItem="Afo-Bw-WSS" firstAttribute="trailing" secondItem="W4U-SN-WFY" secondAttribute="trailing" id="bJS-zG-MRM"/>
                             <constraint firstItem="Afo-Bw-WSS" firstAttribute="trailing" secondItem="QhP-W9-VW6" secondAttribute="trailing" id="cbg-LA-qRi"/>
-                            <constraint firstItem="Afo-Bw-WSS" firstAttribute="trailing" secondItem="pHr-ko-Siy" secondAttribute="trailing" id="ifW-cq-II9"/>
-                            <constraint firstAttribute="bottom" secondItem="pHr-ko-Siy" secondAttribute="bottom" id="q2M-Og-5H1"/>
-                            <constraint firstItem="pHr-ko-Siy" firstAttribute="top" secondItem="W4U-SN-WFY" secondAttribute="bottom" id="yhz-Pk-TCq"/>
+                            <constraint firstAttribute="bottom" secondItem="E6o-yU-tqB" secondAttribute="bottom" id="dXU-Oi-Hoq"/>
+                            <constraint firstItem="E6o-yU-tqB" firstAttribute="leading" secondItem="Afo-Bw-WSS" secondAttribute="leading" id="jBE-9V-KOZ"/>
+                            <constraint firstItem="E6o-yU-tqB" firstAttribute="top" secondItem="W4U-SN-WFY" secondAttribute="bottom" id="uRW-4t-iBH"/>
                             <constraint firstItem="W4U-SN-WFY" firstAttribute="top" secondItem="QhP-W9-VW6" secondAttribute="bottom" id="yzK-sw-doZ"/>
                             <constraint firstItem="QhP-W9-VW6" firstAttribute="leading" secondItem="Afo-Bw-WSS" secondAttribute="leading" id="zBM-yI-m75"/>
                         </constraints>
@@ -3648,12 +3639,12 @@ grazie al tuo invito</string>
                         <outlet property="lbl_headerTitle" destination="wdJ-DF-iMw" id="3cV-Oe-b9h"/>
                         <outlet property="view_header" destination="W4U-SN-WFY" id="xt4-gs-LWI"/>
                         <outlet property="view_navigationBar" destination="QhP-W9-VW6" id="ZQ2-a0-Hal"/>
-                        <outlet property="webview_main" destination="pHr-ko-Siy" id="VZM-hN-ESq"/>
+                        <outlet property="webview_container" destination="E6o-yU-tqB" id="ETf-Na-lng"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFh-nF-XOO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260" y="1647.5262368815593"/>
+            <point key="canvasLocation" x="2260" y="1647.0443349753696"/>
         </scene>
         <!--Privacy Statement View Controller-->
         <scene sceneID="hVZ-Bg-PyW">

@@ -322,7 +322,7 @@
 
 // Push request
 "push_request_alert_message" = "Schakel pushmelding in";
-"btn_go_to_settings" = "Accepteren";
+"btn_go_to_settings" = "ACCEPTEREN";
 
 // Close car
 "alert_closeCarPopoup" = "De auto wordt zometeen gesloten; je ontvangt een melding wanneer het proces is voltooid.";
