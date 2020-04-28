@@ -322,7 +322,7 @@
 
 // Push request
 "push_request_alert_message" = "Sprejmite potisna obvestila";
-"btn_go_to_settings" = "Sprejmem";
+"btn_go_to_settings" = "SPREJMEM";
 
 // Close car
 "alert_closeCarPopoup" = "Vozilo se bo zaprlo v nekaj sekundah. Po tem boste prejeli obvestilo";

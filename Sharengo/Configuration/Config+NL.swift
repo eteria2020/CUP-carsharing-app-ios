@@ -18,7 +18,7 @@ class Config {
     let support_EndPoint = "https://site.sharengo.nl/faq/?app"
     let legalNote_EndPoit = "https://site.sharengo.nl/privacy/"
     let userArea_EndPoint = "https://www.sharengo.nl/user/login?"
-    let disableReason_EndPoint = "https://www.sharengo.nl/area-utente/mobile?"
+    let disableReason_EndPoint = "https://www.sharengo.nl/area-utente"
     let site_Endpoint = "https://www.sharengo.nl"
     let signup3_EndPoint = "http://www.sharengo.nl/signup-3/mobile?";
     let forgetPsw_EndPoint = "https://www.sharengo.nl/forgot-password/mobile?"

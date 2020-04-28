@@ -22,4 +22,13 @@ final class  LegalNoteViewModel: ViewModelTypeSelectable {
     public var selection: Action<LegalNoteInput, LegalNoteOutput> = Action { input in
         return .just(.empty)
     }
+    
+    var urlRequest:URLRequest?
+        
+    init()
+    {
+        let url = URL(string: Config().legalNote_EndPoit)
+        self.urlRequest = URLRequest(url: url!)
+    }
+    
 }
