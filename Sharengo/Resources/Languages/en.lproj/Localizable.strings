@@ -333,3 +333,7 @@
 
 //webView
 "url_lang" = "lang=en_US";
+
+//MySharengo
+"popup_message" = "The carsharing service is temporarily suspended due to COVID-19.\nDiscover the new MYSHARENGO mobility service";
+"popup_close" = "Close";

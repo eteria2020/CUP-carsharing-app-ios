@@ -672,7 +672,20 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.closeCarBookingPopupView), name: NSNotification.Name(rawValue: "closeCarBookingPopupView"), object: nil)
         
         self.setCarsButtonVisible(false)
-        
+
+        if (Config().langAndCountry == "it_IT") {
+            let message = "popup_message".localized()
+            let dialog = ZAlertView(title: nil, message: message, isOkButtonLeft: false, okButtonText: "MYSHARENGO", cancelButtonText: "btn_cancel".localized(),
+                                    okButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                        self.launchFaq()
+                                    },
+                                    cancelButtonHandler: { alertView in
+                                        alertView.dismissAlertView()
+                                    })
+            dialog.allowTouchOutsideToDismiss = false
+            dialog.show()
+        }
         
         /*if let car = viewModel?.allCars.filter({ (car) -> Bool in
          return car.plate?.lowercased().contains(plate) ?? false}){
@@ -2244,7 +2257,14 @@ public class MapViewController : BaseViewController, ViewModelBindable {
         destination.bind(to: viewModel, afterLoad: true)
         CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
     }
-    
+    /**
+     This method launch page FAQ the same type of menu.
+     */
+    public func launchFaq() {
+        let destination: FaqViewController = (Storyboard.main.scene(.faq))
+        destination.bind(to: FaqViewModel(), afterLoad: true)
+        CoreController.shared.currentViewController?.navigationController?.pushViewController(destination, animated: false)
+    }
     /**
      This method shows or hide user position
      - Parameter visible: Visible determinates if user position is shown or not
